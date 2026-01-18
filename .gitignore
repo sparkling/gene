@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+
+# Database files
+*.db
+
+# RuVector intelligence data (learning state)
+.ruvector/
+
+# Claude Flow daemon state
+.claude-flow/daemon-state.json
+.claude-flow/logs/
+
+# Swarm state
+.swarm/
+
+# Old statusline
+.claude/statusline.sh

@@ -1,0 +1,112 @@
+# Claude Flow V3 Runtime Configuration
+# Optimized for: AMD Ryzen 9 7950X3D (16C/32T) + 192GB RAM
+# Generated: 2026-01-18T16:39:13.335Z
+
+version: "3.0.0"
+
+# Hardware profile
+hardware:
+  cpu:
+    cores: 16
+    threads: 32
+    model: "AMD Ryzen 9 7950X3D"
+  memory:
+    total: 192  # GB
+    available: 180  # GB reserve
+  disk:
+    total: 3500  # GB
+    available: 3300  # GB
+
+# Swarm - Maximized for 32 threads
+swarm:
+  topology: hierarchical-mesh
+  maxAgents: 24  # 75% of threads for headroom
+  minAgents: 4
+  autoScale: true
+  coordinationStrategy: consensus
+  parallelTasks: 16  # Match physical cores
+  workerThreads: 28  # Leave 4 threads for system
+  agentPool:
+    enabled: true
+    preSpawnCount: 6
+    maxIdleTime: 300000  # 5 min
+
+# Memory - Full RuVector Integration (192GB available)
+memory:
+  backend: ruvector  # Use full RuVector instead of hybrid
+  enableHNSW: true
+  persistPath: .claude-flow/data
+  cacheSize: 8192  # 8GB L1 cache
+  vectorCache: 4096  # 4GB vector embeddings
+  maxMemoryUsage: 64  # GB - 33% of available
+  hnswConfig:
+    M: 32  # Higher connectivity for faster search
+    efConstruction: 400  # Better index quality
+    efSearch: 200  # Faster queries
+  quantization:
+    enabled: true
+    bits: 8  # 4x memory reduction
+  ruvector:
+    enabled: true
+    bridge: true  # Bridge to full RuVector
+    nativeBindings: true
+    fallback: rvlite  # Fallback if RuVector unavailable
+
+# Neural - Full RuVector (CPU-optimized for Ryzen 9 7950X3D)
+neural:
+  enabled: true
+  modelPath: .claude-flow/neural
+  batchSize: 64  # Larger batches for CPU
+  threads: 16  # Use physical cores
+  useCPU: true
+  useGPU: false
+  flashAttention: true
+  moe:
+    enabled: true
+    experts: 8
+    topK: 2
+  ewc:
+    enabled: true
+    lambda: 0.4
+  ruvector:
+    useNative: true  # Use @ruvector/attention native bindings
+    sona:
+      enabled: true  # SONA self-optimizing learning
+      adaptationRate: 0.05
+    gnn:
+      enabled: true  # Graph Neural Networks
+      layers: 3
+    algorithms:
+      - double-q  # Default learning algorithm
+      - actor-critic
+      - ppo
+      - decision-transformer
+
+# Hooks - Parallel execution
+hooks:
+  enabled: true
+  autoExecute: true
+  parallelHooks: 8
+  timeoutMs: 60000
+
+# Daemon - High throughput
+daemon:
+  maxConcurrent: 12  # Increased from 2
+  workerTimeoutMs: 600000
+  resourceThresholds:
+    maxCpuLoad: 24  # 75% of 32 threads
+    minFreeMemoryPercent: 10  # 10% of 192GB = 19GB reserve
+
+# MCP - Fast response
+mcp:
+  autoStart: false
+  port: 3000
+  connectionPool: 16
+  maxConcurrentRequests: 32
+
+# Performance targets
+performance:
+  targetLatencyMs: 50
+  batchingEnabled: true
+  asyncIO: true
+  threadPoolSize: 32
