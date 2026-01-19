@@ -126,7 +126,7 @@ Gene Platform should position at approximately:
 **Why It Works**:
 - **Privacy-Preserving**: Only the template (list of rsIDs) is shared; actual genotypes stay private
 - **Low Barrier**: One-time $19.95 fee makes experimentation affordable
-- **Community Wisdom**: Users build on each other's work - someone creates a "Phoenix Rising Methylation Panel," others improve it
+- **Community Wisdom**: Users build on each other's work - someone creates a "chronic illness forums Methylation Panel," others improve it
 - **Power User Tool**: "SNP Sandbox" lets users query any of 600K SNPs with logical operators
 
 **Where It Falls Short**:
@@ -339,7 +339,7 @@ More Content (personalized to genetics)
 | **Traditional Medicine Enthusiasts** | Can't validate dosha/constitution typing with genetics | Dosha/body constitution reports backed by genetic evidence |
 | **Privacy-Conscious Biohackers** | Must choose between features (SelfDecode) or privacy (Genetic Lifehacks) | Full features with privacy-first architecture and anonymous sharing |
 | **Budget Biohackers** | Promethease is cheap but overwhelming; good platforms are expensive | Mid-tier pricing ($99-149/yr) with Promethease-level depth and SelfDecode-level usability |
-| **Chronic Illness Community (ME/CFS, MCAS)** | Phoenix Rising knowledge trapped in forum threads | Structured protocol library with SNP collections for complex conditions |
+| **Chronic Illness Community (ME/CFS, MCAS)** | chronic illness forums knowledge trapped in forum threads | Structured protocol library with SNP collections for complex conditions |
 | **Non-English Traditional Medicine Users** | No genetics + traditional medicine in local languages | Localization for TCM (Chinese), Ayurveda (Hindi), Kampo (Japanese) markets |
 
 ---

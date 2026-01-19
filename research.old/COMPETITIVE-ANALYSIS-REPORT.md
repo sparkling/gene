@@ -27,14 +27,14 @@ No existing platform combines all of Gene Platform's planned features:
 
 **3. Validated Demand**
 - ADNTRO (Spain) named Top 10 Biotech 2022 with only Ayurveda dosha analysis
-- Phoenix Rising forum has thousands of users discussing SNP-treatment protocols
+- chronic illness forums forum has thousands of users discussing SNP-treatment protocols
 - StrateGene proves demand for pathway visualization despite static PDF limitations
 - LiveWello validates community SNP sharing model
 
 **4. Strategic Positioning Recommended**
 - **Target:** "Full Platform + Traditional Medicine" white space (unoccupied)
 - **Price:** Mid-tier ($79-179/year) - above commodity players, below SelfDecode
-- **Entry:** Hybrid niche (Phoenix Rising community) + B2B2C (practitioners)
+- **Entry:** Hybrid niche (chronic illness forums community) + B2B2C (practitioners)
 
 ### Risk Assessment: MEDIUM Confidence
 
@@ -185,7 +185,7 @@ Comprehensive catalog of 100+ competitor platforms across 12 tiers:
 - **Visualization:** Cytoscape.js (MIT license, 67+ extensions, SBGN support)
 - **APIs:** Reactome (primary), WikiPathways (secondary)
 - **AI:** Claude RAG with RuVector for pathway-aware reasoning
-- **Databases:** Start with 5-7 core (BATMAN-TCM, TCMSP, IMPPAT, PharmGKB, SNPedia)
+- **Databases:** Start with 5-7 core (BATMAN-TCM 2.0, TCMBank, IMPPAT, PharmGKB, SNPedia)
 
 ---
 
@@ -199,7 +199,7 @@ Comprehensive catalog of 100+ competitor platforms across 12 tiers:
 
 ### Market Entry Strategy: Hybrid Niche + B2B2C
 
-1. **Phase 1 (Months 1-4):** Niche launch with Phoenix Rising community
+1. **Phase 1 (Months 1-4):** Niche launch with chronic illness forums community
    - MVP: TCM/Ayurveda database, methylation pathways, SNP sharing
    - Target: 1,000 users, 150 paid conversions
    - Budget: $75K
@@ -304,12 +304,12 @@ Comprehensive catalog of 100+ competitor platforms across 12 tiers:
 **Competitor Analysis:**
 - Platform websites, pricing pages, feature documentation
 - Third-party reviews: Nebula Genomics, DNA Weekly, Innerbody
-- Phoenix Rising forum analysis
+- chronic illness forums forum analysis
 
 **Technical Research:**
 - Cytoscape.js, Reactome, WikiPathways documentation
 - SBGN specification, BioPAX standards
-- TCM database documentation (BATMAN-TCM, TCMSP, SymMap)
+- TCM database documentation (BATMAN-TCM 2.0, TCMBank, SymMap)
 
 **Academic Sources:**
 - PLOS Computational Biology - genomics visualization
@@ -324,7 +324,7 @@ Gene Platform has identified a genuine market opportunity in the intersection of
 
 **The three winning bets:**
 1. Traditional medicine integration is the differentiator
-2. Community-first growth (Phoenix Rising beachhead) works
+2. Community-first growth (chronic illness forums beachhead) works
 3. Interactive visualization sells
 
 **Critical success factors:**

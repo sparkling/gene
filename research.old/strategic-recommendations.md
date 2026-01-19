@@ -97,7 +97,7 @@ Based on comprehensive competitive analysis of 100+ platforms, Gene Platform has
 
 #### Option A: Niche Entry (Methylation/Chronic Illness Community)
 
-**Strategy:** Focus on Phoenix Rising community (ME/CFS, fibromyalgia, Long COVID, POTS, MCAS patients)
+**Strategy:** Focus on chronic illness community (ME/CFS, fibromyalgia, Long COVID, POTS, MCAS patients)
 
 **Pros:**
 - Highly engaged, underserved user base
@@ -166,7 +166,7 @@ Based on comprehensive competitive analysis of 100+ platforms, Gene Platform has
 
 **Rationale:**
 
-1. **Start with Niche (Phoenix Rising community):**
+1. **Start with Niche (chronic illness community):**
    - Immediate validation of core differentiators
    - Passionate early adopters who will provide feedback
    - Strong word-of-mouth in an interconnected community
@@ -195,7 +195,7 @@ Based on comprehensive competitive analysis of 100+ platforms, Gene Platform has
 
 | Phase | Timeline | Focus | Target Users |
 |-------|----------|-------|--------------|
-| MVP | Months 1-4 | Core features + methylation focus | Phoenix Rising early adopters |
+| MVP | Months 1-4 | Core features + methylation focus | chronic illness forums early adopters |
 | Growth | Months 5-8 | Practitioner portal + TCM expansion | Practitioners + their patients |
 | Scale | Months 9-12 | Broad marketing + full feature parity | General biohacker market |
 
@@ -218,10 +218,10 @@ Based on comprehensive competitive analysis of 100+ platforms, Gene Platform has
 | 1 | TCM/Ayurveda Treatment Database | 10/10 | Medium | High | **9.4** | No competitor has this; ADNTRO only does doshas |
 | 2 | Interactive Pathway Visualization | 9/10 | Medium | High | **8.7** | StrateGene is static PDFs; clear upgrade |
 | 3 | SNP Collection Sharing | 8/10 | Low | High | **8.5** | LiveWello model works; we modernize it |
-| 4 | Methylation Panel (MTHFR focus) | 7/10 | Low | Very High | **8.2** | Phoenix Rising priority; table stakes |
+| 4 | Methylation Panel (MTHFR focus) | 7/10 | Low | Very High | **8.2** | chronic illness forums priority; table stakes |
 | 5 | Evidence-Linked Recommendations | 8/10 | Medium | Medium | **7.8** | SelfHacked model; builds trust |
 | 6 | Privacy-First Data Model | 7/10 | Medium | Medium | **7.5** | Differentiator vs SelfDecode |
-| 7 | Protocol Library | 6/10 | Medium | High | **7.2** | Phoenix Rising knowledge structured |
+| 7 | Protocol Library | 6/10 | Medium | High | **7.2** | chronic illness forums knowledge structured |
 | 8 | AI Chat (Claude RAG) | 6/10 | High | Medium | **6.5** | Nice-to-have; SelfDecode has DecodyGPT |
 | 9 | Polygenic Risk Scores | 5/10 | High | Medium | **5.8** | Many competitors have this |
 | 10 | Lab Integration | 4/10 | High | Low | **4.5** | Phase 3 feature |
@@ -273,7 +273,7 @@ Based on comprehensive competitive analysis of 100+ platforms, Gene Platform has
 #### 3. Methylation Panel + SNP Collection Sharing - WHY THIRD
 
 **Why This Feature:**
-- **Community Entry Point:** Phoenix Rising users obsessed with methylation
+- **Community Entry Point:** chronic illness forums users obsessed with methylation
 - **Low Complexity:** We can launch in 2-4 weeks
 - **Viral Mechanism:** SNP collections shared = free marketing
 - **Trust Builder:** Solve their #1 pain point first
@@ -455,7 +455,7 @@ Gene Annual User
 
 ## 5.5 Partnership Opportunities
 
-### Priority 1: Phoenix Rising Community Integration
+### Priority 1: chronic illness forums Community Integration
 
 **Partnership Structure:**
 - Official "Community Partner" status on forums
@@ -466,7 +466,7 @@ Gene Annual User
 **Execution:**
 1. Contact forum moderators (Week 1)
 2. Offer free Pro accounts to top 20 contributors (Week 2)
-3. Create Phoenix Rising-specific SNP collection (Week 3)
+3. Create chronic illness forums-specific SNP collection (Week 3)
 4. Launch forum integration (Week 4)
 
 **Expected Outcome:** 500-1,000 early adopters, strong word-of-mouth
@@ -511,7 +511,7 @@ Gene Annual User
 - 100+ evidence-based articles on gene-treatment relationships
 - TCM + genetics explainer series (unique content)
 - Ayurveda genomics educational content
-- Phoenix Rising protocol documentation
+- chronic illness forums protocol documentation
 
 **Expected Outcome:** 50K monthly organic visitors by Month 12
 
@@ -551,12 +551,12 @@ Gene Annual User
 5. Basic privacy-first data model
 
 **Target Users:**
-- Phoenix Rising community (primary)
+- chronic illness community (primary)
 - Biohackers interested in methylation
 - TCM/Ayurveda practitioners (secondary)
 
 **Go-to-Market Activities:**
-- Phoenix Rising forum launch thread
+- chronic illness forums forum launch thread
 - Reddit posts (r/MTHFR, r/Supplements, r/Nootropics, r/ChronicIllness)
 - Early adopter discount (50% off annual)
 - Practitioner outreach (50 initial targets)
@@ -589,7 +589,7 @@ Gene Annual User
 
 **Market Expansion:**
 - Practitioner channel activation (B2B2C)
-- Expand beyond Phoenix Rising to broader chronic illness community
+- Expand beyond chronic illness forums to broader chronic illness community
 - Launch integrative medicine practitioner partnerships
 - Content marketing ramp-up (20+ articles)
 
@@ -673,7 +673,7 @@ Gene Annual User
    - No competitor can easily replicate our 40+ database integration
 
 2. **Community-First Growth Works**
-   - Phoenix Rising is the beachhead
+   - chronic illness forums is the beachhead
    - SNP collection sharing creates viral loops
    - Practitioners provide sustainable distribution
 

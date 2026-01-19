@@ -469,9 +469,9 @@ ORDER BY ?preparationLabel
 | Category | Estimated Wikidata Items | Specialized Database Coverage |
 |----------|--------------------------|------------------------------|
 | **TCM** | | |
-| TCM herbs | ~200-500 | TCMSP: 499 herbs |
+| TCM herbs | ~200-500 | BATMAN-TCM: 8,404 herbs |
 | TCM formulas | ~50-100 | TCMID: 49,000+ prescriptions |
-| TCM compounds | ~500-1000 | TCMSP: 29,384 ingredients |
+| TCM compounds | ~500-1000 | BATMAN-TCM: 39,171 compounds |
 | **Kampo** | | |
 | Kampo formulas | ~50-100 | KampoDB: 42 formulas |
 | Japanese crude drugs | ~100-200 | JP 17th ed: 176 crude drugs |
@@ -484,7 +484,7 @@ ORDER BY ?preparationLabel
 **TCM Coverage Gaps:**
 | Specialized Database | Items | Wikidata Coverage |
 |---------------------|-------|-------------------|
-| TCMSP | 499 herbs, 29,384 ingredients | ~10-20% |
+| BATMAN-TCM 2.0 | 8,404 herbs, 39,171 compounds | ~5-10% |
 | TCMID | 49,000+ prescriptions | <1% |
 | ETCM | 403 herbs, 3,962 prescriptions | ~10-15% |
 | SymMap | TCM symptoms mapped | Limited |
@@ -544,7 +544,7 @@ ORDER BY ?preparationLabel
 **Missing External ID Properties (Traditional Medicine):**
 | Database | Status | Proposed Use |
 |----------|--------|--------------|
-| TCMSP | No property | TCM herbs, compounds |
+| BATMAN-TCM | No property | TCM herbs, compounds |
 | TCMID | No property | TCM prescriptions |
 | KampoDB | No property | Kampo formulas |
 | STORK | No property | Kampo standardization |
@@ -739,7 +739,7 @@ OFFSET 0
 
 1. **Use Wikidata as a Hub**: Cross-reference with specialized databases
 2. **Supplement with Specialized Sources**:
-   - TCM: TCMSP, TCMID, ETCM
+   - TCM: BATMAN-TCM 2.0, TCMID, ETCM
    - Kampo: KampoDB, STORK
    - Ayurveda: IMPPAT, TKDL (if accessible)
 3. **Contribute Back**: Add missing items and properties to Wikidata
@@ -753,7 +753,7 @@ OFFSET 0
 | Channel tropism | Meridian affinity | TCM herbs |
 | Dosha effect | Increase/decrease effect on doshas | Ayurvedic herbs |
 | Kampo pattern | Sho classification | Kampo formulas |
-| TCMSP ID | Identifier in TCMSP database | Chemical/herb |
+| BATMAN-TCM ID | Identifier in BATMAN-TCM database | Chemical/herb |
 | KampoDB ID | Identifier in KampoDB | Kampo items |
 | IMPPAT ID | Identifier in IMPPAT database | Indian plants |
 
@@ -770,7 +770,7 @@ OFFSET 0
 ## References
 
 ### External Databases
-- [TCMSP](https://old.tcmsp-e.com/tcmsp.php) - Traditional Chinese Medicine Systems Pharmacology
+- [BATMAN-TCM 2.0](http://bionet.ncpsb.org.cn/batman-tcm/) - Bioinformatics Analysis Tool for Molecular mechANism of TCM
 - [TCMID](http://www.megabionet.org/tcmid/) - Traditional Chinese Medicine Integrated Database
 - [ETCM](http://www.tcmip.cn/ETCM/) - Encyclopedia of Traditional Chinese Medicine
 - [KampoDB](http://wakanmoview.inm.u-toyama.ac.jp/kampo/) - Kampo Medicine Database

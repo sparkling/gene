@@ -153,7 +153,7 @@ This document provides comprehensive competitive research for the Gene Platform 
 
 | Platform | URL | Focus |
 |----------|-----|-------|
-| **Phoenix Rising** | forums.phoenixrising.me | ME/CFS, methylation protocols |
+| **chronic illness forums** | forums.phoenixrising.me | ME/CFS, methylation protocols |
 | **SNPedia** | snpedia.com | Wiki database of SNPs |
 | **Reactome** | reactome.org | Free pathway database |
 | **KEGG PATHWAY** | genome.jp/kegg/pathway | Metabolic pathway maps |
@@ -266,7 +266,7 @@ This document provides comprehensive competitive research for the Gene Platform 
 
 ---
 
-### 6. Phoenix Rising Forum - Community Knowledge
+### 6. chronic illness forums Forum - Community Knowledge
 
 **Richest source of methylation/SNP treatment protocols.**
 
@@ -368,7 +368,7 @@ Based on comprehensive research of pathway visualization tools:
 **Opportunity**: Interactive Cytoscape.js-based pathway diagrams with zoom, filtering, personal SNP overlay.
 
 ### 3. No Structured Community Knowledge
-**Gap**: Phoenix Rising knowledge trapped in forum threads.
+**Gap**: chronic illness forums knowledge trapped in forum threads.
 **Opportunity**: Structured protocol library with SNP collections.
 
 ### 4. Poor Evidence Linking
@@ -409,7 +409,7 @@ Based on comprehensive research of pathway visualization tools:
    - Examine.com-style effectiveness ratings
 
 6. **Community Protocol Library**
-   - Structured treatment protocols (Phoenix Rising knowledge systematized)
+   - Structured treatment protocols (chronic illness forums knowledge systematized)
    - SNP collection sharing
    - Anonymous contribution model
 
@@ -434,7 +434,7 @@ Based on comprehensive research of pathway visualization tools:
 3. SNP collection sharing (LiveWello-inspired)
 
 ### Phase 2: Community Features
-4. Protocol library (Phoenix Rising knowledge structured)
+4. Protocol library (chronic illness forums knowledge structured)
 5. Anonymous sharing system
 6. Evidence-based recommendation engine
 
@@ -451,7 +451,7 @@ Based on comprehensive research of pathway visualization tools:
 - Official platform websites, pricing pages, feature lists
 - Third-party reviews: Nebula Genomics, DNA Weekly, Innerbody, XCode Life
 - Academic papers on pathway visualization (PLOS Computational Biology)
-- Phoenix Rising forum analysis
+- chronic illness forums forum analysis
 - Cytoscape.js, Reactome, WikiPathways documentation
 
 **Key Academic Sources**:

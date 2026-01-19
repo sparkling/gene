@@ -7,12 +7,11 @@ This document provides comprehensive information on bulk download methods for Tr
 ## Table of Contents
 
 1. [BATMAN-TCM 2.0](#1-batman-tcm-20)
-2. [TCMSP](#2-tcmsp)
-3. [TCMBank](#3-tcmbank)
-4. [HERB 2.0](#4-herb-20)
-5. [IMPPAT 2.0](#5-imppat-20)
-6. [KampoDB](#6-kampodb)
-7. [Dr. Duke's Phytochemical Database](#7-dr-dukes-phytochemical-database)
+2. [TCMBank](#2-tcmbank)
+3. [HERB 2.0](#3-herb-20)
+4. [IMPPAT 2.0](#4-imppat-20)
+5. [KampoDB](#5-kampodb)
+6. [Dr. Duke's Phytochemical Database](#6-dr-dukes-phytochemical-database)
 8. [LOTUS](#8-lotus)
 9. [KNApSAcK](#9-knapsack)
 10. [Processing Recommendations](#10-processing-recommendations)
@@ -67,51 +66,7 @@ http://bionet.ncpsb.org.cn/batman-tcm/api/[parameters]
 
 ---
 
-## 2. TCMSP
-
-**Traditional Chinese Medicine Systems Pharmacology Database and Analysis Platform**
-
-### Database URL
-- **Main Site**: https://tcmsp-e.com/
-
-### Important Notice
-**TCMSP does NOT provide official bulk download functionality.** Data must be accessed through web interface queries or spider tools.
-
-### Spider Tool Approach
-
-#### TCMSP-Spider (Recommended)
-- **Repository**: https://github.com/shujuecn/TCMSP-Spider
-- **License**: MIT
-
-#### Installation
-```bash
-git clone https://github.com/shujuecn/TCMSP-Spider.git
-cd TCMSP-Spider
-pip3 install -r requirements.txt
-```
-
-#### Usage
-1. Configure `herb_list.txt` with drug names (Chinese, Pinyin, or Latin)
-2. Run `search_save_herbs.py` for targeted queries
-3. Run `get_all_data.py` for comprehensive downloads
-
-#### Output
-- Format: Excel files (.xlsx)
-- Location: `data/spider_data/` or `data/sample_data/`
-- Contents: Drugs, ingredients, targets, diseases
-
-### Rate Limiting Considerations
-- Implement delays between requests (recommended: 1-2 seconds)
-- Use rotating user agents
-- Handle token authentication automatically (tool manages this)
-- Monitor for IP blocking; use proxies if necessary
-
-### Alternative: TCMBank
-Due to TCMSP's lack of official bulk download, consider using **TCMBank** as a more accessible alternative (see Section 3).
-
----
-
-## 3. TCMBank
+## 2. TCMBank
 
 **The Largest TCM Database**
 
@@ -196,7 +151,7 @@ with zipfile.ZipFile('all_mol2.zip', 'r') as zip_ref:
 
 ---
 
-## 4. HERB 2.0
+## 3. HERB 2.0
 
 **High-throughput Experiment- and Reference-guided Database of TCM**
 
@@ -258,7 +213,7 @@ HERB 2.0 provides knowledge graph with 9 entity types:
 
 ---
 
-## 5. IMPPAT 2.0
+## 4. IMPPAT 2.0
 
 **Indian Medicinal Plants, Phytochemistry And Therapeutics**
 
@@ -330,7 +285,7 @@ From each phytochemical's dedicated page, download:
 
 ---
 
-## 6. KampoDB
+## 5. KampoDB
 
 **Database of Japanese Kampo Medicines**
 
@@ -382,7 +337,7 @@ From each phytochemical's dedicated page, download:
 
 ---
 
-## 7. Dr. Duke's Phytochemical Database
+## 6. Dr. Duke's Phytochemical Database
 
 **USDA Phytochemical and Ethnobotanical Databases**
 
@@ -441,7 +396,7 @@ for file in os.listdir('duke_data/'):
 
 ---
 
-## 8. LOTUS
+## 7. LOTUS
 
 **Liberating Occurrence of NaTUral productS**
 
@@ -519,7 +474,7 @@ with gzip.open('230106_frozen_metadata.csv.gz', 'rt') as f:
 
 ---
 
-## 9. KNApSAcK
+## 8. KNApSAcK
 
 **Metabolite-Species Relationship Database**
 
@@ -571,7 +526,7 @@ with gzip.open('230106_frozen_metadata.csv.gz', 'rt') as f:
 
 ---
 
-## 10. Processing Recommendations
+## 9. Processing Recommendations
 
 ### General Workflow
 
@@ -639,7 +594,7 @@ print("Downloads complete!")
    - Remove salts and solvents
 
 3. **Cross-Database Linking**
-   - TCMBank <-> TCMSP via compound names/structures
+   - TCMBank <-> BATMAN-TCM via compound names/structures
    - KampoDB <-> KNApSAcK via compound IDs
    - LOTUS <-> Wikidata via QIDs
 
@@ -657,7 +612,6 @@ print("Downloads complete!")
 When using these databases, cite the original publications:
 
 - **BATMAN-TCM 2.0**: Liu et al., Nucleic Acids Research 2024
-- **TCMSP**: Ru et al., Journal of Cheminformatics 2014
 - **TCMBank**: Xu et al., Chemical Science 2023
 - **HERB 2.0**: Gao et al., Nucleic Acids Research 2024
 - **IMPPAT 2.0**: Vivek-Ananth et al., ACS Omega 2023
@@ -673,7 +627,6 @@ When using these databases, cite the original publications:
 | Database | Bulk Download | Format | Size | License |
 |----------|--------------|--------|------|---------|
 | BATMAN-TCM 2.0 | Yes (Download page) | Tab-delimited | ~100MB+ | Academic |
-| TCMSP | No (use spider) | - | - | - |
 | TCMBank | Yes (direct URLs) | XLSX, mol2 | Variable | Free/Academic |
 | HERB 2.0 | Limited | Web interface | - | Free |
 | IMPPAT 2.0 | Per-compound | SDF, MOL, MOL2 | ~17K compounds | Academic |

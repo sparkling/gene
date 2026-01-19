@@ -289,7 +289,7 @@ The market is emerging but not mature. Early mover advantage exists, but so does
 
 **Current State:**
 - BATMAN-TCM 2.0: 2.3M predicted target-ingredient interactions (AUC=0.97)
-- TCMSP: 84,260 compound-target pairs
+- TCMBank: 61,966 compounds with 15,179 targets
 - IMPPAT 2.0: 27,365 predicted interactions
 
 **However:**
@@ -385,7 +385,7 @@ There's enough data to build a product, but scientific rigor requires careful ev
 | Risk | Mitigation |
 |------|-----------|
 | Database complexity | Start with 5-7 core databases; expand incrementally |
-| Community failure | Partner with existing communities (Phoenix Rising) vs. building from scratch |
+| Community failure | Partner with existing communities (chronic illness forums) vs. building from scratch |
 | Regulatory burden | "Educational tool" positioning; avoid health claims; legal review |
 | Technical competition | Focus on UX and curation quality, not raw variant count |
 

@@ -43,7 +43,7 @@
 | | Open Targets | 1 GB | 10 GB | Parquet |
 | **Supplements** | NIH ODS | 50 MB | 500 MB | JSON |
 | | DSLD | 500 MB | 5 GB | JSON |
-| **Traditional Medicine** | TCMSP | 200 MB | 2 GB | Web scrape |
+| **Traditional Medicine** | BATMAN-TCM 2.0 | 300 MB | 3 GB | REST API |
 | | IMPPAT | 100 MB | 1 GB | SDF |
 | | TCMBank | 300 MB | 3 GB | Download |
 | **Research** | PubMed baseline | 100 GB | 500 GB | XML |

@@ -343,32 +343,7 @@ https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/curcumin/JSON
 
 ---
 
-### 2.3 ConsumerLab.com
-
-| Attribute | Details |
-|-----------|---------|
-| **URL** | https://www.consumerlab.com |
-| **Maintainer** | ConsumerLab.com, LLC |
-| **Coverage** | 7,000+ products tested, 1,000+ brands |
-| **Content** | Independent lab testing, quality verification, contamination data |
-| **Access Method** | Web subscription only (no public API) |
-| **Data Format** | Web reports |
-| **Pricing** | Individual: $69/year; Institutional: contact for quote |
-| **Licensing** | Commercial; licensing available for proprietary data |
-| **Full Content** | Yes (with subscription) |
-| **Evidence Quality** | **High** - independent laboratory verification |
-
-**Testing Includes:**
-- Label accuracy
-- Contamination (heavy metals, pesticides)
-- Disintegration/dissolution
-- Product purity
-
-**Data Access:** Contact ConsumerLab directly for licensing arrangements - no public API.
-
----
-
-### 2.4 HerbMed / HerbMedPro
+### 2.3 HerbMed / HerbMedPro
 
 | Attribute | Details |
 |-----------|---------|
@@ -394,7 +369,7 @@ https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/curcumin/JSON
 
 ---
 
-### 2.5 USP Dietary Supplements Compendium
+### 2.4 USP Dietary Supplements Compendium
 
 | Attribute | Details |
 |-----------|---------|
@@ -418,7 +393,7 @@ https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/curcumin/JSON
 
 ---
 
-### 2.6 Memorial Sloan Kettering - About Herbs
+### 2.5 Memorial Sloan Kettering - About Herbs
 
 | Attribute | Details |
 |-----------|---------|
@@ -768,7 +743,6 @@ https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/curcumin/JSON
 | EMA Herbal | No | Yes (Excel) | Open | Yes | Yes |
 | NatMed Pro | Yes* | No | Commercial | **Yes** | **Yes** |
 | Examine | Soon | No | Commercial | **Yes** | Partial |
-| ConsumerLab | No | No | Commercial | Quality only | No |
 | Commission E | No | No | Copyright | **Yes** | **Yes** |
 | ESCOP | No | PDF | Commercial | **Yes** | **Yes** |
 | WHO Monographs | No | PDF | WHO | **Yes** | **Yes** |
@@ -796,7 +770,6 @@ https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/curcumin/JSON
 - [EMA Download Medicine Data](https://www.ema.europa.eu/en/medicines/download-medicine-data)
 - [TRC Healthcare NatMed Pro](https://trchealthcare.com/product/natmed-pro/)
 - [Examine.com API Requests](https://examine.com/api-requests/)
-- [ConsumerLab About](https://www.consumerlab.com/about/)
 - [American Botanical Council Commission E](https://www.herbalgram.org/resources/commission-e-monographs/)
 - [ESCOP Online Monographs](https://www.escop.com/escop-products/online-monographs/)
 - [WHO Monographs on Medicinal Plants](https://www.who.int/publications/i/item/9241545178)

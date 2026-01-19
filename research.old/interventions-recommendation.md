@@ -56,27 +56,24 @@ User SNP → PharmGKB/CPIC → Dosing Guidelines
 
 ## 2. Traditional Chinese Medicine (TCM) Sources
 
-### Recommended: BATMAN-TCM 2.0 + TCMSP + HERB
+### Recommended: BATMAN-TCM 2.0 + HERB 2.0
 
 | Source | Formulas | Herbs | Compounds | Targets | Access |
 |--------|----------|-------|-----------|---------|--------|
 | **BATMAN-TCM 2.0** | 54,832 | 8,404 | 39,171 | 2.3M TTIs | REST API |
-| **TCMSP** | - | 499 | 29,384 | 3,311 | Web + Spider |
 | **HERB 2.0** | 9 | 7,263 | 49,258 | 12,933 | Web |
 | **TCMBank** | - | 9,192 | 61,966 | 15,179 | Download |
 | **SymMap** | - | 499 | 19,595 | 4,302 | Download |
 
 **Priority Integration Order:**
 1. BATMAN-TCM 2.0 - Best API, largest target predictions
-2. TCMSP - Gold standard ADME properties
-3. HERB 2.0 - Gene expression validation
-4. SymMap - Symptom mapping (unique)
+2. HERB 2.0 - Gene expression validation
+3. SymMap - Symptom mapping (unique)
 
 **Storage Estimate (TCM):**
 - BATMAN-TCM target data: ~2 GB
-- TCMSP compounds + ADME: ~500 MB
 - HERB expression data: ~1 GB
-- **Total: ~4 GB**
+- **Total: ~3 GB**
 
 ---
 
@@ -176,14 +173,13 @@ Layer 4: KNApSAcK (metabolite-species relationships)
 | **SwissTargetPrediction** | 2D/3D similarity | No | Initial prediction |
 | **SEA** | Ligand set similarity | No | Validation |
 | **PharmMapper** | 3D pharmacophore | No | Alternative targets |
-| **STITCH** | Multi-evidence | API | Network context |
 
 **Workflow:**
 ```
 Compound Structure → SwissTargetPrediction (2D/3D)
                    → PharmMapper (pharmacophore)
                    → Consensus targets
-                   → Validate against STITCH/ChEMBL
+                   → Validate against STRING/ChEMBL
                    → Network analysis (Cytoscape/STRING)
 ```
 
@@ -249,7 +245,7 @@ const targetsCollection = {
 | Category | Raw Data | With Embeddings | Notes |
 |----------|----------|-----------------|-------|
 | Pharmaceuticals | 7 GB | 10 GB | PharmGKB + DrugBank + ChEMBL |
-| TCM | 4 GB | 6 GB | BATMAN-TCM + TCMSP + HERB |
+| TCM | 3 GB | 5 GB | BATMAN-TCM + HERB |
 | Kampo | 1 GB | 1.5 GB | KampoDB + TM-MC + STORK |
 | Ayurveda | 2 GB | 3 GB | IMPPAT + OSADHI + GRAYU |
 | Western Herbal | 3 GB | 5 GB | DSLD + Dr. Duke's |
@@ -276,7 +272,7 @@ const targetsCollection = {
 
 ### Phase 2: TCM + Kampo (Week 3-4)
 - [ ] BATMAN-TCM 2.0 API integration
-- [ ] TCMSP data extraction
+- [ ] HERB 2.0 data extraction
 - [ ] KampoDB web scraping or contact maintainers
 - [ ] Target predictions linkage
 
@@ -368,7 +364,7 @@ const targetsCollection = {
 |----------|-----------|--------|-----|
 | 1 | SNP-Drug relationships | PharmGKB/CPIC | Core platform value |
 | 2 | Drug interactions | DrugBank + OpenFDA | Safety critical |
-| 3 | TCM compounds + targets | BATMAN-TCM + TCMSP | Largest traditional medicine system |
+| 3 | TCM compounds + targets | BATMAN-TCM + HERB | Largest traditional medicine system |
 | 4 | Supplement labels | DSLD | Western market focus |
 | 5 | Natural product structures | COCONUT/LOTUS | Cross-reference all sources |
 

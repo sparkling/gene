@@ -7,12 +7,11 @@ This document provides comprehensive data models, schemas, and field description
 ## Table of Contents
 
 1. [BATMAN-TCM 2.0](#1-batman-tcm-20)
-2. [TCMSP](#2-tcmsp)
-3. [TCMBank](#3-tcmbank)
-4. [HERB 2.0](#4-herb-20)
-5. [SymMap](#5-symmap)
-6. [TCMSID (Supplementary)](#6-tcmsid-supplementary)
-7. [Cross-Database ID Mapping](#7-cross-database-id-mapping)
+2. [TCMBank](#2-tcmbank)
+3. [HERB 2.0](#3-herb-20)
+4. [SymMap](#4-symmap)
+5. [TCMSID (Supplementary)](#5-tcmsid-supplementary)
+6. [Cross-Database ID Mapping](#6-cross-database-id-mapping)
 
 ---
 
@@ -136,7 +135,7 @@ http://bionet.ncpsb.org.cn/batman-tcm/api?type={request_type}&format={output_for
 |---------|-------------|
 | ATC-GO | ATC classification vs GO annotation similarity |
 | FP2-closeness | Fingerprint-based structural closeness |
-| STITCH-sequence | STITCH database sequence similarity |
+| STRING-sequence | STRING database sequence similarity |
 | expression-closeness | Gene expression profile closeness |
 | ATC-sequence | ATC vs protein sequence similarity |
 | functional_group-sequence | Functional group vs sequence similarity |
@@ -145,136 +144,13 @@ http://bionet.ncpsb.org.cn/batman-tcm/api?type={request_type}&format={output_for
 
 ---
 
-## 2. TCMSP
-
-**URL:** https://tcmsp-e.com/
-**Publication:** Journal of Cheminformatics, 2014
-**Primary Function:** Systems pharmacology for TCM drug discovery with ADME properties
-
-### 2.1 Database Statistics
-
-| Entity | Count |
-|--------|-------|
-| Herbs | 499 |
-| Ingredients | 29,384 (13,144 unique) |
-| Targets | 3,311 |
-| Diseases | 837 |
-| Compound-Target Pairs | 84,260+ |
-| Target-Disease Pairs | 2,387 |
-
-### 2.2 Database Architecture
-
-**Backend:** MySQL 5.1.63
-**Server:** Apache 2.2.22
-**Frontend:** PHP, HTML, CSS
-**Network Export:** XGMML format (Cytoscape compatible)
-
-### 2.3 Data Categories
-
-The database is organized into three major categories:
-
-1. **Compounds, Targets, and Diseases Information**
-2. **Herbal Ingredients with ADME Properties**
-3. **Relationship Data (C-T and T-D pairs)**
-
-### 2.4 Compound Information Schema
-
-| Field | Data Type | Description | Example |
-|-------|-----------|-------------|---------|
-| MOL_ID | string | Unique molecule identifier | MOL001234 |
-| Molecule_Name | string | Chemical compound name | Quercetin |
-| MW | float | Molecular Weight (Da) | 302.24 |
-| AlogP | float | Lipophilicity (log partition coefficient) | 1.54 |
-| Hdon | integer | Hydrogen bond donors | 5 |
-| Hacc | integer | Hydrogen bond acceptors | 7 |
-| OB | float | Oral Bioavailability (%) | 46.43 |
-| Caco-2 | float | Caco-2 permeability (nm/s) | 0.05 |
-| BBB | float | Blood-Brain Barrier penetration | -0.77 |
-| DL | float | Drug-Likeness score | 0.28 |
-| FASA- | float | Fractional water accessible surface area | 0.35 |
-| HL | float | Half-Life (hours) | 14.17 |
-| TPSA | float | Topological Polar Surface Area (A^2) | 131.36 |
-| CAS | string | CAS Registry Number | 117-39-5 |
-| PubChem_CID | integer | PubChem Compound ID | 5280343 |
-| InChIKey | string | International Chemical Identifier Key | varies |
-
-### 2.5 ADME Property Definitions
-
-| Property | Full Name | Threshold | Interpretation |
-|----------|-----------|-----------|----------------|
-| OB | Oral Bioavailability | >= 30% (or 40%) | Percentage reaching systemic circulation |
-| DL | Drug-Likeness | >= 0.18 | Qualitative drug-like assessment |
-| BBB | Blood-Brain Barrier | < -0.3 = non-penetrant | CNS penetration potential |
-| Caco-2 | Caco-2 Permeability | varies | Intestinal epithelial permeability |
-| HL | Half-Life | varies | Drug elimination time |
-| TPSA | Topological Polar Surface Area | < 60 A^2 | Cell membrane permeability |
-| FASA- | Fractional Accessible Surface Area | varies | Negative partial charge surface |
-
-### 2.6 Lipinski's Rule of Five Parameters
-
-| Parameter | Threshold | Description |
-|-----------|-----------|-------------|
-| MW | <= 500 | Molecular weight |
-| AlogP | <= 5 | Lipophilicity |
-| Hdon | <= 5 | Hydrogen bond donors |
-| Hacc | <= 10 | Hydrogen bond acceptors |
-| TPSA | <= 140 | Polar surface area |
-
-### 2.7 Herb Information Schema
-
-| Field | Data Type | Description |
-|-------|-----------|-------------|
-| Herb_ID | string | Unique herb identifier |
-| Herb_cn_name | string | Chinese name |
-| Herb_en_name | string | English name |
-| Herb_pinyin | string | Pinyin transliteration |
-| Herb_latin | string | Latin botanical name |
-| Properties | string | TCM properties (nature, flavor) |
-| Meridians | string | Meridian tropism |
-| Function | text | Therapeutic functions |
-| Indications | text | Clinical indications |
-
-### 2.8 Target Information Schema
-
-| Field | Data Type | Description |
-|-------|-----------|-------------|
-| Target_ID | string | Unique target identifier |
-| Target_Name | string | Protein/gene name |
-| Gene_Symbol | string | Official gene symbol |
-| UniProt_ID | string | UniProt accession |
-| Drugbank_ID | string | DrugBank target ID |
-| TTD_ID | string | Therapeutic Target Database ID |
-
-### 2.9 Compound-Target Relationship Schema
-
-| Field | Data Type | Description |
-|-------|-----------|-------------|
-| MOL_ID | string | Compound identifier |
-| Target_ID | string | Target identifier |
-| Interaction_Type | string | Validated/Predicted |
-| Source | string | HIT, DrugBank, KEGG, etc. |
-
-### 2.10 Common Screening Criteria
-
-```sql
--- Active compound screening
-SELECT * FROM compounds
-WHERE OB >= 30 AND DL >= 0.18;
-
--- More stringent screening
-SELECT * FROM compounds
-WHERE OB >= 40 AND DL >= 0.18 AND Caco-2 > -0.4;
-```
-
----
-
-## 3. TCMBank
+## 2. TCMBank
 
 **URL:** https://tcmbank.cn/
 **Publication:** Chemical Science, 2023
 **Primary Function:** Largest herb-ingredient-target-disease mapping
 
-### 3.1 Database Statistics
+### 2.1 Database Statistics
 
 | Entity | Count | Connected |
 |--------|-------|-----------|
@@ -283,13 +159,13 @@ WHERE OB >= 40 AND DL >= 0.18 AND Caco-2 > -0.4;
 | Targets | 15,179 | - |
 | Diseases | 32,529 | - |
 
-### 3.2 Download Files
+### 2.2 Download Files
 
 Available formats:
 - **XLSX files** - Spreadsheets with detailed entity information
 - **Mol2 files** - 3D molecular structures (MM2 force field minimized)
 
-### 3.3 Herb Schema (herbs.xlsx)
+### 2.3 Herb Schema (herbs.xlsx)
 
 | Field | Data Type | Description |
 |-------|-----------|-------------|
@@ -304,7 +180,7 @@ Available formats:
 | Indication | text | Clinical indications |
 | Therapeutic_class | string | Classification category |
 
-### 3.4 Ingredient Schema (ingredients.xlsx)
+### 2.4 Ingredient Schema (ingredients.xlsx)
 
 | Field | Data Type | Description |
 |-------|-----------|-------------|
@@ -323,7 +199,7 @@ Available formats:
 | Solubility | float | Aqueous solubility |
 | Polar_Surface_Area | float | TPSA value |
 
-### 3.5 Target Schema (targets.xlsx)
+### 2.5 Target Schema (targets.xlsx)
 
 | Field | Data Type | Description |
 |-------|-----------|-------------|
@@ -337,7 +213,7 @@ Available formats:
 | HGNC_ID | string | HGNC identifier |
 | OMIM_ID | string | OMIM entry number |
 
-### 3.6 Disease Schema (diseases.xlsx)
+### 2.6 Disease Schema (diseases.xlsx)
 
 | Field | Data Type | Description |
 |-------|-----------|-------------|
@@ -350,7 +226,7 @@ Available formats:
 | DO_Name | string | Disease Ontology name |
 | HPO_ID | string | Human Phenotype Ontology ID |
 
-### 3.7 Relationship Tables
+### 2.7 Relationship Tables
 
 #### Herb-Ingredient Associations
 | Field | Data Type | Description |
@@ -375,7 +251,7 @@ Available formats:
 | Evidence_Level | string | Association evidence |
 | Source | string | Data source (DisGeNET, OMIM, etc.) |
 
-### 3.8 ID Format Patterns
+### 2.8 ID Format Patterns
 
 | Entity | Pattern | Example |
 |--------|---------|---------|
@@ -386,13 +262,13 @@ Available formats:
 
 ---
 
-## 4. HERB 2.0
+## 3. HERB 2.0
 
 **URL:** http://herb.ac.cn/
 **Publication:** Nucleic Acids Research, 2025
 **Primary Function:** High-throughput experiment and reference-guided TCM database with clinical evidence
 
-### 4.1 Database Statistics
+### 3.1 Database Statistics
 
 | Entity | Count |
 |--------|-------|
@@ -406,7 +282,7 @@ Available formats:
 | High-throughput Experiments | 2,231 |
 | Curated References | 6,644 |
 
-### 4.2 Knowledge Graph Structure
+### 3.2 Knowledge Graph Structure
 
 **Nine Entity Types:**
 1. Herbs
@@ -421,7 +297,7 @@ Available formats:
 
 **28 Relationship Types** connecting entities with weighted edges (0-1)
 
-### 4.3 Clinical Trial Data Schema
+### 3.3 Clinical Trial Data Schema
 
 | Field | Data Type | Description |
 |-------|-----------|-------------|
@@ -436,7 +312,7 @@ Available formats:
 | Conclusions | text | Clinical conclusions (for 1,941 trials) |
 | Source | string | ClinicalTrials.gov |
 
-### 4.4 Meta-analysis Data Schema
+### 3.4 Meta-analysis Data Schema
 
 | Field | Data Type | Description |
 |-------|-----------|-------------|
@@ -448,7 +324,7 @@ Available formats:
 | Supporting_Papers | array | References supporting conclusions |
 | Source | string | PROSPERO |
 
-### 4.5 Gene Expression Data Format
+### 3.5 Gene Expression Data Format
 
 #### Experiment Metadata
 | Field | Data Type | Description |
@@ -483,7 +359,7 @@ Available formats:
 | Gene_Count | integer | Genes in term |
 | Gene_List | array | Enriched gene symbols |
 
-### 4.6 Connectivity Mapping Interface
+### 3.6 Connectivity Mapping Interface
 
 **Input Format (Gene Expression Signature):**
 ```
@@ -502,7 +378,7 @@ GENEC
 
 **Output:** Similarity scores to curated herb/ingredient profiles
 
-### 4.7 Target Standardization
+### 3.7 Target Standardization
 
 | Source Database | Cross-reference |
 |-----------------|-----------------|
@@ -511,7 +387,7 @@ GENEC
 | TTD | Drug target validation |
 | UniProt | Protein sequences |
 
-### 4.8 Disease Standardization
+### 3.8 Disease Standardization
 
 | Source Database | Purpose |
 |-----------------|---------|
@@ -522,13 +398,13 @@ GENEC
 
 ---
 
-## 5. SymMap
+## 4. SymMap
 
 **URL:** http://www.symmap.org/
 **Publication:** Nucleic Acids Research, 2019
 **Primary Function:** TCM-Modern medicine integration through symptom mapping
 
-### 5.1 Database Statistics
+### 4.1 Database Statistics
 
 | Entity | Count |
 |--------|-------|
@@ -541,12 +417,12 @@ GENEC
 | Total Nodes | 32,281 |
 | Total Edges | 403,318 |
 
-### 5.2 Network Architecture
+### 4.2 Network Architecture
 
 **Direct Associations:** 106,721 edges
 **Indirect Associations:** 296,597 edges (statistically inferred)
 
-### 5.3 Six Direct Association Types
+### 4.3 Six Direct Association Types
 
 | Relationship | Count | Avg per Entity |
 |--------------|-------|----------------|
@@ -557,7 +433,7 @@ GENEC
 | Ingredient - Target | 29,370 | - |
 | Target - Disease | 7,256 | - |
 
-### 5.4 Nine Indirect Association Types
+### 4.4 Nine Indirect Association Types
 
 Derived through statistical inference (Fisher's Exact Test):
 - Herb - MM Symptom
@@ -570,7 +446,7 @@ Derived through statistical inference (Fisher's Exact Test):
 - Ingredient - MM Symptom
 - Target - MM Symptom
 
-### 5.5 Entity Schemas
+### 4.5 Entity Schemas
 
 #### TCM Symptom
 | Field | Data Type | Description |
@@ -607,7 +483,7 @@ Derived through statistical inference (Fisher's Exact Test):
 | PubChem_CID | integer | PubChem Compound ID |
 | InChI_Key | string | InChI Key identifier |
 | SMILES | string | SMILES notation |
-| Source_DB | string | TCMID, TCMSP, or TCM-ID |
+| Source_DB | string | TCMID or TCM-ID |
 
 #### Target
 | Field | Data Type | Description |
@@ -615,7 +491,7 @@ Derived through statistical inference (Fisher's Exact Test):
 | Target_ID | string | SymMap target identifier |
 | Gene_Symbol | string | HGNC gene symbol |
 | UniProt_ID | string | UniProt accession |
-| Source | string | HIT, TCMSP, HPO, DrugBank, NCBI |
+| Source | string | HIT, HPO, DrugBank, NCBI |
 
 #### Disease
 | Field | Data Type | Description |
@@ -626,14 +502,14 @@ Derived through statistical inference (Fisher's Exact Test):
 | Disease_Name | string | Disease name |
 | Category | string | Disease category |
 
-### 5.6 Download Data Formats
+### 4.6 Download Data Formats
 
 **Three dataset options per relationship:**
 1. **Full Set** - All associations
 2. **Loose Selection** - P-value < 0.05
 3. **Stringent Selection** - FDR (Bonferroni & BH) < 0.05
 
-### 5.7 Association Confidence Fields
+### 4.7 Association Confidence Fields
 
 | Field | Data Type | Description |
 |-------|-----------|-------------|
@@ -645,7 +521,7 @@ Derived through statistical inference (Fisher's Exact Test):
 | FDR_Bonferroni | float | Bonferroni adjusted p-value |
 | Evidence_Count | integer | Supporting evidence instances |
 
-### 5.8 Data Source Integration
+### 4.8 Data Source Integration
 
 | Component | Source Databases |
 |-----------|------------------|
@@ -653,10 +529,10 @@ Derived through statistical inference (Fisher's Exact Test):
 | MM Symptoms | UMLS, MeSH, SIDER, HPO |
 | Drugs | DrugBank |
 | Diseases | OMIM, Orphanet |
-| Ingredients | TCMID, TCMSP, TCM-ID |
-| Targets | HIT, TCMSP, HPO, DrugBank, NCBI Gene |
+| Ingredients | TCMID, TCM-ID |
+| Targets | HIT, HPO, DrugBank, NCBI Gene |
 
-### 5.9 Technical Infrastructure
+### 4.9 Technical Infrastructure
 
 - **Backend:** MySQL
 - **Web Framework:** Python-Flask
@@ -665,14 +541,13 @@ Derived through statistical inference (Fisher's Exact Test):
 
 ---
 
-## 6. TCMSID (Supplementary)
+## 5. TCMSID (Supplementary)
 
-**Related to TCMSP family**
 **URL:** https://tcmsid.pku.edu.cn/
 **Publication:** Journal of Cheminformatics, 2022
 **Primary Function:** Simplified integrated database for TCM drug discovery
 
-### 6.1 Database Statistics
+### 5.1 Database Statistics
 
 | Entity | Count |
 |--------|-------|
@@ -682,7 +557,7 @@ Derived through statistical inference (Fisher's Exact Test):
 | Drugs | 10,487 (3,883 FDA-approved) |
 | Herb-Ingredient Pairs | 50,053 |
 
-### 6.2 Ingredient Quality Metrics
+### 5.2 Ingredient Quality Metrics
 
 | Field | Data Type | Values | Description |
 |-------|-----------|--------|-------------|
@@ -692,7 +567,7 @@ Derived through statistical inference (Fisher's Exact Test):
 | ClassyFire_Superclass | string | varies | Chemical taxonomy superclass |
 | ClassyFire_Class | string | varies | Chemical taxonomy class |
 
-### 6.3 Enhanced ADME/T Properties
+### 5.3 Enhanced ADME/T Properties
 
 | Property | Data Type | Description |
 |----------|-----------|-------------|
@@ -708,7 +583,7 @@ Derived through statistical inference (Fisher's Exact Test):
 | LogP | float | Partition coefficient |
 | LogS | float | Aqueous solubility |
 
-### 6.4 Target Development Level
+### 5.4 Target Development Level
 
 | TDL | Description |
 |-----|-------------|
@@ -717,7 +592,7 @@ Derived through statistical inference (Fisher's Exact Test):
 | Tbio | Biology-annotated targets |
 | Tdark | Understudied targets |
 
-### 6.5 Similarity Metrics
+### 5.5 Similarity Metrics
 
 | Fingerprint | Algorithm | Description |
 |-------------|-----------|-------------|
@@ -727,39 +602,36 @@ Derived through statistical inference (Fisher's Exact Test):
 
 ---
 
-## 7. Cross-Database ID Mapping
+## 6. Cross-Database ID Mapping
 
-### 7.1 Compound Identifiers
+### 6.1 Compound Identifiers
 
 | Database | Primary ID | Cross-references |
 |----------|------------|------------------|
 | BATMAN-TCM | Internal ID | PubChem, TCMID |
-| TCMSP | MOL_ID | CAS, PubChem, InChIKey |
 | TCMBank | TCMB-I##### | SMILES, PubChem |
 | HERB | Internal ID | PubChem, CAS |
 | SymMap | Internal ID | CAS, PubChem, InChIKey |
 
-### 7.2 Target Identifiers
+### 6.2 Target Identifiers
 
 | Database | Primary ID | Cross-references |
 |----------|------------|------------------|
 | BATMAN-TCM | GeneBank ID | UniProt, HGNC, Ensembl, Entrez |
-| TCMSP | Target_ID | UniProt, DrugBank, TTD |
 | TCMBank | TCMB-T##### | UniProt, HGNC, OMIM |
 | HERB | GeneBank | GeneCards, TTD, UniProt |
 | SymMap | Internal ID | UniProt, Gene Symbol |
 
-### 7.3 Disease Identifiers
+### 6.3 Disease Identifiers
 
 | Database | Primary Sources |
 |----------|-----------------|
 | BATMAN-TCM | MeSH, OMIM |
-| TCMSP | TTD Disease |
 | TCMBank | DisGeNET, MeSH, DO, HPO |
 | HERB | DisGeNET, OMIM, HPO, DO |
 | SymMap | OMIM, Orphanet |
 
-### 7.4 Recommended ID Mapping Strategy
+### 6.4 Recommended ID Mapping Strategy
 
 ```python
 # Example cross-database compound mapping
@@ -785,40 +657,32 @@ target_mapping = {
 
 1. **BATMAN-TCM 2.0:** Kong X, et al. (2024) Nucleic Acids Research, 52(D1):D1110-D1117. https://pubmed.ncbi.nlm.nih.gov/37904598/
 
-2. **TCMSP:** Ru J, et al. (2014) Journal of Cheminformatics, 6:13. https://pubmed.ncbi.nlm.nih.gov/24735618/
+2. **TCMBank:** Xu HY, et al. (2023) Chemical Science, 14(39):10684-10700. https://pubs.rsc.org/en/content/articlehtml/2023/sc/d3sc02139d
 
-3. **TCMBank:** Xu HY, et al. (2023) Chemical Science, 14(39):10684-10700. https://pubs.rsc.org/en/content/articlehtml/2023/sc/d3sc02139d
+3. **HERB 2.0:** Fang S, et al. (2025) Nucleic Acids Research, 53(D1):D1404-D1416. https://pubmed.ncbi.nlm.nih.gov/39558177/
 
-4. **HERB 2.0:** Fang S, et al. (2025) Nucleic Acids Research, 53(D1):D1404-D1416. https://pubmed.ncbi.nlm.nih.gov/39558177/
+4. **SymMap:** Wu Y, et al. (2019) Nucleic Acids Research, 47(D1):D1110-D1117. https://pubmed.ncbi.nlm.nih.gov/30380087/
 
-5. **SymMap:** Wu Y, et al. (2019) Nucleic Acids Research, 47(D1):D1110-D1117. https://pubmed.ncbi.nlm.nih.gov/30380087/
-
-6. **TCMSID:** Xue R, et al. (2022) Journal of Cheminformatics, 14(1):89. https://pmc.ncbi.nlm.nih.gov/articles/PMC9805110/
+5. **TCMSID:** Xue R, et al. (2022) Journal of Cheminformatics, 14(1):89. https://pmc.ncbi.nlm.nih.gov/articles/PMC9805110/
 
 ---
 
 ## Appendix: Example Data Rows
 
-### A1. TCMSP Compound Example
-
-| MOL_ID | Molecule_Name | MW | AlogP | Hdon | Hacc | OB | Caco-2 | BBB | DL | TPSA |
-|--------|---------------|-----|-------|------|------|-----|--------|-----|-----|------|
-| MOL000098 | Quercetin | 302.24 | 1.54 | 5 | 7 | 46.43 | 0.05 | -0.77 | 0.28 | 131.36 |
-
-### A2. TCMBank Herb Example
+### A1. TCMBank Herb Example
 
 | TCMBank_ID | TCM_name | TCM_name_en | Herb_pinyin_name | Function |
 |------------|----------|-------------|------------------|----------|
 | TCMB-H00001 | 人参 | Ginseng | Ren Shen | Tonify Qi, generate fluids |
 
-### A3. BATMAN-TCM Predicted TTI Example
+### A2. BATMAN-TCM Predicted TTI Example
 
 | Ingredient | Target | Score | LR | Source |
 |------------|--------|-------|-----|--------|
 | Theophylline | SPP1 | 0.82 | 4.5 | predicted |
 | Vitamin E | MMP9 | 0.70 | 3.2 | predicted |
 
-### A4. SymMap Association Example
+### A3. SymMap Association Example
 
 | TCM_Symptom | MM_Symptom | P_value | FDR_BH |
 |-------------|------------|---------|--------|

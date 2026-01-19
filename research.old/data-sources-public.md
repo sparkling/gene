@@ -169,13 +169,6 @@
 | **License** | Academic license required for FTP |
 | **Note** | Use Reactome/WikiPathways for bulk data |
 
-### 3.4 SMPDB
-| Field | Value |
-|-------|-------|
-| **URL** | https://smpdb.ca/ |
-| **Content** | Metabolic pathways with compound structures |
-| **License** | Open access |
-
 ---
 
 ## 4. Pharmacogenomics & Drug Databases
@@ -259,15 +252,7 @@
 
 ## 6. Traditional Medicine Databases
 
-### 6.1 TCMSP (TCM Systems Pharmacology) - PRIMARY
-| Field | Value |
-|-------|-------|
-| **URL** | https://tcmsp-e.com/ |
-| **Content** | 499 herbs, 29,384 ingredients, 3,311 targets |
-| **License** | Open Database License |
-| **Priority** | HIGH - TCM primary source |
-
-### 6.2 TCMBank
+### 6.1 TCMBank
 | Field | Value |
 |-------|-------|
 | **Content** | 9,192 herbs, 61,966 ingredients, 15,179 targets |
@@ -354,13 +339,6 @@
 | **API** | REST API |
 | **License** | CC BY-NC-SA |
 
-### 8.4 STITCH
-| Field | Value |
-|-------|-------|
-| **URL** | http://stitch.embl.de/ |
-| **Content** | Chemical-protein interactions |
-| **API** | REST API |
-
 ---
 
 ## Not Available (License Required)
@@ -371,7 +349,6 @@
 | **KEGG** (FTP) | Academic license | Use **Reactome + WikiPathways** |
 | **NatMed Pro** | Enterprise only | Use **NIH ODS + PubMed** |
 | **Examine.com** | No API | Manual curation or PubMed |
-| **OpenSNP** | Shut down April 2025 | Archived on Zenodo/GenomePrep |
 
 ---
 
@@ -389,7 +366,7 @@
 2. GWAS Catalog (trait associations)
 3. UniProt (protein function)
 4. WikiPathways (community pathways)
-5. TCMSP (TCM compounds)
+5. TCMBank (TCM compounds)
 
 ### Tier 3 - Expansion (Weeks 9-12)
 1. IMPPAT (Ayurveda)

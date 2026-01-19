@@ -20,7 +20,7 @@ Traditional Chinese Medicine has the most extensive collection of specialized da
 
 2. **Best for Molecular Targets:**
    - BATMAN-TCM 2.0 (API available, bulk download)
-   - TCMSP (ADME properties)
+   - TCMSID (ADME properties, CC BY 4.0)
    - HIT 2.0 (curated target data)
 
 3. **Best for Gene Expression:**
@@ -33,35 +33,14 @@ Traditional Chinese Medicine has the most extensive collection of specialized da
 
 5. **Most Accessible (API/Bulk Download):**
    - BATMAN-TCM 2.0 (REST API, tab-delimited downloads)
-   - TCMSP (ODbL license, spider tools available)
-   - TCMBank (downloadable, non-commercial)
+   - TCMBank (downloadable, CC BY 4.0)
+   - TCMNP (R package, open source)
 
 ---
 
 ## Database Catalog
 
-### 1. TCMSP (Traditional Chinese Medicine Systems Pharmacology Database)
-
-| Attribute | Details |
-|-----------|---------|
-| **URL** | https://tcmsp-e.com/tcmsp.php |
-| **Maintainer** | Northwest A&F University, China |
-| **Content** | Herbs, ingredients, targets, diseases, ADME properties |
-| **Coverage** | 499 herbs, 29,384 ingredients, 3,311 targets, 837 diseases, 84,260 compound-target pairs, 2,387 target-disease pairs |
-| **Access Method** | Web interface; XGMML network export; Third-party spider (GitHub: shujuecn/TCMSP-Spider) |
-| **Data Format** | Web tables; XGMML for Cytoscape; Excel via spider |
-| **Schema** | Herbs -> Ingredients -> Targets -> Diseases; 12 ADME properties per compound |
-| **Licensing** | Open Database License (ODbL 1.0) - allows commercial use with attribution |
-| **Full Content** | Yes - complete structural data, ADME properties |
-| **Gene/Protein Targets** | Yes - 3,311 targets with compound associations |
-| **Key Features** | Pioneering ADME integration (oral bioavailability, half-life, drug-likeness, Caco-2, BBB, Lipinski) |
-| **Updates** | April 2025: 63 HMF herbs added; November 2024: 120 new structures |
-
-**Notes:** Gold standard for ADME-based drug screening in TCM. No native API but spider tools available.
-
----
-
-### 2. TCMBank
+### 1. TCMBank
 
 | Attribute | Details |
 |-----------|---------|
@@ -299,7 +278,7 @@ Traditional Chinese Medicine has the most extensive collection of specialized da
 | **Coverage** | 6,235 herbs, 383,840 compounds, 14,298 genes, 6,204 diseases, 163,221 side effects, 71 toxicity records |
 | **Access Method** | Web interface |
 | **Data Format** | Network visualization |
-| **Schema** | Integrates TCMID, STITCH, STRING, OMIM, GAD, TOXNET, SIDER |
+| **Schema** | Integrates TCMID, STRING, OMIM, GAD, TOXNET, SIDER |
 | **Licensing** | Academic use |
 | **Full Content** | Yes - largest compound collection |
 | **Gene/Protein Targets** | Yes - 14,298 genes from STRING/OMIM |
@@ -539,7 +518,7 @@ Traditional Chinese Medicine has the most extensive collection of specialized da
 | **Data Format** | R data structures; visualizations |
 | **Schema** | Herbs -> Ingredients -> Targets -> Diseases/Pathways |
 | **Licensing** | Open source R package |
-| **Full Content** | Yes - integrates DrugBank, TCMSP, ETCM, DisGeNET, OMIM |
+| **Full Content** | Yes - integrates DrugBank, ETCM, DisGeNET, OMIM |
 | **Gene/Protein Targets** | Yes - 15,956 targets |
 | **Key Features** | R package for programmatic analysis; visualization with ggplot2/circlize; PPI and TF analysis |
 
@@ -614,7 +593,6 @@ Traditional Chinese Medicine has the most extensive collection of specialized da
 | YaTCM | 6,220 | 47,696 | 18,697 | - | - |
 | ETCM v2.0 | 2,079 | 38,298 | 1,040 | 8,045 | 48,442 |
 | BATMAN-TCM 2.0 | 8,404 | 39,171 | 2.3M pairs | - | 54,832 |
-| TCMSP | 499 | 29,384 | 3,311 | 837 | - |
 | TCMSID | 499 | 20,015 | 3,270 | - | - |
 
 ### Access Methods Comparison
@@ -622,7 +600,6 @@ Traditional Chinese Medicine has the most extensive collection of specialized da
 | Database | Web UI | API | Bulk Download | Data Format |
 |----------|--------|-----|---------------|-------------|
 | BATMAN-TCM 2.0 | Yes | Yes (REST) | Yes | TSV, JSON |
-| TCMSP | Yes | No | Via spider | Excel, XGMML |
 | TCMBank | Yes | No | Yes | Various |
 | HERB 2.0 | Yes | No | Partial | Gene matrices |
 | SymMap 2.0 | Yes | No | Yes | TSV with filtering |
@@ -637,14 +614,13 @@ Traditional Chinese Medicine has the most extensive collection of specialized da
 |--------------|-----------|
 | **CC BY 4.0** (Commercial OK) | TCMBank, TCMPG 2.0, TCMSID, TCM Database@Taiwan |
 | **CC BY-NC** (Non-commercial) | BATMAN-TCM 2.0, DCABM-TCM |
-| **ODbL** (Commercial with ShareAlike) | TCMSP |
 | **Academic Use** | HERB, YaTCM, SymMap, ETCM, TCMID, HIT, CMAUP, most others |
 
 ### Unique Features by Database
 
 | Feature | Best Database(s) |
 |---------|-----------------|
-| **ADME Properties** | TCMSP (12 properties), YaTCM (50 properties), TCMSID (14 ADME/T) |
+| **ADME Properties** | TCMSID (14 ADME/T), YaTCM (50 properties) |
 | **Gene Expression** | HERB 2.0 (2,231 experiments), ITCM (pharmacotranscriptomics) |
 | **Target Prediction** | BATMAN-TCM 2.0 (2.3M predictions, AUC=0.97) |
 | **Clinical Trials** | CMAUP (691 trials), HERB 2.0 (8,558 trials) |
@@ -662,7 +638,7 @@ Traditional Chinese Medicine has the most extensive collection of specialized da
 ### Priority 1: Core Databases (Recommended for Initial Integration)
 
 1. **BATMAN-TCM 2.0** - Best API access, largest target predictions
-2. **TCMSP** - Gold standard for ADME, ODbL license
+2. **TCMSID** - ADME properties, CC BY 4.0 license
 3. **HERB 2.0** - Gene expression and clinical trial data
 4. **TCMBank** - Comprehensive coverage, downloadable
 
@@ -690,7 +666,7 @@ Traditional Chinese Medicine has the most extensive collection of specialized da
 ### Suggested Approach
 
 1. Use BATMAN-TCM 2.0 API as primary data source for programmatic access
-2. Supplement with TCMSP for ADME properties
+2. Supplement with TCMSID for ADME properties
 3. Add HERB 2.0 for transcriptomic evidence
 4. Map identifiers using PubChem, UniProt, and ChEMBL as intermediaries
 5. Validate critical interactions against HIT 2.0 (experimentally validated)

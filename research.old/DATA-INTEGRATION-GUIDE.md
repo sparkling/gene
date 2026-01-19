@@ -68,32 +68,6 @@ Column 5: Prediction Score (0-1)
 
 ---
 
-#### TCMSP (Spider Tool Available)
-
-**URL:** https://tcmsp-e.com/tcmsp.php
-
-**Download Method:**
-```bash
-# Clone the spider tool
-git clone https://github.com/shujuecn/TCMSP-Spider
-
-# Install dependencies
-pip install requests pandas openpyxl
-
-# Run spider to extract data
-python tcmsp_spider.py --herb "Ephedra sinica"
-```
-
-**Output:** Excel file with:
-- Herb → Ingredients (29,384 total)
-- Ingredients → Targets (3,311 targets)
-- Targets → Diseases (837 diseases)
-- ADME properties (OB%, DL, Caco-2, BBB, HL)
-
-**License:** ODbL 1.0 (commercial OK with attribution)
-
----
-
 #### TCMBank (Bulk Download)
 
 **URL:** https://tcmbank.cn/
@@ -129,11 +103,11 @@ git clone https://github.com/asamallab/IMPPAT2
 - 4,010 medicinal plants
 - 17,967 phytochemicals
 - 27,365 predicted compound-target interactions
-- 5,042 human target proteins (from STITCH, score ≥700)
+- 5,042 human target proteins (interaction score ≥700)
 
 **Target Data Format:**
 ```
-Phytochemical ID | Phytochemical Name | Target UniProt ID | Target Gene | STITCH Score
+Phytochemical ID | Phytochemical Name | Target UniProt ID | Target Gene | Interaction Score
 IMPPAT001234    | Curcumin           | P04637           | TP53        | 850
 ```
 
@@ -407,9 +381,9 @@ cid = curcumin['PC_Compounds'][0]['id']['id']['cid']
 # Step 2: Get bioassay targets from PubChem
 targets = requests.get(f"{pubchem_url}/compound/cid/{cid}/assaysummary/JSON").json()
 
-# Step 3: Get known targets from IMPPAT (using STITCH scores)
+# Step 3: Get known targets from IMPPAT (using interaction scores)
 # IMPPAT includes: 27,365 predicted interactions for 1,294 phytochemicals
-# Filter by STITCH score >= 700 for high confidence
+# Filter by interaction score >= 700 for high confidence
 
 # Step 4: Map to pathways via Reactome
 # (same as above)
@@ -481,7 +455,6 @@ CREATE TABLE formulation_compounds (
 | Database | License | Commercial Use |
 |----------|---------|----------------|
 | **BATMAN-TCM 2.0** | CC BY-NC 4.0 | Contact required |
-| **TCMSP** | ODbL 1.0 | Yes, with attribution |
 | **TCMBank** | CC BY 4.0 | Yes |
 | **IMPPAT 2.0** | CC BY 4.0 | Yes |
 | **KampoDB** | CC BY-SA 4.0 | Yes, share-alike |
@@ -506,7 +479,7 @@ CREATE TABLE formulation_compounds (
 ### Phase 2: Expanded Coverage
 
 5. **KampoDB** - Kampo formula → target
-6. **TCMSP** - TCM with ADME properties
+6. **ETCM** - TCM formula composition
 7. **Dr. Duke's** - Western herbal bulk data
 8. **DSLD API** - Supplement label data
 

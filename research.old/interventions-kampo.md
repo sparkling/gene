@@ -19,7 +19,6 @@ This document catalogs all available Kampo and related traditional medicine data
 | **STORK** | 148 Kampo formulas | No | No | No | Open reference |
 | **TM-MC 2.0** | 192 JP herbs, 34,107 compounds | Yes (13,992 targets) | Yes | No | Open |
 | **BATMAN-TCM 2.0** | 54,832 formulas, 39,171 ingredients | Yes (2.3M TTIs) | Yes | Yes | Academic |
-| **TCMSP** | 499 herbs, 29,384 compounds | Yes (3,311 targets) | Limited | No | ODbL |
 | **HERB 2.0** | 7,263 herbs, 49,258 ingredients | Yes (12,933 targets) | Yes | No | Open |
 
 ---
@@ -430,50 +429,7 @@ Academic/research use.
 
 ---
 
-### 3.2 TCMSP (Traditional Chinese Medicine Systems Pharmacology)
-
-| Attribute | Details |
-|-----------|---------|
-| **URL** | https://tcmsp-e.com/tcmsp.php |
-| **Maintainer** | Northwest A&F University |
-| **Version** | 2.3 |
-
-#### Content Coverage
-
-| Data Type | Count |
-|-----------|-------|
-| Chinese herbs | 499 |
-| Ingredients | 29,384 |
-| Targets | 3,311 |
-| Associated diseases | 837 |
-
-#### ADME Properties Available
-- Human oral bioavailability
-- Half-life
-- Drug-likeness
-- Caco-2 permeability
-- Blood-brain barrier
-- Lipinski's rule of five
-- Aqueous solubility
-
-#### Access Method
-
-| Method | Available | Details |
-|--------|-----------|---------|
-| Web interface | Yes | Search by herb, chemical, InChIKey, CAS, target, disease |
-| Bulk download | Limited | Not explicitly documented |
-| API | No | Web interface only |
-
-#### Licensing
-**ODbL 1.0** (Open Database License) - Database structure
-**DBCL 1.0** (Database Contents License) - Individual contents
-
-#### Gene/Protein Targets
-**Yes** - 3,311 targets with drug-target networks and drug-target-disease networks.
-
----
-
-### 3.3 TCMBank
+### 3.2 TCMBank
 
 **Largest downloadable non-commercial TCM database.**
 
@@ -511,7 +467,7 @@ Academic/research use.
 
 ---
 
-### 3.4 HERB 2.0
+### 3.3 HERB 2.0
 
 **High-throughput experiment-guided TCM database.**
 
@@ -549,7 +505,7 @@ Open access.
 
 ---
 
-### 3.5 SymMap 2.0
+### 3.4 SymMap 2.0
 
 **TCM database with symptom mapping.**
 
@@ -581,11 +537,11 @@ Open access.
 Open access.
 
 #### Gene/Protein Targets
-**Yes** - 4,302 target genes from HIT, TCMSP, HPO, DrugBank, NCBI gene.
+**Yes** - 4,302 target genes from HIT, HPO, DrugBank, NCBI gene.
 
 ---
 
-### 3.6 HIT 2.0 (Herbal Ingredients' Targets)
+### 3.5 HIT 2.0 (Herbal Ingredients' Targets)
 
 | Attribute | Details |
 |-----------|---------|
@@ -617,7 +573,7 @@ TTD, DrugBank, KEGG, PDB, UniProt, Pfam, NCBI, TCM-ID
 
 ---
 
-### 3.7 TM-MC 2.0
+### 3.6 TM-MC 2.0
 
 **Northeast Asian traditional medicine database covering Korean, Chinese, and Japanese pharmacopoeias.**
 
@@ -660,7 +616,7 @@ Open access.
 
 ---
 
-### 3.8 TCMID 2.0 (Traditional Chinese Medicine Integrated Database)
+### 3.7 TCMID 2.0 (Traditional Chinese Medicine Integrated Database)
 
 | Attribute | Details |
 |-----------|---------|
@@ -695,7 +651,7 @@ Free for research use. Citation requested for significant downloads.
 
 ---
 
-### 3.9 YaTCM
+### 3.8 YaTCM
 
 | Attribute | Details |
 |-----------|---------|
@@ -749,41 +705,7 @@ Open access.
 
 ## 4. General Natural Products & Chemical Databases
 
-### 4.1 STITCH
-
-**Chemical-protein interaction database.**
-
-| Attribute | Details |
-|-----------|---------|
-| **URL** | http://stitch.embl.de/ (Note: v5.0 from 2015, unsupported) |
-| **Maintainer** | EMBL |
-
-#### Content Coverage
-
-| Data Type | Count |
-|-----------|-------|
-| Organisms | 2,031 |
-| Chemicals | 500,000 |
-| Proteins | 9.6 million |
-| Interactions | 1.6 billion |
-
-#### Access Method
-
-| Method | Available | Details |
-|--------|-----------|---------|
-| Web interface | Yes | Interactive network view |
-| Download | Yes | Available under Creative Commons |
-| API | Yes | Documented in Access section |
-
-#### Licensing
-**Creative Commons** - Separate commercial licensing for subset.
-
-#### Gene/Protein Targets
-**Yes** - Integrates data from ChEMBL, PDSP Ki Database, BindingDB, PDB, DrugBank, GLIDA, Matador, TTD, CTD.
-
----
-
-### 4.2 COCONUT 2.0
+### 4.1 COCONUT 2.0
 
 **Largest open natural products database.**
 
@@ -928,7 +850,6 @@ Open access for academic use.
 | STORK | 148 | - | - | - | Yes |
 | TM-MC 2.0 | 5,075 | 635 | 34,107 | 13,992 | Partial (JP) |
 | BATMAN-TCM 2.0 | 54,832 | 8,404 | 39,171 | 2.3M TTIs | No (TCM) |
-| TCMSP | - | 499 | 29,384 | 3,311 | No (TCM) |
 | TCMBank | - | 9,192 | 61,966 | 15,179 | No (TCM) |
 | HERB 2.0 | - | 7,263 | 49,258 | 12,933 | No (TCM) |
 
@@ -941,7 +862,6 @@ Open access for academic use.
 | TradMPD | Yes | No | No | Academic only |
 | STORK | Yes | No | No | Yes |
 | BATMAN-TCM 2.0 | Yes | Yes | **Yes** | Academic |
-| TCMSP | Yes | Limited | No | Yes (ODbL) |
 | TCMBank | Yes | **Yes** | Partial | Non-commercial |
 | COCONUT | Yes | **Yes** | **Yes** | Yes (CC0) |
 | ChEMBL | Yes | **Yes** | **Yes** | Academic |
@@ -1030,8 +950,6 @@ Layer 5: Pathways/Diseases (KEGG + DisGeNET)
 
 4. Fang S, et al. (2021) "HERB: a high-throughput experiment- and reference-guided database of traditional Chinese medicine." *Nucleic Acids Research* 49(D1):D1197-D1206.
 
-5. Ru J, et al. (2014) "TCMSP: a database of systems pharmacology for drug discovery from herbal medicines." *Journal of Cheminformatics* 6:13.
-
 ### Database URLs Summary
 
 | Database | URL |
@@ -1042,7 +960,6 @@ Layer 5: Pathways/Diseases (KEGG + DisGeNET)
 | STORK | http://mpdb.nibiohn.go.jp/stork/ |
 | KNApSAcK | http://www.knapsackfamily.com/knapsack_core/top.php |
 | BATMAN-TCM 2.0 | http://bionet.ncpsb.org/batman-tcm |
-| TCMSP | https://tcmsp-e.com/tcmsp.php |
 | TCMBank | https://TCMBank.cn/ |
 | HERB | http://herb.ac.cn/ |
 | SymMap | http://www.symmap.org/ |
@@ -1050,7 +967,6 @@ Layer 5: Pathways/Diseases (KEGG + DisGeNET)
 | COCONUT | https://coconut.naturalproducts.net |
 | PubChem | https://pubchem.ncbi.nlm.nih.gov/ |
 | ChEMBL | https://www.ebi.ac.uk/chembl/ |
-| STITCH | http://stitch.embl.de/ |
 | EKAT | http://www.jsom.or.jp/medical/ebm/ere/index.html |
 
 ---

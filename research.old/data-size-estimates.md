@@ -84,7 +84,7 @@ For typical access patterns (Pareto distribution):
 | **WikiPathways** | 3K pathways | ~100 MB | ~1 GB | GPML | Community curated |
 | **Open Targets** | Gene-disease | ~1 GB | ~10 GB | Parquet | Comprehensive |
 | **ChEMBL** | 2M compounds | ~500 MB | ~3 GB | SQL/SDF | Drug data |
-| **TCMSP** | 29K ingredients | ~200 MB | ~2 GB | Web scrape | TCM compounds |
+| **BATMAN-TCM 2.0** | 39K compounds | ~300 MB | ~3 GB | REST API | TCM compounds |
 | **NIH ODS** | Supplements | ~50 MB | ~500 MB | JSON | Official facts |
 | **DSLD** | 140K products | ~500 MB | ~5 GB | JSON | Product labels |
 | **Tier 2 Total** | - | **~4 GB** | **~32 GB** | - | - |

@@ -151,16 +151,16 @@ This document provides detailed data models, schemas, and field descriptions for
 - Laggner substructure counts
 - Fingerprints (10 types, 16,092 bits total)
 
-##### Tab 6: Predicted Human Target Proteins (STITCH Integration)
+##### Tab 6: Predicted Human Target Proteins
 
 | Field | Description | Data Type |
 |-------|-------------|-----------|
 | Target Protein | Human protein target | String |
 | HGNC Symbol | HUGO Gene Nomenclature Committee symbol | String |
-| Confidence Score | STITCH interaction confidence | Integer (0-1000) |
+| Confidence Score | Interaction prediction confidence | Integer (0-1000) |
 | Evidence Channel | Source of prediction | Categorical |
 
-**STITCH Confidence Score Thresholds:**
+**Confidence Score Thresholds:**
 - Minimum threshold: 150 (low confidence)
 - Medium confidence: >= 400
 - High confidence: >= 700 (used in IMPPAT)
@@ -724,11 +724,9 @@ TKRC enabled expansion of IPC classification:
 
 5. Traditional Knowledge Digital Library (TKDL). https://www.tkdl.res.in/
 
-6. STITCH 5: augmenting protein-chemical interaction networks with tissue and affinity data. Nucleic Acids Research. 2016;44(D1):D380-D384. https://pmc.ncbi.nlm.nih.gov/articles/PMC4702904/
+6. SwissADME: a free web tool to evaluate pharmacokinetics, drug-likeness and medicinal chemistry friendliness of small molecules. Scientific Reports. 2017;7:42717. https://pmc.ncbi.nlm.nih.gov/articles/PMC5335600/
 
-7. SwissADME: a free web tool to evaluate pharmacokinetics, drug-likeness and medicinal chemistry friendliness of small molecules. Scientific Reports. 2017;7:42717. https://pmc.ncbi.nlm.nih.gov/articles/PMC5335600/
-
-8. Yap CW. "PaDEL-descriptor: An open source software to calculate molecular descriptors and fingerprints." J Comput Chem. 2011;32(7):1466-74. https://pubmed.ncbi.nlm.nih.gov/21425294/
+7. Yap CW. "PaDEL-descriptor: An open source software to calculate molecular descriptors and fingerprints." J Comput Chem. 2011;32(7):1466-74. https://pubmed.ncbi.nlm.nih.gov/21425294/
 
 ---
 

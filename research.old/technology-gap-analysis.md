@@ -68,7 +68,7 @@ This analysis identifies critical technology gaps in the current genetics/SNP he
 |----------|-------------|---------------|---------------|---------------|
 | LiveWello | Gene Library | Template sharing (not data) | User-controlled | SNP collections |
 | Promethease/SNPedia | Wiki | Public edits | Public | SNP annotations |
-| Phoenix Rising | Forums | Thread discussions | Pseudonymous | Protocols, experiences |
+| chronic illness forums | Forums | Thread discussions | Pseudonymous | Protocols, experiences |
 | Genetic Lifehacks | Comments | Article comments | Limited | Discussion |
 | **Gene Platform (planned)** | Protocol Library | Anonymous opt-in | Privacy-first | Collections + Protocols |
 
@@ -216,12 +216,12 @@ This analysis identifies critical technology gaps in the current genetics/SNP he
 ### Gap 4: Structured Community Knowledge and Protocol Library
 
 **Current State**:
-- Phoenix Rising forum has richest methylation/SNP protocol knowledge
+- chronic illness forums forum has richest methylation/SNP protocol knowledge
 - LiveWello offers SNP collections but no structured protocols
 - Community knowledge is trapped in unstructured forum threads
 - No platform aggregates and structures treatment protocols
 
-**Phoenix Rising Knowledge** (trapped in forums):
+**chronic illness forums Knowledge** (trapped in forums):
 - Freddd's Protocol (gradual methylation support)
 - Rich Van Konynenburg's Simplified Protocol
 - Dr. Chris Masterjohn's Protocol (creatine + phosphatidylcholine)
@@ -603,8 +603,8 @@ User Query
 | TCM-Blast | TCM genome data | 40GB | None |
 | SymMap | TCM symptom mapping | 500+ symptoms | None |
 | ETCM | TCM ingredients | 400+ herbs | None |
-| TCMSP | TCM pharmacology | 500+ herbs | None |
-| BATMAN-TCM | TCM target network | 800+ targets | None |
+| BATMAN-TCM 2.0 | TCM pharmacology | 8,400+ herbs | None |
+| TCMBank | TCM compounds | 61,966 compounds | None |
 | Ayurveda databases | Dosha-gene | Scattered | ADNTRO (limited) |
 
 **Gap Analysis**:
@@ -633,7 +633,7 @@ Tier 2: Pathways (MVP)
 Tier 3: Traditional Medicine (Differentiator)
 +----------------------------------+
 | TCMGeneDIT | SymMap | ETCM       |
-| TCMSP | BATMAN-TCM | HIT2        |
+| TCMBank | BATMAN-TCM 2.0 | HIT2   |
 | Ayurveda DBs | Kampo DBs         |
 +----------------------------------+
 
@@ -782,7 +782,7 @@ The genetics/SNP health platform market has significant technology gaps that Gen
 1. **Interactive pathway visualization** (no competitor offers Cytoscape-level interactivity)
 2. **Traditional medicine integration** (only ADNTRO does Ayurveda doshas; no one does TCM treatments)
 3. **AI-powered interpretation** (DecodyGPT is basic; Claude RAG can be superior)
-4. **Community knowledge structure** (Phoenix Rising knowledge is unstructured)
+4. **Community knowledge structure** (chronic illness forums knowledge is unstructured)
 5. **Privacy-first architecture** (current trade-off between privacy and features)
 
 ...creates a differentiated product opportunity with 3-5 year competitive moat in the traditional medicine integration space and strong differentiation across all other dimensions.

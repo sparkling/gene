@@ -232,36 +232,7 @@ LIMIT 100
 
 ## 2. Traditional Medicine System Databases
 
-### 2.1 TCMSP (Traditional Chinese Medicine Systems Pharmacology)
-
-| Attribute | Details |
-|-----------|---------|
-| **URL** | https://tcmsp-e.com/ |
-| **Maintainer** | Lab of Systems Pharmacology, Northwest University, China |
-| **Content** | 499 herbs, 29,384 ingredients, 3,311 targets, 837 diseases |
-| **System** | Traditional Chinese Medicine (registered in Chinese Pharmacopoeia) |
-| **Access Method** | Web interface, limited download |
-| **Data Format** | Web queries; structured data export |
-| **Licensing** | Open Database License |
-| **Molecular Data** | SMILES, structures, ADME properties |
-| **Target Predictions** | **Yes** - compound-target and target-disease networks |
-
-**ADME Properties Provided (12 properties):**
-- Human oral bioavailability (OB)
-- Half-life
-- Drug-likeness
-- Caco-2 permeability
-- Blood-brain barrier penetration
-- Lipinski's Rule of Five compliance
-
-**Network Features:**
-- Herb-Compound-Target-Disease (H-C-T-D) networks
-- Automatic network visualization
-- Mechanism of action exploration
-
----
-
-### 2.2 HERB (High-throughput Experiment- and Reference-guided Database of TCM)
+### 2.1 HERB (High-throughput Experiment- and Reference-guided Database of TCM)
 
 | Attribute | Details |
 |-----------|---------|
@@ -290,7 +261,7 @@ LIMIT 100
 
 ---
 
-### 2.3 SymMap
+### 2.2 SymMap
 
 | Attribute | Details |
 |-----------|---------|
@@ -312,7 +283,7 @@ LIMIT 100
 
 ---
 
-### 2.4 BATMAN-TCM 2.0
+### 2.3 BATMAN-TCM 2.0
 
 | Attribute | Details |
 |-----------|---------|
@@ -341,7 +312,7 @@ LIMIT 100
 
 ---
 
-### 2.5 IMPPAT 2.0 (Indian Medicinal Plants, Phytochemistry And Therapeutics)
+### 2.4 IMPPAT 2.0 (Indian Medicinal Plants, Phytochemistry And Therapeutics)
 
 | Attribute | Details |
 |-----------|---------|
@@ -369,7 +340,7 @@ LIMIT 100
 
 ---
 
-### 2.6 CMAUP (Collective Molecular Activities of Useful Plants)
+### 2.5 CMAUP (Collective Molecular Activities of Useful Plants)
 
 | Attribute | Details |
 |-----------|---------|
@@ -403,7 +374,7 @@ LIMIT 100
 
 ---
 
-### 2.7 HIT 2.0 (Herbal Ingredients' Targets)
+### 2.6 HIT 2.0 (Herbal Ingredients' Targets)
 
 | Attribute | Details |
 |-----------|---------|
@@ -430,7 +401,7 @@ LIMIT 100
 
 ---
 
-### 2.8 KNApSAcK Family
+### 2.7 KNApSAcK Family
 
 | Attribute | Details |
 |-----------|---------|
@@ -580,7 +551,6 @@ LIMIT 100
 - HUGO Gene Nomenclature Committee
 - Ensembl Genome Browser
 - UniProt
-- COSMIC (Catalogue of Somatic Mutations in Cancer)
 - PubChem
 
 ---
@@ -886,32 +856,7 @@ LIMIT 100
 
 ---
 
-### 6.3 STITCH
-
-| Attribute | Details |
-|-----------|---------|
-| **URL** | http://stitch.embl.de/ |
-| **Maintainer** | EMBL (part of STRING family) |
-| **Content** | 500K chemicals, 9.6M proteins, 1.6B interactions |
-| **Access Method** | Web interface, API, bulk download |
-| **Data Format** | Network files, structured data |
-| **Licensing** | CC BY 4.0 |
-| **Interaction Data** | Experimental, curated, text-mined, predicted |
-
-**Data Channels:**
-1. **Experiments**: ChEMBL (Ki, IC50), PDSP Ki, PDB
-2. **Databases**: DrugBank, GLIDA, Matador, TTD, CTD, KEGG, Reactome
-3. **Text mining**: Literature extraction
-4. **Predictions**: Structure-based inference
-
-**Features:**
-- Tissue filtering
-- Binding affinity visualization
-- Multi-organism support (1,133 organisms)
-
----
-
-### 6.4 ChEBI (Chemical Entities of Biological Interest)
+### 6.3 ChEBI (Chemical Entities of Biological Interest)
 
 | Attribute | Details |
 |-----------|---------|
@@ -937,7 +882,7 @@ LIMIT 100
 
 ---
 
-### 6.5 DGIdb (Drug-Gene Interaction Database)
+### 6.4 DGIdb (Drug-Gene Interaction Database)
 
 | Attribute | Details |
 |-----------|---------|
@@ -1110,7 +1055,6 @@ LIMIT 100
 
 | Database | Use Case |
 |----------|----------|
-| **TCMSP** | TCM herbs with ADME properties |
 | **HERB 2.0** | TCM with transcriptomic validation |
 | **IMPPAT 2.0** | Indian traditional medicine |
 | **BindingDB** | Experimental binding affinities |
@@ -1148,8 +1092,8 @@ SwissTarget    PharmMapper
     +-------+-------+-------+
     |       |       |       |
     v       v       v       v
-  STRING  STITCH  ChEMBL  BindingDB
-  (PPI)   (chem)  (activity) (Kd/Ki)
+  STRING  ChEMBL  BindingDB DGIdb
+  (PPI)   (activity) (Kd/Ki) (druggable)
     |       |       |       |
     +-------+-------+-------+
             |
@@ -1245,7 +1189,6 @@ SwissTarget    PharmMapper
 | PubChem | REST (PUG) | None | Yes |
 | ChEBI | Web services + libChEBI | None | Yes |
 | DGIdb | GraphQL | None | Yes |
-| STITCH | REST | None | Limited |
 | SwissTargetPrediction | Web only | None | No |
 | PharmMapper | Web only | None | No |
 
@@ -1254,9 +1197,9 @@ SwissTarget    PharmMapper
 | License | Databases | Commercial Use |
 |---------|-----------|----------------|
 | **CC0** | COCONUT, LOTUS | Yes, unrestricted |
-| **CC BY 4.0** | NPAtlas, ChEBI, STITCH, STRING | Yes, with attribution |
+| **CC BY 4.0** | NPAtlas, ChEBI, STRING | Yes, with attribution |
 | **CC BY-SA 3.0** | ChEMBL | Yes, share-alike |
-| **Academic Only** | TCMSP, NPASS, IMPPAT, SuperNatural | Check terms |
+| **Academic Only** | NPASS, IMPPAT, SuperNatural | Check terms |
 | **Commercial** | DNP | Subscription required |
 
 ---
@@ -1275,15 +1218,13 @@ SwissTarget    PharmMapper
 
 5. SuperNatural 3.0: Gallo K, et al. (2023) "SuperNatural 3.0-a database of natural products and natural product-based derivatives." Nucleic Acids Res. 51(D1):D654-D659.
 
-6. TCMSP: Ru J, et al. (2014) "TCMSP: a database of systems pharmacology for drug discovery from herbal medicines." J Cheminform. 6:13.
+6. HERB 2.0: Fang S, et al. (2024) "HERB 2.0: an updated database integrating clinical and experimental evidence for traditional Chinese medicine." Nucleic Acids Res. 53(D1):D1404.
 
-7. HERB 2.0: Fang S, et al. (2024) "HERB 2.0: an updated database integrating clinical and experimental evidence for traditional Chinese medicine." Nucleic Acids Res. 53(D1):D1404.
+7. IMPPAT 2.0: Vivek-Ananth RP, et al. (2023) "IMPPAT 2.0: An Enhanced and Expanded Phytochemical Atlas of Indian Medicinal Plants." ACS Omega 8(9):8827-8845.
 
-8. IMPPAT 2.0: Vivek-Ananth RP, et al. (2023) "IMPPAT 2.0: An Enhanced and Expanded Phytochemical Atlas of Indian Medicinal Plants." ACS Omega 8(9):8827-8845.
+8. CMAUP 2024: Zeng X, et al. (2024) "CMAUP database update 2024: extended functional and association information of useful plants for biomedical research." Nucleic Acids Res. gkad921.
 
-9. CMAUP 2024: Zeng X, et al. (2024) "CMAUP database update 2024: extended functional and association information of useful plants for biomedical research." Nucleic Acids Res. gkad921.
-
-10. ChEMBL 2023: Zdrazil B, et al. (2024) "The ChEMBL Database in 2023: a drug discovery platform spanning multiple bioactivity data types and time periods." Nucleic Acids Res. 52(D1):D1180-D1192.
+9. ChEMBL 2023: Zdrazil B, et al. (2024) "The ChEMBL Database in 2023: a drug discovery platform spanning multiple bioactivity data types and time periods." Nucleic Acids Res. 52(D1):D1180-D1192.
 
 ### Review Articles
 

@@ -39,8 +39,8 @@ This document captures all prompts used during the Gene Platform research phase 
 ```
 Document the complete data models and schemas for TCM databases:
 - BATMAN-TCM 2.0: API structure, JSON response format, field definitions
-- TCMSP: Database schema, compound/target/herb relationships
 - TCMBank: Data structure, downloadable formats
+- HERB 2.0: Database schema, compound/target/herb relationships
 - TCMID: Entity relationships, data fields
 - SymMap: Integration schema, mapping structures
 
@@ -164,7 +164,7 @@ Document data models for drug-target interaction databases:
 - DGIdb: Interaction schema, source integration
 - Open Targets: Evidence data model, association scores
 - BindingDB: Binding affinity schema
-- STITCH: Chemical-protein interaction model
+- STRING: Protein-protein interaction model
 
 For each provide entity relationships and pathway linking methods.
 ```
@@ -457,7 +457,7 @@ Focus on bulk extraction, not API iteration.
 ### Models Directory
 | File | Lines | Description |
 |------|-------|-------------|
-| `tcm-data-models.md` | 830 | BATMAN-TCM, TCMSP schemas |
+| `tcm-data-models.md` | 830 | BATMAN-TCM, TCMBank schemas |
 | `ayurveda-data-models.md` | 736 | IMPPAT, NPACT schemas |
 | `kampo-data-models.md` | 890 | KampoDB 4-layer model |
 | `western-herbal-data-models.md` | 1,214 | DSLD, Dr. Duke's schemas |

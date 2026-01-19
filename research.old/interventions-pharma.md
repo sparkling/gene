@@ -33,9 +33,8 @@
    - [CIViC](#18-civic-clinical-interpretation-of-variants-in-cancer)
    - [PGxDB](#19-pgxdb)
    - [SuperDRUG2](#20-superdrug2)
-   - [STITCH](#21-stitch)
-   - [KEGG Drug](#22-kegg-drug)
-   - [UniProt](#23-uniprot)
+   - [KEGG Drug](#21-kegg-drug)
+   - [UniProt](#22-uniprot)
 7. [Comparison Matrix](#comparison-matrix)
 8. [Recommendations](#recommendations)
 
@@ -1019,31 +1018,7 @@ https://api.fda.gov/drug/label.json?search=openfda.brand_name:"Prozac"
 
 ---
 
-### 21. STITCH
-
-**URL:** http://stitch.embl.de
-**Maintainer:** EMBL (no longer actively maintained)
-
-#### Content
-- Chemical-protein interactions
-- Predicted and experimental interactions
-- Network visualization
-
-#### Coverage (Version 5, 2015)
-- **Proteins:** 9.6 million (from 2,031 genomes)
-- **Chemicals:** 430,000
-
-#### Access Method
-- **Web Interface:** Still accessible
-- **Download:** Interaction files
-
-#### Status
-- **NOT ACTIVELY MAINTAINED** since 2015
-- Consider alternatives: ChEMBL, BindingDB, STRING
-
----
-
-### 22. KEGG Drug
+### 21. KEGG Drug
 
 **URL:** https://www.genome.jp/kegg/drug/
 **Maintainer:** Kanehisa Laboratories
@@ -1075,7 +1050,7 @@ https://api.fda.gov/drug/label.json?search=openfda.brand_name:"Prozac"
 
 ---
 
-### 23. UniProt
+### 22. UniProt
 
 **URL:** https://www.uniprot.org
 **Maintainer:** UniProt Consortium (EBI, SIB, PIR)

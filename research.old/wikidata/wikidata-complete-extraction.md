@@ -1315,10 +1315,10 @@ LIMIT 50000
 
 ### 5.4 Traditional Medicine Coverage
 
-| Data Element | Wikidata Est. | TCMSP | TCMBank | IMPPAT | Coverage |
-|--------------|---------------|-------|---------|--------|----------|
-| TCM Herbs | ~3,000 | 499 | 9,192 | - | 33-600% |
-| TCM Compounds | ~5,000 | 29,384 | 61,966 | - | 8-17% |
+| Data Element | Wikidata Est. | BATMAN-TCM | TCMBank | IMPPAT | Coverage |
+|--------------|---------------|------------|---------|--------|----------|
+| TCM Herbs | ~3,000 | 8,404 | 9,192 | - | 33-36% |
+| TCM Compounds | ~5,000 | 39,171 | 61,966 | - | 8-13% |
 | Ayurvedic Herbs | ~1,000 | - | - | 4,010 | 25% |
 | Kampo Formulas | ~500 | - | - | - | Variable |
 
@@ -1339,7 +1339,7 @@ LIMIT 50000
 | Chemical compounds | ~2.5M | PubChem: 115M | Low (2%) |
 | Human genes | ~60,000 | NCBI Gene: 60,000 | High (100%) |
 | Human proteins | ~20,000 | UniProt: 80,000 | Medium (25%) |
-| TCM/Traditional | ~10,000 | TCMSP: 30,000 | Medium (33%) |
+| TCM/Traditional | ~10,000 | BATMAN-TCM: 54,832 | Medium (18%) |
 | Pathways | ~50,000 | Reactome: 2,600 | High (but less curated) |
 | Diseases | ~200,000 | OMIM: 16,000 | High (1250%) |
 
@@ -1357,7 +1357,7 @@ LIMIT 50000
 - Drug targets (ChEMBL/BindingDB)
 - Protein details (UniProt)
 - Pathways (Reactome/WikiPathways native)
-- TCM compounds (TCMSP/TCMBank)
+- TCM compounds (BATMAN-TCM/TCMBank)
 - Drug-drug interactions (DrugBank)
 
 ---
@@ -1416,7 +1416,7 @@ LIMIT 50000
 │                     ┌──────────────┐    ┌──────────────┐    ┌──────────────┐│
 │                     │   DrugBank   │    │   UniProt    │    │   Reactome   ││
 │                     │   ChEMBL     │    │   NCBI Gene  │    │   WikiPW     ││
-│                     │   TCMSP      │    │   Ensembl    │    │   KEGG       ││
+│                     │  BATMAN-TCM  │    │   Ensembl    │    │   KEGG       ││
 │                     └──────────────┘    └──────────────┘    └──────────────┘│
 │                                                                              │
 └─────────────────────────────────────────────────────────────────────────────┘
@@ -2348,7 +2348,7 @@ Enriches Wikidata entities with:
 - DrugBank compound details
 - ChEMBL bioactivity data
 - UniProt protein details
-- TCMSP traditional medicine data
+- BATMAN-TCM traditional medicine data
 """
 
 import json

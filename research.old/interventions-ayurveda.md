@@ -53,10 +53,10 @@ For each phytochemical, six data tabs are available:
 3. **Drug-likeness**: Lipinski, Ghose, Veber, Egan scores
 4. **ADMET**: Predicted absorption, distribution, metabolism, excretion, toxicity properties
 5. **Descriptors**: Chemical descriptors
-6. **Predicted Human Targets**: From STITCH database (score >= 700)
+6. **Predicted Human Targets**: Protein interaction predictions (score >= 700)
 
 ### Gene/Protein Targets
-**YES** - Includes 27,365 predicted interactions between 1,294 phytochemicals and 5,042 human target proteins extracted from STITCH database (high confidence interactions only, combined score >= 700).
+**YES** - Includes 27,365 predicted interactions between 1,294 phytochemicals and 5,042 human target proteins (high confidence interactions only, combined score >= 700).
 
 ### Licensing
 **Creative Commons Attribution 4.0 International (CC BY 4.0)** - Permits use, sharing, adaptation, distribution and reproduction in any medium or format with appropriate credit.
@@ -792,7 +792,7 @@ Government of India officially recognized Sowa Rigpa in 2010 as a "science of he
 ### Data Integration Strategy
 
 1. **Core Compound-Target Data**
-   - Start with IMPPAT 2.0 predicted targets (STITCH-derived)
+   - Start with IMPPAT 2.0 predicted targets
    - Supplement with NPACT validated cancer targets
    - Add NPASS quantitative activity data
    - Cross-reference with CMAUP pathway data
@@ -815,7 +815,7 @@ Government of India officially recognized Sowa Rigpa in 2010 as a "science of he
 - **No APIs available**: All databases require web scraping or manual export
 - **Data harmonization needed**: Different identifier systems across databases
 - **PubChem integration**: Most databases reference PubChem for compound standardization
-- **STITCH/ChEMBL linkage**: For target prediction validation
+- **STRING/ChEMBL linkage**: For target prediction validation
 
 ---
 
