@@ -305,6 +305,157 @@ Estimate vectors: `file_size_bytes / (dimensions * 2)`
 
 ---
 
+### By Purpose
+
+Data points organized by display use case:
+
+#### Identity (7 points)
+What/where am I working?
+
+| Data Point | Source | Example |
+|------------|--------|---------|
+| Model display name | `stdin → model.display_name` | `"Opus 4.5"` |
+| Model ID | `stdin → model.id` | `"claude-opus-4-5-20251101"` |
+| Current directory | `stdin → workspace.current_dir` | `"/home/claude/src/gene"` |
+| Project directory | `stdin → workspace.project_dir` | `"/home/claude/src/gene"` |
+| Git branch | `git branch --show-current` | `"main"` |
+| Session ID | `stdin → session_id` | `"abc123..."` |
+| Hostname | `hostname` | `"dev-server"` |
+
+#### Cost & Usage (12 points)
+How much am I spending/using?
+
+| Data Point | Source | Example |
+|------------|--------|---------|
+| Session cost USD | `stdin → cost.total_cost_usd` | `$0.0123` |
+| Context used % | `stdin → context_window.used_percentage` | `42.5%` |
+| Context remaining % | `stdin → context_window.remaining_percentage` | `57.5%` |
+| Context window size | `stdin → context_window.context_window_size` | `200000` |
+| Total input tokens | `stdin → context_window.total_input_tokens` | `15234` |
+| Total output tokens | `stdin → context_window.total_output_tokens` | `4521` |
+| Cache creation tokens | `stdin → ...cache_creation_input_tokens` | `5000` |
+| Cache read tokens | `stdin → ...cache_read_input_tokens` | `2000` |
+| Session duration | `stdin → cost.total_duration_ms` | `45000ms` |
+| API duration | `stdin → cost.total_api_duration_ms` | `2300ms` |
+| Lines added | `stdin → cost.total_lines_added` | `156` |
+| Lines removed | `stdin → cost.total_lines_removed` | `23` |
+
+#### Learning & Intelligence (20+ points)
+What has the system learned?
+
+| Data Point | Source | Example |
+|------------|--------|---------|
+| Total patterns | `intelligence.json → stats.total_patterns` | `2` |
+| Total memories | `intelligence.json → stats.total_memories` | `477` |
+| Total trajectories | `intelligence.json → stats.total_trajectories` | `293` |
+| Total errors | `intelligence.json → stats.total_errors` | `0` |
+| Session count | `intelligence.json → stats.session_count` | `7` |
+| Pattern Q-values | `intelligence.json → patterns[].q_value` | `0.799` |
+| Pattern visits | `intelligence.json → patterns[].visits` | `160` |
+| Patterns learned | `v3-progress.json → patternsLearned` | `140` |
+| Sessions completed | `v3-progress.json → sessionsCompleted` | `14` |
+| Patterns consolidated | `consolidation.json → patternsConsolidated` | `0` |
+| Memory cleaned | `consolidation.json → memoryCleaned` | `0` |
+| Duplicates removed | `consolidation.json → duplicatesRemoved` | `0` |
+| Neural enabled | `embeddings.json → neural.enabled` | `true` |
+| Neural drift threshold | `embeddings.json → neural.driftThreshold` | `0.3` |
+| Hyperbolic enabled | `embeddings.json → hyperbolic.enabled` | `true` |
+
+#### Swarm & Agents (15+ points)
+What agents are running?
+
+| Data Point | Source | Example |
+|------------|--------|---------|
+| Active agents | `v3-progress.json → swarm.activeAgents` | `0` |
+| Max agents | `v3-progress.json → swarm.maxAgents` | `50` |
+| Swarm topology | `config.json → values.swarm.topology` | `"hierarchical-mesh"` |
+| Auto scale | `config.json → values.swarm.autoScale` | `true` |
+| Daemon running | `daemon-state.json → running` | `true` |
+| Daemon started | `daemon-state.json → startedAt` | (timestamp) |
+| Worker run counts | `daemon-state.json → workers.*.runCount` | `234` |
+| Worker success | `daemon-state.json → workers.*.successCount` | `234` |
+| Worker failures | `daemon-state.json → workers.*.failureCount` | `0` |
+| Worker is running | `daemon-state.json → workers.*.isRunning` | `false` |
+| Max concurrent | `daemon-state.json → config.maxConcurrent` | `2` |
+
+#### Security (8 points)
+Are there vulnerabilities?
+
+| Data Point | Source | Example |
+|------------|--------|---------|
+| Audit status | `audit-status.json → status` | `"CLEAN"` |
+| CVEs fixed | `audit-status.json → cvesFixed` | `0` |
+| Total CVEs | `audit-status.json → totalCves` | `0` |
+| Last scan | `audit-status.json → lastScan` | (timestamp) |
+| Critical issues | `audit-status.json → issues.critical` | `0` |
+| High issues | `audit-status.json → issues.high` | `0` |
+| Medium issues | `audit-status.json → issues.medium` | `0` |
+| Low issues | `audit-status.json → issues.low` | `0` |
+
+#### Performance (8 points)
+How fast is the system?
+
+| Data Point | Source | Example |
+|------------|--------|---------|
+| Flash attention enabled | `performance.json → flashAttention.enabled` | `true` |
+| Flash attention speedup | `performance.json → flashAttention.speedup` | `"1.0x"` |
+| HNSW search time | `performance.json → hnsw.searchTimeMs` | `3ms` |
+| HNSW index size | `performance.json → hnsw.indexSize` | `12` |
+| Routing cost savings | `performance.json → routing.costSavings` | `"51.6%"` |
+| Worker avg duration | `daemon-state.json → workers.*.averageDurationMs` | `0.32ms` |
+| Memory persist interval | `config.json → values.memory.persistInterval` | `60000ms` |
+| Session save interval | `config.json → values.session.saveInterval` | `300000ms` |
+
+#### Storage & Database (15 points)
+What data is persisted?
+
+| Data Point | Source | Example |
+|------------|--------|---------|
+| User DB size | `du -h data/user.db` | `"1.2M"` |
+| User vectors (est) | `bytes / 1536` | `819` |
+| Ops DB size | `du -h data/operational.db` | `"512K"` |
+| Ops vectors (est) | `bytes / 768` | `682` |
+| Memory entries | `v3-progress.json → memory.entries` | `12` |
+| Memory size MB | `v3-progress.json → memory.sizeMb` | `18` |
+| Memory max entries | `config.json → values.memory.maxEntries` | `1000000` |
+| Embedding model | `embeddings.json → model` | `"all-MiniLM-L6-v2"` |
+| Embedding dimension | `embeddings.json → dimension` | `384` |
+| Cache size | `embeddings.json → cacheSize` | `256` |
+| Disk space | `df -h .` | `"45G available"` |
+
+#### Project State (10 points)
+What's the project status?
+
+| Data Point | Source | Example |
+|------------|--------|---------|
+| Domains completed | `v3-progress.json → domains.completed` | `3` |
+| Domains total | `v3-progress.json → domains.total` | `5` |
+| DDD progress % | `v3-progress.json → ddd.progress` | `60%` |
+| Has package.json | `codebase-map.json → structure.hasPackageJson` | `true` |
+| Has tsconfig | `codebase-map.json → structure.hasTsConfig` | `false` |
+| Has Claude config | `codebase-map.json → structure.hasClaudeConfig` | `true` |
+| Has Claude-Flow | `codebase-map.json → structure.hasClaudeFlow` | `true` |
+| Uncommitted changes | `git status --porcelain \| wc -l` | `2` |
+| Last commit | `git log --oneline -1` | `"e249b3d docs:..."` |
+| Stash count | `git stash list \| wc -l` | `0` |
+
+#### System (5 points)
+What's the environment?
+
+| Data Point | Source | Example |
+|------------|--------|---------|
+| Current time | `date` | `"Mon Jan 20..."` |
+| System uptime | `uptime` | `"up 5 days"` |
+| Memory usage | `free -m` | (stats) |
+| Current user | `whoami` | `"claude"` |
+| Claude Code version | `stdin → version` | `"1.0.80"` |
+
+---
+
+### By Source
+
+Detailed listing of all data points organized by their source file/command:
+
 ### 1. Claude Code stdin (24 points)
 
 Sent automatically to statusline script via stdin JSON.
