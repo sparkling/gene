@@ -30,8 +30,8 @@ if [ -n "$STATS" ]; then
   SEC_STATUS=$(echo "$STATS" | jq -r '.security.status // "OK"')
   ROUTING_SAVINGS=$(echo "$STATS" | jq -r '.routing.costSavings // "0%"')
 
-  # Line 2: Swarm status
-  if [ "$AGENTS" -gt 0 ]; then
+  # Line 2: Swarm status (1 agent = daemon only, treat as idle)
+  if [ "$AGENTS" -gt 1 ]; then
     printf "$GREEN⬡$RESET Swarm: $AGENTS/$MAX_AGENTS agents"
   else
     printf "$DIM⬡ Swarm: idle$RESET"
