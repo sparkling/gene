@@ -283,109 +283,298 @@ Estimate vectors: `file_size_bytes / (dimensions * 2)`
 
 ## All Available Data Points
 
-### From Claude Code stdin (Native)
-| Data Point | Source |
-|------------|--------|
-| Model display name | `model.display_name` |
-| Model ID | `model.id` |
-| Current directory | `workspace.current_dir` |
-| Project directory | `workspace.project_dir` |
-| Context used % | `context_window.used_percentage` |
-| Context remaining % | `context_window.remaining_percentage` |
-| Context window size | `context_window.context_window_size` |
-| Total input tokens | `context_window.total_input_tokens` |
-| Total output tokens | `context_window.total_output_tokens` |
-| Cache creation tokens | `context_window.current_usage.cache_creation_input_tokens` |
-| Cache read tokens | `context_window.current_usage.cache_read_input_tokens` |
-| Session cost USD | `cost.total_cost_usd` |
-| Session duration | `cost.total_duration_ms` |
-| API duration | `cost.total_api_duration_ms` |
-| Lines added | `cost.total_lines_added` |
-| Lines removed | `cost.total_lines_removed` |
-| Session ID | `session_id` |
-| Claude Code version | `version` |
+**Total: 170+ unique data points across 13 sources**
 
-### From CLI Statusline Hook
-| Data Point | Source |
-|------------|--------|
-| Git branch | `user.gitBranch` |
-| Domains completed | `v3Progress.domainsCompleted` |
-| Total domains | `v3Progress.totalDomains` |
-| DDD progress | `v3Progress.dddProgress` |
-| Patterns learned | `v3Progress.patternsLearned` |
-| Sessions completed | `v3Progress.sessionsCompleted` |
-| Security status | `security.status` |
-| CVEs fixed | `security.cvesFixed` |
-| Total CVEs | `security.totalCves` |
-| Active agents | `swarm.activeAgents` |
-| Max agents | `swarm.maxAgents` |
-| Coordination active | `swarm.coordinationActive` |
-| Memory MB | `system.memoryMB` |
-| Context % | `system.contextPct` |
-| Intelligence % | `system.intelligencePct` |
-| Sub-agents | `system.subAgents` |
+### Summary
 
-### From Intelligence File
-| Data Point | Source |
-|------------|--------|
-| Total patterns | `stats.total_patterns` |
-| Total memories | `stats.total_memories` |
-| Total trajectories | `stats.total_trajectories` |
-| Total errors | `stats.total_errors` |
-| Session count | `stats.session_count` |
-| Agents count | `agents.length` |
-| Edges count | `edges.length` |
-| Learning algorithm stats | `learning.stats.*` |
+| Source | File/Command | Count |
+|--------|--------------|-------|
+| Claude Code stdin | (native JSON) | 24 |
+| RuVector Intelligence | `.ruvector/intelligence.json` | 15+ |
+| Daemon State | `.claude-flow/daemon-state.json` | 55+ |
+| V3 Progress | `.claude-flow/metrics/v3-progress.json` | 9 |
+| Performance Metrics | `.claude-flow/metrics/performance.json` | 5 |
+| Consolidation Metrics | `.claude-flow/metrics/consolidation.json` | 4 |
+| Security Audit | `.claude-flow/security/audit-status.json` | 8 |
+| Embeddings Config | `.claude-flow/embeddings.json` | 12 |
+| Claude-Flow Config | `.claude-flow/config.json` | 13 |
+| Codebase Map | `.claude-flow/metrics/codebase-map.json` | 7 |
+| Git | (commands) | 6 |
+| Database Files | `data/*.db` | 6 |
+| System | (commands) | 6 |
 
-### From Daemon State
-| Data Point | Source |
-|------------|--------|
-| Daemon running | `running` |
-| Started at | `startedAt` |
-| Worker run count | `workers.*.runCount` |
-| Worker success count | `workers.*.successCount` |
-| Worker failure count | `workers.*.failureCount` |
-| Worker avg duration | `workers.*.averageDurationMs` |
-| Worker last run | `workers.*.lastRun` |
-| Worker next run | `workers.*.nextRun` |
-| Worker is running | `workers.*.isRunning` |
+---
 
-### From Metrics Files
-| Data Point | Source |
-|------------|--------|
-| Flash attention speedup | `performance.json → flashAttention.speedup` |
-| HNSW search time | `performance.json → hnsw.searchTimeMs` |
-| Routing cost savings | `performance.json → routing.costSavings` |
-| Patterns consolidated | `consolidation.json → patternsConsolidated` |
-| Memory cleaned | `consolidation.json → memoryCleaned` |
+### 1. Claude Code stdin (24 points)
 
-### From Security Audit
-| Data Point | Source |
-|------------|--------|
-| Audit status | `audit-status.json → status` |
-| Critical issues | `audit-status.json → issues.critical` |
-| High issues | `audit-status.json → issues.high` |
-| Medium issues | `audit-status.json → issues.medium` |
-| Low issues | `audit-status.json → issues.low` |
-| Last scan | `audit-status.json → lastScan` |
+Sent automatically to statusline script via stdin JSON.
 
-### From Git
-| Data Point | Command |
-|------------|---------|
-| Current branch | `git branch --show-current` |
-| Uncommitted changes | `git status --porcelain \| wc -l` |
-| Last commit | `git log --oneline -1` |
-| Stash count | `git stash list \| wc -l` |
+| Data Point | Source | Example |
+|------------|--------|---------|
+| Model ID | `model.id` | `"claude-opus-4-5-20251101"` |
+| Model display name | `model.display_name` | `"Opus 4.5"` |
+| Current directory | `workspace.current_dir` | `"/home/claude/src/gene"` |
+| Project directory | `workspace.project_dir` | `"/home/claude/src/gene"` |
+| Working directory | `cwd` | `"/home/claude/src/gene"` |
+| Session ID | `session_id` | `"abc123..."` |
+| Transcript path | `transcript_path` | `"/path/to/transcript.json"` |
+| Claude Code version | `version` | `"1.0.80"` |
+| Output style | `output_style.name` | `"default"` |
+| Context window size | `context_window.context_window_size` | `200000` |
+| Context used % | `context_window.used_percentage` | `42.5` |
+| Context remaining % | `context_window.remaining_percentage` | `57.5` |
+| Total input tokens | `context_window.total_input_tokens` | `15234` |
+| Total output tokens | `context_window.total_output_tokens` | `4521` |
+| Current input tokens | `context_window.current_usage.input_tokens` | `8500` |
+| Current output tokens | `context_window.current_usage.output_tokens` | `1200` |
+| Cache creation tokens | `context_window.current_usage.cache_creation_input_tokens` | `5000` |
+| Cache read tokens | `context_window.current_usage.cache_read_input_tokens` | `2000` |
+| Session cost USD | `cost.total_cost_usd` | `0.01234` |
+| Session duration ms | `cost.total_duration_ms` | `45000` |
+| API duration ms | `cost.total_api_duration_ms` | `2300` |
+| Lines added | `cost.total_lines_added` | `156` |
+| Lines removed | `cost.total_lines_removed` | `23` |
+| Hook event name | `hook_event_name` | `"Status"` |
 
-### From Database Files
-| Data Point | Source |
-|------------|--------|
-| User DB size | `du -h data/user.db` |
-| User vectors (est) | `file_size / 1536` |
-| Ops DB size | `du -h data/operational.db` |
-| Ops vectors (est) | `file_size / 768` |
+---
 
-**Total: 60+ unique data points**
+### 2. RuVector Intelligence (15+ points)
+
+File: `.ruvector/intelligence.json`
+
+| Data Point | Source | Example |
+|------------|--------|---------|
+| Total patterns | `stats.total_patterns` | `2` |
+| Total memories | `stats.total_memories` | `477` |
+| Total trajectories | `stats.total_trajectories` | `293` |
+| Total errors | `stats.total_errors` | `0` |
+| Session count | `stats.session_count` | `7` |
+| Last session | `stats.last_session` | `1768871732` |
+| Agents count | `agents.length` | (array length) |
+| Edges count | `edges.length` | (array length) |
+| File sequences count | `file_sequences.length` | (array length) |
+| Errors array | `errors.length` | (array length) |
+
+**Pattern entries** (per pattern):
+| Field | Source | Example |
+|-------|--------|---------|
+| State | `patterns[key].state` | `"cmd_shell_general"` |
+| Action | `patterns[key].action` | `"success"` |
+| Q-value | `patterns[key].q_value` | `0.7999...` |
+| Visits | `patterns[key].visits` | `160` |
+| Last update | `patterns[key].last_update` | `1768871846` |
+
+**Memory entries** (per memory):
+| Field | Source | Example |
+|-------|--------|---------|
+| ID | `memories[].id` | `"mem_1768860137"` |
+| Type | `memories[].memory_type` | `"agent_spawn"` |
+| Content | `memories[].content` | (text content) |
+| Embedding | `memories[].embedding` | (vector array) |
+
+---
+
+### 3. Daemon State (55+ points)
+
+File: `.claude-flow/daemon-state.json`
+
+**Base fields:**
+| Data Point | Source | Example |
+|------------|--------|---------|
+| Daemon running | `running` | `true` |
+| Started at | `startedAt` | `"2026-01-18T16:49:15.823Z"` |
+| Saved at | `savedAt` | `"2026-01-20T15:53:08.616Z"` |
+
+**Per worker** (7 workers × 7 fields = 49 points):
+
+Workers: `map`, `audit`, `optimize`, `consolidate`, `testgaps`, `predict`, `document`
+
+| Field | Source | Example |
+|-------|--------|---------|
+| Run count | `workers.{name}.runCount` | `234` |
+| Success count | `workers.{name}.successCount` | `234` |
+| Failure count | `workers.{name}.failureCount` | `0` |
+| Avg duration ms | `workers.{name}.averageDurationMs` | `0.32` |
+| Last run | `workers.{name}.lastRun` | `"2026-01-20T15:53:08.616Z"` |
+| Next run | `workers.{name}.nextRun` | `"2026-01-20T16:04:05.680Z"` |
+| Is running | `workers.{name}.isRunning` | `false` |
+
+**Config fields:**
+| Data Point | Source | Example |
+|------------|--------|---------|
+| Auto start | `config.autoStart` | `false` |
+| Log directory | `config.logDir` | `"/home/.../logs"` |
+| State file | `config.stateFile` | `"/home/.../daemon-state.json"` |
+| Max concurrent | `config.maxConcurrent` | `2` |
+| Worker timeout ms | `config.workerTimeoutMs` | `300000` |
+| Max CPU load | `config.resourceThresholds.maxCpuLoad` | `2` |
+| Min free memory % | `config.resourceThresholds.minFreeMemoryPercent` | `20` |
+
+---
+
+### 4. V3 Progress (9 points)
+
+File: `.claude-flow/metrics/v3-progress.json`
+
+| Data Point | Source | Example |
+|------------|--------|---------|
+| Domains completed | `domains.completed` | `3` |
+| Domains total | `domains.total` | `5` |
+| DDD progress % | `ddd.progress` | `60` |
+| Swarm active agents | `swarm.activeAgents` | `0` |
+| Swarm max agents | `swarm.maxAgents` | `50` |
+| Memory entries | `memory.entries` | `12` |
+| Memory size MB | `memory.sizeMb` | `18` |
+| Patterns learned | `patternsLearned` | `140` |
+| Sessions completed | `sessionsCompleted` | `14` |
+
+---
+
+### 5. Performance Metrics (5 points)
+
+File: `.claude-flow/metrics/performance.json`
+
+| Data Point | Source | Example |
+|------------|--------|---------|
+| Flash attention enabled | `flashAttention.enabled` | `true` |
+| Flash attention speedup | `flashAttention.speedup` | `"1.0x"` |
+| HNSW search time ms | `hnsw.searchTimeMs` | `3` |
+| HNSW index size | `hnsw.indexSize` | `12` |
+| Routing cost savings | `routing.costSavings` | `"51.6%"` |
+
+---
+
+### 6. Consolidation Metrics (4 points)
+
+File: `.claude-flow/metrics/consolidation.json`
+
+| Data Point | Source | Example |
+|------------|--------|---------|
+| Timestamp | `timestamp` | `"2026-01-20T19:43:34.116Z"` |
+| Patterns consolidated | `patternsConsolidated` | `0` |
+| Memory cleaned | `memoryCleaned` | `0` |
+| Duplicates removed | `duplicatesRemoved` | `0` |
+
+---
+
+### 7. Security Audit (8 points)
+
+File: `.claude-flow/security/audit-status.json`
+
+| Data Point | Source | Example |
+|------------|--------|---------|
+| Status | `status` | `"CLEAN"` |
+| CVEs fixed | `cvesFixed` | `0` |
+| Total CVEs | `totalCves` | `0` |
+| Last scan | `lastScan` | `"2026-01-20T02:00:00Z"` |
+| Critical issues | `issues.critical` | `0` |
+| High issues | `issues.high` | `0` |
+| Medium issues | `issues.medium` | `0` |
+| Low issues | `issues.low` | `0` |
+
+---
+
+### 8. Embeddings Config (12 points)
+
+File: `.claude-flow/embeddings.json`
+
+| Data Point | Source | Example |
+|------------|--------|---------|
+| Model | `model` | `"all-MiniLM-L6-v2"` |
+| Model path | `modelPath` | `"/home/.../models"` |
+| Dimension | `dimension` | `384` |
+| Cache size | `cacheSize` | `256` |
+| Hyperbolic enabled | `hyperbolic.enabled` | `true` |
+| Hyperbolic curvature | `hyperbolic.curvature` | `-1` |
+| Hyperbolic epsilon | `hyperbolic.epsilon` | `1e-15` |
+| Hyperbolic max norm | `hyperbolic.maxNorm` | `0.99999` |
+| Neural enabled | `neural.enabled` | `true` |
+| Neural drift threshold | `neural.driftThreshold` | `0.3` |
+| Neural decay rate | `neural.decayRate` | `0.01` |
+| Initialized | `initialized` | `"2026-01-20T01:43:09.406Z"` |
+
+---
+
+### 9. Claude-Flow Config (13 points)
+
+File: `.claude-flow/config.json`
+
+| Data Point | Source | Example |
+|------------|--------|---------|
+| Swarm topology | `values.swarm.topology` | `"hierarchical-mesh"` |
+| Swarm max agents | `values.swarm.maxAgents` | `50` |
+| Swarm auto scale | `values.swarm.autoScale` | `true` |
+| Memory persist interval | `values.memory.persistInterval` | `60000` |
+| Memory max entries | `values.memory.maxEntries` | `1000000` |
+| Session auto save | `values.session.autoSave` | `true` |
+| Session save interval | `values.session.saveInterval` | `300000` |
+| Logging level | `values.logging.level` | `"info"` |
+| Logging format | `values.logging.format` | `"json"` |
+| Security sandbox enabled | `values.security.sandboxEnabled` | `true` |
+| Security path validation | `values.security.pathValidation` | `true` |
+| Version | `version` | `"3.0.0"` |
+| Updated at | `updatedAt` | `"2026-01-20T01:54:09.593Z"` |
+
+---
+
+### 10. Codebase Map (7 points)
+
+File: `.claude-flow/metrics/codebase-map.json`
+
+| Data Point | Source | Example |
+|------------|--------|---------|
+| Timestamp | `timestamp` | `"2026-01-20T15:53:08.616Z"` |
+| Project root | `projectRoot` | `"/home/claude/src/gene"` |
+| Scanned at | `scannedAt` | `1768924388616` |
+| Has package.json | `structure.hasPackageJson` | `true` |
+| Has tsconfig | `structure.hasTsConfig` | `false` |
+| Has Claude config | `structure.hasClaudeConfig` | `true` |
+| Has Claude-Flow | `structure.hasClaudeFlow` | `true` |
+
+---
+
+### 11. Git (6 points)
+
+Via shell commands:
+
+| Data Point | Command | Example |
+|------------|---------|---------|
+| Current branch | `git branch --show-current` | `"main"` |
+| Uncommitted changes | `git status --porcelain \| wc -l` | `2` |
+| Last commit | `git log --oneline -1` | `"e249b3d docs: expand..."` |
+| Stash count | `git stash list \| wc -l` | `0` |
+| Short commit hash | `git rev-parse --short HEAD` | `"e249b3d"` |
+| Remote URLs | `git remote -v` | (remote list) |
+
+---
+
+### 12. Database Files (6 points)
+
+Files: `data/user.db`, `data/operational.db`
+
+| Data Point | Command/Formula | Example |
+|------------|-----------------|---------|
+| User DB size | `du -h data/user.db` | `"1.2M"` |
+| User DB bytes | `stat -c%s data/user.db` | `1258291` |
+| User vectors (est) | `bytes / 1536` | `819` |
+| Ops DB size | `du -h data/operational.db` | `"512K"` |
+| Ops DB bytes | `stat -c%s data/operational.db` | `524288` |
+| Ops vectors (est) | `bytes / 768` | `682` |
+
+---
+
+### 13. System (6 points)
+
+Via shell commands:
+
+| Data Point | Command | Example |
+|------------|---------|---------|
+| Current time | `date` | `"Mon Jan 20 21:00:00 UTC 2026"` |
+| System uptime | `uptime` | `"up 5 days, 3:42"` |
+| Memory usage | `free -m` | (memory stats) |
+| Disk space | `df -h .` | `"45G available"` |
+| Current user | `whoami` | `"claude"` |
+| Hostname | `hostname` | `"dev-server"` |
 
 ---
 
