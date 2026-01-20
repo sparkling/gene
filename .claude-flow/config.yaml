@@ -1,383 +1,141 @@
-# Claude Flow V3 Runtime Configuration
-# Generated: 2026-01-20T01:14:06.475Z
-
 version: "3.0.0"
 
+# =============================================================================
+# DUAL RUVECTOR DATABASES
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# OPERATIONAL DATABASE - Claude Flow internals (expendable, can rebuild)
+# -----------------------------------------------------------------------------
+operational:
+  backend: ruvector
+  storagePath: .claude-flow/operational.db
+  dimensions: 384
+
+  hnsw:
+    M: 16
+    efConstruction: 200
+    efSearch: 100
+
+  quantization: none
+
+  persistence:
+    autoPersist: true
+    persistInterval: 30000    # 30 seconds
+    walMode: false
+
+  namespaces:
+    project-activity: "proj:"
+    learning-patterns: "learn:"
+    session-state: "sess:"
+    embeddings-cache: "emb:"
+    agent-routing: "route:"
+
+# -----------------------------------------------------------------------------
+# USER DATABASE - Your graph data (CRITICAL - cannot lose)
+# -----------------------------------------------------------------------------
+user:
+  backend: ruvector
+  storagePath: .vectordb/user-data.db
+  dimensions: 768
+
+  hnsw:
+    M: 48                     # High - best recall for user data
+    efConstruction: 400
+    efSearch: 200
+
+  quantization: scalar        # 4x compression, 98-99% accuracy
+
+  persistence:
+    autoPersist: true
+    persistInterval: 10000    # 10 seconds - critical data
+    walMode: true             # Crash-safe
+
+  namespaces:
+    documents: "doc:"         # Source documents
+    entities: "ent:"          # Graph entities/nodes
+    relationships: "rel:"     # Graph relationships/edges
+    annotations: "ann:"       # User annotations
+    queries: "qry:"           # Saved queries
+
+  # Scale settings (187GB RAM available)
+  cacheSize: 10000
+  maxEntries: 100000000       # 100M entries supported
+
+# =============================================================================
+# SWARM CONFIGURATION
+# =============================================================================
 swarm:
   topology: hierarchical-mesh
   maxAgents: 50
+  threadPool: 30
   autoScale: true
   coordinationStrategy: consensus
-  threadPool: 30  # Leave 2 threads for system
 
-memory:
-  backend: hybrid
-  enableHNSW: true
-  persistPath: .claude-flow/data
-  cacheSize: 10000
-  maxEntries: 1000000
-  maxMemoryGB: 128
-
+# =============================================================================
+# NEURAL/LEARNING - Full stack enabled
+# =============================================================================
 neural:
   enabled: true
   modelPath: .claude-flow/neural
-  batchSize: 64
-  parallelWorkers: 16
 
-hnsw:
-  efConstruction: 400
-  efSearch: 200
-  maxConnections: 32
-  indexThreads: 8
+  sona:
+    enabled: true
+    hiddenDim: 768
+    microLoraRank: 2
+    baseLoraRank: 8
+    patternClusters: 100
+    trajectoryCapacity: 50000
+    ewcLambda: 1000.0
 
-ruvector:
-  enabled: true
-  flashAttention: true
-  moeExperts: 8
-  sonaLearningRate: 0.01
-  ewcLambda: 5000
-  loraRank: 16
+  moe:
+    enabled: true
+    numExperts: 8
+    topK: 2
 
+  ewc:
+    enabled: true
+    autoConsolidate: true
+    consolidationInterval: 3600000
+
+  flashAttention:
+    enabled: true
+    blockSize: 256
+
+# =============================================================================
+# HOOKS - Auto-learning to OPERATIONAL database
+# =============================================================================
 hooks:
   enabled: true
   autoExecute: true
+  database: operational       # Hooks write to operational, not user
 
+  preTask:
+    storeContext: true
+    namespace: project-activity
+
+  postTask:
+    learnPatterns: true
+    storePattern: true
+    namespace: learning-patterns
+
+  postEdit:
+    learn: true
+    storePattern: true
+
+  postCommand:
+    learn: true
+
+# =============================================================================
+# MCP CONFIGURATION
+# =============================================================================
 mcp:
   autoStart: false
   port: 3000
 
-# Multi-Provider Routing Configuration
-routing:
-  enabled: true
-  strategy: cost-optimized  # Options: cost-optimized, quality-first, balanced
-
-  providers:
-    anthropic:
-      enabled: true
-      models: [claude-3-haiku, claude-3.5-sonnet, claude-3-opus]
-    openai:
-      enabled: true
-      apiKey: ${OPENAI_API_KEY}
-      models: [gpt-4o-mini, gpt-4o, gpt-4-turbo]
-    openrouter:
-      enabled: true
-      apiKey: ${OPENROUTER_API_KEY}
-      baseUrl: https://openrouter.ai/api/v1
-
-      # ============================================
-      # QWEN (43 models) - Alibaba's models
-      # ============================================
-      qwen:
-        free:
-          - qwen/qwen3-next-80b-a3b-instruct:free
-          - qwen/qwen3-coder:free
-          - qwen/qwen3-4b:free
-          - qwen/qwen-2.5-vl-7b-instruct:free
-        cheap:  # $0.0000-0.0001/1K
-          - qwen/qwen2.5-coder-7b-instruct
-          - qwen/qwen-2.5-coder-32b-instruct
-          - qwen/qwen-2.5-7b-instruct
-          - qwen/qwen3-8b
-          - qwen/qwen3-14b
-          - qwen/qwen2.5-vl-32b-instruct
-          - qwen/qwen-turbo
-          - qwen/qwen3-30b-a3b-thinking-2507
-          - qwen/qwen3-30b-a3b
-          - qwen/qwen3-coder-30b-a3b-instruct
-          - qwen/qwen3-235b-a22b-2507
-          - qwen/qwen3-vl-8b-instruct
-          - qwen/qwen3-30b-a3b-instruct-2507
-          - qwen/qwen3-32b
-          - qwen/qwen3-next-80b-a3b-instruct
-          - qwen/qwen3-235b-a22b-thinking-2507
-          - qwen/qwen-2.5-72b-instruct
-          - qwen/qwen3-vl-30b-a3b-instruct
-          - qwen/qwen3-next-80b-a3b-thinking
-          - qwen/qwq-32b
-          - qwen/qwen2.5-vl-72b-instruct
-        moderate:  # $0.0002-0.0005/1K
-          - qwen/qwen3-vl-8b-thinking
-          - qwen/qwen3-vl-30b-a3b-thinking
-          - qwen/qwen3-vl-235b-a22b-instruct
-          - qwen/qwen3-235b-a22b
-          - qwen/qwen-2.5-vl-7b-instruct
-          - qwen/qwen-vl-plus
-          - qwen/qwen3-coder
-          - qwen/qwen3-coder:exacto
-          - qwen/qwen3-coder-flash
-          - qwen/qwen-plus-2025-07-28
-          - qwen/qwen-plus-2025-07-28:thinking
-          - qwen/qwen-plus
-          - qwen/qwen3-vl-32b-instruct
-        premium:  # $0.0008+/1K
-          - qwen/qwen-vl-max
-          - qwen/qwen3-vl-235b-a22b-thinking
-          - qwen/qwen3-coder-plus
-          - qwen/qwen3-max
-          - qwen/qwen-max
-
-      # ============================================
-      # MISTRAL (33 models) - French AI lab
-      # ============================================
-      mistralai:
-        free:
-          - mistralai/devstral-2512:free
-          - mistralai/mistral-small-3.1-24b-instruct:free
-        cheap:  # $0.0000-0.0002/1K
-          - mistralai/mistral-nemo
-          - mistralai/mistral-small-3.1-24b-instruct
-          - mistralai/mistral-small-24b-instruct-2501
-          - mistralai/ministral-3b
-          - mistralai/devstral-2512
-          - mistralai/mistral-small-3.2-24b-instruct
-          - mistralai/mistral-small-creative
-          - mistralai/ministral-3b-2512
-          - mistralai/voxtral-small-24b-2507
-          - mistralai/devstral-small
-          - mistralai/ministral-8b
-          - mistralai/pixtral-12b
-          - mistralai/mistral-7b-instruct-v0.1
-          - mistralai/ministral-8b-2512
-          - mistralai/ministral-14b-2512
-          - mistralai/mistral-saba
-          - mistralai/mistral-7b-instruct
-          - mistralai/mistral-7b-instruct-v0.3
-          - mistralai/mistral-7b-instruct-v0.2
-        moderate:  # $0.0003-0.0005/1K
-          - mistralai/mistral-tiny
-          - mistralai/codestral-2508
-          - mistralai/mistral-medium-3.1
-          - mistralai/devstral-medium
-          - mistralai/mistral-medium-3
-          - mistralai/mistral-large-2512
-          - mistralai/mixtral-8x7b-instruct
-        premium:  # $0.0020/1K
-          - mistralai/mistral-large-2411
-          - mistralai/mistral-large-2407
-          - mistralai/pixtral-large-2411
-          - mistralai/mixtral-8x22b-instruct
-          - mistralai/mistral-large
-
-      # ============================================
-      # META-LLAMA (18 models) - Meta's open models
-      # ============================================
-      meta-llama:
-        free:
-          - meta-llama/llama-3.3-70b-instruct:free
-          - meta-llama/llama-3.2-3b-instruct:free
-          - meta-llama/llama-3.1-405b-instruct:free
-        cheap:  # $0.0000-0.0002/1K
-          - meta-llama/llama-guard-3-8b
-          - meta-llama/llama-3.2-3b-instruct
-          - meta-llama/llama-3.1-8b-instruct
-          - meta-llama/llama-3.2-1b-instruct
-          - meta-llama/llama-3-8b-instruct
-          - meta-llama/llama-3.2-11b-vision-instruct
-          - meta-llama/llama-4-scout
-          - meta-llama/llama-3.3-70b-instruct
-          - meta-llama/llama-4-maverick
-          - meta-llama/llama-guard-4-12b
-          - meta-llama/llama-guard-2-8b
-        moderate:  # $0.0004/1K
-          - meta-llama/llama-3.1-70b-instruct
-          - meta-llama/llama-3-70b-instruct
-        premium:  # $0.0035+/1K
-          - meta-llama/llama-3.1-405b-instruct
-          - meta-llama/llama-3.1-405b
-
-      # ============================================
-      # DEEPSEEK (13 models) - Chinese reasoning models
-      # ============================================
-      deepseek:
-        free:
-          - deepseek/deepseek-r1-0528:free
-        cheap:  # $0.0000-0.0003/1K
-          - deepseek/deepseek-r1-distill-llama-70b
-          - deepseek/deepseek-chat-v3.1
-          - deepseek/deepseek-chat-v3-0324
-          - deepseek/deepseek-v3.2-exp
-          - deepseek/deepseek-v3.1-terminus:exacto
-          - deepseek/deepseek-v3.1-terminus
-          - deepseek/deepseek-v3.2
-          - deepseek/deepseek-v3.2-speciale
-          - deepseek/deepseek-r1-distill-qwen-32b
-          - deepseek/deepseek-chat
-        moderate:  # $0.0004-0.0007/1K
-          - deepseek/deepseek-r1-0528
-          - deepseek/deepseek-r1
-
-      # ============================================
-      # Z-AI / ZHIPU (10 models) - Chinese GLM models
-      # ============================================
-      z-ai:
-        free:
-          - z-ai/glm-4.5-air:free
-        cheap:  # $0.0000-0.0001/1K
-          - z-ai/glm-4.5-air
-          - z-ai/glm-4.7-flash
-          - z-ai/glm-4-32b
-        moderate:  # $0.0003-0.0006/1K
-          - z-ai/glm-4.6v
-          - z-ai/glm-4.6
-          - z-ai/glm-4.5
-          - z-ai/glm-4.7
-          - z-ai/glm-4.6:exacto
-          - z-ai/glm-4.5v
-
-      # ============================================
-      # NVIDIA (9 models) - Nemotron series
-      # ============================================
-      nvidia:
-        free:
-          - nvidia/nemotron-3-nano-30b-a3b:free
-          - nvidia/nemotron-nano-12b-v2-vl:free
-          - nvidia/nemotron-nano-9b-v2:free
-        cheap:  # $0.0000-0.0002/1K
-          - nvidia/nemotron-nano-9b-v2
-          - nvidia/nemotron-3-nano-30b-a3b
-          - nvidia/llama-3.3-nemotron-super-49b-v1.5
-          - nvidia/nemotron-nano-12b-v2-vl
-        premium:  # $0.0006+/1K
-          - nvidia/llama-3.1-nemotron-ultra-253b-v1
-          - nvidia/llama-3.1-nemotron-70b-instruct
-
-      # ============================================
-      # X-AI (8 models) - Grok series
-      # ============================================
-      x-ai:
-        cheap:  # $0.0002-0.0003/1K
-          - x-ai/grok-4.1-fast
-          - x-ai/grok-4-fast
-          - x-ai/grok-code-fast-1
-          - x-ai/grok-3-mini
-          - x-ai/grok-3-mini-beta
-        premium:  # $0.0030/1K
-          - x-ai/grok-4
-          - x-ai/grok-3
-          - x-ai/grok-3-beta
-
-      # ============================================
-      # ALLENAI (7 models) - Research models
-      # ============================================
-      allenai:
-        free:
-          - allenai/molmo-2-8b:free
-        cheap:  # $0.0000-0.0002/1K
-          - allenai/olmo-2-0325-32b-instruct
-          - allenai/olmo-3-7b-instruct
-          - allenai/olmo-3-7b-think
-          - allenai/olmo-3.1-32b-think
-          - allenai/olmo-3-32b-think
-          - allenai/olmo-3.1-32b-instruct
-
-      # ============================================
-      # NOUSRESEARCH (7 models) - Hermes series
-      # ============================================
-      nousresearch:
-        free:
-          - nousresearch/hermes-3-llama-3.1-405b:free
-        cheap:  # $0.0000-0.0003/1K
-          - nousresearch/deephermes-3-mistral-24b-preview
-          - nousresearch/hermes-2-pro-llama-3-8b
-          - nousresearch/hermes-4-70b
-          - nousresearch/hermes-3-llama-3.1-70b
-        premium:  # $0.0010/1K
-          - nousresearch/hermes-4-405b
-          - nousresearch/hermes-3-llama-3.1-405b
-
-      # ============================================
-      # ARCEE-AI (6 models) - Specialized models
-      # ============================================
-      arcee-ai:
-        free:
-          - arcee-ai/trinity-mini:free
-        cheap:  # $0.0000-0.0002/1K
-          - arcee-ai/trinity-mini
-          - arcee-ai/spotlight
-        moderate:  # $0.0005-0.0009/1K
-          - arcee-ai/coder-large
-          - arcee-ai/virtuoso-large
-          - arcee-ai/maestro-reasoning
-    gemini:
-      enabled: true
-      apiKey: ${GOOGLE_API_KEY}
-      models: [gemini-2.5-flash, gemini-2.5-pro]
-
-  # Task-to-tier mapping (uses models from all 13 providers)
-  tiers:
-    # Tier 1: FREE models for simple tasks ($0)
-    free:
-      maxComplexity: 15
-      models:
-        # Coding specialists
-        - qwen/qwen3-coder:free
-        - mistralai/devstral-2512:free
-        # Reasoning
-        - deepseek/deepseek-r1-0528:free
-        - meta-llama/llama-3.1-405b-instruct:free
-        # General
-        - meta-llama/llama-3.3-70b-instruct:free
-        - nousresearch/hermes-3-llama-3.1-405b:free
-        - qwen/qwen3-next-80b-a3b-instruct:free
-        - nvidia/nemotron-3-nano-30b-a3b:free
-        - z-ai/glm-4.5-air:free
-        - arcee-ai/trinity-mini:free
-
-    # Tier 2: CHEAP models for simple tasks ($0.0000-0.0002/1K)
-    cheap:
-      maxComplexity: 30
-      models:
-        # Direct providers
-        - claude-3-haiku
-        - gpt-4o-mini
-        - gemini-2.5-flash
-        # OpenRouter cheap
-        - qwen/qwen3-32b
-        - qwen/qwq-32b
-        - mistralai/mistral-small-3.2-24b-instruct
-        - meta-llama/llama-4-maverick
-        - deepseek/deepseek-chat-v3.1
-        - z-ai/glm-4.7-flash
-        - nvidia/llama-3.3-nemotron-super-49b-v1.5
-        - x-ai/grok-4.1-fast
-        - allenai/olmo-3.1-32b-instruct
-        - nousresearch/hermes-4-70b
-
-    # Tier 3: MODERATE models for medium tasks ($0.0003-0.0010/1K)
-    moderate:
-      maxComplexity: 60
-      models:
-        # Direct providers
-        - claude-3.5-sonnet
-        - gpt-4o
-        - gemini-2.5-pro
-        # OpenRouter moderate
-        - qwen/qwen3-coder
-        - qwen/qwen-plus
-        - mistralai/codestral-2508
-        - mistralai/mistral-medium-3.1
-        - meta-llama/llama-3.1-70b-instruct
-        - deepseek/deepseek-r1
-        - z-ai/glm-4.7
-        - nvidia/llama-3.1-nemotron-70b-instruct
-        - arcee-ai/maestro-reasoning
-        - nousresearch/hermes-3-llama-3.1-405b
-
-    # Tier 4: PREMIUM models for complex tasks ($0.0010+/1K)
-    premium:
-      maxComplexity: 100
-      models:
-        # Direct providers (most capable)
-        - claude-3-opus
-        - gpt-4-turbo
-        # OpenRouter premium
-        - qwen/qwen-max
-        - qwen/qwen3-max
-        - qwen/qwen3-coder-plus
-        - mistralai/mistral-large
-        - mistralai/pixtral-large-2411
-        - meta-llama/llama-3.1-405b-instruct
-        - nvidia/llama-3.1-nemotron-ultra-253b-v1
-        - x-ai/grok-4
-        - x-ai/grok-3
-        - nousresearch/hermes-4-405b
+# =============================================================================
+# PROVIDERS
+# =============================================================================
+providers:
+  default: anthropic
+  routing: intelligent

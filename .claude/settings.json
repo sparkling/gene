@@ -41,7 +41,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "[ -n \"$TOOL_INPUT_file_path\" ] && npx @claude-flow/cli@latest hooks post-edit --file \"$TOOL_INPUT_file_path\" --success \"${TOOL_SUCCESS:-true}\" 2>/dev/null || true",
+            "command": "[ -n \"$TOOL_INPUT_file_path\" ] && npx @claude-flow/cli@latest hooks post-edit --file \"$TOOL_INPUT_file_path\" --success \"${TOOL_SUCCESS:-true}\" --learn --store-pattern 2>/dev/null || true",
             "timeout": 5000,
             "continueOnError": true
           }
@@ -52,7 +52,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "[ -n \"$TOOL_INPUT_command\" ] && npx @claude-flow/cli@latest hooks post-command --command \"$TOOL_INPUT_command\" --success \"${TOOL_SUCCESS:-true}\" 2>/dev/null || true",
+            "command": "[ -n \"$TOOL_INPUT_command\" ] && npx @claude-flow/cli@latest hooks post-command --command \"$TOOL_INPUT_command\" --success \"${TOOL_SUCCESS:-true}\" --learn 2>/dev/null || true",
             "timeout": 5000,
             "continueOnError": true
           }
@@ -63,8 +63,19 @@
         "hooks": [
           {
             "type": "command",
-            "command": "[ -n \"$TOOL_RESULT_agent_id\" ] && npx @claude-flow/cli@latest hooks post-task --task-id \"$TOOL_RESULT_agent_id\" --success \"${TOOL_SUCCESS:-true}\" 2>/dev/null || true",
+            "command": "[ -n \"$TOOL_RESULT_agent_id\" ] && npx @claude-flow/cli@latest hooks post-task --task-id \"$TOOL_RESULT_agent_id\" --success \"${TOOL_SUCCESS:-true}\" --learn --store-pattern 2>/dev/null || true",
             "timeout": 5000,
+            "continueOnError": true
+          }
+        ]
+      },
+      {
+        "matcher": "^(Read|Glob|Grep)$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "npx @claude-flow/cli@latest hooks post-command --command \"search\" --success \"${TOOL_SUCCESS:-true}\" --learn 2>/dev/null || true",
+            "timeout": 3000,
             "continueOnError": true
           }
         ]
@@ -105,8 +116,9 @@
         "hooks": [
           {
             "type": "command",
-            "command": "echo '{\"ok\": true}'",
-            "timeout": 1000
+            "command": "npx @claude-flow/cli@latest hooks session-end --save-state --export-metrics --consolidate 2>/dev/null || true",
+            "timeout": 10000,
+            "continueOnError": true
           }
         ]
       }
@@ -126,7 +138,7 @@
   },
   "statusLine": {
     "type": "command",
-    "command": "npx @claude-flow/cli@latest hooks statusline 2>/dev/null || node .claude/helpers/statusline.cjs 2>/dev/null || echo \"▊ Claude Flow V3\"",
+    "command": "bash .claude/statusline.sh 2>/dev/null || npx @claude-flow/cli@latest hooks statusline 2>/dev/null || echo \"▊ Claude Flow V3\"",
     "refreshMs": 5000,
     "enabled": true
   },
@@ -148,24 +160,30 @@
     "swarm": {
       "topology": "hierarchical-mesh",
       "maxAgents": 50,
-      "threadPool": 30
+      "threadPool": 30,
+      "autoScale": true,
+      "coordinationStrategy": "consensus"
     },
     "memory": {
-      "backend": "hybrid",
+      "backend": "ruvector-unified",
+      "storagePath": ".vectordb/unified.db",
       "enableHNSW": true,
+      "hnsw": {
+        "M": 48,
+        "efConstruction": 400,
+        "efSearch": 200
+      },
+      "quantization": "scalar",
+      "persistence": {
+        "autoPersist": true,
+        "persistInterval": 10000,
+        "walMode": true
+      },
       "cacheSize": 10000,
-      "maxEntries": 1000000,
-      "maxMemoryGB": 128
+      "maxEntries": 100000000
     },
     "neural": {
-      "enabled": true,
-      "batchSize": 64,
-      "parallelWorkers": 16
-    },
-    "ruvector": {
-      "flashAttention": true,
-      "moeExperts": 8,
-      "hnswThreads": 8
+      "enabled": true
     },
     "daemon": {
       "autoStart": true,
@@ -179,9 +197,7 @@
         "deepdive",
         "document",
         "refactor",
-        "benchmark",
-        "predict",
-        "preload"
+        "benchmark"
       ],
       "schedules": {
         "audit": {
@@ -220,14 +236,64 @@
     "learning": {
       "enabled": true,
       "autoTrain": true,
+      "autoStore": true,
+      "storeOnSuccess": true,
       "patterns": [
         "coordination",
         "optimization",
-        "prediction"
+        "prediction",
+        "code-patterns",
+        "file-associations",
+        "command-sequences",
+        "error-solutions",
+        "architecture-decisions"
       ],
       "retention": {
         "shortTerm": "24h",
-        "longTerm": "30d"
+        "longTerm": "90d"
+      }
+    },
+    "ruvector": {
+      "enabled": true,
+      "autoIndex": true,
+      "persistHNSW": true,
+      "sona": {
+        "enabled": true,
+        "autoLearn": true,
+        "trajectoryTracking": true,
+        "adaptationThreshold": 0.05
+      },
+      "moe": {
+        "enabled": true,
+        "experts": 8,
+        "autoRoute": true
+      },
+      "ewc": {
+        "enabled": true,
+        "autoConsolidate": true,
+        "consolidationInterval": "1h"
+      },
+      "flash": {
+        "enabled": true,
+        "blockSize": 64
+      },
+      "lora": {
+        "enabled": true,
+        "rank": 8,
+        "alpha": 16
+      },
+      "storage": {
+        "storagePath": ".vectordb/unified.db",
+        "autoSave": true,
+        "saveInterval": 10000,
+        "walMode": true
+      },
+      "namespaces": {
+        "user-data": "user:",
+        "graph-entities": "graph:",
+        "project-activity": "proj:",
+        "learning-patterns": "learn:",
+        "embeddings-cache": "emb:"
       }
     },
     "adr": {

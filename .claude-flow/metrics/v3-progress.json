@@ -1,0 +1,19 @@
+{
+  "domains": {
+    "completed": 3,
+    "total": 5
+  },
+  "ddd": {
+    "progress": 60
+  },
+  "swarm": {
+    "activeAgents": 0,
+    "maxAgents": 50
+  },
+  "memory": {
+    "entries": 12,
+    "sizeMb": 18
+  },
+  "patternsLearned": 140,
+  "sessionsCompleted": 14
+}
