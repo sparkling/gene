@@ -134,8 +134,113 @@ mcp:
   port: 3000
 
 # =============================================================================
-# PROVIDERS
+# PROVIDERS - Direct APIs take priority over OpenRouter
 # =============================================================================
 providers:
   default: anthropic
   routing: intelligent
+
+  # Direct API providers (NOT routed through OpenRouter)
+  anthropic:
+    enabled: true
+    priority: 1
+    models:
+      - claude-opus-4-5-20251101
+      - claude-sonnet-4-5-20250514
+      - claude-3-5-sonnet-20241022
+      - claude-3-5-haiku-20241022
+
+  openai:
+    enabled: true
+    priority: 2
+    models:
+      - gpt-4o
+      - gpt-4o-mini
+      - gpt-4-turbo
+      - o1-preview
+      - o1-mini
+
+  google:
+    enabled: true
+    priority: 3
+    models:
+      - gemini-2.0-flash
+      - gemini-2.0-flash-thinking
+      - gemini-1.5-pro
+      - gemini-1.5-flash
+
+  # OpenRouter - ONLY for models without direct API access
+  # Excludes: Anthropic, OpenAI, Google (use direct APIs)
+  openrouter:
+    enabled: true
+    priority: 10
+    exclude:
+      - anthropic/*
+      - openai/*
+      - google/*
+
+    # Top 20 providers with best models (Jan 2026)
+    models:
+      # --- xAI Grok (Top performer) ---
+      - x-ai/grok-4                      # 256K ctx, $0.20/$1.50 per M
+      - x-ai/grok-4-fast                 # 2M ctx, reasoning toggle
+      - x-ai/grok-4.1-fast               # 2M ctx, best agentic
+      - x-ai/grok-code-fast-1            # Agentic coding specialist
+
+      # --- DeepSeek (Best value reasoning) ---
+      - deepseek/deepseek-r1             # 671B MoE, MIT licensed
+      - deepseek/deepseek-r1-0528        # Updated R1, 164K ctx
+      - deepseek/deepseek-chat-v3-0324   # V3 chat
+      - deepseek/deepseek-v3.1           # Latest V3
+
+      # --- Z.ai GLM (Zhipu/THUDM) ---
+      - z-ai/glm-4.7                     # Flagship, 200K ctx
+      - z-ai/glm-4.7-flash               # 30B SOTA, agentic coding
+      - z-ai/glm-4.6                     # Previous gen
+      - z-ai/glm-4.5                     # MoE, 128K ctx
+
+      # --- Qwen (Alibaba) ---
+      - qwen/qwq-32b                     # Reasoning, 33K ctx
+      - qwen/qwen3-coder-480b-a35b       # Coding specialist
+      - qwen/qwen3-235b-a22b             # Large MoE
+      - qwen/qwen-turbo                  # 1M ctx, fast
+
+      # --- Mistral AI ---
+      - mistralai/mistral-large          # Flagship
+      - mistralai/mistral-large-2411     # Latest update
+      - mistralai/codestral-2508         # Coding specialist
+      - mistralai/devstral-2512          # 123B, 256K ctx, agentic
+
+      # --- Meta Llama ---
+      - meta-llama/llama-4-maverick      # 400B MoE, 128 experts
+      - meta-llama/llama-4-scout         # 109B MoE, 10M ctx
+      - meta-llama/llama-3.3-70b-instruct # Multilingual
+      - meta-llama/llama-3.3-70b-instruct:free
+
+      # --- Cohere ---
+      - cohere/command-r-plus            # 104B, RAG optimized
+      - cohere/command-r-plus-08-2024    # 50% faster
+      - cohere/command-r7b-12-2024       # Budget option
+      - cohere/command-r                 # Base model
+
+      # --- NVIDIA ---
+      - nvidia/llama-3.1-nemotron-70b-instruct
+      - nvidia/nemotron-4-340b-instruct
+
+      # --- Together AI / Open models ---
+      - together/stripedhyena-nous-7b
+      - together/nous-hermes-2-mixtral-8x7b
+
+      # --- Perplexity ---
+      - perplexity/llama-3.1-sonar-huge-128k-online
+      - perplexity/llama-3.1-sonar-large-128k-online
+
+      # --- 01.AI (Yi) ---
+      - 01-ai/yi-large
+      - 01-ai/yi-large-turbo
+
+      # --- Databricks ---
+      - databricks/dbrx-instruct
+
+      # --- Inflection ---
+      - inflection/inflection-3-pi
