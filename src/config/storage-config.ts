@@ -29,7 +29,7 @@ export interface DatabaseConfig {
 // OPERATIONAL DATABASE - Claude Flow internals (expendable, can rebuild)
 // =============================================================================
 export const OPERATIONAL_DB: DatabaseConfig = {
-  storagePath: '/home/claude/src/gene/.claude-flow/operational.db',
+  storagePath: './data/operational.db',
   dimensions: 384,  // Smaller for faster operations
 
   hnsw: {
@@ -59,7 +59,7 @@ export const OPERATIONAL_NAMESPACES = {
 // USER DATABASE - Your graph data (CRITICAL - cannot lose)
 // =============================================================================
 export const USER_DB: DatabaseConfig = {
-  storagePath: '/home/claude/src/gene/.vectordb/user-data.db',
+  storagePath: './data/user.db',
   dimensions: 768,  // Higher quality for user data
 
   hnsw: {
