@@ -6,12 +6,13 @@ Complete reference for statusline configuration, data sources, and design decisi
 
 1. [Claude Code Native Statusline](#claude-code-native-statusline)
 2. [Configuration](#configuration)
-3. [Data Available via stdin](#data-available-via-stdin)
-4. [Claude-Flow Data Sources](#claude-flow-data-sources)
-5. [Third-Party Tools](#third-party-tools)
-6. [All Available Data Points](#all-available-data-points)
-7. [Mode Design & Detection](#mode-design--detection)
-8. [Implementation Notes](#implementation-notes)
+3. [Statusline Templates](#statusline-templates)
+4. [Data Available via stdin](#data-available-via-stdin)
+5. [Claude-Flow Data Sources](#claude-flow-data-sources)
+6. [Third-Party Tools](#third-party-tools)
+7. [All Available Data Points](#all-available-data-points)
+8. [Mode Design & Detection](#mode-design--detection)
+9. [Implementation Notes](#implementation-notes)
 
 ---
 
@@ -53,6 +54,245 @@ Interactive setup wizard for configuring status line script.
 | `padding` | Set to 0 for edge-to-edge display |
 | `enabled` | Toggle statusline on/off |
 | `refreshMs` | Refresh interval in milliseconds |
+
+---
+
+## Statusline Templates
+
+23 templates organized into 10 categories, each supporting 3-mode adaptation (Alert, Swarm, Normal).
+
+### Switching Templates
+
+```bash
+# List all templates
+.claude/sl.sh list
+
+# Switch to specific template
+.claude/sl.sh <template-name>
+
+# Cycle through templates
+.claude/sl.sh n    # next
+.claude/sl.sh p    # previous
+```
+
+State stored in: `.claude/statusline-state`
+
+---
+
+### Template Categories
+
+#### Category 1: Minimalist (Focus Mode)
+
+**Purpose**: Distraction-free coding, minimal cognitive load
+
+| Template | Lines | Description | Example Output |
+|----------|-------|-------------|----------------|
+| `zen` | 1 | Model name only. Ultimate minimalism for deep focus work. | `Opus` |
+| `focus` | 1 | Model + git branch. Minimal context without distractions. | `Opus │ ⎇ main` |
+
+**Best for**: Deep coding sessions, debugging complex logic, writing tests
+
+---
+
+#### Category 2: Developer Daily (Code-Centric)
+
+**Purpose**: Active development with git awareness
+
+| Template | Lines | Description | Example Output |
+|----------|-------|-------------|----------------|
+| `dev` | 1 | Model, directory, branch, diff stats, uncommitted count. | `Opus │ gene ⎇ main │ +156/-23 │ 2 uncommitted` |
+| `git` | 2 | L1: Identity. L2: Change details, stash count, last commit. | L1: `Opus in gene on ⎇ main` / L2: `Changes: +150 -44 │ 20 files │ 348df6e feat:...` |
+
+**Best for**: Feature development, code reviews, preparing commits
+
+---
+
+#### Category 3: Knowledge Base (Vector/Learning)
+
+**Purpose**: Building RuVector knowledge base, tracking data ingestion
+
+| Template | Lines | Description | Example Output |
+|----------|-------|-------------|----------------|
+| `vectors` | 1 | Vector counts across all databases (user, ops, memories). | `Opus │ 📊 819 user │ 682 ops │ 477 memories` |
+| `learning` | 2 | L1: Model + pattern/memory counts. L2: Trajectories, algorithm convergence, sessions. | L1: `Opus │ 🧠 Learning │ ◆ 2 patterns │ ⬡ 477 memories` / L2: `↝ 293 trajectories │ sarsa ▰▰▰▱▱ 60% │ #7 sessions` |
+
+**Best for**: Data ingestion, training models, building knowledge bases, RAG development
+
+---
+
+#### Category 4: Operations (Daemon/Workers)
+
+**Purpose**: System health monitoring, background worker status
+
+| Template | Lines | Description | Example Output |
+|----------|-------|-------------|----------------|
+| `daemon` | 1 | Daemon status, total runs, active workers. | `Opus │ ● daemon │ 383 runs │ 7 workers` |
+| `workers` | 2-3 | L1: Daemon status. L2-3: Per-worker stats (runs/success), active workers. | L1: `Opus │ ● Daemon Active │ 389/999 runs` / L2: `Workers: map:259/259 audit:261/0 optimize:193/0...` |
+
+**Best for**: System monitoring, debugging worker issues, performance tuning
+
+---
+
+#### Category 5: Cost & Efficiency
+
+**Purpose**: Budget awareness, token optimization, cost tracking
+
+| Template | Lines | Description | Example Output |
+|----------|-------|-------------|----------------|
+| `cost` | 1 | Session cost, input/output tokens, context percentage. | `Opus │ $0.0123 │ 15K in │ 4K out │ 42% ctx` |
+| `tokens` | 2 | L1: Cost + context. L2: Token breakdown, cache stats, efficiency. | L1: `Opus │ 💰 Session: $0.0234 │ Context: 42%` / L2: `Tokens: ↓15.4K ↑4.2K │ Cache: W5K R2K │ 13% cached` |
+
+**Best for**: Long sessions, budget-conscious work, optimizing cache usage
+
+---
+
+#### Category 6: Security
+
+**Purpose**: Security posture awareness, vulnerability tracking
+
+| Template | Lines | Description | Example Output |
+|----------|-------|-------------|----------------|
+| `secure` | 1 | Security status (CLEAN/WARN/HIGH/CRITICAL), CVE count, last scan. | `Opus │ 🔒 CLEAN │ 0 CVEs │ scan: 2h ago` |
+| `audit` | 2 | L1: Security status. L2: CVE breakdown by severity (critical/high/medium/low). | L1: `Opus │ 🔒 Security Audit │ CLEAN` / L2: `✓ No vulnerabilities found │ Last scan: 2026-01-20` |
+
+**Best for**: Security reviews, pre-deployment checks, compliance work
+
+---
+
+#### Category 7: Swarm (Multi-Agent)
+
+**Purpose**: Swarm coordination visibility, multi-agent orchestration
+
+| Template | Lines | Description | Example Output |
+|----------|-------|-------------|----------------|
+| `swarm` | 1 | Agent count, max agents, topology, active tasks. | `Opus │ ⬡ 5/15 agents │ hierarchical-mesh │ 3 tasks` |
+| `agents` | 2-3 | L1: Topology + coordination. L2-3: Active agent types with icons, task count. | L1: `⬡ SWARM ACTIVE │ 5/15 agents │ hierarchical-mesh │ ● coordinated` / L2: `Active: 🔍researcher 💻coder 🧪tester 👀reviewer │ 3 tasks` |
+
+**Best for**: Multi-agent workflows, swarm debugging, parallel task execution
+
+---
+
+#### Category 8: Performance
+
+**Purpose**: Speed metrics, optimization tracking
+
+| Template | Lines | Description | Example Output |
+|----------|-------|-------------|----------------|
+| `perf` | 1 | HNSW search time, Flash Attention speedup, memory savings. | `Opus │ ⚡ HNSW 3ms │ Flash 2.5x │ 51.6% saved` |
+| `speed` | 2 | L1: Search/attention metrics. L2: Cache hit rate, memory savings, worker avg duration. | L1: `Opus │ ⚡ Performance │ HNSW 3ms │ Flash 2.5x` / L2: `Metrics: Cache 87% hit │ Memory -50% │ Workers avg 0.3ms` |
+
+**Best for**: Performance optimization, benchmarking, identifying bottlenecks
+
+---
+
+#### Category 9: Project Progress
+
+**Purpose**: Milestone tracking, domain completion, project status
+
+| Template | Lines | Description | Example Output |
+|----------|-------|-------------|----------------|
+| `progress` | 1 | Domain completion, DDD progress, session count. | `Opus │ 📈 3/5 domains │ DDD 60% │ 14 sessions` |
+| `project` | 2 | L1: Project + branch. L2: V3 progress bar, domain count, DDD %, patterns. | L1: `Opus │ 📁 Project gene ⎇ main` / L2: `V3: ▰▰▰▱▱ 60% │ Domains: 3/5 │ DDD: 60% │ ◆2` |
+
+**Best for**: Sprint tracking, milestone reviews, long-running projects
+
+---
+
+#### Category 10: Dashboard (Comprehensive)
+
+**Purpose**: Full visibility, all key metrics at a glance
+
+| Template | Lines | Description | Example Output |
+|----------|-------|-------------|----------------|
+| `dashboard` | 3 | L1: Identity + daemon. L2: Cost + tokens + git. L3: Vectors + learning + V3 progress. | L1: `Opus in gene on ⎇ main │ ●` / L2: `💰 $0.0234 │ ctx 42% │ 15.4K↓ 4.2K↑ │ +150-44` / L3: `📊 819 user │ 682 ops │ ◆2 patterns │ ↝293 traj │ V3 60%` |
+| `full` | 5-6 | Complete visibility: identity, mode, daemon, intelligence, database, metrics. | (All data categories displayed) |
+
+**Best for**: Project overviews, status reports, comprehensive monitoring
+
+---
+
+### Legacy Templates
+
+| Template | Lines | Description |
+|----------|-------|-------------|
+| `minimal` | 1 | Model in directory on branch |
+| `compact` | 1 | Model, branch, context, cost, daemon indicator |
+| `adaptive` | 2-4 | Auto-detects mode (swarm/learning/database/idle) and shows relevant data |
+
+---
+
+### 3-Mode Adaptation System
+
+All templates automatically adapt to these priority modes:
+
+| Mode | Detection | Behavior |
+|------|-----------|----------|
+| **Alert** | CVEs > 0 OR critical errors > 0 | Red warning header with CVE count, prompts action |
+| **Swarm** | activeAgents > 1 | Green swarm header with agent count and topology |
+| **Normal** | Default | Standard category-specific display |
+
+**Priority**: Alert > Swarm > Normal
+
+**Example Alert Mode:**
+```
+⚠ ALERT │ Opus │ 3 CVEs (2 critical) │ Run: security scan
+```
+
+**Example Swarm Mode:**
+```
+⬡ SWARM │ Opus │ 5/15 agents │ hierarchical-mesh │ 3 tasks
+```
+
+---
+
+### Use Case Quick Reference
+
+| Scenario | Recommended Templates |
+|----------|----------------------|
+| Deep focus / debugging | `zen`, `focus` |
+| Active development | `dev`, `git` |
+| Building knowledge base | `vectors`, `learning` |
+| System monitoring | `daemon`, `workers` |
+| Budget tracking | `cost`, `tokens` |
+| Security review | `secure`, `audit` |
+| Multi-agent work | `swarm`, `agents` |
+| Performance tuning | `perf`, `speed` |
+| Project tracking | `progress`, `project` |
+| Full overview | `dashboard`, `full` |
+| General purpose | `adaptive`, `compact` |
+
+---
+
+### Template File Structure
+
+```
+.claude/statuslines/
+├── lib/
+│   └── common.sh      # Shared functions, colors, data loaders
+├── zen.sh             # Minimalist - model only
+├── focus.sh           # Minimalist - model + branch
+├── dev.sh             # Developer - daily coding
+├── git.sh             # Developer - git details
+├── vectors.sh         # Knowledge Base - vector stats
+├── learning.sh        # Knowledge Base - learning metrics
+├── daemon.sh          # Operations - daemon status
+├── workers.sh         # Operations - worker details
+├── cost.sh            # Cost - session cost
+├── tokens.sh          # Cost - token breakdown
+├── secure.sh          # Security - status
+├── audit.sh           # Security - audit details
+├── swarm.sh           # Swarm - summary
+├── agents.sh          # Swarm - agent details
+├── perf.sh            # Performance - metrics
+├── speed.sh           # Performance - speed details
+├── progress.sh        # Progress - summary
+├── project.sh         # Progress - project status
+├── dashboard.sh       # Dashboard - 3-line comprehensive
+├── full.sh            # Dashboard - all metrics (legacy)
+├── adaptive.sh        # Legacy - mode-based
+├── compact.sh         # Legacy - single line
+└── minimal.sh         # Legacy - identity only
+```
 
 ---
 

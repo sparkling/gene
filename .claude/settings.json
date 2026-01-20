@@ -86,7 +86,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "case \"$PROMPT\" in '/sl') .claude/sl.sh list;; '/sl n'|'/sl next') .claude/sl.sh n;; '/sl p'|'/sl prev') .claude/sl.sh p;; '/sl '*) .claude/sl.sh \"${PROMPT#/sl }\";; *) [ -n \"$PROMPT\" ] && npx @claude-flow/cli@latest hooks route --task \"$PROMPT\" || true;; esac",
+            "command": "case \"$PROMPT\" in '/slt') .claude/slt.sh list;; '/slt n'|'/slt next') .claude/slt.sh n;; '/slt p'|'/slt prev') .claude/slt.sh p;; '/slt '*) .claude/slt.sh \"${PROMPT#/slt }\";; *) [ -n \"$PROMPT\" ] && npx @claude-flow/cli@latest hooks route --task \"$PROMPT\" || true;; esac",
             "timeout": 5000,
             "continueOnError": true
           }
