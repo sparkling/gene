@@ -451,6 +451,25 @@ else
 fi
 ```
 
+### Terminal Width Detection
+
+**Known Issue**: `tput cols` always returns 80 inside Claude Code ([GitHub #5430](https://github.com/anthropics/claude-code/issues/5430) - closed as NOT_PLANNED)
+
+**Working Solution**: Use `stty` via `/dev/tty`:
+```bash
+# This works! Returns actual terminal width
+COLS=$(stty size 2>/dev/null </dev/tty | cut -d' ' -f2 || echo 120)
+
+# Reserve space for Claude Code's right-side messages
+USABLE_COLS=$((COLS - 45))
+```
+
+| Method | Result |
+|--------|--------|
+| `tput cols` | Always 80 (wrong) |
+| `stty size </dev/tty` | **Correct width** |
+| `$COLUMNS` | Not set |
+
 ### Performance Considerations
 
 - CLI call (`npx @claude-flow/cli@latest hooks statusline --json`) adds ~1-2s latency

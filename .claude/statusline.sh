@@ -5,6 +5,11 @@
 
 set -o pipefail
 
+# Terminal width detection (stty works, tput returns 80)
+COLS=$(stty size 2>/dev/null </dev/tty | cut -d' ' -f2 || echo 120)
+# Reserve space for Claude Code's right-side messages (auto-compact, etc)
+USABLE_COLS=$((COLS - 45))
+
 # Read input from stdin
 INPUT=$(cat)
 

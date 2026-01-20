@@ -140,7 +140,8 @@
     "type": "command",
     "command": "bash .claude/statusline.sh 2>/dev/null || npx @claude-flow/cli@latest hooks statusline 2>/dev/null || echo \"▊ Claude Flow V3\"",
     "refreshMs": 5000,
-    "enabled": true
+    "enabled": true,
+    "padding": 0
   },
   "permissions": {
     "allow": [
