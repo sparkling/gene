@@ -164,21 +164,18 @@ case "$MODE" in
         printf " ${DIM}│${RST} ${YEL}↝${RST} ${BOLD}$RV_TRAJECTORIES${RST} trajectories"
         echo
 
-        # Algorithm + convergence
-        if [ "$RV_BEST_ALGO" != "none" ]; then
-            # Progress bar for convergence
+        # Algorithm + convergence (only show if algorithm exists)
+        if [ "$RV_BEST_ALGO" != "none" ] && [ -n "$RV_BEST_ALGO" ]; then
             filled=$((RV_CONVERGENCE / 20))
             empty=$((5 - filled))
             bar=""
             for ((i=0; i<filled; i++)); do bar+="▰"; done
             for ((i=0; i<empty; i++)); do bar+="▱"; done
             printf "${CYN}$RV_BEST_ALGO${RST} $bar ${BOLD}${RV_CONVERGENCE}%%${RST} converged"
-        else
-            printf "${DIM}No active learning algorithm${RST}"
+            [ "$RV_ERRORS" -gt 0 ] && printf " ${DIM}│${RST} ${RED}⚠${RV_ERRORS}${RST} errors"
+            echo
         fi
-        [ "$RV_ERRORS" -gt 0 ] && printf " ${DIM}│${RST} ${RED}⚠${RV_ERRORS}${RST} errors"
-        [ "$RV_SESSIONS" -gt 0 ] && printf " ${DIM}│${RST} ${DIM}#${RV_SESSIONS} sessions${RST}"
-        echo
+        [ "$RV_SESSIONS" -gt 0 ] && printf "${DIM}#${RV_SESSIONS} sessions${RST}\n"
         ;;
 
     database)
