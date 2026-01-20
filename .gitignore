@@ -16,3 +16,10 @@ node_modules/
 
 # Old statusline
 .claude/statusline.sh
+
+# Local environment (API keys)
+.env.local
+.env*.local
+
+# Local MCP config (may contain keys)
+.mcp.json

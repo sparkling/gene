@@ -1,0 +1,18 @@
+{
+  "values": {
+    "swarm.topology": "hierarchical-mesh",
+    "swarm.maxAgents": 50,
+    "swarm.autoScale": true,
+    "memory.persistInterval": 60000,
+    "memory.maxEntries": 1000000,
+    "session.autoSave": true,
+    "session.saveInterval": 300000,
+    "logging.level": "info",
+    "logging.format": "json",
+    "security.sandboxEnabled": true,
+    "security.pathValidation": true
+  },
+  "scopes": {},
+  "version": "3.0.0",
+  "updatedAt": "2026-01-20T01:54:09.593Z"
+}

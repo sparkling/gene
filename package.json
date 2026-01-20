@@ -13,5 +13,8 @@
   "dependencies": {
     "glob": "^13.0.0",
     "ruvector": "^0.1.96"
+  },
+  "devDependencies": {
+    "@ruvector/graph-node": "^0.1.26"
   }
 }
