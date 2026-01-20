@@ -464,11 +464,35 @@ COLS=$(stty size 2>/dev/null </dev/tty | cut -d' ' -f2 || echo 120)
 USABLE_COLS=$((COLS - 45))
 ```
 
-| Method | Result |
-|--------|--------|
-| `tput cols` | Always 80 (wrong) |
-| `stty size </dev/tty` | **Correct width** |
-| `$COLUMNS` | Not set |
+| Method | Result | Notes |
+|--------|--------|-------|
+| `tput cols` | Always 80 | Hardcoded, wrong |
+| `stty size </dev/tty` | **Correct** (e.g., 168) | Use this! |
+| `$COLUMNS` | Not set | Unavailable |
+
+**Why reserve 45 columns?**
+
+Claude Code displays dynamic messages on the right side:
+- `Context left until auto-compact: XX%`
+- `Approaching limit`
+- IDE integration status
+
+These reduce usable width. The `-45` is a safe buffer (ccstatusline uses `-40`).
+
+**Full-width separator example:**
+```bash
+COLS=$(stty size 2>/dev/null </dev/tty | cut -d' ' -f2 || echo 120)
+printf '━%.0s' $(seq 1 $COLS)
+echo
+```
+
+**Right-aligned text example:**
+```bash
+LEFT="Model: Opus"
+RIGHT="Context: 42%"
+PADDING=$((COLS - ${#LEFT} - ${#RIGHT}))
+printf "%s%*s%s\n" "$LEFT" "$PADDING" "" "$RIGHT"
+```
 
 ### Performance Considerations
 
