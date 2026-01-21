@@ -426,12 +426,30 @@ User Profile + SNPs → Pathway Analysis → Knowledge Graph Query
 
 ---
 
+## Architecture Decision Records
+
+This architecture implements decisions documented in the [ADR directory](../adr/README.md):
+
+| ADR | Decision | Impact |
+|-----|----------|--------|
+| [ADR-001](../adr/ADR-001-three-database-architecture.md) | Three-Database Architecture | QLever + RuVector + PostgreSQL |
+| [ADR-002](../adr/ADR-002-knowledge-graph-engine.md) | Knowledge Graph Engine | QLever for SPARQL/RDF |
+| [ADR-003](../adr/ADR-003-embedding-model-selection.md) | Embedding Model | all-mpnet-base-v2 (768 dims) |
+| [ADR-004](../adr/ADR-004-federation-strategy.md) | Federation Strategy | Local import preferred |
+| [ADR-005](../adr/ADR-005-claude-flow-memory.md) | Claude Flow Memory | Hybrid backend + HNSW |
+| [ADR-006](../adr/ADR-006-hardware-optimized-hnsw.md) | Hardware Optimization | M=48, efConstruction=400 |
+| [ADR-007](../adr/ADR-007-automated-learning-configuration.md) | Automated Learning | SONA, EWC++, LoRA, MoE enabled |
+| [ADR-008](../adr/ADR-008-mcp-server-management.md) | MCP Server Management | system_reset for config reload |
+
+---
+
 ## Dependencies
 
 | Document | Relationship |
 |----------|--------------|
+| [ADR Index](../adr/README.md) | Architecture decisions |
 | [45-DATA-MODEL](./45-DATA-MODEL.md) | Entity definitions |
-| [43-DATA-SOURCES](./43-DATA-SOURCES.md) | External data sources |
+| [43-DATA-SOURCES](./data-sources/43-00-INDEX.md) | External data sources |
 | [73-TECHNOLOGY](../70-operations/73-TECHNOLOGY.md) | Tech operations |
 | [74-COMPLIANCE](../70-operations/74-COMPLIANCE.md) | Security compliance |
 
@@ -451,3 +469,4 @@ User Profile + SNPs → Pathway Analysis → Knowledge Graph Query
 | Version | Date | Author | Changes |
 |---------|------|--------|---------|
 | 1.0 | January 2026 | Engineering | Complete architecture specification |
+| 1.1 | January 2026 | Engineering | Added ADR references section (8 ADRs) |

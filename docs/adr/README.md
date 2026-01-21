@@ -23,6 +23,9 @@ This directory contains Architecture Decision Records (ADRs) documenting signifi
 | [ADR-003](./ADR-003-embedding-model-selection.md) | Embedding Model Selection | Accepted | Jan 2026 |
 | [ADR-004](./ADR-004-federation-strategy.md) | SPARQL Federation Strategy | Accepted | Jan 2026 |
 | [ADR-005](./ADR-005-claude-flow-memory.md) | Claude Flow Memory Configuration | Accepted | Jan 2026 |
+| [ADR-006](./ADR-006-hardware-optimized-hnsw.md) | Hardware-Optimized HNSW Parameters | Accepted | Jan 2026 |
+| [ADR-007](./ADR-007-automated-learning-configuration.md) | Automated Learning Configuration | Accepted | Jan 2026 |
+| [ADR-008](./ADR-008-mcp-server-management.md) | MCP Server Management | Accepted | Jan 2026 |
 
 ---
 
@@ -32,7 +35,8 @@ This directory contains Architecture Decision Records (ADRs) documenting signifi
 |----------|------|-------------|
 | **Architecture** | ADR-001 | System structure and database topology |
 | **Data** | ADR-002, ADR-004 | Data storage, retrieval, and federation |
-| **AI/ML** | ADR-003, ADR-005 | Embeddings, vectors, and learning systems |
+| **AI/ML** | ADR-003, ADR-005, ADR-007 | Embeddings, vectors, and learning systems |
+| **Infrastructure** | ADR-006, ADR-008 | Hardware optimization and MCP server management |
 
 ---
 
@@ -81,3 +85,4 @@ What is the change we're proposing/doing?
 | Version | Date | Author | Changes |
 |---------|------|--------|---------|
 | 1.0 | January 2026 | Engineering | Initial ADR index with 5 decisions |
+| 1.1 | January 2026 | Engineering | Added ADR-006, ADR-007, ADR-008 for hardware, learning, MCP |
