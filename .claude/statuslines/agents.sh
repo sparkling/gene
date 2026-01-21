@@ -1,8 +1,9 @@
 #!/bin/bash
-# agents - Agent details statusline (2-3 lines)
-# Category: Swarm (Multi-Agent)
-# Line 1: Topology
-# Line 2-3: Active agents
+# agents - Agent registry details (full width, 2-3 lines)
+# Category: Agents & Coordination
+# Line 1: Status + registry count + topology
+# Line 2: Agent types registered
+# Line 3: Coordination status (if active)
 
 source "$(dirname "$0")/lib/common.sh"
 init_statusline
@@ -11,58 +12,71 @@ MODEL_SHORT=$(shorten_model)
 setup_paths
 load_swarm
 load_security
+load_git
+load_cost
 
 MODE=$(detect_mode)
 
-# Line 1
+# Line 1: Status header
 case "$MODE" in
   alert)
-    load_security
-    printf "${RED}⚠ ALERT${RST}: $TOTAL_CVES CVEs"
-    [ "$SWARM_AGENTS" -gt 0 ] && printf " ${DIM}│${RST} $SWARM_AGENTS agents active"
+    printf "${RED}⚠ ALERT${RST}: $TOTAL_CVES CVEs detected"
+    [ "$REGISTRY_AGENTS" -gt 0 ] && printf " ${DIM}│${RST} $REGISTRY_AGENTS agents in registry"
     ;;
   swarm)
-    printf "${GRN}⬡ SWARM ACTIVE${RST}"
-    printf " ${DIM}│${RST} ${GRN}${BOLD}$SWARM_AGENTS${RST}/$SWARM_MAX agents"
+    printf "${GRN}⬡ SWARM${RST} ${BOLD}$MODEL_SHORT${RST}"
+    printf " ${DIM}│${RST} ${GRN}$REGISTRY_AGENTS${RST}/$SWARM_MAX in registry"
     printf " ${DIM}│${RST} $SWARM_TOPOLOGY"
-    [ "$SWARM_COORD" = "true" ] && printf " ${DIM}│${RST} ${GRN}●${RST} coordinated"
+    [ "$SWARM_TASKS" -gt 0 ] && printf " ${DIM}│${RST} ${YEL}$SWARM_TASKS tasks queued${RST}"
+    [ -n "$BRANCH" ] && printf " ${DIM}│${RST} ${CYN}$BRANCH${RST}"
     ;;
   *)
-    printf "${BOLD}$MODEL_SHORT${RST} ${DIM}│${RST} ${CYN}⬡${RST} Swarm"
-    printf " ${DIM}│${RST} $SWARM_AGENTS/$SWARM_MAX agents"
+    printf "${BOLD}$MODEL_SHORT${RST}"
+    printf " ${DIM}│${RST} ⬡ $REGISTRY_AGENTS/$SWARM_MAX"
     printf " ${DIM}│${RST} $SWARM_TOPOLOGY"
+    [ -n "$BRANCH" ] && printf " ${DIM}│${RST} ${CYN}$BRANCH${RST}"
+    [ "$UNCOMMITTED" -gt 0 ] && printf " ${DIM}+$UNCOMMITTED${RST}"
     ;;
 esac
 echo
 
-# Line 2: Active agents
-if [ "$SWARM_AGENTS" -gt 0 ]; then
-  printf "${DIM}Active:${RST}"
+# Line 2: Registered agent types
+if [ "$REGISTRY_AGENTS" -gt 0 ]; then
+  printf "${DIM}Registry:${RST}"
 
   if [ -n "$ACTIVE_AGENT_LIST" ]; then
-    # Show agent types with icons
     for agent in $ACTIVE_AGENT_LIST; do
       case "$agent" in
-        researcher)  printf " ${MAG}🔍${RST}$agent" ;;
-        coder)       printf " ${GRN}💻${RST}$agent" ;;
-        tester)      printf " ${YEL}🧪${RST}$agent" ;;
-        reviewer)    printf " ${CYN}👀${RST}$agent" ;;
-        architect)   printf " ${BLU}🏗️${RST}$agent" ;;
-        security*)   printf " ${RED}🔒${RST}$agent" ;;
+        researcher)  printf " ${MAG}🔍${RST}researcher" ;;
+        coder)       printf " ${GRN}💻${RST}coder" ;;
+        tester)      printf " ${YEL}🧪${RST}tester" ;;
+        reviewer)    printf " ${CYN}👀${RST}reviewer" ;;
+        architect)   printf " ${BLU}🏗️${RST}architect" ;;
+        security*)   printf " ${RED}🔒${RST}security" ;;
+        analyst)     printf " ${MAG}📊${RST}analyst" ;;
+        planner)     printf " ${BLU}📋${RST}planner" ;;
         *)           printf " ${DIM}●${RST}$agent" ;;
       esac
     done
   else
-    printf " ${DIM}(no details)${RST}"
+    printf " ${DIM}(types not available)${RST}"
   fi
 
-  [ "$SWARM_TASKS" -gt 0 ] && printf " ${DIM}│${RST} ${YEL}$SWARM_TASKS tasks${RST}"
+  # Show context usage if available
+  if [ "$CTX_PCT" -gt 0 ]; then
+    printf " ${DIM}│${RST} ctx:${CTX_PCT}%%"
+  fi
 else
-  printf "${DIM}No active agents │ Swarm idle${RST}"
+  printf "${DIM}No agents registered │ Use: agent spawn -t coder${RST}"
 fi
 echo
 
-# Line 3: Coordination status (only if active)
-if [ "$SWARM_AGENTS" -gt 1 ] && [ "$SWARM_COORD" = "true" ]; then
-  printf "${GRN}✓${RST} Coordination active ${DIM}│${RST} Topology: $SWARM_TOPOLOGY\n"
+# Line 3: Coordination status and tasks (only if meaningful)
+if [ "$SWARM_COORD" = "true" ]; then
+  printf "${GRN}●${RST} Hive-mind active"
+  printf " ${DIM}│${RST} Status: $SWARM_STATUS"
+  [ "$SWARM_TASKS" -gt 0 ] && printf " ${DIM}│${RST} ${YEL}$SWARM_TASKS pending tasks${RST}"
+  echo
+elif [ "$SWARM_TASKS" -gt 0 ]; then
+  printf "${YEL}○${RST} $SWARM_TASKS tasks queued ${DIM}│${RST} No coordination active\n"
 fi

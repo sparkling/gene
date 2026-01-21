@@ -1,9 +1,9 @@
 #!/bin/bash
-# dashboard - Comprehensive 3-line dashboard
+# dashboard - Full-width comprehensive dashboard (3 lines)
 # Category: Dashboard (Comprehensive)
-# Line 1: Identity + mode
-# Line 2: Cost + context
-# Line 3: Vectors + learning
+# Line 1: Model │ Project │ Branch │ Mode indicator
+# Line 2: Cost │ Context │ Tokens │ Git changes
+# Line 3: Memory │ Patterns │ Daemon status
 
 source "$(dirname "$0")/lib/common.sh"
 init_statusline
@@ -17,7 +17,6 @@ load_vectors
 load_cost
 load_security
 load_swarm
-load_progress
 
 MODE=$(detect_mode)
 
@@ -33,28 +32,31 @@ case "$MODE" in
     printf "${GRN}⬡ SWARM${RST} ${DIM}│${RST} "
     printf "${BOLD}$MODEL_SHORT${RST} in ${CYN}$DIR${RST}"
     [ -n "$BRANCH" ] && printf " ${YEL}⎇ $BRANCH${RST}"
-    printf " ${DIM}│${RST} ${GRN}$SWARM_AGENTS${RST}/$SWARM_MAX"
+    printf " ${DIM}│${RST} ${GRN}$REGISTRY_AGENTS${RST}/$SWARM_MAX registered"
+    [ "$SWARM_TASKS" -gt 0 ] && printf " ${DIM}│${RST} ${YEL}$SWARM_TASKS tasks${RST}"
     ;;
   *)
     printf "${BOLD}$MODEL_SHORT${RST} in ${CYN}$DIR${RST}"
     [ -n "$BRANCH" ] && printf " on ${YEL}⎇ $BRANCH${RST}"
-
     # Daemon indicator
     if [ "$DAEMON_RUNNING" = "true" ]; then
-      printf " ${DIM}│${RST} ${GRN}●${RST}"
+      printf " ${DIM}│${RST} ${GRN}●${RST} daemon"
     else
-      printf " ${DIM}│ ○${RST}"
+      printf " ${DIM}│${RST} ${DIM}○${RST}"
     fi
     ;;
 esac
 echo
 
-# Line 2: Cost + Context + Git
+# Line 2: Cost + Context + Tokens + Git
 printf "${GRN}💰${RST} \$$COST_SESSION"
 printf " ${DIM}│${RST} ctx ${BOLD}$CTX_PCT%%${RST}"
 printf " ${DIM}│${RST} $(fmt_num $TOKENS_IN)↓ $(fmt_num $TOKENS_OUT)↑"
 
 # Git changes
+if [ "$UNCOMMITTED" -gt 0 ]; then
+  printf " ${DIM}│${RST} $UNCOMMITTED uncommitted"
+fi
 if [ "$ADDED" -gt 0 ] || [ "$REMOVED" -gt 0 ]; then
   printf " ${DIM}│${RST}"
   [ "$ADDED" -gt 0 ] && printf " ${GRN}+$ADDED${RST}"
@@ -62,14 +64,11 @@ if [ "$ADDED" -gt 0 ] || [ "$REMOVED" -gt 0 ]; then
 fi
 echo
 
-# Line 3: Vectors + Learning
-printf "${BLU}📊${RST} $(fmt_num $USER_VECTORS) user"
-printf " ${DIM}│${RST} $(fmt_num $OPS_VECTORS) ops"
-printf " ${DIM}│${RST} ${MAG}◆${RST}$RV_PATTERNS patterns"
-printf " ${DIM}│${RST} ${YEL}↝${RST}$RV_TRAJECTORIES traj"
-
-# V3 Progress if available
-if [ "$V3_PROGRESS" -gt 0 ]; then
-  printf " ${DIM}│${RST} V3 ${BOLD}$V3_PROGRESS%%${RST}"
+# Line 3: Memory + Learning (only show if data exists)
+if [ "$DB_EXISTS" = "true" ] || [ "$RV_PATTERNS" -gt 0 ] || [ "$WORKERS_TOTAL" -gt 0 ]; then
+  [ "$DB_EXISTS" = "true" ] && printf "${BLU}💾${RST} $TOTAL_DB_SIZE"
+  [ "$RV_PATTERNS" -gt 0 ] && printf " ${DIM}│${RST} ${MAG}◆${RST}$RV_PATTERNS patterns"
+  [ "$RV_TRAJECTORIES" -gt 0 ] && printf " ${DIM}│${RST} ${YEL}↝${RST}$RV_TRAJECTORIES trajectories"
+  [ "$WORKERS_TOTAL" -gt 0 ] && printf " ${DIM}│${RST} $WORKERS_SUCCESS/$WORKERS_TOTAL workers"
+  echo
 fi
-echo

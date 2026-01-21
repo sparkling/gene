@@ -35,6 +35,22 @@ jq_safe() {
 }
 
 # =============================================================================
+# Task Tool Agent Detection (REAL running agents)
+# =============================================================================
+count_task_agents() {
+  # Real Task tool agents are tracked in /tmp/claude/{project}/tasks/*.output
+  # These symlinks point to actual JSONL conversation files
+  local project_name=$(basename "$CWD")
+  local task_dir="/tmp/claude/-home-claude-src-${project_name}/tasks"
+
+  if [ -d "$task_dir" ]; then
+    ls "$task_dir"/*.output 2>/dev/null | wc -l
+  else
+    echo "0"
+  fi
+}
+
+# =============================================================================
 # Mode Detection (Alert > Swarm > Normal)
 # =============================================================================
 detect_mode() {
@@ -45,9 +61,9 @@ detect_mode() {
 
   [ "$cves" -gt 0 ] || [ "$critical" -gt 0 ] || [ "$errors" -gt 5 ] && echo "alert" && return
 
-  # Swarm mode: active agents > 1
-  local agents=$(jq_safe "$PROGRESS_FILE" '.swarm.activeAgents // 0' "0")
-  [ "$agents" -gt 1 ] && echo "swarm" && return
+  # Swarm mode: REAL Task tool agents > 1 (not MCP registry)
+  local task_agents=$(count_task_agents)
+  [ "$task_agents" -gt 1 ] && echo "swarm" && return
 
   echo "normal"
 }
@@ -117,11 +133,13 @@ load_daemon() {
   WORKER_LIST=""
 
   if [ -f "$DAEMON_FILE" ]; then
-    DAEMON_RUNNING=$(jq_safe "$DAEMON_FILE" '.running' "false")
+    # FIX: JSON uses .isRunning not .running
+    DAEMON_RUNNING=$(jq_safe "$DAEMON_FILE" '.isRunning // .running' "false")
     DAEMON_UPTIME=$(jq_safe "$DAEMON_FILE" '.uptime // ""' "")
     WORKERS_TOTAL=$(jq_safe "$DAEMON_FILE" '[.workers[].runCount] | add // 0' "0")
     WORKERS_SUCCESS=$(jq_safe "$DAEMON_FILE" '[.workers[].successCount] | add // 0' "0")
-    WORKERS_RUNNING=$(jq_safe "$DAEMON_FILE" '[.workers[] | select(.running == true)] | length' "0")
+    # FIX: Workers also use .isRunning
+    WORKERS_RUNNING=$(jq_safe "$DAEMON_FILE" '[.workers[] | select(.isRunning == true or .running == true)] | length' "0")
     WORKER_LIST=$(jq -r '.workers | to_entries | map("\(.key):\(.value.runCount)") | join(" ")' "$DAEMON_FILE" 2>/dev/null || echo "")
   fi
 }
@@ -155,29 +173,45 @@ load_intel() {
 }
 
 # =============================================================================
-# Vector Database Stats
+# Vector Database Stats (ACCURATE - query actual DB or show file size only)
 # =============================================================================
 load_vectors() {
-  USER_VECTORS=0; USER_SIZE="0K"
-  OPS_VECTORS=0; OPS_SIZE="0K"
-  MEMORY_VECTORS=0; MEMORY_SIZE="0K"
+  USER_SIZE="0K"; OPS_SIZE="0K"; MEMORY_SIZE="0K"
+  DB_EXISTS="false"
 
+  # Only show file sizes - vector counts require actual DB queries
+  # which are too slow for statusline (removed fake calculations)
   if [ -f "$USER_DB" ]; then
     USER_SIZE=$(du -h "$USER_DB" 2>/dev/null | cut -f1)
-    bytes=$(stat -c%s "$USER_DB" 2>/dev/null || echo "0")
-    USER_VECTORS=$((bytes / 1536))  # ~768 dims * 2 bytes
+    DB_EXISTS="true"
   fi
 
   if [ -f "$OPS_DB" ]; then
     OPS_SIZE=$(du -h "$OPS_DB" 2>/dev/null | cut -f1)
-    bytes=$(stat -c%s "$OPS_DB" 2>/dev/null || echo "0")
-    OPS_VECTORS=$((bytes / 768))  # ~384 dims * 2 bytes
+    DB_EXISTS="true"
   fi
 
   if [ -f "$MEMORY_DB" ]; then
     MEMORY_SIZE=$(du -h "$MEMORY_DB" 2>/dev/null | cut -f1)
-    bytes=$(stat -c%s "$MEMORY_DB" 2>/dev/null || echo "0")
-    MEMORY_VECTORS=$((bytes / 768))
+    DB_EXISTS="true"
+  fi
+
+  # Total DB size (accurate metric)
+  TOTAL_DB_SIZE="0K"
+  if [ "$DB_EXISTS" = "true" ]; then
+    local total_bytes=0
+    [ -f "$USER_DB" ] && total_bytes=$((total_bytes + $(stat -c%s "$USER_DB" 2>/dev/null || echo 0)))
+    [ -f "$OPS_DB" ] && total_bytes=$((total_bytes + $(stat -c%s "$OPS_DB" 2>/dev/null || echo 0)))
+    [ -f "$MEMORY_DB" ] && total_bytes=$((total_bytes + $(stat -c%s "$MEMORY_DB" 2>/dev/null || echo 0)))
+    if [ "$total_bytes" -ge 1073741824 ]; then
+      TOTAL_DB_SIZE=$(echo "scale=1; $total_bytes / 1073741824" | bc 2>/dev/null)"G"
+    elif [ "$total_bytes" -ge 1048576 ]; then
+      TOTAL_DB_SIZE=$(echo "scale=1; $total_bytes / 1048576" | bc 2>/dev/null)"M"
+    elif [ "$total_bytes" -ge 1024 ]; then
+      TOTAL_DB_SIZE=$(echo "scale=0; $total_bytes / 1024" | bc 2>/dev/null)"K"
+    else
+      TOTAL_DB_SIZE="${total_bytes}B"
+    fi
   fi
 }
 
@@ -208,26 +242,58 @@ load_security() {
 }
 
 # =============================================================================
-# Swarm Data (from CLI or files)
+# Swarm Data (ACCURATE - distinguishes registry vs running)
 # =============================================================================
 load_swarm() {
-  SWARM_AGENTS=0; SWARM_MAX=15; SWARM_TOPOLOGY="hierarchical"
+  # REAL running Task tool agents (from /tmp/claude/.../tasks/)
+  TASK_AGENTS=0
+  # Registry agents (MCP store - shows registered, not necessarily running)
+  REGISTRY_AGENTS=0
+  # Config values
+  SWARM_MAX=15; SWARM_TOPOLOGY="hierarchical"
+  # Task tracking
   SWARM_TASKS=0; SWARM_COORD="false"
   ACTIVE_AGENT_LIST=""
+  # Status indicators
+  SWARM_STATUS="idle"  # idle, active, coordinated
 
-  # Try config file first
+  local AGENTS_STORE="$CWD/.claude-flow/agents/store.json"
+  local TASKS_FILE="$CWD/.claude-flow/tasks.json"
+  local HIVE_FILE="$CWD/.claude-flow/hive-mind/state.json"
+
+  # Config for topology/max
   if [ -f "$CONFIG_FILE" ]; then
     SWARM_TOPOLOGY=$(jq_safe "$CONFIG_FILE" '.swarm.topology // "hierarchical"' "hierarchical")
     SWARM_MAX=$(jq_safe "$CONFIG_FILE" '.swarm.maxAgents // 15' "15")
   fi
 
-  # Try progress file for active agents
-  if [ -f "$PROGRESS_FILE" ]; then
-    SWARM_AGENTS=$(jq_safe "$PROGRESS_FILE" '.swarm.activeAgents // 0' "0")
-    SWARM_TASKS=$(jq_safe "$PROGRESS_FILE" '.swarm.activeTasks // 0' "0")
-    SWARM_COORD=$(jq_safe "$PROGRESS_FILE" '.swarm.coordinationActive // false' "false")
-    ACTIVE_AGENT_LIST=$(jq -r '.swarm.agents // [] | .[].type // empty' "$PROGRESS_FILE" 2>/dev/null | head -5 | tr '\n' ' ')
+  # PRIMARY: Count REAL Task tool agents (these are actually running)
+  TASK_AGENTS=$(count_task_agents)
+  [ "$TASK_AGENTS" -gt 1 ] && SWARM_STATUS="active"
+
+  # SECONDARY: Count MCP registry agents (for capacity display)
+  if [ -f "$AGENTS_STORE" ]; then
+    REGISTRY_AGENTS=$(jq -r '.agents | length // 0' "$AGENTS_STORE" 2>/dev/null || echo "0")
+    # Get types for display
+    ACTIVE_AGENT_LIST=$(jq -r '.agents | to_entries | .[].value.agentType // empty' "$AGENTS_STORE" 2>/dev/null | sort | uniq | head -5 | tr '\n' ' ')
   fi
+
+  # Count queued tasks
+  if [ -f "$TASKS_FILE" ]; then
+    SWARM_TASKS=$(jq -r '[.tasks[] | select(.status == "pending" or .status == "in_progress")] | length // 0' "$TASKS_FILE" 2>/dev/null || echo "0")
+  fi
+
+  # Check hive-mind coordination state
+  if [ -f "$HIVE_FILE" ]; then
+    local hive_active=$(jq_safe "$HIVE_FILE" '.active // false' "false")
+    [ "$hive_active" = "true" ] && SWARM_COORD="true" && SWARM_STATUS="coordinated"
+  fi
+
+  # For display: use TASK_AGENTS as primary, fall back to REGISTRY for capacity
+  # SWARM_AGENTS = currently running (Task tool)
+  # SWARM_MAX = capacity (from config or registry count)
+  SWARM_AGENTS="$TASK_AGENTS"
+  [ "$REGISTRY_AGENTS" -gt "$SWARM_MAX" ] && SWARM_MAX="$REGISTRY_AGENTS"
 }
 
 # =============================================================================
@@ -247,17 +313,19 @@ load_perf() {
 }
 
 # =============================================================================
-# V3 Progress Data
+# V3 Progress Data (NOTE: These are internal dev metrics, not user-facing)
 # =============================================================================
 load_progress() {
   V3_PROGRESS=0; V3_DOMAINS=0; V3_TOTAL_DOMAINS=5
   DDD_PROGRESS=0
 
   if [ -f "$PROGRESS_FILE" ]; then
-    V3_PROGRESS=$(jq_safe "$PROGRESS_FILE" '.overall.percentage // 0' "0")
+    # FIX: Try multiple field names for compatibility
+    V3_PROGRESS=$(jq_safe "$PROGRESS_FILE" '.overall.percentage // .percentage // .progress // 0' "0")
     V3_DOMAINS=$(jq_safe "$PROGRESS_FILE" '.domains.completed // 0' "0")
     V3_TOTAL_DOMAINS=$(jq_safe "$PROGRESS_FILE" '.domains.total // 5' "5")
-    DDD_PROGRESS=$(jq_safe "$PROGRESS_FILE" '.ddd.percentage // 0' "0")
+    # FIX: JSON has .ddd.progress not .ddd.percentage
+    DDD_PROGRESS=$(jq_safe "$PROGRESS_FILE" '.ddd.percentage // .ddd.progress // 0' "0")
   fi
 }
 
