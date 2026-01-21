@@ -10,7 +10,7 @@
 
 ## TL;DR
 
-Master navigation for the personalized health intelligence platform documentation. 44 documents organized into 9 sections following McKinsey consulting standards. **33 documents now Final** (migrated from strategic plan), 11 documents remain Placeholder (P3 priority). Core framework complete: Strategy, Market, Customers, Product, Business, GTM, Compliance, Financials, and Risk.
+Master navigation for the personalized health intelligence platform documentation. 44 core documents organized into 9 sections following McKinsey consulting standards, plus **26 detailed data source documents** (250+ databases) in the `40-product/data-sources/` subdirectory. **33 core documents Final**, 11 Placeholder. Data sources migration Phase 2 complete with comprehensive coverage of genetics, traditional medicine, interventions, health domains, pathways, literature, and technical integration.
 
 ---
 
@@ -191,7 +191,7 @@ Customer strategy including segmentation, personas, jobs-to-be-done, and user jo
 | 33 | JOBS-TO-BE-DONE | Final | Functional, emotional, social jobs |
 | 34 | USER-JOURNEYS | Placeholder | Journey maps |
 
-### Product (40-series) — 6 Final
+### Product (40-series) — 6 Final + 18 Data Source Details
 
 Product strategy including features, roadmap, data sources, architecture, and data model.
 
@@ -200,9 +200,33 @@ Product strategy including features, roadmap, data sources, architecture, and da
 | 40 | PRODUCT-OVERVIEW | Final | Dual-mode platform vision |
 | 41 | FEATURES | Final | 6 categories, 50+ features |
 | 42 | ROADMAP | Final | 3 phases, 12-month timeline |
-| 43 | DATA-SOURCES | Final | THREE WORLDS: 40+ databases |
+| 43 | DATA-SOURCES | Final | THREE WORLDS master index → 175+ databases |
 | 44 | ARCHITECTURE | Final | PostgreSQL + Neo4j + Vector DB |
 | 45 | DATA-MODEL | Final | Entity definitions, relationships |
+
+**Data Sources Subdirectory** (`40-product/data-sources/`) — 18 detailed documents:
+
+| ID | Document | Databases |
+|----|----------|-----------|
+| 43-21 | [TCM](./40-product/data-sources/43-21-TCM.md) | BATMAN-TCM, HERB, SymMap (20) |
+| 43-22 | [Ayurveda](./40-product/data-sources/43-22-AYURVEDA.md) | IMPPAT, OSADHI, GRAYU (16) |
+| 43-23 | [Kampo](./40-product/data-sources/43-23-KAMPO.md) | KampoDB, STORK, TM-MC (15+) |
+| 43-24 | [Western Herbal](./40-product/data-sources/43-24-WESTERN-HERBAL.md) | DSLD, Dr. Duke's, EMA (27) |
+| 43-41 | [Pathways Primary](./40-product/data-sources/43-41-PATHWAYS-PRIMARY.md) | Reactome, WikiPathways, KEGG |
+| 43-43 | [Disease Pathways](./40-product/data-sources/43-43-PATHWAYS-DISEASE.md) | DisGeNET, OMIM, HPO (12) |
+| 43-51 | [Pharmaceuticals](./40-product/data-sources/43-51-PHARMACEUTICALS.md) | PharmGKB, CPIC, DrugBank (22) |
+| 43-52 | [Natural Products](./40-product/data-sources/43-52-NATURAL-PRODUCTS.md) | COCONUT, LOTUS, NPASS |
+| 43-61 | [Literature](./40-product/data-sources/43-61-LITERATURE-SOURCES.md) | PubMed, PMC, OpenAlex |
+| 43-71 | [Mental-Cognitive](./40-product/data-sources/43-71-MENTAL-COGNITIVE.md) | Psychiatry, neurology |
+| 43-72 | [Cardio-Metabolic](./40-product/data-sources/43-72-CARDIO-METABOLIC.md) | Heart, diabetes (10) |
+| 43-73 | [Cancer-Oncology](./40-product/data-sources/43-73-CANCER-ONCOLOGY.md) | COSMIC, cBioPortal (8) |
+| 43-74 | [Autoimmune](./40-product/data-sources/43-74-AUTOIMMUNE.md) | Autoimmune, hormones |
+| 43-75 | [Rare Diseases](./40-product/data-sources/43-75-RARE-DISEASES.md) | Orphanet, OMIM (9) |
+| 43-76 | [Women's-Pediatric](./40-product/data-sources/43-76-WOMENS-PEDIATRIC.md) | Reproductive, pediatric |
+| 43-77 | [Microbiome](./40-product/data-sources/43-77-MICROBIOME.md) | HMP, GMrepo (12) |
+| 43-78 | [Allergy-Pain](./40-product/data-sources/43-78-ALLERGY-PAIN.md) | GWAS Catalog, HPGDB (25+) |
+
+Full index: [43-00-INDEX.md](./40-product/data-sources/43-00-INDEX.md)
 
 ### Business (50-series) — 4 Final, 1 Placeholder
 
