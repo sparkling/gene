@@ -2,7 +2,7 @@
   "model": "all-MiniLM-L6-v2",
   "modelPath": "/home/claude/src/gene/.claude-flow/models",
   "dimension": 384,
-  "cacheSize": 256,
+  "cacheSize": 8192,
   "hyperbolic": {
     "enabled": true,
     "curvature": -1,

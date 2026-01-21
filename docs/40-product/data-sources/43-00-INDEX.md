@@ -11,7 +11,7 @@
 
 ## TL;DR
 
-Navigation index for detailed data source documentation. **26 specialized documents** (19 Final, 7 Pending) organized by THREE WORLDS (genetics, traditional medicine, nutrition) plus cross-cutting concerns (pathways, interventions, literature, health domains, integration). Covers **250+ databases** total. Each document follows the 43-XX numbering convention where the second digit indicates category.
+Navigation index for detailed data source documentation. **27 specialized documents** (20 Final, 7 Pending) organized by THREE WORLDS (genetics, traditional medicine, nutrition) plus cross-cutting concerns (pathways, interventions, literature, health domains, integration). Covers **256+ databases** total. Each document follows the 43-XX numbering convention where the second digit indicates category.
 
 ---
 
@@ -126,6 +126,7 @@ Navigation index for detailed data source documentation. **26 specialized docume
 | 43-83 | [ENVIRONMENTAL-MITO](./43-83-ENVIRONMENTAL-MITO.md) | Toxicogenomics, mitochondrial (14 databases) | Final |
 | 43-84 | [WIKIPEDIA-WIKIDATA](./43-84-WIKIPEDIA-WIKIDATA.md) | Semantic web, Wikidata extraction (12+ resources) | Final |
 | 43-85 | [ALT-DATA-SOURCES](./43-85-ALT-DATA-SOURCES.md) | Alternative access methods (15 sources) | Final |
+| 43-86 | [INTEGRATION-XREFS](./43-86-INTEGRATION-XREFS.md) | UniProt ID mapping, Gene Ontology, cross-reference infrastructure (6 databases) | Final |
 
 ---
 

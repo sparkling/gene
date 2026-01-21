@@ -1,0 +1,61 @@
+# RuVector Graph Database Service
+# Native Node.js graph database using @ruvector/graph-node
+#
+# Features:
+# - Persistent file-based storage
+# - Cypher query support
+# - Hyperedge relationships
+# - REST API for graph operations
+
+FROM node:20-alpine AS builder
+
+WORKDIR /app
+
+# Install build dependencies
+RUN apk add --no-cache python3 make g++ curl
+
+# Copy package files
+COPY package.graph.json ./package.json
+
+# Install dependencies
+RUN npm install --production
+
+# Copy source
+COPY src/graph-db/services/graph-server.ts ./src/graph-server.ts
+COPY src/graph-db/scripts/schema-init.ts ./scripts/schema-init.ts
+COPY tsconfig.json ./
+
+# Build TypeScript
+RUN npm install typescript @types/node @types/express --save-dev && \
+    npx tsc --outDir dist --esModuleInterop --module commonjs --target ES2022 src/graph-server.ts
+
+# Production image
+FROM node:20-alpine
+
+WORKDIR /app
+
+# Install runtime dependencies only
+RUN apk add --no-cache curl
+
+# Copy from builder
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/package.json ./
+
+# Create data directory
+RUN mkdir -p /data/graph
+
+# Environment
+ENV NODE_ENV=production
+ENV GRAPH_STORAGE_PATH=/data/graph/knowledge.db
+ENV GRAPH_DIMENSIONS=384
+ENV GRAPH_DISTANCE_METRIC=Cosine
+ENV PORT=3100
+
+EXPOSE 3100
+
+# Health check
+HEALTHCHECK --interval=10s --timeout=5s --retries=5 \
+  CMD curl -f http://localhost:3100/health || exit 1
+
+CMD ["node", "dist/graph-server.js"]

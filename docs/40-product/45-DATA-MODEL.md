@@ -10,7 +10,7 @@
 
 ## TL;DR
 
-Hybrid data model using PostgreSQL for user data/transactions, Neo4j for knowledge graph relationships. Core entities: User, GeneticProfile, SNP, Gene, Pathway, Nutrient, Herb, Condition, Practitioner. The knowledge graph connects THREE WORLDS: genes/SNPs (genetics) ↔ herbs/formulas (traditional medicine) ↔ nutrients/foods (nutrition). Designed for HIPAA compliance with field-level encryption on sensitive genetic data.
+**Three-database architecture** using PostgreSQL for HIPAA-compliant user data, RuVector Graph for knowledge graph relationships, and RuVector PostgreSQL for vector embeddings. Core entities: User, GeneticProfile, SNP, Gene, Pathway, Nutrient, Herb, Condition, Practitioner. The knowledge graph connects THREE WORLDS: genes/SNPs (genetics) - herbs/formulas (traditional medicine) - nutrients/foods (nutrition). RuVector Graph provides Cypher query compatibility and hypergraph support for complex multi-node relationships. Designed for HIPAA compliance with field-level encryption on sensitive genetic data.
 
 ---
 
@@ -18,8 +18,9 @@ Hybrid data model using PostgreSQL for user data/transactions, Neo4j for knowled
 
 | Decision | Choice | Rationale | Date |
 |----------|--------|-----------|------|
-| User data storage | PostgreSQL | ACID, relational integrity | Jan 2026 |
-| Knowledge relationships | Neo4j | Graph traversal performance | Jan 2026 |
+| User data storage | PostgreSQL (port 5433) | ACID, relational integrity, HIPAA isolation | Jan 2026 |
+| Knowledge relationships | RuVector Graph (@ruvector/graph-node) | Unified stack, Cypher compatible, 131K ops/sec, hypergraphs | Jan 2026 |
+| Vector embeddings | RuVector PostgreSQL (port 5432) | HNSW indexing, 150x-12,500x faster search | Jan 2026 |
 | Genetic data encryption | Field-level AES-256 | HIPAA requirement | Jan 2026 |
 | ID strategy | UUIDs | Distribution-friendly, privacy | Jan 2026 |
 
@@ -29,7 +30,8 @@ Hybrid data model using PostgreSQL for user data/transactions, Neo4j for knowled
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                      USER DOMAIN (PostgreSQL)                    │
+│                 USER DOMAIN (PostgreSQL - Port 5433)             │
+│                      HIPAA Compliant, Encrypted                  │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                  │
 │  User ──┬── GeneticProfile[] ──── UserSNP[]                     │
@@ -41,10 +43,11 @@ Hybrid data model using PostgreSQL for user data/transactions, Neo4j for knowled
 │                                                                  │
 └─────────────────────────────────────────────────────────────────┘
                               │
-                              │ Links via external IDs
+                              │ Links via rsid (SNP identifier)
                               ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│                    KNOWLEDGE DOMAIN (Neo4j)                      │
+│              KNOWLEDGE DOMAIN (RuVector Graph)                   │
+│              @ruvector/graph-node - 131K ops/sec                 │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                  │
 │  Gene ──── SNP ──── Pathway ──── Nutrient                       │
@@ -55,6 +58,23 @@ Hybrid data model using PostgreSQL for user data/transactions, Neo4j for knowled
 │                  │            │          │                       │
 │              Publication  Modality   Modality                    │
 │                                                                  │
+│  ═══════════════════════════════════════════════════════════    │
+│  HYPEREDGES (n-ary relationships):                               │
+│  • METHYLATION_CYCLE_PARTICIPANTS: [MTHFR, MTR, MTRR, SHMT1]    │
+│  • FORMULA_COMPOSITION: [huang_qi, dang_shen, bai_zhu, gan_cao] │
+│  ═══════════════════════════════════════════════════════════    │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                              │ Vector embeddings for RAG
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│              VECTOR DOMAIN (RuVector PostgreSQL - Port 5432)     │
+│              HNSW Indexing - 150x-12,500x faster search          │
+├─────────────────────────────────────────────────────────────────┤
+│  • embeddings (research papers, clinical notes)                  │
+│  • patterns (learned AI patterns)                                │
+│  • hyperbolic_embeddings (hierarchical data)                     │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
@@ -388,29 +408,34 @@ CREATE INDEX idx_practitioners_modalities ON practitioners USING GIN(modalities)
 
 ---
 
-## Neo4j Schema (Knowledge Domain)
+## RuVector Graph Schema (Knowledge Domain)
+
+**Note:** RuVector Graph uses `@ruvector/graph-node` which provides Cypher-compatible syntax. The schema below uses the same query language as Neo4j for easy migration.
 
 ### Node Types
 
 #### Gene Node
 
-```cypher
-CREATE (g:Gene {
-    id: 'HGNC:7436',
+```typescript
+// Using RuVector Graph API
+import { CodeGraph } from 'ruvector/dist/core/graph-wrapper';
+
+const graph = new CodeGraph({ storagePath: './data/knowledge-graph.db' });
+
+graph.createNode('HGNC:7436', ['Gene'], {
     symbol: 'MTHFR',
     name: 'Methylenetetrahydrofolate reductase',
     chromosome: '1',
     description: 'Enzyme in folate metabolism',
     ensembl_id: 'ENSG00000177000',
     uniprot_id: 'P42898'
-})
+});
 ```
 
 #### SNP Node
 
-```cypher
-CREATE (s:SNP {
-    id: 'rs1801133',
+```typescript
+graph.createNode('rs1801133', ['SNP'], {
     rsid: 'rs1801133',
     gene_symbol: 'MTHFR',
     chromosome: '1',
@@ -421,41 +446,38 @@ CREATE (s:SNP {
     maf: 0.34,
     clinical_significance: 'drug_response',
     common_name: 'MTHFR C677T'
-})
+});
 ```
 
 #### Pathway Node
 
-```cypher
-CREATE (p:Pathway {
-    id: 'REACT_R-HSA-196741',
+```typescript
+graph.createNode('REACT_R-HSA-196741', ['Pathway'], {
     name: 'Methylation Cycle',
     description: 'One-carbon metabolism and methyl group transfer',
     category: 'metabolism',
     reactome_id: 'R-HSA-196741',
     kegg_id: 'hsa00670'
-})
+});
 ```
 
 #### Nutrient Node
 
-```cypher
-CREATE (n:Nutrient {
-    id: 'NUT_methylfolate',
+```typescript
+graph.createNode('NUT_methylfolate', ['Nutrient'], {
     name: 'Methylfolate',
     alternate_names: ['5-MTHF', 'L-methylfolate', 'Metafolin'],
     category: 'vitamin',
     subcategory: 'B_vitamin',
     usda_id: '1177',
     recommended_daily: '400-800mcg'
-})
+});
 ```
 
 #### Herb Node
 
-```cypher
-CREATE (h:Herb {
-    id: 'TCM_huangqi',
+```typescript
+graph.createNode('TCM_huangqi', ['Herb'], {
     name: 'Huang Qi',
     latin_name: 'Astragalus membranaceus',
     english_name: 'Astragalus',
@@ -465,27 +487,25 @@ CREATE (h:Herb {
     meridians: ['spleen', 'lung'],
     temperature: 'warm',
     taste: 'sweet'
-})
+});
 ```
 
 #### Condition Node
 
-```cypher
-CREATE (c:Condition {
-    id: 'COND_me_cfs',
+```typescript
+graph.createNode('COND_me_cfs', ['Condition'], {
     name: 'ME/CFS',
     full_name: 'Myalgic Encephalomyelitis / Chronic Fatigue Syndrome',
     icd10_code: 'G93.32',
     mesh_id: 'D015673',
     category: 'neurological'
-})
+});
 ```
 
 #### Publication Node
 
-```cypher
-CREATE (pub:Publication {
-    id: 'PMID_12345678',
+```typescript
+graph.createNode('PMID_12345678', ['Publication'], {
     pmid: '12345678',
     title: 'MTHFR polymorphisms and folate status',
     authors: ['Smith J', 'Jones A'],
@@ -493,86 +513,143 @@ CREATE (pub:Publication {
     year: 2023,
     doi: '10.1038/ng.1234',
     evidence_level: 'clinical_trial'
-})
+});
 ```
 
 #### Formula Node (TCM/Kampo)
 
-```cypher
-CREATE (f:Formula {
-    id: 'FORMULA_buzhongyiqi',
+```typescript
+graph.createNode('FORMULA_buzhongyiqi', ['Formula'], {
     name: 'Bu Zhong Yi Qi Tang',
     english_name: 'Tonify the Middle and Augment the Qi Decoction',
     modality: 'tcm',
     category: 'qi_tonifying',
     indication: 'spleen_qi_deficiency'
-})
+});
 ```
 
-### Relationship Types
+### Relationship Types (Edges)
 
-```cypher
-// Gene ←→ SNP
-(gene:Gene)-[:HAS_VARIANT]->(snp:SNP)
+```typescript
+// Gene → SNP
+graph.createEdge('HGNC:7436', 'rs1801133', 'HAS_VARIANT');
 
-// Gene ←→ Pathway
-(gene:Gene)-[:INVOLVED_IN {role: 'enzyme'}]->(pathway:Pathway)
+// Gene → Pathway
+graph.createEdge('HGNC:7436', 'REACT_R-HSA-196741', 'INVOLVED_IN', { role: 'enzyme' });
 
-// SNP ←→ Nutrient
-(snp:SNP)-[:AFFECTS {effect: 'reduces_activity', magnitude: 'moderate'}]->(nutrient:Nutrient)
+// SNP → Nutrient
+graph.createEdge('rs1801133', 'NUT_methylfolate', 'AFFECTS', {
+    effect: 'reduces_activity',
+    magnitude: 'moderate'
+});
 
-// Pathway ←→ Nutrient
-(pathway:Pathway)-[:REQUIRES_COFACTOR]->(nutrient:Nutrient)
+// Pathway → Nutrient
+graph.createEdge('REACT_R-HSA-196741', 'NUT_methylfolate', 'REQUIRES_COFACTOR');
 
-// Herb ←→ Condition
-(herb:Herb)-[:TREATS {evidence_level: 'clinical', mechanism: 'anti_inflammatory'}]->(condition:Condition)
+// Herb → Condition
+graph.createEdge('TCM_huangqi', 'COND_me_cfs', 'TREATS', {
+    evidence_level: 'clinical',
+    mechanism: 'anti_inflammatory'
+});
 
-// Herb ←→ Formula
-(herb:Herb)-[:INGREDIENT_OF {role: 'chief'}]->(formula:Formula)
+// Herb → Formula
+graph.createEdge('TCM_huangqi', 'FORMULA_buzhongyiqi', 'INGREDIENT_OF', { role: 'chief' });
 
-// SNP ←→ Condition
-(snp:SNP)-[:ASSOCIATED_WITH {odds_ratio: 1.5, p_value: 0.001}]->(condition:Condition)
+// SNP → Condition
+graph.createEdge('rs1801133', 'COND_depression', 'ASSOCIATED_WITH', {
+    odds_ratio: 1.5,
+    p_value: 0.001
+});
 
-// Publication ←→ Various
-(snp:SNP)-[:HAS_RESEARCH]->(pub:Publication)
-(herb:Herb)-[:HAS_RESEARCH]->(pub:Publication)
-
-// Food ←→ Nutrient
-(food:Food)-[:CONTAINS {amount: 50, unit: 'mg', per: '100g'}]->(nutrient:Nutrient)
+// SNP/Herb → Publication
+graph.createEdge('rs1801133', 'PMID_12345678', 'HAS_RESEARCH');
+graph.createEdge('TCM_huangqi', 'PMID_12345678', 'HAS_RESEARCH');
 ```
 
-### Sample Queries
+### Hyperedges (Multi-Node Relationships)
+
+RuVector Graph uniquely supports hyperedges - edges connecting multiple nodes simultaneously:
+
+```typescript
+// Multiple genes participating in a pathway
+graph.createHyperedge(
+    ['HGNC:7436', 'HGNC:7437', 'HGNC:7438', 'HGNC:6027'],  // MTHFR, MTR, MTRR, SHMT1
+    'METHYLATION_CYCLE_PARTICIPANTS',
+    {
+        pathway_id: 'REACT_R-HSA-196741',
+        role: 'core_enzymes',
+        interaction_type: 'sequential'
+    }
+);
+
+// TCM formula composition
+graph.createHyperedge(
+    ['TCM_huangqi', 'TCM_dangshen', 'TCM_baizhu', 'TCM_gancao'],
+    'FORMULA_COMPOSITION',
+    {
+        formula: 'Bu Zhong Yi Qi Tang',
+        traditional_use: 'qi_tonifying',
+        chief_herb: 'TCM_huangqi'
+    }
+);
+```
+
+### Sample Queries (Cypher Compatible)
 
 #### Find Nutrients Affected by User's SNPs
 
-```cypher
-MATCH (snp:SNP)-[a:AFFECTS]->(nutrient:Nutrient)
-WHERE snp.rsid IN $user_rsids
-RETURN snp.rsid, snp.common_name,
-       nutrient.name, a.effect, a.magnitude
-ORDER BY a.magnitude DESC
+```typescript
+const result = graph.cypher(`
+    MATCH (snp:SNP)-[a:AFFECTS]->(nutrient:Nutrient)
+    WHERE snp.rsid IN $user_rsids
+    RETURN snp.rsid, snp.common_name, nutrient.name, a.effect, a.magnitude
+    ORDER BY a.magnitude DESC
+`, { user_rsids: ['rs1801133', 'rs1801131', 'rs1805087'] });
 ```
 
 #### Find TCM Herbs for a Condition via Pathways
 
-```cypher
-MATCH (condition:Condition {name: $condition_name})
-      <-[:TREATS]-(herb:Herb {modality: 'tcm'})
-      -[:HAS_RESEARCH]->(pub:Publication)
-WHERE pub.evidence_level IN ['clinical_trial', 'meta_analysis']
-RETURN herb.name, herb.properties, count(pub) as research_count
-ORDER BY research_count DESC
-LIMIT 10
+```typescript
+const result = graph.cypher(`
+    MATCH (condition:Condition {name: $condition_name})
+          <-[:TREATS]-(herb:Herb {modality: 'tcm'})
+          -[:HAS_RESEARCH]->(pub:Publication)
+    WHERE pub.evidence_level IN ['clinical_trial', 'meta_analysis']
+    RETURN herb.name, herb.properties, count(pub) as research_count
+    ORDER BY research_count DESC
+    LIMIT 10
+`, { condition_name: 'ME/CFS' });
 ```
 
 #### Find Pathway Genes with User's Risk Variants
 
-```cypher
-MATCH (pathway:Pathway {name: $pathway_name})
-      <-[:INVOLVED_IN]-(gene:Gene)
-      -[:HAS_VARIANT]->(snp:SNP)
-WHERE snp.rsid IN $user_risk_snps
-RETURN pathway.name, gene.symbol, snp.rsid, snp.clinical_significance
+```typescript
+const result = graph.cypher(`
+    MATCH (pathway:Pathway {name: $pathway_name})
+          <-[:INVOLVED_IN]-(gene:Gene)
+          -[:HAS_VARIANT]->(snp:SNP)
+    WHERE snp.rsid IN $user_risk_snps
+    RETURN pathway.name, gene.symbol, snp.rsid, snp.clinical_significance
+`, { pathway_name: 'Methylation Cycle', user_risk_snps: ['rs1801133', 'rs1801131'] });
+```
+
+### Graph Algorithms
+
+```typescript
+// Find most connected genes (hub identification)
+const pageRanks = graph.pageRank(20, 0.85);
+
+// Detect communities of related entities
+const communities = graph.communities();  // Louvain algorithm
+
+// Find shortest path between gene and condition
+const path = graph.shortestPath('HGNC:7436', 'COND_depression', 5);
+
+// Get all mechanistic paths (for showing multiple pathways)
+const allPaths = graph.allPaths('HGNC:7436', 'COND_depression', 4, 10);
+
+// Find betweenness centrality (key connector nodes)
+const centrality = graph.betweennessCentrality();
 ```
 
 ---
@@ -582,29 +659,30 @@ RETURN pathway.name, gene.symbol, snp.rsid, snp.clinical_significance
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                    COMPLETE DATA MODEL                                   │
+│            Three-Database Architecture with RuVector                     │
 ├─────────────────────────────────────────────────────────────────────────┤
 │                                                                          │
-│  PostgreSQL (User Domain)                                                │
-│  ═══════════════════════                                                │
+│  PostgreSQL (User Domain - Port 5433, HIPAA Compliant)                   │
+│  ══════════════════════════════════════════════════                     │
 │                                                                          │
 │  User ─────────┬────────────────────────────────────────┐               │
 │    │           │                                         │               │
 │    │     GeneticProfile                            Subscription         │
 │    │           │                                         │               │
-│    │       UserSNP[]────────────────────────────────────┼─┐             │
-│    │           │                                         │ │             │
-│    │     LabResult[]                                Order[] │             │
-│    │           │                                             │             │
-│    │     Symptom[]                                           │             │
-│    │           │                                             │             │
-│    │     Treatment[]                                         │             │
-│    │                                                         │             │
-│    └─────► Practitioner ─────────────────────────────────────┘             │
-│                                                                          │
-│  ────────────────────────────────────────────────────────────────────── │
-│                                                                          │
-│  Neo4j (Knowledge Domain)                                                │
-│  ═══════════════════════                                                │
+│    │       UserSNP[]──────────────────────┬─────────────┼─┐             │
+│    │           │                          │              │ │             │
+│    │     LabResult[]                      │         Order[] │             │
+│    │           │                          │                  │             │
+│    │     Symptom[]                        │ (rsid link)     │             │
+│    │           │                          │                  │             │
+│    │     Treatment[]                      │                  │             │
+│    │                                      │                  │             │
+│    └─────► Practitioner ──────────────────│──────────────────┘             │
+│                                           │                               │
+│  ─────────────────────────────────────────│──────────────────────────── │
+│                                           ▼                               │
+│  RuVector Graph (Knowledge Domain - @ruvector/graph-node)                │
+│  ═══════════════════════════════════════════════════════                │
 │                                                                          │
 │  Gene ◄────HAS_VARIANT───► SNP ◄────AFFECTS────► Nutrient               │
 │    │                         │                       │                   │
@@ -625,6 +703,22 @@ RETURN pathway.name, gene.symbol, snp.rsid, snp.clinical_significance
 │                              │                                           │
 │                              ▼                                           │
 │                         Publication                                      │
+│                                                                          │
+│  ╔═══════════════════════════════════════════════════════════════════╗  │
+│  ║  HYPEREDGES (unique to RuVector Graph):                           ║  │
+│  ║  • METHYLATION_CYCLE_PARTICIPANTS: [MTHFR, MTR, MTRR, SHMT1]     ║  │
+│  ║  • FORMULA_COMPOSITION: [huang_qi, dang_shen, bai_zhu, gan_cao]  ║  │
+│  ╚═══════════════════════════════════════════════════════════════════╝  │
+│                                                                          │
+│  ────────────────────────────────────────────────────────────────────── │
+│                                                                          │
+│  RuVector PostgreSQL (Vector Domain - Port 5432)                         │
+│  ═══════════════════════════════════════════════                        │
+│                                                                          │
+│  embeddings ───── patterns ───── hyperbolic_embeddings                   │
+│       │               │                    │                             │
+│   HNSW Index    ReasoningBank        Poincare Ball                       │
+│  (150x faster)   (AI Memory)      (Hierarchical Data)                    │
 │                                                                          │
 └─────────────────────────────────────────────────────────────────────────┘
 ```
@@ -682,3 +776,4 @@ RETURN pathway.name, gene.symbol, snp.rsid, snp.clinical_significance
 | Version | Date | Author | Changes |
 |---------|------|--------|---------|
 | 1.0 | January 2026 | Engineering | Complete data model specification |
+| 1.1 | January 2026 | Claude | Replace Neo4j with RuVector Graph; add hyperedge support |

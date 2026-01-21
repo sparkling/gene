@@ -1,0 +1,136 @@
+# RuVector Graph Database Docker Setup
+# Native graph database for THREE WORLDS knowledge graph
+#
+# Components:
+# - RuVector graph-node service (persistent file-based storage)
+# - PostgreSQL for user data (relational, ACID)
+# - API gateway service for cross-database queries
+#
+# THREE WORLDS Architecture:
+# - World 1: Genetics (Gene, SNP, Pathway)
+# - World 2: Traditional Medicine (Herb, Formula, Modality)
+# - World 3: Nutrition (Nutrient, Food, Biomarker)
+
+services:
+  # ============================================
+  # RuVector Graph Database Service
+  # ============================================
+  ruvector-graph:
+    build:
+      context: .
+      dockerfile: Dockerfile.graph
+    container_name: ruvector-graph-db
+    ports:
+      - "3100:3100"  # Graph API port
+    volumes:
+      - graph_data:/data/graph
+      - ./scripts:/app/scripts:ro
+    environment:
+      GRAPH_STORAGE_PATH: /data/graph/knowledge.db
+      GRAPH_DIMENSIONS: 384
+      GRAPH_DISTANCE_METRIC: Cosine
+      NODE_ENV: production
+      LOG_LEVEL: info
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3100/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  # ============================================
+  # User PostgreSQL Database (RuVector-enabled)
+  # ============================================
+  postgres-user:
+    image: ruvnet/ruvector-postgres:latest
+    container_name: user-postgres
+    environment:
+      POSTGRES_USER: gene_user
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-gene_secure_password}
+      POSTGRES_DB: gene_user_db
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_user_data:/var/lib/postgresql/data
+      - ./scripts/init-user-db.sql:/docker-entrypoint-initdb.d/01-init-user.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U gene_user -d gene_user_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    command: >
+      postgres
+      -c work_mem=256MB
+      -c maintenance_work_mem=512MB
+      -c shared_buffers=256MB
+    restart: unless-stopped
+
+  # ============================================
+  # Cross-Database Query API
+  # ============================================
+  graph-api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    container_name: graph-api
+    ports:
+      - "3200:3200"
+    environment:
+      GRAPH_SERVICE_URL: http://ruvector-graph:3100
+      POSTGRES_HOST: postgres-user
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: gene_user
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-gene_secure_password}
+      POSTGRES_DB: gene_user_db
+      NODE_ENV: production
+      API_PORT: 3200
+    depends_on:
+      ruvector-graph:
+        condition: service_healthy
+      postgres-user:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3200/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  # ============================================
+  # Data Import Worker (one-time initialization)
+  # ============================================
+  data-import:
+    build:
+      context: .
+      dockerfile: Dockerfile.import
+    container_name: data-import-worker
+    volumes:
+      - ./scripts:/app/scripts:ro
+      - import_data:/data/import
+    environment:
+      GRAPH_SERVICE_URL: http://ruvector-graph:3100
+      POSTGRES_HOST: postgres-user
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: gene_user
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-gene_secure_password}
+      POSTGRES_DB: gene_user_db
+    depends_on:
+      ruvector-graph:
+        condition: service_healthy
+      postgres-user:
+        condition: service_healthy
+    profiles:
+      - import
+    restart: "no"
+
+volumes:
+  graph_data:
+    name: ruvector-graph-data
+  postgres_user_data:
+    name: ruvector-postgres-user-data
+  import_data:
+    name: ruvector-import-data
+
+networks:
+  default:
+    name: ruvector-network

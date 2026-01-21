@@ -1,18 +1,33 @@
 {
   "values": {
     "swarm.topology": "hierarchical-mesh",
-    "swarm.maxAgents": 50,
+    "swarm.maxAgents": 100,
     "swarm.autoScale": true,
-    "memory.persistInterval": 60000,
-    "memory.maxEntries": 1000000,
+    "memory.persistInterval": 30000,
+    "memory.maxEntries": 50000000,
     "session.autoSave": true,
     "session.saveInterval": 300000,
     "logging.level": "info",
     "logging.format": "json",
     "security.sandboxEnabled": true,
-    "security.pathValidation": true
+    "security.pathValidation": true,
+    "hnsw.m": 48,
+    "hnsw.efConstruction": 400,
+    "hnsw.efSearch": 200,
+    "hnsw.maxElements": 100000000,
+    "neural.enabled": true,
+    "neural.flashAttention": true,
+    "neural.epochs": 100,
+    "daemon.maxConcurrent": 16,
+    "daemon.resourceThresholds.maxCpuLoad": 24,
+    "embeddings.cacheSize": 8192,
+    "performance.workerThreads": 16,
+    "performance.memoryLimit": 68719476736,
+    "swarm.autoScale.minAgents": 4,
+    "swarm.autoScale.maxAgents": 100,
+    "lora.rank": 16
   },
   "scopes": {},
   "version": "3.0.0",
-  "updatedAt": "2026-01-20T01:54:09.593Z"
+  "updatedAt": "2026-01-21T22:55:56.648Z"
 }

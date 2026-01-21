@@ -1,0 +1,97 @@
+{
+  "agents": {
+    "agent-1769006666382-7tjd5p": {
+      "agentId": "agent-1769006666382-7tjd5p",
+      "agentType": "coder",
+      "status": "idle",
+      "health": 1,
+      "taskCount": 0,
+      "config": {
+        "provider": "anthropic"
+      },
+      "createdAt": "2026-01-21T14:44:26.383Z",
+      "model": "sonnet",
+      "modelRoutedBy": "default"
+    },
+    "agent-1769006694202-u7v7tf": {
+      "agentId": "agent-1769006694202-u7v7tf",
+      "agentType": "researcher",
+      "status": "idle",
+      "health": 1,
+      "taskCount": 0,
+      "config": {
+        "provider": "anthropic"
+      },
+      "createdAt": "2026-01-21T14:44:54.202Z",
+      "model": "sonnet",
+      "modelRoutedBy": "default"
+    },
+    "agent-1769006731380-ox6hp4": {
+      "agentId": "agent-1769006731380-ox6hp4",
+      "status": "idle",
+      "health": 1,
+      "taskCount": 0,
+      "config": {},
+      "createdAt": "2026-01-21T14:45:31.380Z",
+      "model": "sonnet",
+      "modelRoutedBy": "default"
+    },
+    "agent-1769007676511-sgjgkm": {
+      "agentId": "agent-1769007676511-sgjgkm",
+      "status": "idle",
+      "health": 1,
+      "taskCount": 0,
+      "config": {},
+      "createdAt": "2026-01-21T15:01:16.511Z",
+      "model": "sonnet",
+      "modelRoutedBy": "default"
+    },
+    "agent-1769007933155-jkmyy5": {
+      "agentId": "agent-1769007933155-jkmyy5",
+      "agentType": "coder",
+      "status": "idle",
+      "health": 1,
+      "taskCount": 0,
+      "config": {
+        "provider": "anthropic"
+      },
+      "createdAt": "2026-01-21T15:05:33.155Z",
+      "model": "sonnet",
+      "modelRoutedBy": "default"
+    },
+    "test-researcher-1": {
+      "agentId": "test-researcher-1",
+      "agentType": "researcher",
+      "status": "idle",
+      "health": 1,
+      "taskCount": 0,
+      "config": {},
+      "createdAt": "2026-01-21T15:18:49.573Z",
+      "model": "sonnet",
+      "modelRoutedBy": "default"
+    },
+    "test-coder-1": {
+      "agentId": "test-coder-1",
+      "agentType": "coder",
+      "status": "idle",
+      "health": 1,
+      "taskCount": 0,
+      "config": {},
+      "createdAt": "2026-01-21T15:18:49.724Z",
+      "model": "sonnet",
+      "modelRoutedBy": "default"
+    },
+    "test-reviewer-1": {
+      "agentId": "test-reviewer-1",
+      "agentType": "reviewer",
+      "status": "idle",
+      "health": 1,
+      "taskCount": 0,
+      "config": {},
+      "createdAt": "2026-01-21T15:18:49.859Z",
+      "model": "sonnet",
+      "modelRoutedBy": "default"
+    }
+  },
+  "version": "3.0.0"
+}

@@ -10,7 +10,7 @@
 
 ## TL;DR
 
-Three-tier architecture with Next.js frontend, Node/Python API layer, and hybrid database backend (PostgreSQL for relational, Neo4j for graph relationships, Pinecone/pgvector for semantic search). AI layer powered by Claude RAG for natural language Q&A. Core innovation: graph database connecting genes → pathways → nutrients → herbs → conditions across THREE WORLDS. Security: SOC 2 Type II target, HIPAA-ready, privacy-first design.
+Three-tier architecture with Next.js frontend, Node/Python API layer, and unified RuVector database backend. **Three-database architecture:** (1) RuVector PostgreSQL for vectors/embeddings with HNSW indexing, (2) RuVector Graph for knowledge graph with hypergraph support and Cypher queries, (3) PostgreSQL for HIPAA-compliant user data. AI layer powered by Claude RAG with vector-graph hybrid queries. Core innovation: knowledge graph connecting genes - pathways - nutrients - herbs - conditions across THREE WORLDS. Security: SOC 2 Type II target, HIPAA-ready, privacy-first design.
 
 ---
 
@@ -20,8 +20,8 @@ Three-tier architecture with Next.js frontend, Node/Python API layer, and hybrid
 |----------|--------|-----------|------|
 | Frontend framework | Next.js 14 + React | SSR, performance, ecosystem | Jan 2026 |
 | Primary database | PostgreSQL | Mature, ACID, pgvector support | Jan 2026 |
-| Graph database | Neo4j | Best for relationship queries | Jan 2026 |
-| Vector database | Pinecone (cloud) / pgvector (self-hosted) | Semantic search at scale | Jan 2026 |
+| Graph database | RuVector Graph (@ruvector/graph-node) | Unified stack, hypergraphs, Cypher compatible, 131K ops/sec | Jan 2026 |
+| Vector database | RuVector PostgreSQL (HNSW) | 150x-12,500x faster search, native Rust | Jan 2026 |
 | AI provider | Anthropic Claude | Best reasoning, RAG performance | Jan 2026 |
 | Visualization | Cytoscape.js | Interactive pathways, touch-friendly | Jan 2026 |
 
@@ -43,18 +43,29 @@ Three-tier architecture with Next.js frontend, Node/Python API layer, and hybrid
                                     │
         ┌───────────────────────────┼───────────────────────────┐
         ▼                           ▼                           ▼
-┌──────────────────┐   ┌────────────────────────┐   ┌─────────────────────┐
-│   PostgreSQL     │   │   Neo4j (Graph DB)     │   │   Vector DB         │
-│   Users, orders  │   │   Genes, SNPs,         │   │   Research embed-   │
-│   subscriptions  │   │   pathways, nutrients, │   │   dings, semantic   │
-│   health data    │   │   herbs, relationships │   │   search, similar-  │
-│   (pgvector)     │   │                        │   │   ity matching      │
-└──────────────────┘   └────────────────────────┘   └─────────────────────┘
+┌───────────────────┐   ┌────────────────────────┐   ┌────────────────────┐
+│  RuVector         │   │  RuVector Graph        │   │  PostgreSQL        │
+│  PostgreSQL       │   │  (@ruvector/graph-node)│   │  (User Domain)     │
+│  ───────────────  │   │  ──────────────────────│   │  ────────────────  │
+│  • Embeddings     │   │  • Gene nodes          │   │  • Users           │
+│  • Patterns       │   │  • SNP nodes           │   │  • Genetic data    │
+│  • AI Memory      │   │  • Pathway nodes       │   │  • Lab results     │
+│  • HNSW indices   │   │  • Nutrient nodes      │   │  • Subscriptions   │
+│  ───────────────  │   │  • Herb nodes          │   │  ────────────────  │
+│  150x-12,500x     │   │  • Hyperedges          │   │  HIPAA compliant   │
+│  faster search    │   │  • Cypher queries      │   │  Field encryption  │
+│  Port: 5432       │   │  131K ops/sec          │   │  Port: 5433        │
+└───────────────────┘   └────────────────────────┘   └────────────────────┘
+        │                           │                           │
+        └───────────────────────────┴───────────────────────────┘
+                        Cross-Database Query Layer
+                        (Vector + Graph + User Data)
                                     │
                                     ▼
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                           AI/ML Layer                                    │
 │  LLM (Claude) │ RAG Pipeline │ Recommendation Engine │ Embeddings       │
+│  Vector-Graph Hybrid Queries │ Hypergraph Traversal │ HNSW Search       │
 └─────────────────────────────────────────────────────────────────────────┘
                                     │
                                     ▼
@@ -96,11 +107,16 @@ Three-tier architecture with Next.js frontend, Node/Python API layer, and hybrid
 
 | Database | Use Case | Scale Target |
 |----------|----------|--------------|
-| PostgreSQL 15 | Users, orders, health data | 10M+ records |
-| pgvector | Embedding search (self-hosted) | 1M+ vectors |
-| Neo4j 5 | Knowledge graph relationships | 100M+ nodes |
-| Pinecone | Research embedding search (cloud) | 10M+ vectors |
+| **RuVector PostgreSQL** | Embeddings, patterns, AI memory (HNSW) | 10M+ vectors, 16.4K QPS |
+| **RuVector Graph** | Knowledge graph (genes, SNPs, herbs) | 1.7M+ nodes, 131K ops/sec |
+| **PostgreSQL 15** | Users, orders, health data (HIPAA) | 10M+ records |
 | Redis | Cache, sessions, queues | High throughput |
+
+**Note:** RuVector Graph replaces Neo4j with a unified stack providing:
+- Cypher query compatibility
+- Hypergraph support for complex relationships
+- Native vector-graph hybrid queries
+- 10x better performance (native Rust vs JVM)
 
 ### AI/ML
 
@@ -165,29 +181,36 @@ Three-tier architecture with Next.js frontend, Node/Python API layer, and hybrid
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                    KNOWLEDGE GRAPH (Neo4j)                       │
+│              KNOWLEDGE GRAPH (RuVector Graph)                    │
+│              @ruvector/graph-node - Cypher Compatible            │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                  │
-│    [Gene]──has_variant──▶[SNP]                                  │
+│    [Gene]──HAS_VARIANT──▶[SNP]                                  │
 │       │                    │                                     │
 │       │                    │                                     │
-│    involved_in         affects                                   │
+│    INVOLVED_IN         AFFECTS                                   │
 │       │                    │                                     │
 │       ▼                    ▼                                     │
 │   [Pathway]──────────▶[Nutrient]                                │
 │       │                    │                                     │
 │       │                    │                                     │
-│    treats              derived_from                              │
+│    TREATS              DERIVED_FROM                              │
 │       │                    │                                     │
 │       ▼                    ▼                                     │
 │   [Condition]◀────────[Herb/Formula]                            │
 │       │                    │                                     │
 │       │                    │                                     │
-│    has_research        in_tradition                              │
+│    HAS_RESEARCH        IN_TRADITION                              │
 │       │                    │                                     │
 │       ▼                    ▼                                     │
 │   [Publication]       [Modality]                                │
 │                     (TCM/Ayur/Kampo)                            │
+│                                                                  │
+│   ╔═══════════════════════════════════════════════════════╗     │
+│   ║  HYPEREDGES: Multi-node relationships                 ║     │
+│   ║  • METHYLATION_CYCLE_PARTICIPANTS (4+ genes)          ║     │
+│   ║  • FORMULA_COMPOSITION (herb combinations)            ║     │
+│   ╚═══════════════════════════════════════════════════════╝     │
 │                                                                  │
 └─────────────────────────────────────────────────────────────────┘
 ```
@@ -202,6 +225,12 @@ Three-tier architecture with Next.js frontend, Node/Python API layer, and hybrid
 | Herb | ~2,000 | TCMSP, IMPPAT, KampoDB |
 | Condition | ~5,000 | MeSH, ICD-10 |
 | Publication | ~500,000 | PubMed |
+
+**RuVector Graph Features Used:**
+- Cypher queries (Neo4j syntax compatible)
+- Hyperedges for n-ary relationships (TCM formulas, pathway participants)
+- Graph algorithms (PageRank, Louvain communities, shortest path)
+- Vector-graph hybrid queries (combine HNSW search with graph traversal)
 
 ### 3. AI/RAG Layer
 
@@ -354,8 +383,9 @@ User Profile + SNPs → Pathway Analysis → Knowledge Graph Query
 | Component | Scaling Strategy |
 |-----------|------------------|
 | API Servers | Auto-scaling behind load balancer |
-| PostgreSQL | Read replicas, connection pooling |
-| Neo4j | Read replicas, query routing |
+| RuVector PostgreSQL | Read replicas, connection pooling, HNSW sharding |
+| RuVector Graph | Embedded library scales with app, persistent storage |
+| User PostgreSQL | Read replicas, connection pooling |
 | Redis | Cluster mode |
 | Background Jobs | Horizontal worker scaling |
 
@@ -409,8 +439,8 @@ User Profile + SNPs → Pathway Analysis → Knowledge Graph Query
 
 ## Open Questions
 
-- [ ] Evaluate Neo4j vs Amazon Neptune for graph database
-- [ ] Assess pgvector vs dedicated Pinecone for embeddings
+- [x] ~~Evaluate Neo4j vs Amazon Neptune for graph database~~ **RESOLVED: RuVector Graph (@ruvector/graph-node)**
+- [x] ~~Assess pgvector vs dedicated Pinecone for embeddings~~ **RESOLVED: RuVector PostgreSQL with HNSW**
 - [ ] Determine self-hosted vs managed database strategy
 - [ ] Plan for mobile app architecture (React Native vs native)
 

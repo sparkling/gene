@@ -1,0 +1,2841 @@
+{
+  "version": "1.0.0",
+  "migrated_at": "2026-01-21T16:27:40.891Z",
+  "source": "/home/claude/src/gene/.ruvector/intelligence.json",
+  "stats": {
+    "patterns": 2,
+    "memories": 111,
+    "trajectories": 254
+  },
+  "patterns": [
+    {
+      "key": "cmd_shell_general|success",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "q_value": 0.7999999618151142,
+      "visits": 160,
+      "last_update": 1768871846
+    },
+    {
+      "key": "edit__in_project|successful-edit",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "q_value": 0.9999991791689895,
+      "visits": 133,
+      "last_update": 1768871686
+    }
+  ],
+  "memories": [
+    {
+      "id": "mem_1768860723",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768860723
+    },
+    {
+      "id": "mem_1768860737",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768860737
+    },
+    {
+      "id": "mem_1768860748",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768860748
+    },
+    {
+      "id": "mem_1768860753",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768860753
+    },
+    {
+      "id": "mem_1768860757",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768860757
+    },
+    {
+      "id": "mem_1768860774",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768860774
+    },
+    {
+      "id": "mem_1768860784",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768860784
+    },
+    {
+      "id": "mem_1768860787",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768860787
+    },
+    {
+      "id": "mem_1768860799",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768860799
+    },
+    {
+      "id": "mem_1768860809",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768860809
+    },
+    {
+      "id": "mem_1768860867",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768860867
+    },
+    {
+      "id": "mem_1768860880",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768860880
+    },
+    {
+      "id": "mem_1768860882",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768860882
+    },
+    {
+      "id": "mem_1768860885",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768860885
+    },
+    {
+      "id": "mem_1768860893",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768860893
+    },
+    {
+      "id": "mem_1768860911",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768860911
+    },
+    {
+      "id": "mem_1768860928",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768860928
+    },
+    {
+      "id": "mem_1768860962",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768860962
+    },
+    {
+      "id": "mem_1768861010",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768861010
+    },
+    {
+      "id": "mem_1768861465",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768861465
+    },
+    {
+      "id": "mem_1768861771",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768861771
+    },
+    {
+      "id": "mem_1768861914",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768861914
+    },
+    {
+      "id": "mem_1768862036",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768862036
+    },
+    {
+      "id": "mem_1768862050",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768862050
+    },
+    {
+      "id": "mem_1768862068",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768862068
+    },
+    {
+      "id": "mem_1768862079",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768862079
+    },
+    {
+      "id": "mem_1768862676",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768862676
+    },
+    {
+      "id": "mem_1768862688",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768862688
+    },
+    {
+      "id": "mem_1768862689",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768862689
+    },
+    {
+      "id": "mem_1768862690",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768862690
+    },
+    {
+      "id": "mem_1768862699",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768862699
+    },
+    {
+      "id": "mem_1768862700",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768862700
+    },
+    {
+      "id": "mem_1768862714",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768862714
+    },
+    {
+      "id": "mem_1768862715",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768862715
+    },
+    {
+      "id": "mem_1768862716",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768862716
+    },
+    {
+      "id": "mem_1768862717",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768862717
+    },
+    {
+      "id": "mem_1768862730",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768862730
+    },
+    {
+      "id": "mem_1768862799",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768862799
+    },
+    {
+      "id": "mem_1768862800",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768862800
+    },
+    {
+      "id": "mem_1768862819",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768862819
+    },
+    {
+      "id": "mem_1768862820",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768862820
+    },
+    {
+      "id": "mem_1768862821",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768862821
+    },
+    {
+      "id": "mem_1768862831",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768862831
+    },
+    {
+      "id": "mem_1768862832",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768862832
+    },
+    {
+      "id": "mem_1768863257",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768863257
+    },
+    {
+      "id": "mem_1768863266",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768863266
+    },
+    {
+      "id": "mem_1768863267",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768863267
+    },
+    {
+      "id": "mem_1768863303",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768863303
+    },
+    {
+      "id": "mem_1768863313",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768863313
+    },
+    {
+      "id": "mem_1768863322",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768863322
+    },
+    {
+      "id": "mem_1768863363",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768863363
+    },
+    {
+      "id": "mem_1768863373",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768863373
+    },
+    {
+      "id": "mem_1768863374",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768863374
+    },
+    {
+      "id": "mem_1768863384",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768863384
+    },
+    {
+      "id": "mem_1768863401",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768863401
+    },
+    {
+      "id": "mem_1768863402",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768863402
+    },
+    {
+      "id": "mem_1768863403",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768863403
+    },
+    {
+      "id": "mem_1768863445",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768863445
+    },
+    {
+      "id": "mem_1768863459",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768863459
+    },
+    {
+      "id": "mem_1768863541",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768863541
+    },
+    {
+      "id": "mem_1768863542",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768863542
+    },
+    {
+      "id": "mem_1768863635",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768863635
+    },
+    {
+      "id": "mem_1768863636",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768863636
+    },
+    {
+      "id": "mem_1768863637",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768863637
+    },
+    {
+      "id": "mem_1768863638",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768863638
+    },
+    {
+      "id": "mem_1768863677",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768863677
+    },
+    {
+      "id": "mem_1768863678",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768863678
+    },
+    {
+      "id": "mem_1768863679",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768863679
+    },
+    {
+      "id": "mem_1768863680",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768863680
+    },
+    {
+      "id": "mem_1768863681",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768863681
+    },
+    {
+      "id": "mem_1768863719",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768863719
+    },
+    {
+      "id": "mem_1768863720",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768863720
+    },
+    {
+      "id": "mem_1768863721",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768863721
+    },
+    {
+      "id": "mem_1768863722",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768863722
+    },
+    {
+      "id": "mem_1768863751",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768863751
+    },
+    {
+      "id": "mem_1768863798",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768863798
+    },
+    {
+      "id": "mem_1768863818",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768863818
+    },
+    {
+      "id": "mem_1768863819",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768863819
+    },
+    {
+      "id": "mem_1768863820",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768863820
+    },
+    {
+      "id": "mem_1768863821",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768863821
+    },
+    {
+      "id": "mem_1768863822",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768863822
+    },
+    {
+      "id": "mem_1768863839",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768863839
+    },
+    {
+      "id": "mem_1768863840",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768863840
+    },
+    {
+      "id": "mem_1768863950",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768863950
+    },
+    {
+      "id": "mem_1768863951",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768863951
+    },
+    {
+      "id": "mem_1768863970",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768863970
+    },
+    {
+      "id": "mem_1768863995",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768863995
+    },
+    {
+      "id": "mem_1768863996",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768863996
+    },
+    {
+      "id": "mem_1768863997",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768863997
+    },
+    {
+      "id": "mem_1768863998",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768863998
+    },
+    {
+      "id": "mem_1768863999",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768863999
+    },
+    {
+      "id": "mem_1768864013",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768864013
+    },
+    {
+      "id": "mem_1768864014",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768864014
+    },
+    {
+      "id": "mem_1768864039",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768864039
+    },
+    {
+      "id": "mem_1768864056",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768864056
+    },
+    {
+      "id": "mem_1768864057",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768864057
+    },
+    {
+      "id": "mem_1768864058",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768864058
+    },
+    {
+      "id": "mem_1768864074",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768864074
+    },
+    {
+      "id": "mem_1768864075",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768864075
+    },
+    {
+      "id": "mem_1768864076",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768864076
+    },
+    {
+      "id": "mem_1768864077",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768864077
+    },
+    {
+      "id": "mem_1768864090",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768864090
+    },
+    {
+      "id": "mem_1768864091",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768864091
+    },
+    {
+      "id": "mem_1768864092",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768864092
+    },
+    {
+      "id": "mem_1768869891",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768869891
+    },
+    {
+      "id": "mem_1768870178",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768870178
+    },
+    {
+      "id": "mem_1768870225",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768870225
+    },
+    {
+      "id": "mem_1768871106",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768871106
+    },
+    {
+      "id": "mem_1768871159",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768871159
+    },
+    {
+      "id": "mem_1768871685",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768871685
+    },
+    {
+      "id": "mem_1768871686",
+      "memory_type": "edit",
+      "content": "successful edit of  in project",
+      "metadata": {},
+      "timestamp": 1768871686
+    }
+  ],
+  "trajectories": [
+    {
+      "id": "traj_1768860146",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768860146
+    },
+    {
+      "id": "traj_1768860153",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768860153
+    },
+    {
+      "id": "traj_1768860159",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768860159
+    },
+    {
+      "id": "traj_1768860175",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768860175
+    },
+    {
+      "id": "traj_1768860475",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768860475
+    },
+    {
+      "id": "traj_1768860484",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768860484
+    },
+    {
+      "id": "traj_1768860563",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768860563
+    },
+    {
+      "id": "traj_1768860564",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768860564
+    },
+    {
+      "id": "traj_1768860566",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768860566
+    },
+    {
+      "id": "traj_1768860590",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768860590
+    },
+    {
+      "id": "traj_1768860593",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768860593
+    },
+    {
+      "id": "traj_1768860601",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768860601
+    },
+    {
+      "id": "traj_1768860620",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768860620
+    },
+    {
+      "id": "traj_1768860624",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768860624
+    },
+    {
+      "id": "traj_1768860627",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768860627
+    },
+    {
+      "id": "traj_1768860629",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768860629
+    },
+    {
+      "id": "traj_1768860637",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768860637
+    },
+    {
+      "id": "traj_1768860640",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768860640
+    },
+    {
+      "id": "traj_1768860655",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768860655
+    },
+    {
+      "id": "traj_1768860703",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768860703
+    },
+    {
+      "id": "traj_1768860723",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768860723
+    },
+    {
+      "id": "traj_1768860737",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768860737
+    },
+    {
+      "id": "traj_1768860748",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768860748
+    },
+    {
+      "id": "traj_1768860753",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768860753
+    },
+    {
+      "id": "traj_1768860757",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768860757
+    },
+    {
+      "id": "traj_1768860774",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768860774
+    },
+    {
+      "id": "traj_1768860784",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768860784
+    },
+    {
+      "id": "traj_1768860787",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768860787
+    },
+    {
+      "id": "traj_1768860799",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768860799
+    },
+    {
+      "id": "traj_1768860809",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768860809
+    },
+    {
+      "id": "traj_1768860867",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768860867
+    },
+    {
+      "id": "traj_1768860880",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768860880
+    },
+    {
+      "id": "traj_1768860882",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768860882
+    },
+    {
+      "id": "traj_1768860885",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768860885
+    },
+    {
+      "id": "traj_1768860893",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768860893
+    },
+    {
+      "id": "traj_1768860911",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768860911
+    },
+    {
+      "id": "traj_1768860928",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768860928
+    },
+    {
+      "id": "traj_1768860962",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768860962
+    },
+    {
+      "id": "traj_1768861010",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768861010
+    },
+    {
+      "id": "traj_1768861465",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768861465
+    },
+    {
+      "id": "traj_1768861771",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768861771
+    },
+    {
+      "id": "traj_1768861914",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768861914
+    },
+    {
+      "id": "traj_1768862036",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768862036
+    },
+    {
+      "id": "traj_1768862050",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768862050
+    },
+    {
+      "id": "traj_1768862068",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768862068
+    },
+    {
+      "id": "traj_1768862079",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768862079
+    },
+    {
+      "id": "traj_1768862154",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768862154
+    },
+    {
+      "id": "traj_1768862261",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768862261
+    },
+    {
+      "id": "traj_1768862290",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768862290
+    },
+    {
+      "id": "traj_1768862305",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768862305
+    },
+    {
+      "id": "traj_1768862307",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768862307
+    },
+    {
+      "id": "traj_1768862676",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768862676
+    },
+    {
+      "id": "traj_1768862688",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768862688
+    },
+    {
+      "id": "traj_1768862689",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768862689
+    },
+    {
+      "id": "traj_1768862690",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768862690
+    },
+    {
+      "id": "traj_1768862699",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768862699
+    },
+    {
+      "id": "traj_1768862700",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768862700
+    },
+    {
+      "id": "traj_1768862714",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768862714
+    },
+    {
+      "id": "traj_1768862715",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768862715
+    },
+    {
+      "id": "traj_1768862716",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768862716
+    },
+    {
+      "id": "traj_1768862717",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768862717
+    },
+    {
+      "id": "traj_1768862730",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768862730
+    },
+    {
+      "id": "traj_1768862799",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768862799
+    },
+    {
+      "id": "traj_1768862800",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768862800
+    },
+    {
+      "id": "traj_1768862819",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768862819
+    },
+    {
+      "id": "traj_1768862820",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768862820
+    },
+    {
+      "id": "traj_1768862821",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768862821
+    },
+    {
+      "id": "traj_1768862831",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768862831
+    },
+    {
+      "id": "traj_1768862832",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768862832
+    },
+    {
+      "id": "traj_1768862915",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768862915
+    },
+    {
+      "id": "traj_1768862916",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768862916
+    },
+    {
+      "id": "traj_1768862987",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768862987
+    },
+    {
+      "id": "traj_1768862990",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768862990
+    },
+    {
+      "id": "traj_1768862992",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768862992
+    },
+    {
+      "id": "traj_1768863004",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768863004
+    },
+    {
+      "id": "traj_1768863005",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768863005
+    },
+    {
+      "id": "traj_1768863223",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768863223
+    },
+    {
+      "id": "traj_1768863236",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768863236
+    },
+    {
+      "id": "traj_1768863257",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768863257
+    },
+    {
+      "id": "traj_1768863266",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768863266
+    },
+    {
+      "id": "traj_1768863267",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768863267
+    },
+    {
+      "id": "traj_1768863303",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768863303
+    },
+    {
+      "id": "traj_1768863313",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768863313
+    },
+    {
+      "id": "traj_1768863322",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768863322
+    },
+    {
+      "id": "traj_1768863331",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768863331
+    },
+    {
+      "id": "traj_1768863363",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768863363
+    },
+    {
+      "id": "traj_1768863373",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768863373
+    },
+    {
+      "id": "traj_1768863374",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768863374
+    },
+    {
+      "id": "traj_1768863384",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768863384
+    },
+    {
+      "id": "traj_1768863401",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768863401
+    },
+    {
+      "id": "traj_1768863402",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768863402
+    },
+    {
+      "id": "traj_1768863403",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768863403
+    },
+    {
+      "id": "traj_1768863416",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768863416
+    },
+    {
+      "id": "traj_1768863427",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768863427
+    },
+    {
+      "id": "traj_1768863445",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768863445
+    },
+    {
+      "id": "traj_1768863459",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768863459
+    },
+    {
+      "id": "traj_1768863541",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768863541
+    },
+    {
+      "id": "traj_1768863542",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768863542
+    },
+    {
+      "id": "traj_1768863608",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768863608
+    },
+    {
+      "id": "traj_1768863635",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768863635
+    },
+    {
+      "id": "traj_1768863636",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768863636
+    },
+    {
+      "id": "traj_1768863637",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768863637
+    },
+    {
+      "id": "traj_1768863638",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768863638
+    },
+    {
+      "id": "traj_1768863677",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768863677
+    },
+    {
+      "id": "traj_1768863678",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768863678
+    },
+    {
+      "id": "traj_1768863679",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768863679
+    },
+    {
+      "id": "traj_1768863680",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768863680
+    },
+    {
+      "id": "traj_1768863681",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768863681
+    },
+    {
+      "id": "traj_1768863719",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768863719
+    },
+    {
+      "id": "traj_1768863720",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768863720
+    },
+    {
+      "id": "traj_1768863721",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768863721
+    },
+    {
+      "id": "traj_1768863722",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768863722
+    },
+    {
+      "id": "traj_1768863751",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768863751
+    },
+    {
+      "id": "traj_1768863798",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768863798
+    },
+    {
+      "id": "traj_1768863818",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768863818
+    },
+    {
+      "id": "traj_1768863819",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768863819
+    },
+    {
+      "id": "traj_1768863820",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768863820
+    },
+    {
+      "id": "traj_1768863821",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768863821
+    },
+    {
+      "id": "traj_1768863822",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768863822
+    },
+    {
+      "id": "traj_1768863839",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768863839
+    },
+    {
+      "id": "traj_1768863840",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768863840
+    },
+    {
+      "id": "traj_1768863950",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768863950
+    },
+    {
+      "id": "traj_1768863951",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768863951
+    },
+    {
+      "id": "traj_1768863970",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768863970
+    },
+    {
+      "id": "traj_1768863995",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768863995
+    },
+    {
+      "id": "traj_1768863996",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768863996
+    },
+    {
+      "id": "traj_1768863997",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768863997
+    },
+    {
+      "id": "traj_1768863998",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768863998
+    },
+    {
+      "id": "traj_1768863999",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768863999
+    },
+    {
+      "id": "traj_1768864013",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768864013
+    },
+    {
+      "id": "traj_1768864014",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768864014
+    },
+    {
+      "id": "traj_1768864039",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768864039
+    },
+    {
+      "id": "traj_1768864056",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768864056
+    },
+    {
+      "id": "traj_1768864057",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768864057
+    },
+    {
+      "id": "traj_1768864058",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768864058
+    },
+    {
+      "id": "traj_1768864074",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768864074
+    },
+    {
+      "id": "traj_1768864075",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768864075
+    },
+    {
+      "id": "traj_1768864076",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768864076
+    },
+    {
+      "id": "traj_1768864077",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768864077
+    },
+    {
+      "id": "traj_1768864090",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768864090
+    },
+    {
+      "id": "traj_1768864091",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768864091
+    },
+    {
+      "id": "traj_1768864092",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768864092
+    },
+    {
+      "id": "traj_1768869840",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768869840
+    },
+    {
+      "id": "traj_1768869846",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768869846
+    },
+    {
+      "id": "traj_1768869853",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768869853
+    },
+    {
+      "id": "traj_1768869859",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768869859
+    },
+    {
+      "id": "traj_1768869865",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768869865
+    },
+    {
+      "id": "traj_1768869873",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768869873
+    },
+    {
+      "id": "traj_1768869879",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768869879
+    },
+    {
+      "id": "traj_1768869891",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768869891
+    },
+    {
+      "id": "traj_1768869899",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768869899
+    },
+    {
+      "id": "traj_1768869936",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768869936
+    },
+    {
+      "id": "traj_1768869943",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768869943
+    },
+    {
+      "id": "traj_1768869949",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768869949
+    },
+    {
+      "id": "traj_1768869956",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768869956
+    },
+    {
+      "id": "traj_1768869967",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768869967
+    },
+    {
+      "id": "traj_1768869972",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768869972
+    },
+    {
+      "id": "traj_1768869977",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768869977
+    },
+    {
+      "id": "traj_1768870024",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768870024
+    },
+    {
+      "id": "traj_1768870030",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768870030
+    },
+    {
+      "id": "traj_1768870037",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768870037
+    },
+    {
+      "id": "traj_1768870043",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768870043
+    },
+    {
+      "id": "traj_1768870063",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768870063
+    },
+    {
+      "id": "traj_1768870069",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768870069
+    },
+    {
+      "id": "traj_1768870082",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768870082
+    },
+    {
+      "id": "traj_1768870088",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768870088
+    },
+    {
+      "id": "traj_1768870092",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768870092
+    },
+    {
+      "id": "traj_1768870105",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768870105
+    },
+    {
+      "id": "traj_1768870117",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768870117
+    },
+    {
+      "id": "traj_1768870122",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768870122
+    },
+    {
+      "id": "traj_1768870128",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768870128
+    },
+    {
+      "id": "traj_1768870135",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768870135
+    },
+    {
+      "id": "traj_1768870143",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768870143
+    },
+    {
+      "id": "traj_1768870149",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768870149
+    },
+    {
+      "id": "traj_1768870178",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768870178
+    },
+    {
+      "id": "traj_1768870190",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768870190
+    },
+    {
+      "id": "traj_1768870197",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768870197
+    },
+    {
+      "id": "traj_1768870225",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768870225
+    },
+    {
+      "id": "traj_1768870232",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768870232
+    },
+    {
+      "id": "traj_1768870439",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768870439
+    },
+    {
+      "id": "traj_1768870440",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768870440
+    },
+    {
+      "id": "traj_1768870442",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768870442
+    },
+    {
+      "id": "traj_1768870450",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768870450
+    },
+    {
+      "id": "traj_1768870451",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768870451
+    },
+    {
+      "id": "traj_1768870459",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768870459
+    },
+    {
+      "id": "traj_1768870467",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768870467
+    },
+    {
+      "id": "traj_1768870469",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768870469
+    },
+    {
+      "id": "traj_1768870478",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768870478
+    },
+    {
+      "id": "traj_1768870480",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768870480
+    },
+    {
+      "id": "traj_1768870487",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768870487
+    },
+    {
+      "id": "traj_1768870496",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768870496
+    },
+    {
+      "id": "traj_1768870503",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768870503
+    },
+    {
+      "id": "traj_1768870517",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768870517
+    },
+    {
+      "id": "traj_1768870527",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768870527
+    },
+    {
+      "id": "traj_1768870540",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768870540
+    },
+    {
+      "id": "traj_1768870541",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768870541
+    },
+    {
+      "id": "traj_1768870553",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768870553
+    },
+    {
+      "id": "traj_1768870554",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768870554
+    },
+    {
+      "id": "traj_1768870587",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768870587
+    },
+    {
+      "id": "traj_1768870593",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768870593
+    },
+    {
+      "id": "traj_1768871035",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768871035
+    },
+    {
+      "id": "traj_1768871048",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768871048
+    },
+    {
+      "id": "traj_1768871050",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768871050
+    },
+    {
+      "id": "traj_1768871061",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768871061
+    },
+    {
+      "id": "traj_1768871063",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768871063
+    },
+    {
+      "id": "traj_1768871072",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768871072
+    },
+    {
+      "id": "traj_1768871081",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768871081
+    },
+    {
+      "id": "traj_1768871090",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768871090
+    },
+    {
+      "id": "traj_1768871092",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768871092
+    },
+    {
+      "id": "traj_1768871106",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768871106
+    },
+    {
+      "id": "traj_1768871117",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768871117
+    },
+    {
+      "id": "traj_1768871119",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768871119
+    },
+    {
+      "id": "traj_1768871129",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768871129
+    },
+    {
+      "id": "traj_1768871132",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768871132
+    },
+    {
+      "id": "traj_1768871145",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768871145
+    },
+    {
+      "id": "traj_1768871158",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768871158
+    },
+    {
+      "id": "traj_1768871159",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768871159
+    },
+    {
+      "id": "traj_1768871167",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768871167
+    },
+    {
+      "id": "traj_1768871169",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768871169
+    },
+    {
+      "id": "traj_1768871249",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768871249
+    },
+    {
+      "id": "traj_1768871310",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768871310
+    },
+    {
+      "id": "traj_1768871312",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768871312
+    },
+    {
+      "id": "traj_1768871325",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768871325
+    },
+    {
+      "id": "traj_1768871340",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768871340
+    },
+    {
+      "id": "traj_1768871342",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768871342
+    },
+    {
+      "id": "traj_1768871351",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768871351
+    },
+    {
+      "id": "traj_1768871363",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768871363
+    },
+    {
+      "id": "traj_1768871373",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768871373
+    },
+    {
+      "id": "traj_1768871375",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768871375
+    },
+    {
+      "id": "traj_1768871385",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768871385
+    },
+    {
+      "id": "traj_1768871397",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768871397
+    },
+    {
+      "id": "traj_1768871564",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768871564
+    },
+    {
+      "id": "traj_1768871573",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768871573
+    },
+    {
+      "id": "traj_1768871576",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768871576
+    },
+    {
+      "id": "traj_1768871578",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768871578
+    },
+    {
+      "id": "traj_1768871591",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768871591
+    },
+    {
+      "id": "traj_1768871594",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768871594
+    },
+    {
+      "id": "traj_1768871618",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768871618
+    },
+    {
+      "id": "traj_1768871633",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768871633
+    },
+    {
+      "id": "traj_1768871644",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768871644
+    },
+    {
+      "id": "traj_1768871646",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768871646
+    },
+    {
+      "id": "traj_1768871685",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768871685
+    },
+    {
+      "id": "traj_1768871686",
+      "state": "edit__in_project",
+      "action": "successful-edit",
+      "outcome": "completed",
+      "reward": 1,
+      "timestamp": 1768871686
+    },
+    {
+      "id": "traj_1768871696",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768871696
+    },
+    {
+      "id": "traj_1768871698",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768871698
+    },
+    {
+      "id": "traj_1768871710",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768871710
+    },
+    {
+      "id": "traj_1768871712",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768871712
+    },
+    {
+      "id": "traj_1768871742",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768871742
+    },
+    {
+      "id": "traj_1768871766",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768871766
+    },
+    {
+      "id": "traj_1768871770",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768871770
+    },
+    {
+      "id": "traj_1768871774",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768871774
+    },
+    {
+      "id": "traj_1768871827",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768871827
+    },
+    {
+      "id": "traj_1768871841",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768871841
+    },
+    {
+      "id": "traj_1768871846",
+      "state": "cmd_shell_general",
+      "action": "success",
+      "outcome": "completed",
+      "reward": 0.8,
+      "timestamp": 1768871846
+    }
+  ]
+}

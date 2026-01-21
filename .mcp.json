@@ -3,7 +3,7 @@
     "claude-flow": {
       "command": "npx",
       "args": [
-        "@claude-flow/cli@latest",
+        "claude-flow@v3alpha",
         "mcp",
         "start"
       ],
@@ -11,10 +11,22 @@
         "CLAUDE_FLOW_MODE": "v3",
         "CLAUDE_FLOW_HOOKS_ENABLED": "true",
         "CLAUDE_FLOW_TOPOLOGY": "hierarchical-mesh",
-        "CLAUDE_FLOW_MAX_AGENTS": "15",
-        "CLAUDE_FLOW_MEMORY_BACKEND": "hybrid"
-      },
-      "autoStart": false
+        "CLAUDE_FLOW_MAX_AGENTS": "100",
+        "CLAUDE_FLOW_MEMORY_BACKEND": "hybrid",
+        "CLAUDE_FLOW_MEMORY_PATH": ".swarm/memory.db",
+        "CLAUDE_FLOW_HNSW_ENABLED": "true",
+        "CLAUDE_FLOW_HNSW_M": "48",
+        "CLAUDE_FLOW_HNSW_EF_CONSTRUCTION": "400",
+        "CLAUDE_FLOW_HNSW_EF_SEARCH": "200",
+        "CLAUDE_FLOW_FLASH_ATTENTION": "true",
+        "CLAUDE_FLOW_WORKER_THREADS": "16",
+        "CLAUDE_FLOW_MEMORY_MAX_ENTRIES": "50000000",
+        "CLAUDE_FLOW_EMBEDDINGS_CACHE_SIZE": "8192",
+        "CLAUDE_FLOW_DAEMON_MAX_CONCURRENT": "16",
+        "CLAUDE_FLOW_NEURAL_ENABLED": "true",
+        "CLAUDE_FLOW_LORA_RANK": "16",
+        "NODE_OPTIONS": "--max-old-space-size=65536"
+      }
     }
   }
 }
