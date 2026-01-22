@@ -35,6 +35,12 @@ ONE message: TodoWrite, Task tool, file ops, memory ops
 
 ---
 
+## Git
+
+Commit after every operation. Don't wait or batch commits.
+
+---
+
 ## Reminders
 
 - Do what was asked; nothing more
