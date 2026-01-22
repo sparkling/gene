@@ -1,7 +1,7 @@
 ---
 title: "Literature Databases"
 parent: ../_index.md
-world: null
+category: shared
 last_updated: 2026-01-22
 status: draft
 ---
@@ -327,7 +327,7 @@ curl "https://clinicaltrials.gov/api/v2/studies?query.cond=Alzheimer&query.intr=
 
 ## Integration with Gene Platform
 
-### World 1 (Genetics) → Literature
+### Genetics → Literature
 ```
 Genetic Variant (rs429358 - APOE ε4)
     ↓
@@ -336,7 +336,7 @@ PubMed Search: "rs429358 OR APOE ε4"
 Evidence: Alzheimer's risk, lipid metabolism, cardiovascular disease
 ```
 
-### World 2 (Traditional Medicine) → Literature
+### Traditional Medicine → Literature
 ```
 TCM Herb (Ginkgo biloba)
     ↓
@@ -345,7 +345,7 @@ PubMed Search: "Ginkgo biloba AND clinical trial"
 Evidence: Cognitive function, neuroprotection
 ```
 
-### World 3 (Nutrition) → Literature
+### Nutrition → Literature
 ```
 Food Compound (Curcumin)
     ↓

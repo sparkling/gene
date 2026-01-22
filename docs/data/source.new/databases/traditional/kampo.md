@@ -1,7 +1,6 @@
 ---
 id: traditional-kampo
 title: Kampo Medicine Data Sources
-world: 2
 category: traditional
 tier: 2
 subcategory: kampo

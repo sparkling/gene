@@ -1,7 +1,6 @@
 ---
 id: traditional-ayurveda
 title: Ayurveda Data Sources
-world: 2
 category: traditional
 tier: 2
 subcategory: ayurveda

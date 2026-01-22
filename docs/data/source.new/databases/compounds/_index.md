@@ -1,7 +1,7 @@
 ---
 title: "Compound Databases"
 parent: ../_index.md
-world: null
+category: shared
 last_updated: 2026-01-22
 status: draft
 ---
@@ -311,7 +311,7 @@ curl "https://www.ebi.ac.uk/chembl/api/data/activity?molecule_chembl_id=CHEMBL36
 
 ## Integration with Gene Platform
 
-### World 1 (Genetics) ← Compounds
+### Genetics ← Compounds
 ```
 Genetic Variant → Gene → Pathway
                            ↑
@@ -320,7 +320,7 @@ Genetic Variant → Gene → Pathway
                     Compound Target
 ```
 
-### World 2 (Traditional Medicine) → Compounds
+### Traditional Medicine → Compounds
 ```
 TCM Herb (HERB, BATMAN-TCM)
          ↓
@@ -333,7 +333,7 @@ Natural Product Compounds
     Target Genes
 ```
 
-### World 3 (Nutrition) → Compounds
+### Nutrition → Compounds
 ```
 Food (FooDB, USDA)
          ↓

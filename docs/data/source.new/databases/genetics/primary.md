@@ -1,7 +1,6 @@
 ---
 id: genetics-primary
 title: Genetics Primary Databases
-world: 1
 category: genetics
 tier: 1
 parent: ../_index.md

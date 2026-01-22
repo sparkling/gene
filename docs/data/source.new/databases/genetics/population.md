@@ -1,7 +1,6 @@
 ---
 id: genetics-population
 title: Population Genetics Databases
-world: 1
 category: genetics
 tier: 2
 parent: ../_index.md

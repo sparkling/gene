@@ -44,7 +44,7 @@ Each domain document typically includes:
 
 ## Cross-Domain Considerations
 
-Many genetic variants and interventions span multiple domains. For example:
+Many genetic variants and interventions span domains. For example:
 
 - **Inflammation** affects cardiovascular, autoimmune, and metabolic domains
 - **Methylation** impacts mental health, cancer, and aging

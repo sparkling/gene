@@ -1,8 +1,7 @@
 ---
 id: pathways-disease
 title: Disease and Phenotype Databases
-world: null
-category: pathways
+category: shared
 subcategory: disease
 tier: 1
 parent: ../_index.md

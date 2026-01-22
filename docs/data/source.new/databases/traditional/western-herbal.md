@@ -1,7 +1,6 @@
 ---
 id: traditional-western-herbal
 title: Western Herbal Medicine and Supplements Data Sources
-world: 2
 category: traditional
 tier: 2
 subcategory: western

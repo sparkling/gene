@@ -1,6 +1,6 @@
 ---
 title: Data Source Catalog
-description: Comprehensive catalog of data sources for the Gene Platform organized by the THREE WORLDS framework
+description: Comprehensive catalog of data sources for the Gene Platform organized by data categories
 version: 2.0.0
 last_updated: 2026-01-22
 status: active
@@ -8,7 +8,7 @@ status: active
 
 # Data Source Catalog
 
-This catalog organizes all data sources for the Gene Platform using the **THREE WORLDS** framework, providing a unified view of genetics, traditional medicine, and nutrition data.
+This catalog organizes all data sources for the Gene Platform by **data category**, providing a unified view of genetics, traditional medicine, and nutrition data.
 
 ## Navigation Structure
 
@@ -46,13 +46,13 @@ Research priorities and analytical resources:
 - [Interventions Priority](./research/interventions-priority.md) - Intervention research priorities
 - [Literature Priority](./research/literature-priority.md) - Literature review priorities
 - [Schema Gaps Analysis](./research/schema-gaps.md) - Database schema gap analysis
-- [World 1 Schema Research](./research/world1-schema-research.md) - Genetics schema research
+- [Genetics Schema Research](./research/genetics-schema-research.md) - Genetics schema research
 
-## THREE WORLDS Framework
+## Data Categories
 
 The Gene Platform integrates three complementary knowledge systems:
 
-### World 1: Genetics
+### Genetics
 Modern genomic and molecular biology data including:
 - Human genome sequences and variants
 - Gene expression and regulation
@@ -60,7 +60,7 @@ Modern genomic and molecular biology data including:
 - Molecular pathways and networks
 - Clinical genomic associations
 
-### World 2: Traditional Medicine
+### Traditional Medicine
 Time-tested healing knowledge from diverse cultures:
 - Traditional Chinese Medicine (TCM)
 - Ayurvedic medicine
@@ -68,7 +68,7 @@ Time-tested healing knowledge from diverse cultures:
 - Historical therapeutic practices
 - Traditional diagnostic frameworks
 
-### World 3: Nutrition
+### Nutrition
 Evidence-based nutritional science:
 - Nutrient composition databases
 - Dietary patterns and outcomes
@@ -79,10 +79,10 @@ Evidence-based nutritional science:
 ## Integration Philosophy
 
 This catalog enables:
-1. **Cross-World Discovery** - Find connections between genetics, herbs, and nutrients
+1. **Cross-Category Discovery** - Find connections between genetics, herbs, and nutrients
 2. **Multi-Modal Evidence** - Combine molecular, traditional, and nutritional evidence
 3. **Personalized Insights** - Integrate individual genetic profiles with therapeutic options
-4. **Research Innovation** - Identify novel research questions at the intersection of worlds
+4. **Research Innovation** - Identify novel research questions at the intersection of categories
 
 ## Quick Links
 

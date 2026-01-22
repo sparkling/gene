@@ -1,12 +1,12 @@
 ---
 title: "Traditional Medicine Databases"
 parent: ../_index.md
-world: 2
+category: traditional
 last_updated: 2026-01-22
 status: draft
 ---
 
-# Traditional Medicine Databases (World 2)
+# Traditional Medicine Databases
 
 Databases for traditional medicine systems including TCM, Ayurveda, Kampo, Western Herbal, and global ethnobotanical knowledge.
 

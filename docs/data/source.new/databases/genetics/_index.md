@@ -1,12 +1,12 @@
 ---
 title: "Genetics Databases"
 parent: ../_index.md
-world: 1
+category: genetics
 last_updated: 2026-01-22
 status: draft
 ---
 
-# Genetics Databases (World 1)
+# Genetics Databases
 
 Databases for genetic variation, clinical annotations, and pharmacogenomics.
 

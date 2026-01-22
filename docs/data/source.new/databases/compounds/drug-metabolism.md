@@ -1,8 +1,7 @@
 ---
 id: compounds-drug-metabolism
 title: Drug Metabolism and Supplement Interactions
-world: null
-category: compounds
+category: shared
 subcategory: drug-metabolism
 tier: 1
 parent: ../_index.md

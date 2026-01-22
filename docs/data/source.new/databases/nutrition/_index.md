@@ -1,12 +1,12 @@
 ---
 title: "Nutrition Databases"
 parent: ../_index.md
-world: 3
+category: nutrition
 last_updated: 2026-01-22
 status: draft
 ---
 
-# Nutrition Databases (World 3)
+# Nutrition Databases
 
 Databases for nutritional composition, food chemistry, and phytochemical content.
 

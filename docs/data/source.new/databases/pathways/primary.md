@@ -1,9 +1,8 @@
 ---
 id: pathways-primary
 title: Primary Pathway Databases
-world: null
-category: pathways
-subcategory: null
+category: shared
+subcategory: pathways
 tier: 1
 parent: ../_index.md
 last_updated: 2026-01-22

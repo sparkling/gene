@@ -1,7 +1,6 @@
 ---
 title: "Database Sources"
 parent: ../_index.md
-world: null
 last_updated: 2026-01-22
 status: draft
 ---
@@ -12,14 +11,14 @@ This directory contains comprehensive documentation for all database sources org
 
 ## Directory Structure
 
-| Directory | Description | World | Primary Focus |
-|-----------|-------------|-------|---------------|
-| [genetics/](./genetics/_index.md) | Genetic variation, clinical annotations, pharmacogenomics | World 1 | SNPs, variants, drug-gene interactions |
-| [traditional/](./traditional/_index.md) | Traditional medicine systems and herbal knowledge | World 2 | TCM, Ayurveda, Kampo, Western Herbal |
-| [nutrition/](./nutrition/_index.md) | Nutritional composition and food chemistry | World 3 | Food compounds, nutritional data |
-| [pathways/](./pathways/_index.md) | Biological pathways and disease mechanisms | Cross-world | Metabolic pathways, disease networks |
-| [literature/](./literature/_index.md) | Scientific publications and research articles | Cross-world | PubMed, PMC, OpenAlex |
-| [compounds/](./compounds/_index.md) | Natural products and pharmaceutical compounds | Cross-world | Chemical structures, bioactivity |
+| Directory | Description | Category | Primary Focus |
+|-----------|-------------|----------|---------------|
+| [genetics/](./genetics/_index.md) | Genetic variation, clinical annotations, pharmacogenomics | genetics | SNPs, variants, drug-gene interactions |
+| [traditional/](./traditional/_index.md) | Traditional medicine systems and herbal knowledge | traditional | TCM, Ayurveda, Kampo, Western Herbal |
+| [nutrition/](./nutrition/_index.md) | Nutritional composition and food chemistry | nutrition | Food compounds, nutritional data |
+| [pathways/](./pathways/_index.md) | Biological pathways and disease mechanisms | shared | Metabolic pathways, disease networks |
+| [literature/](./literature/_index.md) | Scientific publications and research articles | shared | PubMed, PMC, OpenAlex |
+| [compounds/](./compounds/_index.md) | Natural products and pharmaceutical compounds | shared | Chemical structures, bioactivity |
 
 ## Implementation Tiers
 
@@ -48,25 +47,25 @@ This directory contains comprehensive documentation for all database sources org
 
 ## Data Integration Strategy
 
-### World 1 (Genetics) Integration
+### Genetics Integration
 - Primary: dbSNP → ClinVar → PharmGKB
 - Annotation: gnomAD → dbNSFP
 - Expression: GTEx → UK Biobank
 
-### World 2 (Traditional Medicine) Integration
+### Traditional Medicine Integration
 - TCM: BATMAN-TCM → HERB → TCMSID
 - Ayurveda: IMPPAT
 - Cross-system: NPASS (natural product activity)
 
-### World 3 (Nutrition) Integration
+### Nutrition Integration
 - Composition: FooDB → USDA
 - Phytochemicals: Phenol-Explorer → PhytoHub
 
-### Cross-World Integration
+### Cross-Category Integration
 - Compounds: COCONUT/LOTUS → DrugBank/ChEMBL
 - Pathways: Reactome → KEGG → WikiPathways
 - Literature: PubMed → PMC → OpenAlex
-- Disease: DisGeNET bridges all worlds
+- Disease: DisGeNET bridges all categories
 
 ## Access Methods
 

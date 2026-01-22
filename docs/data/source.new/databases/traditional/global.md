@@ -1,7 +1,6 @@
 ---
 id: traditional-global
 title: Global Traditional Medicine Databases (African & Latin American)
-world: 2
 category: traditional
 tier: 3
 subcategory: global

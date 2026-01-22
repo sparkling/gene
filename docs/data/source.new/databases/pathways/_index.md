@@ -1,7 +1,7 @@
 ---
 title: "Pathway Databases"
 parent: ../_index.md
-world: null
+category: shared
 last_updated: 2026-01-22
 status: draft
 ---
@@ -260,7 +260,7 @@ DisGeNET Diseases:
 
 ## Integration with Gene Platform
 
-### World 1 (Genetics) → Pathways
+### Genetics → Pathways
 ```
 User Variants (VCF)
     ↓
@@ -271,7 +271,7 @@ Reactome/KEGG Pathways
 DisGeNET Diseases
 ```
 
-### World 2 (Traditional Medicine) → Pathways
+### Traditional Medicine → Pathways
 ```
 TCM Herbs (HERB, BATMAN-TCM)
     ↓
@@ -282,7 +282,7 @@ Reactome/KEGG Pathways
 Disease Mechanisms
 ```
 
-### World 3 (Nutrition) → Pathways
+### Nutrition → Pathways
 ```
 Foods (FooDB, USDA)
     ↓
@@ -326,17 +326,17 @@ Health Benefits
 | PathVisio | WikiPathways editor | GPML format |
 | Graphviz | Graph rendering | DOT format export |
 
-## Cross-World Pathway Analysis
+## Cross-Category Pathway Analysis
 
 ### Example: Alzheimer's Disease
 ```
-World 1 (Genetics):
+Genetics:
 - APOE ε4 variant → Cholesterol metabolism pathway → Increased risk
 
-World 2 (Traditional Medicine):
+Traditional Medicine:
 - Ginkgo biloba → Flavonoids → Neuroprotection pathway
 
-World 3 (Nutrition):
+Nutrition:
 - Omega-3 fatty acids → Anti-inflammatory pathway → Brain health
 
 → Integrated pathway analysis:

@@ -1,8 +1,7 @@
 ---
 id: pathways-processes
 title: Biological Process and Ontology Databases
-world: null
-category: pathways
+category: shared
 subcategory: processes
 tier: 1
 parent: ../_index.md

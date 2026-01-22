@@ -9,27 +9,27 @@
 
 ## Overview
 
-This catalog organizes all data sources for the Gene Platform using the **THREE WORLDS** framework—a unified approach integrating genetics, traditional medicine, and nutrition data into a coherent knowledge system.
+This catalog organizes all data sources for the Gene Platform by **data category**—a unified approach integrating genetics, traditional medicine, and nutrition data into a coherent knowledge system.
 
 The documentation follows a dual categorization approach:
 1. **Physical Organization** - Folder structure organizing files by data type and function
-2. **Content Framework** - THREE WORLDS conceptual model organizing knowledge by domain
+2. **Content Categories** - Data categories organizing knowledge by domain (genetics, traditional, nutrition, shared)
 
 ---
 
-## THREE WORLDS Framework
+## Data Categories
 
-The Gene Platform bridges three complementary knowledge systems:
+The Gene Platform bridges complementary knowledge systems:
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
-│                         THREE WORLDS FRAMEWORK                          │
+│                           DATA CATEGORIES                               │
 ├─────────────────────────────────────────────────────────────────────────┤
 │                                                                         │
 │   ┌─────────────┐    ┌─────────────┐    ┌─────────────┐                │
-│   │   WORLD 1   │    │   WORLD 2   │    │   WORLD 3   │                │
 │   │  GENETICS   │    │ TRADITIONAL │    │  NUTRITION  │                │
 │   │             │    │  MEDICINE   │    │             │                │
+│   │             │    │             │    │             │                │
 │   ├─────────────┤    ├─────────────┤    ├─────────────┤                │
 │   │ • Variants  │    │ • TCM       │    │ • Foods     │                │
 │   │ • Genes     │    │ • Ayurveda  │    │ • Nutrients │                │
@@ -42,8 +42,8 @@ The Gene Platform bridges three complementary knowledge systems:
 │          └──────────────────┼──────────────────┘                        │
 │                             │                                           │
 │                    ┌────────▼────────┐                                  │
-│                    │   CROSS-WORLD   │                                  │
-│                    │   INTEGRATION   │                                  │
+│                    │     SHARED      │                                  │
+│                    │   RESOURCES     │                                  │
 │                    ├─────────────────┤                                  │
 │                    │ • Pathways      │                                  │
 │                    │ • Literature    │                                  │
@@ -53,7 +53,7 @@ The Gene Platform bridges three complementary knowledge systems:
 └─────────────────────────────────────────────────────────────────────────┘
 ```
 
-### World 1: Genetics
+### Genetics
 
 Modern genomic and molecular biology data including human genome sequences, variants, gene expression, protein structures, and clinical genomic associations.
 
@@ -64,9 +64,9 @@ Modern genomic and molecular biology data including human genome sequences, vari
 | **Tier 3** | gnomAD-SV, DGV, dbVar, DECIPHER | Structural variants |
 
 **Location:** `databases/genetics/`
-**Frontmatter:** `world: 1`
+**Frontmatter:** `category: genetics`
 
-### World 2: Traditional Medicine
+### Traditional Medicine
 
 Time-tested healing knowledge from diverse cultures, organized into five subcategories:
 
@@ -79,9 +79,9 @@ Time-tested healing knowledge from diverse cultures, organized into five subcate
 | **Global** | ANPDB, SANCDB, NuBBEDB, BIOFACQUIM | African & Latin American ethnobotany |
 
 **Location:** `databases/traditional/`
-**Frontmatter:** `world: 2`, `subcategory: tcm|ayurveda|kampo|western-herbal|global`
+**Frontmatter:** `category: traditional`, `subcategory: tcm|ayurveda|kampo|western-herbal|global`
 
-### World 3: Nutrition
+### Nutrition
 
 Evidence-based nutritional science including nutrient composition, dietary patterns, nutrigenomics, and metabolic effects.
 
@@ -92,20 +92,20 @@ Evidence-based nutritional science including nutrient composition, dietary patte
 | **Tier 3** | EuroFIR, AUSNUT, FoodOmicsGR | Regional composition data |
 
 **Location:** `databases/nutrition/`
-**Frontmatter:** `world: 3`
+**Frontmatter:** `category: nutrition`
 
-### Cross-World Resources
+### Shared Resources
 
-Databases that bridge all three worlds through shared identifiers and relationships:
+Databases that bridge categories through shared identifiers and relationships:
 
 | Category | Databases | Purpose |
 |----------|-----------|---------|
 | **Pathways** | Reactome, DisGeNET, KEGG, WikiPathways, STRING | Gene → Pathway → Disease mapping |
-| **Literature** | PubMed (36M+ citations), PMC, OpenAlex | Evidence synthesis across worlds |
+| **Literature** | PubMed (36M+ citations), PMC, OpenAlex | Evidence synthesis across categories |
 | **Compounds** | COCONUT (400K+), LOTUS (750K+), ChEMBL, DrugBank | Chemical structures & bioactivity |
 
 **Location:** `databases/pathways/`, `databases/literature/`, `databases/compounds/`
-**Frontmatter:** `world: null`
+**Frontmatter:** `category: shared`
 
 ---
 
@@ -119,29 +119,29 @@ source.new/
 ├── databases/                   # PRIMARY DATA SOURCE COLLECTIONS
 │   ├── _index.md               # Database overview (26 files total)
 │   │
-│   ├── genetics/               # WORLD 1: Genetic variation
-│   │   ├── _index.md          # World 1 overview
+│   ├── genetics/               # Genetics: Genetic variation
+│   │   ├── _index.md          # Genetics overview
 │   │   ├── primary.md         # Core variant databases (dbSNP, ClinVar, gnomAD)
 │   │   └── population.md      # Population genetics (TOPMed, UK Biobank)
 │   │
-│   ├── traditional/            # WORLD 2: Traditional medicine systems
-│   │   ├── _index.md          # World 2 overview
+│   ├── traditional/            # Traditional: Traditional medicine systems
+│   │   ├── _index.md          # Traditional medicine overview
 │   │   ├── tcm.md             # Traditional Chinese Medicine
 │   │   ├── ayurveda.md        # Ayurvedic medicine
 │   │   ├── kampo.md           # Japanese Kampo
 │   │   ├── western-herbal.md  # Western herbal medicine
 │   │   └── global.md          # Global/indigenous systems
 │   │
-│   ├── nutrition/              # WORLD 3: Nutritional data
-│   │   └── _index.md          # World 3 overview (schemas in operations/)
+│   ├── nutrition/              # Nutrition: Nutritional data
+│   │   └── _index.md          # Nutrition overview (schemas in operations/)
 │   │
-│   ├── pathways/               # CROSS-WORLD: Biological pathways
+│   ├── pathways/               # Shared: Biological pathways
 │   │   ├── _index.md
 │   │   ├── primary.md         # Reactome, KEGG
 │   │   ├── disease.md         # DisGeNET, MONDO
 │   │   └── processes.md       # GO, WikiPathways
 │   │
-│   ├── literature/             # CROSS-WORLD: Scientific publications
+│   ├── literature/             # Shared: Scientific publications
 │   │   ├── _index.md
 │   │   ├── sources.md         # PubMed, PMC, OpenAlex
 │   │   ├── public-sources.md  # Open access sources
@@ -150,7 +150,7 @@ source.new/
 │   │   ├── coverage-analysis.md
 │   │   └── abstracts-vs-fulltext.md
 │   │
-│   └── compounds/              # CROSS-WORLD: Chemical compounds
+│   └── compounds/              # Shared: Chemical compounds
 │       ├── _index.md
 │       ├── natural-products.md # COCONUT, LOTUS
 │       ├── pharmaceuticals.md  # ChEMBL, DrugBank
@@ -182,7 +182,7 @@ source.new/
 │   ├── downloads/              # Data acquisition procedures (5 files)
 │   │   ├── _index.md
 │   │   ├── processing-pipeline.md  # Master ETL pipeline
-│   │   ├── traditional-medicine.md # World 2 downloads
+│   │   ├── traditional-medicine.md # Traditional medicine downloads
 │   │   ├── pathways-targets.md     # Pathway data acquisition
 │   │   ├── pharmaceuticals.md      # Drug data downloads
 │   │   └── wikidata-bulk.md        # Wikidata/Wikipedia/DBpedia
@@ -208,7 +208,7 @@ source.new/
 │   │
 │   └── schemas/                # Data models and validation (47 files)
 │       ├── _index.md
-│       ├── ruvector-three-worlds-schema.md  # Master architecture
+│       ├── ruvector-schema.md              # Master architecture
 │       ├── unified-schema-analysis.md       # 5 core entity types
 │       ├── schemas-index.md
 │       ├── schemas-navigation.md
@@ -235,7 +235,7 @@ source.new/
     ├── interventions-priority.md   # Intervention research priorities
     ├── literature-priority.md      # Literature review priorities
     ├── schema-gaps.md              # Database schema gap analysis
-    └── world1-schema-research.md   # Genetics schema research
+    └── genetics-schema-research.md # Genetics schema research
 ```
 
 ---
@@ -252,16 +252,16 @@ An important distinction in this catalog:
 | **Updates** | When source databases change | When clinical applications evolve |
 | **Example** | `databases/genetics/primary.md` | `domains/cardio-metabolic.md` |
 
-**Key Insight:** Domain files are "view" documents that reference databases from ALL THREE WORLDS by health application area. For example, `domains/mental-cognitive.md` references:
-- World 1: PGC psychiatric GWAS, neuroimaging genetics
-- World 2: Adaptogenic herbs, nootropic compounds
-- World 3: Omega-3s, B vitamins, gut-brain nutrients
+**Key Insight:** Domain files are "view" documents that reference databases from multiple categories by health application area. For example, `domains/mental-cognitive.md` references:
+- Genetics: PGC psychiatric GWAS, neuroimaging genetics
+- Traditional: Adaptogenic herbs, nootropic compounds
+- Nutrition: Omega-3s, B vitamins, gut-brain nutrients
 
 ---
 
 ## Cross-Domain Considerations
 
-Many biological processes span multiple domains:
+Many biological processes span domains:
 
 | Process | Affected Domains |
 |---------|------------------|
@@ -302,10 +302,9 @@ parent: ../_index.md
 last_updated: 2026-01-22
 status: migrated
 tags: [category, subcategory, keywords]
-world: 1 | 2 | 3 | null    # THREE WORLDS assignment
 tier: 1 | 2 | 3             # Implementation priority
-category: genetics | traditional | nutrition
-subcategory: tcm | ayurveda  # World 2 only
+category: genetics | traditional | nutrition | shared
+subcategory: tcm | ayurveda  # Traditional only
 ---
 ```
 
@@ -315,7 +314,7 @@ subcategory: tcm | ayurveda  # World 2 only
 
 ### Hub Identifiers
 
-Cross-world integration uses standardized hub identifiers:
+Cross-category integration uses standardized hub identifiers:
 
 | Entity Type | Hub Identifier | Coverage |
 |-------------|----------------|----------|
@@ -332,9 +331,9 @@ Cross-world integration uses standardized hub identifiers:
 │                    INTEGRATION PIPELINE                          │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                  │
-│  WORLD 1               WORLD 2               WORLD 3            │
-│  Genetics              Traditional           Nutrition          │
-│     │                  Medicine                 │               │
+│  GENETICS              TRADITIONAL           NUTRITION          │
+│                        MEDICINE                                  │
+│     │                     │                     │               │
 │     │                     │                     │               │
 │     ▼                     ▼                     ▼               │
 │  ┌─────┐              ┌─────┐              ┌─────┐             │
@@ -384,14 +383,14 @@ Cross-world integration uses standardized hub identifiers:
 | **Comprehensive** | 200 GB | 400 GB | 30 GB | ~650 GB |
 | **Full (with gnomAD)** | 700 GB | 1.4 TB | 120 GB | ~2.2 TB |
 
-### By World
+### By Category
 
-| World | Key Sources | Estimated Size |
-|-------|-------------|----------------|
-| World 1 | gnomAD, dbSNP, ClinVar | 500 GB - 1.5 TB |
-| World 2 | BATMAN-TCM, IMPPAT, HERB | 5 - 10 GB |
-| World 3 | FooDB, USDA, HMDB | 10 - 20 GB |
-| Cross-World | PubMed, Reactome, COCONUT | 100 - 500 GB |
+| Category | Key Sources | Estimated Size |
+|----------|-------------|----------------|
+| Genetics | gnomAD, dbSNP, ClinVar | 500 GB - 1.5 TB |
+| Traditional | BATMAN-TCM, IMPPAT, HERB | 5 - 10 GB |
+| Nutrition | FooDB, USDA, HMDB | 10 - 20 GB |
+| Shared | PubMed, Reactome, COCONUT | 100 - 500 GB |
 
 ---
 
@@ -430,13 +429,13 @@ Cross-world integration uses standardized hub identifiers:
 | `research/` | 5 | Research priorities |
 | **TOTAL** | **116** | |
 
-### World Assignment Quick Guide
+### Category Assignment Quick Guide
 
 ```
-world: 1  → databases/genetics/
-world: 2  → databases/traditional/
-world: 3  → databases/nutrition/
-world: null → databases/pathways/, literature/, compounds/
+category: genetics    → databases/genetics/
+category: traditional → databases/traditional/
+category: nutrition   → databases/nutrition/
+category: shared      → databases/pathways/, literature/, compounds/
 ```
 
 ### Implementation Tiers

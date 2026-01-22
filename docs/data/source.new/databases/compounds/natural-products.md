@@ -1,8 +1,7 @@
 ---
 id: compounds-natural-products
 title: Natural Products Databases
-world: null
-category: compounds
+category: shared
 subcategory: natural-products
 tier: 1
 parent: ../_index.md

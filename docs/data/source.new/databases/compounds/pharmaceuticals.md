@@ -1,8 +1,7 @@
 ---
 id: compounds-pharmaceuticals
 title: Pharmaceutical Databases
-world: null
-category: compounds
+category: shared
 subcategory: pharmaceuticals
 tier: 1
 parent: ../_index.md

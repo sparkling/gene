@@ -1,7 +1,6 @@
 ---
 id: traditional-tcm
 title: Traditional Chinese Medicine (TCM) Databases
-world: 2
 category: traditional
 tier: 1
 subcategory: tcm
