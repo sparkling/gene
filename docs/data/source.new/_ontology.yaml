@@ -1,0 +1,249 @@
+# Data Source Ontology
+# Defines the semantic structure and relationships for the Gene Platform data catalog
+
+version: 2.0.0
+last_updated: 2026-01-22
+
+# THREE WORLDS Hierarchy
+worlds:
+  - id: world_1_genetics
+    name: Genetics
+    description: Modern genomic and molecular biology data
+    color: "#4A90E2"
+    icon: "dna"
+    domains:
+      - genomics
+      - proteomics
+      - transcriptomics
+      - metabolomics
+      - clinical_genetics
+
+  - id: world_2_traditional
+    name: Traditional Medicine
+    description: Time-tested healing knowledge from diverse cultures
+    color: "#7ED321"
+    icon: "leaf"
+    domains:
+      - tcm
+      - ayurveda
+      - ethnobotany
+      - traditional_diagnostics
+      - herbal_medicine
+
+  - id: world_3_nutrition
+    name: Nutrition
+    description: Evidence-based nutritional science
+    color: "#F5A623"
+    icon: "apple"
+    domains:
+      - nutrigenomics
+      - dietary_patterns
+      - nutrient_composition
+      - food_interactions
+      - metabolic_nutrition
+
+# Entity Types
+entity_types:
+  - id: database
+    name: Database
+    description: A structured collection of related data
+    attributes:
+      - id
+      - name
+      - description
+      - url
+      - access_type
+      - license
+      - update_frequency
+      - tier
+      - categories
+      - world_affinity
+
+  - id: herb
+    name: Herb
+    description: A plant or plant part used for medicinal purposes
+    attributes:
+      - scientific_name
+      - common_names
+      - traditional_uses
+      - active_compounds
+      - contraindications
+      - evidence_level
+
+  - id: compound
+    name: Compound
+    description: A chemical substance with defined molecular structure
+    attributes:
+      - compound_id
+      - iupac_name
+      - molecular_formula
+      - molecular_weight
+      - structure
+      - bioactivity
+      - sources
+
+  - id: target
+    name: Molecular Target
+    description: A biological molecule (protein, gene, pathway) that can be modulated
+    attributes:
+      - target_id
+      - gene_symbol
+      - protein_name
+      - function
+      - pathways
+      - therapeutic_relevance
+
+  - id: disease
+    name: Disease
+    description: A pathological condition with defined characteristics
+    attributes:
+      - disease_id
+      - icd_code
+      - name
+      - description
+      - genetic_associations
+      - traditional_indications
+      - nutritional_factors
+
+  - id: pathway
+    name: Biological Pathway
+    description: A series of molecular interactions leading to a biological outcome
+    attributes:
+      - pathway_id
+      - pathway_name
+      - components
+      - regulation
+      - disease_associations
+
+# Relationship Types
+relationship_types:
+  - id: contains
+    name: Contains
+    description: One entity encompasses or includes another
+    directionality: directed
+    inverse: contained_by
+    examples:
+      - "Database contains Compounds"
+      - "Herb contains Bioactive Compounds"
+
+  - id: overlaps
+    name: Overlaps
+    description: Two entities share common elements or domains
+    directionality: undirected
+    examples:
+      - "Nutrition Database overlaps with Metabolomics Database"
+      - "TCM Database overlaps with Compound Database"
+
+  - id: references
+    name: References
+    description: One entity cites or points to another
+    directionality: directed
+    inverse: referenced_by
+    examples:
+      - "Research Priority references Databases"
+      - "Integration Workflow references Schemas"
+
+  - id: depends_on
+    name: Depends On
+    description: One entity requires another for functionality
+    directionality: directed
+    inverse: required_by
+    examples:
+      - "Integration Workflow depends on Database Downloads"
+      - "Domain View depends on Multiple Databases"
+
+  - id: modulates
+    name: Modulates
+    description: One entity affects the activity or expression of another
+    directionality: directed
+    inverse: modulated_by
+    examples:
+      - "Compound modulates Protein Target"
+      - "Nutrient modulates Gene Expression"
+
+  - id: associated_with
+    name: Associated With
+    description: Statistical or observational correlation between entities
+    directionality: undirected
+    examples:
+      - "Gene Variant associated with Disease"
+      - "Dietary Pattern associated with Health Outcome"
+
+# Cross-World Relationships
+cross_world_bridges:
+  - name: Genetic-Traditional Bridge
+    description: Connections between genomic data and traditional medicine
+    examples:
+      - "Gene polymorphisms explaining traditional constitution types"
+      - "Molecular targets of traditional herbs"
+      - "Genetic factors in herb response variation"
+
+  - name: Genetic-Nutrition Bridge
+    description: Connections between genomic data and nutritional science
+    examples:
+      - "Nutrigenomic interactions"
+      - "Genetic variants affecting nutrient metabolism"
+      - "Personalized dietary recommendations based on genotype"
+
+  - name: Traditional-Nutrition Bridge
+    description: Connections between traditional medicine and nutrition
+    examples:
+      - "Traditional food medicines"
+      - "Dietary therapy in traditional systems"
+      - "Nutrient profiles of medicinal herbs"
+
+# Data Quality Tiers
+quality_tiers:
+  - id: tier_1
+    name: Tier 1 - Gold Standard
+    description: Highly curated, expert-reviewed, regularly updated
+    criteria:
+      - Expert curation
+      - Regular updates (quarterly or better)
+      - High citation impact
+      - Open or institutional access
+      - Comprehensive documentation
+
+  - id: tier_2
+    name: Tier 2 - Reliable
+    description: Well-maintained, peer-reviewed, good documentation
+    criteria:
+      - Peer-reviewed content
+      - Annual updates
+      - Good documentation
+      - Accessible (may require registration)
+
+  - id: tier_3
+    name: Tier 3 - Supplementary
+    description: Useful but may have limitations in scope or currency
+    criteria:
+      - Basic documentation
+      - Irregular updates
+      - Limited scope
+      - May have access restrictions
+
+# Categories (Cross-Cutting Themes)
+categories:
+  - id: genomics
+    name: Genomics
+    description: Genome-wide data and analysis
+
+  - id: clinical
+    name: Clinical
+    description: Patient-derived or clinically relevant data
+
+  - id: pharmacology
+    name: Pharmacology
+    description: Drug and therapeutic agent information
+
+  - id: ethnobotany
+    name: Ethnobotany
+    description: Traditional plant use and knowledge
+
+  - id: biochemistry
+    name: Biochemistry
+    description: Molecular structures and reactions
+
+  - id: systems_biology
+    name: Systems Biology
+    description: Integrated pathway and network data

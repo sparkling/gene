@@ -4,13 +4,13 @@
 **Status:** Final
 **Owner:** Data Engineering
 **Last Updated:** January 2026
-**Version:** 2.0
+**Version:** 2.1
 
 ---
 
 ## TL;DR
 
-The platform integrates data from THREE WORLDS: Modern Genetics (1.2B+ SNPs), Traditional Medicine (100K+ compounds across TCM, Ayurveda, Kampo, Western Herbal), and Nutritional Science (380K+ foods). **250+ databases cataloged** across 26 specialized documents covering genetics, traditional medicine, interventions, health domains, pathways, literature, and technical integration. This document serves as the master index; see detailed files in [`data-sources/`](../../data/source/) for complete database catalogs.
+The platform integrates data from THREE WORLDS: Modern Genetics (1.2B+ SNPs), Traditional Medicine (100K+ compounds across TCM, Ayurveda, Kampo, Western Herbal), and Nutritional Science (380K+ foods). **256+ databases cataloged** across 45 specialized documents covering genetics, traditional medicine, interventions, health domains, pathways, literature, and technical integration. This document serves as the master index; see detailed files in [`data-sources/`](../../data/source/) for complete database catalogs.
 
 ---
 
@@ -20,58 +20,58 @@ The platform integrates data from THREE WORLDS: Modern Genetics (1.2B+ SNPs), Tr
 
 | Doc | Title | Databases | Size |
 |-----|-------|-----------|------|
-| [43-11](../../data/source/genetics/PRIMARY.md) | **Genetics Primary** | Population, functional annotation, epigenetics, structural variants, 30 total | 28KB |
+| [43-11](../../data/source/genetics/primary.md) | **Genetics Primary** | Population, functional annotation, epigenetics, structural variants, 30 total | 28KB |
 
 ### Traditional Medicine (World 2)
 
 | Doc | Title | Databases | Size |
 |-----|-------|-----------|------|
-| [43-21](../../data/source/traditional/TCM.md) | **TCM** | BATMAN-TCM, HERB, SymMap, TCMBank, 20 total | 27KB |
-| [43-22](../../data/source/traditional/AYURVEDA.md) | **Ayurveda** | IMPPAT, OSADHI, GRAYU, TKDL, 16 total | 22KB |
-| [43-23](../../data/source/traditional/KAMPO.md) | **Kampo** | KampoDB, STORK, TM-MC, 15+ total | 22KB |
-| [43-24](../../data/source/traditional/WESTERN-HERBAL.md) | **Western Herbal** | DSLD, Dr. Duke's, EMA, 27 total | 27KB |
-| [43-25](../../data/source/traditional/GLOBAL.md) | **Global Traditional** | African, Latin American medicine, 15 total | 18KB |
+| [43-21](../../data/source/traditional/tcm.md) | **TCM** | BATMAN-TCM, HERB, SymMap, TCMBank, 20 total | 27KB |
+| [43-22](../../data/source/traditional/ayurveda.md) | **Ayurveda** | IMPPAT, OSADHI, GRAYU, TKDL, 16 total | 22KB |
+| [43-23](../../data/source/traditional/kampo.md) | **Kampo** | KampoDB, STORK, TM-MC, 15+ total | 22KB |
+| [43-24](../../data/source/traditional/western-herbal.md) | **Western Herbal** | DSLD, Dr. Duke's, EMA, 27 total | 27KB |
+| [43-25](../../data/source/traditional/global.md) | **Global Traditional** | African, Latin American medicine, 15 total | 18KB |
 
 ### Interventions (Cross-World)
 
 | Doc | Title | Databases | Size |
 |-----|-------|-----------|------|
-| [43-51](../../data/source/compounds/PHARMACEUTICALS.md) | **Pharmaceuticals** | PharmGKB, CPIC, DrugBank, ChEMBL, 22 total | 27KB |
-| [43-52](../../data/source/compounds/NATURAL-PRODUCTS.md) | **Natural Products** | COCONUT, LOTUS, NPASS, NPAtlas | 28KB |
-| [43-53](../../data/source/compounds/DRUG-METABOLISM.md) | **Drug Metabolism** | CYP450, drug interactions, transporters, 21 total | 24KB |
+| [43-51](../../data/source/compounds/pharmaceuticals.md) | **Pharmaceuticals** | PharmGKB, CPIC, DrugBank, ChEMBL, 22 total | 27KB |
+| [43-52](../../data/source/compounds/natural-products.md) | **Natural Products** | COCONUT, LOTUS, NPASS, NPAtlas | 28KB |
+| [43-53](../../data/source/compounds/drug-metabolism.md) | **Drug Metabolism** | CYP450, drug interactions, transporters, 21 total | 24KB |
 
 ### Health Domains
 
 | Doc | Title | Focus | Size |
 |-----|-------|-------|------|
-| [43-71](../../data/source/diseases/MENTAL-COGNITIVE.md) | **Mental-Cognitive** | Psychiatry, neurology, cognition | 25KB |
-| [43-72](../../data/source/diseases/CARDIO-METABOLIC.md) | **Cardio-Metabolic** | Heart, diabetes, metabolic | 17KB |
-| [43-73](../../data/source/diseases/CANCER-ONCOLOGY.md) | **Cancer-Oncology** | COSMIC, cBioPortal, OncoKB | 15KB |
-| [43-74](../../data/source/diseases/AUTOIMMUNE.md) | **Autoimmune** | Autoimmune, hormones | 21KB |
-| [43-75](../../data/source/diseases/RARE.md) | **Rare Diseases** | Orphanet, OMIM, HPO | 18KB |
-| [43-76](../../data/source/diseases/WOMENS-PEDIATRIC.md) | **Women's-Pediatric** | Reproductive, pediatric | 24KB |
-| [43-77](../../data/source/diseases/MICROBIOME.md) | **Microbiome** | Gut, oral, skin microbiome | 15KB |
-| [43-78](../../data/source/diseases/ALLERGY-PAIN.md) | **Allergy-Pain** | Allergy, histamine, mast cell, pain | 25KB |
-| [43-79](../../data/source/diseases/SLEEP-LONGEVITY-NUTRI.md) | **Sleep-Longevity-Nutri** | Circadian, aging, nutrigenomics, 30 total | 22KB |
+| [43-71](../../data/source/diseases/mental-cognitive.md) | **Mental-Cognitive** | Psychiatry, neurology, cognition | 25KB |
+| [43-72](../../data/source/diseases/cardio-metabolic.md) | **Cardio-Metabolic** | Heart, diabetes, metabolic | 17KB |
+| [43-73](../../data/source/diseases/cancer-oncology.md) | **Cancer-Oncology** | COSMIC, cBioPortal, OncoKB | 15KB |
+| [43-74](../../data/source/diseases/autoimmune.md) | **Autoimmune** | Autoimmune, hormones | 21KB |
+| [43-75](../../data/source/diseases/rare.md) | **Rare Diseases** | Orphanet, OMIM, HPO | 18KB |
+| [43-76](../../data/source/diseases/womens-pediatric.md) | **Women's-Pediatric** | Reproductive, pediatric | 24KB |
+| [43-77](../../data/source/diseases/microbiome.md) | **Microbiome** | Gut, oral, skin microbiome | 15KB |
+| [43-78](../../data/source/diseases/allergy-pain.md) | **Allergy-Pain** | Allergy, histamine, mast cell, pain | 25KB |
+| [43-79](../../data/source/diseases/sleep-longevity-nutri.md) | **Sleep-Longevity-Nutri** | Circadian, aging, nutrigenomics, 30 total | 22KB |
 
 ### Pathways & Literature
 
 | Doc | Title | Content | Size |
 |-----|-------|---------|------|
-| [43-41](../../data/source/pathways/PRIMARY.md) | **Pathways Primary** | Reactome, WikiPathways, KEGG | 23KB |
-| [43-43](../../data/source/pathways/DISEASE.md) | **Disease Pathways** | DisGeNET, OMIM, HPO | 16KB |
-| [43-61](../../data/source/literature/SOURCES.md) | **Literature** | PubMed, PMC, OpenAlex | 19KB |
+| [43-41](../../data/source/pathways/primary.md) | **Pathways Primary** | Reactome, WikiPathways, KEGG | 23KB |
+| [43-43](../../data/source/pathways/disease.md) | **Disease Pathways** | DisGeNET, OMIM, HPO | 16KB |
+| [43-61](../../data/source/literature/sources.md) | **Literature** | PubMed, PMC, OpenAlex | 19KB |
 
 ### Integration & Technical
 
 | Doc | Title | Content | Size |
 |-----|-------|---------|------|
-| [43-81](../../data/source/clinical/BIOMARKERS-LABS.md) | **Biomarkers-Labs** | Lab standards, biomarker databases, 21 total | 22KB |
-| [43-83](../../data/source/clinical/ENVIRONMENTAL-MITO.md) | **Environmental-Mito** | Toxicogenomics, mitochondrial, 14 total | 18KB |
-| [43-84](../../data/source/integration/WIKIPEDIA-WIKIDATA.md) | **Wikipedia-Wikidata** | Semantic web, Wikidata extraction | 20KB |
-| [43-85](../../data/source/integration/ALT-SOURCES.md) | **Alt Data Sources** | Alternative access methods, 15 sources | 16KB |
+| [43-81](../../data/source/clinical/biomarkers-labs.md) | **Biomarkers-Labs** | Lab standards, biomarker databases, 21 total | 22KB |
+| [43-83](../../data/source/clinical/environmental-mito.md) | **Environmental-Mito** | Toxicogenomics, mitochondrial, 14 total | 18KB |
+| [43-84](../../data/source/integration/wikipedia-wikidata.md) | **Wikipedia-Wikidata** | Semantic web, Wikidata extraction | 20KB |
+| [43-85](../../data/source/integration/alt-sources.md) | **Alt Data Sources** | Alternative access methods, 15 sources | 16KB |
 
-**Full Index:** [data-sources/43-00-INDEX.md](../../data/source/INDEX.md)
+**Full Index:** [data-sources/43-00-INDEX.md](../../data/source/index.md)
 
 ---
 
@@ -81,7 +81,7 @@ The platform integrates data from THREE WORLDS: Modern Genetics (1.2B+ SNPs), Tr
 |----------|--------|-----------|------|
 | Primary nutrition source | USDA FoodData Central | CC0 license, 380K foods, research-grade | Jan 2026 |
 | Genetics priority | dbSNP + ClinVar + PharmGKB | Foundational, well-maintained, free | Jan 2026 |
-| Traditional medicine approach | TCMSP + IMPPAT + KampoDB | Only comprehensive open sources available | Jan 2026 |
+| Traditional medicine approach | BATMAN-TCM 2.0 + IMPPAT + KampoDB | Best API access, largest target predictions, updated data | Jan 2026 |
 | No homeopathy | Excluded | Lacks evidence basis | Jan 2026 |
 
 ---
@@ -160,7 +160,18 @@ The platform integrates data from THREE WORLDS: Modern Genetics (1.2B+ SNPs), Tr
 
 ### TCM (Traditional Chinese Medicine)
 
-#### TCMSP (TCM Systems Pharmacology)
+#### BATMAN-TCM 2.0 (Primary TCM Source)
+| Field | Value |
+|-------|-------|
+| **URL** | http://bionet.ncpsb.org.cn/batman-tcm/ |
+| **Content** | Formulas, herbs, ingredients, target interactions |
+| **Records** | 54,832 formulas, 8,404 herbs, 39,171 ingredients, 2.3M TTIs |
+| **License** | CC BY-NC 4.0 (contact for commercial) |
+| **API** | REST API available |
+| **Update Frequency** | 2023 release |
+| **Priority** | Tier 1 (MVP) |
+
+#### TCMSP (Legacy - Superseded by BATMAN-TCM 2.0)
 | Field | Value |
 |-------|-------|
 | **URL** | https://old.tcmsp-e.com/tcmsp.php |
@@ -169,7 +180,9 @@ The platform integrates data from THREE WORLDS: Modern Genetics (1.2B+ SNPs), Tr
 | **License** | Academic/Research use |
 | **API** | Web scraping required |
 | **Update Frequency** | Static (2014) |
-| **Priority** | Tier 2 |
+| **Priority** | Tier 3 (legacy reference only) |
+
+**Note:** TCMSP is outdated. Use BATMAN-TCM 2.0 for current data.
 
 #### HERB Database
 | Field | Value |
@@ -354,29 +367,35 @@ The platform integrates knowledge across 10 domains:
 | dbSNP | Genetics | 1B+ SNPs | Public Domain | Ready |
 | ClinVar | Genetics | 2M+ variants | Public Domain | Ready |
 | PharmGKB | Genetics | 700+ drugs | CC BY-SA 4.0 | Ready |
+| **CPIC** | Genetics | 164 drugs w/guidelines | CC0 | Ready |
 | SNPedia | Genetics | 100K+ SNPs | CC BY-NC-SA | Ready |
 | Reactome | Pathways | 2,600+ pathways | CC0 | Ready |
 | WikiPathways | Pathways | 3,000+ pathways | CC0 | Ready |
+| **BATMAN-TCM 2.0** | TCM | 54K formulas, 2.3M TTIs | CC BY-NC 4.0 | Ready |
+| **ChEMBL** | Pharma | 2.8M compounds | Open Access | Ready |
 
 ### Tier 2: Post-MVP (Months 5-8)
 
 | Source | World | Records | License | Status |
 |--------|-------|---------|---------|--------|
-| TCMSP | TCM | 500+ herbs | Academic | Needs scraping |
-| IMPPAT | Ayurveda | 1,700 plants | Academic | Ready |
-| KampoDB | Kampo | 50+ formulas | Academic | Ready |
-| HERB | TCM | 12K+ targets | Academic | Ready |
+| IMPPAT | Ayurveda | 4,010 plants, 17K compounds | CC BY 4.0 | Ready |
+| KampoDB | Kampo | 298 formulas, 63K targets | CC BY-SA 4.0 | Ready |
+| HERB 2.0 | TCM | 7K herbs, 12K+ targets | Academic | Ready |
 | Open Food Facts | Nutrition | 2.8M products | ODbL | Ready |
-| DSLD | Supplements | 140K labels | Public | Ready |
+| DSLD | Supplements | 200K+ labels | CC0 | Ready |
+| **COCONUT** | Natural Products | 695K compounds | CC0 | Ready |
+| **LOTUS** | Natural Products | 750K+ compound-organism pairs | CC0 | Ready |
+| **DrugBank** | Pharma | 15K+ drugs | Academic free | License needed |
 
 ### Tier 3: Future (Months 9+)
 
 | Source | World | Notes |
 |--------|-------|-------|
 | KEGG | Pathways | Academic license review needed |
-| DrugBank | Pharma | Commercial license needed |
 | OMIM | Genetics | Subscription required |
 | NAPRALERT | Herbal | Subscription required |
+| TCMSP | TCM | Legacy - superseded by BATMAN-TCM 2.0 |
+| NPAtlas | Natural Products | 36K microbial compounds, CC BY 4.0 |
 
 ---
 
@@ -400,7 +419,7 @@ The platform integrates knowledge across 10 domains:
 | [44-ARCHITECTURE](./44-architecture.md) | Informs database design |
 | [45-DATA-MODEL](./45-data-model.md) | Informs entity structure |
 | [42-ROADMAP](./42-roadmap.md) | Informed by integration priority |
-| [data-sources/43-00-INDEX.md](../../data/source/INDEX.md) | Detailed navigation index |
+| [data-sources/43-00-INDEX.md](../../data/source/index.md) | Detailed navigation index |
 
 ---
 
@@ -419,3 +438,4 @@ The platform integrates knowledge across 10 domains:
 |---------|------|--------|---------|
 | 1.0 | January 2026 | Data Engineering | Complete THREE WORLDS inventory |
 | 2.0 | January 2026 | Data Engineering | Added navigation to 17 detailed data-sources/ documents (150+ databases migrated from research.old/) |
+| 2.1 | January 2026 | Data Engineering | Harmonized with research synthesis: BATMAN-TCM 2.0 replaces TCMSP, added CPIC/ChEMBL/COCONUT/LOTUS to tier matrix, fixed 18 broken file links, updated document counts |

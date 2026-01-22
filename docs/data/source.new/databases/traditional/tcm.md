@@ -1,0 +1,921 @@
+---
+id: traditional-tcm
+title: Traditional Chinese Medicine (TCM) Databases
+world: 2
+category: traditional
+tier: 1
+subcategory: tcm
+parent: ../_index.md
+last_updated: 2026-01-22
+status: migrated
+tags: [traditional, tcm, herbs, formulas]
+---
+
+# Traditional Chinese Medicine (TCM) Databases
+
+**Document ID:** 43-21-TCM
+**Status:** Final
+**Owner:** Data Engineering
+**Last Updated:** January 2026
+**Version:** 1.0
+**Parent:** [../_index.md](../_index.md)
+
+---
+
+## TL;DR
+
+Traditional Chinese Medicine has the most extensive collection of specialized databases among all intervention categories, with 30+ databases covering herbs, formulas, compounds, targets, diseases, symptoms, and gene expression data. Priority integration targets BATMAN-TCM 2.0 (API available, 2.3M predicted interactions), HERB 2.0 (transcriptomics), and TCMSID (ADME properties, CC BY 4.0 license), with TCMBank and SymMap 2.0 as secondary priorities for comprehensive coverage.
+
+---
+
+## Key Decisions
+
+| Decision | Choice | Rationale | Date |
+|----------|--------|-----------|------|
+| Primary API source | BATMAN-TCM 2.0 | Only TCM database with REST API + bulk download | Jan 2026 |
+| Gene expression source | HERB 2.0 | Unique transcriptomic data (2,231 experiments) | Jan 2026 |
+| Commercial-friendly source | TCMSID (CC BY 4.0) | ADME properties + open license | Jan 2026 |
+| Symptom mapping | SymMap 2.0 | Bridges TCM-modern medicine phenotypes | Jan 2026 |
+| Formula coverage | ETCM v2.0 + BATMAN-TCM 2.0 | 48K + 55K formulas respectively | Jan 2026 |
+| Clinical evidence | CMAUP 2024 + HERB 2.0 | 691 + 8,558 clinical trials | Jan 2026 |
+
+---
+
+## Database Catalog
+
+### 1. BATMAN-TCM 2.0 (Bioinformatics Analysis Tool for Molecular mechANism of TCM)
+
+| Field | Value |
+|-------|-------|
+| **URL** | http://bionet.ncpsb.org.cn/batman-tcm/ |
+| **Maintainer** | National Center for Protein Sciences Beijing |
+| **Content** | Formulas, herbs, ingredients, known/predicted target interactions |
+| **Records** | 54,832 formulas, 8,404 herbs, 39,171 ingredients, 17,068 known TTIs, 2,319,272 predicted TTIs |
+| **License** | CC BY-NC 4.0 (non-commercial); contact for commercial |
+| **API** | REST API available; bidirectional query support |
+| **Data Format** | Tab-delimited text files; JSON via API |
+| **Update Frequency** | BATMAN-TCM 2.0 released 2023 |
+| **Priority** | Tier 1 (MVP) |
+| **Storage Estimate** | ~5 GB (full interaction data) |
+
+**Key Features:**
+- Largest predicted target interaction dataset (ROC AUC = 0.9663)
+- Bioinformatics analysis workflow (KEGG, GO, OMIM/TTD)
+- Disease signature query capability
+- Best programmatic access among TCM databases
+
+**API Documentation:** http://bionet.ncpsb.org.cn/batman-tcm/api
+
+---
+
+### 2. HERB 2.0 (High-throughput Experiment and Reference-guided Database)
+
+| Field | Value |
+|-------|-------|
+| **URL** | http://herb.ac.cn/ |
+| **Maintainer** | Tsinghua University, China |
+| **Content** | Herbs, ingredients, targets, diseases, gene expression, clinical trials, meta-analyses |
+| **Records** | 7,263 herbs, 49,258 ingredients, 12,933 targets, 28,212 diseases, 2,231 high-throughput experiments, 8,558 clinical trials, 8,032 meta-analyses |
+| **License** | Academic use |
+| **API** | No REST API; probe2gene script downloadable |
+| **Data Format** | Gene expression matrices; web tables |
+| **Update Frequency** | HERB 2.0 released 2024 |
+| **Priority** | Tier 1 (MVP) |
+| **Storage Estimate** | ~8 GB (including expression data) |
+
+**Key Features:**
+- First TCM database with high-throughput gene expression data from GEO (2001-2024)
+- RNA-seq and microarray data integration
+- Pharmacotranscriptomics with CMap drug connections
+- Clinical evidence integration (8,558 trials, 8,032 meta-analyses)
+
+**Unique Value:** Best source for transcriptomic evidence in TCM research; enables mechanism validation.
+
+---
+
+### 3. SymMap 2.0 (Integrative Database Enhanced by Symptom Mapping)
+
+| Field | Value |
+|-------|-------|
+| **URL** | http://www.symmap.org/ and https://www.bioinfo.org/symmap |
+| **Maintainer** | Peking University, China |
+| **Content** | TCM symptoms, herbs, ingredients, targets, modern symptoms, diseases |
+| **Records** | 1,717 TCM symptoms, 499 herbs, 961 modern symptoms, 5,235 diseases, 19,595 ingredients, 4,302 targets |
+| **License** | Academic use |
+| **API** | No public REST API |
+| **Data Format** | Tab-delimited files; full/filtered sets available (P-value filtering) |
+| **Update Frequency** | SymMap 2.0 released 2020 (Chinese Pharmacopoeia edition) |
+| **Priority** | Tier 1 (MVP) |
+| **Storage Estimate** | ~500 MB |
+
+**Key Features:**
+- Expert-curated symptom mapping (17 TCM experts)
+- Heterogeneous network: 32,281 nodes, 403,318 edges
+- Bridges TCM symptoms to modern medicine disease classifications
+- Bulk download with P-value filtering options
+
+**Unique Value:** Only database systematically mapping TCM symptoms to modern medicine phenotypes.
+
+---
+
+### 4. ETCM v2.0 (Encyclopedia of Traditional Chinese Medicine)
+
+| Field | Value |
+|-------|-------|
+| **URL** | http://www.tcmip.cn/ETCM2/front/#/ |
+| **Maintainer** | Institute of Chinese Materia Medica, China Academy of Chinese Medical Sciences |
+| **Content** | Formulas, Chinese patent drugs, herbs, ingredients, targets, diseases |
+| **Records** | 48,442 TCM formulas, 9,872 Chinese patent drugs, 2,079 medicinal materials, 38,298 ingredients, 1,040 targets, 8,045 diseases |
+| **License** | Academic use |
+| **API** | No public API; downloadable knowledge graphs |
+| **Data Format** | Network visualization; downloadable graphs |
+| **Update Frequency** | ETCM v2.0 released 2023 |
+| **Priority** | Tier 2 |
+| **Storage Estimate** | ~2 GB |
+
+**Key Features:**
+- Largest formula database (48,442 formulas from ancient Chinese medical books)
+- 9,872 modern Chinese patent drugs
+- JavaScript network visualization tool
+- 2D ligand similarity-based target identification
+- Binding activity data for targets
+
+**Unique Value:** Comprehensive ancient formula coverage plus modern patent drug integration.
+
+---
+
+### 5. TCMBank
+
+| Field | Value |
+|-------|-------|
+| **URL** | https://tcmbank.cn/ |
+| **Maintainer** | China Medical University, Taiwan (extended from TCM Database@Taiwan) |
+| **Content** | Herbs, ingredients, targets, diseases, deep learning predictions |
+| **Records** | 9,192 herbs, 61,966 ingredients, 15,179 targets, 32,529 diseases |
+| **License** | CC BY 4.0 (allows commercial use with attribution) |
+| **API** | Not documented |
+| **Data Format** | Downloadable datasets; web interface |
+| **Update Frequency** | 2024 (integrated into TCMM) |
+| **Priority** | Tier 1 (MVP) |
+| **Storage Estimate** | ~3 GB |
+
+**Key Features:**
+- Largest herb-ingredient-target-disease mapping
+- Deep learning for Chinese-Western medicine exclusion prediction
+- Graph neural networks for functional group extraction
+- Causal learning for interaction prediction
+
+**Unique Value:** Uses ML/DL for drug-drug interaction and adverse effect prediction.
+
+---
+
+### 6. TCMID 2.0 (Traditional Chinese Medicine Integrated Database)
+
+| Field | Value |
+|-------|-------|
+| **URL** | http://www.megabionet.org/tcmid/ |
+| **Maintainer** | Megabionet, China |
+| **Content** | Prescriptions, herbs, ingredients, targets, diseases, drugs |
+| **Records** | 49,000 prescriptions, 8,159 herbs, 25,210 ingredients, 17,521 targets, 3,791 diseases, 6,828 drugs |
+| **License** | Academic use; contact for commercial |
+| **API** | No documented public API |
+| **Data Format** | Web tables; linked to DrugBank, OMIM, PubChem |
+| **Update Frequency** | TCMID 2.0 released 2017 |
+| **Priority** | Tier 2 |
+| **Storage Estimate** | ~2 GB |
+
+**Key Features:**
+- Six interconnected data parts: prescriptions, herbs, ingredients, diseases, drugs, targets
+- 778 herbal mass spectrometry spectra (170 herbs)
+- Text-mining integrated data
+- Links to DrugBank, OMIM, PubChem
+
+**Unique Value:** Contains herbal MS spectra showing quality variation data.
+
+---
+
+### 7. YaTCM (Yet another Traditional Chinese Medicine)
+
+| Field | Value |
+|-------|-------|
+| **URL** | http://cadd.pharmacy.nankai.edu.cn/yatcm/home |
+| **Maintainer** | Nankai University, China |
+| **Content** | Prescriptions, herbs, ingredients, targets, pathways, diseases |
+| **Records** | 47,696 compounds, 6,220 herbs, 18,697 targets, 390 pathways |
+| **License** | Free for academic use |
+| **API** | No REST API; web analysis tools |
+| **Data Format** | Web tables; network visualization |
+| **Update Frequency** | Active |
+| **Priority** | Tier 2 |
+| **Storage Estimate** | ~1.5 GB |
+
+**Key Features:**
+- 50 ADME properties per compound
+- Multi-voting chemical similarity ensemble approach for target prediction
+- Similarity search, substructure search
+- Pathway analysis and network pharmacology tools
+
+**Unique Value:** Comprehensive ADME property predictions (50 properties per compound).
+
+---
+
+### 8. HIT 2.0 (Herbal Ingredients' Targets)
+
+| Field | Value |
+|-------|-------|
+| **URL** | http://hit.cnu.edu.cn/ |
+| **Maintainer** | Capital Normal University, Beijing |
+| **Content** | Herbs, ingredients, experimentally validated targets |
+| **Records** | 1,250+ herbs, 1,237 ingredients, 2,208 targets, 10,031 compound-target activity pairs |
+| **License** | Academic use |
+| **API** | No public API |
+| **Data Format** | Web tables with quality indicators |
+| **Update Frequency** | Curated from 2000-2020 literature |
+| **Priority** | Tier 2 |
+| **Storage Estimate** | ~200 MB |
+
+**Key Features:**
+- Manually curated from literature (2000-2020)
+- Quality indicators for each interaction
+- Activity type classification: direct/indirect, activated/inhibited
+- Experimental validation focus
+
+**Unique Value:** Gold standard for experimentally validated interactions (use for validation).
+
+---
+
+### 9. TCMSP (TCM Systems Pharmacology Database - Legacy)
+
+| Field | Value |
+|-------|-------|
+| **URL** | https://old.tcmsp-e.com/tcmsp.php |
+| **Maintainer** | Northwest A&F University |
+| **Content** | Chinese herbs, compounds, targets, ADME properties |
+| **Records** | 500+ herbs, 30,000+ compounds, 3,000+ targets |
+| **License** | Academic/Research use |
+| **API** | Web scraping required |
+| **Data Format** | Web tables |
+| **Update Frequency** | Static (2014) |
+| **Priority** | Tier 3 (legacy reference) |
+| **Storage Estimate** | ~500 MB |
+
+**Key Features:**
+- Pioneering TCM systems pharmacology database
+- ADME property predictions
+- Drug-likeness filtering (OB, DL, Caco-2, BBB)
+
+**Note:** Legacy database; use BATMAN-TCM 2.0 or TCMBank for updated data.
+
+---
+
+### 10. CMAUP 2024 (Collective Molecular Activities of Useful Plants)
+
+| Field | Value |
+|-------|-------|
+| **URL** | https://bidd.group/CMAUP/ |
+| **Maintainer** | BIDD Group, National University of Singapore |
+| **Content** | Plants, ingredients, targets, diseases, clinical trials, drug development, transcriptomics |
+| **Records** | 7,865 plants, 60,222 ingredients, 758 targets, 1,399 diseases, 691 clinical trials, 14,516 ingredient clinical records |
+| **License** | Academic use; individual page downloads |
+| **API** | Download available; interactive world map |
+| **Data Format** | Web tables; phylogenetic tree visualization; CSV downloads |
+| **Update Frequency** | 2024 update |
+| **Priority** | Tier 1 (MVP) |
+| **Storage Estimate** | ~4 GB |
+
+**Key Features:**
+- Clinical trial integration (691 trials for 185 plants)
+- DNA barcodes for 3,949 plants
+- SwissADME/HobPre bioavailability predictions
+- Transcriptomic reversion analysis (20,027 patient samples)
+- Global coverage (153 countries)
+
+**Unique Value:** Excellent for clinical translation evidence; bridges research to clinical application.
+
+---
+
+### 11. TCMSID (Traditional Chinese Medicine Simplified Integrated Database)
+
+| Field | Value |
+|-------|-------|
+| **URL** | https://tcm.scbdd.com/ |
+| **Maintainer** | Sichuan University, China |
+| **Content** | Herbs, key ingredients, targets, ADME/T properties |
+| **Records** | 499 herbs, 20,015 ingredients, 3,270 targets |
+| **License** | CC BY 4.0 (allows commercial use) |
+| **API** | Web interface; simplification tools |
+| **Data Format** | Web tables |
+| **Update Frequency** | Active |
+| **Priority** | Tier 1 (MVP) |
+| **Storage Estimate** | ~300 MB |
+
+**Key Features:**
+- 14 ADME/T properties per compound
+- Structural reliability scores
+- Multi-tool target prediction
+- Unique simplification function to extract key pharmacologically active ingredients
+
+**Unique Value:** Commercial-friendly license (CC BY 4.0) + ADME/T properties.
+
+---
+
+### 12. TCMM (Traditional Chinese Medicine Modernization)
+
+| Field | Value |
+|-------|-------|
+| **URL** | https://www.tcmm.net.cn/ |
+| **Maintainer** | Peng Cheng Laboratory, Shenzhen |
+| **Content** | 20 types of TCM concepts with 46 biological relations |
+| **Records** | 3,447,023 records; integrates TCMBank, CPMCP, SymMap, PharMeBINet, PrimeKG |
+| **License** | CC BY (open access article) |
+| **API** | Contact authors for complete data |
+| **Data Format** | Knowledge graph; web interface |
+| **Update Frequency** | April 2024 |
+| **Priority** | Tier 2 |
+| **Storage Estimate** | ~10 GB (full knowledge graph) |
+
+**Key Features:**
+- Largest unified TCM modernization database (3.4M+ records)
+- Rx Gen module for prescription generation
+- GPT-based symptom descriptions
+- Unified schema across prescriptions, symptoms, herbs, ingredients, targets, diseases
+
+**Unique Value:** Newest comprehensive database bridging TCM theory with modern medicine.
+
+---
+
+### 13. TCM Database@Taiwan
+
+| Field | Value |
+|-------|-------|
+| **URL** | http://tcm.cmu.edu.tw/ |
+| **Maintainer** | China Medical University, Taiwan |
+| **Content** | Herbs, compounds with 2D/3D structures |
+| **Records** | 453 herbs, ~20,000+ compounds |
+| **License** | CC BY (allows commercial use) |
+| **API** | Structure downloads |
+| **Data Format** | CDX (2D) and Tripos mol2 (3D) formats |
+| **Update Frequency** | Established 2011 |
+| **Priority** | Tier 3 |
+| **Storage Estimate** | ~1 GB (structures) |
+
+**Key Features:**
+- First large-scale TCM database (2011)
+- CADD-ready structures
+- Included in ZINC database
+- Virtual screening ready
+
+**Note:** Precursor to TCMBank; use TCMBank for updated data.
+
+---
+
+### 14. TCM-Mesh
+
+| Field | Value |
+|-------|-------|
+| **URL** | http://mesh.tcm.microbioinformatics.org |
+| **Maintainer** | Microbioinformatics Lab |
+| **Content** | Herbs, compounds, genes, diseases, side effects, toxicity |
+| **Records** | 6,235 herbs, 383,840 compounds, 14,298 genes, 6,204 diseases, 163,221 side effects, 71 toxicity records |
+| **License** | Academic use |
+| **API** | No public API |
+| **Data Format** | Network visualization |
+| **Update Frequency** | Active |
+| **Priority** | Tier 2 |
+| **Storage Estimate** | ~5 GB |
+
+**Key Features:**
+- Largest compound collection (383,840 compounds)
+- Integrates TCMID, STRING, OMIM, GAD, TOXNET, SIDER
+- Toxicity data (unique among TCM databases)
+- Side effects data (163,221 records)
+
+**Unique Value:** Only TCM database with comprehensive toxicity and side effects data.
+
+---
+
+### 15. DCABM-TCM (Constituents Absorbed into Blood and Metabolites)
+
+| Field | Value |
+|-------|-------|
+| **URL** | http://bionet.ncpsb.org.cn/dcabm-tcm/ |
+| **Maintainer** | National Center for Protein Sciences Beijing |
+| **Content** | Blood-absorbed constituents (prototypes and metabolites) |
+| **Records** | 192 prescriptions, 194 herbs, 1,816 blood constituents with structures, 970 prototypes, 385 metabolites |
+| **License** | No derivatives for commercial |
+| **API** | No public API |
+| **Data Format** | Web tables; linked to PubChem |
+| **Update Frequency** | Active |
+| **Priority** | Tier 2 |
+| **Storage Estimate** | ~100 MB |
+
+**Key Features:**
+- First database of actually bioavailable TCM compounds
+- Experimental blood detection data
+- Detection conditions documented
+- ADMET associations
+
+**Unique Value:** Critical for understanding which compounds actually reach systemic circulation.
+
+---
+
+### 16. LTM-TCM (Linking Traditional Chinese Medicine with Modern Medicine)
+
+| Field | Value |
+|-------|-------|
+| **URL** | http://cloud.tasly.com/#/tcm/home |
+| **Maintainer** | Tasly Pharmaceutical Group |
+| **Content** | Symptoms, prescriptions, herbs, ingredients, targets |
+| **Records** | 1,928 symptoms, 48,126 prescriptions, 9,122 plants, 34,967 ingredients, 13,109 targets, 1,170,133 interactions |
+| **License** | Academic use |
+| **API** | No public API |
+| **Data Format** | Web tables; network visualization |
+| **Update Frequency** | Active |
+| **Priority** | Tier 3 |
+| **Storage Estimate** | ~3 GB |
+
+**Key Features:**
+- BioNLP-based interaction correction from 30M articles
+- 41,025 clinical treatment records
+- 213 ancient books integration
+- Virtual screening pipelines
+- Chinese/English interface
+
+---
+
+### 17. CPMCP (Chinese Patent Medicine and Compound Prescription)
+
+| Field | Value |
+|-------|-------|
+| **URL** | http://cpmcp.top |
+| **Maintainer** | Academic consortium |
+| **Content** | Chinese patent medicines, ancient prescriptions, symptoms |
+| **Records** | 2,279 prescriptions, 71,414 prescription-symptom associations |
+| **License** | Academic use |
+| **API** | No public API |
+| **Data Format** | MariaDB backend; React frontend |
+| **Update Frequency** | Active |
+| **Priority** | Tier 3 |
+| **Storage Estimate** | ~200 MB |
+
+**Key Features:**
+- Expert-mapped symptom vocabularies
+- Drug combination principles analysis
+- Prescription compatibility data
+
+---
+
+### 18. TCMIO (TCM on Immuno-Oncology)
+
+| Field | Value |
+|-------|-------|
+| **URL** | http://tcmio.xielab.net |
+| **Maintainer** | Xie Lab |
+| **Content** | Immuno-oncology focused: prescriptions, herbs, ingredients, IO targets |
+| **Records** | 1,493 prescriptions, 618 TCM medicines, 16,437 ingredients, 400 IO targets, 120,000+ small molecules |
+| **License** | Academic use |
+| **API** | No public API |
+| **Data Format** | Web tables; network visualization |
+| **Update Frequency** | Active |
+| **Priority** | Tier 3 |
+| **Storage Estimate** | ~500 MB |
+
+**Key Features:**
+- Bingo cheminformatics integration
+- Pathway enrichment for cancer
+- Cancer immune microenvironment focus
+
+**Unique Value:** Specialized for immuno-oncology applications.
+
+---
+
+### 19. TM-MC 2.0 (Traditional Medicine Molecular Chemistry)
+
+| Field | Value |
+|-------|-------|
+| **URL** | https://tm-mc.kr |
+| **Maintainer** | Korea Institute of Oriental Medicine |
+| **Content** | Medicinal materials from Korean/Chinese/Japanese pharmacopoeias |
+| **Records** | 635 materials, 21,306 unique compounds, 13,992 targets, 27,997 diseases, 5,075 prescriptions |
+| **License** | Free academic use |
+| **API** | SDF/JPG downloads |
+| **Data Format** | SDF (structures), JPG images |
+| **Update Frequency** | Active |
+| **Priority** | Tier 2 |
+| **Storage Estimate** | ~800 MB |
+
+**Key Features:**
+- Northeast Asian traditional medicine focus
+- ChemDraw-verified structures
+- Pharmacopoeia cross-reference (Korean, Chinese, Japanese)
+- PubMed evidence links
+
+**Unique Value:** Best for East Asian comparative pharmacopoeia research.
+
+---
+
+### 20. Additional Supporting Databases
+
+#### TCMNP (TCM Network Pharmacology)
+
+| Field | Value |
+|-------|-------|
+| **URL** | https://tcmlab.com.cn/tcmnp |
+| **Content** | Integrated network pharmacology with R package |
+| **Records** | 571 herbs, 17,118 ingredients, 10,013 diseases, 15,956 targets |
+| **License** | Open source R package |
+| **API** | R package (GitHub: tcmlab/TCMNP) |
+| **Priority** | Tier 2 |
+
+**Key Features:** R package for programmatic analysis; integrates DrugBank, ETCM, DisGeNET, OMIM.
+
+#### SuperTCM
+
+| Field | Value |
+|-------|-------|
+| **URL** | http://tcm.charite.de/supertcm |
+| **Content** | TCM drugs, species, ingredients, targets, pathways, diseases |
+| **Records** | 6,516 TCM drugs, 5,372 species, 55,772 ingredients, 543 targets |
+| **License** | Academic use |
+| **Priority** | Tier 3 |
+
+**Key Features:** Biocultural approach with historical/linguistic data.
+
+#### TCMPG 2.0 (TCM Plant Genomes)
+
+| Field | Value |
+|-------|-------|
+| **URL** | http://cbcb.cdutcm.edu.cn/TCMPG2/ |
+| **Content** | Medicinal plant genomes |
+| **Records** | 274 plants, 324 genomes, 414 herbs, 13,868 ingredients |
+| **License** | CC BY 4.0 |
+| **Priority** | Tier 3 |
+
+**Key Features:** Genomic level; Heatmap, Primer3, PlantiSMASH tools.
+
+#### IGTCM (Integrative Genome Database of TCM Plants)
+
+| Field | Value |
+|-------|-------|
+| **URL** | http://yeyn.group:96/ |
+| **Content** | TCM plant genomes, genes, proteins |
+| **Records** | 83 genomes, 3,610,350 genes, 3,534,314 proteins |
+| **License** | Academic use |
+| **Priority** | Tier 3 |
+
+---
+
+## Comparative Analysis
+
+### Coverage Comparison (Top Databases)
+
+| Database | Herbs | Ingredients | Targets | Diseases | Formulas |
+|----------|-------|-------------|---------|----------|----------|
+| TCM-Mesh | 6,235 | 383,840 | 14,298 | 6,204 | - |
+| TCMBank | 9,192 | 61,966 | 15,179 | 32,529 | - |
+| HERB 2.0 | 7,263 | 49,258 | 12,933 | 28,212 | 9 |
+| TCMID 2.0 | 8,159 | 25,210 | 17,521 | 3,791 | 49,000 |
+| YaTCM | 6,220 | 47,696 | 18,697 | - | - |
+| ETCM v2.0 | 2,079 | 38,298 | 1,040 | 8,045 | 48,442 |
+| BATMAN-TCM 2.0 | 8,404 | 39,171 | 2.3M pairs | - | 54,832 |
+| TCMSID | 499 | 20,015 | 3,270 | - | - |
+| CMAUP 2024 | 7,865 | 60,222 | 758 | 1,399 | - |
+
+### Access Methods Comparison
+
+| Database | Web UI | API | Bulk Download | Data Format |
+|----------|--------|-----|---------------|-------------|
+| BATMAN-TCM 2.0 | Yes | Yes (REST) | Yes | TSV, JSON |
+| TCMBank | Yes | No | Yes | Various |
+| HERB 2.0 | Yes | No | Partial | Gene matrices |
+| SymMap 2.0 | Yes | No | Yes | TSV with filtering |
+| TCMSID | Yes | No | Via web | Web tables |
+| ETCM v2.0 | Yes | No | Graphs only | Network files |
+| TCMNP | Yes | R package | Yes | R objects |
+| TM-MC 2.0 | Yes | No | SDF/JPG | Structures |
+| CMAUP 2024 | Yes | Download | Yes | CSV |
+
+### Licensing Summary
+
+| License Type | Databases |
+|--------------|-----------|
+| **CC BY 4.0** (Commercial OK) | TCMBank, TCMPG 2.0, TCMSID, TCM Database@Taiwan |
+| **CC BY-NC 4.0** (Non-commercial) | BATMAN-TCM 2.0, DCABM-TCM |
+| **CC BY** (Open access) | TCMM |
+| **Academic Use** | HERB, YaTCM, SymMap, ETCM, TCMID, HIT, CMAUP, most others |
+
+### Unique Features by Database
+
+| Feature | Best Database(s) |
+|---------|-----------------|
+| **API Access** | BATMAN-TCM 2.0 (REST), TCMNP (R package) |
+| **ADME Properties** | TCMSID (14 ADME/T), YaTCM (50 properties) |
+| **Gene Expression** | HERB 2.0 (2,231 experiments), ITCM |
+| **Target Prediction** | BATMAN-TCM 2.0 (2.3M predictions, AUC=0.97) |
+| **Clinical Trials** | CMAUP 2024 (691 trials), HERB 2.0 (8,558 trials) |
+| **Symptom Mapping** | SymMap 2.0 (1,717 TCM symptoms mapped) |
+| **Blood Constituents** | DCABM-TCM (actual bioavailable compounds) |
+| **Formulas** | ETCM v2.0 (48,442), BATMAN-TCM 2.0 (54,832), TCMID (49,000) |
+| **Genomics** | TCMPG 2.0, IGTCM |
+| **Toxicity** | TCM-Mesh (163,221 side effect records) |
+| **Commercial License** | TCMSID, TCMBank, TCM Database@Taiwan |
+
+---
+
+## Schema Overview
+
+### Core Data Model
+
+| Entity | Description | Key Fields |
+|--------|-------------|------------|
+| Herb | Chinese medicinal material (Zhongyao) | herb_id, chinese_name, pinyin, latin_name, properties |
+| Formula | Traditional prescription (Fangji) | formula_id, chinese_name, pinyin, composition, source_text |
+| Ingredient | Chemical compound | ingredient_id, name, smiles, inchi_key, pubchem_cid |
+| Target | Protein/gene target | target_id, protein_name, uniprot_id, gene_symbol |
+| Disease | Disease/condition | disease_id, tcm_name, modern_name, icd_code |
+| Symptom | TCM symptom (Zheng) | symptom_id, tcm_term, modern_equivalent |
+
+### Key Tables (from Primary Databases)
+
+#### BATMAN-TCM 2.0 Schema
+
+| Table | Description | Key Fields |
+|-------|-------------|------------|
+| `formulas` | TCM prescriptions | formula_id, name, pinyin, composition |
+| `herbs` | Medicinal materials | herb_id, chinese_name, latin_name, properties |
+| `ingredients` | Chemical compounds | ingredient_id, name, smiles, pubchem_cid |
+| `known_tti` | Validated target-ingredient interactions | ingredient_id, target_id, evidence_type |
+| `predicted_tti` | Predicted interactions | ingredient_id, target_id, score, method |
+| `targets` | Protein targets | target_id, uniprot_id, gene_symbol |
+
+#### HERB 2.0 Schema
+
+| Table | Description | Key Fields |
+|-------|-------------|------------|
+| `herbs` | TCM herbs | herb_id, name, pinyin, properties |
+| `ingredients` | Phytochemicals | ingredient_id, name, smiles, cas |
+| `targets` | Gene/protein targets | target_id, gene_symbol, uniprot_id |
+| `diseases` | Disease associations | disease_id, name, mesh_id |
+| `experiments` | Gene expression data | experiment_id, geo_id, herb_id, platform |
+| `clinical_trials` | Clinical evidence | trial_id, nct_id, herb_id, indication |
+
+#### SymMap 2.0 Schema
+
+| Node Type | Description | Key Attributes |
+|-----------|-------------|----------------|
+| `TCM_Symptom` | Traditional symptom | symptom_id, chinese_term, english_term |
+| `Modern_Symptom` | Contemporary symptom | symptom_id, hpo_id, name |
+| `Herb` | Medicinal material | herb_id, name, pharmacopoeia_status |
+| `Ingredient` | Chemical compound | ingredient_id, smiles |
+| `Target` | Protein target | target_id, uniprot_id |
+| `Disease` | Disease entity | disease_id, mesh_id, omim_id |
+
+| Edge Type | Description | Properties |
+|-----------|-------------|------------|
+| `MAPS_TO` | TCM symptom maps to modern | confidence, expert_curated |
+| `TREATS` | Herb treats symptom | evidence_level |
+| `CONTAINS` | Herb contains ingredient | concentration |
+| `TARGETS` | Ingredient targets protein | binding_type, p_value |
+
+#### TCMBank Schema
+
+| Table | Description | Key Fields |
+|-------|-------------|------------|
+| `herbs` | TCM medicinal materials | herb_id, name, properties, meridian_tropism |
+| `ingredients` | Chemical constituents | ingredient_id, name, smiles, mol2_structure |
+| `targets` | Predicted/validated targets | target_id, uniprot_id, prediction_method |
+| `diseases` | Disease associations | disease_id, name, mesh_id, omim_id |
+| `ddi_predictions` | Drug-drug interactions | ingredient_pair, interaction_type, score |
+
+### Identifier Cross-References
+
+| Database | Herb ID | Ingredient ID | Target ID | Disease ID |
+|----------|---------|---------------|-----------|------------|
+| BATMAN-TCM | Internal | Internal + PubChem | UniProt | OMIM, TTD |
+| HERB 2.0 | Internal | PubChem CID | UniProt | MeSH |
+| SymMap | Internal | PubChem CID | UniProt | MeSH, OMIM |
+| TCMBank | Internal | PubChem, DrugBank | UniProt | MeSH, DO |
+| TCMID | Internal | PubChem CID | UniProt | OMIM |
+| ETCM | Internal | PubChem CID | UniProt | ICD |
+
+### Common Data Formats
+
+| Format | Use Case | Source Databases |
+|--------|----------|------------------|
+| TSV | Bulk interaction data | BATMAN-TCM, SymMap |
+| JSON | API responses | BATMAN-TCM API |
+| SDF/MOL2 | 3D structures | TCMBank, TCM Database@Taiwan |
+| Gene matrix | Expression data | HERB 2.0 |
+| Network files | Knowledge graphs | ETCM, TCMM |
+
+### TCM-Specific Attributes
+
+| Attribute | Description | Values/Format |
+|-----------|-------------|---------------|
+| `properties` | Temperature/flavor | cold, cool, neutral, warm, hot; sour, bitter, sweet, pungent, salty |
+| `meridian_tropism` | Channel affinity | lung, heart, liver, spleen, kidney, etc. |
+| `processing_method` | Paozhi method | raw, stir-fried, honey-processed, wine-treated |
+| `toxicity_class` | Safety classification | non-toxic, slightly toxic, toxic, very toxic |
+
+---
+
+## Integration Recommendations
+
+### Priority 1: Core Databases (Initial Integration)
+
+| Database | Rationale | Integration Effort | Storage |
+|----------|-----------|-------------------|---------|
+| BATMAN-TCM 2.0 | Best API access, largest target predictions | Low (API) | 5 GB |
+| TCMSID | ADME properties, CC BY 4.0 license | Medium | 300 MB |
+| HERB 2.0 | Gene expression and clinical trial data | High (scraping) | 8 GB |
+| TCMBank | Comprehensive coverage, downloadable | Medium | 3 GB |
+| CMAUP 2024 | Clinical trial integration | Medium | 4 GB |
+
+### Priority 2: Specialized Databases
+
+| Database | Rationale | Integration Effort |
+|----------|-----------|-------------------|
+| SymMap 2.0 | Symptom mapping (unique) | Medium |
+| DCABM-TCM | Bioavailable compounds (unique) | Medium |
+| HIT 2.0 | Experimentally validated (gold standard) | Low |
+| TM-MC 2.0 | Northeast Asian medicines, good structures | Medium |
+
+### Priority 3: Supporting Databases
+
+| Database | Rationale | Integration Effort |
+|----------|-----------|-------------------|
+| ETCM v2.0 | Ancient formulas | High |
+| TCMID 2.0 | Large prescription collection | Medium |
+| TCM-Mesh | Toxicity data | Medium |
+| TCMNP | R package for computational researchers | Low |
+
+### Suggested Integration Approach
+
+1. **Use BATMAN-TCM 2.0 API as primary data source** for programmatic access
+2. **Supplement with TCMSID** for ADME properties (CC BY 4.0 commercial-friendly)
+3. **Add HERB 2.0** for transcriptomic evidence
+4. **Map identifiers** using PubChem, UniProt, and ChEMBL as intermediaries
+5. **Validate critical interactions** against HIT 2.0 (experimentally validated)
+6. **Use TCM-Mesh** for toxicity and safety assessments
+
+### Data Harmonization Challenges
+
+| Challenge | Mitigation |
+|-----------|-----------|
+| Herb naming (Chinese, Latin, common) | Map to standardized Chinese Pharmacopoeia names |
+| Compound identification | Use InChI/SMILES and PubChem CID as canonical identifiers |
+| Target annotation | Standardize to UniProt IDs |
+| Evidence quality | Tag predicted vs. experimentally validated interactions |
+
+---
+
+## Storage Estimates
+
+| Database | Estimated Size | Notes |
+|----------|---------------|-------|
+| BATMAN-TCM 2.0 | 5 GB | Full interaction data |
+| HERB 2.0 | 8 GB | Including expression matrices |
+| TCMBank | 3 GB | Downloadable datasets |
+| SymMap 2.0 | 500 MB | Network data |
+| ETCM v2.0 | 2 GB | Knowledge graphs |
+| TCMID 2.0 | 2 GB | Including MS spectra |
+| CMAUP 2024 | 4 GB | Including transcriptomics |
+| TCM-Mesh | 5 GB | Largest compound set |
+| All Others | 5 GB | Combined |
+| **Total TCM** | **~35 GB** | Deduplicated estimate: ~20 GB |
+
+---
+
+## Dependencies
+
+| Document | Relationship |
+|----------|--------------|
+| [index.md](./../index.md) | Parent navigation |
+
+---
+
+## References
+
+1. Wang Y, et al. (2024). A critical assessment of Traditional Chinese Medicine databases as a source for drug discovery. Front. Pharmacol. 15:1303693.
+
+2. Kong X, et al. (2024). BATMAN-TCM 2.0: an enhanced integrative database. Nucleic Acids Res. 52(D1):D1110-D1117.
+
+3. Fang S, et al. (2025). HERB 2.0: an updated database integrating clinical and experimental evidence. Nucleic Acids Res. 53(D1):D1404.
+
+4. Wu Y, et al. (2019). SymMap: an integrative database of traditional Chinese medicine. Nucleic Acids Res. 47(D1):D1110-D1117.
+
+5. Xu HY, et al. (2019). ETCM: an encyclopaedia of traditional Chinese medicine. Nucleic Acids Res. 47(D1):D976-D982.
+
+6. Ren Z, et al. (2024). TCMM: A unified database for traditional Chinese medicine modernization. Comput Struct Biotechnol J. 23:1619-1630.
+
+7. Zeng X, et al. (2024). CMAUP database update 2024. Nucleic Acids Res. 52(D1):D1508.
+
+8. Huang L, et al. (2023). TCMBank - the largest TCM database. Signal Transduct Target Ther. 8:127.
+
+---
+
+## Glossary
+
+### Core TCM Concepts
+
+| Term | Definition | Example/Context |
+|------|------------|-----------------|
+| `Qi` (Chi) | Vital energy or life force that flows through the body | Qi deficiency, Qi stagnation |
+| `Yin` | The passive, cooling, nourishing principle; one half of the fundamental duality | Yin deficiency causes heat signs |
+| `Yang` | The active, warming, functional principle; one half of the fundamental duality | Yang deficiency causes cold signs |
+| `Xue` (Blood) | Blood in TCM context; carries nourishment and anchors Shen | Blood stasis, Blood deficiency |
+| `Jing` (Essence) | Fundamental substance governing growth, development, and reproduction | Stored in Kidneys |
+| `Shen` (Spirit) | Mind, consciousness, mental activity | Disturbed Shen causes insomnia |
+
+### Diagnostic Terms
+
+| Term | Definition | Example/Context |
+|------|------------|-----------------|
+| `Zheng` (Pattern/Syndrome) | TCM diagnosis based on symptom patterns | Liver Qi Stagnation, Spleen Qi Deficiency |
+| `Bianzheng` | Pattern differentiation; diagnostic methodology | Syndrome differentiation |
+| `Zang-Fu` | Internal organ system (5 Zang + 6 Fu organs) | Zang: Heart, Liver, Spleen, Lung, Kidney; Fu: Gallbladder, Stomach, etc. |
+| `Jing-Luo` (Meridians) | Energy channels connecting the body | 12 primary meridians, 8 extraordinary vessels |
+| `Wuxing` (Five Elements) | Wood, Fire, Earth, Metal, Water system | Used for organ relationships |
+
+### Herb Properties
+
+| Term | Definition | Example/Context |
+|------|------------|-----------------|
+| `Siqi` (Four Natures) | Temperature properties of herbs | Han (cold), Liang (cool), Ping (neutral), Wen (warm), Re (hot) |
+| `Wuwei` (Five Flavors) | Taste properties affecting organ function | Suan (sour), Ku (bitter), Gan (sweet), Xin (pungent), Xian (salty) |
+| `Guijing` (Meridian Tropism) | Organ channels affected by an herb | "Enters Liver and Kidney channels" |
+| `Shengjiang` (Directional Action) | Ascending, descending, floating, sinking actions | Ascending herbs lift Qi |
+| `Duxing` (Toxicity) | Toxicity classification | Non-toxic, slightly toxic, toxic, very toxic |
+
+### Preparation and Processing
+
+| Term | Definition | Example/Context |
+|------|------------|-----------------|
+| `Paozhi` | Processing methods to modify herb properties | Stir-frying, honey-processing, wine-treating |
+| `Tang` (Decoction) | Water-based preparation by boiling | Ma Huang Tang, Gui Zhi Tang |
+| `Wan` (Pill) | Pill or ball form | Liu Wei Di Huang Wan |
+| `San` (Powder) | Powdered preparation | Wu Ling San |
+| `Gao` (Paste/Plaster) | Concentrated extract or external paste | Internal paste, external plaster |
+| `Dan` (Special preparation) | Pellet or specially processed form | Often contains minerals |
+| `Jiu` (Wine preparation) | Medicinal wine | Wine-processed herbs |
+
+### Formula Categories
+
+| Term | Definition | Example/Context |
+|------|------------|-----------------|
+| `Jun` (Emperor/Chief) | Primary herb addressing main pattern | Largest dose, main therapeutic action |
+| `Chen` (Minister) | Supporting herb enhancing chief action | Assists primary effect |
+| `Zuo` (Assistant) | Moderating herb reducing side effects | Balances formula |
+| `Shi` (Envoy/Guide) | Directing herb to target location | Guides to specific channel |
+| `Fangji` | Formula/prescription | Classical or modern formula |
+| `Jingfang` | Classical formula from ancient texts | From Shang Han Lun, Jin Gui Yao Lue |
+
+### Therapeutic Actions
+
+| Term | Definition | Example/Context |
+|------|------------|-----------------|
+| `Buqi` | Tonify Qi | Ren Shen (Ginseng) |
+| `Buxue` | Tonify Blood | Dang Gui (Angelica) |
+| `Huoxue` | Invigorate Blood | Dan Shen (Salvia) |
+| `Qingre` | Clear Heat | Huang Qin (Scutellaria) |
+| `Huashi` | Transform Dampness | Cang Zhu (Atractylodes) |
+| `Liqi` | Regulate Qi | Chen Pi (Citrus peel) |
+| `Anshen` | Calm Spirit | Suan Zao Ren (Ziziphus) |
+
+### Database and Technical Terms
+
+| Term | Definition | Example/Context |
+|------|------------|-----------------|
+| `TTI` | Target-Ingredient Interaction | Compound-protein binding |
+| `Pharmacotranscriptomics` | Gene expression changes from drug treatment | HERB 2.0 expression data |
+| `Network Pharmacology` | Systems approach to drug-target networks | Multi-target analysis |
+| `CMap` | Connectivity Map | Drug signature comparison |
+| `GEO` | Gene Expression Omnibus | NCBI expression database |
+
+### Acronyms
+
+| Acronym | Expansion | Notes |
+|---------|-----------|-------|
+| TCM | Traditional Chinese Medicine | Major traditional medicine system |
+| BATMAN-TCM | Bioinformatics Analysis Tool for Molecular mechANism of TCM | Primary API database |
+| HERB | High-throughput Experiment and Reference-guided Database | Gene expression data |
+| SymMap | Symptom Mapping database | TCM-modern symptom bridge |
+| ETCM | Encyclopedia of Traditional Chinese Medicine | Formula repository |
+| TCMID | Traditional Chinese Medicine Integrated Database | Prescription database |
+| TCMSID | Traditional Chinese Medicine Simplified Integrated Database | ADME properties, CC BY 4.0 |
+| TCMM | Traditional Chinese Medicine Modernization | Knowledge graph integration |
+| DCABM-TCM | Database of Constituents Absorbed into Blood and Metabolites | Bioavailable compounds |
+| HIT | Herbal Ingredients' Targets | Experimentally validated |
+| ROC AUC | Receiver Operating Characteristic Area Under Curve | Prediction quality metric |
+| KEGG | Kyoto Encyclopedia of Genes and Genomes | Pathway database |
+| GO | Gene Ontology | Functional annotation |
+| TTD | Therapeutic Target Database | Drug target resource |
+| CC BY-NC 4.0 | Creative Commons Attribution Non-Commercial 4.0 | Non-commercial license |
+
+---
+
+## Change Log
+
+| Version | Date | Author | Changes |
+|---------|------|--------|---------|
+| 1.0 | January 2026 | Data Engineering | Initial comprehensive TCM database catalog migrated from research.old |
