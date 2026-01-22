@@ -38,6 +38,24 @@ This directory contains **42 schema documentation files** covering databases acr
 
 ---
 
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `id` | string | Primary identifier | "schema-001" |
+| `name` | string | Entity name | "Database Name" |
+| `type` | string | Record type | "schema" |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `associated_with` | Entity | N:M |
+
+---
+
 ## THREE WORLDS Coverage
 
 ### WORLD 1: Modern Genetics (11 databases)
@@ -133,6 +151,65 @@ Based on cross-database analysis, these identifiers should serve as canonical hu
 | **Protein** | UniProt ID | Universal protein identifier | 286 DB mappings |
 
 ---
+
+---
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| Records | 19 |
+| Storage | Unknown |
+| Last updated | January 2026 |
+
+---
+
+## Data Format
+
+| Format | Description |
+|--------|-------------|
+| Primary | Markdown |
+| Alternative | YAML frontmatter |
+| Encoding | UTF-8 |
+
+---
+
+## Download
+
+| Source | Method | URL |
+|--------|--------|-----|
+| Schema Docs | Git | See repository |
+| Documentation | HTTP | See main database |
+
+**Access Requirements:** Open access
+
+---
+
+## License
+
+| Resource | License | Commercial Use |
+|----------|---------|----------------|
+| Schema Docs | CC BY 4.0 | Yes |
+
+---
+
+## Sample Data
+
+### Example Record
+```json
+{
+  "id": "schema-chembl",
+  "title": "ChEMBL Schema Documentation",
+  "database": "ChEMBL",
+  "records": "2.9M compounds"
+}
+```
+
+### Sample Query Result
+| id | title | database | records |
+|----|-------|----------|---------|
+| schema-chembl | ChEMBL Schema Documentation | ChEMBL | 2.9M compounds |
+| schema-reactome | Reactome Schema Documentation | Reactome | 2,712 pathways |
 
 ---
 

@@ -2493,6 +2493,289 @@ if __name__ == '__main__':
 
 ---
 
+## Download
+
+### Official Wikidata Dumps
+
+| Resource | URL | Format | Frequency | Size |
+|----------|-----|--------|-----------|------|
+| Complete dump | https://dumps.wikimedia.org/wikidatawiki/entities/ | JSON Lines (.jl.bz2) | Weekly | ~90 GB compressed |
+| Truthy dump | https://dumps.wikimedia.org/wikidatawiki/entities/ | N-Triples (.nt.bz2) | Weekly | ~20 GB compressed |
+| RDF dump | https://dumps.wikimedia.org/wikidatawiki/entities/ | RDF/XML | Weekly | ~40 GB compressed |
+| Latest version | https://www.wikidata.org/wiki/Q1 | All formats | Real-time | Varies |
+
+### SPARQL Query Endpoint
+
+```bash
+# Query Wikidata SPARQL endpoint (no rate limit for simple queries)
+curl -G "https://query.wikidata.org/sparql" \
+  --data-urlencode "query=SELECT ?item WHERE { ?item wdt:P31 wd:Q12140 } LIMIT 10" \
+  -H "Accept: application/sparql-results+json"
+```
+
+### Recommended Download Strategy
+
+```bash
+# Download latest truthy dump (smaller, suitable for most use cases)
+wget https://dumps.wikimedia.org/wikidatawiki/entities/latest-truthy.nt.bz2
+
+# For filtered biomedical data, use SPARQL queries instead (more selective)
+# See Master SPARQL Queries section for examples
+```
+
+---
+
+## Data Format
+
+### JSON Lines Format (.jl.bz2)
+
+Each line is a complete Wikidata item as JSON:
+
+```json
+{
+  "type": "item",
+  "id": "Q12140",
+  "labels": {
+    "en": { "language": "en", "value": "medication" },
+    "de": { "language": "de", "value": "Medikament" }
+  },
+  "claims": {
+    "P31": [
+      {
+        "rank": "normal",
+        "mainsnak": {
+          "snaktype": "value",
+          "property": "P31",
+          "datavalue": { "value": { "entity-type": "item", "numeric-id": 8386 }, "type": "wikibase-entityid" }
+        }
+      }
+    ]
+  }
+}
+```
+
+### Truthy RDF Format (.nt.bz2)
+
+N-Triples RDF format (one statement per line):
+
+```ntriples
+<http://www.wikidata.org/entity/Q12140> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#Item> .
+<http://www.wikidata.org/entity/Q12140> <http://www.w3.org/2000/01/rdf-schema#label> "medication"@en .
+<http://www.wikidata.org/entity/Q12140> <http://www.wikidata.org/prop/direct/P31> <http://www.wikidata.org/entity/Q8386> .
+```
+
+### SPARQL JSON Results
+
+```json
+{
+  "head": {
+    "vars": ["item", "itemLabel", "drugbank"]
+  },
+  "results": {
+    "bindings": [
+      {
+        "item": { "type": "uri", "value": "http://www.wikidata.org/entity/Q12140" },
+        "itemLabel": { "type": "literal", "value": "medication", "xml:lang": "en" },
+        "drugbank": { "type": "literal", "value": "DB00001" }
+      }
+    ]
+  }
+}
+```
+
+---
+
+## Schema
+
+### Core Wikidata Item Structure
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `id` | String | Q-ID identifier (Q + digits) |
+| `type` | String | Entity type: "item", "property" |
+| `labels` | Object | Labels in multiple languages (language→{language, value}) |
+| `descriptions` | Object | Descriptions in multiple languages |
+| `aliases` | Object | Alternative names in multiple languages |
+| `claims` | Object | Claims keyed by P-code; each value is array of statements |
+| `sitelinks` | Object | Links to Wikipedia articles (wiki→{site, title}) |
+
+### Claim/Statement Structure
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `rank` | String | "preferred", "normal", "deprecated" |
+| `mainsnak` | Object | Main statement value |
+| `qualifiers` | Object | Additional properties (optional) |
+| `references` | Array | Citation information (optional) |
+
+### Mainsnak Structure
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `snaktype` | String | "value", "somevalue", "novalue" |
+| `property` | String | P-code property identifier |
+| `datavalue` | Object | Typed value (wikibase-entityid, string, quantity, time, etc.) |
+
+### Property (P-code) Relevant to Biomedical Data
+
+| P-code | Label | Datatype | Common Values |
+|--------|-------|----------|----------------|
+| `P31` | instance of | Item | Q12140 (drug), Q7187 (gene) |
+| `P279` | subclass of | Item | Hierarchical parent |
+| `P715` | DrugBank ID | String | DB00945 |
+| `P661` | ChEMBL ID | String | CHEMBL308 |
+| `P2175` | medical condition treated | Item | Q disease_id |
+| `P527` | has part | Item | Q compound_id |
+| `P352` | UniProt ID | String | P12345 |
+| `P486` | MeSH ID | String | D000001 |
+
+---
+
+## Sample Data
+
+### Query: Fetch Medication with External IDs
+
+**SPARQL Query:**
+```sparql
+SELECT ?drug ?drugLabel ?drugbank ?chebi ?pubchem WHERE {
+  ?drug wdt:P31 wd:Q12140 .
+  OPTIONAL { ?drug wdt:P715 ?drugbank }
+  OPTIONAL { ?drug wdt:P592 ?chebi }
+  OPTIONAL { ?drug wdt:P662 ?pubchem }
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en" }
+}
+LIMIT 5
+```
+
+**Sample Results (JSON):**
+```json
+{
+  "head": { "vars": ["drug", "drugLabel", "drugbank", "chebi", "pubchem"] },
+  "results": {
+    "bindings": [
+      {
+        "drug": { "type": "uri", "value": "http://www.wikidata.org/entity/Q18216" },
+        "drugLabel": { "type": "literal", "value": "aspirin", "xml:lang": "en" },
+        "drugbank": { "type": "literal", "value": "DB00945" },
+        "chebi": { "type": "literal", "value": "15365" },
+        "pubchem": { "type": "literal", "value": "2244" }
+      },
+      {
+        "drug": { "type": "uri", "value": "http://www.wikidata.org/entity/Q12261" },
+        "drugLabel": { "type": "literal", "value": "ibuprofen", "xml:lang": "en" },
+        "drugbank": { "type": "literal", "value": "DB01050" },
+        "chebi": { "type": "literal", "value": "5855" },
+        "pubchem": { "type": "literal", "value": "3672" }
+      }
+    ]
+  }
+}
+```
+
+### Sample Record from Dump (JSON Lines Format)
+
+```json
+{
+  "type": "item",
+  "id": "Q18216",
+  "labels": {
+    "en": { "language": "en", "value": "aspirin" },
+    "de": { "language": "de", "value": "Aspirin" }
+  },
+  "claims": {
+    "P31": [
+      {
+        "rank": "normal",
+        "mainsnak": {
+          "snaktype": "value",
+          "property": "P31",
+          "datavalue": { "value": { "entity-type": "item", "numeric-id": 12140 }, "type": "wikibase-entityid" }
+        }
+      }
+    ],
+    "P715": [
+      {
+        "rank": "normal",
+        "mainsnak": {
+          "snaktype": "value",
+          "property": "P715",
+          "datavalue": { "value": "DB00945", "type": "string" }
+        }
+      }
+    ]
+  }
+}
+```
+
+---
+
+## License
+
+### Wikidata License
+
+- **License:** CC0 1.0 Universal (Public Domain Dedication)
+- **URL:** https://creativecommons.org/publicdomain/zero/1.0/
+- **Summary:** All Wikidata content is in the public domain
+- **Attribution:** Optional but appreciated; acknowledge Wikidata as source
+- **Restrictions:** None - use for any purpose without limitations
+- **Citation:**
+  ```
+  Wikidata contributors. "Wikidata: The Free Knowledge Base That Anyone Can Edit."
+  Retrieved [DATE] from https://www.wikidata.org/
+  ```
+
+### Wikipedia Sitelinks License
+
+- **License:** CC-BY-SA 3.0 / CC-BY-SA 4.0 (varies by language)
+- **Requirement:** Attribution and ShareAlike when redistributing
+- **Note:** Applies only to Wikipedia article text, not Wikidata structured data
+
+### API Terms of Service
+
+- **Rate Limits:** SPARQL endpoint: 60 requests per minute (no official limit for dumps)
+- **User-Agent Required:** Identify your application in requests
+- **Contact:** wikidata-developers@lists.wikimedia.org for high-volume queries
+
+---
+
+## Data Set Size
+
+### Wikidata Database Statistics
+
+| Metric | Value | Notes |
+|--------|-------|-------|
+| Total items | ~100 million | As of Jan 2026 |
+| Medications (Q12140) | ~45,000 | Primary drug class |
+| Pharmaceutical compounds | ~500,000 | All chemical entities |
+| Medicinal plants | ~10,000 | Actively used in medicine |
+| Properties (P-codes) | ~10,000+ | Schema definitions |
+
+### Storage Estimates
+
+| Dump Type | Compressed | Uncompressed | Notes |
+|-----------|-----------|---------------|-------|
+| Complete JSON Lines | ~90 GB | ~500 GB | All items and statements |
+| Truthy RDF | ~20 GB | ~100 GB | Best-ranked claims only |
+| Filtered biomedical | ~500 MB | ~2 GB | Selected Q/P-codes |
+| Index database (SQLite) | ~50 GB | ~150 GB | Optimized for queries |
+
+### Processing Time Estimates
+
+| Operation | Time | Hardware |
+|-----------|------|----------|
+| Download complete dump | 2-4 hours | 100 Mbps connection |
+| Parse and index dump | 8-12 hours | 16 CPU cores, 64 GB RAM |
+| SPARQL biomedical query | <1 second | Official SPARQL endpoint |
+| Custom filtering | 1-2 hours | Extract ~500K biomedical items |
+
+### Last Updated
+
+- **Current Dump:** Weekly (every Monday ~18:00 UTC)
+- **SPARQL Endpoint:** Real-time (lag <1 minute)
+- **This Reference:** January 2026
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

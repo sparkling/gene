@@ -369,16 +369,127 @@ GET /api/getDiseaseAssociations
 | **Download/FTP only** | MetaHIT, gutMGene, MASI, MDAD |
 | **Web interface only** | Probiotic databases |
 
-### Storage Requirements
+## Data Set Size
 
-| Category | Estimate |
-|----------|----------|
+| Metric | Value |
+|--------|-------|
 | HMP (full) | ~50 TB |
 | MetaHIT (raw) | ~577 GB |
-| Processed databases (GMrepo, mBodyMap, gutMGene, MASI, MDAD, probiotics) | ~1 TB total |
-| **Recommended MVP** | ~2 TB (processed data only, no raw sequences) |
+| Processed databases | ~1 TB (GMrepo, mBodyMap, gutMGene, MASI, MDAD, probiotics) |
+| Recommended MVP | ~2 TB (processed data only, no raw sequences) |
+| Last updated | January 2026 |
 
 ---
+
+## Schema
+
+### Core Entity Fields
+
+| Entity | Field | Type | Description | Example |
+|--------|-------|------|-------------|---------|
+| **Microbial Taxon** | `taxon_id` | integer | NCBI Taxonomy ID | 562 |
+| | `name` | string | Scientific name | "Escherichia coli" |
+| | `rank` | string | Taxonomic rank | "species" |
+| | `lineage` | string[] | Full taxonomy path | ["Bacteria", "Proteobacteria", ...] |
+| **Abundance Sample** | `run_id` | string | SRA/ENA run accession | "ERR123456" |
+| | `project_id` | string | Project accession | "PRJNA12345" |
+| | `phenotype` | string | Disease/condition | "Type 2 Diabetes" |
+| | `body_site` | string | Sample location | "gut" |
+| | `abundance` | float | Relative abundance | 0.023 |
+| **Microbe-Gene Relation** | `relation_id` | string | gutMGene identifier | "MGR_00001" |
+| | `microbe_id` | integer | Microbe taxon ID | 817 |
+| | `gene_symbol` | string | Host gene | "IL6" |
+| | `metabolite` | string | Mediating metabolite | "butyrate" |
+| | `effect` | string | Effect direction | "increases" |
+| **Drug-Microbe Interaction** | `interaction_id` | string | MASI identifier | "MASI_INT_001" |
+| | `drug_name` | string | Drug/substance name | "Metformin" |
+| | `microbe_name` | string | Affected microbe | "Akkermansia muciniphila" |
+| | `effect_type` | string | Interaction type | "increased abundance" |
+
+### Relationships
+
+| Relation | Source | Target | Cardinality | Description |
+|----------|--------|--------|-------------|-------------|
+| `found_in` | Taxon | Sample | N:M | Abundance data |
+| `marker_for` | Taxon | Disease | N:M | Disease association |
+| `affects_gene` | Taxon | Gene | N:M | gutMGene relationship |
+| `interacts_with` | Drug | Taxon | N:M | MASI pharmacomicrobiomics |
+| `produces` | Taxon | Metabolite | N:M | Metabolite production |
+| `part_of` | Taxon | Enterotype | N:M | Community clustering |
+
+---
+
+## Download
+
+| Database | Method | URL/Command |
+|----------|--------|-------------|
+| **HMP** | AWS S3 | `aws s3 ls s3://human-microbiome-project/` |
+| | Portal | `https://portal.hmpdacc.org/` |
+| **GMrepo** | API | `https://gmrepo.humangut.info/api/` |
+| **MetaHIT** | ENA | `https://www.ebi.ac.uk/ena/browser/view/PRJNA32811` |
+| **gutMGene** | Direct | `http://bio-annotation.cn/gutmgene/download/` |
+| **mBodyMap** | API | `http://mbodymap.microbiomedata.cn/api/` |
+| **MASI** | Web | `http://masi.genyo.es/download/` |
+
+**Access Requirements:** Most databases are open access; GMrepo requires citation for academic use.
+
+---
+
+## Sample Data
+
+### Example Record: GMrepo Taxon-Disease Association
+
+```json
+{
+  "ncbi_taxon_id": 33043,
+  "taxon_name": "Akkermansia muciniphila",
+  "disease": "Obesity",
+  "mesh_id": "D009765",
+  "effect": "decreased",
+  "sample_count": 1250,
+  "p_value": 2.3e-8,
+  "source_pmids": [28195358, 30886346]
+}
+```
+
+### Sample Query Result: Microbiome Abundance
+
+| taxon_id | taxon_name | body_site | relative_abundance | disease_status |
+|----------|------------|-----------|-------------------|----------------|
+| 33043 | Akkermansia muciniphila | gut | 0.032 | Healthy |
+| 853 | Faecalibacterium prausnitzii | gut | 0.089 | Healthy |
+| 1263 | Ruminococcus | gut | 0.045 | IBD |
+
+---
+
+## License
+
+| Database | License | Commercial Use | Attribution |
+|----------|---------|----------------|-------------|
+| **HMP** | CC BY 4.0 | Yes | Required |
+| **GMrepo** | CC BY-NC 3.0 | Permission required | Required |
+| **MetaHIT** | Open Access (EBI) | Yes | Required |
+| **gutMGene** | CC BY-NC 4.0 | Permission required | Required |
+| **mBodyMap** | CC BY-NC 4.0 | Permission required | Required |
+| **MASI** | Open Access | Yes | Required |
+
+**Note:** Commercial applications involving GMrepo, gutMGene, or mBodyMap require explicit permission.
+
+---
+
+## Data Format
+
+| Format | Description | Used By |
+|--------|-------------|---------|
+| BIOM | Biological Observation Matrix | HMP, GMrepo |
+| TSV | Abundance tables | GMrepo, mBodyMap |
+| FASTQ | Raw sequence reads | HMP, MetaHIT |
+| JSON | API responses | GMrepo, mBodyMap, MASI |
+| CSV | Summary statistics | gutMGene, MASI |
+| FASTA | Reference sequences | HMP, MetaHIT gene catalogs |
+
+**Compression:** gzip (.gz) for sequence data
+**Encoding:** UTF-8
 
 ---
 

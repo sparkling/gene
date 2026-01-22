@@ -687,6 +687,91 @@ https://www.ebi.ac.uk/europepmc/webservices/rest/MED/12345678/textMinedTerms?for
 
 ---
 
+## Download
+
+| Source | Method | URL/Command |
+|--------|--------|-------------|
+| **PubMed** | FTP/E-utilities | `ftp://ftp.ncbi.nlm.nih.gov/pubmed/` |
+| **PMC OA** | FTP | `ftp://ftp.ncbi.nlm.nih.gov/pub/pmc/oa_bulk/` |
+| **Europe PMC** | API/FTP | `https://europepmc.org/downloads` |
+| **OpenAlex** | Snapshot | `https://docs.openalex.org/download-all-data` |
+
+**Access Requirements:** All public sources are freely accessible; API keys improve rate limits.
+
+## Data Format
+
+| Format | Description |
+|--------|-------------|
+| Primary | XML, JSON |
+| Alternative | TSV, Parquet |
+| Full-text | JATS XML, PDF |
+| Encoding | UTF-8 |
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `source` | string | Data source | "pubmed" |
+| `id` | string | Source identifier | "PMID:12345678" |
+| `access_type` | string | Open/closed access | "oa" |
+| `license` | string | Content license | "CC BY 4.0" |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `provides` | Article | 1:N |
+| `overlaps_with` | Source | N:M |
+
+## Sample Data
+
+### Example Source Record
+```json
+{
+  "source": "pubmed",
+  "total_records": 39000000,
+  "genetics_subset": 5500000,
+  "access": "public",
+  "api_rate_limit": "10/sec with key",
+  "bulk_download": true
+}
+```
+
+### Sample Query Result
+| source | total | genetics_focus | license |
+|--------|-------|----------------|---------|
+| PubMed | 39M | 5.5M | Public domain |
+| OpenAlex | 250M | 15M | CC0 |
+
+## License
+
+| Source | License | Commercial Use |
+|--------|---------|----------------|
+| PubMed | Public domain | Yes |
+| PMC OA | CC BY/CC0 | Yes (OA subset) |
+| OpenAlex | CC0 | Yes |
+| Europe PMC | CC BY | Yes |
+
+---
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| PubMed genetics abstracts | ~3 GB compressed |
+| PMC OA genetics full text | ~15 GB compressed |
+| Europe PMC annotations | ~5 GB compressed |
+| Minimum genetics-focused | ~25 GB compressed / ~250 GB uncompressed |
+| Full PubMed baseline | ~28 GB compressed |
+| Full PMC OA subset | ~100 GB compressed |
+| Europe PMC enrichments | ~50 GB compressed |
+| Comprehensive total | ~200 GB compressed / ~2 TB uncompressed |
+| Last updated | January 2026 |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

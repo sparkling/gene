@@ -567,6 +567,182 @@ Use specialized databases for:
 
 ---
 
+## Download
+
+### Wikidata Supplement Data Sources
+
+| Source | URL | Format | Access | Size |
+|--------|-----|--------|--------|------|
+| Wikidata dump | https://dumps.wikimedia.org/wikidatawiki/entities/ | JSON Lines (.bz2) | Bulk | ~90 GB |
+| Wikidata SPARQL | https://query.wikidata.org/sparql | SPARQL/JSON | Query | Real-time |
+| DSLD (NIH) | https://dsld.nlm.nih.gov/ | XML/CSV | Direct | ~1 GB |
+| LNHPD (Health Canada) | https://www.canada.ca/en/health-canada/ | CSV/API | Direct | ~500 MB |
+
+### SPARQL Query for Supplement Data
+
+```bash
+# Query Wikidata for dietary supplements
+curl -G "https://query.wikidata.org/sparql" \
+  --data-urlencode "query=
+    SELECT ?supplement ?label ?vitamin ?mineral WHERE {
+      { ?supplement wdt:P31 wd:Q28885102 }
+      UNION { ?supplement wdt:P31 wd:Q11344 }
+      OPTIONAL { ?supplement wdt:P527 ?ingredient }
+      SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\" }
+    }
+    LIMIT 100" \
+  -H "Accept: application/sparql-results+json"
+```
+
+---
+
+## Data Format
+
+### Supplement Data in Wikidata
+
+**JSON Lines format from dump:**
+
+```json
+{
+  "type": "item",
+  "id": "Q18225",
+  "labels": { "en": { "value": "vitamin A" } },
+  "claims": {
+    "P31": [{ "rank": "normal", "mainsnak": { "snaktype": "value", "property": "P31", "datavalue": { "value": { "entity-type": "item", "numeric-id": 28885102 }, "type": "wikibase-entityid" } } }],
+    "P486": [{ "rank": "normal", "mainsnak": { "snaktype": "value", "property": "P486", "datavalue": { "value": "D014801", "type": "string" } } }],
+    "P2892": [{ "rank": "normal", "mainsnak": { "snaktype": "value", "property": "P2892", "datavalue": { "value": "C0042890", "type": "string" } } }]
+  }
+}
+```
+
+**SPARQL JSON response:**
+
+```json
+{
+  "results": {
+    "bindings": [
+      {
+        "supplement": { "type": "uri", "value": "http://www.wikidata.org/entity/Q18225" },
+        "label": { "type": "literal", "value": "vitamin A", "xml:lang": "en" }
+      }
+    ]
+  }
+}
+```
+
+---
+
+## Schema
+
+### Dietary Supplement Schema
+
+| Property | P-code | Type | Example | Use Case |
+|----------|--------|------|---------|----------|
+| Instance of | P31 | Item | Q28885102 | Supplement classification |
+| MeSH ID | P486 | String | D000001 | Medical terminology |
+| UMLS CUI | P2892 | String | C0042890 | Medical concept ID |
+| Has active ingredient | P3781 | Item | Q vitamin | Component mapping |
+| Medical condition treated | P2175 | Item | Q disease | Health claim |
+| Recommended daily intake | P1051 | Quantity | 800-1000 mcg | RDA value |
+| DrugBank ID | P715 | String | DB00001 | Pharmacology data |
+
+### Supplement Types in Wikidata
+
+| Q-ID | Type | Examples |
+|------|------|----------|
+| Q28885102 | Dietary supplement | General supplements |
+| Q11344 | Alkaloid | Plant-based compounds |
+| Q10571 | Mineral | Calcium, magnesium, zinc |
+| Q11013 | Vitamin | A, D, E, B-complex |
+| Q5972 | Amino acid | Lysine, leucine |
+
+---
+
+## Sample Data
+
+### Sample Supplement: Vitamin D
+
+**SPARQL Query:**
+```sparql
+SELECT ?supplement ?label ?mesh ?umls ?rda WHERE {
+  ?supplement rdfs:label "vitamin D"@en .
+  OPTIONAL { ?supplement wdt:P486 ?mesh }
+  OPTIONAL { ?supplement wdt:P2892 ?umls }
+  OPTIONAL { ?supplement wdt:P1051 ?rda }
+}
+```
+
+**Sample Results:**
+```json
+{
+  "supplement": { "value": "http://www.wikidata.org/entity/Q18179" },
+  "label": { "value": "vitamin D", "xml:lang": "en" },
+  "mesh": { "value": "D014807" },
+  "umls": { "value": "C0042874" },
+  "rda": { "value": "10-25 mcg/day" }
+}
+```
+
+### Sample Supplement Dataset
+
+| Q-ID | Supplement Name | Type | MeSH | UMLS | RDA/Usage |
+|------|-----------------|------|------|------|-----------|
+| Q18225 | Vitamin A | Fat-soluble | D014801 | C0042890 | 700-900 mcg |
+| Q18179 | Vitamin D | Fat-soluble | D014807 | C0042874 | 10-25 mcg |
+| Q18182 | Vitamin E | Fat-soluble | D014810 | C0042895 | 15 mg |
+| Q12122 | Vitamin C | Water-soluble | D001955 | C0003392 | 75-90 mg |
+| Q10571 | Calcium | Mineral | D002118 | C0006675 | 1000-1300 mg |
+
+---
+
+## License
+
+### Wikidata Licensing
+
+- **License:** CC0 1.0 Universal (Public Domain)
+- **Requirement:** No attribution required (but appreciated)
+- **DSLD/LNHPD:** U.S./Canadian government data (public domain)
+- **Cross-references:** Follow licensing of linked databases
+
+### Citation Format
+
+```
+Wikidata contributors. "Wikidata." Wikimedia Foundation, Inc., 2024.
+https://www.wikidata.org/
+
+For supplements from specific sources:
+- DSLD: U.S. National Library of Medicine, Dietary Supplement Label Database
+- LNHPD: Health Canada, Licensed Natural Health Products Database
+```
+
+---
+
+## Data Set Size
+
+### Supplement Dataset Statistics
+
+| Metric | Count | Notes |
+|--------|-------|-------|
+| Dietary supplements (Q28885102) | ~5,000 | Direct classification |
+| Vitamins and minerals | ~2,000 | Micronutrient products |
+| Herbal supplement items | ~3,000 | Plant-derived |
+| With MeSH ID | ~4,000 | Medical terminology mapped |
+| With UMLS CUI | ~3,500 | Medical concept linked |
+| With health claims | ~2,000 | Disease/condition treated |
+
+### Storage and Access
+
+| Metric | Value |
+|--------|-------|
+| Wikidata dump size | ~90 GB compressed |
+| Filtered supplement subset | ~100-200 MB |
+| SPARQL query response time | <1 second |
+| Last dump update | Weekly (Monday UTC) |
+| DSLD size | ~1 GB |
+| LNHPD size | ~500 MB |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

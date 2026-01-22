@@ -533,6 +533,133 @@ https://health-products.canada.ca/api/natural-licences/{endpoint}?lang=en&type=j
 
 ---
 
+## Download
+
+| Database | Format | Source URL |
+|----------|--------|-----------|
+| BATMAN-TCM | TSV, REST API | http://bionet.ncpsb.org.cn/batman-tcm/ |
+| IMPPAT | JSON, TSV | http://imppat.jcbose.ac.in/ |
+| KampoDB | JSON, REST API | https://kampo.nms.ntu.edu.tw/ |
+| Dr. Duke's Phytochemical | CSV | https://phytochem.nal.usda.gov/ |
+| Reactome | JSON, REST API | https://reactome.org/ContentService/ |
+| KEGG | KGML, REST API | https://www.kegg.jp/kegg/ |
+| WikiPathways | JSON, REST API | https://webservice.wikipathways.org/ |
+
+---
+
+## Data Format
+
+| Format | Description | Primary Use |
+|--------|-------------|-------------|
+| TSV | Tab-separated values | BATMAN-TCM bulk download |
+| CSV | Comma-separated values | Dr. Duke's, spreadsheet workflows |
+| JSON | Structured hierarchical format | REST APIs, linked data |
+| REST API | HTTP endpoint-based queries | Real-time data access |
+| SPARQL | RDF query language | Complex pathway queries |
+| KGML | KEGG Markup Language | KEGG pathway representation |
+
+---
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| formula_id | String | Unique formula identifier | BATMAN-TCM:F12345 |
+| formula_name | String | TCM formula name (Chinese + English) | 麻黄汤 (Mahuang Tang) |
+| ingredient_id | String | Herb/ingredient identifier | BATMAN-TCM:I6789 |
+| ingredient_name | String | Herb common and scientific name | Ephedra sinica |
+| compound_id | String | Chemical constituent identifier | PubChem:2153 |
+| compound_name | String | Chemical compound name | Ephedrine |
+| target_id | String | Gene/protein target | ENSG00000074935 |
+| target_name | String | Gene/protein symbol | ADRB2 |
+| interaction_score | Float | Prediction confidence (0-1) | 0.87 |
+| pathway_id | String | KEGG pathway code | hsa04261 |
+| indication | String | Traditional indication/disease | Asthma, bronchitis |
+
+### Relationships
+
+| From | To | Relationship | Via Database |
+|------|-----|-------------|------------|
+| Formula | Ingredient | contains | BATMAN-TCM, IMPPAT |
+| Ingredient | Compound | composed_of | BATMAN-TCM, KampoDB |
+| Compound | Target | binds/inhibits | ChEMBL, KEGG |
+| Target | Gene | encodes | UniProt, Ensembl |
+| Gene | Pathway | participates_in | Reactome, KEGG |
+
+---
+
+## Sample Data
+
+### JSON Format
+
+```json
+{
+  "formula": {
+    "id": "BATMAN-TCM:F12345",
+    "name": "麻黄汤 (Mahuang Tang)",
+    "indication": "Asthma, bronchitis, cold with cough",
+    "ingredients": [
+      {
+        "id": "BATMAN-TCM:I6789",
+        "name": "Ephedra sinica",
+        "compounds": [
+          {
+            "pubchem_id": 2153,
+            "name": "Ephedrine",
+            "targets": [
+              {
+                "uniprot": "P08588",
+                "gene_symbol": "ADRB2",
+                "interaction": "agonist",
+                "score": 0.92
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### Query Result Table
+
+| Formula | Ingredient | Compound | Target Gene | Indication | Pathway | Score |
+|---------|-----------|----------|-------------|-----------|---------|-------|
+| Mahuang Tang | Ephedra sinica | Ephedrine | ADRB2 | Asthma | Adrenergic signaling | 0.92 |
+| Ge Gen Tang | Pueraria lobata | Daidzein | PPARG | Fever | Metabolic signaling | 0.78 |
+| Ban Xia Hou Po Tang | Pinellia ternata | Alpinetin | TRPV1 | Cough | Neurological signaling | 0.85 |
+
+---
+
+## License
+
+| Database | License | Commercial Use | Requirements |
+|----------|---------|-----------------|--------------|
+| BATMAN-TCM | CC BY-NC 4.0 | No (contact required) | Attribution required |
+| IMPPAT | CC BY 4.0 | Yes | Attribution required |
+| KampoDB | CC BY-SA 4.0 | Yes | Attribution + Share-alike |
+| Dr. Duke's | CC0 | Yes | None required |
+| Reactome | CC BY 4.0 | Yes | Attribution required |
+| KEGG | Academic/Commercial | Yes (paid) | Citation required |
+
+---
+
+## Data Set Size
+
+| Component | Records | Compressed Size | Uncompressed Size | Load Time (10 Mbps) |
+|-----------|---------|-----------------|-------------------|-------------------|
+| BATMAN-TCM | 2.4M interactions | 560 MB | 3 GB | ~7 min |
+| IMPPAT | 27K interactions | 120 MB | 800 MB | ~2 min |
+| KampoDB | 62K proteins | 180 MB | 1.2 GB | ~3 min |
+| Dr. Duke's | 3,500 compounds | 50 MB | 300 MB | <1 min |
+| Reactome pathways | 2,700+ pathways | 500 MB | 3 GB | ~7 min |
+| **Total core stack** | **~2.7M records** | **~1.4 GB** | **~8.3 GB** | **~20 min** |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

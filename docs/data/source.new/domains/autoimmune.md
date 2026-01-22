@@ -446,17 +446,19 @@ Comprehensive inventory of 23 databases across 7 categories covering autoimmune 
 
 ---
 
-## Storage Summary
+## Data Set Size
 
-| Category | Sources | Est. Size |
-|----------|---------|-----------|
-| Thyroid Genetics | 3 | ~5 GB |
-| Hormone Pathways | 4 | ~10 GB |
-| Autoimmune Genetics | 5 | ~50 GB |
-| HLA/Immune System | 3 | ~15 GB |
-| Endocrine Disorders | 4 | ~5 GB |
-| Steroid Metabolism | 4 | ~3 GB |
-| **Total** | **23** | **~88 GB** |
+| Metric | Value |
+|--------|-------|
+| Thyroid Genetics | ~5 GB (3 sources) |
+| Hormone Pathways | ~10 GB (4 sources) |
+| Autoimmune Genetics | ~50 GB (5 sources) |
+| HLA/Immune System | ~15 GB (3 sources) |
+| Endocrine Disorders | ~5 GB (4 sources) |
+| Steroid Metabolism | ~3 GB (4 sources) |
+| Total sources | 23 databases |
+| Total storage estimate | ~88 GB |
+| Last updated | January 2026 |
 
 *Note: gnomAD full data is ~30 TB but only summary data (~50 GB) recommended for initial integration*
 
@@ -560,6 +562,114 @@ Comprehensive inventory of 23 databases across 7 categories covering autoimmune 
 |----------|--------|-------------|
 | ImmunoBase | Deprecated | GWAS Catalog |
 | T1DBase | Deprecated | GWAS Catalog, Open Targets |
+
+---
+
+## Schema
+
+### Core Entity Fields
+
+| Entity | Field | Type | Description | Example |
+|--------|-------|------|-------------|---------|
+| **GWAS Association** | `rsid` | string | dbSNP identifier | "rs2228570" |
+| | `trait` | string | EFO trait term | "rheumatoid arthritis" |
+| | `p_value` | float | Association significance | 5.0e-12 |
+| | `odds_ratio` | float | Effect size | 1.35 |
+| | `beta` | float | Effect estimate | 0.15 |
+| **HLA Allele** | `allele_name` | string | IPD-IMGT/HLA designation | "HLA-DRB1*04:01" |
+| | `gene` | string | HLA gene locus | "HLA-DRB1" |
+| | `resolution` | string | Typing resolution | "4-field" |
+| **Thyroid Trait** | `trait_id` | string | EFO identifier | "EFO_0006812" |
+| | `measurement` | string | Trait type | "TSH" |
+| | `unit` | string | Measurement unit | "mIU/L" |
+| **Hormone Pathway** | `pathway_id` | string | Reactome identifier | "R-HSA-196071" |
+| | `name` | string | Pathway name | "Metabolism of steroid hormones" |
+| | `enzymes` | string[] | Key enzymes | ["CYP11A1", "CYP17A1"] |
+| **Steroid CYP** | `gene` | string | Gene symbol | "CYP11B2" |
+| | `star_allele` | string | PharmVar nomenclature | "CYP11B2*1" |
+| | `function` | string | Enzyme function | "Aldosterone synthase" |
+
+### Relationships
+
+| Relation | Source | Target | Cardinality | Description |
+|----------|--------|--------|-------------|-------------|
+| `associated_with` | Variant | Disease | N:M | GWAS association |
+| `confers_risk` | HLA Allele | Disease | N:M | HLA-disease association |
+| `regulates` | Gene | Pathway | N:M | Pathway participation |
+| `synthesizes` | CYP Enzyme | Steroid | N:M | Steroid biosynthesis |
+| `interacts_with` | KIR | HLA | N:M | NK cell receptor interaction |
+| `eQTL_for` | Variant | Gene | N:M | Expression QTL |
+
+---
+
+## Sample Data
+
+### Example Record: GWAS Catalog Autoimmune Association
+
+```json
+{
+  "rsid": "rs2476601",
+  "gene": "PTPN22",
+  "chromosome": "1",
+  "position": 114377568,
+  "effect_allele": "A",
+  "other_allele": "G",
+  "p_value": 5.0e-150,
+  "odds_ratio": 1.89,
+  "trait": "Rheumatoid arthritis",
+  "efo_trait_id": "EFO_0000685",
+  "pmid": "24390342"
+}
+```
+
+### Sample Query Result: HLA Alleles (IPD-IMGT/HLA)
+
+| allele_name | gene | resolution | sequence_length | disease_associations |
+|-------------|------|------------|-----------------|---------------------|
+| HLA-DRB1*04:01 | HLA-DRB1 | 4-field | 801 | RA, T1D |
+| HLA-B*27:05 | HLA-B | 4-field | 1089 | Ankylosing spondylitis |
+| HLA-DQB1*03:02 | HLA-DQB1 | 4-field | 786 | Type 1 diabetes |
+
+### Sample Query Result: ThyroidOmics GWAS
+
+| rsid | gene | trait | beta | se | p_value | ancestry |
+|------|------|-------|------|-------|---------|----------|
+| rs2228570 | VDR | TSH | 0.025 | 0.004 | 2.1e-10 | EUR |
+| rs965513 | FOXE1 | FT4 | -0.032 | 0.005 | 8.5e-12 | EUR |
+| rs12913832 | HERC2 | TPOAb | 0.089 | 0.012 | 1.3e-8 | EUR |
+
+---
+
+## Download
+
+| Database | Method | URL/Command |
+|----------|--------|-------------|
+| **IPD-IMGT/HLA** | FTP | `ftp://ftp.ebi.ac.uk/pub/databases/ipd/imgt/hla/` |
+| **GWAS Catalog** | API | `https://www.ebi.ac.uk/gwas/api/search/downloads/alternative` |
+| | FTP | `ftp://ftp.ebi.ac.uk/pub/databases/gwas/` |
+| **OpenGWAS** | API | `https://gwas-api.mrcieu.ac.uk/` |
+| **ThyroidOmics** | Direct | `https://transfer.sysepi.medizin.uni-greifswald.de/thyroidomics/datasets/` |
+| **Reactome** | API | `https://reactome.org/download-data` |
+| **PharmVar** | FTP | `https://www.pharmvar.org/download` |
+| **gnomAD** | API | `https://gnomad.broadinstitute.org/api` |
+
+**Access Requirements:** ThyroidOmics datasets may require academic agreement; gnomAD controlled data requires dbGaP authorization.
+
+---
+
+## Data Format
+
+| Format | Description | Used By |
+|--------|-------------|---------|
+| VCF | Variant Call Format | PharmVar, gnomAD, GWAS variants |
+| TSV | Tab-separated summary statistics | GWAS Catalog, ThyroidOmics |
+| JSON | API responses | GWAS Catalog, OpenGWAS, gnomAD |
+| SBML | Systems Biology Markup Language | Reactome pathways |
+| BioPAX | Biological Pathway Exchange | Reactome pathways |
+| FASTA | HLA allele sequences | IPD-IMGT/HLA |
+
+**Compression:** gzip (.gz) for bulk downloads
+**Encoding:** UTF-8
 
 ---
 

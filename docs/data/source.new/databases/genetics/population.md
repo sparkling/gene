@@ -527,6 +527,90 @@ tags: [genetics, population, diversity]
 
 ---
 
+## Download
+
+| Database | Method | URL/Command |
+|----------|--------|-------------|
+| **gnomAD v4.1** | Download | `https://gnomad.broadinstitute.org/downloads` |
+| **TOPMed BRAVO** | Web browser | `https://bravo.sph.umich.edu/` |
+| **ALFA** | FTP | `ftp://ftp.ncbi.nlm.nih.gov/snp/population_frequency/` |
+| **1000 Genomes** | FTP | `ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/` |
+| **dbSNP** | FTP | `ftp://ftp.ncbi.nih.gov/snp/` |
+| **ClinVar** | FTP | `ftp://ftp.ncbi.nlm.nih.gov/pub/clinvar/` |
+
+**Access Requirements:** Most are open access; All of Us requires Data Use Agreement; TOPMed individual data requires dbGaP application.
+
+## Data Format
+
+| Format | Description |
+|--------|-------------|
+| Primary | VCF, TSV, JSON |
+| Alternative | Parquet, BigQuery |
+| Variant notation | rsID, HGVS, VCF format |
+| Encoding | UTF-8 |
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `rsid` | string | Reference SNP ID | "rs1801133" |
+| `chrom` | string | Chromosome | "1" |
+| `pos` | integer | Genomic position | 11856378 |
+| `ref` | string | Reference allele | "G" |
+| `alt` | string | Alternate allele | "A" |
+| `af` | float | Global allele frequency | 0.35 |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `in_gene` | Gene | N:1 |
+| `has_annotation` | Functional prediction | 1:N |
+| `associated_with` | Phenotype | N:M |
+
+## Sample Data
+
+### Example Variant Record
+```json
+{
+  "rsid": "rs1801133",
+  "chrom": "1",
+  "pos": 11856378,
+  "ref": "G",
+  "alt": "A",
+  "gene": "MTHFR",
+  "consequence": "missense_variant",
+  "af_global": 0.35,
+  "af_by_pop": {
+    "EUR": 0.36,
+    "AFR": 0.11,
+    "EAS": 0.44,
+    "SAS": 0.12
+  }
+}
+```
+
+### Sample Query Result
+| rsid | gene | consequence | af_global |
+|------|------|-------------|-----------|
+| rs1801133 | MTHFR | missense | 0.35 |
+| rs1801131 | MTHFR | missense | 0.29 |
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| gnomAD v4.1 variants | 786M+ variants from 807K individuals |
+| TOPMed variants | 868M+ variants from 150K genomes |
+| ALFA variants | 1B+ frequency records |
+| dbSNP variants | 1.1B+ submitted variants |
+| Total storage estimate | ~195 GB compressed |
+| Last updated | January 2026 |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |
@@ -567,6 +651,54 @@ tags: [genetics, population, diversity]
 | CNV | Copy Number Variant | Deletions or duplications |
 | DMS | Deep Mutational Scanning | Experimental saturation mutagenesis |
 | MPRA | Massively Parallel Reporter Assay | High-throughput regulatory element testing |
+
+---
+
+## License
+
+This document catalogs multiple databases with varying license terms:
+
+| Database | License | Commercial Use | Attribution | Access |
+|----------|---------|----------------|-------------|--------|
+| TOPMed BRAVO | Public (summary), Controlled (individual) | Summary data: Yes | Citation | Open (summary) |
+| All of Us | Data Use Agreement | Research only | Required | Registration required |
+| ALFA R4 | Public Domain | Yes | Citation | Open |
+| UK Biobank AFB | Public (AFB), Controlled (full) | Summary data: Yes | Required | AFB open |
+| GenomeAsia 100K | Data Access Agreement | Research only | Required | Application required |
+| H3Africa/AGVP | Controlled Access | Research only | Required | Application required |
+| AGenDA | Controlled Access | Research only | Required | Application required |
+| gnomAD v4.1 | Open Access | Yes | Citation | Open |
+| jMorp | Open (summary), Controlled (individual) | Summary data: Yes | Citation | Open (summary) |
+| AlphaMissense | CC BY 4.0 | Yes | Required | Open |
+| dbNSFP v4.9 | Academic (v4.9a), Commercial (v4.9c) | v4.9c only | Required | Download |
+| CADD v1.7 | Academic free, Commercial available | License required | Required | Download |
+| SpliceAI | Academic free, Commercial from Illumina | License required | Required | Download |
+| REVEL | Academic use | No | Required | Download |
+| EVE | Academic use | No | Required | Download |
+| PrimateAI-3D | Academic free, Commercial from Illumina | License required | Required | Download |
+| MaveDB | Open Access | Yes | Citation | Open |
+| RegulomeDB | Open Access | Yes | Citation | Open |
+| ENCODE 4 | Open Access | Yes | Citation | Open |
+| Roadmap Epigenomics | Open Access | Yes | Citation | Open |
+| IHEC | Open Access | Yes | Citation | Open |
+| MethBank 4.0 | Open Access | Yes | Citation | Open |
+| 4D Nucleome | Open Access | Yes | Citation | Open |
+| FANTOM5 | CC BY 4.0 | Yes | Required | Open |
+| gnomAD-SV v4.1 | Open Access | Yes | Citation | Open |
+| DGV | Open Access | Yes | Citation | Open |
+| dbVar | Public Domain | Yes | Citation | Open |
+| DECIPHER | Open (consented), Data Display Agreement | Agreement required | Required | Agreement required |
+| SV4GD | Open Access | Yes | Citation | Open |
+| HGSVC | Open Access | Yes | Citation | Open |
+| ClinGen Dosage | Open Access | Yes | Citation | Open |
+| VEP | Apache 2.0 | Yes | Required | Open Source |
+| ANNOVAR | Academic free | No | Required | Download |
+
+**Key Considerations:**
+- **Fully Open (Commercial OK):** ALFA, AlphaMissense, FANTOM5, gnomAD, MaveDB, dbVar
+- **Academic Only:** dbNSFP (v4.9a), CADD, REVEL, EVE, ANNOVAR
+- **Controlled Access:** TOPMed (individual), All of Us, GenomeAsia 100K, H3Africa, AGenDA
+- **Commercial License Required:** SpliceAI, PrimateAI-3D (Illumina)
 
 ---
 

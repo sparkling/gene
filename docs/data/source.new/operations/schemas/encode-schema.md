@@ -645,6 +645,71 @@ def fetch_encode_object(accession: str) -> Dict:
 
 ---
 
+## Download
+
+### Data Access Methods
+
+| Method | URL | Format |
+|--------|-----|--------|
+| REST API | https://www.encodeproject.org/ | JSON |
+| SCREEN Database | https://screen.encodeproject.org/ | JSON/Download |
+| FTP Downloads | https://www.encodeproject.org/files/ | VCF, BED, BigWig, BAM |
+| Batch Download | https://www.encodeproject.org/batch_download/ | Multiple formats |
+
+### File Download
+
+```bash
+# Download single experiment files
+curl -O "https://www.encodeproject.org/files/ENCFF000ABC/@@download/ENCFF000ABC.bigWig"
+
+# Download cCRE BED files
+curl -O "https://screen.encodeproject.org/downloads/cCREs/GRCh38.cCREs.bed"
+```
+
+---
+
+## Data Format
+
+| Format | Description | Use Case |
+|--------|-------------|----------|
+| Primary | JSON (REST API), bigWig (signal), bigBed (peaks) | Signal visualization, peak calling results |
+| Alternative | VCF (variants), BAM (alignments), TSV (metadata) | Variant analysis, alignment review |
+| Compression | gzip (.gz), bgzip (.bgz for tabix) | File storage, efficient access |
+| Encoding | UTF-8 | Text-based formats |
+| API Response | JSON-LD (linked data) | REST responses |
+
+---
+
+## Data Set Size
+
+| Dataset | Records | Storage |
+|---------|---------|---------|
+| **cCRE Annotations (human)** | 926,535 elements | ~50 MB (BED) |
+| **Experiments** | 15,000+ studies | ~500 TB raw sequence |
+| **Files** | 500,000+ | ~2 PB total |
+| **ChIP-seq signals** | Peak files per experiment | 100+ GB per cell type |
+| **Single cCRE** | ~300-500 bp regions | ~40 bytes per record |
+
+---
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `id` | string | Primary identifier | "ENCSR123ABC" |
+| `name` | string | Entity name | "ENCODE Experiment" |
+| `type` | string | Record type | "experiment" |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `associated_with` | Entity | N:M |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

@@ -499,17 +499,19 @@ ASXL1, CBL, DNMT3B, ETV6, EZH2, HNMT, IDH1, IL13, JAK2, KMT2A, KRAS, MS4A2, NLRP
 
 ---
 
-## Storage Summary
+## Data Set Size
 
-| Category | Sources | Est. Size |
-|----------|---------|-----------|
-| Allergy Genetics | 4 | ~55 GB |
-| Histamine & Mast Cell | 4 | ~6 GB |
-| Pain Genetics | 5 | ~15 GB |
-| Inflammation Pathways | 4 | ~3 GB |
-| Autoimmune & HLA | 4 | ~12 GB |
-| Multi-Purpose Platforms | 5 | ~175 GB |
-| **Total** | **26** | **~120 GB** |
+| Metric | Value |
+|--------|-------|
+| Allergy Genetics | ~55 GB (4 sources) |
+| Histamine & Mast Cell | ~6 GB (4 sources) |
+| Pain Genetics | ~15 GB (5 sources) |
+| Inflammation Pathways | ~3 GB (4 sources) |
+| Autoimmune & HLA | ~12 GB (4 sources) |
+| Multi-Purpose Platforms | ~175 GB (5 sources) |
+| Total sources | 26 databases |
+| Total storage estimate | ~120 GB |
+| Last updated | January 2026 |
 
 *Note: dbSNP full data is ~100 GB; using summary/subset data reduces to ~20 GB for allergy/pain-specific variants*
 
@@ -659,6 +661,95 @@ ASXL1, CBL, DNMT3B, ETV6, EZH2, HNMT, IDH1, IL13, JAK2, KMT2A, KRAS, MS4A2, NLRP
 | PharmGKB | License required | Account needed, agreement for download |
 | DisGeNET | Academic free | Commercial license for for-profit use |
 | UK Biobank | Application | Research project approval required |
+
+---
+
+## Schema
+
+### Core Entity Fields
+
+| Entity | Field | Type | Description | Example |
+|--------|-------|------|-------------|---------|
+| **Variant** | `rsid` | string | dbSNP reference SNP identifier | "rs6746030" |
+| | `gene` | string | Associated gene symbol | "SCN9A" |
+| | `allele` | string | Effect/reference allele | "A/G" |
+| | `effect` | string | Functional consequence | "Enhanced DRG excitation" |
+| | `phenotype` | string | Associated trait or condition | "Increased pain sensitivity" |
+| **Allergen** | `name` | string | WHO/IUIS official name | "Ara h 1" |
+| | `source` | string | Allergen source organism | "Arachis hypogaea" |
+| | `iuis_code` | string | Official nomenclature code | "Ara h 1.0101" |
+| | `mw` | float | Molecular weight (kDa) | 63.5 |
+| **HLA Allele** | `allele_name` | string | HLA allele designation | "HLA-B*57:01" |
+| | `gene` | string | HLA gene locus | "HLA-B" |
+| | `disease_assoc` | string[] | Associated conditions | ["Drug hypersensitivity"] |
+| **Pathway** | `pathway_id` | string | Reactome stable identifier | "R-HSA-622312" |
+| | `name` | string | Pathway name | "Inflammasomes" |
+| | `proteins` | integer | Number of proteins | 45 |
+
+### Relationships
+
+| Relation | Source | Target | Cardinality | Description |
+|----------|--------|--------|-------------|-------------|
+| `associated_with` | Variant | Phenotype | N:M | SNP-trait association |
+| `located_in` | Variant | Gene | N:1 | Variant position |
+| `triggers` | Allergen | Immune Response | 1:N | IgE-mediated response |
+| `participates_in` | Gene | Pathway | N:M | Gene-pathway membership |
+| `cross_reacts` | Allergen | Allergen | N:M | Cross-reactivity |
+| `metabolizes` | Gene | Compound | N:M | DAO/HNMT metabolism |
+
+---
+
+## Sample Data
+
+### Example Record: GWAS Catalog Allergy Association
+
+```json
+{
+  "rsid": "rs6746030",
+  "gene": "SCN9A",
+  "chromosome": "2",
+  "position": 166373774,
+  "effect_allele": "A",
+  "other_allele": "G",
+  "p_value": 1.2e-8,
+  "odds_ratio": 1.35,
+  "trait": "Pain sensitivity",
+  "study": "UK Biobank Pain GWAS",
+  "pmid": "30188896"
+}
+```
+
+### Sample Query Result: Histamine Intolerance Variants
+
+| rsid | gene | variant | effect | population | source |
+|------|------|---------|--------|------------|--------|
+| rs10156191 | AOC1 | His663Asn | Reduced DAO activity | European | ClinVar |
+| rs2052129 | AOC1 | C-4107T | Reduced DAO activity | European | dbSNP |
+| rs11558538 | HNMT | Thr105Ile | 30-50% reduction in HNMT | European | ClinVar |
+
+### Sample Query Result: HLA-Disease Associations
+
+| allele_name | gene | disease_association | odds_ratio | source |
+|-------------|------|---------------------|------------|--------|
+| HLA-B*57:01 | HLA-B | Drug hypersensitivity | 117.0 | IPD-IMGT/HLA |
+| HLA-DRB1*04:01 | HLA-DRB1 | Rheumatoid arthritis | 4.2 | ImmunoBase |
+| HLA-DQB1*02:01 | HLA-DQB1 | Celiac disease | 6.8 | GWAS Catalog |
+
+---
+
+## Data Format
+
+| Format | Description | Used By |
+|--------|-------------|---------|
+| VCF | Variant Call Format | ClinVar, gnomAD, allergy variants |
+| TSV | GWAS summary statistics | UK Biobank, GWAS Catalog |
+| JSON | API responses | GWAS Catalog, AllerGAtlas |
+| CSV | Allergy/pain datasets | AllerGAtlas, pain consortia |
+| FASTA | HLA allele sequences | IPD-IMGT/HLA |
+| XML | Detailed records | ClinVar XML |
+
+**Compression:** gzip (.gz) for bulk downloads
+**Encoding:** UTF-8
 
 ---
 

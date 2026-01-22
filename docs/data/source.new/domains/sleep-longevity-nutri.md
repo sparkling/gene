@@ -629,6 +629,120 @@ FOXO3, APOE/TOMM40, CDKN2B, SH2B3/ATXN2, ABO, CETP
 
 ---
 
+## Download
+
+| Method | URL/Command |
+|--------|-------------|
+| GWAS Catalog Downloads | `https://www.ebi.ac.uk/gwas/docs/file-downloads` |
+| GWAS Catalog API | `curl -X GET "https://www.ebi.ac.uk/gwas/rest/api/efoTraits/search?query=chronotype"` |
+| CircaDB | `http://circadb.hogeneschlab.org/` |
+| CirGRDB | `http://cirgrdb.biols.ac.cn` |
+| Sleep Disorders Portal | `https://sleep.hugeamp.org/` |
+| GenAge Downloads | `https://genomics.senescence.info/genes/` |
+| LongevityMap | `https://genomics.senescence.info/longevity/` |
+| DrugAge | `https://genomics.senescence.info/drugs/` |
+| Open Genes Downloads | `https://open-genes.com/download` |
+| Open Genes API | `https://github.com/open-genes/open-genes-api` |
+| NutriGenomeDB | `https://nutrigenomedb.org/` |
+| PharmGKB | `https://www.pharmgkb.org/downloads` |
+| HMDB Downloads | `wget https://hmdb.ca/system/downloads/current/hmdb_metabolites.zip` |
+| PhenoScanner R | `devtools::install_github("phenoscanner/phenoscanner")` |
+| PhenoScanner Python | `pip install phenoscannerpy` |
+| KEGG API | `curl -X GET "https://rest.kegg.jp/"` |
+| dbNSFP | `https://www.dbnsfp.org/` |
+| ClinVar FTP | `wget ftp://ftp.ncbi.nlm.nih.gov/pub/clinvar/` |
+| dbSNP | `wget ftp://ftp.ncbi.nlm.nih.gov/snp/` |
+| Ensembl API | `curl -X GET "https://rest.ensembl.org/"` |
+
+**Access Requirements:** GWAS Catalog: CC0/Open | CircaDB: Open source | CirGRDB: Academic use | Sleep Portal: Academic | HAGR (GenAge/LongevityMap/DrugAge): HAGR license (free) | Open Genes: MPL 2.0 | NutriGenomeDB: Academic | PharmGKB: Research (no redistribution) | HMDB: Academic free, commercial requires permission | PhenoScanner: Academic | KEGG: Academic free, commercial license | dbNSFP: Academic | ClinVar/dbSNP: Public domain | Ensembl: Open
+
+---
+
+## Sample Data
+
+### Example Record: GWAS Catalog Chronotype Association
+
+```json
+{
+  "rsid": "rs1801260",
+  "gene": "CLOCK",
+  "chromosome": "4",
+  "position": 56294072,
+  "effect_allele": "C",
+  "other_allele": "T",
+  "p_value": 3.2e-15,
+  "beta": 0.04,
+  "trait": "Chronotype (morning person)",
+  "study": "UK Biobank + 23andMe",
+  "sample_size": 697828
+}
+```
+
+### Sample Query Result: Open Genes Longevity Database
+
+| gene | organism | lifespan_effect | mechanism | evidence_level |
+|------|----------|-----------------|-----------|----------------|
+| FOXO3 | Human | +2.7 years (centenarian association) | Stress resistance | Strong |
+| SIRT1 | Mouse | +15% median lifespan | Caloric restriction mimetic | Moderate |
+| APOE | Human | e2: protective, e4: reduced | Lipid metabolism | Strong |
+
+### Sample Query Result: Nutrigenomics Variants
+
+| rsid | gene | nutrient | effect | population_frequency |
+|------|------|----------|--------|---------------------|
+| rs1801133 | MTHFR | Folate | C677T: 35-70% reduced enzyme activity | 25% (Hispanic homozygous) |
+| rs2228570 | VDR | Vitamin D | FokI: altered receptor function | 40% (European) |
+| rs762551 | CYP1A2 | Caffeine | Fast vs slow metabolizer | 50% (global) |
+
+---
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| GWAS Catalog chronotype | 351+ loci (2 GB catalog; 10+ GB sleep stats) |
+| CircaDB cycling genes | ~3,000 genes (500 MB) |
+| CirGRDB assays | 4,936+ genome-wide assays (2 GB) |
+| GenAge aging genes | 2,512 genes (human + model organisms) |
+| LongevityMap variants | 3,144 variants across 884 genes |
+| Open Genes database | 2,402 genes (2 GB) |
+| HMDB metabolites | 220,945 entries (20 GB) |
+| PhenoScanner associations | 350M+ associations (50 GB) |
+| dbNSFP variants | 83M+ nsSNVs (50 GB) |
+| Total storage estimate | ~150 GB (curated data) |
+| Last updated | January 2026 |
+
+---
+
+## License
+
+| Database | License | Commercial Use | Attribution |
+|----------|---------|----------------|-------------|
+| **GWAS Catalog** | Open Access | Yes | Required |
+| **LongevityMap** | Open Access | Yes | Required |
+| **Open Genes** | CC BY-NC 4.0 | Permission required | Required |
+| **HMDB** | Open Access | Yes | Required |
+| **FooDB** | Open Access | Yes | Required |
+| **dbNSFP** | Academic free | Commercial version available | Required |
+
+---
+
+## Data Format
+
+| Format | Description | Used By |
+|--------|-------------|---------|
+| TSV | GWAS summary statistics | GWAS Catalog, PhenoScanner |
+| CSV | Gene/variant lists | LongevityMap, Open Genes |
+| JSON | API responses | HMDB, FooDB |
+| XML | Detailed records | HMDB |
+| SDF | Chemical structures | FooDB, HMDB |
+| VCF | Variant data | dbNSFP |
+
+**Compression:** gzip (.gz) for bulk downloads
+**Encoding:** UTF-8
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |
@@ -673,6 +787,26 @@ FOXO3, APOE/TOMM40, CDKN2B, SH2B3/ATXN2, ABO, CETP
 | mQTL | Metabolite Quantitative Trait Locus | Metabolite level variants |
 | MPL 2.0 | Mozilla Public License 2.0 | Open Genes license |
 | CC BY-4.0 | Creative Commons Attribution 4.0 | Open license |
+
+---
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `domain` | string | Health domain | "Sleep, Longevity & Nutrigenomics" |
+| `database` | string | Data source | "GWAS Catalog, Open Genes, HMDB" |
+| `category` | string | Data category | "Circadian genetics, Longevity, Nutrigenomics" |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `covers` | Trait | 1:N |
+| `associates` | Gene | N:M |
+| `metabolizes` | Compound | N:M |
 
 ---
 

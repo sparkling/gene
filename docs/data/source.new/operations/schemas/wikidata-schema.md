@@ -85,6 +85,60 @@ Wikidata is a free and open knowledge base that serves as the central structured
 
 ---
 
+## Download
+
+### Data Access Methods
+
+| Format | Size (approx) | URL | Use Case |
+|--------|---------------|-----|----------|
+| JSON Dumps | ~60 GB (compressed) | https://dumps.wikimedia.org/wikidatawiki/ | Full knowledge base export |
+| RDF Dumps | ~80 GB (compressed) | https://dumps.wikimedia.org/wikidatawiki/entities/ | Semantic web/RDF applications |
+| SPARQL Endpoint | - | https://query.wikidata.org/sparql | Real-time queries |
+| REST API | - | https://www.wikidata.org/w/api.php | Programmatic access |
+| Quickstatements | - | https://www.wikidata.org/wiki/Wikidata:QuickStatements | Batch data retrieval |
+
+### Update Schedule
+
+- JSON/RDF dumps: Daily (around 01:00 UTC)
+- Real-time data: Available instantly via SPARQL
+- API updates: Continuous (changes reflected immediately)
+
+---
+
+## Data Format
+
+| Aspect | Details |
+|--------|---------|
+| **Primary Formats** | JSON-LD (API), Turtle/N-Triples (RDF), SPARQL responses |
+| **Alternative Formats** | RDF/XML, CSV (custom exports) |
+| **Encoding** | UTF-8 |
+| **API Response** | JSON with RDF structure |
+| **Query Language** | SPARQL 1.1 |
+| **Compression** | bzip2 for dump files |
+
+---
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| **Total Items** | 100,000,000+ (all entities) |
+| **Human Genes** | ~59,721 entries |
+| **Human Proteins** | ~27,306 entries |
+| **Human Diseases** | ~200,000+ entries |
+| **Medications/Drugs** | ~45,000+ entries |
+| **Gene-Disease Links** | 1,000,000+ associations |
+| **Protein Properties** | 286+ cross-database mappings via properties |
+| **Total Properties** | 10,000+ predicates |
+| **Labels in Languages** | 300+ languages |
+| **Total Statements** | 1,000,000,000+ RDF triples |
+| **JSON Dump Size** | ~60 GB (compressed bzip2) |
+| **RDF Dump Size** | ~80 GB (compressed bzip2) |
+| **Growth Rate** | ~1 million new statements daily |
+| **Update Frequency** | Continuous (real-time); dumps daily |
+
+---
+
 ## Sample SPARQL Queries
 
 ### Get Human Genes with Multiple Identifiers
@@ -147,6 +201,26 @@ LIMIT 100
 **License:** CC0 1.0 Universal (Public Domain)
 **Attribution:** Not required
 **Commercial Use:** Unrestricted
+
+---
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `id` | string | Primary identifier | "Q123456" |
+| `name` | string | Entity name | "Item Label" |
+| `type` | string | Record type | "entity" / "property" |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `is_instance_of` | Class | N:M |
+| `connected_to` | Entity | N:M |
+| `described_by` | Language | N:M |
 
 ---
 

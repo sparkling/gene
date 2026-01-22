@@ -963,15 +963,143 @@ GET https://api.mavedb.org/api/v1/score-sets/
 
 ---
 
-## Size Estimates for Full Integration
+## Data Set Size
 
-| Category | Compressed Size | Uncompressed | Notes |
-|----------|-----------------|--------------|-------|
-| Population genetics | ~100 GB | ~500 GB | Summary-level only |
-| Functional annotation | ~60 GB | ~300 GB | dbNSFP largest |
-| Epigenetics | ~20 GB | ~100 GB | ENCODE cCREs focus |
-| Structural variants | ~15 GB | ~75 GB | gnomAD-SV primary |
-| **Total** | **~195 GB** | **~975 GB** | Summary/processed data |
+| Metric | Value |
+|--------|-------|
+| Population genetics | ~100 GB compressed / ~500 GB uncompressed (Summary-level) |
+| Functional annotation | ~60 GB compressed / ~300 GB uncompressed (dbNSFP largest) |
+| Epigenetics | ~20 GB compressed / ~100 GB uncompressed (ENCODE cCREs focus) |
+| Structural variants | ~15 GB compressed / ~75 GB uncompressed (gnomAD-SV primary) |
+| Total compressed | ~195 GB |
+| Total uncompressed | ~975 GB (Summary/processed data) |
+| Last updated | January 2026 |
+
+---
+
+## License
+
+This document catalogs multiple databases with varying license terms:
+
+| Database | License | Commercial Use | Attribution | Access |
+|----------|---------|----------------|-------------|--------|
+| TOPMed BRAVO | Public (summary), Controlled (individual) | Summary data: Yes | Citation | Open (summary) |
+| All of Us | Data Use Agreement | Research only | Required | Registration required |
+| ALFA R4 | Public Domain | Yes | Citation | Open |
+| UK Biobank AFB | Public (AFB), Controlled (full) | Summary data: Yes | Required | AFB open; full requires application |
+| GenomeAsia 100K | Data Access Agreement | Research only | Required | Application required |
+| H3Africa/AGVP | Controlled Access | Research only | Required | Application required |
+| dbNSFP v4.9 | Academic (v4.9a free), Commercial (v4.9c) | v4.9c only | Required | Download |
+| AlphaMissense | CC BY 4.0 | Yes | Required | Open |
+| CADD | Academic free, Commercial license available | License required | Required | Download |
+| SpliceAI | Academic free, Commercial license from Illumina | License required | Required | Download |
+| REVEL | Academic use | No | Required | Download |
+| EVE | Academic use | No | Required | Download |
+| PrimateAI-3D | Academic free, Commercial license from Illumina | License required | Required | Download |
+| MaveDB | Open Access | Yes | Citation | Open |
+| RegulomeDB | Open Access | Yes | Citation | Open |
+| ENCODE 4 | Open Access | Yes | Citation | Open |
+| Roadmap Epigenomics | Open Access | Yes | Citation | Open |
+| IHEC | Open Access | Yes | Citation | Open |
+| MethBank 4.0 | Open Access | Yes | Citation | Open |
+| 4D Nucleome | Open Access | Yes | Citation | Open |
+| FANTOM5 | CC BY 4.0 | Yes | Required | Open |
+| gnomAD-SV v4.1 | Open Access | Yes | Citation | Open |
+| DGV | Open Access | Yes | Citation | Open |
+| dbVar | Public Domain | Yes | Citation | Open |
+| DECIPHER | Open (consented), Data Display Agreement | Agreement required | Required | Agreement required |
+| SV4GD | Open Access | Yes | Citation | Open |
+| HGSVC | Open Access | Yes | Citation | Open |
+| ClinGen Dosage | Open Access | Yes | Citation | Open |
+
+**Key Considerations:**
+- **Fully Open (Commercial OK):** ALFA, AlphaMissense, FANTOM5, MaveDB, gnomAD-SV, dbVar, ClinGen Dosage
+- **Academic Only:** dbNSFP (v4.9a), CADD, REVEL, EVE
+- **Controlled Access:** TOPMed (individual), All of Us, GenomeAsia 100K, H3Africa
+- **Commercial License Required:** SpliceAI, PrimateAI-3D (from Illumina)
+
+---
+
+## Download
+
+| Database | Method | URL/Command |
+|----------|--------|-------------|
+| **dbSNP** | FTP | `ftp://ftp.ncbi.nih.gov/snp/latest_release/` |
+| **ClinVar** | FTP | `ftp://ftp.ncbi.nlm.nih.gov/pub/clinvar/vcf_GRCh38/` |
+| **gnomAD** | Download | `https://gnomad.broadinstitute.org/downloads` |
+| **dbNSFP** | Download | `https://sites.google.com/site/jpaboratory/dbNSFP` |
+| **ENCODE** | Portal | `https://www.encodeproject.org/` |
+| **AlphaMissense** | Zenodo | `https://zenodo.org/record/8208688` |
+
+**Access Requirements:** Most are freely accessible; dbNSFP is for academic use; some TOPMed/All of Us data requires controlled access approval.
+
+## Data Format
+
+| Format | Description |
+|--------|-------------|
+| Primary | VCF, TSV, BED |
+| Alternative | JSON, Parquet, BigWig |
+| Variant notation | rsID, HGVS, VCF |
+| Reference genome | GRCh38 (preferred), GRCh37 |
+| Encoding | UTF-8 |
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `variant_id` | string | Unique variant identifier | "1-11856378-G-A" |
+| `rsid` | string | dbSNP rsID | "rs1801133" |
+| `gene` | string | Gene symbol | "MTHFR" |
+| `consequence` | string | Variant effect | "missense_variant" |
+| `pathogenicity` | string | Clinical interpretation | "Pathogenic" |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `in_gene` | Gene | N:1 |
+| `has_prediction` | Pathogenicity Score | 1:N |
+| `overlaps` | Regulatory Element | N:M |
+
+## Sample Data
+
+### Example Annotated Variant
+```json
+{
+  "variant_id": "1-11856378-G-A",
+  "rsid": "rs1801133",
+  "gene": "MTHFR",
+  "consequence": "missense_variant",
+  "amino_acid_change": "p.Ala222Val",
+  "predictions": {
+    "CADD_phred": 25.3,
+    "REVEL": 0.42,
+    "AlphaMissense": 0.38,
+    "SpliceAI_max": 0.01
+  },
+  "clinvar_significance": "Benign/Likely benign"
+}
+```
+
+### Sample Query Result
+| variant | gene | CADD | REVEL | clinvar |
+|---------|------|------|-------|---------|
+| rs1801133 | MTHFR | 25.3 | 0.42 | Benign |
+| rs121913279 | BRCA1 | 35.0 | 0.95 | Pathogenic |
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| dbSNP variants | 1.1B+ submitted variants |
+| ClinVar submissions | 2.5M+ variant interpretations |
+| dbNSFP annotations | 84M missense + 18M splice-site |
+| AlphaMissense | 71M missense predictions |
+| ENCODE elements | 3.4M candidate cis-regulatory elements |
+| Total storage estimate | ~500 GB (processed annotations) |
+| Last updated | January 2026 |
 
 ---
 

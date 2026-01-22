@@ -886,16 +886,17 @@ https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/curcumin/JSON
 
 ---
 
-## Storage Estimates Summary
+## Data Set Size
 
-| Tier | Sources | Estimated Storage |
-|------|---------|-------------------|
-| Tier 1 (Open) | DSLD, Duke's, LNHPD, LOTUS, NPA, EMA, FooDB, PubChem | ~15 GB |
-| Tier 2 (Licensed) | NatMed, Examine, HerbMed, USP, MSK | Subscription-based |
-| Tier 3 (Monographs) | Commission E, ESCOP, WHO, Cochrane | ~400 MB |
-| Tier 4 (Phytochemical) | NAPRALERT, IMPPAT, PhytoHub, MPD3 | ~1.2 GB |
-| Tier 5 (Supporting) | LPI, NCCIH, MedlinePlus, TGA | ~400 MB |
-| **Total (Open Sources)** | | **~17 GB** |
+| Metric | Value |
+|--------|-------|
+| Tier 1 (Open) | ~15 GB (DSLD, Duke's, LNHPD, LOTUS, NPA, EMA, FooDB, PubChem) |
+| Tier 2 (Licensed) | Subscription-based (NatMed, Examine, HerbMed, USP, MSK) |
+| Tier 3 (Monographs) | ~400 MB (Commission E, ESCOP, WHO, Cochrane) |
+| Tier 4 (Phytochemical) | ~1.2 GB (NAPRALERT, IMPPAT, PhytoHub, MPD3) |
+| Tier 5 (Supporting) | ~400 MB (LPI, NCCIH, MedlinePlus, TGA) |
+| Total open sources | ~17 GB |
+| Last updated | January 2026 |
 
 ---
 
@@ -905,6 +906,95 @@ https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/curcumin/JSON
 |----------|--------------|
 | [index.md](./../index.md) | Parent index |
 | [natural-products.md](./../compounds/natural-products.md) | Related natural products |
+
+---
+
+## License
+
+This document catalogs multiple databases with varying license terms:
+
+| Database | License | Commercial Use | Attribution | Access |
+|----------|---------|----------------|-------------|--------|
+| DSLD | CC0 1.0 Universal (Public Domain) | Yes | None required | Open (REST API) |
+| ODS API | Public domain (US Government) | Yes | Citation | Open |
+| Dr. Duke's | CC0 Public Domain | Yes | None required | Open (bulk CSV) |
+| Health Canada LNHPD | Open Government License - Canada | Yes | Citation | Open (REST API) |
+| LOTUS | Open (Wikidata) | Yes | Citation | Open (MongoDB dump) |
+| Natural Products Atlas | CC-BY-NC 4.0 | No | Required | Open (API) |
+| EMA Herbal Medicines | Open (EU public institution) | Yes | Citation | Open (Excel/PDF) |
+| FooDB | Free for non-commercial | Contact for commercial | Citation | Open (API beta) |
+| PubChem | Public domain | Yes | None required | Open (API) |
+| NatMed Pro | Commercial subscription | Subscription required | N/A | Subscription |
+| Examine.com | Commercial | Data licensing available | N/A | Subscription |
+| HerbMed/HerbMedPro | Mixed (free limited, commercial pro) | Licensing required | Required | Mixed |
+| USP Dietary Supplements | Commercial | Subscription required | N/A | Subscription |
+| MSK About Herbs | Free public access | Yes | Citation | Open |
+| Commission E | Copyrighted (ABC translation) | License required | Required | Web/PDF |
+| ESCOP Monographs | Commercial | Subscription required | N/A | EUR30/year |
+| WHO Monographs | WHO copyright (free access) | Yes | Citation | Open (PDF) |
+| Cochrane | Subscription (Wiley) | Subscription required | N/A | Subscription |
+| NAPRALERT | Mixed (limited free, fee-based) | Fee per citation | Required | Web |
+| IMPPAT | Academic/research | Research only | Required | Open |
+| PhytoHub | Research use | Research only | Required | Open |
+| MPD3 | Free | Yes | Citation | Open |
+| LPI MIC | Free | Yes | Citation | Open |
+| NCCIH | Public domain | Yes | None required | Open |
+| MedlinePlus | Public domain | Yes | None required | Open |
+
+**Key Considerations:**
+- **Fully Open (Commercial OK):** DSLD (CC0), Dr. Duke's (CC0), PubChem, ODS, LNHPD, EMA, MSK About Herbs, WHO Monographs, LPI MIC, NCCIH, MedlinePlus
+- **Non-Commercial Only:** Natural Products Atlas (CC BY-NC), FooDB, IMPPAT, PhytoHub
+- **Commercial Subscription Required:** NatMed Pro, Examine.com, USP, ESCOP, Cochrane, NAPRALERT (expanded)
+- **Copyrighted/Licensed:** Commission E, HerbMedPro
+
+---
+
+## Download
+
+| Database | Method | URL/Command |
+|----------|--------|-------------|
+| **DSLD** | Bulk download | `https://dsld.od.nih.gov/` |
+| **Dr. Duke's** | CSV | `https://phytochem.nal.usda.gov/` (CC0) |
+| **Natural Products Atlas** | Download | `https://www.npatlas.org/` |
+| **FooDB** | Bulk | `https://foodb.ca/downloads` |
+| **EMA Herbal** | PDF | `https://www.ema.europa.eu/en/medicines/herbal` |
+| **WHO Monographs** | PDF | `https://www.who.int/publications/` |
+| **LNHPD** | API | `https://health-products.canada.ca/lnhpd-bdpsnh/` |
+
+**Access Requirements:** Most are freely accessible; NatMed Pro and Examine.com require subscription; Commission E requires license.
+
+## Data Format
+
+| Format | Description |
+|--------|-------------|
+| Primary | CSV, TSV, JSON |
+| Alternative | PDF, XML, SDF |
+| Chemical structures | SMILES, InChI |
+| Monographs | PDF |
+| Encoding | UTF-8 |
+
+## Sample Data
+
+### Example Supplement Record (DSLD)
+```json
+{
+  "dsld_id": "149987",
+  "product_name": "Echinacea Complex",
+  "manufacturer": "Nature's Way",
+  "ingredients": [
+    {"name": "Echinacea purpurea root", "amount": "400mg"},
+    {"name": "Echinacea angustifolia root", "amount": "100mg"}
+  ],
+  "claims": "Supports immune health",
+  "npn": "80012345"
+}
+```
+
+### Sample Query Result
+| product | herb | form | daily_dose |
+|---------|------|------|------------|
+| Echinacea Complex | Echinacea purpurea | Capsule | 900mg |
+| Valerian Sleep | Valeriana officinalis | Tablet | 600mg |
 
 ---
 

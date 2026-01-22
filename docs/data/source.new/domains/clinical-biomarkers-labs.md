@@ -683,16 +683,16 @@ Lab Result Input
 
 ---
 
-## Storage Estimates Summary
+## Data Set Size
 
-| Tier | Databases | Estimated Storage |
-|------|-----------|-------------------|
-| Tier 1 | LOINC, MarkerDB, CALIPER, MedlinePlus, OncoKB, HMDB | ~13 GB |
-| Tier 2 | SNOMED CT, BioGPS, TheMarker, Metabolomics WB, ABIM | ~8 GB |
-| Tier 3 | Functional, Population studies, GOBIOM, CLSI | ~1 GB |
-| **Total** | All | **~22 GB** |
-
-*Note: UMLS Metathesaurus adds ~30 GB if full vocabulary needed.*
+| Metric | Value |
+|--------|-------|
+| Tier 1 databases | ~13 GB (LOINC, MarkerDB, CALIPER, MedlinePlus, OncoKB, HMDB) |
+| Tier 2 databases | ~8 GB (SNOMED CT, BioGPS, TheMarker, Metabolomics WB, ABIM) |
+| Tier 3 databases | ~1 GB (Functional, Population studies, GOBIOM, CLSI) |
+| Total storage estimate | ~22 GB |
+| UMLS Metathesaurus | +30 GB (if full vocabulary needed) |
+| Last updated | January 2026 |
 
 ---
 
@@ -732,6 +732,123 @@ Lab Result Input
 - [ ] Pediatric vs. adult cutoff - 18 or 21 years?
 
 ---
+
+---
+
+## Schema
+
+### Core Entity Fields
+
+| Entity | Field | Type | Description | Example |
+|--------|-------|------|-------------|---------|
+| **Biomarker** | `marker_id` | string | MarkerDB identifier | "BM0000001" |
+| | `name` | string | Common name | "Glucose" |
+| | `type` | string | Biomarker category | "Diagnostic" |
+| | `specimen` | string[] | Sample types | ["Plasma", "Serum"] |
+| | `ref_low` | float | Lower reference limit | 70.0 |
+| | `ref_high` | float | Upper reference limit | 100.0 |
+| | `unit` | string | Measurement unit | "mg/dL" |
+| **Lab Test** | `loinc_code` | string | LOINC universal identifier | "2345-7" |
+| | `component` | string | Analyte being measured | "Glucose" |
+| | `property` | string | Type of measurement | "MCnc" |
+| | `system` | string | Specimen type | "Ser/Plas" |
+| | `method` | string | Test method | "Enzymatic" |
+| **Reference Interval** | `ri_id` | string | Interval identifier | "RI_G_CALIPER_001" |
+| | `age_min` | integer | Minimum age (years) | 0 |
+| | `age_max` | integer | Maximum age (years) | 18 |
+| | `sex` | string | Sex specification | "Female" |
+| | `percentile_2.5` | float | Lower bound | 65.0 |
+| | `percentile_97.5` | float | Upper bound | 95.0 |
+| **Metabolite** | `hmdb_id` | string | HMDB identifier | "HMDB0000122" |
+| | `name` | string | Compound name | "Glucose" |
+| | `formula` | string | Molecular formula | "C6H12O6" |
+| | `concentration` | float | Normal serum level | 5.5 |
+| | `unit` | string | Concentration unit | "mmol/L" |
+
+### Relationships
+
+| Relation | Source | Target | Cardinality | Description |
+|----------|--------|--------|-------------|-------------|
+| `has_loinc` | Biomarker | Lab Test | N:M | LOINC mapping |
+| `has_reference` | Lab Test | Reference Interval | 1:N | Age/sex-specific ranges |
+| `indicates` | Biomarker | Condition | N:M | Diagnostic association |
+| `detected_in` | Metabolite | Biofluid | N:M | Detection specimen |
+| `maps_to` | Lab Test | SNOMED CT | N:M | Terminology mapping |
+| `measured_by` | Metabolite | Assay | N:M | Measurement platform |
+
+---
+
+## Download
+
+| Database | Method | URL/Command |
+|----------|--------|-------------|
+| **LOINC** | Direct | `https://loinc.org/downloads/` (registration required) |
+| **HMDB** | FTP | `https://hmdb.ca/downloads` |
+| **MetaCyc** | FTP | `https://metacyc.org/downloads.shtml` |
+| **KEGG** | API | `https://rest.kegg.jp/` |
+| **Recon3D** | Direct | `https://www.vmh.life/#downloadview` |
+| **Reactome** | FTP | `https://reactome.org/download-data` |
+
+**Access Requirements:** LOINC requires free registration; KEGG has API restrictions for commercial use.
+
+---
+
+## Sample Data
+
+### Example Record: LOINC Lab Test
+
+```json
+{
+  "loinc_num": "2345-7",
+  "component": "Glucose",
+  "property": "MCnc",
+  "time_aspect": "Pt",
+  "system": "Ser/Plas",
+  "scale_type": "Qn",
+  "method_type": "",
+  "long_common_name": "Glucose [Mass/volume] in Serum or Plasma",
+  "status": "ACTIVE"
+}
+```
+
+### Sample Query Result: Reference Intervals
+
+| loinc_code | test_name | unit | lower_limit | upper_limit | population |
+|------------|-----------|------|-------------|-------------|------------|
+| 2345-7 | Glucose, fasting | mg/dL | 70 | 100 | Adults |
+| 2093-3 | Cholesterol, total | mg/dL | 125 | 200 | Adults |
+| 3094-0 | Creatinine, serum | mg/dL | 0.7 | 1.3 | Adult males |
+
+---
+
+## License
+
+| Database | License | Commercial Use | Attribution |
+|----------|---------|----------------|-------------|
+| **LOINC** | Free (Regenstrief) | Yes with agreement | Required |
+| **HMDB** | Open Access | Yes | Required |
+| **MetaCyc** | Academic free | Contact for commercial | Required |
+| **KEGG** | Academic free | License required | Required |
+| **Recon3D** | Open Access | Yes | Required |
+| **Reactome** | CC BY 4.0 | Yes | Required |
+
+**Note:** KEGG requires commercial license for redistribution; LOINC requires signed license agreement.
+
+---
+
+## Data Format
+
+| Format | Description | Used By |
+|--------|-------------|---------|
+| TSV | LOINC database tables | LOINC |
+| CSV | Metabolite lists | HMDB, MetaCyc |
+| JSON | API responses | KEGG, HMDB |
+| XML | Detailed records | HMDB (MetaboCard), LOINC |
+| SBML | Metabolic models | Recon3D, MetaCyc |
+| OWL | Ontology format | LOINC ontology |
+
+**Compression:** ZIP archives for bulk downloads
+**Encoding:** UTF-8
 
 ---
 

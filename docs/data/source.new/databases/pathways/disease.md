@@ -59,6 +59,93 @@ Disease and phenotype databases link genes, variants, and biological pathways to
 
 ---
 
+## Download
+
+| Database | Method | URL/Command |
+|----------|--------|-------------|
+| **DisGeNET** | Download | `https://www.disgenet.org/downloads` |
+| **OMIM** | API | `https://api.omim.org/` (registration required) |
+| **HPO** | Download | `https://hpo.jax.org/app/data/ontology` |
+| **MONDO** | Download | `https://mondo.monarchinitiative.org/` |
+| **ClinVar** | FTP | `ftp://ftp.ncbi.nlm.nih.gov/pub/clinvar/` |
+| **Orphanet** | Download | `https://www.orphadata.com/` |
+
+**Access Requirements:** Most are freely accessible; OMIM requires registration; DisGeNET has academic and commercial licenses.
+
+## Data Format
+
+| Format | Description |
+|--------|-------------|
+| Primary | TSV, OBO, OWL |
+| Alternative | JSON, XML, RDF |
+| Ontology | OBO, OWL |
+| Encoding | UTF-8 |
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `disease_id` | string | Disease identifier | "MONDO:0005148" |
+| `gene_symbol` | string | Gene symbol | "MTHFR" |
+| `association_type` | string | Evidence type | "causal" |
+| `score` | float | Association confidence | 0.85 |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `associated_with` | Disease | N:M |
+| `has_phenotype` | HPO Term | N:M |
+| `variant_in` | ClinVar Entry | N:M |
+
+## Sample Data
+
+### Example Gene-Disease Association
+```json
+{
+  "gene_symbol": "MTHFR",
+  "disease": "Neural tube defects",
+  "mondo_id": "MONDO:0005148",
+  "score": 0.85,
+  "evidence": ["GWAS", "literature"],
+  "variants": ["rs1801133", "rs1801131"]
+}
+```
+
+### Sample Query Result
+| gene | disease | score | evidence |
+|------|---------|-------|----------|
+| MTHFR | Neural tube defects | 0.85 | GWAS |
+| BRCA1 | Breast cancer | 0.99 | Clinical |
+
+## License
+
+| Source | License | Commercial Use |
+|--------|---------|----------------|
+| DisGeNET | CC BY-NC-SA (free) | Commercial license available |
+| OMIM | Terms of use | Requires license |
+| HPO | Custom (free) | Yes with attribution |
+| MONDO | CC BY 4.0 | Yes |
+| ClinVar | Public domain | Yes |
+
+---
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| DisGeNET | 1.1M+ gene-disease associations |
+| OMIM | 25K+ Mendelian disorders |
+| HPO phenotype terms | 13K+ terms |
+| MONDO disease concepts | Cross-referenced ontology |
+| ClinVar variants | 3M+ variant submissions |
+| Total storage estimate | ~10-15 GB (combined sources) |
+| Last updated | January 2026 |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

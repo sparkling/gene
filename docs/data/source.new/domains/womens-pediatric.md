@@ -649,6 +649,87 @@ Tier 3 (Controlled Access):
 
 ---
 
+## Sample Data
+
+### Example Record: ClinVar Reproductive Variant
+
+```json
+{
+  "clinvar_id": "VCV000037627",
+  "gene": "CFTR",
+  "variant": "c.1521_1523delCTT (p.Phe508del)",
+  "classification": "Pathogenic",
+  "review_status": "reviewed by expert panel",
+  "condition": "Cystic fibrosis",
+  "inheritance": "Autosomal recessive",
+  "carrier_frequency": "1 in 25 (European)",
+  "last_evaluated": "2024-01-15"
+}
+```
+
+### Sample Query Result: PharmGKB Pediatric Drug-Gene Pairs
+
+| gene | drug | evidence_level | pediatric_note | guideline |
+|------|------|----------------|----------------|-----------|
+| TPMT | Mercaptopurine | 1A | Childhood ALL dosing | CPIC |
+| CYP2D6 | Codeine | 1A | Contraindicated <12 years | CPIC |
+| HLA-B*57:01 | Abacavir | 1A | HIV-infected children screening | CPIC |
+
+### Sample Query Result: gnomAD Population Frequencies
+
+| rsid | gene | allele | gnomad_af | european | african | east_asian |
+|------|------|--------|-----------|----------|---------|------------|
+| rs121908755 | CFTR | F508del | 0.0073 | 0.0142 | 0.0003 | 0.0001 |
+| rs80338939 | BRCA1 | 185delAG | 0.0001 | 0.00002 | 0.00001 | 0.0 |
+| rs397516083 | GJB2 | 35delG | 0.0089 | 0.0178 | 0.0001 | 0.0001 |
+
+---
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| ClinGen registered variants | 650M+ variants |
+| ClinVar submissions | Millions of variant entries |
+| gnomAD v4.1 genomes | 730K exomes + 76K genomes |
+| PharmGKB annotations | 1,700+ genes, 700+ drugs |
+| HPO phenotype terms | 7,000+ diseases linked |
+| GTR genetic tests | Thousands registered |
+| OMIM genes | 15K+ genes |
+| Total storage estimate | ~100-150 GB (high-priority sources) |
+| Last updated | January 2026 |
+
+---
+
+## Download
+
+| Database | Method | URL/Command |
+|----------|--------|-------------|
+| **ClinVar** | FTP | `https://ftp.ncbi.nlm.nih.gov/pub/clinvar/` |
+| **OMIM** | API | `https://api.omim.org/` (key required) |
+| **gnomAD** | Download | `https://gnomad.broadinstitute.org/downloads` |
+| **PharmGKB** | Download | `https://www.pharmgkb.org/downloads` |
+| **GTR** | API | `https://www.ncbi.nlm.nih.gov/gtr/` |
+| **HPO** | GitHub | `https://github.com/obophenotype/human-phenotype-ontology` |
+
+**Access Requirements:** OMIM requires API key; most others are open access.
+
+---
+
+## Data Format
+
+| Format | Description | Used By |
+|--------|-------------|---------|
+| VCF | Variant Call Format | ClinVar, gnomAD |
+| TSV | Gene-drug annotations | PharmGKB |
+| JSON | API responses | OMIM, GTR, gnomAD |
+| OWL/OBO | Ontology formats | HPO |
+| XML | Detailed records | ClinVar, GTR |
+| CSV | Tabular exports | PharmGKB |
+
+**Compression:** gzip (.gz) for bulk downloads
+**Encoding:** UTF-8
+
 ---
 
 ## Glossary
@@ -696,6 +777,26 @@ Tier 3 (Controlled Access):
 | DDD | Deciphering Developmental Disorders | 14K children study |
 | NBSTRN | Newborn Screening Translational Research Network | NBS research infrastructure |
 | CC0 | Creative Commons Zero (public domain) | CPIC license |
+
+---
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `domain` | string | Health domain | "Women's Health & Pediatric" |
+| `database` | string | Data source | "ClinVar, gnomAD, PharmGKB" |
+| `category` | string | Data category | "Reproductive genetics, Pediatric PGx, Growth" |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `covers` | Condition | 1:N |
+| `sources` | Database | N:M |
+| `associates` | Gene | N:M |
 
 ---
 

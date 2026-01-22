@@ -43,6 +43,84 @@ This document provides comprehensive guidance for bulk downloading and processin
 
 ---
 
+## Download
+
+| Source | Method | URL/Command |
+|--------|--------|-------------|
+| **Wikidata dumps** | HTTP | `https://dumps.wikimedia.org/wikidatawiki/entities/` |
+| **DBpedia** | Download | `https://downloads.dbpedia.org/` |
+| **Weekly incremental** | HTTP | `https://dumps.wikimedia.org/wikidatawiki/entities/latest-lexemes.json.bz2` |
+
+**Access Requirements:** All Wikidata dumps are freely available under CC0 license.
+
+## Data Format
+
+| Format | Description |
+|--------|-------------|
+| Primary | JSON (bzip2/gzip compressed) |
+| Alternative | N-Triples, Turtle (RDF) |
+| Entity notation | Q-IDs, P-IDs |
+| Encoding | UTF-8 |
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `id` | string | Entity Q-ID | "Q18216" |
+| `type` | string | Entity type | "item" |
+| `labels` | object | Multilingual names | {"en": "aspirin"} |
+| `claims` | object | Property statements | {"P31": "Q8386"} |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `instance_of` (P31) | Class | N:M |
+| `subclass_of` (P279) | Class | N:M |
+| `has_part` (P527) | Entity | 1:N |
+
+## Sample Data
+
+### Example Wikidata Entity
+```json
+{
+  "id": "Q18216",
+  "labels": {"en": "aspirin"},
+  "claims": {
+    "P31": [{"value": {"id": "Q8386"}}],
+    "P2275": [{"value": "CC(=O)OC1=CC=CC=C1C(=O)O"}],
+    "P683": [{"value": "2244"}]
+  }
+}
+```
+
+### Sample Query Result
+| qid | name | type | pubchem_cid |
+|-----|------|------|-------------|
+| Q18216 | aspirin | drug | 2244 |
+| Q407431 | curcumin | compound | 969516 |
+
+## License
+
+| Source | License | Commercial Use |
+|--------|---------|----------------|
+| Wikidata | CC0 | Yes |
+| DBpedia | CC BY-SA | Yes |
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| JSON dump (bz2) | ~100 GB compressed |
+| JSON uncompressed | ~1 TB |
+| Total entities | 100M+ |
+| Biomedical entities | ~5M estimated |
+| Last updated | Weekly |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

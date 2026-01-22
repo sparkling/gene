@@ -454,6 +454,78 @@ CUDA_VISIBLE_DEVICES=0 spliceai -I input.vcf -O output.vcf -R genome.fa -A grch3
 
 ---
 
+## Data Format
+
+| Format | Description |
+|--------|-------------|
+| Primary | VCF (Variant Call Format) |
+| Alternative | JSON (API response) |
+| Compression | gzip (.gz), bgzip (.bgz) |
+| Encoding | UTF-8 |
+| API Response | JSON |
+
+---
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| **Human Genes Covered** | ~20,000 (all protein-coding) |
+| **Transcript Variants Annotated** | 200,000+ |
+| **Model Trainining Data** | 300,000+ splice junctions |
+| **Model Parameters** | 32-layer deep neural network |
+| **Supported Variants** | SNVs + simple indels (length <= 2x distance) |
+| **Variant Range** | Up to 10 kb distance from splice sites |
+| **Output File Size** | +10-20 bytes per variant (VCF annotation) |
+| **Typical VCF Increase** | ~5-10% larger with SpliceAI INFO field |
+| **Runtime Performance** | ~0.1-0.5 seconds per variant (GPU-accelerated) |
+| **Model Size** | ~300 MB (weights + architecture) |
+| **Update Frequency** | Stable model (last update 2019) |
+| **Batch Processing Speed** | 1,000-10,000 variants/minute (GPU) |
+
+---
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `id` | string | Primary identifier | "chrX:123456789:A:G" |
+| `name` | string | Entity name | "Variant" |
+| `type` | string | Record type | "splice_variant" |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `affects` | Gene | N:1 |
+| `predicted_impact` | Splice Site | N:M |
+| `associated_with` | Disease | N:M |
+
+---
+
+## Download
+
+| Source | Method | URL |
+|--------|--------|-----|
+| SpliceAI | HTTP | https://github.com/Illumina/SpliceAI |
+| SpliceAI Scores | HTTP | https://basespace.illumina.com/datasets/3279503992 |
+| Pre-computed | FTP | See Illumina resources |
+
+**Access Requirements:** Open source, registration may be required for pre-computed scores
+
+---
+
+## License
+
+| Resource | License | Commercial Use |
+|----------|---------|----------------|
+| SpliceAI | MIT | Yes |
+| Pre-computed Scores | Research | Varies (contact Illumina) |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

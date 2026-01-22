@@ -427,6 +427,120 @@ curl -H "Authorization: Bearer YOUR_TOKEN" "https://www.cbioportal.org/api/studi
 
 ---
 
+## Download
+
+### Programmatic Access (Primary)
+
+cBioPortal provides data access through REST API and downloadable files:
+
+**API Base URL:** https://www.cbioportal.org/api
+
+```bash
+# Download all studies (JSON)
+curl "https://www.cbioportal.org/api/studies" > studies.json
+
+# Download specific study (JSON)
+curl "https://www.cbioportal.org/api/studies/gbm_tcga_pub" > gbm_tcga_pub.json
+
+# Download molecular profiles for study
+curl "https://www.cbioportal.org/api/molecular-profiles?studyId=gbm_tcga_pub" > profiles.json
+
+# Download mutations for study
+curl "https://www.cbioportal.org/api/mutations/fetch" \
+  -H "Content-Type: application/json" \
+  -d '{"molecularProfileId":"gbm_tcga_pub_mutations"}'
+```
+
+### Data Files
+
+Individual study data files are available through the web interface:
+
+**URL:** https://www.cbioportal.org/
+
+- All data available via REST API
+- Individual study downloads via web interface
+- MAF files for mutation data (~5-500 MB per study)
+- CNV data files (DISCRETE or LOG2-VALUE)
+- Expression data (CONTINUOUS or Z-SCORE)
+
+### Database Statistics
+
+| Item | Count |
+|------|-------|
+| **Cancer Studies** | 423+ |
+| **Cancer Types** | 800+ |
+| **Genes** | 4,000+ |
+| **Total Samples** | 1,000,000+ |
+| **Molecular Profiles** | 2,000+ |
+
+### File Access Methods
+
+1. **REST API** - Programmatic access to all data
+2. **Web Interface** - Browse and download individual studies
+3. **OncoPrint** - Interactive visualization and export
+4. **Command-line** - cBioPortal client tools available
+
+---
+
+## Data Format
+
+| Format | Description |
+|--------|-------------|
+| Primary | MAF (Mutation Annotation Format), TSV |
+| Alternative | JSON (API), VCF |
+| Compression | gzip (.gz) |
+| Encoding | UTF-8 |
+| API Response | JSON |
+
+### Format Details
+
+**MAF (Mutation Annotation Format)**
+- Tab-separated values
+- Standardized mutation columns
+- Compatible with tools: VEP, SnpSift, ANNOVAR
+- One mutation per row
+- Header row with column names
+
+**JSON (API Response)**
+- Complete entity objects
+- Nested relationships
+- Metadata included
+- Type information for all fields
+
+**TSV (Tab-Separated)**
+- Clinical attributes
+- Sample/patient data
+- Study metadata
+- One record per row
+
+---
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `id` | string | Primary identifier | "gbm_tcga_pub" |
+| `name` | string | Entity name | "Glioblastoma (TCGA)" |
+| `type` | string | Record type | "study" |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `associated_with` | Entity | N:M |
+
+---
+
+## License
+
+| Resource | License | Commercial Use |
+|----------|---------|----------------|
+| cBioPortal | AGPL v3 | No |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |
@@ -467,6 +581,16 @@ curl -H "Authorization: Bearer YOUR_TOKEN" "https://www.cbioportal.org/api/studi
 | WES | Whole Exome Sequencing | Coding region sequencing |
 | FPKM | Fragments Per Kilobase Million | RNA-seq expression unit |
 | TPM | Transcripts Per Million | Normalized expression unit |
+
+---
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| Records | 10,000+ |
+| Storage | Unknown |
+| Last updated | January 2026 |
 
 ---
 

@@ -569,6 +569,56 @@ subtype: microbiome
 
 ---
 
+## Data Format
+
+| Format | Description | Use Case |
+|--------|-------------|----------|
+| Primary | FASTA, FASTQ (sequencing) | Raw reads |
+| Alternative | BIOM (abundance matrix) | OTU/ASV tables |
+| Alternative | JSON (OSDF schemas) | Structured metadata |
+| Compression | gzip (.gz) | File compression |
+| Encoding | UTF-8 | Text-based formats |
+
+---
+
+## Download
+
+### Data Access Methods
+
+| Method | URL | Format |
+|--------|-----|--------|
+| **Portal** | https://portal.hmpdacc.org/ | Interactive search |
+| **AWS S3** | s3://human-microbiome-project/ | Direct sync |
+| **OSDF API** | https://osdf.igs.umaryland.edu/ | REST JSON |
+| **Portal Cart** | https://portal.hmpdacc.org/search/f | Select & download |
+
+### Download Examples
+
+```bash
+# AWS CLI: Download IBDMDB 16S data
+aws s3 sync s3://human-microbiome-project/HMASM/IBDMDB/16S/ ./IBDMDB_16S/ --no-sign-request
+
+# AWS CLI: Download WGS data
+aws s3 sync s3://human-microbiome-project/HMASM/IBDMDB/WGS/ ./IBDMDB_WGS/ --no-sign-request
+```
+
+---
+
+## Data Set Size
+
+| Component | Count/Volume | Storage |
+|-----------|--------------|---------|
+| **Total Data** | 48+ TB | ~50 TB |
+| **16S Sequencing** | ~87,000 samples | ~15-20 TB |
+| **WGS Sequencing** | ~32,000 samples | ~20-30 TB |
+| **Metatranscriptomics** | ~5,000 samples | ~3-5 TB |
+| **Proteomics** | ~3,000 samples | ~1-2 TB |
+| **Metabolomics** | ~2,500 samples | ~500 GB |
+| **Lipidomics** | ~1,500 samples | ~200 GB |
+| **Individual raw sequence file** | Variable | 100 MB - 10 GB |
+
+---
+
 ## Citation
 
 ```
@@ -580,6 +630,28 @@ Integrative Human Microbiome Project. Nature, 569(7758), 641-648.
 
 Data Portal: https://portal.hmpdacc.org/
 ```
+
+---
+
+## Sample Data
+
+### Example Record
+```json
+{
+  "sample_id": "SRS001001",
+  "subject_id": "HSM001",
+  "body_site": "tongue_dorsum",
+  "organism": "Streptococcus mutans",
+  "abundance": 0.0542,
+  "sequence_count": 12450
+}
+```
+
+### Sample Query Result
+| sample_id | subject_id | body_site | organism | abundance |
+|-----------|-----------|-----------|----------|-----------|
+| SRS001001 | HSM001 | tongue_dorsum | Streptococcus mutans | 0.0542 |
+| SRS001002 | HSM002 | stool | Bacteroides vulgatus | 0.1265 |
 
 ---
 

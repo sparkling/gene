@@ -150,6 +150,86 @@ RETURN r
 
 ---
 
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| Records | 100,000+ |
+| Storage | Unknown |
+| Last updated | January 2026 |
+
+---
+
+## Data Format
+
+| Format | Description |
+|--------|-------------|
+| Primary | KGML, BioPAX |
+| Alternative | JSON, XML |
+| Encoding | UTF-8 |
+
+---
+
+## Download
+
+| Source | Method | URL |
+|--------|--------|-----|
+| KEGG | HTTP | https://www.kegg.jp/download/kgml/ |
+| Reactome | HTTP | https://reactome.org/download-data |
+| WikiPathways | HTTP | https://www.wikipathways.org/index.php/Download_All |
+
+**Access Requirements:** Open access, no registration required (see individual database terms)
+
+---
+
+## License
+
+| Resource | License | Commercial Use |
+|----------|---------|----------------|
+| KEGG KGML | Academic Free | Limited (subscription required for commercial) |
+| Reactome | CC BY 4.0 | Yes |
+| WikiPathways | CC BY 4.0 | Yes |
+
+---
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `id` | string | Primary identifier | "R-HSA-109581" |
+| `name` | string | Entity name | "Apoptosis" |
+| `type` | string | Record type | "pathway" |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `associated_with` | Entity | N:M |
+
+---
+
+## Sample Data
+
+### Example Record
+```json
+{
+  "stId": "R-HSA-109581",
+  "displayName": "Apoptosis",
+  "dbId": 109581,
+  "speciesName": "Homo sapiens"
+}
+```
+
+### Sample Query Result
+| stId | displayName | dbId | speciesName |
+|------|-------------|------|-------------|
+| R-HSA-109581 | Apoptosis | 109581 | Homo sapiens |
+| R-HSA-191273 | Cholesterol biosynthesis | 191273 | Homo sapiens |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

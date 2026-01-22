@@ -382,6 +382,85 @@ PubMed Data Distribution
 
 ---
 
+## Download
+
+| Source | Method | URL/Command |
+|--------|--------|-------------|
+| **PubMed baseline** | FTP | `ftp://ftp.ncbi.nlm.nih.gov/pubmed/baseline/` |
+| **PubMed updates** | FTP | `ftp://ftp.ncbi.nlm.nih.gov/pubmed/updatefiles/` |
+| **PMC OA** | FTP | `ftp://ftp.ncbi.nlm.nih.gov/pub/pmc/oa_bulk/` |
+
+**Access Requirements:** Freely accessible; NCBI API key enables 10 requests/second (vs 3 without).
+
+## Data Format
+
+| Format | Description |
+|--------|-------------|
+| Input | XML (PubMed DTD), JATS XML |
+| Output | JSON, Parquet |
+| Embeddings | Float32 arrays (384-d) |
+| Storage | RuVector collections |
+| Encoding | UTF-8 |
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `pipeline_id` | string | Pipeline run identifier | "daily_2026-01-22" |
+| `stage` | string | Processing stage | "embedding_generation" |
+| `records_processed` | integer | Count of records | 15000 |
+| `status` | string | Pipeline status | "completed" |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `processes` | Source File | 1:N |
+| `produces` | Output Collection | 1:N |
+
+## Sample Data
+
+### Example Pipeline Run
+```json
+{
+  "pipeline_id": "daily_2026-01-22",
+  "stages": [
+    {"name": "download", "records": 5000, "duration_s": 120},
+    {"name": "parse", "records": 5000, "duration_s": 60},
+    {"name": "embed", "records": 5000, "duration_s": 300}
+  ],
+  "total_duration_s": 480,
+  "status": "completed"
+}
+```
+
+### Sample Query Result
+| run_date | records | duration | errors |
+|----------|---------|----------|--------|
+| 2026-01-22 | 5000 | 8m | 0 |
+| 2026-01-21 | 4800 | 7m | 2 |
+
+## License
+
+| Source | License | Commercial Use |
+|--------|---------|----------------|
+| PubMed | Public domain | Yes |
+| PMC OA | CC BY/CC0 | Yes |
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| Daily updates | ~5,000 records |
+| Weekly maintenance | Retractions, corrections |
+| Monthly refresh | Validation audit |
+| Storage per million | ~3 GB with embeddings |
+| Last updated | January 2026 |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

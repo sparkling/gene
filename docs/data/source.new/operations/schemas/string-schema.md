@@ -541,6 +541,90 @@ curl "https://string-db.org/api/json/enrichment?identifiers=TP53%0dBRCA1%0dBRCA2
 
 ---
 
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| **Total Organisms** | 14,094 |
+| **Total Proteins** | 59,309,604 |
+| **Total Interactions** | 12,535,845,684 |
+| **Human Proteins** | ~20,000 |
+| **Human Interactions** | ~11.8 million |
+| **Human Protein-Protein Links** | 500,000+ high-confidence (score >= 700) |
+| **Interaction Pairs** | 68,000,000+ (all evidence types) |
+| **Average Proteins per Organism** | ~4,200 |
+| **Average Interactions per Organism** | ~890,000 |
+| **Text-Mining Evidence** | 1+ billion co-mentions |
+| **Experimental Evidence** | 5+ million interactions |
+| **Curated Database Evidence** | 2+ million interactions |
+| **Database Downloads** | ~500 GB total (all formats) |
+| **Bulk File Size** | protein.links.v12.0.txt.gz: ~3 GB |
+| **Detailed Links File** | protein.links.detailed.v12.0.txt.gz: ~8 GB |
+| **Update Frequency** | Approximately annual major releases |
+| **Last Version** | v12.0 (released 2023) |
+
+---
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| Records | 12,500,000,000+ |
+| Storage | Unknown |
+| Last updated | January 2026 |
+
+---
+
+## Data Format
+
+| Format | Description |
+|--------|-------------|
+| Primary | TSV (downloadable), JSON (API) |
+| Alternative | XML |
+| Encoding | UTF-8 |
+
+---
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `id` | string | Primary identifier | "9606.ENSP00000000003" |
+| `name` | string | Entity name | "Protein A" |
+| `type` | string | Record type | "protein" / "interaction" |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `interacts_with` | Protein | N:M |
+| `has_score` | Evidence | N:M |
+| `cross_references` | Database | N:M |
+
+---
+
+## Download
+
+| Source | Method | URL |
+|--------|--------|-----|
+| STRING | HTTP | https://string-db.org/download |
+| Protein Links | FTP | https://string-db.org/download/protein.links.full.v12.0.txt.gz |
+| Protein Sequences | FTP | https://string-db.org/download/protein.sequences.v12.0.fa.gz |
+
+**Access Requirements:** Open access, no registration required
+
+---
+
+## License
+
+| Resource | License | Commercial Use |
+|----------|---------|----------------|
+| STRING | CC BY 4.0 | Yes |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

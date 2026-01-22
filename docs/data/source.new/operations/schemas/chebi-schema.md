@@ -628,6 +628,44 @@ inhibitors = search_by_role("CHEBI:23924")
 
 ---
 
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `id` | string | Primary identifier | "CHEBI:17234" |
+| `name` | string | Entity name | "D-glucose" |
+| `type` | string | Record type | "chemical_entity" |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `associated_with` | Entity | N:M |
+
+---
+
+## Download
+
+| Source | Method | URL |
+|--------|--------|-----|
+| ChEBI | FTP | https://ftp.ebi.ac.uk/pub/databases/chebi/ |
+| ChEBI OBO | FTP | https://ftp.ebi.ac.uk/pub/databases/chebi/ontology/chebi.obo.gz |
+| ChEBI Structures | FTP | https://ftp.ebi.ac.uk/pub/databases/chebi/SDF/ChEBI_complete.sdf.gz |
+
+**Access Requirements:** Open access, no registration required
+
+---
+
+## License
+
+| Resource | License | Commercial Use |
+|----------|---------|----------------|
+| ChEBI | CC BY 4.0 | Yes |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |
@@ -674,6 +712,16 @@ inhibitors = search_by_role("CHEBI:23924")
 | HMDB | Human Metabolome Database | Cross-reference database |
 | KEGG | Kyoto Encyclopedia of Genes and Genomes | Cross-reference database |
 | CC BY | Creative Commons Attribution | License type |
+
+---
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| Records | 200,000+ |
+| Storage | Unknown |
+| Last updated | January 2026 |
 
 ---
 

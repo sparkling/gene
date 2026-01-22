@@ -25,6 +25,62 @@ GPML (Graphical Pathway Markup Language) is the native XML format for WikiPathwa
 
 ---
 
+## Download
+
+### Data Access Methods
+
+| Resource | Format | Size (approx) | URL |
+|----------|--------|---------------|-----|
+| GPML Files | GPML/XML | ~500 MB (compressed) | https://www.wikipathways.org/cgi/download/all |
+| GeneMap Format | GeneMap | ~100 MB | https://www.wikipathways.org/geneMap/ |
+| JSON Pathway Data | JSON | ~200 MB | https://www.wikipathways.org/json/ |
+| BioPAX Format | BioPAX/OWL | ~300 MB | https://www.wikipathways.org/download/current/biopax/ |
+| REST API | JSON | - | https://www.wikipathways.org/json/ |
+| Web Interface | Browser accessible | - | https://www.wikipathways.org/ |
+
+### Update Schedule
+
+- Pathways: Updated continuously by community
+- Stable releases: Quarterly (Jan, Apr, Jul, Oct)
+- Latest version: 2026-01 (as of January 2026)
+- Change tracking: Available via version history
+
+---
+
+## Data Format
+
+| Aspect | Details |
+|--------|---------|
+| **Primary Format** | GPML 2013a XML (current standard) |
+| **Alternative Formats** | BioPAX Level 3 OWL, JSON, SVG, PNG |
+| **Encoding** | UTF-8 |
+| **Schema Version** | GPML2013a / GPML2021 (latest development) |
+| **Compression** | ZIP for bulk downloads |
+| **API Response** | JSON with pathway details |
+
+---
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| **Total Pathways** | 3,100+ documented pathways |
+| **Human Pathways** | 955+ curated for human organisms |
+| **Supported Organisms** | 48 total (including model organisms) |
+| **Genes/Proteins Referenced** | 200,000+ unique |
+| **Metabolites Referenced** | 50,000+ unique |
+| **Total Interactions** | 1,000,000+ relationships |
+| **Average Pathway Size** | 15-100 nodes per pathway |
+| **GPML File Size** | Average 100 KB per pathway |
+| **Total Compressed Archive** | ~500 MB for all GPML files |
+| **BioPAX Export** | ~300 MB (compressed) |
+| **Community Curators** | 1,500+ active contributors |
+| **Reactions Documented** | 500,000+ metabolic/signaling reactions |
+| **Update Frequency** | Continuous (daily changes average) |
+| **Version History** | All pathway versions archived |
+
+---
+
 ## Root Element: Pathway
 
 ```xml
@@ -263,6 +319,49 @@ curl "https://webservice.wikipathways.org/findPathwaysByText?query=apoptosis&spe
 
 **License:** CC0 1.0 Universal (Public Domain for pathway data)
 **GPML Spec:** CC BY 4.0
+
+---
+
+## Sample Data
+
+### Example Record
+```json
+{
+  "wpid": "WP123",
+  "pathway_name": "Apoptosis signaling pathway",
+  "organism": "Homo sapiens",
+  "node_id": "P12345",
+  "node_type": "Protein",
+  "gene_symbol": "TP53",
+  "interaction_type": "activation"
+}
+```
+
+### Sample Query Result
+| wpid | pathway_name | organism | gene_symbol | interaction_type | target_gene |
+|-----|-------------|----------|------------|-----------------|-------------|
+| WP123 | Apoptosis signaling pathway | Homo sapiens | TP53 | activation | BAX |
+| WP124 | MAPK signaling pathway | Homo sapiens | ERK1 | phosphorylation | c-Fos |
+
+---
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `id` | string | Primary identifier | "WP554" |
+| `name` | string | Entity name | "Pathway Name" |
+| `type` | string | Record type | "pathway" |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `contains` | Gene / Protein / Metabolite | N:M |
+| `regulated_by` | Entity | N:M |
+| `part_of` | Category | N:M |
 
 ---
 

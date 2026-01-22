@@ -442,6 +442,83 @@ Track user queries that return 0 results:
 
 ---
 
+## Download
+
+| Source | Method | URL/Command |
+|--------|--------|-------------|
+| **PubMed** | FTP baseline | `ftp://ftp.ncbi.nlm.nih.gov/pubmed/baseline/` |
+| **OpenAlex** | API/Snapshot | `https://docs.openalex.org/download-all-data` |
+| **Europe PMC** | FTP | `https://europepmc.org/downloads` |
+| **SciELO** | OAI-PMH | `https://www.scielo.org/` |
+
+**Access Requirements:** Most sources are freely accessible; some regional databases may require registration.
+
+## Data Format
+
+| Format | Description |
+|--------|-------------|
+| Primary | XML, JSON, CSV |
+| Alternative | Parquet, TSV |
+| Identifiers | PMID, DOI, OpenAlex ID |
+| Encoding | UTF-8 |
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `source_db` | string | Database origin | "pubmed" |
+| `coverage_pct` | float | Coverage percentage | 0.95 |
+| `gap_type` | string | Type of coverage gap | "regional" |
+| `last_audit` | date | Audit date | "2026-01-15" |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `supplements` | Source | N:M |
+| `has_gap` | Gap Type | 1:N |
+
+## Sample Data
+
+### Example Coverage Record
+```json
+{
+  "topic": "GWAS",
+  "pubmed_coverage": 0.95,
+  "openalex_coverage": 0.98,
+  "gaps_identified": ["non-English publications", "preprints"],
+  "recommendation": "Add bioRxiv/medRxiv"
+}
+```
+
+### Sample Query Result
+| topic | pubmed | openalex | gap |
+|-------|--------|----------|-----|
+| GWAS | 95% | 98% | Preprints |
+| TCM | 45% | 70% | Chinese sources |
+
+## License
+
+| Source | License | Commercial Use |
+|--------|---------|----------------|
+| PubMed | Public domain | Yes |
+| OpenAlex | CC0 | Yes |
+| Europe PMC | CC BY | Yes |
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| PubMed genetics papers | ~5-7M |
+| OpenAlex works | 250M+ |
+| Coverage gap records | ~500 documented |
+| Audit frequency | Quarterly |
+| Last updated | January 2026 |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

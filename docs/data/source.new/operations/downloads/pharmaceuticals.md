@@ -35,6 +35,93 @@ This document provides comprehensive information on bulk download methods for ma
 
 ---
 
+## Download
+
+| Database | Method | URL/Command |
+|----------|--------|-------------|
+| **DrugBank** | Download | `https://go.drugbank.com/releases/latest` (registration) |
+| **ChEMBL** | FTP | `ftp://ftp.ebi.ac.uk/pub/databases/chembl/` |
+| **PubChem** | FTP | `ftp://ftp.ncbi.nlm.nih.gov/pubchem/` |
+| **PharmGKB** | Download | `https://www.pharmgkb.org/downloads` |
+| **DGIdb** | Download | `https://www.dgidb.org/downloads` |
+| **Open Targets** | Download | `https://platform.opentargets.org/downloads` |
+| **BindingDB** | Download | `https://www.bindingdb.org/rwd/bind/chemsearch/marvin/SDFdownload.jsp` |
+| **OpenFDA** | API | `https://open.fda.gov/apis/` |
+| **DailyMed** | Download | `https://dailymed.nlm.nih.gov/dailymed/spl-resources.cfm` |
+
+**Access Requirements:** Most are freely accessible; DrugBank full data requires academic license.
+
+## Data Format
+
+| Format | Description |
+|--------|-------------|
+| Primary | SDF, TSV, JSON |
+| Alternative | CSV, XML, SQLite |
+| Chemical structures | SMILES, InChI, MOL |
+| Encoding | UTF-8 |
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `drug_id` | string | Drug identifier | "DB00945" |
+| `name` | string | Generic name | "Aspirin" |
+| `targets` | array | Target proteins | ["PTGS1", "PTGS2"] |
+| `interactions` | array | Drug interactions | ["warfarin"] |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `targets` | Protein | N:M |
+| `interacts_with` | Drug | N:M |
+
+## Sample Data
+
+### Example Drug Record
+```json
+{
+  "drugbank_id": "DB00945",
+  "name": "Aspirin",
+  "chembl_id": "CHEMBL25",
+  "targets": [
+    {"uniprot": "P23219", "gene": "PTGS1", "action": "inhibitor"}
+  ],
+  "indication": "Pain and inflammation"
+}
+```
+
+### Sample Query Result
+| drug | target | action | Ki_nM |
+|------|--------|--------|-------|
+| Aspirin | PTGS1 | inhibitor | 1.67 |
+| Ibuprofen | PTGS2 | inhibitor | 6000 |
+
+## License
+
+| Source | License | Commercial Use |
+|--------|---------|----------------|
+| DrugBank | Academic | License required |
+| ChEMBL | CC BY-SA 3.0 | Yes |
+| PubChem | Public domain | Yes |
+| PharmGKB | CC BY-SA 4.0 | Yes |
+| OpenFDA | Public domain | Yes |
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| ChEMBL compounds | 2.4M+ |
+| PubChem compounds | 115M+ |
+| DrugBank drugs | 15K+ |
+| PharmGKB annotations | 20K+ |
+| Total storage estimate | ~50-100 GB combined |
+| Last updated | January 2026 |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

@@ -609,6 +609,193 @@ Use specialized databases for:
 
 ---
 
+## Download
+
+### Wikidata Traditional Medicine Data Sources
+
+| Source | URL | Format | Access | Size |
+|--------|-----|--------|--------|------|
+| Wikidata dump | https://dumps.wikimedia.org/wikidatawiki/entities/ | JSON Lines (.bz2) | Bulk | ~90 GB |
+| Wikidata SPARQL | https://query.wikidata.org/sparql | SPARQL/JSON | Query | Real-time |
+| IMPPAT | http://imppat.in/ | CSV/API | Direct | ~500 MB |
+| BATMAN-TCM | http://batman.scbdd.com/ | MySQL/Download | Direct | ~1 GB |
+| ETCM | http://etcm.zju.edu.cn/ | Web/API | Direct | ~800 MB |
+
+### SPARQL Query for Medicinal Plants
+
+```bash
+# Query Wikidata for medicinal plants with compounds
+curl -G "https://query.wikidata.org/sparql" \
+  --data-urlencode "query=
+    SELECT ?plant ?plantLabel ?compound ?compoundLabel ?use WHERE {
+      ?plant wdt:P31 wd:Q756 .
+      ?plant wdt:P366 wd:Q9690 .
+      OPTIONAL { ?plant wdt:P527 ?compound }
+      OPTIONAL { ?plant wdt:P366 ?use }
+      SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\" }
+    }
+    LIMIT 100" \
+  -H "Accept: application/sparql-results+json"
+```
+
+---
+
+## Data Format
+
+### Medicinal Plant Data in Wikidata
+
+**JSON Lines format from dump:**
+
+```json
+{
+  "type": "item",
+  "id": "Q170593",
+  "labels": { "en": { "value": "turmeric" } },
+  "claims": {
+    "P31": [{ "rank": "normal", "mainsnak": { "snaktype": "value", "property": "P31", "datavalue": { "value": { "entity-type": "item", "numeric-id": 756 }, "type": "wikibase-entityid" } } }],
+    "P225": [{ "rank": "normal", "mainsnak": { "snaktype": "value", "property": "P225", "datavalue": { "value": "Curcuma longa", "type": "string" } } }],
+    "P366": [{ "rank": "normal", "mainsnak": { "snaktype": "value", "property": "P366", "datavalue": { "value": { "entity-type": "item", "numeric-id": 9690 }, "type": "wikibase-entityid" } } }],
+    "P527": [{ "rank": "normal", "mainsnak": { "snaktype": "value", "property": "P527", "datavalue": { "value": { "entity-type": "item", "numeric-id": 421789 }, "type": "wikibase-entityid" } } }]
+  }
+}
+```
+
+**SPARQL JSON response:**
+
+```json
+{
+  "results": {
+    "bindings": [
+      {
+        "plant": { "type": "uri", "value": "http://www.wikidata.org/entity/Q170593" },
+        "plantLabel": { "type": "literal", "value": "turmeric", "xml:lang": "en" },
+        "compound": { "type": "uri", "value": "http://www.wikidata.org/entity/Q421789" },
+        "compoundLabel": { "type": "literal", "value": "curcumin", "xml:lang": "en" }
+      }
+    ]
+  }
+}
+```
+
+---
+
+## Schema
+
+### Medicinal Plant Schema
+
+| Property | P-code | Type | Example | Use Case |
+|----------|--------|------|---------|----------|
+| Instance of | P31 | Item | Q756 | Plant classification |
+| Taxon name | P225 | String | Curcuma longa | Scientific name |
+| Taxon rank | P105 | Item | Q7432 (species) | Taxonomic level |
+| Parent taxon | P171 | Item | Q34687 (Curcuma) | Taxonomy hierarchy |
+| Use | P366 | Item | Q9690 (traditional medicine) | Medicinal use |
+| Has part | P527 | Item | Q421789 (curcumin) | Compound composition |
+| Image | P18 | File | Commons filename | Visual identification |
+| World Flora Online ID | P2275 | String | wfo-0000123 | Botanical reference |
+| GBIF taxon ID | P846 | String | 2775196 | Biodiversity link |
+
+### TCM/Ayurveda-Specific Properties
+
+| Q-ID | Type | Use | Examples |
+|------|------|-----|----------|
+| Q51128287 | TCM preparation | Herbal formulas | Herbal remedies |
+| Q18025426 | Chinese herb | TCM ingredient | Astragalus, Ginseng |
+| Q2629892 | Ayurvedic medicine | Ayurvedic preparation | Ashwagandha, Turmeric |
+| Q2993899 | Kampo medicine | Japanese TCM | Herbal formulas |
+
+---
+
+## Sample Data
+
+### Sample Plant: Turmeric (Curcuma longa)
+
+**SPARQL Query:**
+```sparql
+SELECT ?plant ?label ?scientific ?compound ?compoundLabel WHERE {
+  ?plant rdfs:label "turmeric"@en .
+  ?plant wdt:P225 ?scientific .
+  ?plant wdt:P366 wd:Q9690 .
+  OPTIONAL { ?plant wdt:P527 ?compound }
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en" }
+}
+```
+
+**Sample Results:**
+```json
+{
+  "plant": { "value": "http://www.wikidata.org/entity/Q170593" },
+  "label": { "value": "turmeric", "xml:lang": "en" },
+  "scientific": { "value": "Curcuma longa" },
+  "compound": { "value": "http://www.wikidata.org/entity/Q421789" },
+  "compoundLabel": { "value": "curcumin", "xml:lang": "en" }
+}
+```
+
+### Sample Medicinal Plants Dataset
+
+| Q-ID | Common Name | Scientific Name | Tradition | Active Compounds |
+|------|-------------|-----------------|-----------|-----------------|
+| Q170593 | Turmeric | Curcuma longa | Ayurveda/TCM | Curcumin |
+| Q18208 | Ginseng | Panax ginseng | TCM/Korean | Ginsenosides |
+| Q163236 | Echinacea | Echinacea purpurea | Western herbs | Alkylamides |
+| Q1455 | Ginkgo biloba | Ginkgo biloba | TCM/Western | Flavonoids, Terpenes |
+| Q39647 | Garlic | Allium sativum | Multiple | Allicin |
+
+---
+
+## License
+
+### Wikidata Licensing
+
+- **License:** CC0 1.0 Universal (Public Domain)
+- **Requirement:** No attribution required (but appreciated)
+- **IMPPAT:** Indian government (public domain)
+- **BATMAN-TCM:** Academic use (check specific terms)
+- **ETCM:** Academic use (check specific terms)
+
+### Citation Format
+
+```
+Wikidata contributors. "Wikidata." Wikimedia Foundation, Inc., 2024.
+https://www.wikidata.org/
+
+For traditional medicine databases:
+- IMPPAT: Indian Medicinal Plants, Phytochemistry And Therapeutics
+- BATMAN-TCM: BATMAN Traditional Chinese Medicine Database
+- ETCM: Encyclopedia of Traditional Chinese Medicine
+```
+
+---
+
+## Data Set Size
+
+### Medicinal Plant Dataset Statistics
+
+| Metric | Count | Notes |
+|--------|-------|-------|
+| Medicinal plants (Q756 + P366 Q9690) | ~10,000 | Plants with medicinal use |
+| Plants with compounds (P527) | ~5,000 | Plants with chemical composition |
+| TCM formulations | ~3,000 | Traditional Chinese preparations |
+| Ayurvedic preparations | ~2,000 | Ayurvedic medicines |
+| Western herbal items | ~4,000 | European/American herbs |
+| With scientific taxonomy | ~8,000 | With P225 (taxon name) |
+| With images | ~6,000 | Visual documentation |
+
+### Storage and Access
+
+| Metric | Value |
+|--------|-------|
+| Wikidata dump size | ~90 GB compressed |
+| Filtered medicinal plant subset | ~300-500 MB |
+| SPARQL query response time | <1 second |
+| Last dump update | Weekly (Monday UTC) |
+| IMPPAT size | ~500 MB |
+| BATMAN-TCM size | ~1 GB |
+| ETCM size | ~800 MB |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

@@ -33,6 +33,24 @@ This document synthesizes schema patterns across 250+ databases documented in th
 
 ---
 
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `id` | string | Primary identifier | "entity-001" |
+| `name` | string | Entity name | "Entity Name" |
+| `type` | string | Record type | "entity" |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `associated_with` | Entity | N:M |
+
+---
+
 ## Part 1: Common Entity Type Analysis
 
 ### 1.1 Gene Entity Comparison
@@ -886,6 +904,66 @@ Validation_Rules:
 | PubChem | PUG REST | 5/sec | None | JSON/XML |
 
 ---
+
+---
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| Records | Variable |
+| Storage | Unknown |
+| Last updated | January 2026 |
+
+---
+
+## Data Format
+
+| Format | Description |
+|--------|-------------|
+| Primary | JSON |
+| Alternative | TSV, CSV |
+| Encoding | UTF-8 |
+
+---
+
+## Download
+
+| Source | Method | URL |
+|--------|--------|-----|
+| Unified Analysis | HTTP | See main database |
+| Analysis Results | HTTP | See main database |
+
+**Access Requirements:** Varies by analysis type
+
+---
+
+## License
+
+| Resource | License | Commercial Use |
+|----------|---------|----------------|
+| Unified Analysis | CC BY 4.0 | Yes (varies) |
+
+---
+
+## Sample Data
+
+### Example Record
+```json
+{
+  "id": "GENE:7157",
+  "ncbi_gene_id": 7157,
+  "hgnc_symbol": "TP53",
+  "uniprot_id": "P04637",
+  "pathways": ["R-HSA-109581"]
+}
+```
+
+### Sample Query Result
+| id | ncbi_gene_id | hgnc_symbol | uniprot_id | pathways |
+|----|------|-----------|-----------|----------|
+| GENE:7157 | 7157 | TP53 | P04637 | R-HSA-109581 |
+| GENE:3156 | 3156 | HMGCR | P04035 | R-HSA-191273 |
 
 ---
 

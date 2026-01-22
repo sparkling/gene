@@ -262,6 +262,86 @@ wc -l < file.txt
 
 ---
 
+## Download
+
+| Source | Method | Notes |
+|--------|--------|-------|
+| **All sources** | FTP/HTTP | See individual database docs |
+| **VCF files** | FTP | gnomAD, ClinVar, dbSNP |
+| **XML files** | FTP | PubMed, UniProt |
+| **JSON dumps** | HTTP | Wikidata, OpenAlex |
+
+**Access Requirements:** Varies by source; see individual database documentation.
+
+## Data Format
+
+| Format | Description |
+|--------|-------------|
+| Input | VCF, XML, JSON, TSV |
+| Output | Parquet, PostgreSQL |
+| Intermediate | JSON Lines, compressed |
+| Encoding | UTF-8 |
+
+## Schema
+
+### Core Fields (Pipeline Metadata)
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `source` | string | Data source | "gnomad" |
+| `version` | string | Data version | "v4.1" |
+| `records` | integer | Record count | 786000000 |
+| `status` | string | Processing status | "completed" |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `produces` | Output Table | 1:N |
+| `depends_on` | Source File | N:M |
+
+## Sample Data
+
+### Example Pipeline Config
+```json
+{
+  "pipeline": "gnomad_loader",
+  "source": "ftp://gnomad/v4.1/",
+  "parser": "cyvcf2",
+  "batch_size": 100000,
+  "output": "postgresql://db/gnomad",
+  "parallelism": 8
+}
+```
+
+### Sample Pipeline Output
+| stage | records | duration_s | memory_gb |
+|-------|---------|------------|-----------|
+| download | 786M | 3600 | 2 |
+| parse | 786M | 7200 | 32 |
+| load | 786M | 5400 | 16 |
+
+## License
+
+| Tool | License | Commercial Use |
+|------|---------|----------------|
+| pigz | GPL | Yes |
+| ijson | BSD | Yes |
+| cyvcf2 | MIT | Yes |
+| Dask | BSD | Yes |
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| Total processing | ~2 TB input data |
+| Output databases | ~500 GB |
+| Memory requirements | 32-64 GB recommended |
+| Processing time | 12-24 hours |
+| Last updated | January 2026 |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

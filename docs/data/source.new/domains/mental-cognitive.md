@@ -779,6 +779,125 @@ https://reactome.org/AnalysisService/identifiers/?pageSize=50&page=1
 
 ---
 
+## Download
+
+| Method | URL/Command |
+|--------|-------------|
+| PGC Summary Stats | `https://pgc.unc.edu/for-researchers/download-results/` |
+| PGC Data Portal | `https://pgc.unc.edu/for-researchers/data-access-committee/data-access-portal/` |
+| dbGaP PGC | `https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/collection.cgi?study_id=phs001254.v1.p1` |
+| ChEMBL API | `curl -X GET "https://www.ebi.ac.uk/chembl/api/data/molecule?max_phase=4"` |
+| ChEMBL Downloads | `wget ftp://ftp.ebi.ac.uk/pub/databases/chembl/ChEMBLdb/latest/` |
+| DrugBank | `https://go.drugbank.com/releases/latest` |
+| PubChem Downloads | `https://pubchem.ncbi.nlm.nih.gov/docs/downloads` |
+| KEGG API | `curl -X GET "https://rest.kegg.jp/get/hsa04728"` |
+| Reactome Downloads | `https://reactome.org/download-data` |
+| Reactome API | `curl -X GET "https://reactome.org/ContentService/data/query/R-HSA-112310"` |
+| SynGO | `https://www.syngoportal.org/` |
+| Allen Brain Atlas | `https://human.brain-map.org/static/download` |
+| BrainSpan | `https://www.brainspan.org/static/download.html` |
+| GTEx Downloads | `https://www.gtexportal.org/home/datasets` |
+| GTEx API | `curl -X GET "https://gtexportal.org/api/v2/"` |
+| GWAS Catalog API | `curl -X GET "https://www.ebi.ac.uk/gwas/rest/api/studies?query=cognitive"` |
+| Sleep Disorders Portal | `http://sleepdisordergenetics.org/informational/data` |
+| OpenGWAS API | `curl -X GET "https://api.opengwas.io/api/"` |
+| CNCR Summary Stats | `https://cncr.nl/research/summary_statistics/` |
+
+**Access Requirements:** PGC Summary: Academic | PGC Individual: DAC approval + LISA/GCC cluster | dbGaP: NIH Data Use Certification | ChEMBL: CC BY-SA 3.0 | DrugBank: Academic free, commercial license | PubChem: Public domain | KEGG: Academic free, commercial license | Reactome: CC0 | SynGO: CC BY 4.0 | Allen Brain: Free research | GTEx Open: Open | GTEx dbGaP: Controlled | GWAS Catalog: Open | OpenGWAS: Open
+
+---
+
+## Schema
+
+### Core Entity Fields
+
+| Entity | Field | Type | Description | Example |
+|--------|-------|------|-------------|---------|
+| **Psychiatric GWAS** | `study_id` | string | PGC study identifier | "PGC3_SCZ" |
+| | `disorder` | string | Psychiatric phenotype | "Schizophrenia" |
+| | `n_cases` | integer | Number of cases | 67390 |
+| | `n_controls` | integer | Number of controls | 94015 |
+| | `loci_count` | integer | Genome-wide significant loci | 287 |
+| **Nootropic Compound** | `chembl_id` | string | ChEMBL identifier | "CHEMBL545" |
+| | `name` | string | Compound name | "Piracetam" |
+| | `mechanism` | string | Action mechanism | "AMPA receptor modulator" |
+| | `targets` | string[] | Protein targets | ["GRIA1", "GRIA2"] |
+| | `phase` | integer | Clinical trial phase | 4 |
+| **Brain Expression** | `gene_id` | string | Ensembl gene ID | "ENSG00000157764" |
+| | `region` | string | Brain region | "Hippocampus" |
+| | `tpm` | float | Expression level (TPM) | 45.2 |
+| | `source` | string | Expression atlas | "GTEx" |
+| **Neurotransmitter Pathway** | `pathway_id` | string | KEGG/Reactome ID | "hsa04728" |
+| | `name` | string | Pathway name | "Dopaminergic synapse" |
+| | `genes` | string[] | Pathway genes | ["DRD1", "DRD2", "TH"] |
+| | `neurotransmitter` | string | Primary signaling molecule | "Dopamine" |
+| **Sleep GWAS** | `trait` | string | Sleep phenotype | "Insomnia" |
+| | `rsid` | string | Lead SNP | "rs113851554" |
+| | `gene` | string | Nearest gene | "MEIS1" |
+| | `p_value` | float | Association p-value | 5.0e-20 |
+
+### Relationships
+
+| Relation | Source | Target | Cardinality | Description |
+|----------|--------|--------|-------------|-------------|
+| `associated_with` | Variant | Disorder | N:M | GWAS association |
+| `targets` | Nootropic | Protein | N:M | Drug-target binding |
+| `expressed_in` | Gene | Brain Region | N:M | GTEx/Allen |
+| `participates_in` | Gene | Pathway | N:M | Pathway membership |
+| `correlates_with` | Sleep Trait | Cognitive Trait | N:M | Genetic correlation |
+| `eQTL_for` | Variant | Gene | N:M | Expression regulation |
+
+---
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| PGC summary statistics | 5-10 GB; individual data: 2+ TB |
+| ChEMBL compounds | 2.4M+ compounds (15 GB MySQL) |
+| PubChem compounds | 118M+ compounds (100+ GB) |
+| GTEx brain regions | 13 regions (260+ GB eQTL) |
+| Allen Brain Atlas | 50+ GB (microarray data) |
+| BrainSpan developmental | 10 GB |
+| COGENT cognitive GWAS | 500 MB per study |
+| Sleep Portal | 5 GB |
+| OpenGWAS datasets | 50K+ datasets (TB scale) |
+| Total storage estimate | ~500 GB (summary stats); 3+ TB (individual-level) |
+| Last updated | January 2026 |
+
+---
+
+## License
+
+| Database | License | Commercial Use | Attribution |
+|----------|---------|----------------|-------------|
+| **PGC** | Open/Controlled | Varies by study | Required |
+| **GTEx** | Open Access | Yes | Required |
+| **Allen Brain Atlas** | Open Access | Yes | Required |
+| **OpenGWAS** | Open Access | Yes | Required |
+| **Sleep Portal** | Open/Controlled | Varies | Required |
+| **COGENT** | Open Access | Yes | Required |
+
+**Note:** Individual-level data from PGC and Sleep Portal requires DAC approval.
+
+---
+
+## Data Format
+
+| Format | Description | Used By |
+|--------|-------------|---------|
+| TSV | GWAS summary statistics | PGC, COGENT, OpenGWAS |
+| VCF | Genetic variants | PGC, GTEx |
+| JSON | API responses | GTEx API, OpenGWAS |
+| RDF | Brain atlas annotations | Allen Brain Atlas |
+| HDF5 | Gene expression matrices | Allen Brain Atlas |
+| BAM | Aligned sequence data | GTEx |
+
+**Compression:** gzip (.gz) for GWAS summary statistics
+**Encoding:** UTF-8
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |
@@ -834,6 +953,27 @@ https://reactome.org/AnalysisService/identifiers/?pageSize=50&page=1
 | [_index.md](./_index.md) | Parent navigation |
 | [primary.md](./../pathways/primary.md) | Shared pathway sources |
 | [pharmaceuticals.md](./../compounds/pharmaceuticals.md) | Drug/compound overlap |
+
+---
+
+## Sample Data
+
+### Example Record
+```json
+{
+  "domain": "Mental Health & Cognitive Data Sources",
+  "database": "PGC",
+  "record_type": "Psychiatric GWAS",
+  "example_field": "Schizophrenia meta-analysis (N > 300,000)"
+}
+```
+
+### Sample Query Result
+
+| Field | Value |
+|-------|-------|
+| domain | Mental Health & Cognitive |
+| sources | 13+ (PGC, ChEMBL, PubChem, KEGG, Reactome, GTEx, Allen Brain, BrainSpan, Sleep Portal, GWAS Catalog, OpenGWAS, COGENT, UK Biobank) |
 
 ---
 

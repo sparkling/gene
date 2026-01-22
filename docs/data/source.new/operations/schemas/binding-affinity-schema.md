@@ -1503,6 +1503,66 @@ for aff in cox2_affinities:
 
 ---
 
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| Records | 2,900,000+ |
+| Storage | Unknown |
+| Last updated | January 2026 |
+
+---
+
+## Data Format
+
+| Format | Description |
+|--------|-------------|
+| Primary | TSV, JSON (API) |
+| Alternative | SDF, FASTA |
+| Encoding | UTF-8 |
+
+---
+
+## Download
+
+| Source | Method | URL |
+|--------|--------|-----|
+| TTD | FTP | https://idrblab.net/ttd/full-data-download |
+| BindingDB | HTTP | https://www.bindingdb.org/rwd/bind/chemsearch/marvin/Download.jsp |
+| GtoPdb | HTTP | https://www.guidetopharmacology.org/download.jsp |
+
+**Access Requirements:** Open access, no registration required
+
+---
+
+## License
+
+| Resource | License | Commercial Use |
+|----------|---------|----------------|
+| TTD | Free for academic use | Limited |
+| BindingDB | CC BY 3.0 | Yes |
+| GtoPdb | CC BY-SA 4.0 | Yes |
+
+---
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `id` | string | Primary identifier | "TTD00001" |
+| `name` | string | Entity name | "B-Raf proto-oncogene" |
+| `type` | string | Record type | "target" |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `associated_with` | Entity | N:M |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

@@ -114,6 +114,106 @@ tags: [schema, rare-diseases, orphanet, ontology, gene-disease]
 
 ---
 
+## Download
+
+### Data Access Methods
+
+| Resource | Format | Size | URL |
+|----------|--------|------|-----|
+| Orphadata XML | XML | ~50 MB | https://www.orphadata.com/download/ |
+| ORDO Ontology | OWL/OBO | ~20 MB | https://www.ebi.ac.uk/ols4/ontologies/ordo |
+| Gene-Disease Data | XML | ~10 MB | https://www.orphadata.com/en_product6.xml |
+| Phenotype Data | XML | ~15 MB | https://www.orphadata.com/en_product4.xml |
+| Disease Classifications | XML | ~20 MB | https://www.orphadata.com/en_product1.xml |
+| REST API | JSON | - | https://api.orphanet.org/ |
+
+### Update Schedule
+
+- Orphadata: Updated regularly (approximately monthly)
+- ORDO Ontology: Updated with each Orphanet release (~ quarterly)
+- Gene-disease associations: Continuously updated
+
+### Access Requirements
+
+- Public download: No authentication required
+- API access: Free registration recommended
+- Commercial use: Check license terms
+
+---
+
+## Data Format
+
+| Aspect | Details |
+|--------|---------|
+| **Primary Formats** | XML (Orphadata), OWL/OBO (ORDO Ontology) |
+| **Alternative Formats** | JSON (API responses), RDF |
+| **Encoding** | UTF-8 |
+| **Compression** | gzip (.gz) for bulk downloads |
+| **API Response** | JSON |
+| **File Structure** | Hierarchical XML with XSD schema |
+
+---
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| **Rare Diseases** | 6,528 |
+| **Gene-Disease Associations** | 4,128 genes associated |
+| **Phenotype Terms** | 4,337 HPO-linked phenotypes |
+| **Disorder Classifications** | 6,528 total disorders |
+| **ORDO Terms** | 15,788 total terms |
+| **Properties in ORDO** | 35 unique properties |
+| **Languages Supported** | 8 (EN, CZ, NL, FR, DE, IT, ES, PL) |
+| **Expert Centres** | 8,722 registered worldwide |
+| **Diagnostic Tests** | 36,595 documented |
+| **ORDO Version** | 4.7 (current) |
+| **Orphadata XML Size** | ~50 MB (compressed) |
+| **Last Update** | Updated regularly with each release |
+
+---
+
+## Sample Data
+
+### Example Record
+```json
+{
+  "ordo_id": "Orphanet:93344",
+  "disease_name": "Mitochondrial cytopathy",
+  "disease_type": "disorder",
+  "inheritance_pattern": "mitochondrial",
+  "prevalence": "1-9 / 100,000"
+}
+```
+
+### Sample Query Result
+| ordo_id | disease_name | disease_type | inheritance_pattern | prevalence |
+|---------|-------------|------------|---------------------|-----------|
+| Orphanet:93344 | Mitochondrial cytopathy | disorder | mitochondrial | 1-9 / 100,000 |
+| Orphanet:2652 | Spinal muscular atrophy | disorder | autosomal recessive | 1-9 / 100,000 |
+
+---
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `id` | string | Primary identifier | "Orphanet:93672" |
+| `name` | string | Entity name | "Rare Disease Name" |
+| `type` | string | Record type | "disorder" / "disease" |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `is_a` | ORDO Term | N:1 |
+| `similar_to` | Disease | N:M |
+| `has_gene` | Gene / OMIM | N:M |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

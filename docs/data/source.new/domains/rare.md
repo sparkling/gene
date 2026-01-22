@@ -507,6 +507,105 @@ Provides "precise 1:1 equivalence axioms" validated by OWL reasoning, distinguis
 
 ---
 
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `domain` | string | Health domain | "Rare Diseases & Biobank" |
+| `database` | string | Data source | "Orphanet, ClinGen, HPO" |
+| `category` | string | Data category | "Rare disease, Ontology, Biobank" |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `covers` | Condition | 1:N |
+| `sources` | Database | N:M |
+| `maps_to` | Gene | N:M |
+
+---
+
+## Download
+
+| Method | URL/Command |
+|--------|-------------|
+| Orphadata | `https://www.orphadata.com/` |
+| ORDO OWL | `wget http://www.orphadata.org/data/ORDO/ordo_orphanet.owl.zip` |
+| DECIPHER | `https://www.deciphergenomics.org/` (registration required) |
+| DECIPHER EGA | `https://ega-archive.org/datasets/EGAS00001000775` |
+| ClinGen Downloads | `https://clinicalgenome.org/working-groups/clinical-domain/` |
+| ClinGen Allele Registry | `https://reg.clinicalgenome.org/` |
+| HPO OWL | `wget http://purl.obolibrary.org/obo/hp.owl` |
+| HPO OBO | `wget http://purl.obolibrary.org/obo/hp.obo` |
+| MONDO OWL | `wget https://github.com/monarch-initiative/mondo/releases/latest/download/mondo.owl` |
+| Monarch API | `curl -X GET "https://api-v3.monarchinitiative.org/v3/docs"` |
+| Monarch KG | `https://data.monarchinitiative.org/` |
+| GWAS Catalog API | `curl -X GET "https://www.ebi.ac.uk/gwas/rest/api"` |
+| ClinVar FTP | `wget ftp://ftp.ncbi.nlm.nih.gov/pub/clinvar/` |
+| BioBank Japan PheWeb | `https://pheweb.jp/` |
+
+**Access Requirements:** Orphanet: CC-BY-4.0 | DECIPHER: Academic use (Data Access Agreement) | ClinGen: Open (citation required) | HPO: Open | MONDO: CC-BY-4.0 | Monarch: Open | UK Biobank: Restricted (controlled access only) | BioBank Japan GWAS: Open (individual data controlled)
+
+---
+
+## Sample Data
+
+### Example Record: Orphanet Disease Entry
+
+```json
+{
+  "orpha_code": "ORPHA:558",
+  "name": "Marfan syndrome",
+  "gene_associations": [
+    {
+      "symbol": "FBN1",
+      "association_type": "Disease-causing germline mutation"
+    }
+  ],
+  "prevalence": "1-5 / 10,000",
+  "inheritance": "Autosomal dominant",
+  "hpo_terms": ["HP:0001166", "HP:0000545", "HP:0001083"],
+  "expert_centres": 45,
+  "ordo_id": "ORDO:558"
+}
+```
+
+### Sample Query Result: ClinGen Gene-Disease Validity
+
+| gene | disease | classification | mode_of_inheritance | curation_date |
+|------|---------|----------------|---------------------|---------------|
+| FBN1 | Marfan syndrome | Definitive | Autosomal dominant | 2023-06-15 |
+| CFTR | Cystic fibrosis | Definitive | Autosomal recessive | 2023-04-22 |
+| PKD1 | Polycystic kidney disease | Definitive | Autosomal dominant | 2023-08-10 |
+
+### Sample Query Result: HPO Phenotype Terms
+
+| hpo_id | term_name | definition | disease_count |
+|--------|-----------|------------|---------------|
+| HP:0001166 | Arachnodactyly | Abnormally long and slender fingers | 245 |
+| HP:0000545 | Myopia | Nearsightedness | 892 |
+| HP:0001083 | Ectopia lentis | Lens dislocation | 67 |
+
+---
+
+## Data Format
+
+| Format | Description | Used By |
+|--------|-------------|---------|
+| OWL | Web Ontology Language | HPO, MONDO, ORDO |
+| OBO | Open Biomedical Ontologies | HPO, MONDO |
+| JSON | API responses and data files | HPO, Orphanet, Matchmaker |
+| XML | Structured records | Orphanet, ClinVar |
+| RDF | Semantic web format | MONDO, ORDO |
+| CSV | Tabular exports | HPO annotations, OMIM |
+
+**Compression:** gzip (.gz) for bulk downloads
+**Encoding:** UTF-8
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |
@@ -563,18 +662,19 @@ Provides "precise 1:1 equivalence axioms" validated by OWL reasoning, distinguis
 
 ---
 
-## Storage Estimate Summary
+## Data Set Size
 
-| Source | Estimated Size | Notes |
-|--------|----------------|-------|
-| Orphanet/ORDO | ~500 MB | Ontology + datasets |
-| DECIPHER | ~2 GB | Bulk download |
-| ClinGen | ~500 MB | All formats |
-| HPO | ~100 MB | All formats |
-| MONDO | ~200 MB | All formats |
-| Monarch KG | ~5 GB | Full knowledge graph |
-| BioBank Japan GWAS | ~50 GB | Summary statistics |
-| **Total (Core)** | **~8.3 GB** | Excluding UK Biobank |
+| Metric | Value |
+|--------|-------|
+| Orphanet/ORDO | ~500 MB (Ontology + datasets) |
+| DECIPHER | ~2 GB (Bulk download) |
+| ClinGen | ~500 MB (All formats) |
+| HPO | ~100 MB (All formats) |
+| MONDO | ~200 MB (All formats) |
+| Monarch KG | ~5 GB (Full knowledge graph) |
+| BioBank Japan GWAS | ~50 GB (Summary statistics) |
+| Total core storage | ~8.3 GB (excluding UK Biobank) |
+| Last updated | January 2026 |
 
 ---
 

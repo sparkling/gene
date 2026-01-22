@@ -449,6 +449,154 @@ Sorokina M, Merseburger P, Rajan K, Yirik MA, Steinbeck C.
 Journal of Cheminformatics 13, 2 (2021).
 DOI: 10.1186/s13321-020-00478-9
 
+## Download
+
+### Direct Download
+
+COCONUT provides bulk downloads in multiple formats:
+
+**FTP/HTTP:** https://coconut.naturalproducts.net/download
+
+Available files:
+- **coconut_db.sdf.gz** - Complete database in SDF format (~500 MB)
+- **coconut_db.csv.gz** - Tabular format with selected properties (~300 MB)
+- **coconut_db.json.gz** - Complete database with all metadata (~600 MB)
+- **coconut_structures.smiles.gz** - SMILES strings (~200 MB)
+
+```bash
+# Download complete database
+wget https://coconut.naturalproducts.net/download/coconut_db.sdf.gz
+
+# Download CSV version
+wget https://coconut.naturalproducts.net/download/coconut_db.csv.gz
+
+# Download metadata with structures
+wget https://coconut.naturalproducts.net/download/coconut_db.json.gz
+```
+
+### Database Mirror
+
+GitHub release with archived versions:
+**Repository:** https://github.com/Steinbeck-Lab/coconut
+
+### Statistics
+
+| Item | Count | Size |
+|------|-------|------|
+| **Total Natural Products** | ~450,000 | ~6.2 GB |
+| **Unique Organisms** | ~35,000 | - |
+| **Data Sources** | 52 | - |
+| **Compressed SDF** | Full database | ~500 MB |
+| **Compressed JSON** | Full metadata | ~600 MB |
+
+---
+
+## Data Format
+
+| Format | Description | Availability |
+|--------|-------------|--------------|
+| **Primary** | PostgreSQL database, REST API | Live instance |
+| **Alternative** | SDF (Structure-Data File), CSV, JSON, SMILES | Downloads |
+| **Compression** | gzip (.gz) | Download files |
+| **Encoding** | UTF-8 | All formats |
+| **API Response** | JSON | REST endpoints |
+
+### File Format Details
+
+**SDF (Structure-Data File)**
+- MDL MOL file format with metadata
+- One compound per record
+- Properties stored as data fields
+- Includes: COCONUT ID, name, molecular weight, InChI, SMILES
+- Size: ~500 MB compressed, ~2.1 GB uncompressed
+
+**CSV Format**
+- Tab or comma-separated values
+- One compound per row
+- Selected key properties
+- Headings: coconut_id, name, smiles, inchi_key, molecular_weight, sources
+
+**JSON Format**
+- Complete compound objects
+- Nested relationships
+- All properties included
+- Arrays of organisms, sources, citations
+- Size: ~600 MB compressed, ~2.4 GB uncompressed
+
+**SMILES Format**
+- One compound per line
+- Format: SMILES ID NAME
+- Minimal metadata
+- Size: ~200 MB compressed, ~800 MB uncompressed
+
+---
+
+## Data Set Size
+
+| Metric | Value | Notes |
+|--------|-------|-------|
+| **Total Compounds** | ~450,000 | Natural products only |
+| **Unique Organisms** | ~35,000 | Source species/strains |
+| **Data Sources** | 52 | Aggregated databases |
+| **Average Molecular Weight** | 312 Da | Typical NP range |
+| **Drug-like (Lipinski 0)** | ~38% | QED-compliant compounds |
+| **Total Disk Space** | ~6.2 GB | Full uncompressed dataset |
+| **Compressed Size** | ~700 MB | All formats combined |
+| **Update Frequency** | Quarterly | New releases |
+| **Records per Database** | 8.6K average | 52 source databases |
+
+---
+
+## Sample Data
+
+### Example Record
+```json
+{
+  "coconut_id": "CNP0123456",
+  "name": "Artemisinin",
+  "molecular_formula": "C15H24O5",
+  "molecular_weight": 282.35,
+  "canonical_smiles": "CC(C)CCCC(C)C",
+  "inchi_key": "BSYNRYMUTXBXSQ-UHFFFAOYSA-N",
+  "qed_drug_likeliness": 0.85,
+  "sources": ["ZINC", "ChEMBL"]
+}
+```
+
+### Sample Query Result
+| coconut_id | name | molecular_formula | molecular_weight | qed_drug_likeliness | sources |
+|-----------|------|------------------|------------------|-------------------|---------|
+| CNP0123456 | Artemisinin | C15H24O5 | 282.35 | 0.85 | ZINC, ChEMBL |
+| CNP0234567 | Resveratrol | C14H12O3 | 228.24 | 0.78 | PubChem, LOTUS |
+
+---
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `id` | string | Primary identifier | "CNP0123456" |
+| `name` | string | Entity name | "Natural Product" |
+| `type` | string | Record type | "compound" |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `associated_with` | Entity | N:M |
+
+---
+
+## License
+
+| Resource | License | Commercial Use |
+|----------|---------|----------------|
+| COCONUT | CC BY 4.0 | Yes |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

@@ -799,6 +799,64 @@ LIMIT 100;
 
 ---
 
+## Data Format
+
+| Format | Description |
+|--------|-------------|
+| Primary | SQLite, MySQL, PostgreSQL |
+| Alternative | SDF (.sdf.gz), HDF5 (.h5), TSV |
+| Compression | gzip (.gz), tar.gz |
+| Encoding | UTF-8 |
+| API Response | JSON, XML |
+
+---
+
+## Sample Data
+
+### Example Record
+```json
+{
+  "molregno": 2244,
+  "chembl_id": "CHEMBL25",
+  "pref_name": "Aspirin",
+  "activity_id": 12345,
+  "target_id": "CHEMBL220",
+  "standard_type": "IC50",
+  "standard_value": 300.0,
+  "standard_units": "nM",
+  "pchembl_value": 6.52
+}
+```
+
+### Sample Query Result
+| chembl_id | pref_name | standard_type | standard_value | target_name | pchembl_value |
+|-----------|-----------|---------------|----------------|-------------|---------------|
+| CHEMBL25 | Aspirin | IC50 | 300.0 | Cyclooxygenase-1 | 6.52 |
+| CHEMBL210 | Ibuprofen | Ki | 150.0 | COX1 | 6.82 |
+
+---
+
+## Download
+
+| Source | Method | URL |
+|--------|--------|-----|
+| ChEMBL | FTP | https://ftp.ebi.ac.uk/pub/databases/chembl/ChEMBLdb/latest/ |
+| SQLite | FTP | https://ftp.ebi.ac.uk/pub/databases/chembl/ChEMBLdb/latest/chembl_36_sqlite.tar.gz |
+| PostgreSQL | FTP | https://ftp.ebi.ac.uk/pub/databases/chembl/ChEMBLdb/latest/chembl_36_postgresql.tar.gz |
+| SDF Structures | FTP | https://ftp.ebi.ac.uk/pub/databases/chembl/ChEMBLdb/latest/chembl_36.sdf.gz |
+
+**Access Requirements:** Open access, no registration required
+
+---
+
+## License
+
+| Resource | License | Commercial Use |
+|----------|---------|----------------|
+| ChEMBL | CC BY-SA 3.0 | Yes (with share-alike) |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |
@@ -861,6 +919,16 @@ LIMIT 100;
 2. ChEMBL Web Services: https://www.ebi.ac.uk/chembl/api/data/docs
 
 3. Schema Documentation: https://ftp.ebi.ac.uk/pub/databases/chembl/ChEMBLdb/latest/schema_documentation.html
+
+---
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| Records | 24,267,312 |
+| Storage | 5.2 GB (compressed SQLite) |
+| Last updated | January 2026 |
 
 ---
 

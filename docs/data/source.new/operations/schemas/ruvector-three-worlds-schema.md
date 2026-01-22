@@ -66,6 +66,24 @@ This document defines the optimal schema for storing THREE WORLDS data (Genetics
 
 ---
 
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `id` | string | Primary identifier | "GENE:12345" |
+| `name` | string | Entity name | "TP53" |
+| `type` | string | Record type | "gene" |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `associated_with` | Entity | N:M |
+
+---
+
 ## Part 2: Node Type Definitions
 
 ### 2.1 WORLD 1: Genetics Node Types
@@ -1410,6 +1428,68 @@ const adapted = sona.applyMicroLora(input);
 ```
 
 ---
+
+---
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| Records | Variable |
+| Storage | Unknown |
+| Last updated | January 2026 |
+
+---
+
+## Data Format
+
+| Format | Description |
+|--------|-------------|
+| Primary | JSON |
+| Alternative | Hyperbolic embeddings |
+| Encoding | UTF-8 |
+
+---
+
+## Download
+
+| Source | Method | URL |
+|--------|--------|-----|
+| RuVector | Repository | See main database |
+| Three Worlds Model | Research | Research publication |
+
+**Access Requirements:** Open access, research use
+
+---
+
+## License
+
+| Resource | License | Commercial Use |
+|----------|---------|----------------|
+| RuVector | Open Source | Yes (see repository) |
+| Three Worlds | Research | See publication terms |
+
+---
+
+## Sample Data
+
+### Example Record
+```json
+{
+  "id": "GENE:7157",
+  "labels": ["Gene", "WORLD1"],
+  "ncbi_gene_id": 7157,
+  "hgnc_symbol": "TP53",
+  "chromosome": "17",
+  "start_pos": 7571720
+}
+```
+
+### Sample Query Result
+| id | labels | hgnc_symbol | ncbi_gene_id | chromosome |
+|----|--------|-------------|------|-----------|
+| GENE:7157 | Gene, WORLD1 | TP53 | 7157 | 17 |
+| GENE:3156 | Gene, WORLD1 | HMGCR | 3156 | 5 |
 
 ---
 

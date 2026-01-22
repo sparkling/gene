@@ -645,22 +645,23 @@ Ayurveda databases provide 4,000+ medicinal plants, 170,000+ phytochemicals, and
 
 ---
 
-## Storage Estimates Summary
+## Data Set Size
 
-| Database | Estimate | Notes |
-|----------|----------|-------|
-| IMPPAT 2.0 | 500 MB | Compounds + structures + associations |
-| OSADHI | 800 MB | Includes geographic data |
-| GRAYU | 2 GB | Large association network |
-| NPACT | 100 MB | Compounds + targets |
-| CMAUP | 400 MB | Global plant data |
-| NPASS | 600 MB | Activity data |
-| AromaDb | 50 MB | Aroma molecules |
-| sCentInDB | 30 MB | EO profiles |
-| FRLHT/NMPB | 200 MB | Includes images |
-| Dr. Duke's | 150 MB | Ethnobotanical |
-| Literature DBs | 200 MB | Metadata only |
-| **Total Estimate** | **~5 GB** | Core Ayurveda data |
+| Metric | Value |
+|--------|-------|
+| IMPPAT 2.0 | 500 MB (Compounds + structures + associations) |
+| OSADHI | 800 MB (Includes geographic data) |
+| GRAYU | 2 GB (Large association network) |
+| NPACT | 100 MB (Compounds + targets) |
+| CMAUP | 400 MB (Global plant data) |
+| NPASS | 600 MB (Activity data) |
+| AromaDb | 50 MB (Aroma molecules) |
+| sCentInDB | 30 MB (EO profiles) |
+| FRLHT/NMPB | 200 MB (Includes images) |
+| Dr. Duke's | 150 MB (Ethnobotanical) |
+| Literature DBs | 200 MB (Metadata only) |
+| Total storage estimate | ~5 GB (Core Ayurveda data) |
+| Last updated | January 2026 |
 
 ---
 
@@ -683,6 +684,82 @@ Ayurveda databases provide 4,000+ medicinal plants, 170,000+ phytochemicals, and
 6. TKDL Official Website: https://www.tkdl.res.in/
 7. OSADHI: Computational Biology and Chemistry (2022)
 8. GRAYU: Frontiers in Pharmacology (2025)
+
+---
+
+## License
+
+This document catalogs multiple databases with varying license terms:
+
+| Database | License | Commercial Use | Attribution | Access |
+|----------|---------|----------------|-------------|--------|
+| IMPPAT 2.0 | CC BY 4.0 | Yes | Required | Open |
+| OSADHI | Open access | Yes | Citation | Open |
+| GRAYU | Research & Education Only | No | Required | Open |
+| TKDL | Highly Restricted | No | N/A | Patent Offices only |
+| DHARA | Free public service | Research only | Citation | Open |
+| AYUSH Research Portal | Academic use | Research only | Required | Open |
+| NPACT | Open access | Yes | Citation | Open |
+| CMAUP | Freely accessible | Yes | Citation | Open (downloads) |
+| NPASS | Freely accessible | Yes | Citation | Open (downloads) |
+| AromaDb | Open access | Yes | Citation | Open |
+| sCentInDB | Academic research use | Research only | Required | Open |
+| FRLHT/NMPB | Research & Development Only | No | Required | Registration required |
+| IMPDB | Not explicitly stated | Unknown | Citation | Open |
+| ABIM | Academic/research use | Research only | Citation | Open |
+| e-Charak Portal | Research & Development Only | No | Required | Registration required |
+| Dr. Duke's | CC0 (Public Domain) | Yes | None required | Open (bulk CSV) |
+
+**Key Considerations:**
+- **Fully Open (Commercial OK):** IMPPAT 2.0 (CC BY 4.0), Dr. Duke's (CC0), NPACT, CMAUP, NPASS, OSADHI, AromaDb
+- **Research/Academic Only:** GRAYU, DHARA, AYUSH Portal, sCentInDB, FRLHT/NMPB, ABIM, e-Charak
+- **Highly Restricted:** TKDL (Patent Office access only)
+- **CC0 Public Domain:** Dr. Duke's allows unrestricted commercial use
+
+---
+
+## Download
+
+| Database | Method | URL/Command |
+|----------|--------|-------------|
+| **IMPPAT 2.0** | Web | `https://cb.imsc.res.in/imppat/` |
+| **Dr. Duke's** | Bulk CSV | `https://phytochem.nal.usda.gov/phytochem/search` |
+| **AYUSH Research Portal** | Web | `https://ayushportal.nic.in/` (registration required) |
+| **NPACT** | Web | `http://crdd.osdd.net/raghava/npact/` |
+| **CMAUP** | Download | `https://www.cmaup.cn/` |
+| **NPASS** | Download | `https://bidd.group/NPASS/` |
+| **TKDL** | Restricted | Patent office access only |
+
+**Access Requirements:** Most databases are freely accessible; TKDL requires patent office authorization; AYUSH Portal and e-Charak require registration.
+
+## Data Format
+
+| Format | Description |
+|--------|-------------|
+| Primary | SDF, MOL2, CSV |
+| Alternative | TSV, JSON, XML |
+| Chemical structures | SMILES, InChI, InChIKey |
+| Encoding | UTF-8 |
+
+## Sample Data
+
+### Example Compound Record (IMPPAT 2.0)
+```json
+{
+  "compound_id": "IMPPAT001234",
+  "name": "Withaferin A",
+  "smiles": "CC1(C)CCC2C(CC(=O)C3(C)C2CCC2C4CC(O)C(C(C)C(=O)O4)C(O)C23)C1",
+  "plant_source": "Withania somnifera",
+  "traditional_use": "Rasayana (rejuvenation)",
+  "pharmacological_activity": ["anti-inflammatory", "immunomodulatory"]
+}
+```
+
+### Sample Query Result
+| compound_id | name | plant_source | dosha_effect |
+|-------------|------|--------------|--------------|
+| IMPPAT001234 | Withaferin A | Withania somnifera | Vata-balancing |
+| IMPPAT002567 | Curcumin | Curcuma longa | Pitta-pacifying |
 
 ---
 

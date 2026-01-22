@@ -19,6 +19,24 @@ tags: [schema, uniprot, id-mapping, cross-reference, protein, integration]
 
 ---
 
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `id` | string | Primary identifier | "P04637" |
+| `name` | string | Entity name | "P53_HUMAN" |
+| `type` | string | Record type | "protein" |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `associated_with` | Entity | N:M |
+
+---
+
 ## Overview
 
 UniProt ID Mapping is the master cross-reference service linking 286 databases to UniProt protein entries. It provides the most comprehensive protein-centric ID mapping available, with pre-computed files updated every 8 weeks synchronized with UniProt releases.
@@ -220,6 +238,68 @@ curl 'https://rest.uniprot.org/idmapping/results/{jobId}'
 
 ---
 
+## Sample Data
+
+### Example Record
+```json
+{
+  "uniprot_accession": "P12345",
+  "uniprot_id": "TP53_HUMAN",
+  "gene_name": "TP53",
+  "entrez_gene_id": 7157,
+  "ensembl_id": "ENSG00000141510",
+  "refseq_id": "NM_000546.5"
+}
+```
+
+### Sample Query Result
+| uniprot_accession | uniprot_id | gene_name | entrez_gene_id | ensembl_id |
+|------------------|-----------|-----------|----------------|-----------|
+| P12345 | TP53_HUMAN | TP53 | 7157 | ENSG00000141510 |
+| P08174 | AREG_HUMAN | AREG | 374 | ENSG00000109319 |
+
+---
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| Records | 250,000,000+ |
+| Storage | Unknown |
+| Last updated | January 2026 |
+
+---
+
+## Data Format
+
+| Format | Description |
+|--------|-------------|
+| Primary | TSV (downloadable) |
+| Alternative | JSON (API) |
+| Encoding | UTF-8 |
+
+---
+
+## Download
+
+| Source | Method | URL |
+|--------|--------|-----|
+| UniProt ID Mapping | HTTP | https://www.uniprot.org/id-mapping |
+| IdMapping Data | FTP | ftp://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/idmapping/ |
+| REST API | HTTP/REST | https://rest.uniprot.org/idmapping/uniprotkb |
+
+**Access Requirements:** Open access, no registration required
+
+---
+
+## License
+
+| Resource | License | Commercial Use |
+|----------|---------|----------------|
+| UniProt ID Mapping | CC BY 4.0 | Yes |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |
@@ -270,6 +350,28 @@ curl 'https://rest.uniprot.org/idmapping/results/{jobId}'
 | InterPro | Integrated Protein Resource | Domain integration |
 | CDD | Conserved Domain Database | NCBI domain database |
 | OMA | Orthologous Matrix | Ortholog database |
+
+---
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| **Total Cross-References** | 250,000,000+ mappings |
+| **UniProt Entries Mapped** | ~500,000 (all sequences) |
+| **External Databases Covered** | 286 unique database systems |
+| **Gene Mappings** | ~20,000 human genes |
+| **Protein Entries** | ~200,000 human proteins |
+| **Organism Coverage** | All species (archaea, bacteria, eukaryotes) |
+| **idmapping.dat Size** | ~15 GB (compressed) |
+| **idmapping_selected.tab Size** | ~3 GB (compressed) |
+| **Pre-computed Fields** | 22 columns in selected mapping file |
+| **GO Term Mappings** | 7,000,000+ annotations |
+| **PubMed References** | 100,000,000+ links |
+| **PDB Structure Mappings** | 200,000+ structures |
+| **UniRef Clusters** | 50+ million sequence clusters |
+| **Update Frequency** | Every 8 weeks (synchronized with UniProt releases) |
+| **Current Release** | Release 2026_01 |
 
 ---
 

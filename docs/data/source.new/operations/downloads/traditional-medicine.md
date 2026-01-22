@@ -34,6 +34,90 @@ This document provides comprehensive information on bulk download methods for Tr
 
 ---
 
+## Download
+
+| Database | Method | URL/Command |
+|----------|--------|-------------|
+| **BATMAN-TCM 2.0** | API | `http://bionet.ncpsb.org.cn/batman-tcm/` |
+| **TCMBank** | Web | `https://tcmbank.cn/` |
+| **HERB 2.0** | Download | `http://herb.ac.cn/` |
+| **IMPPAT 2.0** | Web | `https://cb.imsc.res.in/imppat/` |
+| **KampoDB** | Web | `http://wakanmoview.inm.u-toyama.ac.jp/kampo/` |
+| **Dr. Duke's** | CSV | `https://phytochem.nal.usda.gov/` |
+| **LOTUS** | SPARQL | `https://lotus.naturalproducts.net/` |
+| **KNApSAcK** | Web | `http://www.knapsackfamily.com/` |
+
+**Access Requirements:** Most are freely accessible for academic use; Dr. Duke's is CC0.
+
+## Data Format
+
+| Format | Description |
+|--------|-------------|
+| Primary | CSV, TSV, JSON |
+| Alternative | SDF, XML |
+| Chemical structures | SMILES, InChI |
+| Encoding | UTF-8 |
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `compound_id` | string | Compound identifier | "IMPPAT001234" |
+| `herb_name` | string | Plant source | "Withania somnifera" |
+| `traditional_use` | string | Traditional indication | "Rasayana" |
+| `targets` | array | Predicted targets | ["ESR1", "AR"] |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `found_in` | Herb | N:M |
+| `targets` | Protein | N:M |
+
+## Sample Data
+
+### Example Compound Record
+```json
+{
+  "compound": "Withaferin A",
+  "smiles": "CC1(C)CCC2C...",
+  "herb": "Ashwagandha",
+  "traditional_system": "Ayurveda",
+  "predicted_targets": ["HSP90AA1", "NFE2L2"]
+}
+```
+
+### Sample Query Result
+| compound | herb | system | targets |
+|----------|------|--------|---------|
+| Withaferin A | Ashwagandha | Ayurveda | 45 |
+| Ginsenoside Rg1 | Ginseng | TCM | 78 |
+
+## License
+
+| Source | License | Commercial Use |
+|--------|---------|----------------|
+| Dr. Duke's | CC0 | Yes |
+| LOTUS | CC0 | Yes |
+| BATMAN-TCM | Academic | Research only |
+| KampoDB | CC BY-SA 4.0 | Yes |
+| IMPPAT | Academic | Research only |
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| IMPPAT compounds | 17K+ phytochemicals |
+| BATMAN-TCM herbs | 700+ herbs |
+| LOTUS compounds | 750K+ structure-organism pairs |
+| Dr. Duke's records | 60K+ plant-compound links |
+| Total storage estimate | ~5-10 GB combined |
+| Last updated | January 2026 |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

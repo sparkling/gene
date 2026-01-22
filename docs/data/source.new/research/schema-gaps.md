@@ -276,6 +276,88 @@ These databases have existing schemas in `models/` - verify they're up to date:
 
 ---
 
+## Download
+
+| Resource | Method | URL |
+|----------|--------|-----|
+| dbNSFP | Academic License | https://sites.google.com/site/jpopgen/dbNSFP |
+| ClinVar | FTP | https://ftp.ncbi.nih.gov/pub/clinvar/ |
+| gnomAD | Cloud (AWS/GCP) | https://gnomad.broadinstitute.org/downloads |
+| COCONUT | REST API | https://coconut.naturalproducts.net/ |
+| BATMAN-TCM | REST API | https://batman.bi.a.u-tokyo.ac.jp/ |
+
+**Access Requirements:** Most freely available; some require academic institutional access.
+
+## Data Format
+
+| Format | Description |
+|--------|-------------|
+| VCF | Variant Call Format (genomics standard) |
+| TSV/CSV | Tabular data |
+| JSON | API responses |
+| SQL | Database dumps |
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `database_id` | string | Unique database identifier | "clinvar-001" |
+| `tier_level` | string | Priority tier for documentation | "tier1" |
+| `schema_status` | string | Documentation completeness | "complete" |
+| `license_type` | string | License category | "open" |
+| `record_count` | number | Total records in database | 1000000 |
+
+## Sample Data
+
+### Example Database Schema Entry
+```json
+{
+  "database_name": "ClinVar",
+  "tier_level": "tier1",
+  "schema_status": "documented",
+  "fields": [
+    {
+      "name": "VariationID",
+      "type": "integer",
+      "description": "Unique variant identifier",
+      "example": 123456
+    },
+    {
+      "name": "ClinicalSignificance",
+      "type": "enum",
+      "values": ["pathogenic", "likely_pathogenic", "uncertain", "likely_benign", "benign"],
+      "example": "pathogenic"
+    }
+  ],
+  "license": "public_domain",
+  "total_records": 2500000
+}
+```
+
+## License
+
+| Resource | License | Notes |
+|----------|---------|-------|
+| ClinVar | Public Domain | Freely usable |
+| dbNSFP | Academic | Requires registration |
+| gnomAD | Open Access | CC0 |
+| COCONUT | CC0 | Public domain |
+| BATMAN-TCM | CC BY-NC | Non-commercial |
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| Tier 1 databases | 16 |
+| Tier 2 databases | 35 |
+| Tier 3 databases | 44 |
+| Already documented | 10 |
+| Last updated | January 2026 |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

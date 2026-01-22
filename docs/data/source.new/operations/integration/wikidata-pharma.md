@@ -526,6 +526,191 @@ Use ChEMBL/DrugBank for:
 
 ---
 
+## Download
+
+### Wikidata Pharmaceutical Data Sources
+
+| Source | URL | Format | Access | Size |
+|--------|-----|--------|--------|------|
+| Complete Wikidata dump | https://dumps.wikimedia.org/wikidatawiki/entities/ | JSON Lines (.bz2) | Bulk | ~90 GB |
+| Wikidata SPARQL endpoint | https://query.wikidata.org/sparql | SPARQL/JSON | Query | Real-time |
+| ChEMBL data | https://www.ebi.ac.uk/chembl/ | PostgreSQL/RDF | API/Bulk | ~2 GB |
+| DrugBank | https://www.drugbank.com/ | XML/RDF | Registration | ~500 MB |
+
+### SPARQL Query for Pharmaceutical Data
+
+```bash
+# Query Wikidata for drugs with ChEMBL IDs
+curl -G "https://query.wikidata.org/sparql" \
+  --data-urlencode "query=
+    SELECT ?drug ?drugLabel ?chembl ?drugbank WHERE {
+      ?drug wdt:P31 wd:Q12140 .
+      OPTIONAL { ?drug wdt:P661 ?chembl }
+      OPTIONAL { ?drug wdt:P715 ?drugbank }
+      SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\" }
+    }
+    LIMIT 100" \
+  -H "Accept: application/sparql-results+json"
+```
+
+---
+
+## Data Format
+
+### Pharmaceutical Data in Wikidata
+
+**JSON Lines format from dump:**
+
+```json
+{
+  "type": "item",
+  "id": "Q12261",
+  "labels": { "en": { "value": "ibuprofen" } },
+  "claims": {
+    "P31": [{ "rank": "normal", "mainsnak": { "snaktype": "value", "property": "P31", "datavalue": { "value": { "entity-type": "item", "numeric-id": 12140 }, "type": "wikibase-entityid" } } }],
+    "P715": [{ "rank": "normal", "mainsnak": { "snaktype": "value", "property": "P715", "datavalue": { "value": "DB01050", "type": "string" } } }],
+    "P661": [{ "rank": "normal", "mainsnak": { "snaktype": "value", "property": "P661", "datavalue": { "value": "CHEMBL364", "type": "string" } } }],
+    "P2175": [{ "rank": "normal", "mainsnak": { "snaktype": "value", "property": "P2175", "datavalue": { "value": { "entity-type": "item", "numeric-id": 4084 }, "type": "wikibase-entityid" } } }]
+  }
+}
+```
+
+**SPARQL JSON response:**
+
+```json
+{
+  "results": {
+    "bindings": [
+      {
+        "drug": { "type": "uri", "value": "http://www.wikidata.org/entity/Q12261" },
+        "drugLabel": { "type": "literal", "value": "ibuprofen", "xml:lang": "en" },
+        "chembl": { "type": "literal", "value": "CHEMBL364" },
+        "drugbank": { "type": "literal", "value": "DB01050" }
+      }
+    ]
+  }
+}
+```
+
+---
+
+## Schema
+
+### Pharmaceutical Drug Schema
+
+| Property | P-code | Type | Example | Use Case |
+|----------|--------|------|---------|----------|
+| Instance of | P31 | Item | Q12140 | Drug classification |
+| ChEMBL ID | P661 | String | CHEMBL364 | Chemical structure mapping |
+| DrugBank ID | P715 | String | DB01050 | Pharmacology data |
+| Medical condition treated | P2175 | Item | Q4084 (pain) | Therapeutic indication |
+| Active ingredient | P3780 | Item | Q compound | Formulation |
+| Drug interaction | P769 | Item | Q other_drug | Safety interaction |
+| FDA approval date | P2789 | Date | 1974-04-12 | Regulatory timeline |
+| Route of administration | P636 | Item | Q12322 (oral) | Dosage form |
+| ATC code | P3781 | String | M01AE01 | Anatomical classification |
+
+### Drug Properties Available in Wikidata
+
+| Property | Description | Typical Values |
+|----------|-------------|-----------------|
+| **P661** | ChEMBL ID | CHEMBL prefix + numeric ID |
+| **P715** | DrugBank ID | DB followed by 5 digits |
+| **P592** | ChEMBL target | Target molecule identifier |
+| **P2175** | Treats condition | Q-ID of disease/symptom |
+| **P3345** | EMA number | EMEA/H/C/XXXXX format |
+| **P3781** | ATC code | 5-character alphanumeric |
+
+---
+
+## Sample Data
+
+### Sample Drug Record: Ibuprofen
+
+**SPARQL Query:**
+```sparql
+SELECT ?drug ?label ?chembl ?drugbank ?indication ?atp WHERE {
+  ?drug wdt:P31 wd:Q12140 .
+  ?drug rdfs:label "ibuprofen"@en .
+  OPTIONAL { ?drug wdt:P661 ?chembl }
+  OPTIONAL { ?drug wdt:P715 ?drugbank }
+  OPTIONAL { ?drug wdt:P2175 ?indication }
+  OPTIONAL { ?drug wdt:P3781 ?atp }
+}
+```
+
+**Sample Results:**
+```json
+{
+  "drug": { "value": "http://www.wikidata.org/entity/Q12261" },
+  "label": { "value": "ibuprofen", "xml:lang": "en" },
+  "chembl": { "value": "CHEMBL364" },
+  "drugbank": { "value": "DB01050" },
+  "indication": { "value": "http://www.wikidata.org/entity/Q4084" },
+  "atp": { "value": "M01AE01" }
+}
+```
+
+### Sample Drug List (Top 5 by Claims)
+
+| Q-ID | Drug Name | ChEMBL | DrugBank | Indications |
+|------|-----------|--------|----------|-------------|
+| Q12261 | Ibuprofen | CHEMBL364 | DB01050 | Pain, fever, inflammation |
+| Q18216 | Aspirin | CHEMBL25 | DB00945 | Pain, anticoagulation |
+| Q27074 | Metformin | CHEMBL1642 | DB00331 | Type 2 diabetes |
+| Q12312 | Paracetamol | CHEMBL112 | DB00316 | Pain, fever |
+| Q12374 | Naproxen | CHEMBL1232 | DB00788 | Pain, inflammation |
+
+---
+
+## License
+
+### Wikidata Licensing
+
+- **License:** CC0 1.0 Universal (Public Domain)
+- **Requirement:** No attribution required; optional but encouraged
+- **DrugBank Link:** DrugBank data is CC-BY-NC 4.0 (not public domain)
+- **ChEMBL Link:** ChEMBL data is CC-BY 4.0 (requires attribution)
+- **Caveat:** When using linked external databases, follow their respective licenses
+
+### Citation Format
+
+```
+Wikidata contributors. "Wikidata." Wikimedia Foundation, Inc., 2024.
+https://www.wikidata.org/
+
+For linked data, also cite:
+- ChEMBL: Gaulton et al. (2017) Nucleic Acids Res 45(D1):D945-D954
+- DrugBank: Wishart et al. (2018) Nucleic Acids Res 46(D1):D1074-D1082
+```
+
+---
+
+## Data Set Size
+
+### Pharmaceutical Dataset Statistics
+
+| Metric | Count | Notes |
+|--------|-------|-------|
+| Medications (Q12140) | ~45,000 | Primary drug class |
+| Drugs with ChEMBL ID | ~15,000 | Linked to ChEMBL |
+| Drugs with DrugBank ID | ~10,000 | Linked to DrugBank |
+| Drug-disease relationships | ~50,000 | Via P2175 property |
+| Drug interactions documented | ~5,000 | Via P769 property |
+| ATC classifications | ~30,000 | Via P3781 property |
+
+### Storage and Access
+
+| Metric | Value |
+|--------|-------|
+| Wikidata dump size | ~90 GB compressed |
+| Filtered pharma subset | ~500 MB - 1 GB |
+| SPARQL query response time | <1 second |
+| Last dump update | Weekly (Monday UTC) |
+| SPARQL endpoint lag | <1 minute |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

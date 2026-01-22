@@ -40,6 +40,81 @@ tags: [governance, curation, data-quality, pruning]
 
 ---
 
+## Download
+
+| Resource | Method | URL |
+|----------|--------|-----|
+| **Curation checklist** | This document | N/A |
+| **Database inventory** | Internal | See curation spreadsheet |
+| **Quality metrics** | Generated | Pipeline output |
+
+**Access Requirements:** Internal documentation; external sources vary.
+
+## Data Format
+
+| Format | Description |
+|--------|-------------|
+| Documentation | Markdown |
+| Inventory | CSV, TSV |
+| Metrics | JSON |
+| Encoding | UTF-8 |
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `database_name` | string | Source database | "gnomAD" |
+| `tier` | integer | Quality tier (1-3) | 1 |
+| `status` | string | Curation status | "keep" |
+| `reason` | string | Decision rationale | "Primary source" |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `replaces` | Database | 1:N |
+| `supplements` | Database | N:M |
+
+## Sample Data
+
+### Example Curation Decision
+```json
+{
+  "database": "legacy_db",
+  "tier": 3,
+  "status": "prune",
+  "reason": "redundant",
+  "replacement": "gnomAD v4.1",
+  "reviewed_date": "2026-01-15"
+}
+```
+
+### Sample Query Result
+| database | tier | status | reason |
+|----------|------|--------|--------|
+| gnomAD | 1 | keep | Primary |
+| old_variant_db | 3 | prune | Redundant |
+
+## License
+
+| Resource | License | Notes |
+|----------|---------|-------|
+| Framework | Internal | Project documentation |
+| External sources | Varies | See individual databases |
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| Databases evaluated | 240 |
+| Databases retained | ~126 |
+| Databases pruned | ~114 |
+| Last updated | January 2026 |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

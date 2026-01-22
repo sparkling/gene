@@ -229,6 +229,26 @@ Invariant features shared across variant forms.
 - plasma membrane (GO:0005886)
 - mitochondrial matrix (GO:0005759)
 
+---
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `id` | string | Primary identifier | "1430728" |
+| `name` | string | Entity name | "Metabolism" |
+| `type` | string | Record type | "pathway" |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `associated_with` | Entity | N:M |
+
+---
+
 #### GO_BiologicalProcess
 | Property | Type | Description |
 |----------|------|-------------|
@@ -427,6 +447,37 @@ RETURN DISTINCT re.identifier AS UniProtID, re.geneName AS GeneName
 
 ---
 
+## Download
+
+### Bulk Data Downloads
+
+| Format | Size | URL | Use Case |
+|--------|------|-----|----------|
+| BioPAX Level 3 | ~1 GB | https://reactome.org/download/current/ | Pathway exchange, integration |
+| SBML Level 3 | ~500 MB | https://reactome.org/download/current/ | Systems biology modeling |
+| Graph Database | ~100 GB | Neo4j aura or local install | Full database queries |
+| JSON API | - | REST endpoints | Programmatic access |
+| PostgreSQL Dump | ~50 GB | PostgreSQL archives | Direct database access |
+| Cypher Scripts | ~500 MB | https://reactome.org/download/current/ | Neo4j batch import |
+
+### Update Schedule
+
+- Releases: Quarterly (March, June, September, December)
+- Current version: Release 95 (December 2024)
+- Beta releases: Available between quarterly releases
+- Data updates: Curated continuously
+
+### API Specifications
+
+**Base URL:** `https://reactome.org/ContentService`
+
+**Rate Limits:**
+- 100 requests/minute (general limit)
+- Authentication: Not required for public API
+- Response formats: JSON, XML, PSI-MITAB
+
+---
+
 ## API Endpoints
 
 | Endpoint | Description |
@@ -437,8 +488,6 @@ RETURN DISTINCT re.identifier AS UniProtID, re.geneName AS GeneName
 | `GET /data/species/main` | List supported species |
 | `GET /data/database/version` | Get database version |
 | `GET /data/discover/{id}` | Schema.org metadata |
-
-**Base URL:** `https://reactome.org/ContentService`
 
 ---
 
@@ -548,6 +597,55 @@ Reactome exports data in BioPAX Level 3 OWL format:
 
 </rdf:RDF>
 ```
+
+---
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| Records | 10,000+ |
+| Storage | Unknown |
+| Last updated | January 2026 |
+
+---
+
+## Data Format
+
+| Format | Description |
+|--------|-------------|
+| Primary | BioPAX, SBML |
+| Alternative | JSON |
+| Encoding | UTF-8 |
+
+---
+
+## License
+
+| Resource | License | Commercial Use |
+|----------|---------|----------------|
+| Reactome | CC BY 4.0 | Yes |
+
+---
+
+## Sample Data
+
+### Example Record
+```json
+{
+  "dbId": 1430728,
+  "displayName": "Metabolism",
+  "stId": "R-HSA-1430728",
+  "speciesName": "Homo sapiens",
+  "schemaClass": "TopLevelPathway"
+}
+```
+
+### Sample Query Result
+| dbId | displayName | stId | speciesName | schemaClass |
+|------|-------------|------|-------------|-------------|
+| 1430728 | Metabolism | R-HSA-1430728 | Homo sapiens | TopLevelPathway |
+| 191273 | Cholesterol biosynthesis | R-HSA-191273 | Homo sapiens | Pathway |
 
 ---
 

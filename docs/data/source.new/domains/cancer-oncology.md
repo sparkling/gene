@@ -383,6 +383,145 @@ Cancer and oncology databases provide somatic mutation data (COSMIC: 38M+ mutati
 
 ---
 
+## Schema
+
+### Core Entity Fields
+
+| Entity | Field | Type | Description | Example |
+|--------|-------|------|-------------|---------|
+| **Somatic Mutation** | `cosmic_id` | string | COSMIC mutation identifier | "COSM476" |
+| | `gene` | string | Gene symbol | "BRAF" |
+| | `aa_change` | string | Amino acid change (HGVS) | "p.V600E" |
+| | `consequence` | string | Variant consequence | "missense_variant" |
+| | `fathmm_score` | float | Pathogenicity prediction | 0.95 |
+| **Clinical Variant** | `civic_id` | integer | CIViC variant identifier | 12 |
+| | `evidence_type` | string | Evidence category | "Predictive" |
+| | `evidence_level` | string | Evidence strength | "A" |
+| | `drugs` | string[] | Associated therapies | ["Vemurafenib"] |
+| **Germline Variant** | `clinvar_id` | string | ClinVar accession | "VCV000014289" |
+| | `classification` | string | Clinical significance | "Pathogenic" |
+| | `review_status` | string | Review level | "reviewed by expert panel" |
+| | `condition` | string | Associated disease | "Hereditary breast cancer" |
+| **Cancer Gene** | `symbol` | string | HGNC gene symbol | "TP53" |
+| | `cgc_tier` | integer | Cancer Gene Census tier | 1 |
+| | `role` | string | Role in cancer | "TSG" |
+| | `hallmarks` | string[] | Cancer hallmarks | ["Evading apoptosis"] |
+
+### Relationships
+
+| Relation | Source | Target | Cardinality | Description |
+|----------|--------|--------|-------------|-------------|
+| `predicts_response` | Variant | Drug | N:M | Therapeutic biomarker |
+| `confers_resistance` | Variant | Drug | N:M | Resistance mechanism |
+| `occurs_in` | Mutation | Cancer Type | N:M | Cancer association |
+| `driver_in` | Gene | Cancer Type | N:M | Driver gene role |
+| `classifies` | Expert Panel | Variant | N:M | Variant classification |
+| `aggregates` | BRCA Exchange | Variant | N:M | Data aggregation |
+
+---
+
+## Sample Data
+
+### Example Record: COSMIC Somatic Mutation
+
+```json
+{
+  "cosmic_id": "COSM476",
+  "gene": "BRAF",
+  "aa_change": "p.V600E",
+  "cds_change": "c.1799T>A",
+  "chromosome": "7",
+  "position": 140453136,
+  "consequence": "missense_variant",
+  "fathmm_score": 0.99,
+  "cancer_types": ["Melanoma", "Colorectal", "Thyroid"],
+  "sample_count": 52420
+}
+```
+
+### Sample Query Result: CIViC Clinical Variants
+
+| civic_id | gene | variant | evidence_type | evidence_level | drugs | disease |
+|----------|------|---------|---------------|----------------|-------|---------|
+| 12 | BRAF | V600E | Predictive | A | Vemurafenib | Melanoma |
+| 33 | EGFR | L858R | Predictive | A | Erlotinib, Gefitinib | NSCLC |
+| 17 | KRAS | G12D | Predictive | B | Cetuximab (resistance) | Colorectal |
+
+### Sample Query Result: ClinVar Hereditary Cancer Variants
+
+| clinvar_id | gene | variant | classification | review_status | condition |
+|------------|------|---------|----------------|---------------|-----------|
+| VCV000017661 | BRCA1 | c.5266dupC | Pathogenic | reviewed by expert panel | Hereditary breast/ovarian cancer |
+| VCV000051191 | MLH1 | c.790+1G>A | Pathogenic | reviewed by expert panel | Lynch syndrome |
+| VCV000026229 | TP53 | c.743G>A (p.Arg248Gln) | Pathogenic | criteria provided | Li-Fraumeni syndrome |
+
+---
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| COSMIC mutations | 38M+ mutations, 1.4M+ samples |
+| GDC/TCGA data | 2.5 PB multi-omics, 11K+ patients |
+| Cancer Gene Census | ~700 curated cancer genes |
+| OncoKB alterations | 10,623 alterations, 978 genes |
+| CIViC clinical variants | 3,200+ variants, 470+ genes |
+| ClinVar hereditary | Multi-GB download files |
+| BRCA Exchange variants | 20K+ BRCA1/2 variants |
+| Total storage estimate | ~50-100 GB (summary data) |
+| Last updated | January 2026 |
+
+---
+
+## Download
+
+| Database | Method | URL/Command |
+|----------|--------|-------------|
+| **COSMIC** | FTP | `https://cancer.sanger.ac.uk/cosmic/download` (registration required) |
+| **GDC/TCGA** | Portal | `https://portal.gdc.cancer.gov/` |
+| | API | `gdc-client download <manifest>` |
+| **CIViC** | AWS S3 | `https://civicdb.org/downloads` (nightly TSV/CSV) |
+| | API | `https://civicdb.org/api/graphql` |
+| **ClinVar** | FTP | `https://ftp.ncbi.nlm.nih.gov/pub/clinvar/` |
+| **OncoKB** | API | `https://api.oncokb.org/` (token required) |
+| **BRCA Exchange** | Web | `https://brcaexchange.org/variants` |
+
+**Access Requirements:** COSMIC and OncoKB require registration; GDC controlled-access data requires dbGaP authorization; CIViC and ClinVar are fully open.
+
+---
+
+## License
+
+| Database | License | Commercial Use | Attribution |
+|----------|---------|----------------|-------------|
+| **COSMIC** | Academic free, Commercial via QIAGEN | License required | Required |
+| **GDC/TCGA** | Open Access / Controlled Access | Open data: Yes | Required |
+| **CIViC** | CC0 1.0 (Public Domain) | Yes | Not required |
+| **ClinVar** | Public Domain | Yes | Not required |
+| **OncoKB** | Academic free, Commercial paid | License required | Required |
+| **BRCA Exchange** | Open Access | Yes | Required |
+
+**Note:** OncoKB prohibits use for AI/ML model training without explicit permission.
+
+---
+
+## Data Format
+
+| Format | Description | Used By |
+|--------|-------------|---------|
+| VCF | Variant Call Format (GRCh37/GRCh38) | COSMIC, ClinVar, GDC |
+| TSV | Tab-separated values | COSMIC, CIViC, ClinVar |
+| JSON | API responses | CIViC, OncoKB, GDC |
+| MAF | Mutation Annotation Format | GDC/TCGA |
+| XML | ClinVar detailed records | ClinVar (VCV, RCV) |
+| CSV | Comma-separated exports | CIViC nightly dumps |
+| BAM | Aligned sequence reads | GDC/TCGA |
+
+**Compression:** gzip (.gz) for bulk downloads
+**Encoding:** UTF-8
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

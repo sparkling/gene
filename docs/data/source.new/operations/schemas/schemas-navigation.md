@@ -18,6 +18,24 @@ tags: [schema, index, navigation, databases, pathways, diseases, ontologies]
 
 ---
 
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `id` | string | Primary identifier | "schema-001" |
+| `name` | string | Entity name | "Database Name" |
+| `type` | string | Record type | "schema" |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `associated_with` | Entity | N:M |
+
+---
+
 ## Overview
 
 This directory contains actual schema documentation, data models, and sample data from biomedical databases including pathways, diseases, ontologies, and cross-reference systems.
@@ -190,6 +208,65 @@ Reactome/WikiPathways -> Pathway -> Compound (ChEBI)
 - [../pathways/primary.md](../pathways/primary.md) - Primary pathway database overview
 - [../pathways/disease.md](../pathways/disease.md) - Disease pathway databases
 - [../integration/xrefs.md](../integration/xrefs.md) - Cross-reference mapping strategies
+
+---
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| Records | 19 |
+| Storage | Unknown |
+| Last updated | January 2026 |
+
+---
+
+## Data Format
+
+| Format | Description |
+|--------|-------------|
+| Primary | Markdown |
+| Alternative | YAML |
+| Encoding | UTF-8 |
+
+---
+
+## Download
+
+| Source | Method | URL |
+|--------|--------|-----|
+| Navigation Docs | Git | See repository |
+| Schema Maps | HTTP | See main database |
+
+**Access Requirements:** Open access
+
+---
+
+## License
+
+| Resource | License | Commercial Use |
+|----------|---------|----------------|
+| Navigation Docs | CC BY 4.0 | Yes |
+
+---
+
+## Sample Data
+
+### Example Record
+```json
+{
+  "database": "Reactome",
+  "url": "https://reactome.org",
+  "license": "CC BY 4.0",
+  "pathways": 2712
+}
+```
+
+### Sample Query Result
+| database | url | license | pathways |
+|----------|-----|---------|----------|
+| Reactome | https://reactome.org | CC BY 4.0 | 2712 |
+| WikiPathways | https://www.wikipathways.org | CC0 | 3100+ |
 
 ---
 

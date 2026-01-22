@@ -238,6 +238,109 @@ Clinical annotations link genetic variants to drug responses with evidence level
 
 ---
 
+## Download
+
+### Data Access Methods
+
+| Resource | Format | Size | URL |
+|----------|--------|------|-----|
+| Clinical Annotations | TSV | ~20 MB | https://s3.pgkb.org/data/clinical_annotations.tsv.zip |
+| Drug Labels | TSV | ~10 MB | https://s3.pgkb.org/data/drug_labels.tsv.zip |
+| Variant-Drug Annotations | TSV | ~15 MB | https://s3.pgkb.org/data/var_drug_ann.tsv.zip |
+| Variant-Phenotype Annotations | TSV | ~8 MB | https://s3.pgkb.org/data/var_pheno_ann.tsv.zip |
+| Pathways Data | TSV | ~5 MB | https://s3.pgkb.org/data/pathways.tsv.zip |
+| Guidelines | JSON/PDF | ~50 MB | https://cpicpgx.org/guidelines/ |
+| REST API | JSON | - | https://api.pharmgkb.org/v1/ |
+
+### Rate Limits
+
+- API: 2 requests/second
+- S3 downloads: No limit
+- Batch operations: Recommended for large data retrieval
+
+---
+
+## Data Format
+
+| Aspect | Details |
+|--------|---------|
+| **Primary Formats** | TSV (bulk exports), JSON (API) |
+| **Alternative Formats** | CSV, XML, PDF (guidelines) |
+| **Compression** | ZIP for bulk TSV downloads |
+| **Encoding** | UTF-8 |
+| **API Response** | JSON with REST endpoints |
+| **Delimiter** | Tab-separated for TSV files |
+
+---
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| **CPIC Guidelines** | 33 active guidelines |
+| **Unique Pharmacogenes** | ~25 genes (CPIC panel) |
+| **Clinical Annotations** | 1,000+ annotations |
+| **Drug Labels with PGx** | 500+ FDA-labeled drugs |
+| **Gene-Drug Pairs** | 10,000+ annotated combinations |
+| **Haplotypes Documented** | 500+ star alleles |
+| **Variant-Phenotype Links** | 100,000+ associations |
+| **Pathways** | 100+ pharmacokinetic pathways |
+| **S3 File Size** | ~58 MB (compressed total) |
+| **API Coverage** | All public data available |
+| **Update Frequency** | New guidelines quarterly, updates continuous |
+
+---
+
+## Sample Data
+
+### Example Record
+```json
+{
+  "pgkb_id": "PA165843",
+  "gene_name": "CYP2C9",
+  "drug_name": "Warfarin",
+  "phenotype": "Poor metabolizer",
+  "recommendation": "Use alternative anticoagulant",
+  "evidence_level": "1A"
+}
+```
+
+### Sample Query Result
+| pgkb_id | gene_name | drug_name | phenotype | recommendation | evidence_level |
+|---------|-----------|-----------|----------|----------------|----------------|
+| PA165843 | CYP2C9 | Warfarin | Poor metabolizer | Use alternative anticoagulant | 1A |
+| PA165846 | CYP2C19 | Clopidogrel | Loss of function | Avoid or use alternative | 1B |
+
+---
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `id` | string | Primary identifier | "PA123456" |
+| `name` | string | Entity name | "Warfarin" |
+| `type` | string | Record type | "drug" / "gene" / "variant" |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `associated_with` | Gene / Variant | N:M |
+| `has_guideline` | Clinical Guideline | N:M |
+| `causes_reaction` | ADR / Phenotype | N:M |
+
+---
+
+## License
+
+| Resource | License | Commercial Use |
+|----------|---------|----------------|
+| PharmGKB | CC BY-SA 4.0 | Yes (with attribution) |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

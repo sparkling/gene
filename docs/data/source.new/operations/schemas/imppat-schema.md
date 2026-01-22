@@ -468,6 +468,58 @@ def map_imppat_to_uniprot(hgnc_id, hgnc_mapping):
 
 ---
 
+## Data Format
+
+| Format | Description | Use Case |
+|--------|-------------|----------|
+| Primary | Web Interface (HTML) | Interactive browsing |
+| Alternative | TSV (Tab-separated) | Bulk imports |
+| Structure | SDF, MOL, MOL2, PDB, PDBQT | Molecular structures |
+| Encoding | UTF-8 | Text-based formats |
+
+---
+
+## Download
+
+### Data Access Methods
+
+| Method | URL | Format |
+|--------|-----|--------|
+| **Web Interface** | https://cb.imsc.res.in/imppat/ | Interactive queries |
+| **Search** | Web-based search tools | HTML results |
+| **Export** | TSV via query results | Tab-separated |
+| **Structure Download** | Per compound | SDF, MOL, MOL2, PDB, PDBQT |
+| **GitHub** | https://github.com/asamallab/IMPPAT2 | Analysis scripts only |
+
+### Query Capabilities
+
+```
+Web-based search:
+- Plant searches (botanical/vernacular names, family, therapeutic use)
+- Phytochemical searches (name, SMILES/InChI, molecular formula, properties)
+- Substructure/similarity searches
+- Property-based filtering
+- Target-based reverse lookup
+```
+
+---
+
+## Data Set Size
+
+| Component | Count | Size (Est.) |
+|-----------|-------|------------|
+| **Indian Medicinal Plants** | 4,010 | ~5 MB |
+| **Phytochemicals** | 17,967 | ~50-100 MB |
+| **Plant-Phytochemical Links** | 189,386 | ~10 MB |
+| **Therapeutic Uses** | 1,095 | ~1 MB |
+| **Plant-Therapeutic Links** | 89,733 | ~5 MB |
+| **Human Target Proteins** | 5,042 | ~5 MB |
+| **Compound-Target Interactions** | 27,365 | ~2 MB |
+| **Total Database** | Various | ~100-150 MB |
+| **Structure Files (SDF)** | Per compound | 100 KB - 1 MB each |
+
+---
+
 ## License
 
 **CC BY-NC 4.0** (Creative Commons Attribution-NonCommercial 4.0 International)
@@ -686,6 +738,26 @@ Associated GitHub repository (asamallab/IMPPAT2) provides analysis templates:
 - Similarity network generation
 - Scaffold decomposition
 - Drug-likeness evaluation
+
+---
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `id` | string | Primary identifier | "IMPPAT0000001" |
+| `name` | string | Entity name | "Curcumin" |
+| `type` | string | Record type | "natural_product" |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `targets` | Protein / Gene | N:M |
+| `found_in` | Plant Source | N:M |
+| `associated_with` | Activity / Indication | N:M |
 
 ---
 

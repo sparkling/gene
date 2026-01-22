@@ -119,6 +119,105 @@ Open Food Facts is the world's largest open food products database with 3M+ prod
 
 ---
 
+## Download
+
+### Bulk Data Downloads
+
+| Source | Format | Size | URL |
+|--------|--------|------|-----|
+| CSV Export | CSV | ~800 MB (compressed) | https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv.gz |
+| JSONL Export | JSONL | ~1.2 GB (compressed) | https://static.openfoodfacts.org/data/openfoodfacts-products.jsonl.gz |
+| Parquet (Hugging Face) | Parquet | ~600 MB | https://huggingface.co/datasets/openfoodfacts/product-database |
+| RDF Dump | RDF/Turtle | ~5 GB | https://static.openfoodfacts.org/data/openfoodfacts-products.rdf.gz |
+
+### Update Frequency
+
+- New products: Added continuously (average 10,000+ per day)
+- Bulk exports: Updated daily
+- Database snapshots: Available monthly
+
+### API Rate Limits
+
+- No authentication required
+- Rate limit: ~1 request per second recommended
+- Bulk operations: Use download files instead
+
+---
+
+## Data Format
+
+| Aspect | Details |
+|--------|---------|
+| **Primary Format** | JSON (API), CSV (bulk exports) |
+| **Alternative Formats** | JSONL, RDF, Parquet |
+| **Compression** | gzip (.gz) for bulk downloads |
+| **Encoding** | UTF-8 |
+| **API Response Format** | JSON |
+| **Bulk Export Encoding** | UTF-8 with BOM for Excel compatibility |
+
+---
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| **Total Products** | 3,000,000+ (updated continuously) |
+| **Countries Represented** | 180+ |
+| **Active Contributors** | 30,000+ |
+| **Languages** | 50+ |
+| **Daily New Entries** | ~10,000 |
+| **CSV Export Size** | ~800 MB (gzip compressed) |
+| **JSONL Export Size** | ~1.2 GB (gzip compressed) |
+| **Parquet Dataset** | ~600 MB |
+| **Update Frequency** | Continuous (real-time API), daily bulk export |
+| **Last Full Snapshot** | Updated daily at 02:00 UTC |
+
+---
+
+## Sample Data
+
+### Example Record
+```json
+{
+  "barcode": "3017620425035",
+  "product_name": "Nutella hazelnut spread",
+  "brand": "Ferrero",
+  "categories": "Spreads, Cocoa and hazelnuts",
+  "energy_kcal": 539,
+  "protein_g": 6.3,
+  "fat_g": 30.7,
+  "carbs_g": 57.5
+}
+```
+
+### Sample Query Result
+| barcode | product_name | brand | energy_kcal | protein_g | fat_g |
+|---------|-------------|-------|------------|-----------|--------|
+| 3017620425035 | Nutella hazelnut spread | Ferrero | 539 | 6.3 | 30.7 |
+| 8711200762022 | Coca-Cola Original | Coca-Cola | 42 | 0.0 | 0.0 |
+
+---
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `id` | string | Primary identifier | "5000112118957" |
+| `name` | string | Entity name | "Product Name" |
+| `type` | string | Record type | "food_product" |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `contains` | Ingredient | N:M |
+| `has_label` | Label / Allergen | N:M |
+| `belongs_to` | Category | N:M |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

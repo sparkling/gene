@@ -372,6 +372,114 @@ vep -i input.vcf \
 
 ---
 
+## Download
+
+### Google Cloud Storage (Official)
+
+The official and recommended source for AlphaMissense data:
+
+```bash
+# List available files
+gsutil ls gs://dm_alphamissense/
+
+# Download hg38 predictions (main file)
+gsutil cp gs://dm_alphamissense/AlphaMissense_hg38.tsv.gz .
+
+# Download all files
+gsutil -m cp -r gs://dm_alphamissense/* ./alphamissense/
+```
+
+**URL:** `gs://dm_alphamissense/`
+
+### Zenodo (Alternative)
+
+Alternative access for users without Google Cloud access:
+
+**Repository:** https://zenodo.org/records/8360242
+
+Files available:
+- AlphaMissense_hg38.tsv.gz
+- AlphaMissense_hg19.tsv.gz
+- AlphaMissense_gene_hg38.tsv.gz
+- AlphaMissense_gene_hg19.tsv.gz
+- AlphaMissense_aa_substitutions.tsv.gz
+- AlphaMissense_isoforms_hg38.tsv.gz
+- AlphaMissense_isoforms_aa_substitutions.tsv.gz
+
+```bash
+# Download via wget
+wget https://zenodo.org/records/8360242/files/AlphaMissense_hg38.tsv.gz
+```
+
+### File Sizes
+
+| File | Compressed Size | Uncompressed |
+|------|-----------------|--------------|
+| AlphaMissense_hg38.tsv.gz | 643 MB | ~2.1 GB |
+| AlphaMissense_hg19.tsv.gz | 622 MB | ~2.0 GB |
+| AlphaMissense_gene_hg38.tsv.gz | 254 KB | ~1.2 MB |
+| AlphaMissense_aa_substitutions.tsv.gz | 1.2 GB | ~4.0 GB |
+| AlphaMissense_isoforms_hg38.tsv.gz | 1.2 GB | ~3.8 GB |
+
+**Total Dataset:** ~6.1 GB compressed (~13 GB uncompressed)
+
+---
+
+## Data Format
+
+| Format | Description | Availability |
+|--------|-------------|--------------|
+| **Primary** | TSV (Tab-Separated Values), gzip compressed (.tsv.gz) | All files |
+| **Compression** | gzip (.gz) | All files |
+| **Encoding** | UTF-8 | All files |
+| **Variant Format** | Genomic coordinates (1-based) with VCF-style chromosome names | Main files |
+| **Protein Format** | UniProt accession + protein coordinates | AA substitution files |
+
+### TSV Structure
+
+Files are tab-separated with header line (prefixed with #) and sorted by genomic position:
+- **Tab separator** for all fields
+- **Header row** with column names
+- **No quoted fields** - raw tab-delimited format
+- **One variant per row** for genomic files
+- **One substitution per row** for amino acid files
+
+### Coordinate System
+
+- **Genomic positions:** 1-based (VCF-style)
+- **Protein positions:** 1-based within protein sequence
+- **Chromosome format:** chr1, chr2, ..., chr22, chrX, chrY, chrM
+
+---
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `id` | string | Primary identifier | "CHROM:POS:REF:ALT" |
+| `name` | string | Entity name | "chr7:140753336:A:T" |
+| `type` | string | Record type | "variant" |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `associated_with` | Entity | N:M |
+
+---
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| Records | 71,000,000+ |
+| Storage | 643 MB (compressed, hg38) |
+| Last updated | January 2026 |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

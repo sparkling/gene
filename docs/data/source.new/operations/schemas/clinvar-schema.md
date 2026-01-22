@@ -616,6 +616,196 @@ def parse_clinvar_vcf(filepath: str):
 
 ---
 
+## Download
+
+### FTP Access (Primary)
+
+ClinVar files are distributed via FTP and updated weekly:
+
+**FTP Base:** https://ftp.ncbi.nlm.nih.gov/pub/clinvar/
+
+```bash
+# Download weekly VCF (current/GRCh38)
+wget https://ftp.ncbi.nlm.nih.gov/pub/clinvar/vcf_GRCh38/clinvar.vcf.gz
+wget https://ftp.ncbi.nlm.nih.gov/pub/clinvar/vcf_GRCh38/clinvar.vcf.gz.tbi
+
+# Download GRCh37 (hg19) version
+wget https://ftp.ncbi.nlm.nih.gov/pub/clinvar/vcf_GRCh37/clinvar.vcf.gz
+
+# Download all tab-delimited files
+wget https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/variant_summary.txt.gz
+wget https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/submission_summary.txt.gz
+wget https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/hgvs4variation.txt.gz
+```
+
+### File Organization
+
+```
+/pub/clinvar/
+├── vcf_GRCh38/              # Current (hg38)
+│   ├── clinvar.vcf.gz
+│   ├── clinvar.vcf.gz.tbi
+│   ├── clinvar_papu.vcf.gz  # P/LP subset
+│   └── README.txt
+├── vcf_GRCh37/              # Legacy (hg19)
+│   ├── clinvar.vcf.gz
+│   └── clinvar.vcf.gz.tbi
+├── tab_delimited/           # TSV files
+│   ├── variant_summary.txt.gz
+│   ├── submission_summary.txt.gz
+│   ├── hgvs4variation.txt.gz
+│   ├── gene_specific_summary.txt.gz
+│   ├── gene_condition_source_id
+│   ├── disease_names
+│   ├── allele_gene.txt.gz
+│   ├── variation_allele.txt.gz
+│   └── cross_references.txt.gz
+├── xml/                     # XML files (monthly archive)
+│   ├── clinvar_YYYYMM.xml.gz
+│   └── ...
+└── archive/                 # Historical releases by date
+```
+
+### Update Schedule
+
+| Type | Frequency | Day | Archive |
+|------|-----------|-----|---------|
+| **VCF** | Weekly | Monday | Monthly |
+| **Tab-delimited** | Weekly | Monday | Monthly |
+| **XML (full)** | Monthly | First Thursday | Archived |
+
+### File Sizes (as of January 2026)
+
+| File | Compressed | Uncompressed | Description |
+|------|-----------|--------------|-------------|
+| clinvar.vcf.gz | 177 MB | ~750 MB | Current GRCh38 VCF |
+| clinvar_papu.vcf.gz | 68 KB | ~250 KB | Pathogenic/Likely pathogenic subset |
+| variant_summary.txt.gz | 421 MB | ~1.2 GB | All variants (core data) |
+| submission_summary.txt.gz | 359 MB | ~980 MB | Individual submissions |
+| hgvs4variation.txt.gz | 484 MB | ~1.4 GB | HGVS nomenclature |
+
+**Total Dataset:** ~1.5 TB (compressed), ~5.6 TB (uncompressed)
+
+### Alternative Access
+
+**NCBI Entrez Direct:**
+```bash
+# Search and download ClinVar records
+esearch -db clinvar -query "TP53" | efetch -format xml > tp53_variants.xml
+```
+
+**REST API:**
+```bash
+# Query by variation ID
+curl "https://www.ncbi.nlm.nih.gov/clinvar/?term=VCV000000001"
+
+# Query by gene
+curl "https://www.ncbi.nlm.nih.gov/clinvar/?term=BRCA1[gene]"
+```
+
+---
+
+## Data Format
+
+| Format | Description |
+|--------|-------------|
+| Primary | VCF (.vcf.gz), XML |
+| Alternative | TSV (tab-delimited text files) |
+| Compression | gzip (.gz) |
+| Encoding | UTF-8 |
+| API Response | XML, JSON |
+
+### Format Details
+
+**VCF (Variant Call Format)**
+- Text-based variant representation
+- Standard #CHROM POS ID REF ALT columns
+- INFO field with ClinVar-specific annotations
+- Indexed with tabix (.tbi) for fast lookup
+- Sorted by chromosome and position
+
+**XML (eXtensible Markup Language)**
+- Complete ClinVar submission records
+- Hierarchical variant/interpretation structure
+- Full classification history
+- Evidence details included
+- Complies with XSD v2.5
+
+**TSV (Tab-Separated Values)**
+- Flat file format
+- One variant or submission per row
+- Header row with column names
+- Pipe-delimited for multi-value fields
+- Text encoding UTF-8
+
+---
+
+## Data Set Size
+
+| Metric | Value | Notes |
+|--------|-------|-------|
+| **Total Submissions** | 10,000,000+ | From hundreds of organizations |
+| **Unique Variants** | 1,500,000+ | Distinct alleles |
+| **Top Submitter** | LabCorp Genetics | 1.89M submissions |
+| **Variant Types** | SNV, indel, SV, complex | All variation types |
+| **Assembly Coverage** | GRCh38, GRCh37 | Both major builds |
+| **Active Updates** | Weekly | Monday releases |
+| **Archive Size** | ~6 TB (uncompressed) | Historical + current |
+| **Submission Span** | 2009-2026 | 17 years of data |
+| **Review Status Levels** | 7 categories | From practice guideline to unreviewed |
+
+---
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `id` | string | Primary identifier | "VCV000000123.4" |
+| `name` | string | Entity name | "Variant Archive" |
+| `type` | string | Record type | "variation" |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `associated_with` | Entity | N:M |
+
+---
+
+## License
+
+| Resource | License | Commercial Use |
+|----------|---------|----------------|
+| ClinVar | CC BY (public domain) | Yes |
+
+---
+
+## Sample Data
+
+### Example Record
+```json
+{
+  "vcv": "VCV000000123.4",
+  "rcv": "RCV000012345.6",
+  "allele_id": 12345,
+  "gene_symbol": "HBB",
+  "clinical_significance": "Pathogenic",
+  "review_status": "criteria provided, multiple submitters, no conflicts",
+  "hgvs_c": "NM_000518.5:c.20A>T",
+  "chromosome": "11"
+}
+```
+
+### Sample Query Result
+| vcv | rcv | gene_symbol | clinical_significance | review_status | hgvs_c |
+|-----|-----|-------------|----------------------|----------------|--------|
+| VCV000000123.4 | RCV000012345.6 | HBB | Pathogenic | criteria provided, multiple submitters, no conflicts | NM_000518.5:c.20A>T |
+| VCV000000124.5 | RCV000012346.7 | BRCA1 | Likely pathogenic | reviewed by expert panel | NM_007294.4:c.68_69delAG |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

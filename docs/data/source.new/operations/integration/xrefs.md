@@ -735,6 +735,317 @@ const goAnnotationCollection = {
 
 ---
 
+## Download
+
+### Cross-Reference Database Sources
+
+| Database | URL | Format | Access | Size |
+|----------|-----|--------|--------|------|
+| UniProt ID Mapping | https://www.uniprot.org/id-mapping | TSV (.gz) | FTP/HTTP | ~3 GB |
+| Gene Ontology | http://geneontology.org/ | OBO/RDF | HTTP | ~50 MB |
+| Europe PMC | https://www.ebi.ac.uk/europepmc/ | XML/JSON | API/Bulk | ~1 GB |
+| PMC ID Converter | https://www.ncbi.nlm.nih.gov/pmc/ | JSON/API | API | Real-time |
+| NCBI Gene | https://www.ncbi.nlm.nih.gov/gene/ | GFF/ASN.1 | FTP | ~2 GB |
+
+### Download Instructions
+
+**UniProt ID Mapping:**
+```bash
+# Download selected mapping file (contains 22 pre-computed columns)
+wget https://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/idmapping/idmapping_selected.tab.gz
+
+# Extract and check format
+gunzip idmapping_selected.tab.gz
+head -5 idmapping_selected.tab | cut -f1-5
+```
+
+**Gene Ontology:**
+```bash
+# Download GO annotations in GAF 2.2 format
+wget http://geneontology.org/ontology/go.obo
+wget http://geneontology.org/gene-associations/goa_human.gaf.gz
+```
+
+**Europe PMC Annotations:**
+```bash
+# Bulk download of text-mined annotations
+wget https://www.ebi.ac.uk/europepmc/annotations/download/
+```
+
+---
+
+## Data Format
+
+### UniProt ID Mapping Format (idmapping_selected.tab)
+
+**Tab-separated values (TSV) with 22 columns:**
+
+```
+UniProtKB_AC    UniProtKB_ID    GeneID(EntrezGene)    RefSeq_Protein    RefSeq_Nucleotide    PDB    EMBL    EMBL    Protein_ID    CCDS    EntrezGene_ID    ENSEMBL_ID    ENSEMBL_PRO_ID    ENSEMBL_TRS_ID    UniParc    GO    Reactome    Ensembl_Protein    Ensembl_Transcript    PubMed    BioGrid    STRING
+
+P04637    TP53_HUMAN    7157    NP_000537.3    NC_000017.11    1TUP    L24166    CAA28682.1    7157    CCDS14212.1    7157    ENSG00000141510    ENSP00000269305    ENST00000269305    UPI0000003D4E    GO:0001077|GO:0003700    R-HSA-109606    ENSP00000269305    ENST00000269305    11721857    112216    ENSP00000269305
+```
+
+**Column Definitions:**
+
+| Col | Name | Type | Example |
+|-----|------|------|---------|
+| 1 | UniProtKB AC | String | P04637 |
+| 2 | UniProtKB ID | String | TP53_HUMAN |
+| 3 | GeneID (EntrezGene) | Int | 7157 |
+| 4 | RefSeq Protein | String | NP_000537.3 |
+| 5 | RefSeq Nucleotide | String | NC_000017.11 |
+| 6 | PDB | String | 1TUP |
+| 7-21 | Various IDs | String | (see mapping docs) |
+| 22 | STRING | String | ENSP00000269305 |
+
+### Gene Ontology Annotation Format (GAF 2.2)
+
+**Tab-separated annotation file:**
+
+```
+UniProtKB    P04637    TP53    GO:0001077    GO_REF:0000043    IEA    F:p53_binding    P    Tumor suppressor    UniProtKB:P04637|ensembl:ENSP00000269305        20240115    EnsEMBL
+```
+
+**Column Definitions:**
+
+| Col | Header | Value | Example |
+|-----|--------|-------|---------|
+| 1 | DB | UniProtKB | UniProtKB |
+| 2 | DB_Object_ID | Protein ID | P04637 |
+| 3 | DB_Object_Symbol | Gene symbol | TP53 |
+| 4 | GO_ID | GO term | GO:0001077 |
+| 5 | DB_Reference | Evidence source | GO_REF:0000043 |
+| 6 | Evidence_Code | Proof type | IEA |
+| 7 | With_From | Related entity | F:p53_binding |
+| 8 | Aspect | Component/Function/Process | F |
+| 9 | DB_Object_Name | Description | Tumor suppressor |
+| 10 | DB_Object_Synonym | Aliases | UniProtKB:P04637 |
+| 11 | DB_Object_Type | Entity type | protein |
+| 12 | Taxon | Organism | taxon:9606 |
+| 13 | Date | Annotation date | 20240115 |
+| 14 | Assigned_By | Provider | EnsEMBL |
+
+### Europe PMC Annotation Format
+
+```json
+{
+  "pmid": "12345678",
+  "pmcid": "PMC7654321",
+  "doi": "10.1234/example.2024",
+  "title": "Study of gene X in disease Y",
+  "annotations": [
+    {
+      "type": "Gene",
+      "text": "BRCA1",
+      "dbId": "ENSG00000012048",
+      "frequency": 5,
+      "sentences": ["Mutations in BRCA1 increase cancer risk..."]
+    },
+    {
+      "type": "Disease",
+      "text": "breast cancer",
+      "dbId": "MESH:D001943",
+      "frequency": 3
+    }
+  ]
+}
+```
+
+---
+
+## Schema
+
+### Cross-Reference Database Schema
+
+**Core Cross-Reference Entity:**
+
+```
+Entity {
+  id: PrimaryID          # Unique identifier in source database
+  sourceDB: String       # Database name (UniProt, Ensembl, etc)
+  externalRefs: [
+    {
+      database: String   # Target database (RefSeq, PDB, etc)
+      identifier: String # ID in target database
+      url: URL          # Resolvable link
+      confidence: Float # Trust score (0-1)
+      source: String    # How mapping was created
+      lastUpdated: Date # Last verification
+    }
+  ]
+}
+```
+
+### Mapping Standards
+
+| Property | Type | Cardinality | Example |
+|----------|------|-------------|---------|
+| UniProt AC | String | 1..1 | P04637 |
+| Gene ID | Integer | 0..1 | 7157 |
+| RefSeq | String | 0..* | NP_000537.3 |
+| Ensembl | String | 0..1 | ENSG00000141510 |
+| HGNC | String | 0..1 | HGNC:11998 |
+| MeSH | String | 0..* | D000001 |
+| GO Terms | String | 0..* | GO:0001077 |
+
+### Relationship Types
+
+| Type | Source | Target | Count |
+|------|--------|--------|-------|
+| has_gene | UniProt AC | EntrezGene | 286K mappings |
+| has_structure | UniProt AC | PDB | 80K mappings |
+| has_homolog | UniProt AC | UniProt AC | 500K mappings |
+| annotated_by | Gene | GO term | 972K annotations |
+| references | PubMed ID | Gene/Protein | 30M+ mappings |
+
+---
+
+## Sample Data
+
+### UniProt p53 (TP53) Mapping
+
+**Query TP53 from UniProt ID Mapping:**
+
+**Input (TP53_HUMAN / P04637):**
+```
+UniProtKB_AC: P04637
+UniProtKB_ID: TP53_HUMAN
+```
+
+**Output mapping:**
+```
+Gene ID (NCBI):          7157
+RefSeq Protein:          NP_000537.3
+PDB:                     1TUP, 2GEQ, 2IJ3
+EMBL:                    L24166
+Ensembl Gene ID:         ENSG00000141510
+Ensembl Protein ID:      ENSP00000269305
+HGNC:                    HGNC:11998
+MeSH:                    D000001 (Calcimycin)
+STRING:                  9606.ENSP00000269305
+GO Terms:                GO:0001077 (transcription factor)
+```
+
+### GO Annotation Sample
+
+**Gene TP53 Annotations:**
+
+```
+UniProtKB    P04637    TP53    GO:0001077    GO_REF:0000043    IEA    F:p53_binding    F    Tumor suppressor p53    UniProtKB:P04637|ensembl:ENSP00000269305    protein    taxon:9606    20240115    EnsEMBL
+UniProtKB    P04637    TP53    GO:0006355    GO_REF:0000043    IEA                    P    DNA-templated transcription    UniProtKB:P04637    protein    taxon:9606    20240115    EnsEMBL
+UniProtKB    P04637    TP53    GO:0016573    GO_REF:0000043    IEA    involved_in    P    Histone acetylation    UniProtKB:P04637    protein    taxon:9606    20240115    EnsEMBL
+```
+
+### Europe PMC Annotation Sample
+
+**Gene-Disease Associations for BRCA1:**
+
+```json
+{
+  "pmid": "31547341",
+  "title": "BRCA1 mutations in breast cancer",
+  "annotations": [
+    {
+      "type": "Gene",
+      "text": "BRCA1",
+      "dbId": "ENSG00000012048",
+      "frequency": 42,
+      "confidence": 0.95
+    },
+    {
+      "type": "Gene",
+      "text": "BRCA2",
+      "dbId": "ENSG00000139618",
+      "frequency": 38
+    },
+    {
+      "type": "Disease",
+      "text": "breast cancer",
+      "dbId": "MESH:D001943",
+      "frequency": 35,
+      "confidence": 0.98
+    },
+    {
+      "type": "Disease",
+      "text": "ovarian cancer",
+      "dbId": "MESH:D010051",
+      "frequency": 18
+    }
+  ]
+}
+```
+
+### Cross-Reference Integration Example
+
+**Query:** Find all identifiers for human p53
+
+```
+UniProt ID:          P04637
+NCBI Gene ID:        7157
+HGNC Gene Symbol:    HGNC:11998 (TP53)
+Ensembl ID:          ENSG00000141510
+RefSeq NP:           NP_000537.3
+PDB IDs:             1TUP, 2GEQ, 2IJ3
+STRING ID:           9606.ENSP00000269305
+MeSH:                D014157
+GO Functions:        GO:0001077, GO:0006355, GO:0005515
+```
+
+---
+
+## License
+
+### Cross-Reference Database Licenses
+
+| Database | License | Attribution Required | URL |
+|----------|---------|----------------------|-----|
+| UniProt | CC-BY 4.0 | Yes | https://www.uniprot.org/help/license |
+| Gene Ontology | CC-BY 4.0 | Yes | http://geneontology.org/page/go-citation-policy |
+| NCBI Gene | Public Domain | No | https://www.ncbi.nlm.nih.gov/home/about/policies/ |
+| Europe PMC | CC-BY 3.0 | Yes | https://europepmc.org/about |
+| RefSeq | Public Domain | No | https://www.ncbi.nlm.nih.gov/refseq/about/ |
+| PDB | CC-BY 4.0 | Yes | https://www.wwpdb.org/about/terms-of-use |
+| Ensembl | CC-BY 4.0 | Yes | https://www.ensembl.org/about/legal/index.html |
+
+### Citation Examples
+
+**UniProt:**
+```
+UniProt Consortium. "UniProt: a worldwide hub of protein knowledge."
+Nucleic Acids Res. 47(D1): D506-D515 (2019).
+https://doi.org/10.1093/nar/gky1049
+```
+
+**Gene Ontology:**
+```
+Gene Ontology Consortium. "The Gene Ontology resource: enriching a GOld mine."
+Nucleic Acids Res. 49(D1): D325-D334 (2021).
+https://doi.org/10.1093/nar/gkaa1113
+```
+
+**NCBI Gene:**
+```
+NCBI Gene: National Center for Biotechnology Information (NCBI) Gene Database
+Accessed [DATE] from https://www.ncbi.nlm.nih.gov/gene/
+```
+
+---
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| UniProt ID Mapping (selected) | 3 GB raw / 5 GB indexed |
+| PMID-DOI-PMCID mappings | 500 MB raw / 1 GB indexed (~30M records) |
+| Human GO annotations | 100 MB raw / 300 MB indexed (972K annotations) |
+| GO Ontology (OBO) | 50 MB raw / 150 MB indexed (46K terms + relations) |
+| Total raw | ~4 GB |
+| Total indexed | ~7 GB |
+| Last updated | January 2026 |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

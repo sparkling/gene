@@ -605,6 +605,77 @@ uniprotkb:P04637	uniprotkb:Q00987	intact:EBI-366083	intact:EBI-389768	uniprotkb:
 
 ---
 
+## Data Format
+
+| Format | Description | Use Case |
+|--------|-------------|----------|
+| Primary | MITAB 2.6 (Tab-separated) | Standard exchange format |
+| Alternative | PSI-MI 3.0 XML | Rich annotation, standards-compliant |
+| Alternative | JSON | Programmatic access |
+| Search | PSICQUIC | Federated query protocol |
+| Encoding | UTF-8 | All formats |
+
+---
+
+## Download
+
+### Data Access Methods
+
+| Method | URL | Format |
+|--------|-----|--------|
+| **Web Interface** | https://www.ebi.ac.uk/intact/home | Interactive search |
+| **PSICQUIC Services** | https://www.ebi.ac.uk/Tools/webservices/psicquic | REST API |
+| **FTP** | ftp://ftp.ebi.ac.uk/pub/databases/intact/ | MITAB, PSI-MI XML |
+| **Downloads** | https://www.ebi.ac.uk/intact/download | Bulk exports |
+
+### Download URLs
+
+```bash
+# MITAB26 format (full database)
+ftp://ftp.ebi.ac.uk/pub/databases/intact/current/psimitab/intact.zip
+
+# PSI-MI XML
+ftp://ftp.ebi.ac.uk/pub/databases/intact/current/psi30/intact.zip
+
+# PSICQUIC query example
+curl "https://www.ebi.ac.uk/Tools/webservices/psicquic/intact/query/query=*:*&format=tab25"
+```
+
+---
+
+## Data Set Size
+
+| Component | Records | Size (Est.) |
+|-----------|---------|------------|
+| **Protein Interactions** | 1,000,000+ | ~100-200 MB (MITAB) |
+| **Binary Interactions** | 500,000+ (spoke) | ~50-100 MB |
+| **Unique Proteins** | 500,000+ | Included in interactions |
+| **Complexes** | 50,000+ | ~10 MB |
+| **Total ZIP (MITAB)** | Full database | ~40-50 MB |
+| **Total ZIP (XML)** | Full database | ~200-300 MB |
+
+---
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `id` | string | Primary identifier | "EBI-1" |
+| `name` | string | Entity name | "Protein A" |
+| `type` | string | Record type | "protein" / "interaction" |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `interacts_with` | Protein | N:M |
+| `described_in` | Publication | N:M |
+| `has_participant` | Interactor | N:M |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

@@ -552,6 +552,90 @@ async function getCitationNetwork(pmid: number, depth: number = 2) {
 
 ---
 
+## Download
+
+| Source | Method | URL/Command |
+|--------|--------|-------------|
+| **PubMed XML** | FTP | `ftp://ftp.ncbi.nlm.nih.gov/pubmed/baseline/` |
+| **PMC JATS** | FTP | `ftp://ftp.ncbi.nlm.nih.gov/pub/pmc/oa_bulk/` |
+| **Annotations** | Europe PMC | `https://europepmc.org/downloads/annotations` |
+
+**Access Requirements:** All freely accessible; API key recommended for higher rate limits.
+
+## Data Format
+
+| Format | Description |
+|--------|-------------|
+| Primary | XML (PubMed DTD, JATS) |
+| Alternative | JSON, Parquet |
+| Embeddings | Float32 arrays |
+| Graph | RuVector/Neo4j Cypher |
+| Encoding | UTF-8 |
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `pmid` | integer | PubMed identifier | 12345678 |
+| `sections` | object | Parsed JATS sections | {"intro": "...", "methods": "..."} |
+| `chunks` | array | Text chunks for RAG | [{text, embedding, position}] |
+| `entities` | array | Extracted NER entities | ["rs1801133", "MTHFR"] |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `has_section` | Section | 1:N |
+| `cites` | Article | N:M |
+| `mentions` | Entity | N:M |
+
+## Sample Data
+
+### Example Structured Article
+```json
+{
+  "pmid": 12345678,
+  "pmcid": "PMC1234567",
+  "sections": {
+    "title": "MTHFR polymorphisms...",
+    "abstract": "Background: ...",
+    "introduction": "The MTHFR gene...",
+    "methods": "We conducted..."
+  },
+  "chunks": [
+    {"text": "Background: The MTHFR...", "embedding": [0.023, ...], "section": "abstract"}
+  ]
+}
+```
+
+### Sample Query Result
+| pmid | section | chunk_count | entities |
+|------|---------|-------------|----------|
+| 12345678 | methods | 15 | ["MTHFR", "rs1801133"] |
+| 23456789 | results | 22 | ["CYP2D6", "codeine"] |
+
+## License
+
+| Source | License | Commercial Use |
+|--------|---------|----------------|
+| PubMed | Public domain | Yes |
+| PMC OA | CC BY/CC0 | Yes (OA subset) |
+| Europe PMC | CC BY | Yes |
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| PubMed records | 39M+ citations |
+| PMC full-text | 3.4M+ articles |
+| Chunks per article | ~20 average |
+| Total chunks | ~70M estimated |
+| Last updated | January 2026 |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

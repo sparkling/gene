@@ -541,6 +541,63 @@ dbVar synchronizes with the European Variation Archive (EVA/DGVa):
 
 ---
 
+## Data Format
+
+| Format | Description |
+|--------|-------------|
+| Primary | TSV (tab-separated values), VCF |
+| Alternative | BED, BEDPE, GVF |
+| Compression | gzip (.gz) |
+| Encoding | UTF-8 |
+| API Response | None (FTP only) |
+
+---
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `id` | string | Primary identifier | "nsv1234567" |
+| `name` | string | Entity name | "Structural Variant" |
+| `type` | string | Record type | "deletion" |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `associated_with` | Entity | N:M |
+
+---
+
+## Download (NCBI FTP)
+
+| Source | Method | URL |
+|--------|--------|-----|
+| dbVar Browser | HTTP | https://www.ncbi.nlm.nih.gov/dbvar |
+| Non-Redundant Files | FTP | ftp://ftp.ncbi.nlm.nih.gov/pub/dbVar/Structural_Variant_Sets/Nonredundant_Structural_Variants/ |
+| Study Data | FTP | ftp://ftp.ncbi.nlm.nih.gov/pub/dbVar/data/Homo_sapiens/by_study/ |
+| All Data | FTP | ftp://ftp.ncbi.nlm.nih.gov/pub/dbVar/data/Homo_sapiens/ |
+
+**Access Requirements:** Open public access, no authentication required
+
+---
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| Total Structural Variants | 6M+ |
+| Deletions | 1.9M (non-redundant) |
+| Duplications | 659K (non-redundant) |
+| Insertions | 1.7M (non-redundant) |
+| Studies | 185+ |
+| Minimum SV Size | 50 bp |
+| Last updated | January 2026 |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

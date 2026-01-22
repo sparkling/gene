@@ -51,6 +51,93 @@ This catalog documents major databases for biological processes, ontologies, enz
 
 ---
 
+## Download
+
+| Database | Method | URL/Command |
+|----------|--------|-------------|
+| **Gene Ontology** | Download | `http://geneontology.org/docs/download-ontology/` |
+| **Rhea** | FTP | `ftp://ftp.expasy.org/databases/rhea/` |
+| **BRENDA** | Download | `https://www.brenda-enzymes.org/download.php` |
+| **ChEBI** | Download | `https://www.ebi.ac.uk/chebi/downloadsForward.do` |
+| **Human Protein Atlas** | Download | `https://www.proteinatlas.org/about/download` |
+| **BioModels** | Download | `https://www.ebi.ac.uk/biomodels/` |
+
+**Access Requirements:** Most are freely accessible; BRENDA requires academic registration; Human Protein Atlas allows non-commercial use.
+
+## Data Format
+
+| Format | Description |
+|--------|-------------|
+| Primary | OBO, OWL, SBML |
+| Alternative | TSV, JSON, XML |
+| Reactions | RXN, ChEBI |
+| Encoding | UTF-8 |
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `term_id` | string | Ontology term ID | "GO:0006412" |
+| `name` | string | Term name | "translation" |
+| `namespace` | string | GO namespace | "biological_process" |
+| `genes` | array | Associated genes | 500+ |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `is_a` | GO Term | N:1 |
+| `part_of` | GO Term | N:M |
+| `annotated_with` | Gene | N:M |
+
+## Sample Data
+
+### Example Process Record
+```json
+{
+  "go_id": "GO:0006412",
+  "name": "translation",
+  "namespace": "biological_process",
+  "definition": "The cellular metabolic process in which a protein is formed",
+  "genes_annotated": 523,
+  "child_terms": 45
+}
+```
+
+### Sample Query Result
+| term | namespace | genes | children |
+|------|-----------|-------|----------|
+| translation | BP | 523 | 45 |
+| kinase activity | MF | 890 | 156 |
+
+## License
+
+| Source | License | Commercial Use |
+|--------|---------|----------------|
+| Gene Ontology | CC BY 4.0 | Yes |
+| Rhea | CC BY 4.0 | Yes |
+| ChEBI | CC BY 4.0 | Yes |
+| BRENDA | Academic | License required |
+
+---
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| Gene Ontology terms | 45K+ terms |
+| Rhea reactions | Expert-curated biochemical reactions |
+| BRENDA enzymes | Comprehensive enzyme data |
+| BioModels | Computational biology models |
+| ChEBI entities | 60K+ chemical entities |
+| Human Protein Atlas | Protein expression profiles |
+| Total storage estimate | ~8-12 GB (combined sources) |
+| Last updated | January 2026 |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

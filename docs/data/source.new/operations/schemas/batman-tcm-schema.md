@@ -579,6 +579,68 @@ The BATMAN-TCM server may experience intermittent connectivity issues:
 
 ---
 
+## Sample Data
+
+### Example Record
+```json
+{
+  "tti_id": "BATMAN-TCM-2024-001234",
+  "ingredient_id": "BATMAN-TCM-ING-5679",
+  "compound_name": "Ginsenoside Rg1",
+  "target_id": "P12345",
+  "gene_symbol": "TP53",
+  "interaction_type": "predicted",
+  "confidence_score": 0.95,
+  "source": "BATMAN-TCM 2.0"
+}
+```
+
+### Sample Query Result
+| tti_id | ingredient_id | compound_name | target_id | gene_symbol | confidence_score |
+|--------|---------------|---------------|-----------|-------------|------------------|
+| BATMAN-TCM-2024-001234 | BATMAN-TCM-ING-5679 | Ginsenoside Rg1 | P12345 | TP53 | 0.95 |
+| BATMAN-TCM-2024-001235 | BATMAN-TCM-ING-5680 | Artemisinin | P23219 | COX1 | 0.88 |
+
+---
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| Records | 2,319,272 |
+| Storage | Unknown |
+| Last updated | January 2026 |
+
+---
+
+## Data Format
+
+| Format | Description |
+|--------|-------------|
+| Primary | JSON |
+| Alternative | TSV |
+| Encoding | UTF-8 |
+
+---
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `id` | string | Primary identifier | "BATMAN-TCM-2024-001234" |
+| `name` | string | Entity name | "Ginsenoside Rg1" |
+| `type` | string | Record type | "ingredient" |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `associated_with` | Entity | N:M |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

@@ -410,18 +410,19 @@ Cardiovascular and metabolic genetics databases provide GWAS summary statistics 
 
 ## Integration Summary
 
-### Data Volume Summary
+## Data Set Size
 
-| Database | Estimated Size | Primary Format |
-|----------|---------------|----------------|
-| CARDIoGRAMplusC4D | ~1.8 GB | Text/CSV |
-| GLGC | ~2 GB | Text/CSV |
-| DIAGRAM/T2DGGI | ~4 GB | Text/ZIP |
-| GIANT | ~10 GB | Text/GZ |
-| ICBP | ~500 MB | CSV |
-| HMDB | ~70 GB (full) | XML/SDF/FASTA |
-| GWAS Catalog | ~5 GB | JSON/TSV |
-| **Total** | **~93 GB** | Mixed |
+| Metric | Value |
+|--------|-------|
+| CARDIoGRAMplusC4D | ~1.8 GB (Text/CSV) |
+| GLGC | ~2 GB (Text/CSV) |
+| DIAGRAM/T2DGGI | ~4 GB (Text/ZIP) |
+| GIANT | ~10 GB (Text/GZ) |
+| ICBP | ~500 MB (CSV) |
+| HMDB | ~70 GB (full XML/SDF/FASTA) |
+| GWAS Catalog | ~5 GB (JSON/TSV) |
+| Total storage estimate | ~93 GB (Mixed formats) |
+| Last updated | January 2026 |
 
 ### API Availability Matrix
 
@@ -479,6 +480,117 @@ Cardiovascular and metabolic genetics databases provide GWAS summary statistics 
 |--------|-----------|
 | ICBP | Blood pressure requires dbGaP application |
 | HMDB | Full API requires contact |
+
+---
+
+## Schema
+
+### Core Entity Fields
+
+| Entity | Field | Type | Description | Example |
+|--------|-------|------|-------------|---------|
+| **GWAS Summary Stat** | `rsid` | string | dbSNP identifier | "rs7903146" |
+| | `chr` | string | Chromosome | "10" |
+| | `pos` | integer | Genomic position | 114758349 |
+| | `effect_allele` | string | Effect allele | "T" |
+| | `other_allele` | string | Reference allele | "C" |
+| | `beta` | float | Effect size | 0.15 |
+| | `se` | float | Standard error | 0.02 |
+| | `p_value` | float | P-value | 5.0e-50 |
+| | `eaf` | float | Effect allele frequency | 0.30 |
+| **Lipid Trait** | `trait` | string | Lipid measurement | "LDL-C" |
+| | `unit` | string | Measurement unit | "mg/dL" |
+| | `ancestry` | string | Population ancestry | "EUR" |
+| **Metabolite** | `hmdb_id` | string | HMDB identifier | "HMDB0000067" |
+| | `name` | string | Metabolite name | "Cholesterol" |
+| | `formula` | string | Molecular formula | "C27H46O" |
+| | `biofluid` | string[] | Detection location | ["Serum", "Plasma"] |
+| **Consortium Study** | `study_id` | string | Study identifier | "GLGC_2021" |
+| | `sample_size` | integer | Total sample size | 1654000 |
+| | `ancestry` | string[] | Population groups | ["EUR", "AFR", "EAS"] |
+
+### Relationships
+
+| Relation | Source | Target | Cardinality | Description |
+|----------|--------|--------|-------------|-------------|
+| `associated_with` | Variant | Trait | N:M | GWAS association |
+| `measured_in` | Metabolite | Biofluid | N:M | Detection location |
+| `risk_factor_for` | Trait | Disease | N:M | Clinical risk |
+| `part_of_pathway` | Metabolite | Pathway | N:M | Metabolic pathway |
+| `meta_analyzed_in` | Variant | Study | N:M | Consortium inclusion |
+| `credible_set` | Variant | Locus | N:1 | Fine-mapping |
+
+---
+
+## Sample Data
+
+### Example Record: GWAS Summary Statistic
+
+```json
+{
+  "rsid": "rs7903146",
+  "gene": "TCF7L2",
+  "chromosome": "10",
+  "position": 114758349,
+  "effect_allele": "T",
+  "other_allele": "C",
+  "beta": 0.29,
+  "se": 0.02,
+  "p_value": 5.0e-200,
+  "eaf": 0.30,
+  "trait": "Type 2 diabetes",
+  "study": "DIAGRAM_T2DGGI_2024",
+  "sample_size": 2500000
+}
+```
+
+### Sample Query Result: GLGC Lipid GWAS
+
+| rsid | gene | trait | beta | se | p_value | ancestry | n |
+|------|------|-------|------|-------|---------|----------|---|
+| rs12740374 | CELSR2 | LDL-C | -0.15 | 0.01 | 1.2e-150 | EUR | 1654000 |
+| rs964184 | ZPR1 | TG | 0.12 | 0.01 | 4.5e-120 | Multi | 1320000 |
+| rs1800961 | HNF4A | HDL-C | 0.08 | 0.02 | 2.1e-18 | EUR | 920000 |
+
+### Sample Query Result: HMDB Metabolite
+
+| hmdb_id | name | formula | biofluid | concentration_range | unit |
+|---------|------|---------|----------|---------------------|------|
+| HMDB0000067 | Cholesterol | C27H46O | Serum | 3.1-6.2 | mmol/L |
+| HMDB0000148 | Glucose | C6H12O6 | Plasma | 3.9-5.6 | mmol/L |
+| HMDB0000673 | Triglyceride | Variable | Serum | 0.5-1.7 | mmol/L |
+
+---
+
+## Download
+
+| Database | Method | URL/Command |
+|----------|--------|-------------|
+| **CARDIoGRAMplusC4D** | Direct | `http://www.cardiogramplusc4d.org/data-downloads/` |
+| **GLGC** | Web | `https://csg.sph.umich.edu/willer/public/lipids2013/` |
+| **DIAGRAM** | Direct | `https://diagram-consortium.org/downloads.html` |
+| **GIANT** | FTP | `https://portals.broadinstitute.org/collaboration/giant/` |
+| **MAGIC** | Direct | `https://magicinvestigators.org/downloads/` |
+| **HMDB** | FTP | `https://hmdb.ca/downloads` |
+| **UK Biobank** | Portal | `https://www.ukbiobank.ac.uk/` (application required) |
+
+**Access Requirements:** Most GWAS summary statistics are open access; UK Biobank requires approved application.
+
+---
+
+## Data Format
+
+| Format | Description | Used By |
+|--------|-------------|---------|
+| TSV | Summary statistics (GWAS) | CARDIoGRAMplusC4D, GLGC, DIAGRAM |
+| CSV | Metabolite data | HMDB |
+| JSON | API responses | HMDB, Open Targets |
+| XML | Structured metabolite records | HMDB (MetaboCard) |
+| SDF | Chemical structure data | HMDB |
+| VCF | Variant data | UK Biobank |
+
+**Compression:** gzip (.gz) for GWAS summary statistics
+**Encoding:** UTF-8
 
 ---
 

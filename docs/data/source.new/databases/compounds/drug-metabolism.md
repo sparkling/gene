@@ -77,6 +77,118 @@ Drug metabolism databases provide comprehensive coverage of CYP450 enzyme polymo
 
 ---
 
+## License
+
+This document catalogs multiple databases with varying license terms:
+
+| Database | License | Commercial Use | Attribution | Access |
+|----------|---------|----------------|-------------|--------|
+| PharmVar | Open Access | Yes | Citation | Open |
+| SuperCYP | Academic use | Research only | Required | Open |
+| Flockhart Table | Free educational use | Educational only | Required | Open |
+| PharmGKB | CC BY-SA 4.0 | Yes (with attribution) | Required | Free (account required) |
+| CPIC | CC0 (Public Domain) | Yes | None required | Open |
+| DrugBank | CC BY-NC 4.0 (academic), Commercial license | Requires license | Required | Academic free |
+| KEGG Drug | Academic API only, Subscription for FTP | Subscription required | Required | Academic API free |
+| NatMed Pro | Commercial subscription | Subscription required | N/A | Subscription |
+| MSKCC About Herbs | Free access | Yes | Citation | Open |
+| Stockley's | Commercial subscription | Subscription required | N/A | Subscription |
+| First Databank (FDB) | Commercial subscription | Subscription required | N/A | Enterprise |
+| Integrative Medicine Gateway | Commercial subscription | Subscription required | N/A | Subscription |
+| T3DB | Academic use | Research only | Required | Open |
+| HMDB | Open Access | Yes | Citation | Open |
+| PK-DB | Open Access | Yes | Citation | Open (REST API) |
+| SwissADME | Free web access | Yes | Citation | Open |
+| FDA BCS Database | Public Domain | Yes | None required | Open |
+| FDA PGx Table | Public Domain | Yes | None required | Open |
+
+**Key Considerations:**
+- **Fully Open (Commercial OK):** CPIC, HMDB, PK-DB, SwissADME, FDA BCS, FDA PGx Table, MSKCC
+- **Commercial Friendly with Attribution:** PharmGKB (CC BY-SA), PharmVar
+- **Academic Only:** DrugBank (full data), SuperCYP, T3DB
+- **Commercial Subscription Required:** NatMed Pro, Stockley's, FDB, KEGG Drug (FTP)
+
+---
+
+## Download
+
+| Database | Method | URL/Command |
+|----------|--------|-------------|
+| **PharmGKB** | Bulk download | `https://www.pharmgkb.org/downloads` |
+| **PharmVar** | Web | `https://www.pharmvar.org/` |
+| **CPIC** | Download | `https://cpicpgx.org/guidelines/` |
+| **DrugBank** | Academic download | `https://go.drugbank.com/releases/latest` (registration required) |
+| **SuperCYP** | Web | `http://bioinformatics.charite.de/supercyp/` |
+| **PK-DB** | API | `https://pk-db.com/` |
+
+**Access Requirements:** PharmGKB (CC BY-SA 4.0) and CPIC (CC0) are freely available; DrugBank requires academic registration.
+
+## Data Format
+
+| Format | Description |
+|--------|-------------|
+| Primary | TSV, CSV, JSON |
+| Alternative | XML, SDF |
+| Identifiers | PharmGKB ID, DrugBank ID |
+| Encoding | UTF-8 |
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `drug_id` | string | Primary drug identifier | "PA451906" |
+| `gene` | string | Pharmacogene symbol | "CYP2D6" |
+| `star_allele` | string | Haplotype designation | "*4" |
+| `phenotype` | string | Metabolizer status | "Poor Metabolizer" |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `metabolized_by` | Enzyme | N:M |
+| `has_guideline` | CPIC Guideline | 1:N |
+
+## Sample Data
+
+### Example Drug-Gene Interaction
+```json
+{
+  "drug": "codeine",
+  "pharmgkb_id": "PA449088",
+  "gene": "CYP2D6",
+  "phenotype_recommendation": {
+    "Poor Metabolizer": "Avoid codeine; use alternative analgesic",
+    "Ultrarapid Metabolizer": "Avoid codeine; risk of toxicity"
+  },
+  "evidence_level": "1A"
+}
+```
+
+### Sample Query Result
+| drug | gene | metabolizer | recommendation |
+|------|------|-------------|----------------|
+| codeine | CYP2D6 | PM | Avoid use |
+| tamoxifen | CYP2D6 | PM | Consider alternative |
+
+---
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| PharmVar star alleles | Official nomenclature database |
+| PharmGKB annotations | 20K+ gene-drug annotations |
+| CPIC guidelines | 164 drugs with guidelines |
+| DrugBank entries | 15K+ drugs |
+| KEGG Drug | Pathway-integrated drug data |
+| PK-DB pharmacokinetics | Full PK parameters |
+| Total storage estimate | ~5-8 GB (combined sources) |
+| Last updated | January 2026 |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

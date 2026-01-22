@@ -613,17 +613,18 @@ def get_member_data(access_token):
 
 ---
 
-## Storage Requirements
+## Data Set Size
 
-| Source Category | Est. Size | Format |
-|-----------------|-----------|--------|
-| Reddit archives | 10-50 GB | JSON |
-| SNPedia dump | ~1 GB | Wiki XML |
-| Open Humans projects | 5-20 GB | Various |
-| PGP public genomes | 50-100 GB | VCF, FASTA |
-| All of Us (cloud) | N/A (cloud-only) | Parquet |
-| Forum scrapes | 5-10 GB | JSON |
-| **Total (downloadable)** | **70-180 GB** | - |
+| Metric | Value |
+|--------|-------|
+| Reddit archives | 10-50 GB (JSON) |
+| SNPedia dump | ~1 GB (Wiki XML) |
+| Open Humans projects | 5-20 GB (Various) |
+| PGP public genomes | 50-100 GB (VCF, FASTA) |
+| All of Us | Cloud-only (Parquet) |
+| Forum scrapes | 5-10 GB (JSON) |
+| Total downloadable | ~70-180 GB |
+| Last updated | January 2026 |
 
 ---
 
@@ -671,6 +672,87 @@ def get_member_data(access_token):
 
 ---
 
+## Schema
+
+### Core Entity Fields
+
+| Entity | Field | Type | Description | Example |
+|--------|-------|------|-------------|---------|
+| **User Profile** | `user_id` | string | Anonymous identifier | "oh_12345" |
+| | `platform` | string | Source platform | "OpenHumans" |
+| | `consent_level` | string | Data sharing consent | "open" |
+| | `conditions` | string[] | Self-reported conditions | ["ME/CFS", "POTS"] |
+| **Patient Report** | `report_id` | string | Report identifier | "PLM_RPT_001" |
+| | `condition` | string | Primary condition | "Fibromyalgia" |
+| | `treatment` | string | Intervention name | "Low-dose naltrexone" |
+| | `effectiveness` | integer | Rating (1-5) | 4 |
+| | `side_effects` | string[] | Reported effects | ["Insomnia"] |
+| **N=1 Experiment** | `experiment_id` | string | Experiment identifier | "QS_EXP_2025_001" |
+| | `intervention` | string | What was tested | "Cold exposure" |
+| | `outcome_measure` | string | Primary metric | "HRV" |
+| | `duration_days` | integer | Experiment length | 30 |
+| | `result` | string | Outcome summary | "Improved recovery" |
+| **Forum Post** | `post_id` | string | Post identifier | "PR_POST_123456" |
+| | `thread` | string | Thread topic | "Treatment experiences" |
+| | `mentions` | string[] | Treatments/compounds | ["LDN", "B12"] |
+| | `sentiment` | float | Sentiment score (-1 to 1) | 0.65 |
+
+### Relationships
+
+| Relation | Source | Target | Cardinality | Description |
+|----------|--------|--------|-------------|-------------|
+| `reported_by` | Patient Report | User Profile | N:1 | Ownership |
+| `treats` | Treatment | Condition | N:M | Treatment association |
+| `references` | Forum Post | Study | N:M | Literature citations |
+| `correlates_with` | Experiment | Biomarker | N:M | Measured outcomes |
+| `member_of` | User Profile | Community | N:M | Platform membership |
+| `shares_data_with` | User Profile | Research Project | N:M | Open Humans projects |
+
+---
+
+## Download
+
+| Database | Method | URL/Command |
+|----------|--------|-------------|
+| **Open Humans** | API | `https://www.openhumans.org/api/` |
+| **PatientsLikeMe** | Contact | Research partnerships only |
+| **Quantified Self** | Web | `https://quantifiedself.com/` |
+| **Phoenix Rising** | Web | Survey data via forum |
+| **Reddit APIs** | API | Rate-limited programmatic access |
+| **Personal Genome Project** | Web | `https://pgp.med.harvard.edu/data/` |
+
+**Access Requirements:** Open Humans allows public project data; PatientsLikeMe requires research agreement; Reddit APIs have rate limits.
+
+---
+
+## License
+
+| Platform | License | Commercial Use | Attribution |
+|----------|---------|----------------|-------------|
+| **Open Humans** | Varies by project | Project-dependent | Project-dependent |
+| **PatientsLikeMe** | Proprietary | Agreement required | Required |
+| **Personal Genome Project** | CC0 (Public Domain) | Yes | Not required |
+| **Reddit** | Reddit TOS | Non-commercial | Required |
+| **Quantified Self** | Varies | User-dependent | Required |
+
+**Note:** Patient data requires explicit consent and compliance with data protection regulations.
+
+---
+
+## Data Format
+
+| Format | Description | Used By |
+|--------|-------------|---------|
+| JSON | API responses | Open Humans, Reddit |
+| CSV | Export data | PatientsLikeMe, QS projects |
+| TSV | Tabular exports | Various platforms |
+| XML | Structured data | Some research exports |
+| VCF | Genetic data | Personal Genome Project |
+
+**Encoding:** UTF-8
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |
@@ -713,6 +795,27 @@ def get_member_data(access_token):
 | QS | Quantified Self | Self-tracking movement |
 | ALS | Amyotrophic Lateral Sclerosis | PatientsLikeMe founding condition |
 | MS | Multiple Sclerosis | Major patient network condition |
+
+---
+
+## Sample Data
+
+### Example Record
+```json
+{
+  "domain": "Patient Communities and Biohacker Data Sources",
+  "database": "Open Humans",
+  "record_type": "N=1 Experiment",
+  "example_field": "Wearable health tracking study"
+}
+```
+
+### Sample Query Result
+
+| Field | Value |
+|-------|-------|
+| domain | Community & Patient Networks |
+| sources | 8+ (Phoenix Rising, PatientsLikeMe, Open Humans, Reddit, Quantified Self, SNPedia, All of Us, Personal Genome Project) |
 
 ---
 

@@ -59,6 +59,91 @@ Primary pathway databases provide curated biological pathway data essential for 
 
 ---
 
+## Download
+
+| Database | Method | URL/Command |
+|----------|--------|-------------|
+| **Reactome** | Download | `https://reactome.org/download-data` |
+| **WikiPathways** | Download | `https://data.wikipathways.org/` (CC0) |
+| **KEGG** | API | `https://rest.kegg.jp/` (academic) |
+| **Pathway Commons** | Download | `https://www.pathwaycommons.org/archives/` |
+| **SMPDB** | Download | `https://smpdb.ca/downloads` |
+| **MSigDB** | Download | `https://www.gsea-msigdb.org/gsea/msigdb/` |
+
+**Access Requirements:** Reactome (CC BY 4.0), WikiPathways (CC0), and Pathway Commons are freely accessible; KEGG requires academic subscription for bulk access.
+
+## Data Format
+
+| Format | Description |
+|--------|-------------|
+| Primary | BioPAX, GPML, KGML |
+| Alternative | SBML, JSON, TSV |
+| Gene sets | GMT format |
+| Encoding | UTF-8 |
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `pathway_id` | string | Pathway identifier | "R-HSA-1430728" |
+| `name` | string | Pathway name | "Folate metabolism" |
+| `genes` | array | Participating genes | ["MTHFR", "MTR", "MTRR"] |
+| `organism` | string | Species | "Homo sapiens" |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `contains` | Gene | N:M |
+| `has_reaction` | Reaction | 1:N |
+| `parent_of` | Pathway | 1:N |
+
+## Sample Data
+
+### Example Pathway Record
+```json
+{
+  "pathway_id": "R-HSA-1430728",
+  "name": "Folate metabolism",
+  "source": "Reactome",
+  "genes": ["MTHFR", "MTR", "MTRR", "SHMT1", "DHFR"],
+  "reactions": 45,
+  "last_updated": "2026-01-15"
+}
+```
+
+### Sample Query Result
+| pathway | genes | source | reactions |
+|---------|-------|--------|-----------|
+| Folate metabolism | 52 | Reactome | 45 |
+| One carbon pool | 35 | KEGG | 28 |
+
+## License
+
+| Source | License | Commercial Use |
+|--------|---------|----------------|
+| Reactome | CC BY 4.0 | Yes |
+| WikiPathways | CC0 | Yes |
+| KEGG | Academic | Subscription required |
+| Pathway Commons | Mixed | Varies by source |
+
+---
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| Reactome pathways | 2,712 human pathways |
+| WikiPathways | 3,100+ pathways (CC0) |
+| KEGG pathways | ~500 human pathways |
+| Pathway Commons | Multiple sources integrated |
+| Total storage estimate | ~5-8 GB (combined sources) |
+| Last updated | January 2026 |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

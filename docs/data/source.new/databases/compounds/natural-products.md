@@ -62,6 +62,85 @@ Natural products databases provide structural, bioactivity, and source organism 
 
 ---
 
+## Download
+
+| Database | Method | URL/Command |
+|----------|--------|-------------|
+| **COCONUT 2.0** | REST API / Download | `https://coconut.naturalproducts.net/` (CC0) |
+| **LOTUS** | SPARQL | `https://lotus.naturalproducts.net/` (CC0) |
+| **NPASS** | Download | `https://bidd.group/NPASS/` |
+| **NPAtlas** | Download | `https://www.npatlas.org/` (CC BY 4.0) |
+| **SuperNatural 3.0** | Download | `http://bioinf-applied.charite.de/supernatural_3/` |
+| **CMAUP** | Download | `https://www.cmaup.cn/` |
+
+**Access Requirements:** COCONUT and LOTUS are CC0 (public domain); NPAtlas is CC BY 4.0; most others are free for academic use.
+
+## Data Format
+
+| Format | Description |
+|--------|-------------|
+| Primary | SDF, CSV, JSON |
+| Alternative | TSV, MOL2, SMILES files |
+| Chemical structures | SMILES, InChI, InChIKey |
+| Encoding | UTF-8 |
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `compound_id` | string | Primary identifier | "COCONUT0012345" |
+| `name` | string | Compound name | "Curcumin" |
+| `smiles` | string | Chemical structure | "COc1cc(/C=C/C..." |
+| `source_organism` | string | Taxonomic source | "Curcuma longa" |
+| `bioactivity` | array | Reported activities | ["anti-inflammatory"] |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `isolated_from` | Organism | N:1 |
+| `has_target` | Protein | N:M |
+| `similar_to` | Compound | N:M |
+
+## Sample Data
+
+### Example Natural Product Record
+```json
+{
+  "coconut_id": "CNP0001234",
+  "name": "Curcumin",
+  "smiles": "COc1cc(/C=C/C(=O)CC(=O)/C=C/c2ccc(O)c(OC)c2)ccc1O",
+  "inchikey": "VFLDPWHFBUODDF-FCXRPNKRSA-N",
+  "source": "Curcuma longa",
+  "class": "Diarylheptanoid",
+  "predicted_targets": ["PTGS2", "TP53", "AKT1"]
+}
+```
+
+### Sample Query Result
+| compound | class | source | target_count |
+|----------|-------|--------|--------------|
+| Curcumin | Diarylheptanoid | Curcuma longa | 145 |
+| Quercetin | Flavonoid | Multiple sources | 287 |
+
+---
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| COCONUT 2.0 structures | 695K compounds (CC0) |
+| LOTUS structure-organism pairs | 750K+ pairs (CC0) |
+| NPASS compounds | 204K with quantitative activity |
+| NPAtlas microbial NPs | 35K+ compounds (CC BY 4.0) |
+| Total unique compounds | ~750K+ |
+| Total storage estimate | ~10-15 GB (combined sources) |
+| Last updated | January 2026 |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |
@@ -103,6 +182,40 @@ Natural products databases provide structural, bioactivity, and source organism 
 | BGC | Biosynthetic Gene Cluster | Genes encoding NP biosynthesis |
 | CC0 | Creative Commons Zero | Public domain license |
 | CC BY | Creative Commons Attribution | Open license with attribution |
+
+---
+
+## License
+
+This document catalogs multiple databases with varying license terms:
+
+| Database | License | Commercial Use | Attribution | Access |
+|----------|---------|----------------|-------------|--------|
+| COCONUT 2.0 | CC0 (Public Domain) | Yes | None required | Open |
+| LOTUS/Wikidata | CC0 (Public Domain) | Yes | None required | Open (SPARQL) |
+| NPASS | Academic use | Research only | Required | Open |
+| NPAtlas | CC BY 4.0 | Yes | Required | Open |
+| SuperNatural 3.0 | Academic use | Research only | Required | Open |
+| UNPD | Academic use | Research only | Required | Open |
+| KNApSAcK | Academic use | Research only | Required | Open |
+| HERB | Academic use | Research only | Required | Open |
+| CMAUP | Academic use | Research only | Required | Open |
+| FooDB | Open Access | Yes | Citation | Open |
+| Phenol-Explorer | Open Access | Yes | Citation | Open |
+| GNPS | Open Access | Yes | Citation | Open |
+| MIBiG | CC BY 4.0 | Yes | Required | Open |
+| NuBBE | Academic use | Research only | Required | Open |
+| NPCARE | Academic use | Research only | Required | Open |
+| ChEMBL | Open Access | Yes | Citation | Open |
+| SwissTargetPrediction | Free web access | Yes | Citation | Open |
+| PharmMapper | Free web access | Yes | Citation | Open |
+| ProTox 3.0 | Free web access | Yes | Citation | Open |
+| pkCSM | Free web access | Yes | Citation | Open |
+
+**Key Considerations:**
+- **Fully Open (Commercial OK):** COCONUT, LOTUS, FooDB, Phenol-Explorer, GNPS, NPAtlas, MIBiG
+- **Academic Only:** NPASS, SuperNatural, UNPD, KNApSAcK, HERB, CMAUP, NuBBE, NPCARE
+- **Web Tools (Free):** SwissTargetPrediction, PharmMapper, ProTox, pkCSM
 
 ---
 

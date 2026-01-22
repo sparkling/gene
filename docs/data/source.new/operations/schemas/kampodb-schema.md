@@ -575,6 +575,100 @@ print(f"Curcumin targets {len(curcumin_targets)} proteins")
 
 ---
 
+## Download
+
+### Data Access Methods
+
+| Method | URL | Format |
+|--------|-----|--------|
+| **Web Interface** | https://kampo.imi.kyoto-u.ac.jp/ | Interactive queries |
+| **REST API** | https://kampo.imi.kyoto-u.ac.jp/api/ | JSON responses |
+| **Data Files** | On-site download | JSON, CSV |
+| **GitHub** | https://github.com/imsut/KAMPO-API | API documentation |
+
+### API Endpoints
+
+```bash
+# Query formula
+curl "https://kampo.imi.kyoto-u.ac.jp/api/formula/{formula_id}"
+
+# Query compound
+curl "https://kampo.imi.kyoto-u.ac.jp/api/compound/{compound_id}"
+
+# Query targets
+curl "https://kampo.imi.kyoto-u.ac.jp/api/docking/compound/{compound_id}/protein/{protein_id}"
+```
+
+---
+
+## Data Format
+
+| Format | Description | Use Case |
+|--------|-------------|----------|
+| Primary | JSON (REST API responses) | Programmatic access |
+| Alternative | CSV | Data analysis |
+| Alternative | TSV | Bulk imports |
+| Encoding | UTF-8 | All formats |
+
+---
+
+## Data Set Size
+
+| Component | Count | Size (Est.) |
+|-----------|-------|------------|
+| **Formulas** | 180 | ~1 MB |
+| **Crude Drugs** | 180+ | ~2 MB |
+| **Compounds** | 7,000+ | ~20-30 MB |
+| **Proteins** | 1,000+ | ~5 MB |
+| **Formula-Compound Links** | 20,000+ | ~2 MB |
+| **Compound-Target Predictions** | 50,000+ | ~5 MB |
+| **Total Database** | Various | ~40-50 MB |
+
+---
+
+## Sample Data
+
+### Example Record
+```json
+{
+  "kampo_id": "KMP0001234",
+  "formula_name": "Kampo formula example",
+  "ingredient_id": "KMP-ING-5679",
+  "ingredient_name": "Japanese Angelica Root",
+  "target_id": "P12345",
+  "interaction_type": "known",
+  "confidence_score": 0.92
+}
+```
+
+### Sample Query Result
+| kampo_id | formula_name | ingredient_name | target_gene | interaction_type |
+|---------|-------------|-----------------|------------|-----------------|
+| KMP0001234 | Kampo formula A | Japanese Angelica Root | TP53 | known |
+| KMP0001235 | Kampo formula B | Peony Root | EGFR | predicted |
+
+---
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `id` | string | Primary identifier | "KAMPO00001" |
+| `name` | string | Entity name | "Ginseng" |
+| `type` | string | Record type | "medicinal_herb" |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `contains` | Compound | N:M |
+| `treats` | Disease / Indication | N:M |
+| `associated_with` | Activity | N:M |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

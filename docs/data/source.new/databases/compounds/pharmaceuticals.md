@@ -766,14 +766,15 @@ User Query (Gene/Drug/Variant)
 
 ---
 
-## Storage Estimates Summary
+## Data Set Size
 
-| Tier | Databases | Estimated Storage |
-|------|-----------|-------------------|
-| Tier 1 | PharmGKB, CPIC, DPWG, PharmVar, DrugBank, OpenFDA, DailyMed, FDA PGx, UniProt | ~260 GB |
-| Tier 2 | ChEMBL, DGIdb, Open Targets, BindingDB, GtoPdb, CIViC, RxNorm, DrugCentral | ~90 GB |
-| Tier 3 | PubChem, TTD, PGxDB, SuperDRUG2, KEGG Drug | ~510 GB |
-| **Total** | All | **~860 GB** |
+| Metric | Value |
+|--------|-------|
+| Tier 1 databases | ~260 GB (PharmGKB, CPIC, DPWG, PharmVar, DrugBank, OpenFDA, DailyMed, FDA PGx, UniProt) |
+| Tier 2 databases | ~90 GB (ChEMBL, DGIdb, Open Targets, BindingDB, GtoPdb, CIViC, RxNorm, DrugCentral) |
+| Tier 3 databases | ~510 GB (PubChem, TTD, PGxDB, SuperDRUG2, KEGG Drug) |
+| Total storage estimate | ~860 GB |
+| Last updated | January 2026 |
 
 *Note: PubChem dominates Tier 3 at ~500 GB; selective compound import recommended.*
 
@@ -786,6 +787,124 @@ User Query (Gene/Drug/Variant)
 | [../_index.md](../_index.md) | Parent index |
 | [../../genetics/primary.md](../../genetics/primary.md) | dbSNP/ClinVar variant data |
 | [../../pathways/primary.md](../../pathways/primary.md) | Drug pathway integration |
+
+---
+
+## License
+
+This document catalogs multiple databases with varying license terms:
+
+| Database | License | Commercial Use | Attribution | Access |
+|----------|---------|----------------|-------------|--------|
+| PharmGKB/ClinPGx | CC BY-SA 4.0 | Yes (with attribution) | Required | Free (account required) |
+| CPIC | CC0 (Public Domain) | Yes | None required | Open |
+| DPWG | Open (published journals) | Yes | Citation | Via PharmGKB |
+| PharmVar | Open Access | Yes | Citation | Open |
+| DrugBank | CC0 (vocabulary), CC BY-NC 4.0 (academic), Commercial license | Requires license | Required | Academic free |
+| ChEMBL | Open Access (Apache 2.0 for software) | Yes | Citation | Open |
+| PubChem | Public Domain | Yes | None required | Open |
+| DrugCentral | Open Access | Yes | Citation | Open |
+| Open Targets | CC0 (data), Open Source (tools) | Yes | Citation | Open |
+| DGIdb | Open Access | Yes | Citation | Open |
+| TTD | Free Access | Yes | Citation | Open |
+| BindingDB | Open Access (FAIR compliant) | Yes | Citation | Open |
+| GtoPdb | Open Access | Yes | Citation | Open |
+| DailyMed | Public Domain | Yes | None required | Open |
+| OpenFDA | Public Domain | Yes | None required | Open |
+| FDA PGx Table | Public Domain | Yes | None required | Open |
+| RxNorm | Free (prescribable subset) | Yes (subset) | Citation | Open (subset) |
+| CIViC | CC0 (data), MIT (software) | Yes | None required | Open |
+| PGxDB | Open Access (FAIR compliant) | Yes | Citation | Open |
+| SuperDRUG2 | Open Access | Yes | Citation | Open |
+| KEGG Drug | Academic API only, Subscription for FTP | No (FTP), Yes (Medicus) | Required | Subscription (full) |
+| UniProt | CC BY 4.0 | Yes | Required | Open |
+
+**Key Considerations:**
+- **Fully Open (Commercial OK):** CPIC, PubChem, OpenFDA, DailyMed, FDA PGx Table, CIViC, Open Targets
+- **Commercial Friendly with Attribution:** PharmGKB (CC BY-SA), UniProt (CC BY), ChEMBL
+- **Academic Only:** DrugBank (full data), KEGG Drug (FTP)
+- **Public Domain:** CPIC, PubChem, DailyMed, OpenFDA, CIViC
+
+---
+
+## Download
+
+| Database | Method | URL/Command |
+|----------|--------|-------------|
+| **ChEMBL** | FTP/API | `ftp://ftp.ebi.ac.uk/pub/databases/chembl/` |
+| **PubChem** | FTP/API | `ftp://ftp.ncbi.nlm.nih.gov/pubchem/` |
+| **DrugBank** | Download | `https://go.drugbank.com/releases/latest` (registration required) |
+| **PharmGKB** | Bulk download | `https://www.pharmgkb.org/downloads` |
+| **OpenFDA** | API | `https://open.fda.gov/apis/` |
+| **DailyMed** | Download | `https://dailymed.nlm.nih.gov/dailymed/spl-resources.cfm` |
+| **BindingDB** | Download | `https://www.bindingdb.org/bind/chemsearch/marvin/SDFdownload.jsp` |
+
+**Access Requirements:** Most are freely accessible; DrugBank full data requires academic license; OpenFDA and DailyMed are public domain.
+
+## Data Format
+
+| Format | Description |
+|--------|-------------|
+| Primary | SDF, TSV, JSON |
+| Alternative | CSV, XML, RDF |
+| Chemical structures | SMILES, InChI, MOL |
+| Identifiers | DrugBank ID, ChEMBL ID, PubChem CID |
+| Encoding | UTF-8 |
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `drug_id` | string | Primary identifier | "CHEMBL25" |
+| `name` | string | Generic drug name | "Aspirin" |
+| `mechanism` | string | Mechanism of action | "COX inhibitor" |
+| `indication` | array | Approved indications | ["pain", "inflammation"] |
+| `targets` | array | Protein targets | ["PTGS1", "PTGS2"] |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `targets` | Protein | N:M |
+| `has_indication` | Disease | N:M |
+| `interacts_with` | Drug | N:M |
+
+## Sample Data
+
+### Example Drug Record
+```json
+{
+  "chembl_id": "CHEMBL25",
+  "drugbank_id": "DB00945",
+  "name": "Aspirin",
+  "synonyms": ["acetylsalicylic acid", "ASA"],
+  "mechanism": "Irreversible COX-1/COX-2 inhibitor",
+  "targets": [
+    {"uniprot_id": "P23219", "gene": "PTGS1", "action": "inhibitor"},
+    {"uniprot_id": "P35354", "gene": "PTGS2", "action": "inhibitor"}
+  ],
+  "max_phase": 4
+}
+```
+
+### Sample Query Result
+| drug | target | Ki_nM | indication |
+|------|--------|-------|------------|
+| Aspirin | PTGS1 | 1.67 | Pain/inflammation |
+| Ibuprofen | PTGS2 | 6000 | Pain/inflammation |
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| ChEMBL compounds | 2.4M+ compounds |
+| PubChem compounds | 115M+ compounds |
+| DrugBank drugs | 15K+ approved/experimental |
+| BindingDB interactions | 2.9M+ binding measurements |
+| Total storage estimate | ~50-100 GB (combined sources) |
+| Last updated | January 2026 |
 
 ---
 

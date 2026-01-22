@@ -542,6 +542,112 @@ Research compiled for the Gene Platform - Comprehensive database inventory for o
 
 ---
 
+## Sample Data
+
+### Example Record: HOMD Oral Microbiome Taxon
+
+```json
+{
+  "homd_id": "HOT-096",
+  "taxon_name": "Streptococcus mutans",
+  "phylum": "Firmicutes",
+  "genus": "Streptococcus",
+  "cultivation_status": "Named",
+  "site": "Oral cavity, dental plaque",
+  "disease_association": "Dental caries",
+  "genome_size_mb": 2.03,
+  "gc_content": 36.8
+}
+```
+
+### Sample Query Result: GWAS Catalog Psoriasis Loci
+
+| rsid | gene | chromosome | p_value | odds_ratio | population | pmid |
+|------|------|------------|---------|------------|------------|------|
+| rs12191877 | HLA-C | 6 | 4.1e-298 | 4.66 | European | 27723756 |
+| rs20541 | IL13 | 5 | 2.5e-15 | 1.18 | European | 27723756 |
+| rs240993 | TRAF3IP2 | 6 | 3.8e-32 | 1.35 | European | 27723756 |
+
+### Sample Query Result: Deafness Variation Database
+
+| gene | variant | classification | evidence | condition |
+|------|---------|----------------|----------|-----------|
+| GJB2 | c.35delG | Pathogenic | Expert panel | Nonsyndromic hearing loss |
+| MYO7A | c.6025delG | Pathogenic | Literature | Usher syndrome type 1B |
+| SLC26A4 | c.919-2A>G | Pathogenic | Functional | Pendred syndrome |
+
+---
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| HOMD/eHOMD taxa | 836 taxa with genomes |
+| HROM genomes | 72,641 high-quality genomes |
+| COGR genomes | 1,089 cultivated oral bacteria |
+| GWAS Catalog skin loci | 109+ psoriasis, 91+ atopic dermatitis |
+| eSMGC skin genomes | 675 prokaryotic + 2,344 viral |
+| ELSG early-life genomes | 9,483 prokaryotic genomes |
+| DVD hearing variants | 876,139 variants across 224 genes |
+| Gene4HL variations | 3,872 variations, 326 genes |
+| BitterDB compounds | 2,200+ bitter molecules |
+| ORDB entries | 18,000+ olfactory receptors |
+| Total storage estimate | ~20-30 GB (combined sources) |
+| Last updated | January 2026 |
+
+---
+
+## Download
+
+| Database | Method | URL/Command |
+|----------|--------|-------------|
+| **HOMD** | FTP | `http://www.homd.org/ftp/` |
+| **HROM** | Web | `https://www.ncbi.nlm.nih.gov/bioproject/PRJNA928779/` |
+| **PsoGene** | Web | `https://www.psogene.cn/download.html` |
+| **DVD Hearing** | Web | `https://deafnessvariationdatabase.org/` |
+| **BitterDB** | Direct | `http://bitterdb.agri.huji.ac.il/dbbitter.php` |
+| **ORDB** | Web | `https://senselab.med.yale.edu/ordb/` |
+
+**Access Requirements:** Most databases are open access; some require academic affiliation.
+
+---
+
+## Data Format
+
+| Format | Description | Used By |
+|--------|-------------|---------|
+| FASTA | Reference sequences | HOMD, HROM |
+| TSV | Variant data, gene lists | DVD, Gene4HL |
+| CSV | Compound data | BitterDB |
+| XML | Detailed records | HOMD |
+| JSON | API responses | Various APIs |
+| BIOM | Microbiome tables | HOMD, HROM |
+
+**Compression:** gzip (.gz) for sequence data
+**Encoding:** UTF-8
+
+---
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `domain` | string | Health domain | "Oral Health, Skin, Sensory" |
+| `database` | string | Data source | "HOMD, GWAS Catalog, RetNet" |
+| `category` | string | Data category | "Microbiome, Genetic variants, Gene-disease" |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `covers` | Condition | 1:N |
+| `sources` | Database | N:M |
+| `associates` | Gene | N:M |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

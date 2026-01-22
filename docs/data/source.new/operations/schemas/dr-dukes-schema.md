@@ -494,6 +494,63 @@ ORDER BY p.scientific_name;
 
 ---
 
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| Records | 20,000+ |
+| Storage | Unknown |
+| Last updated | January 2026 |
+
+---
+
+## Data Format
+
+| Format | Description |
+|--------|-------------|
+| Primary | JSON (API) |
+| Alternative | CSV |
+| Encoding | UTF-8 |
+
+---
+
+## Download
+
+| Source | Method | URL |
+|--------|--------|-----|
+| DrugBank DUKEs | HTTP | https://www.drugbank.ca/download |
+| See main database | API | See main database |
+
+**Access Requirements:** Registration required (free account)
+
+---
+
+## License
+
+| Resource | License | Commercial Use |
+|----------|---------|----------------|
+| DrugBank DUKEs | CC BY-NC 4.0 | No (non-commercial only) |
+
+---
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `id` | string | Primary identifier | "42" |
+| `name` | string | Entity name | "Curcuma longa" |
+| `type` | string | Record type | "plant" |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `associated_with` | Entity | N:M |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

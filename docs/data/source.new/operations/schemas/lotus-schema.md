@@ -571,11 +571,84 @@ LIMIT 500
 
 ---
 
+## Download
+
+### Data Access Methods
+
+| Method | URL | Format |
+|--------|-----|--------|
+| **Web Interface** | https://lotus.naturalproducts.net/ | Interactive search |
+| **SPARQL Query** | https://query.wikidata.org/ | SPARQL queries |
+| **Zenodo Archive** | https://doi.org/10.5281/zenodo.5794106 | TSV, JSON export |
+| **GitHub Downloads** | https://github.com/lotusnprod/lotus-web | Source code/exports |
+| **Wikidata Dump** | https://www.wikidata.org/wiki/Wikidata:Data_access | RDF, JSON |
+
+### SPARQL Example
+
+```bash
+# Query natural products from LOTUS
+curl "https://query.wikidata.org/sparql?query=SELECT%20...&format=json"
+```
+
+---
+
+## Data Format
+
+| Format | Description | Use Case |
+|--------|-------------|----------|
+| Primary | RDF/Linked Data (Wikidata) | Semantic web queries |
+| Alternative | TSV (Bulk export) | Data analysis |
+| Alternative | JSON (API responses) | Programmatic access |
+| Query | SPARQL | Complex queries |
+| Encoding | UTF-8 | All formats |
+
+---
+
+## Data Set Size
+
+| Component | Count | Size (Est.) |
+|-----------|-------|------------|
+| **Natural Products** | 750,000+ | ~100-150 MB |
+| **Organisms** | 100,000+ | ~50 MB |
+| **References (DOIs)** | 50,000+ | ~10 MB |
+| **Structure Data** | All linked | Included |
+| **Total Zenodo Archive** | Full export | ~500-800 MB |
+
+---
+
 ## Change Log
 
 | Version | Date | Author | Changes |
 |---------|------|--------|---------|
 | 1.0 | January 2026 | Data Engineering | Initial schema documentation |
+
+---
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `id` | string | Primary identifier | "LOTUS0000001" |
+| `name` | string | Entity name | "Artemisinin" |
+| `type` | string | Record type | "natural_product" / "compound" |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `found_in` | Organism | N:M |
+| `has_structure` | Chemical Structure | 1:1 |
+| `associated_with` | Activity | N:M |
+
+---
+
+## License
+
+| Resource | License | Commercial Use |
+|----------|---------|----------------|
+| LOTUS | CC0 (Public Domain) | Yes |
 
 ---
 

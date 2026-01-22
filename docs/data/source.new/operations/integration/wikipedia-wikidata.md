@@ -584,6 +584,228 @@ User Input (common name) → Wikipedia API (get Wikidata ID)
 
 ---
 
+## Download
+
+### Wikipedia & Wikidata Integration Sources
+
+| Source | URL | Format | Access | Size |
+|--------|-----|--------|--------|------|
+| Wikidata dump | https://dumps.wikimedia.org/wikidatawiki/entities/ | JSON Lines (.bz2) | Bulk | ~90 GB |
+| Wikipedia API | https://en.wikipedia.org/api/rest_v1/ | REST JSON | Query | Real-time |
+| Wikidata SPARQL | https://query.wikidata.org/sparql | SPARQL/JSON | Query | Real-time |
+| Wikipedia dump | https://dumps.wikimedia.org/enwiki/ | XML (.bz2) | Bulk | ~20 GB |
+
+### SPARQL Query for Wikipedia-Wikidata Cross-Links
+
+```bash
+# Query for plants with Wikipedia articles and compounds
+curl -G "https://query.wikidata.org/sparql" \
+  --data-urlencode "query=
+    SELECT ?item ?wikipedia ?label ?compound WHERE {
+      ?item wdt:P31 wd:Q756 .
+      ?item wdt:P366 wd:Q9690 .
+      ?wikipedia schema:about ?item .
+      ?wikipedia schema:inLanguage \"en\" .
+      OPTIONAL { ?item wdt:P527 ?compound }
+      SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\" }
+    }
+    LIMIT 100" \
+  -H "Accept: application/sparql-results+json"
+```
+
+---
+
+## Data Format
+
+### Wikipedia REST API Response
+
+**Get page summary:**
+
+```json
+{
+  "type": "standard",
+  "title": "Turmeric",
+  "displaytitle": "Turmeric",
+  "namespace": { "id": 0, "case": "first-letter", "content": "Main" },
+  "wikibase_item": "Q170593",
+  "titles": { "canonical": "Turmeric", "normalized": "Turmeric", "display": "Turmeric" },
+  "extract": "Turmeric is a flowering plant...",
+  "thumbnail": {
+    "source": "https://upload.wikimedia.org/wikipedia/commons/...",
+    "width": 200,
+    "height": 250
+  },
+  "originalimage": {
+    "source": "https://upload.wikimedia.org/wikipedia/commons/...",
+    "width": 2448,
+    "height": 3264
+  },
+  "lang": "en",
+  "dir": "ltr",
+  "revision": "1234567890",
+  "lastmodified": "2024-01-15T10:30:45Z"
+}
+```
+
+### Wikidata & Wikipedia Linked Format
+
+```json
+{
+  "type": "item",
+  "id": "Q170593",
+  "labels": { "en": { "value": "turmeric" } },
+  "sitelinks": {
+    "enwiki": { "site": "enwiki", "title": "Turmeric", "url": "https://en.wikipedia.org/wiki/Turmeric" },
+    "dewiki": { "site": "dewiki", "title": "Kurkuma", "url": "https://de.wikipedia.org/wiki/Kurkuma" }
+  },
+  "claims": {
+    "P31": [{ "rank": "normal", "mainsnak": { "snaktype": "value", "property": "P31", "datavalue": { "value": { "entity-type": "item", "numeric-id": 756 }, "type": "wikibase-entityid" } } }]
+  }
+}
+```
+
+---
+
+## Schema
+
+### Wikipedia-Wikidata Integration Schema
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| Wikidata Q-ID | String | Item identifier | Q170593 |
+| Wikipedia title | String | Article title | Turmeric |
+| Language code | String | Wikipedia language | en, de, fr |
+| Wikipedia URL | URL | Full article link | https://en.wikipedia.org/wiki/Turmeric |
+| Extract | Text | First paragraph summary | "Turmeric is a flowering plant..." |
+| Thumbnail | URL | Article image | Wikipedia Commons image URL |
+| Last modified | ISO 8601 | Article update time | 2024-01-15T10:30:45Z |
+
+### Cross-Reference Properties
+
+| P-code | Property | Type | Example | Purpose |
+|--------|----------|------|---------|---------|
+| P31 | Instance of | Item | Q756 (plant) | Type classification |
+| P225 | Taxon name | String | Curcuma longa | Scientific name |
+| P527 | Has part | Item | Q421789 (curcumin) | Composition |
+| P18 | Image | File | Commons file | Visual reference |
+| P373 | Commons category | String | Category name | File organization |
+
+---
+
+## Sample Data
+
+### Sample Query: Turmeric with Wikipedia Link
+
+**SPARQL Query:**
+```sparql
+SELECT ?item ?wikipedia ?label ?extract ?compound WHERE {
+  ?item wdt:P31 wd:Q756 .
+  ?item rdfs:label "turmeric"@en .
+  ?wikipedia schema:about ?item .
+  ?wikipedia schema:inLanguage "en" .
+  OPTIONAL { ?item wdt:P527 ?compound }
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en" }
+}
+```
+
+**Sample Results:**
+```json
+{
+  "item": { "value": "http://www.wikidata.org/entity/Q170593" },
+  "wikipedia": { "value": "https://en.wikipedia.org/wiki/Turmeric" },
+  "label": { "value": "turmeric", "xml:lang": "en" },
+  "compound": { "value": "http://www.wikidata.org/entity/Q421789" }
+}
+```
+
+### Wikipedia REST API Result
+
+**GET /page/summary/Turmeric:**
+
+```json
+{
+  "title": "Turmeric",
+  "wikibase_item": "Q170593",
+  "extract": "Turmeric is a flowering plant in the ginger family, Zingiberaceae, the roots of which contain a bright yellow volatile essential oil and a polyphenolic compound called curcumin...",
+  "thumbnail": {
+    "source": "https://upload.wikimedia.org/wikipedia/commons/b/b6/Curcuma_longa_-_Köhler%E2%80%93s_Medizinal-Pflanzen-150.jpg",
+    "width": 200,
+    "height": 250
+  },
+  "lastmodified": "2024-01-15T10:30:45Z"
+}
+```
+
+### Sample Medicinal Plants with Wikipedia Links
+
+| Q-ID | Plant Name | Wikipedia Title | Language Articles | Main Compounds |
+|------|-----------|-----------------|------------------|-----------------|
+| Q170593 | Turmeric | Turmeric | 50+ languages | Curcumin |
+| Q18208 | Ginseng | Ginseng | 40+ languages | Ginsenosides |
+| Q163236 | Echinacea | Echinacea | 30+ languages | Alkylamides |
+| Q1455 | Ginkgo biloba | Ginkgo biloba | 45+ languages | Flavonoids |
+| Q39647 | Garlic | Garlic | 60+ languages | Allicin |
+
+---
+
+## License
+
+### Wikipedia & Wikidata Licensing
+
+- **Wikidata License:** CC0 1.0 Universal (Public Domain)
+- **Wikipedia License:** CC-BY-SA 3.0 / CC-BY-SA 4.0 (depends on language)
+- **Requirement for Wikipedia:** Attribution and ShareAlike when redistributing
+- **Requirement for Wikidata:** None (but appreciated)
+- **Images:** Vary - check each file on Wikimedia Commons
+
+### Citation Format
+
+```
+Wikipedia contributors. "[Article Title]." Wikipedia, The Free Encyclopedia.
+Wikimedia Foundation, [DATE].
+https://en.wikipedia.org/wiki/[Title]
+
+Wikidata contributors. "Wikidata: The Free Knowledge Base That Anyone Can Edit."
+Wikimedia Foundation, [DATE].
+https://www.wikidata.org/
+
+For images: See Wikimedia Commons file attribution
+```
+
+---
+
+## Data Set Size
+
+### Wikipedia-Wikidata Integration Statistics
+
+| Metric | Value | Notes |
+|--------|-------|-------|
+| Wikidata items with Wikipedia links | ~20 million | All languages combined |
+| English Wikipedia articles | ~6.8 million | Main English language edition |
+| Items with sitelinks to enwiki | ~6 million | Documented Wikidata items |
+| Medicinal plants (with enwiki links) | ~8,000 | Plants with medical use + article |
+| Languages with Wikipedia | ~300+ | Multilingual coverage |
+| Average article length | ~5-10 KB | Compressed text |
+
+### Storage Requirements
+
+| Component | Size | Format |
+|-----------|------|--------|
+| Wikidata complete dump | ~90 GB | Compressed JSON Lines |
+| Wikipedia dump (enwiki) | ~20 GB | Compressed XML |
+| Filtered medicinal plants | ~500 MB | JSON Lines |
+| Extracted summaries | ~100 MB | JSON |
+| Cross-reference index | ~1 GB | SQLite |
+
+### Update Frequency
+
+- **Wikidata:** Weekly dumps (Monday UTC)
+- **Wikipedia:** Monthly dumps (begin of month)
+- **Wikipedia REST API:** Real-time (lag <1 second)
+- **SPARQL endpoint:** Real-time (lag <1 minute)
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

@@ -619,6 +619,92 @@ Embedding Generation → RuVector Storage → Graph Linking
 
 ---
 
+## Download
+
+| Source | Method | URL/Command |
+|--------|--------|-------------|
+| **PubMed** | E-utilities | `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/` |
+| **PMC** | FTP/OAI | `ftp://ftp.ncbi.nlm.nih.gov/pub/pmc/` |
+| **OpenAlex** | API | `https://api.openalex.org/` (CC0) |
+| **Crossref** | API | `https://api.crossref.org/` |
+| **Semantic Scholar** | API | `https://api.semanticscholar.org/` |
+
+**Access Requirements:** All freely accessible; rate limits apply; API keys recommended.
+
+## Data Format
+
+| Format | Description |
+|--------|-------------|
+| Primary | JSON, XML |
+| Alternative | CSV, Parquet |
+| Embeddings | Float32 arrays |
+| Encoding | UTF-8 |
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `pmid` | integer | PubMed identifier | 12345678 |
+| `doi` | string | Digital Object Identifier | "10.1038/..." |
+| `title` | string | Article title | "MTHFR variants..." |
+| `year` | integer | Publication year | 2025 |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `cites` | Article | N:M |
+| `authored_by` | Author | N:M |
+| `indexed_in` | Database | N:M |
+
+## Sample Data
+
+### Example Literature Record
+```json
+{
+  "pmid": 12345678,
+  "doi": "10.1038/s41588-024-01234-5",
+  "title": "Genome-wide association study of MTHFR variants",
+  "authors": ["Smith J", "Jones A"],
+  "year": 2025,
+  "journal": "Nature Genetics",
+  "mesh_terms": ["Polymorphism, Single Nucleotide", "MTHFR"]
+}
+```
+
+### Sample Query Result
+| pmid | title | year | citations |
+|------|-------|------|-----------|
+| 12345678 | MTHFR GWAS study | 2025 | 45 |
+| 23456789 | Folate metabolism review | 2024 | 120 |
+
+## License
+
+| Source | License | Commercial Use |
+|--------|---------|----------------|
+| PubMed | Public domain | Yes |
+| OpenAlex | CC0 | Yes |
+| Crossref | Terms of service | Yes (with attribution) |
+
+---
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| Abstract only (1M papers) | 1.5 GB (text) |
+| Abstract + 1 embedding | 3 GB |
+| Abstract + 5 chunk embeddings | 9 GB |
+| Full text + 20 chunk embeddings | 60 GB |
+| Full text + embeddings + metadata | 100 GB |
+| PubMed total citations | 39M+ |
+| OpenAlex scholarly works | 250M+ (CC0) |
+| Last updated | January 2026 |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

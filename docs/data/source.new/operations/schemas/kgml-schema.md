@@ -222,6 +222,74 @@ Due to KEGG licensing restrictions, consider these open alternatives:
 
 ---
 
+## Download
+
+### Data Access (KEGG Subscription Required)
+
+| Method | URL | Format |
+|--------|-----|--------|
+| **KEGG API** | https://www.kegg.jp/kegg/rest/keggapi.html | KGML, JSON |
+| **KEGG FTP** | ftp://ftp.genome.jp/pub/kegg/ | KGML (gzipped) |
+| **Web Interface** | https://www.kegg.jp/kegg/pathway.html | HTML, KGML |
+| **Bulk Download** | Subscription required | KGML archives |
+
+### KEGG API Examples
+
+```bash
+# Get pathway list (human)
+curl "https://rest.kegg.jp/list/pathway/hsa"
+
+# Get KGML for pathway
+curl "https://rest.kegg.jp/get/hsa04115/kgml" > pathway.xml
+
+# Get organism list
+curl "https://rest.kegg.jp/list/organism"
+```
+
+---
+
+## Data Format
+
+| Format | Description | Encoding |
+|--------|-------------|----------|
+| Primary | XML (KGML) | UTF-8 |
+| Alternative | JSON (via REST) | UTF-8 |
+| Compression | gzip (.gz) | For FTP downloads |
+| Schema | XSD | XML schema validation |
+
+---
+
+## Data Set Size
+
+| Component | Count | Size |
+|-----------|-------|------|
+| **Pathways (human)** | ~400 | ~50-100 MB (KGML) |
+| **Pathways (all organisms)** | ~10,000+ | ~1-2 GB (KGML) |
+| **Genes per pathway** | 50-500 avg | Included in KGML |
+| **Single pathway** | ~300 entities | ~100-500 KB |
+
+---
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `id` | string | Primary identifier | "hsa00010" |
+| `name` | string | Entity name | "Glycolysis" |
+| `type` | string | Record type | "pathway" / "gene" / "compound" |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `part_of` | Pathway | N:1 |
+| `interacts_with` | Entity | N:M |
+| `regulated_by` | Gene / Protein | N:M |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

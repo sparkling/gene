@@ -285,6 +285,111 @@ Available via FTP: `ftp://ftp.ncbi.nlm.nih.gov/pubchem/Compound/`
 - Regular updates with new compounds and data
 - Historical versions available through versioning system
 
+## Data Format
+
+| Format | Description |
+|--------|-------------|
+| Primary | SDF (Structure-Data File) |
+| Alternative | XML, JSON, CSV, ASN.1 |
+| Compression | gzip (.gz) |
+| Encoding | UTF-8 |
+| API Response | JSON, XML, SDF, PNG |
+
+---
+
+## Download
+
+### Bulk Data Downloads
+
+| Format | Size (approx) | URL |
+|--------|---------------|-----|
+| SDF (Structure-Data File) | ~500 GB (uncompressed) | ftp://ftp.ncbi.nlm.nih.gov/pubchem/Compound/CURRENT-Full/SDF/ |
+| XML | ~300 GB (uncompressed) | ftp://ftp.ncbi.nlm.nih.gov/pubchem/Compound/CURRENT-Full/XML/ |
+| JSON | ~400 GB (uncompressed) | ftp://ftp.ncbi.nlm.nih.gov/pubchem/Compound/CURRENT-Full/JSON/ |
+| ASN.1 Binary | ~200 GB (compressed) | ftp://ftp.ncbi.nlm.nih.gov/pubchem/Compound/CURRENT-Full/ASN/ |
+| CSV (selected properties) | ~50 GB (compressed) | ftp://ftp.ncbi.nlm.nih.gov/pubchem/Compound/CURRENT-Full/CSV/ |
+
+### REST API
+
+**Base URL:** https://pubchem.ncbi.nlm.nih.gov/rest/pug
+
+**Rate Limits:**
+- 5 requests/second maximum
+- 400 requests/minute maximum
+- Higher throughput: Use FTP bulk downloads
+
+---
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| **Total Compounds** | 115,000,000+ |
+| **Active Compounds** | 95,000,000+ with bioactivity data |
+| **Unique Structures** | 95,000,000+ (CID) |
+| **Substances Tracked** | 300,000,000+ (SID) |
+| **Bioassays** | 2,000,000+ (AID) |
+| **Bioactivity Records** | 500,000,000+ |
+| **Patent References** | 50,000,000+ |
+| **Literature References** | 100,000,000+ |
+| **3D Conformers** | 50,000,000+ compounds |
+| **API Response Rate** | ~1,000 queries/hour typical |
+| **FTP Total Size** | ~1.5 TB (all formats, uncompressed) |
+| **Update Frequency** | Daily incremental updates |
+| **Last Full Rebuild** | Monthly |
+
+---
+
+## Sample Data
+
+### Example Record
+```json
+{
+  "cid": 2244,
+  "compound_name": "Aspirin",
+  "molecular_formula": "C9H8O4",
+  "molecular_weight": 180.16,
+  "canonical_smiles": "CC(=O)Oc1ccccc1C(=O)O",
+  "inchi_key": "BSYNRYMUTXBXSQ-UHFFFAOYSA-N"
+}
+```
+
+### Sample Query Result
+| cid | compound_name | molecular_formula | molecular_weight | canonical_smiles |
+|-----|-------------|------------------|------------------|------------------|
+| 2244 | Aspirin | C9H8O4 | 180.16 | CC(=O)Oc1ccccc1C(=O)O |
+| 3672 | Ibuprofen | C13H18O2 | 206.28 | CC(C)Cc1ccc(cc1)C(C)C(=O)O |
+
+---
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `id` | string | Primary identifier | "CID123456" |
+| `name` | string | Entity name | "Aspirin" |
+| `type` | string | Record type | "compound" / "substance" / "bioassay" |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `has_property` | Property | N:M |
+| `similar_to` | Compound | N:M |
+| `tested_in` | Bioassay | N:M |
+
+---
+
+## License
+
+| Resource | License | Commercial Use |
+|----------|---------|----------------|
+| PubChem | CC0 (Public Domain) | Yes |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

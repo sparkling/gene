@@ -598,6 +598,89 @@ Both platforms complement each other:
 4. Validate with clinical trial data from Open Targets
 ```
 
+## Sample Data
+
+### Example Record
+```json
+{
+  "drug_name": "Imatinib",
+  "drug_id": "DB00619",
+  "target_gene": "ABL1",
+  "target_id": "ENSG00000097046",
+  "interaction_type": "inhibitor",
+  "evidence_level": "clinical",
+  "source": "DGIdb"
+}
+```
+
+### Sample Query Result
+| drug_name | target_gene | interaction_type | evidence_level | disease_indication |
+|-----------|------------|-----------------|-----------------|-------------------|
+| Imatinib | ABL1 | inhibitor | clinical | Chronic myeloid leukemia |
+| Herceptin | ERBB2 | antagonist | clinical | HER2+ breast cancer |
+
+---
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `id` | string | Primary identifier | "DGI12345" |
+| `name` | string | Entity name | "Drug Gene Interaction" |
+| `type` | string | Record type | "interaction" |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `associated_with` | Entity | N:M |
+
+---
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| Records | 50,000+ |
+| Storage | Unknown |
+| Last updated | January 2026 |
+
+---
+
+## Data Format
+
+| Format | Description |
+|--------|-------------|
+| Primary | JSON (GraphQL API) |
+| Alternative | TSV |
+| Encoding | UTF-8 |
+
+---
+
+## Download
+
+| Source | Method | URL |
+|--------|--------|-----|
+| DGIdb | GraphQL API | https://dgidb.org/api/graphql |
+| DGIdb | Downloads | https://dgidb.org/downloads |
+| Open Targets | GraphQL API | https://api.platform.opentargets.org/api/v4/graphql |
+| Open Targets | Data Releases | https://platform.opentargets.org/downloads |
+
+**Access Requirements:** Open access, no registration required for API
+
+---
+
+## License
+
+| Resource | License | Commercial Use |
+|----------|---------|----------------|
+| DGIdb | CC BY 4.0 | Yes |
+| Open Targets | CC BY 4.0 | Yes |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

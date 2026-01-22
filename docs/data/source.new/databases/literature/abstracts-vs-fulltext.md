@@ -484,6 +484,84 @@ TIER 3: On-Demand Full-Text (As needed)
 
 ---
 
+## Download
+
+| Source | Method | URL/Command |
+|--------|--------|-------------|
+| **PubMed abstracts** | E-utilities API | `efetch.fcgi?db=pubmed&rettype=abstract` |
+| **PMC full-text** | FTP | `ftp://ftp.ncbi.nlm.nih.gov/pub/pmc/oa_bulk/` |
+| **OpenAlex** | API | `https://api.openalex.org/works` (CC0) |
+| **Europe PMC** | API/FTP | `https://europepmc.org/downloads` |
+
+**Access Requirements:** PubMed and PMC are freely accessible with API key for higher rate limits; OpenAlex is CC0.
+
+## Data Format
+
+| Format | Description |
+|--------|-------------|
+| Primary | XML (PubMed DTD, JATS), JSON |
+| Alternative | TSV, Parquet |
+| Embeddings | Float32 arrays (384-1536 dimensions) |
+| Encoding | UTF-8 |
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `pmid` | integer | PubMed identifier | 12345678 |
+| `title` | string | Article title | "MTHFR polymorphisms..." |
+| `abstract` | string | Abstract text | 250-350 words |
+| `embedding` | float[] | Vector representation | 384-d float array |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `cites` | Article | N:M |
+| `has_mesh` | MeSH Term | N:M |
+| `has_chunk` | Chunk | 1:N |
+
+## Sample Data
+
+### Example Article Record
+```json
+{
+  "pmid": 12345678,
+  "title": "MTHFR C677T polymorphism and cardiovascular disease risk",
+  "abstract": "Background: The MTHFR C677T variant...",
+  "mesh_terms": ["Methylenetetrahydrofolate Reductase", "Cardiovascular Diseases"],
+  "embedding": [0.023, -0.145, 0.089, ...]
+}
+```
+
+### Sample Query Result
+| pmid | title | relevance_score |
+|------|-------|-----------------|
+| 12345678 | MTHFR C677T and CVD risk | 0.92 |
+| 23456789 | Folate metabolism review | 0.87 |
+
+## License
+
+| Source | License | Commercial Use |
+|--------|---------|----------------|
+| PubMed | Public domain | Yes |
+| PMC OA | CC BY/CC0 | Yes (OA subset) |
+| OpenAlex | CC0 | Yes |
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| PubMed citations | 39M+ abstracts |
+| PMC OA articles | 3.4M+ full-text |
+| Storage (abstracts) | ~3 GB compressed |
+| Storage (full-text) | ~100 GB compressed |
+| Last updated | January 2026 |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

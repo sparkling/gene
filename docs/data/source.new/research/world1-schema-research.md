@@ -815,6 +815,99 @@ Bulk_Downloads_Recommended:
 
 ---
 
+## Download
+
+| Resource | Method | URL |
+|----------|--------|-----|
+| dbSNP | FTP/JSON | https://ftp.ncbi.nih.gov/snp/ |
+| ClinVar | FTP | https://ftp.ncbi.nih.gov/pub/clinvar/ |
+| gnomAD | Cloud/VCF | https://gnomad.broadinstitute.org/downloads |
+| PharmGKB | REST API | https://api.clinpgx.org/ |
+| SNPedia | MediaWiki API | http://bots.snpedia.com/api.php |
+
+**Access Requirements:** All resources publicly available; no authentication required.
+
+## Data Format
+
+| Format | Description |
+|--------|-------------|
+| JSON | dbSNP and PharmGKB APIs |
+| XML | ClinVar records |
+| VCF | Standard genomics format |
+| MediaWiki | SNPedia wiki pages |
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `rsid` | string | dbSNP reference ID | "rs1801133" |
+| `chromosome` | string | Chromosomal location | "1" |
+| `position` | integer | 0-based genomic position | 11796321 |
+| `allele_frequency` | float | Population allele frequency | 0.35 |
+| `clinical_significance` | string | Disease association | "pathogenic" |
+
+## Sample Data
+
+### Example Unified Variant Record
+```json
+{
+  "identifiers": {
+    "rsid": "rs1801133",
+    "clinvar_id": 17387,
+    "gnomad_id": "1-11796321-C-T"
+  },
+  "location": {
+    "chromosome": "1",
+    "position": 11796321,
+    "reference": "C",
+    "alternate": "T",
+    "hgvs_genomic": "NC_000001.11:g.11796321C>T"
+  },
+  "frequency": {
+    "gnomad_af": 0.358,
+    "populations": {
+      "nfe": 0.32,
+      "asj": 0.42,
+      "eas": 0.28
+    }
+  },
+  "clinical": {
+    "clinvar_significance": "benign",
+    "conditions": ["Homocystinuria"]
+  },
+  "functional": {
+    "gene": "MTHFR",
+    "consequence": "missense_variant",
+    "cadd_score": 25.3
+  }
+}
+```
+
+## License
+
+| Resource | License | Notes |
+|----------|---------|-------|
+| dbSNP | Public Domain | Freely usable |
+| ClinVar | Public Domain | Freely usable |
+| gnomAD | Open Access | CC0 |
+| PharmGKB | CC BY-SA 4.0 | Attribution required |
+| SNPedia | CC BY-NC-SA 3.0 | Non-commercial |
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| dbSNP variants | ~1 Billion+ |
+| ClinVar records | ~2.5 Million |
+| gnomAD variants | ~820 Million |
+| PharmGKB drugs | ~715 |
+| SNPedia pages | ~50,000+ |
+| Last updated | January 2026 |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

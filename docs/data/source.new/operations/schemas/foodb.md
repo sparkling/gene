@@ -379,6 +379,92 @@ FooDB Version 1.0. https://foodb.ca/
 
 ---
 
+## Data Format
+
+| Format | Description |
+|--------|-------------|
+| Primary | MySQL dump, CSV |
+| Alternative | XML, JSON |
+| Compression | gzip (.gz) |
+| Encoding | UTF-8 |
+| API Response | Contact required |
+
+---
+
+## Download
+
+### Access Methods
+
+| Method | URL/Contact | Description |
+|--------|------------|-------------|
+| **Web Browser** | https://foodb.ca/downloads | Download links |
+| **API** | Contact: foodb@ualberta.ca | Requires approval |
+| **Formats** | Multiple formats available | CSV, XML, JSON, MySQL |
+
+### Download Packages
+
+Available in compressed format at https://foodb.ca/downloads
+
+---
+
+## Data Set Size
+
+| Component | Count | Size |
+|-----------|-------|------|
+| **Foods** | 778 | ~1-2 MB |
+| **Compounds** | 70,926 | ~200-300 MB |
+| **Compound-Food Links** | 1,000,000+ | ~100-150 MB |
+| **Nutrients** | ~100 | < 1 MB |
+| **Total Database** | Various | 172-952 MB depending on format |
+| **CSV Export** | Full dump | 952.52 MB |
+| **XML Export** | Full dump | 6,438.08 MB |
+| **JSON Export** | Full dump | 86.66 MB |
+| **MySQL Dump** | Full dump | 172.73 MB |
+
+---
+
+## Schema
+
+### Core Tables Summary
+
+| Table | Purpose | Record Count |
+|-------|---------|--------------|
+| `foods` | Food items and taxonomy | 778 |
+| `compounds` | Chemical compounds | 70,926 |
+| `nutrients` | Nutrient definitions | ~100 |
+| `contents` | Food-compound-nutrient associations | 1,000,000+ |
+
+### Key Relationships
+
+- **1:N** - Food has many compounds (via contents table)
+- **1:N** - Food has many nutrients (via contents table)
+- **M:N** - Compounds and nutrients both map through contents table
+
+---
+
+## Sample Data
+
+### Example Record
+```json
+{
+  "food_id": 234,
+  "food_name": "Apple, raw, unpeeled",
+  "food_description": "Description of raw apple",
+  "compound_id": 5649,
+  "compound_name": "Quercetin",
+  "nutrient_id": 1087,
+  "nutrient_name": "Fiber"
+}
+```
+
+### Sample Query Result
+| food_id | food_name | compound_name | nutrient_name | content |
+|---------|-----------|---------------|---------------|---------|
+| 234 | Apple, raw | Quercetin | Fiber | 2.4g |
+| 235 | Banana, raw | Potassium | Potassium | 358mg |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

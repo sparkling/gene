@@ -769,20 +769,22 @@ Traditional Chinese Medicine has the most extensive collection of specialized da
 
 ---
 
-## Storage Estimates
+## Data Set Size
 
-| Database | Estimated Size | Notes |
-|----------|---------------|-------|
-| BATMAN-TCM 2.0 | 5 GB | Full interaction data |
-| HERB 2.0 | 8 GB | Including expression matrices |
-| TCMBank | 3 GB | Downloadable datasets |
-| SymMap 2.0 | 500 MB | Network data |
-| ETCM v2.0 | 2 GB | Knowledge graphs |
-| TCMID 2.0 | 2 GB | Including MS spectra |
-| CMAUP 2024 | 4 GB | Including transcriptomics |
-| TCM-Mesh | 5 GB | Largest compound set |
-| All Others | 5 GB | Combined |
-| **Total TCM** | **~35 GB** | Deduplicated estimate: ~20 GB |
+| Metric | Value |
+|--------|-------|
+| BATMAN-TCM 2.0 | 5 GB (Full interaction data) |
+| HERB 2.0 | 8 GB (Including expression matrices) |
+| TCMBank | 3 GB (Downloadable datasets) |
+| SymMap 2.0 | 500 MB (Network data) |
+| ETCM v2.0 | 2 GB (Knowledge graphs) |
+| TCMID 2.0 | 2 GB (Including MS spectra) |
+| CMAUP 2024 | 4 GB (Including transcriptomics) |
+| TCM-Mesh | 5 GB (Largest compound set) |
+| All Others | 5 GB (Combined) |
+| Total TCM raw | ~35 GB |
+| Deduplicated estimate | ~20 GB |
+| Last updated | January 2026 |
 
 ---
 
@@ -811,6 +813,53 @@ Traditional Chinese Medicine has the most extensive collection of specialized da
 7. Zeng X, et al. (2024). CMAUP database update 2024. Nucleic Acids Res. 52(D1):D1508.
 
 8. Huang L, et al. (2023). TCMBank - the largest TCM database. Signal Transduct Target Ther. 8:127.
+
+---
+
+## Download
+
+| Database | Method | URL/Command |
+|----------|--------|-------------|
+| **TCMSP** | Web | `https://tcmsp-e.com/` |
+| **ETCM** | Web | `http://www.tcmip.cn/ETCM/` |
+| **HERB 2.0** | Download | `http://herb.ac.cn/` |
+| **SymMap 2.0** | Download | `https://www.symmap.org/` |
+| **TCMBank** | Web | `https://tcmbank.cn/` |
+| **BATMAN-TCM 2.0** | API | `http://bionet.ncpsb.org.cn/batman-tcm/` |
+| **CMAUP** | Download | `https://www.cmaup.cn/` |
+
+**Access Requirements:** Most are freely accessible for academic research; commercial use restrictions vary by database.
+
+## Data Format
+
+| Format | Description |
+|--------|-------------|
+| Primary | TSV, CSV, SDF |
+| Alternative | JSON, XML, XLSX |
+| Chemical structures | SMILES, InChI, MOL2 |
+| Network data | Cytoscape-compatible |
+| Encoding | UTF-8 |
+
+## Sample Data
+
+### Example TCM Compound Record
+```json
+{
+  "compound_id": "TCMSP001",
+  "name": "Berberine",
+  "smiles": "COC1=CC2=C(C=C1OC)C(=O)CC3=CC=C(C=C3N=C2)OC",
+  "herb_source": "Huang Lian (Coptis chinensis)",
+  "targets": ["PTGS2", "ESR1", "AR", "PPARG"],
+  "druglikeness": 0.78,
+  "oral_bioavailability": 36.86
+}
+```
+
+### Sample Query Result
+| compound | herb | pattern | target_count |
+|----------|------|---------|--------------|
+| Berberine | Huang Lian | Damp-Heat | 48 |
+| Baicalein | Huang Qin | Heat clearing | 65 |
 
 ---
 
@@ -911,6 +960,44 @@ Traditional Chinese Medicine has the most extensive collection of specialized da
 | GO | Gene Ontology | Functional annotation |
 | TTD | Therapeutic Target Database | Drug target resource |
 | CC BY-NC 4.0 | Creative Commons Attribution Non-Commercial 4.0 | Non-commercial license |
+
+---
+
+## License
+
+This document catalogs multiple databases with varying license terms:
+
+| Database | License | Commercial Use | Attribution | Access |
+|----------|---------|----------------|-------------|--------|
+| BATMAN-TCM 2.0 | CC BY-NC 4.0 | Contact for commercial | Required | Open (API available) |
+| HERB 2.0 | Academic use | Research only | Required | Open |
+| SymMap 2.0 | Academic use | Research only | Required | Open |
+| ETCM v2.0 | Academic use | Research only | Required | Open |
+| TCMBank | CC BY 4.0 | Yes | Required | Open |
+| TCMID 2.0 | Academic use, contact for commercial | Contact required | Required | Open |
+| YaTCM | Academic use | Research only | Required | Open |
+| HIT 2.0 | Academic use | Research only | Required | Open |
+| TCMSP | Academic use | Research only | Required | Open (legacy) |
+| CMAUP 2024 | Academic use | Research only | Required | Open |
+| TCMSID | CC BY 4.0 | Yes | Required | Open |
+| TCMM | CC BY | Yes | Required | Open |
+| TCM Database@Taiwan | CC BY | Yes | Required | Open |
+| TCM-Mesh | Academic use | Research only | Required | Open |
+| DCABM-TCM | No derivatives for commercial | Limited | Required | Open |
+| LTM-TCM | Academic use | Research only | Required | Open |
+| CPMCP | Academic use | Research only | Required | Open |
+| TCMIO | Academic use | Research only | Required | Open |
+| TM-MC 2.0 | Academic use | Research only | Required | Open |
+| TCMNP | Open Source (R package) | Yes | Citation | Open |
+| SuperTCM | Academic use | Research only | Required | Open |
+| TCMPG 2.0 | CC BY 4.0 | Yes | Required | Open |
+| IGTCM | Academic use | Research only | Required | Open |
+
+**Key Considerations:**
+- **Fully Open (Commercial OK):** TCMBank, TCMSID, TCMM, TCM Database@Taiwan, TCMPG 2.0 (all CC BY 4.0)
+- **Non-Commercial Only:** BATMAN-TCM 2.0 (CC BY-NC 4.0), DCABM-TCM
+- **Academic Use:** HERB, SymMap, ETCM, YaTCM, HIT, TCMSP, CMAUP, TCM-Mesh, most others
+- **Best API Access:** BATMAN-TCM 2.0 (REST API), TCMNP (R package)
 
 ---
 

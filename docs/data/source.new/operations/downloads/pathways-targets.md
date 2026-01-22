@@ -34,6 +34,91 @@ This document provides comprehensive information on bulk download methods for ma
 
 ---
 
+## Download
+
+| Database | Method | URL/Command |
+|----------|--------|-------------|
+| **Reactome** | FTP | `https://reactome.org/download-data` |
+| **KEGG** | API/FTP | `https://rest.kegg.jp/` (academic) |
+| **WikiPathways** | Download | `https://data.wikipathways.org/` |
+| **UniProt** | FTP | `ftp://ftp.uniprot.org/pub/databases/uniprot/` |
+| **STRING** | Download | `https://string-db.org/cgi/download` |
+| **Gene Ontology** | Download | `http://geneontology.org/docs/download-ontology/` |
+| **NCBI Gene** | FTP | `ftp://ftp.ncbi.nih.gov/gene/` |
+| **Ensembl** | FTP | `ftp://ftp.ensembl.org/pub/` |
+
+**Access Requirements:** Most are freely accessible; KEGG FTP requires academic subscription.
+
+## Data Format
+
+| Format | Description |
+|--------|-------------|
+| Primary | BioPAX, GPML, KGML, TSV |
+| Alternative | OWL, XML, JSON |
+| Gene sets | GMT, GSE |
+| Encoding | UTF-8 |
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `pathway_id` | string | Pathway identifier | "R-HSA-1430728" |
+| `gene_symbol` | string | Gene/protein symbol | "MTHFR" |
+| `interaction_type` | string | Relationship type | "activation" |
+| `confidence` | float | Evidence score | 0.90 |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `participates_in` | Pathway | N:M |
+| `interacts_with` | Protein | N:M |
+
+## Sample Data
+
+### Example Target Record
+```json
+{
+  "uniprot_id": "P42898",
+  "gene_symbol": "MTHFR",
+  "pathways": ["R-HSA-1430728", "hsa00670"],
+  "string_partners": [{"partner": "MTR", "score": 0.95}],
+  "go_terms": ["GO:0004489", "GO:0006555"]
+}
+```
+
+### Sample Query Result
+| gene | pathway | source | confidence |
+|------|---------|--------|------------|
+| MTHFR | Folate metabolism | Reactome | 0.99 |
+| MTR | One carbon pool | KEGG | 0.95 |
+
+## License
+
+| Source | License | Commercial Use |
+|--------|---------|----------------|
+| Reactome | CC BY 4.0 | Yes |
+| WikiPathways | CC0 | Yes |
+| UniProt | CC BY 4.0 | Yes |
+| STRING | CC BY 4.0 | Yes |
+| Gene Ontology | CC BY 4.0 | Yes |
+| KEGG | Academic | Subscription required |
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| Reactome pathways | 2,712 human pathways |
+| WikiPathways | 3,100+ pathways |
+| STRING interactions | 11.9B protein pairs |
+| UniProt human proteins | ~20,400 reviewed |
+| Total storage estimate | ~15-20 GB combined |
+| Last updated | January 2026 |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

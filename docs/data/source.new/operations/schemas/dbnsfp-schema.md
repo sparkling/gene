@@ -609,6 +609,24 @@ def assess_pathogenicity(row):
 
 ---
 
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `id` | string | Primary identifier | "chr1:1000:A:G" |
+| `name` | string | Entity name | "Variant" |
+| `type` | string | Record type | "snv" |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `associated_with` | Entity | N:M |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |
@@ -668,6 +686,26 @@ def assess_pathogenicity(row):
 3. Liu X, Jian X, Boerwinkle E. (2013). dbNSFP v2.0: a database of human non-synonymous SNVs and their functional predictions and annotations. Hum Mutat. 34:E2393-2402.
 
 4. Liu X, Jian X, Boerwinkle E. (2011). dbNSFP: a lightweight database of human nonsynonymous SNPs and their functional predictions. Hum Mutat. 32:894-899.
+
+---
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| Records | 85,495,971 |
+| Storage | 40 GB (compressed) |
+| Last updated | January 2026 |
+
+---
+
+## Data Format
+
+| Format | Description |
+|--------|-------------|
+| Primary | TSV (gzip compressed) |
+| Alternative | Indexed with Tabix |
+| Encoding | UTF-8 |
 
 ---
 

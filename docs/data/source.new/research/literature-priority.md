@@ -316,6 +316,77 @@ ORDER BY paper_count DESC
 
 ---
 
+## Download
+
+| Resource | Method | URL |
+|----------|--------|-----|
+| PubMed | FTP | ftp://ftp.ncbi.nlm.nih.gov/pubmed/ |
+| PubMed Central | FTP/API | https://www.ncbi.nlm.nih.gov/pmc/ |
+| OpenAlex | S3 | https://www.openalex.org/download |
+| Europe PMC | FTP | https://europepmc.org/downloads |
+
+**Access Requirements:** Public domain data, no registration required for bulk downloads.
+
+## Data Format
+
+| Format | Description |
+|--------|-------------|
+| XML | PubMed article records |
+| TSV | Tab-delimited metadata |
+| JSON | Structured data from APIs |
+| UTF-8 | Text encoding standard |
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `pmid` | number | PubMed identifier | 12345678 |
+| `title` | string | Article title | "Genetics of diabetes" |
+| `abstract` | string | Article summary | "Abstract text..." |
+| `mesh_terms` | array | Medical Subject Headings | ["Genetics", "Genomics"] |
+| `publication_date` | date | Publication date | "2023-06-15" |
+
+## Sample Data
+
+### Example Article Record
+```json
+{
+  "pmid": 36418627,
+  "title": "Pharmacogenomic insights into drug metabolism and response",
+  "abstract": "This study examines genetic variants affecting drug response...",
+  "journal": "Nature Genetics",
+  "publication_date": "2023-01-15",
+  "mesh_terms": ["Pharmacogenetics", "Genetic Variation", "Drug Response"],
+  "authors": ["Smith J", "Johnson M"],
+  "mentioned_genes": ["CYP2D6", "MTHFR"],
+  "mentioned_snps": ["rs1801133", "rs5030655"],
+  "embedding_vector": [0.125, -0.034, ...]
+}
+```
+
+## License
+
+| Resource | License | Notes |
+|----------|---------|-------|
+| PubMed | Public Domain | Free for all uses |
+| PMC Open Access | CC licenses | Varies by article |
+| OpenAlex | CC0 | Public domain |
+| Europe PMC | Open | CC license terms |
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| Total PubMed records | ~39M |
+| Genetics subset | ~3-5M |
+| With embeddings | ~400MB-1.2GB |
+| Weekly new articles | ~20K |
+| Last updated | January 2026 |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

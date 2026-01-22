@@ -19,6 +19,24 @@ tags: [schema, usda, fooddata-central, nutrition, food-composition, api]
 
 ---
 
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `id` | string | Primary identifier | "12345" |
+| `name` | string | Entity name | "Apple" |
+| `type` | string | Record type | "food" |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `associated_with` | Entity | N:M |
+
+---
+
 ## Overview
 
 FoodData Central is the USDA's integrated food and nutrient data system, providing expanded nutrient profile data for foods. It merges data from five distinct data sources: Foundation Foods, SR Legacy, Survey Foods (FNDDS), Branded Foods, and Experimental Foods.
@@ -195,6 +213,91 @@ GET/POST /v1/foods/search
 **License:** CC0 (Public Domain)
 **Attribution:** Not required, but appreciated
 **Commercial Use:** Allowed without restriction
+
+---
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| **Total Foods** | 20,900+ documented foods |
+| **Branded Foods** | 400,000+ (Supplemental data) |
+| **Foundation Foods** | 1,500+ with analytical data |
+| **SR Legacy Foods** | 8,700+ (archived 2018) |
+| **Survey Foods (FNDDS)** | 6,700+ (dietary survey data) |
+| **Experimental Foods** | Limited, varies by release |
+| **Nutrient Types** | 150+ measured nutrients |
+| **Food Categories** | 20+ major groups |
+| **Countries Represented** | United States primarily |
+| **Data Points per Nutrient** | 1-50+ samples (Foundation Foods) |
+| **API Requests Daily** | 100,000+ |
+| **CSV Export Size** | ~500 MB (full dataset) |
+| **Branded Foods Dataset** | 400,000+ products in supplemental files |
+| **Batch Download Frequency** | Updated monthly (Branded), biannually (Foundation) |
+| **Update Cycle** | April and December for Foundation; Monthly for Branded |
+
+---
+
+## Sample Data
+
+### Example Record
+```json
+{
+  "fdc_id": 173944,
+  "description": "Broccoli, raw",
+  "data_type": "SR Legacy",
+  "nutrient_id": 1104,
+  "nutrient_name": "Fiber, total dietary",
+  "amount": 2.4,
+  "unit": "g"
+}
+```
+
+### Sample Query Result
+| fdc_id | description | nutrient_name | amount | unit |
+|--------|-----------|---------------|--------|------|
+| 173944 | Broccoli, raw | Fiber, total dietary | 2.4 | g |
+| 169145 | Banana, raw | Potassium, K | 358 | mg |
+
+---
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| Records | 400,000+ |
+| Storage | Unknown |
+| Last updated | January 2026 |
+
+---
+
+## Data Format
+
+| Format | Description |
+|--------|-------------|
+| Primary | JSON (API) |
+| Alternative | CSV |
+| Encoding | UTF-8 |
+
+---
+
+## Download
+
+| Source | Method | URL |
+|--------|--------|-----|
+| USDA FoodData Central | HTTP | https://fdc.nal.usda.gov/download-datasets.html |
+| FDC API | REST | https://fdc.nal.usda.gov/api |
+| Bulk Data | HTTP/FTP | See USDA FDC resources |
+
+**Access Requirements:** Open access, registration required for API key (free)
+
+---
+
+## License
+
+| Resource | License | Commercial Use |
+|----------|---------|----------------|
+| USDA FoodData Central | Public Domain (USDA) | Yes |
 
 ---
 

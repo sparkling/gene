@@ -442,16 +442,17 @@ Comprehensive inventory of 15 databases covering African Traditional Medicine (6
 
 ---
 
-## Storage Summary
+## Data Set Size
 
-| Category | Sources | Est. Size |
-|----------|---------|-----------|
-| African Traditional Medicine | 5 | ~3 GB |
-| Latin American Traditional Medicine | 5 | ~1 GB |
-| Global Multi-Regional | 4 | ~25 GB |
-| **Total** | **14** | **~29 GB** |
-
-*Note: COCONUT 2.0 accounts for majority of storage; deduplicated estimate with overlap: ~25 GB*
+| Metric | Value |
+|--------|-------|
+| African Traditional Medicine | ~3 GB (5 sources) |
+| Latin American Traditional Medicine | ~1 GB (5 sources) |
+| Global Multi-Regional | ~25 GB (4 sources) |
+| Total sources | 14 databases |
+| Total storage estimate | ~29 GB |
+| Deduplicated estimate | ~25 GB (COCONUT 2.0 overlap) |
+| Last updated | January 2026 |
 
 ---
 
@@ -526,6 +527,104 @@ Comprehensive inventory of 15 databases covering African Traditional Medicine (6
 | [tcm.md](./tcm.md) | TCM databases (complementary) |
 | [ayurveda.md](./ayurveda.md) | Ayurveda databases (complementary) |
 | [kampo.md](./kampo.md) | Kampo databases (complementary) |
+
+---
+
+## License
+
+This document catalogs multiple databases with varying license terms:
+
+| Database | License | Commercial Use | Attribution | Access |
+|----------|---------|----------------|-------------|--------|
+| ANPDB | Free for academic use | Research only | Required | Open (REST API) |
+| SANCDB | Free for academic use | Research only | Required | Open (REST API) |
+| p-ANAPL | Collaborative access | Contact required | Required | Consortium |
+| ETM-DB | Academic use | Research only | Required | Open |
+| AfroDb | Academic use | Research only | Required | Open |
+| NuBBEDB | Free for academic research | Research only | Required | Open (SDF) |
+| NuBBE[KG] | Open access | Yes | Citation | Open (SPARQL) |
+| BIOFACQUIM | Academic use | Research only | Required | Open |
+| MAMPDB | Academic use | Research only | Required | Open |
+| Oaxaca Inventory | Open access | Yes | Citation | Open |
+| COCONUT 2.0 | CC0 (Public Domain) | Yes | None required | Open (REST API) |
+| LOTUS | CC0 (via Wikidata) | Yes | None required | Open (SPARQL) |
+| NPASS | Free for academic use | Research only | Required | Open (downloadable) |
+| SuperNatural 3.0 | Free access (no registration) | Yes | Citation | Open |
+
+**Key Considerations:**
+- **Fully Open (Commercial OK):** COCONUT 2.0 (CC0), LOTUS (CC0), SuperNatural 3.0, NuBBE[KG], Oaxaca Inventory
+- **Academic/Research Only:** ANPDB, SANCDB, ETM-DB, AfroDb, NuBBEDB, BIOFACQUIM, MAMPDB, NPASS
+- **Collaborative Access:** p-ANAPL (requires consortium agreement)
+- **Best for Commercial Use:** COCONUT 2.0 and LOTUS with CC0 licenses
+
+---
+
+## Download
+
+| Database | Method | URL/Command |
+|----------|--------|-------------|
+| **COCONUT 2.0** | REST API | `https://coconut.naturalproducts.net/` (CC0) |
+| **LOTUS** | SPARQL | `https://lotus.naturalproducts.net/` (CC0 via Wikidata) |
+| **ANPDB** | REST API | `https://african-compounds.org/anpdb/` |
+| **SANCDB** | Web | `https://sancdb.rubi.ru.ac.za/` |
+| **NuBBEDB** | SDF | `https://nubbe.iq.unesp.br/nubbedb/` |
+| **SuperNatural 3.0** | Download | `http://bioinf-applied.charite.de/supernatural_3/` |
+| **NPASS** | Download | `https://bidd.group/NPASS/` |
+
+**Access Requirements:** COCONUT and LOTUS are CC0 (public domain); most African/Latin American databases are free for academic research.
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `compound_id` | string | Primary identifier | "COCONUT0012345" |
+| `smiles` | string | Molecular structure | "CC(=O)OC1=CC..." |
+| `inchikey` | string | Standard InChIKey | "BSYNRYMUTXBXSQ-..." |
+| `origin_species` | string | Source organism | "Artemisia annua" |
+| `origin_region` | string | Geographic origin | "East Africa" |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `isolated_from` | Species | N:1 |
+| `has_activity` | Bioactivity | 1:N |
+| `similar_to` | Compound | N:M |
+
+## Data Format
+
+| Format | Description |
+|--------|-------------|
+| Primary | SDF, CSV, JSON |
+| Linked data | RDF, SPARQL endpoints |
+| Chemical structures | SMILES, InChI, InChIKey |
+| Encoding | UTF-8 |
+
+## Sample Data
+
+### Example Global Natural Product Record
+```json
+{
+  "coconut_id": "CNP0012345",
+  "name": "Artemisinin",
+  "smiles": "CC1CCC2C(C)C(=O)OC3OC4(C)CCC1C23OO4",
+  "inchikey": "BLUAFEHZUWYNDE-NNWCWBAJSA-N",
+  "origin": {
+    "species": "Artemisia annua",
+    "traditional_medicine": "TCM",
+    "region": "China"
+  },
+  "bioactivity": ["antimalarial", "anticancer"]
+}
+```
+
+### Sample Query Result
+| compound | origin_tm | region | activity |
+|----------|-----------|--------|----------|
+| Artemisinin | TCM | China | Antimalarial |
+| Quinine | South American TM | Peru | Antimalarial |
 
 ---
 

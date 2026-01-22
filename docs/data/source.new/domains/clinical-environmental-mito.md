@@ -512,20 +512,20 @@ https://rest.kegg.jp/find/compound/aspirin
 
 ---
 
-## Data Volume Estimates
+## Data Set Size
 
-| Database | Records | Storage | Update Frequency |
-|----------|---------|---------|------------------|
-| CTD | 50M+ relationships | ~5 GB | Monthly |
-| EPA CompTox | 1M+ chemicals | ~2 GB | Quarterly |
-| MITOMAP | 62K sequences, 20K SNVs | ~500 MB | 4-6 months |
-| Reactome | ~15,000 pathways | ~1 GB | Quarterly |
-| T3DB | 42K associations | ~200 MB | Periodic |
-| DrugBank | 50K+ entries | ~1 GB | Periodic |
-| KEGG | Varies by DB | ~2 GB | Ongoing |
-| HmtDB | 3,700+ genomes | ~100 MB | Periodic |
-
-**Total Estimated Storage:** ~12 GB (compressed)
+| Metric | Value |
+|--------|-------|
+| CTD | ~5 GB (50M+ relationships) |
+| EPA CompTox | ~2 GB (1M+ chemicals) |
+| MITOMAP | ~500 MB (62K sequences, 20K SNVs) |
+| Reactome | ~1 GB (~15,000 pathways) |
+| T3DB | ~200 MB (42K associations) |
+| DrugBank | ~1 GB (50K+ entries) |
+| KEGG | ~2 GB (Varies by DB) |
+| HmtDB | ~100 MB (3,700+ genomes) |
+| Total storage estimate | ~12 GB (compressed) |
+| Last updated | January 2026 |
 
 ---
 
@@ -577,6 +577,94 @@ https://rest.kegg.jp/find/compound/aspirin
 | Drug Interaction Checker | CYP metabolism predictions |
 
 ---
+
+## Schema
+
+### Core Entity Fields
+
+| Entity | Field | Type | Description | Example |
+|--------|-------|------|-------------|---------|
+| **Chemical** | `casrn` | string | CAS Registry Number | "50-00-0" |
+| | `name` | string | Chemical name | "Formaldehyde" |
+| | `dtxsid` | string | EPA DSSTox identifier | "DTXSID7020637" |
+| | `toxicity_class` | string | Toxicity category | "Pollutant" |
+| | `ld50` | float | Lethal dose 50% | 100.0 |
+| **Gene-Chemical Interaction** | `interaction_id` | string | CTD interaction ID | "CTD_INT_00001" |
+| | `chemical_id` | string | Chemical identifier | "D005557" |
+| | `gene_id` | string | Entrez Gene ID | "7157" |
+| | `interaction_type` | string | Effect type | "increases expression" |
+| | `pubmed_ids` | string[] | Supporting literature | ["12345678"] |
+| **mtDNA Variant** | `position` | integer | Nucleotide position | 3243 |
+| | `ref` | string | Reference allele | "A" |
+| | `alt` | string | Alternate allele | "G" |
+| | `gene` | string | Affected gene | "MT-TL1" |
+| | `haplogroup` | string | Haplogroup context | "H" |
+| | `disease` | string | Associated condition | "MELAS" |
+| **Pathway** | `pathway_id` | string | Reactome identifier | "R-HSA-211859" |
+| | `name` | string | Pathway name | "Biological oxidations" |
+| | `phase` | string | Detox phase | "Phase I" |
+| | `enzymes` | string[] | Key enzymes | ["CYP1A1", "CYP3A4"] |
+
+### Relationships
+
+| Relation | Source | Target | Cardinality | Description |
+|----------|--------|--------|-------------|-------------|
+| `affects_expression` | Chemical | Gene | N:M | CTD curated |
+| `associated_with` | mtDNA Variant | Disease | N:M | MITOMAP pathogenic |
+| `metabolized_by` | Chemical | CYP Enzyme | N:M | Phase I metabolism |
+| `conjugated_by` | Metabolite | Transferase | N:M | Phase II metabolism |
+| `exposure_causes` | Chemical | Phenotype | N:M | CTD tetramer |
+| `located_in` | mtDNA Variant | Haplogroup | N:1 | Phylogenetic context |
+
+---
+
+## License
+
+| Database | License | Commercial Use | Attribution |
+|----------|---------|----------------|-------------|
+| **CTD** | Open Access | Yes | Required |
+| **MITOMAP** | Open Access | Yes | Required |
+| **MitoAge** | Open Access | Yes | Required |
+| **ToxCast/ToxRef** | Public Domain (US EPA) | Yes | Required |
+| **HMDB** | Open Access | Yes | Required |
+| **T3DB** | Open Access | Yes | Required |
+
+---
+
+## Data Format
+
+| Format | Description | Used By |
+|--------|-------------|---------|
+| TSV | Chemical-gene interactions | CTD |
+| CSV | Toxicity data, metabolism tables | ToxCast, T3DB |
+| XML | Detailed records | CTD, HMDB |
+| JSON | API responses | CTD API |
+| FASTA | mtDNA sequences | MITOMAP |
+| SDF | Chemical structures | T3DB, HMDB |
+
+**Compression:** gzip (.gz) for bulk downloads
+**Encoding:** UTF-8
+
+---
+
+## Sample Data
+
+### Example Record
+```json
+{
+  "domain": "Environmental & Mitochondrial Data Sources",
+  "database": "EPA CompTox",
+  "record_type": "Chemical",
+  "example_field": "Formaldehyde (CAS: 50-00-0)"
+}
+```
+
+### Sample Query Result
+
+| Field | Value |
+|-------|-------|
+| domain | Environmental & Mitochondrial |
+| sources | 8 (CTD, EPA CompTox, MITOMAP, Reactome, T3DB, DrugBank, KEGG, HmtDB) |
 
 ---
 

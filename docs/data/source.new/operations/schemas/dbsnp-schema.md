@@ -497,6 +497,88 @@ results = batch_hgvs_to_spdi(expressions)
 
 ---
 
+## Sample Data
+
+### Example Record
+```json
+{
+  "rs_id": "rs334",
+  "refsnp_id": 334,
+  "chromosome": "11",
+  "position": 5227002,
+  "reference_allele": "A",
+  "alternate_allele": "T",
+  "allele_frequency": 0.0108,
+  "clinical_significance": "Pathogenic"
+}
+```
+
+### Sample Query Result
+| rs_id | chromosome | position | reference_allele | alternate_allele | allele_frequency | clinical_significance |
+|-------|-----------|----------|------------------|------------------|-----------------|----------------------|
+| rs334 | 11 | 5227002 | A | T | 0.0108 | Pathogenic |
+| rs1805377 | 1 | 11796321 | G | A | 0.0045 | Likely pathogenic |
+
+---
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `id` | string | Primary identifier | "rs12345" |
+| `name` | string | Entity name | "dbSNP Entry" |
+| `type` | string | Record type | "polymorphism" |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `associated_with` | Entity | N:M |
+
+---
+
+## Download
+
+| Source | Method | URL |
+|--------|--------|-----|
+| dbSNP | API | https://api.ncbi.nlm.nih.gov/variation/v0 |
+| ALFA Frequencies | FTP | ftp://ftp.ncbi.nlm.nih.gov/snp/population_frequency/latest_release/ |
+| VCF Files | FTP | ftp://ftp.ncbi.nlm.nih.gov/snp/latest_release/ |
+
+**Access Requirements:** Open access via NCBI, no registration required
+
+---
+
+## License
+
+| Resource | License | Commercial Use |
+|----------|---------|----------------|
+| dbSNP | Public Domain (NCBI) | Yes |
+
+---
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| Records | 1,000,000,000+ |
+| Storage | Unknown |
+| Last updated | January 2026 |
+
+---
+
+## Data Format
+
+| Format | Description |
+|--------|-------------|
+| Primary | VCF (gzip compressed) |
+| Alternative | JSON (API) |
+| Encoding | UTF-8 |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

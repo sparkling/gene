@@ -90,15 +90,18 @@ MONDO:[0-9]{7}
 
 ---
 
-## File Formats
+## Download
 
-### Available Downloads
+### Access Methods
 
-| File | Size | Description |
-|------|------|-------------|
-| mondo.owl | 239.3 MB | Full OWL with equivalence axioms |
-| mondo.obo | 50.7 MB | OBO format using xrefs |
-| mondo.json | 102.7 MB | JSON-LD equivalent to OWL |
+**Source:** https://github.com/monarch-initiative/mondo/releases
+
+| Method | URL | Format |
+|--------|-----|--------|
+| **GitHub Releases** | https://github.com/monarch-initiative/mondo/releases | All formats |
+| **Stable PURL** | http://purl.obolibrary.org/obo/mondo.owl | OWL, OBO, JSON |
+| **OBO Foundry** | https://obofoundry.org/ontology/mondo.html | Multiple formats |
+| **Zenodo** | https://zenodo.org/ | Archived versions |
 
 ### Download URLs
 
@@ -106,7 +109,20 @@ MONDO:[0-9]{7}
 # Stable PURL (redirects to latest)
 http://purl.obolibrary.org/obo/mondo.owl
 http://purl.obolibrary.org/obo/mondo.obo
+http://purl.obolibrary.org/obo/mondo.json
 ```
+
+---
+
+## Data Format
+
+| Format | Description | Use Case |
+|--------|-------------|----------|
+| Primary | OWL (Web Ontology Language) | Full semantics, reasoning |
+| Alternative | OBO (Open Biological Ontology) | Lightweight, readable |
+| Alternative | JSON-LD | Linked data, web integration |
+| Equivalence Axioms | MONDO:X exactMatch OMIM:Y | Cross-database mapping |
+| Encoding | UTF-8 | All formats |
 
 ---
 
@@ -122,6 +138,61 @@ http://purl.obolibrary.org/obo/mondo.obo
 
 - **CC BY 4.0** - Free for commercial use with attribution
 - Attribution: "Mondo Disease Ontology, Monarch Initiative"
+
+---
+
+## Data Set Size
+
+| Component | Count | Size |
+|-----------|-------|------|
+| **Disease Terms** | 27,000+ | ~240 MB (OWL) |
+| **Equivalence Axioms** | 20,000+ | Included in OWL |
+| **Relationships** | 50,000+ | Included in OWL |
+| **Subsets** | 10+ (mondo_rare, mondo_core, etc.) | Included |
+| **mondo.owl** | All | 239.3 MB |
+| **mondo.obo** | All | 50.7 MB |
+| **mondo.json** | All | 102.7 MB |
+
+---
+
+## Sample Data
+
+### Example Record
+```json
+{
+  "mondo_id": "MONDO:0001816",
+  "label": "Sickle cell anemia",
+  "definition": "Autosomal recessive hemoglobin disorder",
+  "parent_id": "MONDO:0001816",
+  "xref": ["OMIM:603903"]
+}
+```
+
+### Sample Query Result
+| mondo_id | label | definition | parent_id | xref |
+|---------|--------|-----------|-----------|------|
+| MONDO:0001816 | Sickle cell anemia | Autosomal recessive hemoglobin disorder | MONDO:0007522 | OMIM:603903 |
+| MONDO:0001816 | Cystic fibrosis | Autosomal recessive lung disease | MONDO:0008168 | OMIM:219700 |
+
+---
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `id` | string | Primary identifier | "MONDO:0000001" |
+| `name` | string | Entity name | "disease" |
+| `type` | string | Record type | "disease" / "disorder" |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `is_a` | MONDO Term | N:1 |
+| `similar_to` | MONDO Term | N:M |
+| `cross_referenced` | Database ID | N:M |
 
 ---
 

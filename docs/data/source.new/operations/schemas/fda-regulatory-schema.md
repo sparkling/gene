@@ -2262,6 +2262,86 @@ def validate_fda_record(record):
 
 ---
 
+## Download
+
+### Access Methods
+
+| Method | URL | Format |
+|--------|-----|--------|
+| **openFDA API** | https://open.fda.gov/apis/ | JSON |
+| **Download** | https://open.fda.gov/downloads/ | ndjson.zip, CSV |
+| **FTP** | ftp://ftp.fda.gov/pub/reports/ | XML, JSON |
+| **FAERS Public Dashboard** | https://fis.fda.gov/sense/app/955320cf-948d-42f5-aadb-87d79253ca63/sheet/2e645fa3-2020-4e7b-9850-b2f9c6383d62/state/analysis | Interactive |
+
+### Download Options
+
+```bash
+# openFDA adverse events - drugs
+curl "https://api.fda.gov/drug/event.json?limit=100&skip=0"
+
+# Full data download (monthly updates)
+https://open.fda.gov/downloads/
+
+# FAERS data via FTP
+ftp://ftp.fda.gov/pub/reports/
+```
+
+---
+
+## Data Format
+
+| Format | Description | Use Case |
+|--------|-------------|----------|
+| Primary | NDJSON (newline-delimited JSON) | API responses |
+| Alternative | JSON | Individual records |
+| Download | ZIP archives of ndjson | Bulk downloads |
+| Historical | XML | Legacy FAERS submissions |
+| Export | CSV | Analysis/visualization |
+| Encoding | UTF-8 | All formats |
+
+---
+
+## Data Set Size
+
+| Component | Records | Size |
+|-----------|---------|------|
+| **Drug Adverse Events** | 12+ million | ~100-150 GB |
+| **Device Adverse Events** | 8+ million | ~50-80 GB |
+| **Safety Reports** | ~20 million | ~150-200 GB |
+| **Monthly Update** | ~500K-1M records | ~1-2 GB |
+| **Annual Full Release** | All data (dated) | ~200-300 GB |
+
+---
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `id` | string | Primary identifier | "FDA001" |
+| `name` | string | Entity name | "FDA Record" |
+| `type` | string | Record type | "regulatory" |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `associated_with` | Entity | N:M |
+
+---
+
+## License
+
+| Resource | License | Commercial Use |
+|----------|---------|----------------|
+| FDA openFDA | Public Domain | Yes |
+| FDA Drug Labels | Public Domain | Yes |
+| FDA Adverse Events | Public Domain | Yes |
+| FDA NDC Directory | Public Domain | Yes |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

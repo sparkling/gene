@@ -389,6 +389,99 @@ const targetsCollection = {
 
 ---
 
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| Pharmaceuticals (raw) | ~7 GB (PharmGKB + DrugBank + ChEMBL) |
+| TCM databases | ~3 GB (BATMAN-TCM + HERB) |
+| Kampo databases | ~1 GB (KampoDB + TM-MC + STORK) |
+| Ayurveda databases | ~2 GB (IMPPAT + OSADHI + GRAYU) |
+| Western Herbal | ~3 GB (DSLD + Dr. Duke's) |
+| Natural Products | ~10 GB (COCONUT + LOTUS + NPASS) |
+| Total raw data | ~27 GB |
+| With embeddings | ~40-45 GB (RuVector compression) |
+| Last updated | January 2026 |
+
+---
+
+## Download
+
+| Resource | Method | URL |
+|----------|--------|-----|
+| PharmGKB | REST API | https://api.clinpgx.org/ |
+| CPIC Guidelines | Download | https://cpicpgx.org/guidelines/ |
+| BATMAN-TCM 2.0 | REST API | https://batman.bi.a.u-tokyo.ac.jp/ |
+| IMPPAT 2.0 | Export | https://cb.imppat.org/ |
+| DSLD | REST API | https://dsld.nlm.nih.gov/ |
+| COCONUT 2.0 | REST API | https://coconut.naturalproducts.net/ |
+| LOTUS | SPARQL | https://lotus.naturalproducts.net/ |
+
+**Access Requirements:** Academic or institutional credentials for some sources; most freely available.
+
+## Data Format
+
+| Format | Description |
+|--------|-------------|
+| JSON | Structured data from APIs |
+| XML | Hierarchical data formats |
+| CSV/TSV | Tabular data downloads |
+| SDF | Chemical structure files |
+| UTF-8 | Text encoding standard |
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `compound_id` | string | Unique compound identifier | "CHEMBL123456" |
+| `source_system` | string | Origin system (TCM, Ayurveda, etc.) | "tcm" |
+| `targets` | array | Target proteins/genes | ["CYP2D6", "ABCB1"] |
+| `clinical_significance` | string | Therapeutic relevance | "high" |
+| `license` | string | Data usage rights | "CC BY-SA 4.0" |
+
+## Sample Data
+
+### Example Compound Record
+```json
+{
+  "compound_id": "BATMAN-TCM-1234",
+  "compound_name": "Curcumin",
+  "inchikey": "GHASVSINZPUNUT-UHFFFAOYSA-N",
+  "smiles": "O1C(=CC(OC)=CC1=O)C(=CC2=CC(OC)=C(OC)C=C2)O",
+  "sources": ["BATMAN-TCM", "COCONUT", "LOTUS"],
+  "systems": ["tcm", "ayurveda"],
+  "targets": ["TNF", "IL6", "CYP3A4"],
+  "mol_weight": 368.38,
+  "drug_likeness": 0.85
+}
+```
+
+## License
+
+| Resource | License | Notes |
+|----------|---------|-------|
+| PharmGKB | CC BY-SA 4.0 | Attribution required |
+| CPIC | CC0 | Public domain |
+| BATMAN-TCM | CC BY-NC | Non-commercial use |
+| IMPPAT | CC BY 4.0 | Attribution required |
+| DSLD | CC0 | Public domain |
+| COCONUT | CC0 | Public domain |
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| Pharmaceutical compounds | ~100K (PharmGKB + DrugBank) |
+| TCM compounds | ~54K (BATMAN-TCM 2.0) |
+| Kampo compounds | ~3K (KampoDB) |
+| Ayurveda compounds | ~18K (IMPPAT 2.0) |
+| Natural products | ~695K (COCONUT 2.0) |
+| Last updated | January 2026 |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

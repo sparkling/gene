@@ -480,6 +480,54 @@ Available for local deployment with full schema.
 
 ---
 
+## Data Format
+
+| Format | Description |
+|--------|-------------|
+| Primary | TSV (tab-separated values) |
+| Alternative | JSON, XML (API), SQLite |
+| Compression | gzip (.gz) |
+| Encoding | UTF-8 |
+| API Response | JSON, TSV, XML |
+
+---
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `id` | string | Primary identifier | "GDA1234" |
+| `name` | string | Entity name | "Gene Disease Association" |
+| `type` | string | Record type | "association" |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `associated_with` | Entity | N:M |
+
+---
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| Records | 500,000+ |
+| Storage | Unknown |
+| Last updated | January 2026 |
+
+---
+
+## License
+
+| Resource | License | Commercial Use |
+|----------|---------|----------------|
+| DisGeNET | CC BY-NC-SA 4.0 | No (requires separate license) |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

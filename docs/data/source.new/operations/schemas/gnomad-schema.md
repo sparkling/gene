@@ -644,6 +644,74 @@ def calculate_population_af(ac: int, an: int) -> float:
 
 ---
 
+## Download
+
+### Cloud Providers
+
+| Provider | URL | Region |
+|----------|-----|--------|
+| **Google Cloud** | `gs://gcp-public-data--gnomad/` | Multi-region |
+| **AWS** | `s3://gnomad-public-us-east-1/` | us-east-1 |
+| **Azure** | Available via Azure Open Datasets | Various |
+
+### Direct Download URLs (v4.0)
+
+```bash
+# Exomes (GRCh38)
+gs://gcp-public-data--gnomad/release/4.0/vcf/exomes/gnomad.exomes.v4.0.sites.vcf.bgz
+
+# Genomes (GRCh38)
+gs://gcp-public-data--gnomad/release/4.0/vcf/genomes/gnomad.genomes.v4.0.sites.vcf.bgz
+
+# Constraint metrics
+gs://gcp-public-data--gnomad/release/4.0/constraint/gnomad.v4.0.constraint_metrics.tsv
+```
+
+---
+
+## Data Format
+
+| Format | Description |
+|--------|-------------|
+| Primary | VCF (.vcf.bgz with tabix index) |
+| Alternative | Hail Table (.ht), VDS (Variant Dataset), TSV (.tsv.bgz) |
+| Compression | bgzip (block gzip) |
+| Encoding | UTF-8 |
+| API Response | JSON (GraphQL) |
+
+---
+
+## Data Set Size
+
+| Dataset | Records | Storage |
+|---------|---------|---------|
+| **Exome VCF (v4)** | 62.9M variants | ~300 GB |
+| **Genome VCF (v4)** | 715.9M variants | ~1.2 TB |
+| **Combined (joint)** | Aggregated | ~1.5 TB |
+| **Constraint metrics** | ~20K genes | ~100 MB |
+| **Total download** | All files | ~2-3 TB |
+| **Total individuals** | 807,162 | Per variant stats |
+
+---
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `id` | string | Primary identifier | "chr1-1000" |
+| `name` | string | Entity name | "gnomAD Variant" |
+| `type` | string | Record type | "variant" |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `associated_with` | Entity | N:M |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

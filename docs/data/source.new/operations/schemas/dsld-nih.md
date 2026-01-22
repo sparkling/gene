@@ -535,6 +535,85 @@ https://dsld.od.nih.gov/
 
 ---
 
+## Data Format
+
+| Format | Description |
+|--------|-------------|
+| Primary | JSON (REST API) |
+| Alternative | None (web only) |
+| Compression | None |
+| Encoding | UTF-8 |
+| API Response | JSON |
+
+---
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| Records | 30,000+ |
+| Storage | Unknown |
+| Last updated | January 2026 |
+
+---
+
+## Download
+
+| Source | Method | URL |
+|--------|--------|-----|
+| DSLD | HTTP | https://dsld.nlm.nih.gov/dsld.html |
+| DSLD Data | FTP | See main database |
+
+**Access Requirements:** Open access via NIH, no registration required
+
+---
+
+## License
+
+| Resource | License | Commercial Use |
+|----------|---------|----------------|
+| DSLD | Public Domain (NIH) | Yes |
+
+---
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `id` | string | Primary identifier | "3000" |
+| `name` | string | Entity name | "American Ginseng" |
+| `type` | string | Record type | "product" |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `associated_with` | Entity | N:M |
+
+---
+
+## Sample Data
+
+### Example Record
+```json
+{
+  "id": 3000,
+  "fullName": "American Ginseng",
+  "brandName": "Root To Health",
+  "ingredientGroup": "botanical"
+}
+```
+
+### Sample Query Result
+| id | fullName | brandName | ingredientGroup |
+|----|----------|-----------|-----------------|
+| 3000 | American Ginseng | Root To Health | botanical |
+| 1000 | Coral Calcium | GNC | mineral |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

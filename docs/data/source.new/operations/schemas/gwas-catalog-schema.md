@@ -383,6 +383,57 @@ curl "https://www.ebi.ac.uk/gwas/rest/api/efoTraits"
 
 ---
 
+## Download
+
+### Access Methods
+
+| Method | URL | Format |
+|--------|-----|--------|
+| **REST API** | https://www.ebi.ac.uk/gwas/rest/api | JSON (HAL format) |
+| **FTP Downloads** | http://ftp.ebi.ac.uk/pub/databases/gwas/summary_statistics/ | TSV, OWL/RDF |
+| **Web Interface** | https://www.ebi.ac.uk/gwas/ | Interactive search |
+| **Summary Statistics API** | https://www.ebi.ac.uk/gwas/summary-statistics/api | JSON |
+
+### Download Endpoints
+
+```bash
+# Get all studies (paginated)
+curl "https://www.ebi.ac.uk/gwas/rest/api/studies?page=0&size=100"
+
+# Download study data
+curl "https://www.ebi.ac.uk/gwas/rest/api/studies/GCST000854"
+
+# Get associations for study
+curl "https://www.ebi.ac.uk/gwas/rest/api/studies/GCST000854/associations"
+```
+
+---
+
+## Data Format
+
+| Format | Description | Use Case |
+|--------|-------------|----------|
+| Primary | JSON HAL (REST API responses) | API queries |
+| Alternative | TSV (bulk downloads) | Statistical analysis |
+| Alternative | OWL/RDF (ontology imports) | Semantic web, reasoner |
+| Compression | gzip (.gz for FTP) | File storage |
+| Encoding | UTF-8 | Text-based formats |
+
+---
+
+## Data Set Size
+
+| Component | Count | Size (Est.) |
+|-----------|-------|------------|
+| **Studies** | 186,237 | ~500 MB metadata |
+| **Associations** | 1,058,471 | ~2-3 GB |
+| **SNPs** | 512,069 | ~100 MB |
+| **Summary Statistics** | 155,485 datasets | ~50-100 GB |
+| **EFO Traits** | 21,004 | ~5 MB |
+| **Total Database** | Various | ~100-200 GB |
+
+---
+
 ## Integration Notes
 
 ### EFO Ontology Integration
@@ -401,6 +452,34 @@ curl "https://www.ebi.ac.uk/gwas/rest/api/efoTraits"
 ### Data Formats
 - Primary: JSON (HAL format with hypermedia links)
 - Bulk: TSV, OWL/RDF via FTP
+
+---
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `id` | string | Primary identifier | "GCST000854" |
+| `name` | string | Entity name | "Celiac disease" |
+| `type` | string | Record type | "study" / "association" / "snp" / "trait" |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `associated_with` | SNP / Trait | N:M |
+| `published_in` | Publication | N:1 |
+| `annotated_by` | EFO Trait | N:M |
+
+---
+
+## License
+
+| Resource | License | Commercial Use |
+|----------|---------|----------------|
+| GWAS Catalog | CC BY 4.0 | Yes |
 
 ---
 

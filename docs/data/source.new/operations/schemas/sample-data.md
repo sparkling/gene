@@ -16,6 +16,24 @@ This document contains actual sample data retrieved from Reactome, WikiPathways,
 
 ---
 
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `id` | string | Primary identifier | "1430728" |
+| `name` | string | Entity name | "Metabolism" |
+| `type` | string | Record type | "pathway" |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `associated_with` | Entity | N:M |
+
+---
+
 ## 1. Reactome Sample Data
 
 ### Pathway: Metabolism (R-HSA-1430728)
@@ -264,6 +282,65 @@ This document contains actual sample data retrieved from Reactome, WikiPathways,
 | Reactome | 95 | 2,712 | 11,196 | 1,925 | - |
 | WikiPathways | 2026-01 | 3,100+ | - | - | - |
 | DisGeNET | 7.0 | - | 17,549 | - | 24,166 |
+
+---
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| Records | 1,000+ |
+| Storage | Unknown |
+| Last updated | January 2026 |
+
+---
+
+## Data Format
+
+| Format | Description |
+|--------|-------------|
+| Primary | JSON |
+| Alternative | CSV |
+| Encoding | UTF-8 |
+
+---
+
+## Download
+
+| Source | Method | URL |
+|--------|--------|-----|
+| Sample Data | HTTP | See main database |
+| Test Data | HTTP | See repository |
+
+**Access Requirements:** Varies by source
+
+---
+
+## License
+
+| Resource | License | Commercial Use |
+|----------|---------|----------------|
+| Sample Data | See source database | Depends on source |
+
+---
+
+## Sample Data
+
+### Example Record
+```json
+{
+  "stId": "R-HSA-1430728",
+  "displayName": "Metabolism",
+  "dbId": 1430728,
+  "schemaClass": "TopLevelPathway"
+}
+```
+
+### Sample Query Result
+| stId | displayName | dbId | schemaClass |
+|------|-------------|------|-------------|
+| R-HSA-1430728 | Metabolism | 1430728 | TopLevelPathway |
+| R-HSA-191273 | Cholesterol biosynthesis | 191273 | Pathway |
 
 ---
 

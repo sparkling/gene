@@ -559,6 +559,84 @@ Pre-defined subsets for high-level analysis:
 
 ---
 
+## Download
+
+### Ontology Files
+
+**Source:** https://current.geneontology.org/
+
+| File | Format | Use Case |
+|------|--------|----------|
+| go-basic.obo | OBO (35 MB) | Standard use (recommended) |
+| go.obo | OBO (45 MB) | Full ontology with relationships |
+| go.owl | OWL (150 MB) | Semantic web, reasoner-compatible |
+| go-plus.owl | OWL (500 MB) | Full with external axioms |
+| go.json | JSON (21.9 MB) | Programmatic parsing |
+
+### Annotation Files
+
+| Species | File | Records |
+|---------|------|---------|
+| Human | goa_human.gaf.gz | ~800,000 |
+| Mouse | goa_mouse.gaf.gz | ~600,000 |
+| All UniProt | goa_uniprot_all.gaf.gz | 500,000,000+ |
+| GO-CAM Models | go-cams.json, go-cams.owl | 1,500+ |
+
+---
+
+## Data Format
+
+| Format | Description | Encoding |
+|--------|-------------|----------|
+| Primary | OBO (text-based, human-readable) | UTF-8 |
+| Alternative | OWL (XML, semantic web) | XML |
+| Alternative | JSON | UTF-8 |
+| Annotation | GAF 2.2 (tab-separated) | UTF-8 |
+| Query | SPARQL | Standard RDF |
+| API Response | JSON | application/json |
+
+---
+
+## Data Set Size
+
+| Component | Size | Records |
+|-----------|------|---------|
+| **go-basic.obo** | 35 MB | ~47,000 terms |
+| **go.obo (full)** | 45 MB | ~47,000 + relationships |
+| **go.owl** | 150 MB | ~47,000 terms + axioms |
+| **go-plus.owl** | 500 MB | With external imports |
+| **GAF (human)** | ~50 MB (gzipped) | ~800,000 annotations |
+| **GAF (all species)** | ~5 GB (gzipped) | 500,000,000+ annotations |
+| **GO-CAM models** | ~100 MB | 1,500+ causal models |
+
+---
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `id` | string | Primary identifier | "GO:0008150" |
+| `name` | string | Entity name | "Biological Process" |
+| `type` | string | Record type | "ontology_term" |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `associated_with` | Entity | N:M |
+
+---
+
+## License
+
+| Resource | License | Commercial Use |
+|----------|---------|----------------|
+| Gene Ontology | CC BY 4.0 | Yes |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

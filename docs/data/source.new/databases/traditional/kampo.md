@@ -638,17 +638,18 @@ Layer 5: Pathways/Diseases (KEGG + DisGeNET)
 
 ---
 
-## Storage Estimates Summary
+## Data Set Size
 
-| Category | Database(s) | Estimated Size |
-|----------|-------------|----------------|
-| Core Kampo | KampoDB, STORK, TradMPD | ~75 MB |
-| Metabolite-Species | KNApSAcK KAMPO | ~30 MB |
-| Regional Integration | TM-MC 2.0 | ~100 MB |
-| TCM Cross-Reference | BATMAN-TCM, HERB, TCMBank | ~1 GB |
-| Chemical Structures | COCONUT subset | ~200 MB |
-| Clinical Evidence | EKAT | ~10 MB |
-| **Total Kampo Subsystem** | - | **~1.5 GB** |
+| Metric | Value |
+|--------|-------|
+| Core Kampo | ~75 MB (KampoDB, STORK, TradMPD) |
+| Metabolite-Species | ~30 MB (KNApSAcK KAMPO) |
+| Regional Integration | ~100 MB (TM-MC 2.0) |
+| TCM Cross-Reference | ~1 GB (BATMAN-TCM, HERB, TCMBank) |
+| Chemical Structures | ~200 MB (COCONUT subset) |
+| Clinical Evidence | ~10 MB (EKAT) |
+| Total Kampo subsystem | ~1.5 GB |
+| Last updated | January 2026 |
 
 ---
 
@@ -713,6 +714,85 @@ Layer 5: Pathways/Diseases (KEGG + DisGeNET)
 | COCONUT | https://coconut.naturalproducts.net |
 | PubChem | https://pubchem.ncbi.nlm.nih.gov/ |
 | ChEMBL | https://www.ebi.ac.uk/chembl/ |
+
+---
+
+## License
+
+This document catalogs multiple databases with varying license terms:
+
+| Database | License | Commercial Use | Attribution | Access |
+|----------|---------|----------------|-------------|--------|
+| KampoDB | CC BY-SA 4.0 | Yes (with ShareAlike) | Required | Open |
+| STORK | Open reference | Yes | Citation | Open |
+| TradMPD | Academic/research use | Research only | Required | Open |
+| KNApSAcK KAMPO | Non-commercial | No | Required | Contact for commercial |
+| TM-MC 2.0 | Open access | Yes | Citation | Open (downloadable) |
+| EKAT | Free access | Yes | Citation | Open |
+| ETHMEDmmm | Restricted | Authorization required | Required | Reference consultation |
+| NIBIOHN MPDB | Open reference | Yes | Citation | Open |
+| Metabolomics.jp Wiki | Open access | Yes | Wiki attribution | Open |
+| BATMAN-TCM 2.0 | Academic/research use | Research only | Required | API available |
+| HERB 2.0 | Open access | Yes | Citation | Open |
+| TCMBank | Non-commercial | No | Required | Free for research |
+| SymMap 2.0 | Open access | Yes | Citation | Open (download) |
+| HIT 2.0 | Open access | Yes | Citation | Open |
+| TCMID 2.0 | Free for research | Research only | Citation requested | Open |
+| YaTCM | Academic use | Research only | Required | Open |
+| SuperTCM | Open access | Yes | Citation | Open |
+| COCONUT 2.0 | CC0 (Public Domain) | Yes | None required | Open (REST API) |
+| PubChem | Public domain | Yes | None required | Open (API) |
+| ChEMBL | Open access | Academic | Citation | Open (API) |
+
+**Key Considerations:**
+- **Fully Open (Commercial OK):** COCONUT (CC0), PubChem (public domain), TM-MC 2.0, STORK, EKAT
+- **Commercial with Attribution/ShareAlike:** KampoDB (CC BY-SA 4.0)
+- **Academic/Non-Commercial Only:** KNApSAcK, BATMAN-TCM, TCMBank, TradMPD, TCMID
+- **Restricted Access:** ETHMEDmmm (authorization required for imagery)
+
+---
+
+## Download
+
+| Database | Method | URL/Command |
+|----------|--------|-------------|
+| **KampoDB** | Web | `http://wakanmoview.inm.u-toyama.ac.jp/kampo/` |
+| **TM-MC 2.0** | Download | `https://www.tm-mc.com/` |
+| **STORK** | Web | `http://stork.netmark.jp/` |
+| **TradMPD** | Web | `http://www.ims.u-tokyo.ac.jp/tradmpd/` |
+| **COCONUT 2.0** | REST API | `https://coconut.naturalproducts.net/` |
+| **BATMAN-TCM 2.0** | API | `http://bionet.ncpsb.org.cn/batman-tcm/` |
+
+**Access Requirements:** Most are freely accessible; KampoDB (CC BY-SA 4.0) allows commercial use with attribution.
+
+## Data Format
+
+| Format | Description |
+|--------|-------------|
+| Primary | SDF, CSV, JSON |
+| Alternative | TSV, XML |
+| Chemical structures | SMILES, InChI, MOL |
+| Encoding | UTF-8 |
+
+## Sample Data
+
+### Example Kampo Formula Record
+```json
+{
+  "formula_id": "K001",
+  "japanese_name": "Kakkonto",
+  "romaji": "Kakkontō",
+  "indication_sho": "Early stage cold with stiff neck",
+  "crude_drugs": ["Puerariae Radix", "Ephedrae Herba", "Cinnamomi Ramulus"],
+  "evidence_level": "High (RCT available)"
+}
+```
+
+### Sample Query Result
+| formula_id | japanese_name | indication | pattern |
+|------------|---------------|------------|---------|
+| K001 | Kakkonto | Common cold | Taiyo stage |
+| K002 | Shosaikoto | Liver disorders | Shaoyang stage |
 
 ---
 

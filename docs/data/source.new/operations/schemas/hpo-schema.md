@@ -585,6 +585,78 @@ HPO is available in 10+ languages:
 
 ---
 
+## Download
+
+### Ontology Files
+
+**Source:** https://github.com/obophenotype/human-phenotype-ontology/releases/latest
+
+| File | Format | Size | Use Case |
+|------|--------|------|----------|
+| hp.obo | OBO (text) | 10.4 MB | Standard use (recommended) |
+| hp.owl | OWL (XML) | 75.6 MB | Semantic web, reasoners |
+| hp.json | JSON | 21.9 MB | Programmatic parsing |
+| hp-full.obo | OBO + imports | 18.8 MB | With merged imports |
+| phenotype.hpoa | Annotation TSV | 35.0 MB | Disease annotations |
+| genes_to_phenotype.txt | TSV | 20.1 MB | Gene-phenotype links |
+
+### PURL Access (Always Current)
+
+```bash
+# Stable URLs that redirect to latest
+curl -L http://purl.obolibrary.org/obo/hp.obo
+curl -L http://purl.obolibrary.org/obo/hp.owl
+curl -L http://purl.obolibrary.org/obo/hp.json
+```
+
+---
+
+## Data Format
+
+| Format | Description | Encoding |
+|--------|-------------|----------|
+| Primary | OBO (Open Biological Ontology) | UTF-8 |
+| Alternative | OWL (Web Ontology Language) | XML |
+| Alternative | JSON | UTF-8 |
+| Annotation | GAF 2.2 / HPOA (Tab-separated) | UTF-8 |
+| Gene Maps | TSV (Tab-separated values) | UTF-8 |
+
+---
+
+## Data Set Size
+
+| Component | Records | Size |
+|-----------|---------|------|
+| **HPO Terms** | 13,000+ | 10-150 MB (by format) |
+| **Phenotype Annotations** | 156,000+ | 35 MB |
+| **Diseases Annotated** | ~9,500 | Included in annotations |
+| **Gene Associations** | ~300,000+ | 20-65 MB |
+| **Synonyms & Cross-refs** | 50,000+ | Included in OBO/OWL |
+| **Full OBO Release** | All content | 45 MB (compressed: 10 MB) |
+| **Full OWL Release** | With axioms | 150 MB (compressed: 75 MB) |
+
+---
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `id` | string | Primary identifier | "HP:0001250" |
+| `name` | string | Entity name | "Seizure" |
+| `type` | string | Record type | "phenotype" |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `is_a` | HPO Term | N:M |
+| `part_of` | HPO Term | N:M |
+| `related_to` | Disease / Gene | N:M |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

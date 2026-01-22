@@ -580,6 +580,130 @@ def get_binding_affinities(uniprot_id, cutoff=10000):
 
 ---
 
+## Download
+
+| Method | URL | Availability |
+|--------|-----|--------------|
+| Web Interface | http://www.tmctcm.org/ | Direct download on TMC-TCM site |
+| Network Query | http://cadd.pharmacy.nankai.edu.cn/yatcm/ | YaTCM web interface |
+| NPASS Portal | http://bidd.group/NPASS/ | Interactive search, bulk download available |
+| PharmGKB API | https://api.pharmgkb.org/ | Programmatic access via REST API |
+| SIDER Download | http://sideeffects.embl.de/ | TSV/JSON file download |
+| Off-SIDER | http://off-sider.cortellis.com/ | Web interface with export options |
+
+---
+
+## Data Format
+
+| Format | Description | Use Case |
+|--------|-------------|----------|
+| JSON | Structured nested format | API responses, programmatic access |
+| TSV | Tab-separated values | Bulk imports, spreadsheet processing |
+| CSV | Comma-separated values | Excel compatibility, general analysis |
+| XML | Hierarchical markup | Network relationships, complex structures |
+| SQL Dump | Database backup format | Direct database restoration |
+| RDF/OWL | Semantic web format | Ontology-based reasoning, linked data |
+
+---
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| source_id | String | Unique identifier in source database | TMC:001234 |
+| source_name | String | Name/label in source database | Curcuma longa |
+| alternate_ids | Array | Identifiers in other databases | [NPASS:NPA001, CHEBI:3962] |
+| compound_class | String | Chemical classification | "Polyphenol" |
+| activity_type | String | Type of biological activity | "Anti-inflammatory", "Toxicity" |
+| activity_value | Float | Quantitative measure | 150.5 |
+| activity_unit | String | Unit of measurement | "nM", "mg/kg", "IC50" |
+| source_type | String | Data source category | "Literature", "Experimental" |
+| validation_status | String | Quality/validation level | "Validated", "Predicted", "Proposed" |
+
+### Relationships
+
+| From | To | Relationship Type | Via Field |
+|------|-----|-------------------|-----------|
+| Compound | Target Protein | inhibits, activates, binds | target_id |
+| Compound | Disease | treats, associated_with | disease_id |
+| Compound | Side Effect | causes | side_effect_id |
+| Source Record | Literature | references | pubmed_id |
+| Compound | Structural Category | classified_as | compound_class |
+
+---
+
+## Sample Data
+
+### JSON Format
+
+```json
+{
+  "compound": {
+    "id": "NPASS:NPA000001",
+    "name": "Curcumin",
+    "source": "NPASS",
+    "mw": 368.38,
+    "inchi_key": "GHASVSINZRGABV-UHFFFAOYSA-N",
+    "activities": [
+      {
+        "target": "COX-2",
+        "uniprot_id": "P35354",
+        "activity_type": "inhibition",
+        "value": 5.2,
+        "unit": "μM",
+        "source_type": "experimental"
+      }
+    ],
+    "toxicity": [
+      {
+        "test_type": "LD50_oral",
+        "species": "rat",
+        "value": 2000,
+        "unit": "mg/kg"
+      }
+    ]
+  }
+}
+```
+
+### Query Result Table
+
+| Compound ID | Compound Name | Target | Activity Type | Value | Unit | Species | Source |
+|-------------|---------------|--------|---------------|-------|------|---------|--------|
+| NPASS:0001 | Curcumin | COX-2 | IC50 | 5.2 | μM | Homo sapiens | NPASS |
+| TMC:0542 | Artemisinin | PfMPT1 | Ki | 2.1 | μM | Plasmodium falciparum | BATMAN-TCM |
+| SIDER:0001234 | Paracetamol | CYP2E1 | Metabolized by | - | - | Homo sapiens | SIDER |
+
+---
+
+## License
+
+| Source | License | Commercial Use | Attribution |
+|--------|---------|-----------------|--------------|
+| TMC-TCM | Contact required | Case-by-case | Required |
+| YaTCM | Academic use | No | Required |
+| NPASS | Public domain | Yes | Recommended |
+| PharmGKB | CC BY 4.0 | Yes | Required |
+| SIDER | CC0 1.0 | Yes | Not required |
+| Off-SIDER | Proprietary | No | N/A |
+
+---
+
+## Data Set Size
+
+| Source | Records | Compressed Size | Uncompressed Size | Download Time (10 Mbps) |
+|--------|---------|-----------------|-------------------|------------------------|
+| TMC-TCM | 100K+ formulas | 150 MB | 800 MB | ~11 min |
+| YaTCM | 5.6K ingredients | 80 MB | 400 MB | ~5 min |
+| NPASS | 105K natural products | 200 MB | 1.2 GB | ~16 min |
+| PharmGKB | 50K+ drugs/genes | 350 MB | 2.5 GB | ~33 min |
+| SIDER | 1.4M side effect records | 400 MB | 3 GB | ~40 min |
+| Off-SIDER | Subset of SIDER | 100 MB | 700 MB | ~9 min |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

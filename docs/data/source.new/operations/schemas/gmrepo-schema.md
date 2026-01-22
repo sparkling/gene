@@ -426,6 +426,84 @@ my $data = decode_json($response->content);
 
 ---
 
+## Data Format
+
+| Format | Description |
+|--------|-------------|
+| Primary | JSON (API response) |
+| Alternative | CSV (bulk export) |
+| Compression | None (API) |
+| Encoding | UTF-8 |
+| API Response | JSON |
+
+---
+
+## Download
+
+### Data Access
+
+| Method | URL | Format |
+|--------|-----|--------|
+| **Web Interface** | https://gmrepo.humangut.info | Interactive queries |
+| **REST API** | https://gmrepo.humangut.info/api/ | JSON responses |
+| **Direct Query** | https://gmrepo.humangut.info/api/getRunsByPhenotype | Query endpoints |
+| **Portal Cart** | https://gmrepo.humangut.info/search/f | Select & download |
+
+### Query Endpoints
+
+```bash
+# Get samples by phenotype
+curl "https://gmrepo.humangut.info/api/getRunsByPhenotype?phenotype=Type%202%20diabetes"
+
+# Get projects list
+curl "https://gmrepo.humangut.info/api/getProjectList"
+
+# Get marker taxa
+curl "https://gmrepo.humangut.info/api/getMarkerTaxa?phenotype=Type%202%20diabetes"
+```
+
+---
+
+## Data Set Size
+
+| Component | Count | Size (Est.) |
+|-----------|-------|------------|
+| **Projects** | 890 | ~1 GB metadata |
+| **Samples** | 118,965 | ~100-200 GB raw sequences |
+| **16S rRNA Samples** | 87,048 | ~70-150 GB |
+| **WGS Samples** | 31,917 | ~50-100 GB |
+| **Diseases Annotated** | 302 | ~1 MB |
+| **Marker Taxa** | 1,299 | ~10 MB |
+| **Total Database** | Various | ~200-400 GB |
+
+---
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `id` | string | Primary identifier | "GMREPO001" |
+| `name` | string | Entity name | "Repository Entry" |
+| `type` | string | Record type | "entry" |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `associated_with` | Entity | N:M |
+
+---
+
+## License
+
+| Resource | License | Commercial Use |
+|----------|---------|----------------|
+| GMrepo | CC BY-NC 3.0 | No (requires permission) |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

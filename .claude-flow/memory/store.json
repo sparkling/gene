@@ -56,6 +56,904 @@
       "storedAt": "2026-01-21T22:56:32.946Z",
       "accessCount": 0,
       "lastAccessed": "2026-01-21T22:56:32.946Z"
+    },
+    "readme-doc-standards": {
+      "key": "readme-doc-standards",
+      "value": {
+        "summary": "Documentation standards for Gene Platform data source files in /home/claude/src/gene/docs/data/source.new/",
+        "frontmatter": {
+          "required_fields": [
+            "id",
+            "title",
+            "parent",
+            "last_updated",
+            "status",
+            "tags"
+          ],
+          "optional_fields": [
+            "world",
+            "category",
+            "subcategory",
+            "tier",
+            "databases"
+          ],
+          "field_details": {
+            "id": "kebab-case identifier (e.g., 'traditional-tcm', 'genetics-primary')",
+            "title": "Human-readable title",
+            "world": "Numeric category (1, 2, or null)",
+            "category": "Category name (e.g., 'traditional', 'genetics', 'compounds', 'pathways')",
+            "tier": "Priority tier (1, 2, 3)",
+            "subcategory": "Sub-category (e.g., 'tcm', 'natural-products')",
+            "parent": "Relative path to parent _index.md file (e.g., '../_index.md')",
+            "last_updated": "Date in YYYY-MM-DD format",
+            "status": "Document status (e.g., 'migrated')",
+            "tags": "Array of relevant tags",
+            "databases": "Array of database identifiers covered in the document"
+          }
+        },
+        "document_header": {
+          "structure": "After frontmatter, includes document metadata block",
+          "fields": [
+            "Document ID",
+            "Status",
+            "Owner",
+            "Last Updated",
+            "Version",
+            "Parent"
+          ],
+          "example": "**Document ID:** 43-21-TCM\n**Status:** Final\n**Owner:** Data Engineering\n**Last Updated:** January 2026\n**Version:** 1.0\n**Parent:** [../_index.md](../_index.md)"
+        },
+        "required_sections": {
+          "1_download_instructions": {
+            "section_name": "## Download",
+            "content": "Table with Database, Method, and URL/Command columns",
+            "includes": "Access requirements note at the end",
+            "example_table_headers": [
+              "Database",
+              "Method",
+              "URL/Command"
+            ]
+          },
+          "2_schema_definitions": {
+            "section_name": "## Schema",
+            "subsections": [
+              "### Core Fields",
+              "### Relationships"
+            ],
+            "core_fields_table": [
+              "Field",
+              "Type",
+              "Description",
+              "Example"
+            ],
+            "relationships_table": [
+              "Relation",
+              "Target",
+              "Cardinality"
+            ],
+            "additional": "May include Schema Overview section with entity definitions"
+          },
+          "3_glossary": {
+            "section_name": "## Glossary",
+            "structure": "Multiple tables organized by category",
+            "subsections": [
+              "Main terms table",
+              "### Domain-Specific Terms",
+              "### Acronyms"
+            ],
+            "term_table_headers": [
+              "Term",
+              "Definition",
+              "Example/Context"
+            ],
+            "acronym_table_headers": [
+              "Acronym",
+              "Expansion",
+              "Notes"
+            ]
+          },
+          "4_sample_data_sets": {
+            "section_name": "## Sample Data",
+            "includes": [
+              "### Example Record (JSON format)",
+              "### Sample Query Result (table format)"
+            ],
+            "example_json": "Shows representative data structure with key fields",
+            "example_table": "Shows sample query output with relevant columns"
+          },
+          "5_licensing_terms": {
+            "section_name": "## License",
+            "structure": "Comprehensive table listing all databases with license details",
+            "table_headers": [
+              "Database",
+              "License",
+              "Commercial Use",
+              "Attribution",
+              "Access"
+            ],
+            "includes": "Key Considerations summary at end grouping by license type"
+          },
+          "6_data_set_sizes": {
+            "section_name": "## Data Set Size",
+            "structure": "Table with Metric and Value columns",
+            "typical_metrics": [
+              "Individual database sizes",
+              "Total unique records",
+              "Total storage estimate",
+              "Last updated date"
+            ]
+          },
+          "7_data_format": {
+            "section_name": "## Data Format",
+            "structure": "Table with Format and Description columns",
+            "typical_entries": [
+              "Primary format(s)",
+              "Alternative format(s)",
+              "Specialized formats (e.g., structures, variants)",
+              "Encoding (UTF-8)"
+            ]
+          }
+        },
+        "other_standard_sections": {
+          "tl_dr": "## TL;DR - Brief executive summary paragraph",
+          "key_decisions": "## Key Decisions - Table with Decision, Choice, Rationale, Date columns",
+          "database_catalog": "## Database Catalog - Detailed entries for each database with standardized field tables",
+          "comparative_analysis": "## Comparative Analysis - Coverage comparisons, access methods, feature comparisons",
+          "integration_recommendations": "## Integration Recommendations - Priority tiers with rationale",
+          "dependencies": "## Dependencies - Table linking to related documents",
+          "references": "## References - Numbered academic citations",
+          "change_log": "## Change Log - Table with Version, Date, Author, Changes columns"
+        },
+        "database_entry_format": {
+          "structure": "Each database has a standardized info table",
+          "standard_fields": [
+            "URL",
+            "Maintainer/Content",
+            "Records",
+            "License",
+            "API",
+            "Data Format",
+            "Download",
+            "Update Frequency",
+            "Priority",
+            "Storage Estimate"
+          ],
+          "followed_by": "Key Features bullet points and Unique Value statement"
+        },
+        "formatting_conventions": {
+          "section_separators": "Use '---' horizontal rules between major sections",
+          "tables": "Use pipe-delimited markdown tables with header row",
+          "code_blocks": "Use fenced code blocks with language identifier (json, bash, etc.)",
+          "links": "Use relative paths for internal document links",
+          "emphasis": "Use **bold** for database names and key terms in text"
+        },
+        "analyzed_files": [
+          "/home/claude/src/gene/docs/data/source.new/databases/traditional/tcm.md",
+          "/home/claude/src/gene/docs/data/source.new/databases/compounds/natural-products.md",
+          "/home/claude/src/gene/docs/data/source.new/databases/genetics/primary.md",
+          "/home/claude/src/gene/docs/data/source.new/databases/pathways/primary.md"
+        ]
+      },
+      "metadata": {
+        "type": "documentation-standards",
+        "project": "gene-platform",
+        "path": "/home/claude/src/gene/docs/data/source.new/",
+        "research_date": "2026-01-22"
+      },
+      "storedAt": "2026-01-22T19:43:20.943Z",
+      "accessCount": 0,
+      "lastAccessed": "2026-01-22T19:43:20.943Z"
+    },
+    "readme-domains-views": {
+      "key": "readme-domains-views",
+      "value": "# Domains Folder Research Summary\n\n## 1. Domain Views vs Primary Data Storage\n\n**Key Distinction**: Domain documents are \"VIEW\" documents, not primary data storage.\n\n- **Primary Storage**: Located in `/databases/` folder, organized by data type:\n  - genetics/ - Genomic, variant, and molecular data\n  - traditional/ - TCM, Ayurveda, ethnobotanical knowledge\n  - nutrition/ - Nutrient composition and dietary data\n  - pathways/ - Biological pathways and networks\n  - literature/ - Scientific publications and evidence\n  - compounds/ - Chemical structures and properties\n\n- **Domain Views**: Located in `/domains/` folder, organized by HEALTH APPLICATION:\n  - Aggregate databases from primary storage\n  - Provide health-focused perspectives\n  - Reference databases across ALL THREE WORLDS\n  - Do NOT store primary data - only references and views\n\n## 2. How Domain Files Reference Databases Across THREE WORLDS\n\n### The THREE WORLDS Framework:\n\n**World 1: Genetics** - Modern genomic and molecular biology data\n- Human genome sequences and variants\n- Gene expression and regulation\n- Protein structures and interactions\n- Molecular pathways and networks\n- Clinical genomic associations\n\n**World 2: Traditional Medicine** - Time-tested healing knowledge\n- Traditional Chinese Medicine (TCM)\n- Ayurvedic medicine\n- Indigenous ethnobotanical knowledge\n- Historical therapeutic practices\n\n**World 3: Nutrition** - Evidence-based nutritional science\n- Nutrient composition databases\n- Dietary patterns and outcomes\n- Nutrigenomics and personalized nutrition\n- Food-drug interactions\n\n### Cross-World Referencing Pattern in Domain Files:\n\nDomain files reference databases via:\n1. **Dependencies section** - Lists related documents in other folders\n2. **Integration Recommendations** - Prioritized database integrations (Tier 1/2/3)\n3. **Database Catalog** - Detailed catalog of relevant databases with URLs, APIs, licenses\n4. **Cross-references** - Explicit links like `[primary.md](./../genetics/primary.md)`\n\nExample from mental-cognitive.md Dependencies:\n```\n| Document | Relationship |\n| [primary.md](./../pathways/primary.md) | Shared pathway sources |\n| [pharmaceuticals.md](./../compounds/pharmaceuticals.md) | Drug/compound overlap |\n```\n\n## 3. The 13 Health Application Domains and Their Purposes\n\n### Documented Domains (10 in _index.md):\n1. **Mental & Cognitive Health** (mental-cognitive.md)\n   - Neurodevelopmental conditions, psychiatric disorders\n   - Cognitive function, neurodegeneration\n   - 35+ databases: PGC, ChEMBL, DrugBank, Allen Brain Atlas, GTEx\n\n2. **Cardiovascular & Metabolic** (cardio-metabolic.md)\n   - Heart health, cholesterol, blood pressure\n   - Diabetes, metabolic syndrome\n   - ~88GB across 9 consortia: CARDIoGRAMplusC4D, GLGC, DIAGRAM, GIANT\n\n3. **Cancer & Oncology** (cancer-oncology.md)\n   - Cancer susceptibility, tumor genetics\n   - Treatment response, prevention\n   - COSMIC (38M+ mutations), GDC/TCGA (2.5PB), OncoKB, CIViC\n\n4. **Autoimmune & Inflammatory** (autoimmune.md)\n   - Autoimmune diseases, chronic inflammation\n   - Immune system disorders, hormone pathways\n   - 23 databases including IPD-IMGT/HLA (43K+ alleles), GWAS Catalog\n\n5. **Rare & Genetic Diseases** (rare.md)\n   - Monogenic disorders, rare diseases\n   - Genetic syndromes\n   - Orphanet (6,500+ diseases), ClinGen, DECIPHER, HPO, MONDO\n\n6. **Women's & Pediatric Health** (womens-pediatric.md)\n   - Reproductive health, pregnancy\n   - Pediatric conditions, developmental disorders\n\n7. **Microbiome & Gut Health** (microbiome.md)\n   - Gut microbiome, digestive disorders\n   - Nutrient absorption, gut-brain axis\n\n8. **Allergy & Pain Management** (allergy-pain.md)\n   - Allergies, sensitivities\n   - Pain syndromes, inflammatory pain\n\n9. **Sleep, Longevity & Nutrition** (sleep-longevity-nutri.md)\n   - Sleep disorders, aging\n   - Longevity pathways, nutritional genomics\n\n10. **Oral, Skin & Sensory Health** (oral-skin-sensory.md)\n    - Dental health, skin conditions\n    - Vision, hearing, sensory processing\n\n### Additional Domain Files Found (3 extra):\n11. **Clinical Biomarkers & Labs** (clinical-biomarkers-labs.md)\n    - Laboratory reference data, biomarker databases\n    - LOINC, MarkerDB, HMDB, CALIPER\n    - ~22GB across 21 databases\n\n12. **Clinical Environmental & Mitochondrial** (clinical-environmental-mito.md)\n    - Environmental factors, mitochondrial disorders\n\n13. **Community & Patient Networks** (community-patient-networks.md)\n    - Patient community resources, research networks\n\n## 4. Cross-Domain Considerations\n\n### Shared Biological Processes Spanning Multiple Domains:\n- **Inflammation** affects: cardiovascular, autoimmune, metabolic domains\n- **Methylation** impacts: mental health, cancer, aging\n- **Oxidative stress** relates to: cardiovascular, neurodegenerative, cancer domains\n\n### Recommendation from _index.md:\n\"Users should consult multiple domain views when researching complex conditions with multiple system involvement.\"\n\n## 5. Domain Document Structure Pattern\n\nEach domain document typically includes:\n1. **TL;DR** - Quick summary with key stats\n2. **Key Decisions** - Design choices with rationale and dates\n3. **Database Catalog** - Detailed database entries with:\n   - URL, Content, Records, License\n   - API availability, Update Frequency\n   - Priority tier (1/2/3), Storage Estimate\n4. **Schema** - Core entity fields and relationships\n5. **Data Set Size** - Storage metrics\n6. **Download** - Access methods and URLs\n7. **Sample Data** - Example records and queries\n8. **Glossary** - Domain-specific terms and acronyms\n9. **Dependencies** - Cross-references to other documents\n10. **Open Questions** - Unresolved issues\n11. **Change Log** - Version history\n\n## 6. Integration Philosophy\n\nThe domain views enable:\n1. **Cross-World Discovery** - Find connections between genetics, herbs, and nutrients\n2. **Multi-Modal Evidence** - Combine molecular, traditional, and nutritional evidence\n3. **Personalized Insights** - Integrate genetic profiles with therapeutic options\n4. **Research Innovation** - Identify novel questions at intersection of worlds\n\n## 7. Maintenance Protocol\n\nDomain views are updated when:\n- New databases are added to primary storage\n- Research reveals new domain-specific applications\n- Clinical guidelines change for domain-specific interventions\n- Cross-domain relationships are identified",
+      "metadata": {
+        "type": "research-findings",
+        "topic": "domains-folder-structure",
+        "researcher": "claude-researcher",
+        "date": "2026-01-22",
+        "files_analyzed": [
+          "_index.md",
+          "mental-cognitive.md",
+          "cardio-metabolic.md",
+          "cancer-oncology.md",
+          "autoimmune.md",
+          "rare.md",
+          "clinical-biomarkers-labs.md"
+        ],
+        "three_worlds": [
+          "genetics",
+          "traditional_medicine",
+          "nutrition"
+        ],
+        "domain_count": 13
+      },
+      "storedAt": "2026-01-22T19:43:40.572Z",
+      "accessCount": 0,
+      "lastAccessed": "2026-01-22T19:43:40.572Z"
+    },
+    "readme-folder-structure": {
+      "key": "readme-folder-structure",
+      "value": {
+        "title": "Data Source Catalog Folder Structure Inventory",
+        "root_path": "/home/claude/src/gene/docs/data/source.new",
+        "version": "2.0.0",
+        "last_updated": "2026-01-22",
+        "total_files": 116,
+        "total_directories": 14,
+        "framework": "THREE WORLDS Framework - integrates Genetics (World 1), Traditional Medicine (World 2), and Nutrition (World 3)",
+        "structure": {
+          "root": {
+            "path": "/home/claude/src/gene/docs/data/source.new",
+            "purpose": "Data Source Catalog root - comprehensive catalog of data sources for the Gene Platform organized by the THREE WORLDS framework",
+            "files": [
+              "_index.md"
+            ],
+            "file_count": 1
+          },
+          "databases": {
+            "path": "/home/claude/src/gene/docs/data/source.new/databases",
+            "purpose": "Primary data source collections organized by domain - contains 6 subdirectories for different database categories",
+            "files": [
+              "_index.md"
+            ],
+            "file_count": 1,
+            "subdirectories": {
+              "genetics": {
+                "path": "/home/claude/src/gene/docs/data/source.new/databases/genetics",
+                "world": "World 1",
+                "purpose": "Genetic variation, clinical annotations, and pharmacogenomics databases (dbSNP, ClinVar, gnomAD, PharmGKB, dbNSFP, GTEx, etc.)",
+                "files": [
+                  "_index.md",
+                  "population.md",
+                  "primary.md"
+                ],
+                "file_count": 3
+              },
+              "traditional": {
+                "path": "/home/claude/src/gene/docs/data/source.new/databases/traditional",
+                "world": "World 2",
+                "purpose": "Traditional medicine systems including TCM, Ayurveda, Kampo, and Western Herbal databases (BATMAN-TCM, HERB, TCMSID, IMPPAT, NPASS, etc.)",
+                "files": [
+                  "_index.md",
+                  "ayurveda.md",
+                  "global.md",
+                  "kampo.md",
+                  "tcm.md",
+                  "western-herbal.md"
+                ],
+                "file_count": 6
+              },
+              "nutrition": {
+                "path": "/home/claude/src/gene/docs/data/source.new/databases/nutrition",
+                "world": "World 3",
+                "purpose": "Nutritional composition, food chemistry, and phytochemical databases (FooDB, USDA FoodData Central, Phenol-Explorer, PhytoHub, HMDB)",
+                "files": [
+                  "_index.md"
+                ],
+                "file_count": 1
+              },
+              "pathways": {
+                "path": "/home/claude/src/gene/docs/data/source.new/databases/pathways",
+                "world": "Cross-world",
+                "purpose": "Biological pathways, disease mechanisms, and systems biology networks (Reactome, DisGeNET, KEGG, WikiPathways, STRING)",
+                "files": [
+                  "_index.md",
+                  "disease.md",
+                  "primary.md",
+                  "processes.md"
+                ],
+                "file_count": 4
+              },
+              "literature": {
+                "path": "/home/claude/src/gene/docs/data/source.new/databases/literature",
+                "world": "Cross-world",
+                "purpose": "Scientific literature sources for research articles and evidence synthesis (PubMed, PMC, OpenAlex, Semantic Scholar, Europe PMC)",
+                "files": [
+                  "_index.md",
+                  "abstracts-vs-fulltext.md",
+                  "coverage-analysis.md",
+                  "data-structures.md",
+                  "pipeline-design.md",
+                  "public-sources.md",
+                  "sources.md"
+                ],
+                "file_count": 7
+              },
+              "compounds": {
+                "path": "/home/claude/src/gene/docs/data/source.new/databases/compounds",
+                "world": "Cross-world",
+                "purpose": "Chemical compound databases for natural products, drugs, and bioactive molecules (COCONUT, LOTUS, DrugBank, ChEMBL, PubChem, ChEBI)",
+                "files": [
+                  "_index.md",
+                  "drug-metabolism.md",
+                  "natural-products.md",
+                  "pharmaceuticals.md"
+                ],
+                "file_count": 4
+              }
+            }
+          },
+          "domains": {
+            "path": "/home/claude/src/gene/docs/data/source.new/domains",
+            "purpose": "Health domain-specific views that organize genetic databases by health application areas - these are VIEW documents that reference databases by application area, not primary data storage",
+            "files": [
+              "_index.md",
+              "allergy-pain.md",
+              "autoimmune.md",
+              "cancer-oncology.md",
+              "cardio-metabolic.md",
+              "clinical-biomarkers-labs.md",
+              "clinical-environmental-mito.md",
+              "community-patient-networks.md",
+              "mental-cognitive.md",
+              "microbiome.md",
+              "oral-skin-sensory.md",
+              "rare.md",
+              "sleep-longevity-nutri.md",
+              "womens-pediatric.md"
+            ],
+            "file_count": 14,
+            "domain_categories": [
+              "Mental & Cognitive Health",
+              "Cardiovascular & Metabolic",
+              "Cancer & Oncology",
+              "Autoimmune & Inflammatory",
+              "Rare & Genetic Diseases",
+              "Women's & Pediatric Health",
+              "Microbiome & Gut Health",
+              "Allergy & Pain Management",
+              "Sleep, Longevity & Nutrition",
+              "Oral, Skin & Sensory Health"
+            ]
+          },
+          "operations": {
+            "path": "/home/claude/src/gene/docs/data/source.new/operations",
+            "purpose": "Data management and governance - operational documentation for working with Gene Platform data sources",
+            "files": [
+              "_index.md"
+            ],
+            "file_count": 1,
+            "subdirectories": {
+              "downloads": {
+                "path": "/home/claude/src/gene/docs/data/source.new/operations/downloads",
+                "purpose": "Bulk download guides and processing pipelines - methods for acquiring and processing large datasets",
+                "files": [
+                  "_index.md",
+                  "pathways-targets.md",
+                  "pharmaceuticals.md",
+                  "processing-pipeline.md",
+                  "traditional-medicine.md",
+                  "wikidata-bulk.md"
+                ],
+                "file_count": 6
+              },
+              "governance": {
+                "path": "/home/claude/src/gene/docs/data/source.new/operations/governance",
+                "purpose": "Legal frameworks, data licensing, and curation guidelines - compliance, quality control, and access policies",
+                "files": [
+                  "_index.md",
+                  "curation-framework.md",
+                  "data-access-legal.md"
+                ],
+                "file_count": 3
+              },
+              "integration": {
+                "path": "/home/claude/src/gene/docs/data/source.new/operations/integration",
+                "purpose": "Cross-references, APIs, and data integration methods - linking entities across databases and harmonizing data",
+                "files": [
+                  "_index.md",
+                  "alt-sources.md",
+                  "compound-pathway-linking.md",
+                  "integration-guide.md",
+                  "pathway-target-mapping.md",
+                  "size-estimates.md",
+                  "wikidata-master-reference.md",
+                  "wikidata-pharma.md",
+                  "wikidata-supplements.md",
+                  "wikidata-traditional.md",
+                  "wikipedia-wikidata.md",
+                  "xrefs.md"
+                ],
+                "file_count": 12
+              },
+              "schemas": {
+                "path": "/home/claude/src/gene/docs/data/source.new/operations/schemas",
+                "purpose": "Database schema documentation and specifications - complete field specifications, data types, relationships, and usage examples for all database tables",
+                "files": [
+                  "_index.md",
+                  "alphamissense-schema.md",
+                  "batman-tcm-schema.md",
+                  "binding-affinity-schema.md",
+                  "cbioportal-schema.md",
+                  "chebi-schema.md",
+                  "chembl-schema.md",
+                  "clinvar-schema.md",
+                  "coconut-schema.md",
+                  "dbnsfp-schema.md",
+                  "dbsnp-schema.md",
+                  "dbvar-schema.md",
+                  "dgidb-open-targets-schema.md",
+                  "disgenet-schema.md",
+                  "dr-dukes-schema.md",
+                  "dsld-nih.md",
+                  "encode-schema.md",
+                  "fda-regulatory-schema.md",
+                  "foodb.md",
+                  "gene-ontology-schema.md",
+                  "gmrepo-schema.md",
+                  "gnomad-schema.md",
+                  "gwas-catalog-schema.md",
+                  "hmp-schema.md",
+                  "hpo-schema.md",
+                  "imppat-schema.md",
+                  "intact-schema.md",
+                  "kampodb-schema.md",
+                  "kgml-schema.md",
+                  "lotus-schema.md",
+                  "mondo-schema.md",
+                  "open-food-facts-schema.md",
+                  "orphanet-ordo-schema.md",
+                  "pathway-formats.md",
+                  "pharmgkb-schema.md",
+                  "pubchem-schema.md",
+                  "reactome-schema.md",
+                  "ruvector-three-worlds-schema.md",
+                  "sample-data.md",
+                  "schemas-index.md",
+                  "schemas-navigation.md",
+                  "spliceai-schema.md",
+                  "string-schema.md",
+                  "unified-schema-analysis.md",
+                  "uniprot-idmapping-schema.md",
+                  "usda-fooddata-central.md",
+                  "wikidata-schema.md",
+                  "wikipathways-gpml-schema.md"
+                ],
+                "file_count": 48
+              }
+            }
+          },
+          "research": {
+            "path": "/home/claude/src/gene/docs/data/source.new/research",
+            "purpose": "Research priorities and analytical resources - evidence-based research documents, literature reviews, and priority analyses that inform the platform's approach",
+            "files": [
+              "_index.md",
+              "interventions-priority.md",
+              "literature-priority.md",
+              "schema-gaps.md",
+              "world1-schema-research.md"
+            ],
+            "file_count": 5
+          }
+        },
+        "folder_relationships": {
+          "databases_to_domains": "Databases provide the raw data sources; Domains provide health-focused views that aggregate and reference databases by application area",
+          "databases_to_operations": "Operations contains procedures for downloading, integrating, governing, and documenting the databases",
+          "three_worlds_integration": {
+            "world1_genetics": "databases/genetics contains the core genetic/genomic databases",
+            "world2_traditional": "databases/traditional contains traditional medicine system databases",
+            "world3_nutrition": "databases/nutrition contains nutritional and food chemistry databases",
+            "cross_world": "databases/pathways, databases/literature, and databases/compounds bridge all three worlds"
+          },
+          "operations_workflow": "downloads -> integration -> schemas, with governance providing oversight throughout"
+        },
+        "implementation_tiers": {
+          "tier1_mvp": [
+            "dbSNP",
+            "ClinVar",
+            "gnomAD",
+            "PharmGKB",
+            "BATMAN-TCM",
+            "HERB",
+            "TCMSID",
+            "IMPPAT",
+            "FooDB",
+            "USDA",
+            "Reactome",
+            "DisGeNET",
+            "PubMed",
+            "COCONUT",
+            "LOTUS"
+          ],
+          "tier2_post_mvp": [
+            "dbNSFP",
+            "GTEx",
+            "GWAS Catalog",
+            "NPASS",
+            "KampoDB",
+            "Phenol-Explorer",
+            "PhytoHub",
+            "KEGG",
+            "WikiPathways",
+            "PMC",
+            "OpenAlex",
+            "DrugBank",
+            "ChEMBL"
+          ],
+          "tier3_future": [
+            "UK Biobank",
+            "OMIM",
+            "Regional databases",
+            "BioCyc",
+            "Commercial databases"
+          ]
+        },
+        "file_count_summary": {
+          "root": 1,
+          "databases": 26,
+          "domains": 14,
+          "operations": 70,
+          "research": 5,
+          "total": 116
+        }
+      },
+      "metadata": {
+        "type": "folder-structure-inventory",
+        "scope": "data-source-catalog",
+        "created": "2026-01-22"
+      },
+      "storedAt": "2026-01-22T19:43:59.708Z",
+      "accessCount": 0,
+      "lastAccessed": "2026-01-22T19:43:59.708Z"
+    },
+    "readme-operations": {
+      "key": "readme-operations",
+      "value": "# Operations Folder Research Findings\n\n## Executive Summary\n\nThe `/operations` folder contains operational documentation for the Gene Platform's data infrastructure, providing practical guidance for data acquisition, integration, governance, and schema documentation. It is the \"execution layer\" that enables all THREE WORLDS (Genetics, Traditional Medicine, Nutritional Science) to function as a unified knowledge base.\n\n## Folder Structure\n\n```\noperations/\n├── _index.md           # Overview and navigation\n├── downloads/          # Bulk data acquisition procedures\n├── governance/         # Quality, compliance, and stewardship\n├── integration/        # ETL and cross-reference harmonization\n└── schemas/            # Data models and validation rules (47+ schemas)\n```\n\n---\n\n## 1. Downloads - Data Acquisition Procedures\n\n**Purpose:** Comprehensive guides for bulk downloading and processing data from all public sources.\n\n### Key Documents:\n- `processing-pipeline.md` - Master ETL pipeline architecture\n- `pharmaceuticals.md` - DrugBank, ChEMBL, PubChem, PharmGKB, DGIdb, Open Targets\n- `traditional-medicine.md` - BATMAN-TCM, TCMBank, HERB, IMPPAT, KampoDB, Dr. Duke's, LOTUS\n- `pathways-targets.md` - Reactome, WikiPathways, KEGG pathway data\n- `wikidata-bulk.md` - WikiData bulk download and processing\n\n### Three Worlds Coverage:\n\n| World | Data Sources | Storage Range |\n|-------|--------------|---------------|\n| WORLD 1: Genetics | dbSNP, ClinVar, gnomAD, GWAS Catalog | 15GB - 700GB |\n| WORLD 2: Traditional Medicine | BATMAN-TCM, IMPPAT, KampoDB, Dr. Duke's | 5-10GB combined |\n| WORLD 3: Nutrition | DSLD, FooDB, USDA FoodData Central | Varies |\n\n### Storage Tiers:\n- **MVP**: ~65 GB total\n- **Standard**: ~165 GB total\n- **Comprehensive**: ~650 GB total\n- **Full (with gnomAD)**: ~2.2 TB total\n\n### Pipeline Architecture:\n1. Download Layer (wget/curl, AWS CLI, APIs)\n2. Decompression (pigz, lbzip2, xz)\n3. Streaming Parsers (ijson, lxml, cyvcf2)\n4. Filter/Transform Layer\n5. Load Layer (PostgreSQL COPY, RuVector batch)\n6. Index Layer (HNSW vectors, B-tree)\n\n---\n\n## 2. Governance - Quality, Compliance, Stewardship\n\n**Purpose:** Legal frameworks, licensing compliance, and data quality assurance.\n\n### Key Documents:\n- `curation-framework.md` - Data sources pruning and quality tiers\n- `data-access-legal.md` - Legal considerations and risk assessment\n\n### Curation Framework:\n\n| Pruning Reason | Count |\n|----------------|-------|\n| Commercial/Paid License | 18 |\n| Controlled Access | 15 |\n| Legal/Scraping Risk | 12 |\n| Out of Scope | 24 |\n| Redundant/Superseded | 20 |\n| Defunct/Unavailable | 7 |\n| Low Value | 18 |\n| **TOTAL PRUNABLE** | **114** |\n| **KEEP** | **~126** |\n\n### Data Access Tiers:\n1. **Public** - Minimal restrictions (CC0, CC BY)\n2. **Registered** - Requires account/terms acceptance\n3. **Controlled** - Requires application/review\n4. **Restricted** - Limited collaborators\n\n### License Categories Supporting THREE WORLDS:\n\n| World | Key Sources | Licenses | Commercial Use |\n|-------|-------------|----------|----------------|\n| Genetics | gnomAD, ClinVar, dbSNP | Public domain | Yes |\n| Traditional Medicine | Dr. Duke's, LOTUS | CC0 | Yes |\n| Traditional Medicine | BATMAN-TCM | CC BY-NC 4.0 | Contact required |\n| Traditional Medicine | IMPPAT | CC BY 4.0 | Yes |\n| Nutrition | DSLD, USDA | CC0/Public domain | Yes |\n\n### Risk Assessment:\n- **LOW**: ClinicalTrials.gov, AACT, PROMIS, Open Humans\n- **MEDIUM**: Wearable APIs, Health Connect, Fitabase\n- **HIGH**: Reddit, ConsumerLab, Labdoor (avoid/partnership only)\n\n---\n\n## 3. Integration - ETL and Harmonization\n\n**Purpose:** Cross-referencing between databases, API integration, and identifier mapping.\n\n### Key Documents:\n- `xrefs.md` - Master cross-reference guide (UniProt, GO, PMC, Europe PMC, OpenAlex, NCBI ELink)\n- `integration-guide.md` - Traditional Medicine -> Genes -> Pathways pipeline\n- `wikidata-*.md` - WikiData integration files\n- `alt-sources.md` - Alternative data sources\n\n### Hub Identifiers (Canonical):\n| Domain | Hub Identifier | Coverage |\n|--------|---------------|----------|\n| Proteins | UniProt ID | 286 databases cross-referenced |\n| Genes | NCBI Gene ID (Entrez) | Universal in genomics |\n| Compounds | InChIKey | Structure-based, universal |\n| Diseases | MONDO | Best cross-reference coverage |\n| Pathways | Reactome | Best curation quality |\n\n### Three Worlds Integration Flow:\n```\nTraditional Medicine DB -> PubChem CID -> UniProt Target -> Reactome Pathway\n```\n\n### Cross-Reference Matrix:\n| Source | PMID | DOI | Gene ID | UniProt | GO | rsID |\n|--------|------|-----|---------|---------|----|----- |\n| PubMed | - | Y | Via ELink | Via ELink | N | Via ELink |\n| UniProt | Y | N | Y | - | Y | N |\n| Gene Ontology | Y | N | Y | Y | - | N |\n| Wikidata | Y | Y | Y | Y | Partial | Y |\n\n### Integration Priority (Phases):\n1. **Phase 1 (MVP)**: BATMAN-TCM, IMPPAT, Reactome API, UniProt API\n2. **Phase 2**: KampoDB, ETCM, Dr. Duke's, DSLD\n3. **Phase 3**: HERB 2.0, WikiPathways, KEGG, PharmGKB\n\n---\n\n## 4. Schemas - Data Models and Validation\n\n**Purpose:** Database schema documentation for all data sources (~47+ schema files).\n\n### Key Documents:\n- `ruvector-three-worlds-schema.md` - **MASTER SCHEMA** for THREE WORLDS architecture\n- `unified-schema-analysis.md` - Cross-database schema patterns\n- Individual schemas: chembl, clinvar, gnomad, kegg, reactome, etc.\n\n### RuVector THREE WORLDS Architecture:\n\n| World | Entity Type | Count | Storage Strategy |\n|-------|-------------|-------|------------------|\n| WORLD 1: Genetics | SNPs/Variants | ~1.2B | Domain-sharded, quantized |\n| WORLD 1: Genetics | Genes | ~25K | Hot cache, full precision |\n| WORLD 2: Traditional Medicine | Compounds (NP) | ~800K | HNSW-indexed, structure vectors |\n| WORLD 2: Traditional Medicine | Formulas | ~60K | Hyperedge patterns |\n| WORLD 3: Nutrition | Foods | ~380K | Multi-vector (composition + embedding) |\n| Cross-Domain | Pathways | ~10K | Graph topology, hyperedge-native |\n| Cross-Domain | Diseases | ~80K | Ontology hierarchy in graph |\n\n### RuVector Components:\n- **VectorDB**: HNSW-indexed (150x faster), metadata filtering\n- **CodeGraph**: Native hyperedges for N-ary relations\n- **RuvectorCluster**: Raft consensus, auto-rebalancing\n- **SONA Engine**: Micro-LoRA adaptation (<0.1ms)\n- **NeuralSubstrate**: Semantic drift detection\n\n### Node Types by World:\n\n**WORLD 1 - Genetics:**\n- GeneNode (ncbi_gene_id, hgnc_symbol, ensembl_id, uniprot_ids)\n- VariantNode (rsid, clinvar_vcv, gnomad_id, SPDI format)\n- HaplotypeNode (star alleles, activity scores)\n\n**WORLD 2 - Traditional Medicine:**\n- CompoundNode (inchikey, smiles, pubchem_cid, np_likeness)\n- OrganismNode (ncbi_taxonomy_id, traditional_systems)\n- FormulaNode (TCM/Ayurveda/Kampo compositions)\n\n**WORLD 3 - Nutrition:**\n- FoodNode (USDA/FooDB/OpenFoodFacts IDs, nutrient profiles)\n- NutrientNode (vitamins, minerals, phytochemicals)\n\n**Cross-Domain:**\n- DiseaseNode (MONDO as hub, OMIM, Orphanet cross-refs)\n- PathwayNode (Reactome as hub, WikiPathways, KEGG)\n- PhenotypeNode (HPO terms)\n\n### Edge Types (Binary):\n- HAS_VARIANT (Gene -> Variant)\n- ASSOCIATED_WITH (Variant -> Disease)\n- INHIBITS/ACTIVATES (Compound -> Gene/Protein)\n- PRODUCES (Organism -> Compound)\n- PARTICIPATES_IN (Gene -> Pathway)\n- METABOLIZED_BY (Compound -> Gene - pharmacogenomics)\n\n### Hyperedge Types (N-ary):\n- FORMULA_COMPOSITION (Formula + ingredients + dosages)\n- PATHWAY_REACTION (Substrates + enzymes + products)\n- PHARMACOGENOMIC_INTERACTION (Drug + gene + variant + phenotype)\n- NUTRIENT_PROFILE (Food + multiple nutrients)\n- DRUG_DRUG_GENE_INTERACTION (Polypharmacy)\n\n### Embedding Strategy:\n| Entity | Dimensions | Content Source |\n|--------|------------|----------------|\n| Gene semantic | 384 | Description + GO + pathways |\n| Variant population | 8 | Population frequencies |\n| Compound structure | 2048 | Morgan fingerprint |\n| Compound semantic | 384 | Name + class + activities |\n| Food nutrient | 50 | Normalized nutrient profile |\n| Disease semantic | 384 | Name + phenotypes |\n\n### Sharding Strategy:\n- Shards 0-3: GENETICS_HOT (clinical variants, full precision)\n- Shards 4-7: GENETICS_COLD (rare variants, int8 quantized)\n- Shards 8-9: GENES\n- Shards 10-11: COMPOUNDS\n- Shards 12-13: FOODS\n- Shards 14-15: ONTOLOGIES (diseases, phenotypes, pathways)\n\n---\n\n## How Operations Supports THREE WORLDS\n\n### World 1: Genetics\n- **Downloads**: dbSNP, ClinVar, gnomAD, GWAS Catalog bulk procedures\n- **Governance**: Public domain/CC licensing for most sources\n- **Integration**: UniProt ID Mapping, NCBI ELink cross-references\n- **Schemas**: GeneNode, VariantNode, HaplotypeNode with HNSW indexing\n\n### World 2: Traditional Medicine\n- **Downloads**: BATMAN-TCM, IMPPAT, KampoDB, Dr. Duke's, LOTUS\n- **Governance**: CC BY/CC0 for most; BATMAN-TCM requires contact for commercial\n- **Integration**: PubChem as hub, UniProt for targets, Reactome for pathways\n- **Schemas**: CompoundNode, OrganismNode, FormulaNode with hyperedge patterns\n\n### World 3: Nutritional Science\n- **Downloads**: DSLD, FooDB, USDA FoodData Central\n- **Governance**: Public domain/CC0 for most nutritional databases\n- **Integration**: FooDB compound links, nutrient-to-pathway mapping\n- **Schemas**: FoodNode, NutrientNode with multi-vector profiles\n\n### Cross-World Integration\n- **Downloads**: Reactome, WikiPathways, KEGG for pathway data\n- **Governance**: Quality tiers ensure only reliable sources\n- **Integration**: MONDO for diseases, Reactome for pathways as universal hubs\n- **Schemas**: Hyperedges enable N-ary relationships across all three worlds\n\n---\n\n## Key Metrics\n\n| Category | Metric |\n|----------|--------|\n| Schema files | 47+ |\n| Databases evaluated | 240 |\n| Databases retained | ~126 |\n| Cross-reference hub DBs | 286 (via UniProt) |\n| Total potential storage | 2.2 TB (full) |\n| HNSW search improvement | 150x-12,500x faster |\n| Expected query latency | 5ms (lookup) to 500ms (cross-shard) |\n",
+      "metadata": {
+        "category": "readme-research",
+        "folder": "operations",
+        "scope": "downloads-governance-integration-schemas",
+        "three_worlds": true,
+        "timestamp": "2026-01-22"
+      },
+      "storedAt": "2026-01-22T19:44:12.922Z",
+      "accessCount": 0,
+      "lastAccessed": "2026-01-22T19:44:12.922Z"
+    },
+    "readme-three-worlds": {
+      "key": "readme-three-worlds",
+      "value": {
+        "title": "THREE WORLDS Content Framework",
+        "description": "Comprehensive data source organization for the Gene Platform",
+        "structure": {
+          "world_1_genetics": {
+            "name": "World 1 - Genetics",
+            "frontmatter_key": "world: 1",
+            "catalog_value": "world_1_genetics",
+            "description": "Genetic variation, functional annotation, population genetics, and clinical genomics databases",
+            "categories": {
+              "primary": {
+                "tier": 1,
+                "databases": [
+                  "dbSNP",
+                  "ClinVar",
+                  "gnomAD v4.1",
+                  "dbNSFP v4.9",
+                  "AlphaMissense"
+                ],
+                "description": "Core variant databases for MVP"
+              },
+              "population": {
+                "tier": 2,
+                "databases": [
+                  "TOPMed BRAVO",
+                  "All of Us",
+                  "ALFA",
+                  "UK Biobank",
+                  "GenomeAsia 100K",
+                  "H3Africa"
+                ],
+                "description": "Population-specific allele frequencies"
+              },
+              "functional_annotation": {
+                "tier": 2,
+                "databases": [
+                  "dbNSFP v4.9 (35 prediction scores)",
+                  "AlphaMissense (71M variants)",
+                  "CADD",
+                  "SpliceAI",
+                  "REVEL",
+                  "EVE"
+                ],
+                "description": "Variant effect prediction tools"
+              },
+              "epigenetics": {
+                "tier": 2,
+                "databases": [
+                  "ENCODE 4",
+                  "Roadmap Epigenomics",
+                  "IHEC",
+                  "MethBank 4.0",
+                  "4D Nucleome",
+                  "FANTOM5"
+                ],
+                "description": "Epigenetic data and regulatory elements"
+              },
+              "structural_variants": {
+                "tier": 2,
+                "databases": [
+                  "gnomAD-SV v4.1",
+                  "DGV",
+                  "dbVar",
+                  "DECIPHER",
+                  "SV4GD",
+                  "HGSVC"
+                ],
+                "description": "Structural variation databases"
+              }
+            }
+          },
+          "world_2_traditional": {
+            "name": "World 2 - Traditional Medicine",
+            "frontmatter_key": "world: 2",
+            "catalog_value": "world_2_traditional",
+            "description": "Traditional medicine systems including TCM, Ayurveda, Kampo, Western Herbal, and global practices",
+            "subcategories": {
+              "tcm": {
+                "name": "Traditional Chinese Medicine",
+                "tier": 1,
+                "databases": [
+                  "TCMSP",
+                  "TCMID",
+                  "SymMap",
+                  "ETCM",
+                  "HERB",
+                  "HIT 2.0",
+                  "TM-MC",
+                  "TCMBank"
+                ],
+                "description": "Chinese herbal medicine databases with herb-compound-target-disease relationships"
+              },
+              "ayurveda": {
+                "name": "Ayurvedic Medicine",
+                "tier": 2,
+                "databases": [
+                  "IMPPAT 2.0",
+                  "AyurMedBase",
+                  "InDiaMed",
+                  "AYUSH databases"
+                ],
+                "description": "Indian traditional medicine databases"
+              },
+              "kampo": {
+                "name": "Kampo Medicine",
+                "tier": 2,
+                "databases": [
+                  "KCONSORT",
+                  "Kampo Medicine Database",
+                  "jSTAGE research"
+                ],
+                "description": "Japanese traditional medicine databases"
+              },
+              "western_herbal": {
+                "name": "Western Herbal Medicine",
+                "tier": 2,
+                "databases": [
+                  "NAPRALERT",
+                  "Dr. Duke's Phytochemical Database",
+                  "HerbMedPro",
+                  "EMA HMPC monographs"
+                ],
+                "description": "Western herbal and phytotherapy databases"
+              },
+              "global": {
+                "name": "Global Traditional Medicine",
+                "tier": 3,
+                "regions": {
+                  "african": {
+                    "databases": [
+                      "ANPDB (11,063 compounds)",
+                      "SANCDB",
+                      "p-ANAPL",
+                      "ETM-DB",
+                      "AfroDb"
+                    ],
+                    "description": "African traditional medicine databases"
+                  },
+                  "latin_american": {
+                    "databases": [
+                      "NuBBEDB",
+                      "BIOFACQUIM",
+                      "NuBBE[KG]",
+                      "MAMPDB"
+                    ],
+                    "description": "Latin American natural products databases"
+                  },
+                  "global_aggregators": {
+                    "databases": [
+                      "COCONUT 2.0 (695K compounds, CC0)",
+                      "LOTUS",
+                      "NPASS",
+                      "SuperNatural 3.0"
+                    ],
+                    "description": "Global natural product aggregator databases"
+                  }
+                }
+              }
+            }
+          },
+          "world_3_nutrition": {
+            "name": "World 3 - Nutrition",
+            "frontmatter_key": "world: 3",
+            "catalog_value": "world_3_nutrition",
+            "description": "Nutritional composition, food chemistry, and phytochemical content databases",
+            "categories": {
+              "tier_1_mvp": {
+                "databases": [
+                  "FooDB (800+ foods, 70K+ compounds)",
+                  "USDA FoodData Central (350K+ foods)"
+                ],
+                "description": "Core food composition databases"
+              },
+              "tier_2_specialized": {
+                "databases": [
+                  "Phenol-Explorer (500+ polyphenols)",
+                  "PhytoHub (1,800+ metabolites)",
+                  "HMDB (114K+ metabolites)",
+                  "FRIDA"
+                ],
+                "description": "Specialized phytochemical and metabolite databases"
+              },
+              "tier_3_regional": {
+                "databases": [
+                  "EuroFIR",
+                  "AUSNUT",
+                  "UK Food Composition",
+                  "FoodOmicsGR"
+                ],
+                "description": "Regional food composition databases"
+              }
+            }
+          }
+        },
+        "cross_world_resources": {
+          "pathways": {
+            "frontmatter_key": "world: null",
+            "description": "Biological pathways connecting all three worlds",
+            "tier_1": [
+              "Reactome (2,600+ pathways)",
+              "DisGeNET (1.1M gene-disease associations)"
+            ],
+            "tier_2": [
+              "KEGG Pathway",
+              "WikiPathways",
+              "PathwayCommons",
+              "STRING",
+              "SIGNOR",
+              "PANTHER",
+              "MSigDB"
+            ],
+            "tier_3": [
+              "BioCyc"
+            ],
+            "integration_role": "Gene -> Pathway -> Disease mapping; bridges genetics, traditional medicine targets, and nutrition effects"
+          },
+          "literature": {
+            "frontmatter_key": "world: null",
+            "description": "Scientific literature for evidence synthesis across all worlds",
+            "tier_1": [
+              "PubMed (36M+ citations)"
+            ],
+            "tier_2": [
+              "PubMed Central",
+              "OpenAlex",
+              "Semantic Scholar",
+              "Europe PMC",
+              "ClinicalTrials.gov"
+            ],
+            "tier_3": [
+              "CORE",
+              "arXiv",
+              "bioRxiv"
+            ],
+            "integration_role": "Evidence extraction for gene-disease-compound associations"
+          },
+          "compounds": {
+            "frontmatter_key": "world: null",
+            "description": "Chemical compound databases bridging traditional medicine and nutrition",
+            "tier_1": [
+              "COCONUT (400K+ natural products)",
+              "LOTUS (750K+ compound-organism pairs)"
+            ],
+            "tier_2": [
+              "DrugBank",
+              "ChEMBL (2.3M compounds)",
+              "PubChem (110M+ compounds)",
+              "ChEBI"
+            ],
+            "tier_3": [
+              "ZINC",
+              "NuBBE DB",
+              "StreptomeDB",
+              "Super Natural II"
+            ],
+            "integration_role": "Chemical structure lookup, compound-target mapping, bioactivity data"
+          }
+        },
+        "tiering_system": {
+          "tier_1": {
+            "name": "MVP/Critical",
+            "description": "Essential databases for minimum viable product launch",
+            "priority": "highest"
+          },
+          "tier_2": {
+            "name": "High Value",
+            "description": "Important databases to integrate post-MVP",
+            "priority": "medium"
+          },
+          "tier_3": {
+            "name": "Enrichment",
+            "description": "Specialized/regional databases for comprehensive coverage",
+            "priority": "lower"
+          }
+        },
+        "frontmatter_schema": {
+          "world_assignment": "world: 1 | 2 | 3 | null",
+          "tier_assignment": "tier: 1 | 2 | 3",
+          "category": "category: genetics | traditional | nutrition | pathways | literature | compounds",
+          "subcategory": "subcategory: tcm | ayurveda | kampo | western-herbal | global (for World 2)",
+          "catalog_schema": {
+            "world_values": [
+              "world_1_genetics",
+              "world_2_traditional",
+              "world_3_nutrition"
+            ],
+            "tier_values": [
+              "tier_1",
+              "tier_2",
+              "tier_3"
+            ],
+            "primary_domain": [
+              "genetics",
+              "traditional",
+              "nutrition",
+              "pathways",
+              "literature",
+              "compounds"
+            ]
+          }
+        },
+        "integration_workflow": {
+          "genetics_to_pathways": "User Variants (VCF) -> Affected Genes -> Reactome/KEGG Pathways -> DisGeNET Diseases",
+          "traditional_to_pathways": "TCM Herbs (HERB, BATMAN-TCM) -> Compound Targets -> Pathways -> Disease Mechanisms",
+          "nutrition_to_pathways": "Foods (FooDB, USDA) -> Compounds -> Gene Targets -> Pathways -> Health Benefits",
+          "cross_world_example": "Alzheimer's Disease: APOE e4 (W1) + Ginkgo flavonoids (W2) + Omega-3 (W3) -> Integrated pathway analysis"
+        },
+        "file_locations": {
+          "base_path": "/home/claude/src/gene/docs/data/source.new/",
+          "index_files": [
+            "databases/_index.md",
+            "databases/genetics/_index.md",
+            "databases/traditional/_index.md",
+            "databases/nutrition/_index.md",
+            "databases/pathways/_index.md",
+            "databases/literature/_index.md",
+            "databases/compounds/_index.md"
+          ],
+          "traditional_subcategories": [
+            "databases/traditional/tcm.md",
+            "databases/traditional/ayurveda.md",
+            "databases/traditional/kampo.md",
+            "databases/traditional/western-herbal.md",
+            "databases/traditional/global.md"
+          ],
+          "genetics_files": [
+            "databases/genetics/primary.md",
+            "databases/genetics/population.md"
+          ],
+          "catalog": "_catalog.yaml"
+        }
+      },
+      "metadata": {
+        "type": "research_findings",
+        "domain": "data_architecture",
+        "project": "gene_platform",
+        "date": "2026-01-22"
+      },
+      "storedAt": "2026-01-22T19:44:48.453Z",
+      "accessCount": 0,
+      "lastAccessed": "2026-01-22T19:44:48.453Z"
     }
   },
   "version": "3.0.0"

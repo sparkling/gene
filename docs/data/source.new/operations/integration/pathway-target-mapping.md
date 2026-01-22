@@ -1620,6 +1620,135 @@ To link a compound to genes via pathways:
 
 ---
 
+## Download
+
+| Database | Method | Endpoint/URL |
+|----------|--------|-------------|
+| Reactome | REST API | https://reactome.org/ContentService/ |
+| Reactome | SQL Dump | ftp://ftp.reactome.org/Reactome/ |
+| KEGG | REST API | https://www.kegg.jp/kegg/rest/keggapi.html |
+| KEGG | FTP Download | ftp://ftp.kegg.jp/pub/kegg/genes/ |
+| WikiPathways | REST API | https://webservice.wikipathways.org/ |
+| UniProt | REST API | https://rest.uniprot.org/ |
+| UniProt | FASTA Download | https://www.uniprot.org/uniprotkb/ |
+| PubChem | REST API | https://pubchem.ncbi.nlm.nih.gov/rest/pug/ |
+| STRING | REST API | https://string-db.org/api/ |
+
+---
+
+## Data Format
+
+| Format | Database | Description |
+|--------|----------|-------------|
+| JSON | Reactome, UniProt, KEGG | Structured REST responses |
+| SPARQL | All RDF-compliant | Query language for linked data |
+| KGML | KEGG | Pathway markup format |
+| SBML | Reactome | Systems Biology Markup Language |
+| XML | UniProt, PubChem | Hierarchical structure |
+| TSV | All | Tab-separated for bulk data |
+| FASTA | UniProt | Sequence format |
+| RDF/OWL | WikiPathways | Semantic web representation |
+
+---
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Source |
+|-------|------|-------------|--------|
+| pathway_id | String | Unique pathway identifier | KEGG: hsa04260, Reactome: R-HSA-1234 |
+| pathway_name | String | Descriptive pathway name | Chemokine signaling pathway |
+| pathway_category | String | Pathway classification | Signal transduction, Metabolism |
+| protein_id | String | UniProt or Ensembl protein ID | P35354 (UniProt) or ENSP00000001 |
+| protein_name | String | Gene/protein symbol | COX2, TNF |
+| protein_description | String | Full protein name | Cyclooxygenase-2, Tumor necrosis factor |
+| gene_id | String | Ensembl gene ID | ENSG00000073756 |
+| interaction_type | String | Type of relationship | "enzymatic_reaction", "binding", "phosphorylation" |
+| stoichiometry | String | Ratio in reaction | "1:1", "2:3" |
+| species | String | Organism taxonomy | "Homo sapiens" |
+| evidence_score | Float | Confidence of annotation (0-1) | 0.95 |
+| data_source | String | Originating database | "Reactome", "KEGG", "STRING" |
+
+### Relationships
+
+| From | To | Type | Via |
+|------|-----|------|-----|
+| Pathway | Protein | participates_in | Reactome Events |
+| Protein | Gene | encodes | UniProt |
+| Protein | Protein | interacts_with | STRING |
+| Pathway | Disease | implicated_in | Reactome Diseases |
+
+---
+
+## Sample Data
+
+### JSON Format
+
+```json
+{
+  "pathway": {
+    "id": "hsa04260",
+    "name": "Chemokine signaling pathway",
+    "category": "Signal transduction",
+    "source": "KEGG",
+    "proteins": [
+      {
+        "uniprot_id": "P35354",
+        "gene_symbol": "COX2",
+        "ensembl_id": "ENSG00000073756",
+        "protein_name": "Cyclooxygenase-2",
+        "interactions": [
+          {
+            "with_protein": "Q9BXM7",
+            "interaction_type": "downstream_target",
+            "evidence": 0.92,
+            "source": "STRING"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### Query Result Table
+
+| Pathway | Gene Symbol | UniProt ID | Protein Name | Interaction Type | Evidence | Data Source |
+|---------|------------|-----------|--------------|-----------------|----------|-----------|
+| hsa04260 | CCL2 | P13500 | C-C motif chemokine ligand 2 | ligand | 0.98 | KEGG |
+| hsa04260 | CCR2 | P41597 | C-C chemokine receptor 2 | receptor | 0.95 | STRING |
+| R-HSA-109704 | ADORA2A | P29274 | Adenosine receptor A2a | signaling | 0.92 | Reactome |
+
+---
+
+## License
+
+| Database | License | Commercial Use | Citation |
+|----------|---------|-----------------|----------|
+| Reactome | CC BY 4.0 | Yes | Required |
+| KEGG | Academic/Commercial | Yes (paid tier) | Required |
+| WikiPathways | CC BY 4.0 | Yes | Required |
+| UniProt | CC BY 4.0 | Yes | Required |
+| PubChem | CC0 1.0 | Yes | Recommended |
+| STRING | CC BY 4.0 | Yes | Required |
+
+---
+
+## Data Set Size
+
+| Resource | Records | Compressed Size | Uncompressed Size | Format |
+|----------|---------|-----------------|-------------------|--------|
+| Reactome Pathways | 2,700+ | 500 MB | 3 GB | JSON/RDF |
+| Reactome Reactions | 14K+ | 600 MB | 4 GB | JSON |
+| KEGG Pathways | 600+ | 200 MB | 1.5 GB | KGML |
+| UniProt Human | 21K+ proteins | 2 GB | 12 GB | XML/FASTA |
+| WikiPathways | 2,800+ | 300 MB | 2 GB | GPML |
+| STRING (Human) | 19K+ proteins | 5 GB | 15 GB | TSV |
+| **Integrated pathway data** | **~50K records** | **~8 GB** | **~37 GB** | - |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

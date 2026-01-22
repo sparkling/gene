@@ -644,6 +644,135 @@ response = session.get('https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/9
 
 ---
 
+## Download
+
+| Database | Method | Access Point |
+|----------|--------|--------------|
+| BATMAN-TCM | Bulk TSV | http://bionet.ncpsb.org.cn/batman-tcm/download.php |
+| TCMBank | JSON/CSV | https://tcmbank.cn/ |
+| ETCM | Web Interface | http://www.tcmip.cn/ETCM/ |
+| IMPPAT | Bulk Data | http://imppat.jcbose.ac.in/ |
+| KEGG | FTP Download | ftp://ftp.kegg.jp/pub/ |
+| Reactome | SQL Dump | ftp://ftp.reactome.org/Reactome/ |
+| ChEMBL | SQL Dump | ftp://ftp.ebi.ac.uk/pub/databases/chembl/ |
+| DrugBank | XML/TSV | https://www.drugbank.ca/downloads |
+| UniProt | FASTA/XML | https://www.uniprot.org/downloads/ |
+
+---
+
+## Data Format
+
+| Format | Database | Characteristics |
+|--------|----------|-----------------|
+| TSV | BATMAN-TCM, ETCM | Simple columnar format, easy to parse |
+| JSON | IMPPAT, TCMBank, APIs | Structured, nested data support |
+| CSV | Multiple sources | Spreadsheet compatible |
+| XML | DrugBank, UniProt | Rich annotation, hierarchical |
+| SQL | ChEMBL, Reactome | Database dumps, indexed retrieval |
+| FASTA | UniProt | Sequence format for proteins |
+| KGML | KEGG | Pathway visualization format |
+
+---
+
+## Schema
+
+### Size Metrics
+
+| Metric | Description | Unit |
+|--------|-------------|------|
+| Compressed Size | File size after gzip compression | MB/GB |
+| Uncompressed Size | Raw file size before compression | MB/GB |
+| Record Count | Number of entities/rows in dataset | Count |
+| Download Time | Estimated transfer time at 10 Mbps | Minutes |
+| Working Space | Temporary storage during processing | MB/GB |
+| Indexed Size | Database size with indices | MB/GB |
+
+### Database Categories
+
+| Category | Typical Compressed Size | Typical Uncompressed Size | Growth Rate |
+|----------|----------------------|--------------------------|-------------|
+| TCM Databases | 100-500 MB | 500 MB - 2 GB | Slow |
+| Genetic Databases | 1-5 GB | 5-20 GB | Moderate |
+| Chemical Databases | 2-10 GB | 10-50 GB | Moderate |
+| Pathway Databases | 500 MB - 2 GB | 2-8 GB | Slow |
+| **Total Core Stack** | **~10 GB** | **~50-100 GB** | - |
+
+---
+
+## Sample Data
+
+### Download Plan Example
+
+```json
+{
+  "download_plan": {
+    "tier": "comprehensive",
+    "total_compressed_mb": 10240,
+    "total_uncompressed_gb": 75,
+    "databases": [
+      {
+        "name": "BATMAN-TCM",
+        "compressed_mb": 560,
+        "uncompressed_mb": 3000,
+        "download_time_min": 7,
+        "working_space_mb": 5000
+      },
+      {
+        "name": "ChEMBL",
+        "compressed_gb": 2.5,
+        "uncompressed_gb": 25,
+        "download_time_min": 33,
+        "working_space_gb": 30
+      }
+    ]
+  }
+}
+```
+
+### Capacity Planning Table
+
+| Scenario | Databases | Compressed | Uncompressed | RAM Needed | CPU Time | Cost Estimate |
+|----------|-----------|-----------|--------------|-----------|----------|---------------|
+| Quick Start | BATMAN-TCM, IMPPAT, DrugBank | ~1 GB | ~8 GB | 4 GB | ~2 hours | $50 |
+| Standard | + Reactome, KEGG, UniProt | ~5 GB | ~40 GB | 16 GB | ~8 hours | $200 |
+| Comprehensive | + ChEMBL, PubChem subset, STRING | ~15 GB | ~100 GB | 32 GB | ~24 hours | $500 |
+| Enterprise | All sources, full PubChem | ~50 GB | ~300+ GB | 128 GB+ | ~72 hours | $2K+ |
+
+---
+
+## License
+
+| Database | License Type | Download Included | Commercial Use |
+|----------|-------------|-------------------|-----------------|
+| BATMAN-TCM | CC BY-NC 4.0 | Yes | Contact required |
+| IMPPAT | CC BY 4.0 | Yes | Yes |
+| DrugBank | CC BY-NC 4.0 | Yes (structured data) | No |
+| Reactome | CC BY 4.0 | Yes | Yes |
+| KEGG | Academic/Commercial | FTP for academic | Paid tier |
+| UniProt | CC BY 4.0 | Yes | Yes |
+| ChEMBL | CC BY 4.0 | Yes | Yes |
+
+---
+
+## Data Set Size
+
+| Database | Records | Compressed Size | Uncompressed Size | Download Time (10 Mbps) | Processing Time |
+|----------|---------|-----------------|-------------------|------------------------|-----------------|
+| BATMAN-TCM | 2.4M interactions | 560 MB | 3 GB | 7 min | 5 min |
+| TCMBank | 89K entities | 67 MB | 400 MB | 1 min | 2 min |
+| ETCM | 85K+ herbs/compounds | 120 MB | 800 MB | 2 min | 3 min |
+| IMPPAT | 27K interactions | 120 MB | 800 MB | 2 min | 3 min |
+| DrugBank | 14K+ drugs | 180 MB | 1.2 GB | 3 min | 5 min |
+| Reactome | 2,700+ pathways | 500 MB | 3 GB | 7 min | 10 min |
+| KEGG | 600+ pathways | 200 MB | 1.5 GB | 2 min | 4 min |
+| UniProt (Human) | 21K+ proteins | 2 GB | 12 GB | 27 min | 20 min |
+| ChEMBL (subset) | 2M compounds | 2.5 GB | 25 GB | 33 min | 30 min |
+| STRING (Human) | 19K+ proteins | 5 GB | 15 GB | 67 min | 45 min |
+| **Quick Start Total** | **~2.5M** | **~1.4 GB** | **~8 GB** | **~20 min** | **~1 hour** |
+| **Comprehensive Total** | **~140M+** | **~12 GB** | **~75 GB** | **~160 min** | **~6 hours** |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

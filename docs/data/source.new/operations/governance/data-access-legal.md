@@ -33,6 +33,82 @@ tags: [governance, legal, compliance, data-access]
 
 ---
 
+## Download
+
+| Resource | Method | Notes |
+|----------|--------|-------|
+| **This guide** | Internal document | N/A |
+| **License inventory** | Internal spreadsheet | Tracks all database licenses |
+| **API agreements** | Per provider | Registration required |
+
+**Access Requirements:** This is internal guidance; external API access varies by provider.
+
+## Data Format
+
+| Format | Description |
+|--------|-------------|
+| Documentation | Markdown |
+| License tracking | CSV |
+| Compliance records | JSON |
+| Encoding | UTF-8 |
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `source` | string | Data provider | "PubMed" |
+| `license_type` | string | License category | "public_domain" |
+| `risk_level` | string | Legal risk (low/medium/high) | "low" |
+| `requires_consent` | boolean | User consent needed | false |
+
+### Relationships
+
+| Relation | Target | Cardinality |
+|----------|--------|-------------|
+| `requires` | Agreement | 1:N |
+| `permits` | Use Case | 1:N |
+
+## Sample Data
+
+### Example License Record
+```json
+{
+  "source": "ClinicalTrials.gov",
+  "license": "public_domain",
+  "risk_level": "low",
+  "commercial_use": true,
+  "requires_consent": false,
+  "api_available": true
+}
+```
+
+### Sample Query Result
+| source | license | risk | commercial |
+|--------|---------|------|------------|
+| PubMed | Public domain | Low | Yes |
+| DrugBank | Academic | Medium | No (license required) |
+
+## License
+
+| Resource | License | Notes |
+|----------|---------|-------|
+| This guide | Internal | Project documentation |
+| Data sources | Varies | See individual assessments |
+
+## Data Set Size
+
+| Metric | Value |
+|--------|-------|
+| Sources evaluated | 150+ |
+| Low risk | ~60% |
+| Medium risk | ~30% |
+| High risk | ~10% |
+| Last updated | January 2026 |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |

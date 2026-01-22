@@ -2372,6 +2372,132 @@ if __name__ == "__main__":
 
 ---
 
+## Download
+
+| Database | Method | URL |
+|----------|--------|-----|
+| PubChem | REST API | https://pubchem.ncbi.nlm.nih.gov/rest/pug/ |
+| PubChem | ID Exchange | https://pubchem.ncbi.nlm.nih.gov/idexchange/ |
+| ChEMBL | REST API | https://www.ebi.ac.uk/chembl/api/ |
+| ChEMBL | SQL Dump | https://ftp.ebi.ac.uk/pub/databases/chembl/ |
+| Reactome | REST API | https://reactome.org/ContentService/ |
+| UniProt | REST API | https://rest.uniprot.org/ |
+| UniProt | ID Mapping | https://www.uniprot.org/id-mapping/ |
+| KEGG | REST API | https://www.kegg.jp/kegg/rest/keggapi.html |
+| STRING | REST API | https://string-db.org/api/ |
+
+---
+
+## Data Format
+
+| Format | Description | When Used |
+|--------|-------------|-----------|
+| JSON | Hierarchical structure, nested objects | API responses, linked data |
+| TSV | Tab-separated records | Bulk downloads, line-oriented data |
+| CSV | Comma-separated values | Spreadsheet-compatible format |
+| SPARQL | Query language for RDF data | Federated queries across resources |
+| XML | Markup structure with tags | Complex nested relationships |
+| OWL/RDF | Semantic web ontologies | Ontology-based reasoning |
+
+---
+
+## Schema
+
+### Core Fields
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| compound_id | String | Primary compound identifier | CID:2662 |
+| compound_name | String | IUPAC or common name | Curcumin |
+| target_id | String | Protein target identifier | P35354 (UniProt) |
+| target_name | String | Gene/protein symbol | COX2 |
+| interaction_type | String | Nature of interaction | "inhibitor", "activator", "binder" |
+| activity_value | Float | Quantitative measure of interaction | 5.2 |
+| activity_unit | String | Unit of measurement | "μM", "nM", "IC50" |
+| target_species | String | Organism of target | "Homo sapiens" |
+| confidence_score | Float | Prediction confidence (0-1) | 0.85 |
+| source_database | String | Data source | "ChEMBL", "PubChem", "KEGG" |
+
+### Relationships
+
+| From | To | Via | Field |
+|------|-----|-----|-------|
+| Compound | Target Protein | ChEMBL, PubChem | compound_id → target_id |
+| Target Protein | Gene | UniProt | UniProt_ID → Ensembl_Gene |
+| Gene | Pathway | Reactome, KEGG | Ensembl_ID → Pathway_ID |
+| Compound | Pathway | Indirect | Via Target Protein → Pathway |
+
+---
+
+## Sample Data
+
+### JSON Format
+
+```json
+{
+  "compound_target_link": {
+    "compound": {
+      "id": "CHEMBL429661",
+      "name": "Curcumin",
+      "pubchem_cid": 969516,
+      "inchi_key": "GHASVSINZRGABV-UHFFFAOYSA-N"
+    },
+    "target": {
+      "uniprot_id": "P35354",
+      "gene_symbol": "COX2",
+      "gene_name": "Prostaglandin G/H synthase 2",
+      "ensembl_id": "ENSG00000073756"
+    },
+    "interaction": {
+      "type": "inhibitor",
+      "activity": {
+        "value": 5.2,
+        "unit": "μM",
+        "assay_type": "IC50"
+      },
+      "confidence": 0.92,
+      "source": "ChEMBL"
+    }
+  }
+}
+```
+
+### Query Result Table
+
+| Compound | Target Gene | UniProt | Interaction | Value | Unit | Pathway | Confidence |
+|----------|-------------|---------|-------------|-------|------|---------|------------|
+| Curcumin | COX2 | P35354 | inhibitor | 5.2 | μM | Eicosanoid synthesis | 0.92 |
+| Artemisinin | PfMPT1 | Q9Y5J8 | inhibitor | 2.1 | μM | Parasite survival | 0.88 |
+| Resveratrol | SIRT1 | Q96EB6 | activator | 15.0 | μM | Stress response | 0.85 |
+
+---
+
+## License
+
+| Resource | License | Commercial Use | Citation Required |
+|----------|---------|-----------------|-------------------|
+| PubChem | CC0 1.0 | Yes | Recommended |
+| ChEMBL | CC BY 4.0 | Yes | Required |
+| Reactome | CC BY 4.0 | Yes | Required |
+| UniProt | CC BY 4.0 | Yes | Required |
+| KEGG | Academic/Commercial | Yes (paid) | Required |
+| STRING | CC BY 4.0 | Yes | Required |
+
+---
+
+## Data Set Size
+
+| Resource | Records | Compressed Size | Uncompressed Size | Format |
+|----------|---------|-----------------|-------------------|--------|
+| PubChem Compounds | 120M+ | 15 GB | 150 GB | JSON |
+| ChEMBL Activities | 15M+ | 2.5 GB | 25 GB | SQL |
+| Reactome Pathways | 2,700+ | 500 MB | 3 GB | JSON |
+| UniProt (Human) | 21K+ | 2 GB | 12 GB | FASTA/XML |
+| KEGG Pathways | 600+ | 200 MB | 1.5 GB | KGML |
+| STRING Interactions | 1B+ | 20 GB | 80 GB | TSV |
+
+---
+
 ## Glossary
 
 | Term | Definition | Example |
