@@ -293,38 +293,116 @@ Molecular docking data between compounds and proteins.
 
 ## Data Model
 
-### 4-Layer Hierarchy
+### 4-Layer Hierarchical Structure
+
+The KampoDB data model implements a strict hierarchical organization enabling traversal from traditional formula to molecular targets:
+
+```
+Layer 1: Kampo Medicine (Formula)
+    ├─ ID: String code (e.g., "KT")
+    ├─ Name: Romanized (e.g., "Kakkonto")
+    ├─ Name_jp: Japanese kanji (e.g., "葛根湯")
+    └─ Count: 298 total formulas
+
+    │ Formula-Crude Drug Relationship (many-to-many)
+    ▼
+Layer 2: Crude Drugs (Drug)
+    ├─ ID: Integer (0-179)
+    ├─ Name: English common name (e.g., "Ephedra Herb")
+    ├─ Name_jp: Japanese name (e.g., "麻黄")
+    ├─ Origin: Botanical source (e.g., "Ephedra sinica")
+    └─ Count: 180 total crude drugs
+
+    │ Crude Drug-Compound Relationship (many-to-many)
+    ▼
+Layer 3: Compounds (Compound)
+    ├─ ID: Integer (PubChem CID)
+    ├─ Name: Chemical name (e.g., "Curcumin")
+    ├─ Formula: Molecular formula (e.g., "C21H20O6")
+    ├─ Source: External IDs (KNApSAcK, ChEMBL)
+    └─ Count: 3,002 total compounds
+
+    │ Compound-Protein Relationship (many-to-many, via docking predictions)
+    ▼
+Layer 4: Target Proteins (Protein)
+    ├─ ID: Integer (NCBI Gene ID)
+    ├─ Name: Gene symbol (e.g., "MTOR")
+    ├─ Aliases: Alternative names (e.g., "FRAP, RAFT1")
+    ├─ Description: Functional annotation
+    └─ Count: 62,906 total proteins
+
+Key Relationships:
+- Formula -> Crude Drug: 1 formula contains multiple crude drugs
+- Crude Drug -> Compound: 1 crude drug contains multiple compounds
+- Compound -> Protein: 1 compound targets multiple proteins (via docking)
+- All relationships are many-to-many, fully traversable
+```
+
+### Hierarchy Overview
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                       KAMPO FORMULAS                             │
-│  298 traditional Japanese medicine preparations                  │
+│                       KAMPO FORMULAS (298)                       │
+│  Traditional Japanese medicine preparations                      │
 │  Example: Kakkonto (KT), Yokukansankan (YKS)                    │
 └─────────────────────┬───────────────────────────────────────────┘
                       │ contains (many-to-many)
                       ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│                       CRUDE DRUGS                                │
-│  180 raw medicinal materials (herbs, minerals, animal products)  │
+│                       CRUDE DRUGS (180)                          │
+│  Raw medicinal materials (herbs, minerals, animal products)      │
 │  Example: Cinnamon Bark (40), Ephedra Herb (62), Ginger (76)    │
 └─────────────────────┬───────────────────────────────────────────┘
                       │ contains (many-to-many)
                       ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│                       COMPOUNDS                                  │
-│  3,002 natural chemical compounds                               │
-│  Example: Curcumin (969516), Ephedrine (9294), Gingerol (...)   │
-│  IDs correspond to PubChem CIDs                                 │
+│                       COMPOUNDS (3,002)                          │
+│  Natural chemical compounds with PubChem identifiers             │
+│  Example: Curcumin (969516), Ephedrine (9294), Gingerol         │
 └─────────────────────┬───────────────────────────────────────────┘
-                      │ targets (many-to-many, predicted/known)
+                      │ targets (many-to-many, predicted via docking)
                       ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│                       PROTEINS                                   │
-│  62,906 human proteins/genes                                    │
+│                       PROTEINS (62,906)                          │
+│  Human proteins/genes with NCBI Gene identifiers                 │
 │  Example: MTOR (2475), CYP3A4, BCL2, STAT3                      │
-│  IDs are NCBI Gene IDs                                          │
 └─────────────────────────────────────────────────────────────────┘
 ```
+
+### Implementation Details
+
+#### Hierarchy Navigation
+
+Each layer provides complete relational endpoints for traversal:
+
+| From | To | Endpoint | Returns |
+|------|-----|----------|---------|
+| Formula | Crude Drug | `/api/formula/{id}/crude` | Array of crude drugs |
+| Formula | Compound | `/api/formula/{id}/compound` | Array of compounds |
+| Formula | Protein | `/api/formula/{id}/protein` | Array of target proteins |
+| Crude Drug | Formula | `/api/crude/{id}/formula` | Parent formulas |
+| Crude Drug | Compound | `/api/crude/{id}/compound` | Array of compounds |
+| Crude Drug | Protein | `/api/crude/{id}/protein` | Target proteins via compounds |
+| Compound | Crude Drug | `/api/compound/{id}/crude` | Source crude drugs |
+| Compound | Protein | `/api/compound/{id}/protein` | Array of target proteins |
+| Compound | Formula | `/api/compound/{id}/formula` | Parent formulas |
+| Protein | Compound | `/api/protein/{id}/compound` | Ligand compounds |
+| Protein | Crude Drug | `/api/protein/{id}/crude` | Source crude drugs |
+| Protein | Formula | `/api/protein/{id}/formula` | Parent formulas |
+
+#### Hierarchy Constraints
+
+- **Directionality**: One-way from formula down; reverse queries available
+- **All-to-All Connectivity**: Every layer can reach every other layer
+- **No Intermediate Skipping**: Must traverse via proper relationships (no direct formula→protein shortcuts)
+- **Many-to-Many Cardinality**: Single formula may contain same crude drug multiple times (rare), all relationships are N:N
+
+#### Data Integration Points
+
+1. **Formula Layer**: TradMPD, STORK cross-references
+2. **Crude Drug Layer**: Botanical taxonomy via IPNI IDs
+3. **Compound Layer**: KNApSAcK C_IDs, PubChem CIDs for external lookups
+4. **Protein Layer**: KEGG GENES, UniProt, pathway/disease annotations
 
 ### Entity Schemas
 

@@ -597,8 +597,239 @@ LIMIT 500
 
 ---
 
+## Pathway SPARQL Queries
+
+This section contains the most practical SPARQL query templates for extracting pathway data from Wikidata. All queries target human pathways by default unless specified otherwise.
+
+### Query 1: Count Pathway Types (~57,000 total)
+
+```sparql
+SELECT ?type ?typeLabel (COUNT(?item) AS ?count)
+WHERE {
+  VALUES ?type { wd:Q4915012 wd:Q2996394 wd:Q4915059 wd:Q189093 }
+  ?item wdt:P31 ?type .
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
+}
+GROUP BY ?type ?typeLabel
+ORDER BY DESC(?count)
+```
+
+**Expected Results:**
+- Q2996394 (biological process): ~30,000+
+- Q4915012 (biological pathway): ~3,000+
+- Q4915059 (metabolic pathway): ~1,500+
+- Q189093 (signal transduction pathway): ~500+
+
+### Query 2: Pathways with External Identifiers (~1,200 results)
+
+```sparql
+SELECT ?pathway ?pathwayLabel ?reactome ?wikipathways ?go
+WHERE {
+  ?pathway wdt:P31/wdt:P279* wd:Q4915012 .
+  OPTIONAL { ?pathway wdt:P3937 ?reactome . }
+  OPTIONAL { ?pathway wdt:P2410 ?wikipathways . }
+  OPTIONAL { ?pathway wdt:P686 ?go . }
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
+}
+LIMIT 1000
+```
+
+**Coverage:** 30-50% of pathways have Reactome IDs, 20-30% have WikiPathways IDs
+
+### Query 3: Genes in Specific Pathways (~500+ per query)
+
+```sparql
+SELECT DISTINCT ?gene ?geneLabel ?geneSymbol ?pathway ?pathwayLabel
+WHERE {
+  ?gene wdt:P31 wd:Q7187 ;
+        wdt:P703 wd:Q15978631 ;
+        wdt:P682 ?pathway .
+
+  ?pathway wdt:P31/wdt:P279* wd:Q4915012 .
+  OPTIONAL { ?gene wdt:P353 ?geneSymbol . }
+
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
+}
+LIMIT 500
+```
+
+### Query 4: Metabolites in Pathways (~1,000 results)
+
+```sparql
+SELECT ?pathway ?pathwayLabel ?compound ?compoundLabel ?role ?roleLabel
+WHERE {
+  ?pathway wdt:P31/wdt:P279* wd:Q4915059 ;
+           wdt:P527 ?compound .
+
+  ?compound wdt:P31/wdt:P279* wd:Q11173 .
+  OPTIONAL { ?compound wdt:P2868 ?role . }
+
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
+}
+LIMIT 1000
+```
+
+### Query 5: Pathway Hierarchy and Components (~2,000 results)
+
+```sparql
+SELECT ?pathway ?pathwayLabel ?parent ?parentLabel
+WHERE {
+  ?pathway wdt:P31/wdt:P279* wd:Q4915012 .
+  OPTIONAL { ?pathway wdt:P361 ?parent . ?parent wdt:P31/wdt:P279* wd:Q4915012 . }
+
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
+}
+ORDER BY ?parent ?pathway
+LIMIT 2000
+```
+
+### Query 6: Cross-Database Pathway References (~5,000 results)
+
+```sparql
+SELECT ?pathway ?pathwayLabel ?reactome ?kegg ?wikipathways ?go
+WHERE {
+  ?pathway wdt:P31/wdt:P279* wd:Q4915012 .
+
+  OPTIONAL { ?pathway wdt:P3937 ?reactome . }
+  OPTIONAL { ?pathway wdt:P2410 ?wikipathways . }
+  OPTIONAL { ?pathway wdt:P686 ?go . }
+  OPTIONAL {
+    ?pathway wdt:P2888 ?keggUri .
+    FILTER(CONTAINS(STR(?keggUri), "kegg.jp/pathway"))
+    BIND(REPLACE(STR(?keggUri), ".*pathway/", "") AS ?kegg)
+  }
+
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
+}
+LIMIT 5000
+```
+
+### Query 7: Signaling Pathways with Gene Participants (~5,000 results)
+
+```sparql
+SELECT ?pathway ?pathwayLabel ?gene ?geneLabel ?symbol
+WHERE {
+  ?pathway wdt:P31/wdt:P279* wd:Q189093 .
+
+  {
+    ?pathway wdt:P527 ?gene .
+    ?gene wdt:P31 wd:Q7187 ; wdt:P703 wd:Q15978631 .
+  }
+  UNION
+  {
+    ?gene wdt:P682 ?pathway ;
+          wdt:P31 wd:Q7187 ;
+          wdt:P703 wd:Q15978631 .
+  }
+
+  OPTIONAL { ?gene wdt:P353 ?symbol . }
+
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
+}
+LIMIT 5000
+```
+
+### Query 8: Human Metabolic Pathways (~1,500 results)
+
+```sparql
+SELECT DISTINCT ?pathway ?pathwayLabel ?reactome ?wikipathways
+WHERE {
+  ?pathway wdt:P31/wdt:P279* wd:Q4915059 .
+
+  {
+    ?pathway wdt:P703 wd:Q15978631 .
+  }
+  UNION
+  {
+    ?pathway wdt:P527 ?component .
+    ?component wdt:P703 wd:Q15978631 .
+  }
+  UNION
+  {
+    ?pathway wdt:P3937 ?reactome .
+    FILTER(STRSTARTS(?reactome, "R-HSA-"))
+  }
+
+  OPTIONAL { ?pathway wdt:P3937 ?reactome . }
+  OPTIONAL { ?pathway wdt:P2410 ?wikipathways . }
+
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
+}
+ORDER BY ?pathwayLabel
+```
+
+### Query 9: Federated Query - WikiPathways Gene Counts (~100 results)
+
+```sparql
+PREFIX wp: <http://vocabularies.wikipathways.org/wp#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+
+SELECT ?pathway ?pathwayLabel ?wpId ?wpTitle ?geneCount
+WHERE {
+  ?pathway wdt:P31/wdt:P279* wd:Q4915012 ;
+           wdt:P2410 ?wpId .
+
+  SERVICE <https://sparql.wikipathways.org/sparql> {
+    ?wpPathway dcterms:identifier ?wpId ;
+               dcterms:title ?wpTitle .
+    {
+      SELECT ?wpPathway (COUNT(DISTINCT ?gene) AS ?geneCount)
+      WHERE {
+        ?wpPathway a wp:Pathway .
+        ?gene a wp:GeneProduct ;
+              dcterms:isPartOf ?wpPathway .
+      }
+      GROUP BY ?wpPathway
+    }
+  }
+
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
+}
+LIMIT 100
+```
+
+### Query 10: Gaps - Pathways Missing External IDs (~500 results)
+
+```sparql
+SELECT ?pathway ?pathwayLabel
+       (BOUND(?reactome) AS ?hasReactome)
+       (BOUND(?wp) AS ?hasWikiPathways)
+       (BOUND(?go) AS ?hasGO)
+WHERE {
+  ?pathway wdt:P31/wdt:P279* wd:Q4915012 .
+
+  { ?pathway wdt:P703 wd:Q15978631 . }
+  UNION
+  { ?pathway wdt:P527 ?component . ?component wdt:P703 wd:Q15978631 . }
+
+  OPTIONAL { ?pathway wdt:P3937 ?reactome . }
+  OPTIONAL { ?pathway wdt:P2410 ?wp . }
+  OPTIONAL { ?pathway wdt:P686 ?go . }
+
+  FILTER(!BOUND(?reactome) || !BOUND(?wp) || !BOUND(?go))
+
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
+}
+LIMIT 500
+```
+
+**Key Properties for Pathway Queries:**
+- P31: instance of (pathway type)
+- P279: subclass of (hierarchy)
+- P361: part of (parent pathway)
+- P527: has part (genes, compounds, sub-pathways)
+- P703: found in taxon (species filter)
+- P682: biological process (gene annotations)
+- P3937: Reactome ID
+- P2410: WikiPathways ID
+- P686: Gene Ontology ID
+- P2868: subject has role (metabolite roles)
+
+---
+
 ## Change Log
 
 | Version | Date | Author | Changes |
 |---------|------|--------|---------|
+| 1.1 | January 2026 | Engineering | Added Pathway SPARQL Queries section with 10 practical query templates |
 | 1.0 | January 2026 | Engineering | Initial document from research.old/data-sources-wikipedia-wikidata.md |

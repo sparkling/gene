@@ -1830,5 +1830,423 @@ All data covered in this document is **Public Domain** as work of the US Governm
 
 ---
 
+---
+
+## Implementation Details
+
+### API Request Examples
+
+#### OpenFDA Event API with Hospitalization Events
+
+```bash
+# Bash/curl - Find metformin adverse events with serious outcomes
+curl -s "https://api.fda.gov/drug/event.json?search=patient.drug.openfda.generic_name:metformin+AND+seriousnesshospitalization:1&limit=10" | jq .
+```
+
+#### Data Extraction Pattern (Python)
+
+```python
+import requests
+import json
+
+def fetch_openfda_events(drug_name, serious_only=False):
+    """Extract adverse events for a drug with optional severity filtering."""
+    base_url = "https://api.fda.gov/drug/event.json"
+
+    # Build search query
+    search = f'patient.drug.openfda.generic_name:"{drug_name}"'
+    if serious_only:
+        search += '+AND+serious:1'
+
+    params = {
+        'search': search,
+        'limit': 100,
+        'skip': 0
+    }
+
+    response = requests.get(base_url, params=params)
+    events = response.json().get('results', [])
+
+    # Extract and normalize fields
+    normalized = []
+    for event in events:
+        normalized.append({
+            'report_id': event.get('safetyreportid'),
+            'receive_date': parse_date(event.get('receivedate')),
+            'serious': event.get('serious') == '1',
+            'patient_age': event.get('patient', {}).get('patientonsetage'),
+            'age_unit': age_unit_map.get(event.get('patient', {}).get('patientonsetageunit')),
+            'reactions': [r.get('reactionmeddrapt') for r in event.get('patient', {}).get('reaction', [])],
+            'rxcui': event.get('patient', {}).get('drug', [{}])[0].get('openfda', {}).get('rxcui', [None])[0]
+        })
+
+    return normalized
+
+def parse_date(date_str):
+    """Convert YYYYMMDD format to ISO 8601."""
+    if not date_str or len(date_str) != 8:
+        return None
+    return f"{date_str[:4]}-{date_str[4:6]}-{date_str[6:8]}"
+
+# Age unit mapping
+age_unit_map = {
+    '800': 'decade',
+    '801': 'year',
+    '802': 'month',
+    '803': 'week',
+    '804': 'day',
+    '805': 'hour'
+}
+```
+
+### Field Mapping and Transformation
+
+#### FAERS Report Normalization
+
+```python
+def normalize_faers_record(raw_event):
+    """Transform raw OpenFDA FAERS record into normalized schema."""
+
+    # Safety report metadata
+    report = {
+        'source': 'OpenFDA',
+        'report_id': raw_event['safetyreportid'],
+        'version': raw_event['safetyreportversion'],
+        'receive_date': parse_date(raw_event['receivedate']),
+        'receipt_date': parse_date(raw_event['receiptdate']),
+        'report_type': report_type_map[raw_event['reporttype']],
+        'country': raw_event['occurcountry']
+    }
+
+    # Severity flags
+    severity = {
+        'is_serious': raw_event['serious'] == '1',
+        'death': raw_event.get('seriousnessdeath') == '1',
+        'hospitalization': raw_event.get('seriousnesshospitalization') == '1',
+        'life_threatening': raw_event.get('seriousnesslifethreatening') == '1',
+        'disabling': raw_event.get('seriousnessdisabling') == '1'
+    }
+
+    # Patient demographics
+    patient_data = raw_event['patient']
+    patient = {
+        'age_value': float(patient_data['patientonsetage']) if patient_data.get('patientonsetage') else None,
+        'age_unit': age_unit_map[patient_data['patientonsetageunit']],
+        'sex': sex_map[patient_data['patientsex']],
+        'weight_kg': float(patient_data['patientweight']) if patient_data.get('patientweight') else None
+    }
+
+    # Adverse reactions (MedDRA terms)
+    reactions = [
+        {
+            'meddra_pt': r['reactionmeddrapt'],
+            'meddra_version': r.get('reactionmeddraversionpt'),
+            'outcome': outcome_map[r['reactionoutcome']]
+        }
+        for r in patient_data.get('reaction', [])
+    ]
+
+    # Drug information (can be multiple drugs per report)
+    drugs = []
+    for drug in patient_data.get('drug', []):
+        drug_info = {
+            'name': drug.get('medicinalproduct'),
+            'characterization': drug_char_map[drug['drugcharacterization']],
+            'indication': drug.get('drugindication'),
+            'dosage_text': drug.get('drugdosagetext'),
+            'start_date': parse_date(drug.get('drugstartdate')),
+            'end_date': parse_date(drug.get('drugenddate')),
+            'action_taken': action_map.get(drug.get('actiondrug')),
+            'rxcui': drug.get('openfda', {}).get('rxcui', [None])[0],
+            'ndc': drug.get('openfda', {}).get('product_ndc', [None])[0]
+        }
+        drugs.append(drug_info)
+
+    return {
+        'report': report,
+        'severity': severity,
+        'patient': patient,
+        'reactions': reactions,
+        'drugs': drugs
+    }
+
+# Mapping dictionaries
+report_type_map = {'1': 'Spontaneous', '2': 'Literature', '3': 'Study'}
+sex_map = {'0': 'Unknown', '1': 'Male', '2': 'Female'}
+outcome_map = {'1': 'Recovered', '2': 'Recovering', '3': 'Not recovered', '4': 'Recovered with sequelae', '5': 'Fatal', '6': 'Unknown'}
+drug_char_map = {'1': 'Suspect', '2': 'Concomitant', '3': 'Interacting'}
+action_map = {'1': 'Withdrawn', '2': 'Dose reduced', '3': 'Dose increased', '4': 'Unchanged', '5': 'Unknown', '6': 'Not applicable'}
+```
+
+### RRF File Processing
+
+#### RXNCONSO Parsing Example
+
+```python
+import csv
+
+def parse_rxnconso(filepath):
+    """Parse RXNCONSO.RRF file and return dictionary of RXCUI -> drug concept."""
+
+    concepts = {}
+    with open(filepath, 'r', encoding='utf-8') as f:
+        reader = csv.reader(f, delimiter='|')
+
+        for row in reader:
+            if len(row) < 18:
+                continue
+
+            rxcui = row[0]
+            rxaui = row[7]
+            str_term = row[14]
+            tty = row[12]  # Term type
+            suppress = row[16]
+
+            # Skip suppressed terms
+            if suppress != 'N':
+                continue
+
+            if rxcui not in concepts:
+                concepts[rxcui] = {
+                    'rxcui': rxcui,
+                    'preferred_name': None,
+                    'aliases': [],
+                    'term_types': set()
+                }
+
+            concepts[rxcui]['term_types'].add(tty)
+
+            # Mark preferred names
+            if row[6] == 'Y':  # ISPREF flag
+                concepts[rxcui]['preferred_name'] = str_term
+            else:
+                concepts[rxcui]['aliases'].append(str_term)
+
+    return concepts
+
+# Example usage
+concepts = parse_rxnconso('/path/to/RXNCONSO.RRF')
+print(concepts['861004']['preferred_name'])  # "metformin hydrochloride 500 MG Oral Tablet"
+print(concepts['861004']['term_types'])      # {'SCD', 'SCDF', 'SCDC', ...}
+```
+
+#### RXNREL Relationship Extraction
+
+```python
+def parse_rxnrel(filepath, source_rxcui):
+    """Extract all relationships for a given RXCUI."""
+
+    relationships = {
+        'parent': [],
+        'child': [],
+        'has_ingredient': [],
+        'ingredient_of': [],
+        'is_a': [],
+        'similar': []
+    }
+
+    with open(filepath, 'r', encoding='utf-8') as f:
+        reader = csv.reader(f, delimiter='|')
+
+        for row in reader:
+            if len(row) < 16:
+                continue
+
+            rxcui1, rxaui1, stype1, rel, rxcui2, rxaui2, stype2, rela = row[0:8]
+
+            # Outgoing relationships
+            if rxcui1 == source_rxcui:
+                if rel == 'PAR':
+                    relationships['parent'].append(rxcui2)
+                elif rel == 'CHD':
+                    relationships['child'].append(rxcui2)
+                elif rela == 'has_ingredient':
+                    relationships['has_ingredient'].append(rxcui2)
+                elif rela == 'isa':
+                    relationships['is_a'].append(rxcui2)
+
+            # Incoming relationships
+            if rxcui2 == source_rxcui:
+                if rel == 'CHD':  # Source is parent
+                    relationships['parent'].append(rxcui1)
+                elif rel == 'PAR':  # Source is child
+                    relationships['child'].append(rxcui1)
+                elif rela == 'ingredient_of':
+                    relationships['ingredient_of'].append(rxcui1)
+
+    return relationships
+
+# Find ingredient hierarchy for metformin 500mg tablet
+rels = parse_rxnrel('/path/to/RXNREL.RRF', '861004')
+# Returns:
+# {
+#   'has_ingredient': ['6809'],  # RXCUI for metformin
+#   'ingredient_of': ['858515'],  # RXCUI for brand name version
+#   ...
+# }
+```
+
+### SPL XML Extraction
+
+```python
+from xml.etree import ElementTree as ET
+
+def extract_spl_sections(xml_file):
+    """Extract all labeled sections from SPL XML document."""
+
+    namespaces = {'hl7': 'urn:hl7-org:v3'}
+    tree = ET.parse(xml_file)
+    root = tree.getroot()
+
+    # Define LOINC code to section name mapping
+    loinc_map = {
+        '34066-1': 'Boxed Warning',
+        '34067-9': 'Indications and Usage',
+        '34070-3': 'Contraindications',
+        '43685-7': 'Warnings and Precautions',
+        '34073-7': 'Drug Interactions',
+        '34084-4': 'Adverse Reactions',
+        '43682-4': 'Pharmacokinetics',
+        '43681-6': 'Pharmacodynamics'
+    }
+
+    sections = {}
+
+    # Find all section elements
+    for section in root.findall('.//hl7:section', namespaces):
+        code_elem = section.find('hl7:code', namespaces)
+        if code_elem is None:
+            continue
+
+        loinc_code = code_elem.get('code')
+        section_name = loinc_map.get(loinc_code, f'Unknown ({loinc_code})')
+
+        # Extract text content
+        text_elem = section.find('hl7:text', namespaces)
+        text_content = ''.join(text_elem.itertext()) if text_elem is not None else ''
+
+        sections[section_name] = {
+            'loinc_code': loinc_code,
+            'content': text_content.strip(),
+            'length': len(text_content)
+        }
+
+    return sections
+
+# Extract and display
+spl_sections = extract_spl_sections('label.xml')
+for section_name, data in spl_sections.items():
+    print(f"{section_name} ({data['loinc_code']}): {data['length']} chars")
+```
+
+### NDC Parsing and Normalization
+
+```python
+def normalize_ndc(ndc_string):
+    """Convert NDC to standard 11-digit format with hyphens (4-4-2)."""
+
+    # Remove non-digit characters
+    ndc_clean = ''.join(c for c in ndc_string if c.isdigit())
+
+    if len(ndc_clean) == 10:
+        # Determine configuration
+        if ndc_clean[4].isdigit() and int(ndc_clean[4]) < 10:
+            # Likely 4-4-2 configuration
+            return f"{ndc_clean[0:4]}-{ndc_clean[4:8]}-{ndc_clean[8:10]}"
+        else:
+            # 5-3-2 or 5-4-1 - need additional logic
+            return f"{ndc_clean[0:5]}-{ndc_clean[5:8]}-{ndc_clean[8:10]}"
+
+    return ndc_clean  # Return as-is if unusual length
+
+# Examples
+print(normalize_ndc("123456789"))      # "1234-5678-90"
+print(normalize_ndc("12345-6789-01"))  # "12345-6789-01"
+```
+
+### Orange Book Parsing
+
+```python
+import csv
+
+def parse_orange_book_products(products_file):
+    """Parse Orange Book Products.txt (tilde-delimited)."""
+
+    products = []
+
+    with open(products_file, 'r', encoding='utf-8') as f:
+        reader = csv.DictReader(
+            f,
+            fieldnames=[
+                'ingredient', 'dosage_form_route', 'trade_name', 'applicant',
+                'strength', 'appl_type', 'appl_no', 'product_no', 'te_code',
+                'approval_date', 'rld', 'rs', 'type', 'applicant_full_name'
+            ],
+            delimiter='~'
+        )
+
+        for row in reader:
+            product = {
+                'ingredient': row['ingredient'],
+                'dosage_form': row['dosage_form_route'].split(';')[0],
+                'route': row['dosage_form_route'].split(';')[1] if ';' in row['dosage_form_route'] else '',
+                'brand_name': row['trade_name'],
+                'strength': row['strength'],
+                'application_type': 'NDA' if row['appl_type'] == 'N' else 'ANDA',
+                'application_number': f"{row['appl_type']}{row['appl_no']}",
+                'product_number': row['product_no'],
+                'te_code': row['te_code'],
+                'is_rld': row['rld'] == 'Y',
+                'is_therapeutically_equivalent': row['te_code'][0] == 'A'
+            }
+            products.append(product)
+
+    return products
+
+# Extract products
+products = parse_orange_book_products('products.txt')
+# Filter for therapeutically equivalent products
+generic_equivalent_products = [p for p in products if p['is_therapeutically_equivalent'] and p['application_type'] == 'ANDA']
+```
+
+### Data Quality Validation
+
+```python
+def validate_fda_record(record):
+    """Validate key fields in FDA adverse event record."""
+
+    errors = []
+
+    # Check required fields
+    if not record.get('safetyreportid'):
+        errors.append('Missing safetyreportid')
+
+    # Validate date format (YYYYMMDD)
+    if record.get('receivedate'):
+        if len(record['receivedate']) != 8 or not record['receivedate'].isdigit():
+            errors.append(f"Invalid receivedate format: {record['receivedate']}")
+
+    # Validate enum fields
+    valid_serious = {'1', '2', None}
+    if record.get('serious') not in valid_serious:
+        errors.append(f"Invalid serious code: {record['serious']}")
+
+    # Validate patient data structure
+    patient = record.get('patient', {})
+    if not patient.get('drug'):
+        errors.append('Patient has no associated drugs')
+
+    # Validate drug data
+    for drug in patient.get('drug', []):
+        if not drug.get('medicinalproduct'):
+            errors.append(f"Drug missing medicinalproduct: {drug}")
+
+    return {
+        'is_valid': len(errors) == 0,
+        'errors': errors,
+        'record_id': record.get('safetyreportid')
+    }
+```
+
 *Document Version: 1.0*
 *Last Updated: January 2026*

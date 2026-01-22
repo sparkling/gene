@@ -508,8 +508,178 @@ The associated GitHub repository (asamallab/IMPPAT2) contains:
 
 ---
 
+## Implementation Details
+
+### Tab Structure Breakdown
+
+IMPPAT phytochemical records are organized as 6 interactive tabs on dedicated compound pages:
+
+#### Tab 1: Summary
+**Core Identity & Structure Data**
+
+| Field | Format | Purpose |
+|-------|--------|---------|
+| IMPPAT ID | String (IMPHY######) | Unique compound identifier |
+| Compound Name | String | Common chemical name |
+| IUPAC Name | String | Systematic nomenclature |
+| Molecular Formula | String | Elemental composition |
+| Molecular Weight | Float | Mass in g/mol |
+| Source Plants | Array | Plant origins |
+| Plant Parts | Array | Tissue origin (root, leaf, bark, etc.) |
+| 2D/3D Structures | SVG/PDB/MOL2 | Visual & 3D representations |
+| SMILES | String | Linear molecular notation |
+| InChI / InChIKey | String | Standardized identifiers |
+
+#### Tab 2: Physicochemical Properties
+**Molecular Characteristics (11 metrics)**
+
+Computed via RDKit/PaDEL. Core properties used for drug-likeness assessment:
+- Molecular weight, logP, TPSA, HBD/HBA
+- Rotatable bonds, heavy atoms, aromatic rings
+- Fraction sp3 carbons, stereocenters
+
+#### Tab 3: Drug-Likeness
+**Six Rule Filters + QED Score**
+
+| Rule | Criteria | Status |
+|------|----------|--------|
+| Lipinski RO5 | MW≤500, logP≤5, HBD≤5, HBA≤10 | Pass/Fail + violations |
+| Ghose | MW:160-480, logP:-0.4-5.6, atoms:20-70, MR:40-130 | Boolean |
+| Veber | Rotatable bonds≤10, TPSA≤140 | Good/Poor |
+| Egan | logP≤5.88, TPSA≤131.6 | Good/Poor |
+| Pfizer 3/75 | logP>3 AND TPSA<75 flagged | Good/Poor |
+| GSK 4/400 | MW≤400, logP≤4 | Good/Poor |
+| QED Score | Quantitative estimate (0-1) | Float |
+
+**Drug-like subset**: 1,335 compounds pass all 6 rules
+
+#### Tab 4: ADMET Properties
+**Pharmacokinetics (via SwissADME)**
+
+Computed for 17,474 of 17,967 compounds (493 failed SMILES length validation)
+
+| Category | Metrics |
+|----------|---------|
+| **Absorption** | GI absorption, P-gp substrate, water solubility class, Caco2 permeability |
+| **Distribution** | BBB permeability, VDSS (volume distribution) |
+| **Metabolism** | CYP1A2/2C19/2C9/2D6/3A4 inhibition (yes/no) |
+| **Excretion** | Renal clearance predictions |
+| **Toxicity** | PAINS alerts, Brenk alerts (105 patterns), mutagenicity, hepatotoxicity |
+
+#### Tab 5: Molecular Descriptors
+**1,875 Chemical Features (2D + 3D)**
+
+Computed via PaDEL-Descriptor:
+
+| Type | Count | Examples |
+|------|-------|----------|
+| 2D Descriptors | ~1,444 | Constitutional, topological, connectivity, BCUT, McGowan volume |
+| 3D Descriptors | ~431 | Geometrical, surface area, volume, Burden eigenvalues |
+| Fingerprints | 16,092 bits total | 10 types including Tanimoto coefficient |
+
+Machine learning-ready features for similarity searching and predictive modeling.
+
+#### Tab 6: Predicted Human Target Proteins
+**27,365 Phytochemical-Target Interactions**
+
+| Field | Value | Notes |
+|-------|-------|-------|
+| Target Count | 5,042 unique proteins | Human proteome coverage |
+| Source | STITCH database | High-confidence predictions |
+| Confidence Threshold | ≥700 score | Combined evidence score |
+| Score Ranges | 150-1000 | Low (150), Medium (≥400), High (≥700) |
+| Evidence Types | Experiments, Databases, Text mining, Predicted | STITCH evidence channels |
+| Output | Protein name, HGNC symbol, HGNC ID, combined score | Target annotation |
+
+### Key Field Mappings
+
+**Molecular Structure → Standardization:**
+- SMILES → PubChem CID (via UniChem)
+- InChIKey → Cross-database lookup
+- IUPAC Name → ChEMBL ID mapping
+
+**Plant Origin → Identity:**
+- Botanical name → The Plant List, Tropicos, WFO, IPNI
+- Plant part → Tissue classification (root/leaf/bark/seed/fruit/flower/stem/tuber/rhizome/seed)
+- Vernacular names → 10 Indian language mapping
+
+**Target Proteins → External IDs:**
+- HGNC Symbol → UniProt accession (via HGNC ID mapping service)
+- HGNC ID → Gene Nomenclature Committee reference
+- Protein → STRING network, PDB structures
+
+### API/Download Specifics
+
+#### Access Methods
+
+| Method | Availability | Data Format | Use Case |
+|--------|--------------|------------|----------|
+| **Web Interface** | Public | Interactive HTML tabs | Browse/query single compounds |
+| **TSV Export** | Public | Tab-separated values | Bulk plant-phytochemical associations |
+| **Structure Download** | Public | SDF, MOL, MOL2, PDB, PDBQT | Molecular docking, visualization |
+| **REST API** | **None** | N/A | Programmatic access not supported |
+
+#### Web Query Capabilities
+
+**Plant Search:**
+- By botanical/vernacular name
+- By family
+- By therapeutic use
+- By IUCN conservation status
+
+**Phytochemical Search:**
+- By compound name
+- By SMILES/InChI/InChIKey
+- By molecular formula
+- By physicochemical properties (MW, logP, TPSA ranges)
+- By drug-likeness filters (Lipinski, Ghose, etc.)
+- By predicted target protein
+
+**Advanced Filters:**
+- Substructure search (SMARTS)
+- Similarity search (Tanimoto coefficient)
+- Multi-property range filtering
+- Target-based reverse lookup
+
+#### Structure File Downloads
+
+**Available Formats per Compound:**
+- **SDF** (.sdf) - Standard multi-molecule format with 2D/3D coordinates
+- **MOL** (.mol) - Single molecule V2000 format
+- **MOL2** (.mol2) - Tripos format with atom types
+- **PDB** (.pdb) - Protein Data Bank format for docking
+- **PDBQT** (.pdbqt) - AutoDock Vina-ready format
+
+#### Export Strategy
+
+**Recommended Data Acquisition Pipeline:**
+
+1. **Web Query** - Search IMPPAT web interface for target plants/compounds
+2. **TSV Export** - Download association tables (plant-phytochemical, plant-therapeutic)
+3. **Structure Bulk Download** - Download all SDF files for compound library
+4. **UniChem Mapping** - Cross-reference to PubChem/ChEMBL via InChIKey
+5. **HGNC Lookup** - Map HGNC IDs to UniProt for target proteins
+
+#### Rate Limiting & Access
+
+- No documented API rate limits (no API exists)
+- Web interface: Standard session-based access
+- Download: Single-file or batch operations via web UI
+- Recommended: Cache structure files locally post-download
+
+#### Bulk Analysis Scripts
+
+Associated GitHub repository (asamallab/IMPPAT2) provides analysis templates:
+- Property calculation scripts (Python/RDKit)
+- Similarity network generation
+- Scaffold decomposition
+- Drug-likeness evaluation
+
+---
+
 ## Change Log
 
 | Version | Date | Author | Changes |
 |---------|------|--------|---------|
 | 1.0 | January 2026 | Data Engineering | Initial schema documentation from publication and web interface analysis |
+| 1.1 | January 2026 | Data Engineering | Added Implementation Details section with 6-tab structure, field mappings, API/download specifics |

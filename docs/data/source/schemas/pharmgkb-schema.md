@@ -635,12 +635,153 @@ PharmCAT (Pharmacogenomics Clinical Annotation Tool) processes VCF files using P
 
 ---
 
+## Implementation Details
+
+### Star Allele Naming Conventions (PharmVar Standard)
+
+**Format:** `GENE*Allele.Suballele`
+
+| Component | Description | Example | Notes |
+|-----------|-------------|---------|-------|
+| Gene symbol | HGNC official symbol | CYP2D6, CYP2C9 | Required, immutable |
+| Asterisk | Separator | * | Standard notation |
+| Major allele | Primary allele number | 1, 2, 4, 17 | Ordered by discovery |
+| Suballele | Variant-specific | .001, .002 | Optional, precise definition |
+| Copy number | Gene duplication | x2, x3, xN | For CNV alleles |
+
+**Examples:**
+- `CYP2D6*1` - Reference allele (normal function)
+- `CYP2D6*4` - Core allele with decreased function
+- `CYP2D6*4.001` - Specific suballele variant
+- `CYP2D6*4x2` - Duplication of *4 allele
+- `CYP2C9*2` - Single base substitution allele
+
+**PharmVar ID Format:** `PV#####` (immutable, version-tracked)
+
+### CPIC Guideline Structure
+
+#### Guideline Organization
+
+| Element | Type | Description | Notes |
+|---------|------|-------------|-------|
+| **ID** | UUID | Unique guideline identifier | From CPIC API |
+| **Name** | String | Gene-drug pair name | e.g., "CYP2D6 and Codeine" |
+| **Version** | Integer | Release version | Updated quarterly |
+| **Genes** | Array | Associated genes | 1-6 genes per guideline |
+| **Drugs** | Array | Associated drugs | CPIC or FDA contraindicated drugs |
+| **URL** | String | CPIC website reference | Published guideline page |
+| **Status** | String | A, A/B, B, C, or D | Prescribing action strength |
+
+#### Guideline Categories (33 Total)
+
+| Category | Count | Examples |
+|----------|-------|----------|
+| **Single-gene** | 25 | CYP2D6+codeine, CYP2C19+clopidogrel, TPMT+azathioprine |
+| **Multi-gene (2)** | 5 | CYP2C9+VKORC1+warfarin, CYP3A4+CYP3A5+tacrolimus |
+| **Multi-gene (3+)** | 3 | HLA-A+HLA-B+carbamazepine |
+| **Multi-gene (6)** | 1 | Beta-blockers (ADRB1, CYP2B6, CYP2C19, CYP2D6, CYP3A4, CYP3A5) |
+
+#### Recommendation Lookup Methods
+
+| Method | Description | Lookup Key Format | Use Case |
+|--------|-------------|-------------------|----------|
+| **PHENOTYPE** | Phenotype-based recommendations | `{"CYP2D6": "Poor Metabolizer"}` | Most common for CYP enzymes |
+| **ACTIVITY_SCORE** | Activity score thresholds | `{"CYP2D6": "0"}` | Precision dosing calculations |
+| **ALLELE_STATUS** | Specific allele presence/absence | `{"HLA-B": "*57:01 positive"}` | HLA-based contraindications |
+
+### Phenotype Mapping Examples
+
+#### Metabolizer Phenotypes (CYP Enzymes)
+
+| Phenotype | Activity Score | Diplotype Example | Functional Impact | Clinical Example |
+|-----------|----------------|--------------------|-------------------|------------------|
+| **Ultrarapid** | >1.5 | *1x2/*1 | Enhanced enzyme activity | Increased drug clearance, subtherapeutic levels |
+| **Rapid** | 1.25-1.5 | *1/*1x2 | Moderately enhanced | Normal to elevated clearance |
+| **Normal** | 1.0 | *1/*1 | Full enzyme activity | Standard dosing appropriate |
+| **Intermediate** | 0.5-0.75 | *1/*2 | Reduced activity | Moderate dose reduction may be needed |
+| **Poor** | 0 | *3/*4 | Complete loss | Avoid drug or significantly reduce dose |
+
+#### Activity Score Calculation
+
+**Formula:** Combine allele 1 function + allele 2 function
+
+| Allele Function | Activity Value |
+|-----------------|-----------------|
+| Normal function | 1.0 |
+| Decreased function | 0.5 |
+| No function | 0.0 |
+| Increased function | >1.0 |
+| Unknown/Uncertain | null |
+
+**Diplotype Scoring Examples:**
+- `*1/*1` = 1.0 + 1.0 = 2.0 (Normal/Rapid) → Normal Metabolizer
+- `*1/*2` = 1.0 + 0.5 = 1.5 (Normal/Decreased) → Intermediate Metabolizer
+- `*2/*4` = 0.5 + 0.0 = 0.5 (Decreased/No) → Poor Metabolizer
+
+#### HLA Allele Phenotypes (Transporters/Receptors)
+
+| Phenotype | Typical Alleles | Activity | Example Drug |
+|-----------|-----------------|----------|--------------|
+| **Positive** | HLA-B*57:01 | N/A | Abacavir contraindicated |
+| **Negative** | Any other HLA-B | N/A | Abacavir acceptable |
+| **Normal** | Standard alleles | Expected | Default phenotype |
+| **Reduced** | Non-canonical alleles | Decreased | Special consideration |
+
+### Allele Definition Structure
+
+#### CPIC Allele Definition Table Format
+
+| Column | Value Type | Description | Example |
+|--------|-----------|-------------|---------|
+| **Allele Name** | String | Star allele identifier | *1, *2, *4 |
+| **Variants** | Array[String] | Defining rsIDs or positions | rs1065852, rs5030655 |
+| **Function** | String | Functional category | "Normal function", "No function" |
+| **Activity Score** | Float | Numeric activity value | 1.0, 0.5, 0 |
+| **PharmVar ID** | String | Immutable variant identifier | PV00123 |
+| **Copy Number** | Integer | Gene copy count | 1, 2, 3+ |
+
+#### Variant Specification Example
+
+| Allele | rs1065852 | rs5030655 | rs3892097 | Function | Score |
+|--------|-----------|-----------|-----------|----------|-------|
+| *1 | C | A | G | Normal | 1.0 |
+| *2 | T | A | G | Decreased | 0.5 |
+| *4 | C | A | A | No | 0.0 |
+| *6 | C | del | G | No | 0.0 |
+| *10 | T | A | G | Decreased | 0.5 |
+
+### CPIC Evidence Levels and Scoring
+
+| Level | Name | Score Range | Strength | Action |
+|-------|------|-------------|----------|--------|
+| **A** | Strong | ≥80 | Highest evidence | Prescribing action recommended |
+| **B** | Moderate | 25-79 | Moderate evidence | Prescribing action may be recommended |
+| **C** | Supportive | 8-24 | Supporting evidence | No prescribing action recommended |
+| **D** | Insufficient | <8 | Low/no evidence | Insufficient evidence |
+
+#### Evidence Scoring Factors
+
+| Factor | Category | Points |
+|--------|----------|--------|
+| **Phenotype Type** | Clinical outcomes | 1.0 (highest weight) |
+|  | Pharmacokinetic | 0.5 |
+| **P-value** | p < 0.01 | 1.0 |
+|  | p ≤ 0.05 | 0.5 |
+| **Cohort Size** | > 500 | 1.0 |
+|  | ≤ 50 | 0.0 |
+| **Effect Size** | OR/HR > 2 or < 0.5 | 0.5 |
+| **Study Type** | In vivo studies | 1.0 |
+|  | In vitro studies | 0.0 |
+
+---
+
 ## References
 
 1. PharmGKB: https://www.pharmgkb.org/
 2. CPIC: https://cpicpgx.org/
 3. PharmCAT: https://pharmcat.org/
-4. Whirl-Carrillo M, et al. (2021). An Evidence-Based Framework for Evaluating Pharmacogenomics Knowledge for Personalized Medicine. Clin Pharmacol Ther. 110(3):563-572.
+4. PharmVar: https://www.pharmvar.org/
+5. Whirl-Carrillo M, et al. (2021). An Evidence-Based Framework for Evaluating Pharmacogenomics Knowledge for Personalized Medicine. Clin Pharmacol Ther. 110(3):563-572.
 
 ---
 

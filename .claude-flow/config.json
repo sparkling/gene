@@ -1,7 +1,7 @@
 {
   "values": {
     "swarm.topology": "hierarchical-mesh",
-    "swarm.maxAgents": 100,
+    "swarm.maxAgents": 15,
     "swarm.autoScale": true,
     "memory.persistInterval": 30000,
     "memory.maxEntries": 50000000,
@@ -24,7 +24,7 @@
     "performance.workerThreads": 16,
     "performance.memoryLimit": 68719476736,
     "swarm.autoScale.minAgents": 4,
-    "swarm.autoScale.maxAgents": 100,
+    "swarm.autoScale.maxAgents": 15,
     "lora.rank": 16,
     "sona.enabled": true,
     "ewc.enabled": true,
@@ -65,5 +65,5 @@
   },
   "scopes": {},
   "version": "3.0.0",
-  "updatedAt": "2026-01-21T23:05:03.351Z"
+  "updatedAt": "2026-01-22T00:14:01.776Z"
 }

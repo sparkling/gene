@@ -3,13 +3,13 @@
 **Status:** Final
 **Owner:** Data Engineering
 **Last Updated:** January 2026
-**Version:** 2.0
+**Version:** 2.1
 
 ---
 
 ## TL;DR
 
-Navigation index for detailed data source documentation. **27 specialized documents** (20 Final, 7 Pending) organized by domain: genetics, traditional medicine, nutrition, pathways, compounds, literature, diseases, and integration. Covers **256+ databases** total.
+Navigation index for detailed data source documentation. **45 specialized documents** organized by domain: genetics, traditional medicine, nutrition, pathways, compounds, literature, diseases, integration, downloads, and research. Covers **256+ databases** total.
 
 ---
 
@@ -27,7 +27,8 @@ docs/data/source/
 ├── clinical/                # Biomarkers & labs
 ├── integration/             # Cross-references & APIs
 ├── schemas/                 # Database schemas
-└── research/                # Deep-dive research
+├── research/                # Deep-dive research
+└── downloads/               # Bulk download guides
 ```
 
 ---
@@ -58,6 +59,7 @@ docs/data/source/
 |----------|---------|--------|
 | [pathways/primary.md](./pathways/primary.md) | Reactome, WikiPathways, KEGG | Final |
 | [pathways/disease.md](./pathways/disease.md) | DisGeNET, OMIM, HPO (12 databases) | Final |
+| [pathways/processes.md](./pathways/processes.md) | Biological process databases catalog | Final |
 
 ---
 
@@ -76,6 +78,11 @@ docs/data/source/
 | Document | Content | Status |
 |----------|---------|--------|
 | [literature/sources.md](./literature/sources.md) | PubMed, PMC, OpenAlex, Europe PMC | Final |
+| [literature/public-sources.md](./literature/public-sources.md) | Public paper sources & access | Final |
+| [literature/coverage-analysis.md](./literature/coverage-analysis.md) | Literature coverage analysis | Final |
+| [literature/abstracts-vs-fulltext.md](./literature/abstracts-vs-fulltext.md) | Abstract vs full-text comparison | Final |
+| [literature/pipeline-design.md](./literature/pipeline-design.md) | Paper processing pipeline | Final |
+| [literature/data-structures.md](./literature/data-structures.md) | Literature data structures | Final |
 
 ---
 
@@ -111,6 +118,10 @@ docs/data/source/
 | [integration/wikipedia-wikidata.md](./integration/wikipedia-wikidata.md) | Semantic web, Wikidata extraction (12+ resources) | Final |
 | [integration/alt-sources.md](./integration/alt-sources.md) | Alternative access methods (15 sources) | Final |
 | [integration/xrefs.md](./integration/xrefs.md) | UniProt ID mapping, Gene Ontology, cross-references (6 databases) | Final |
+| [integration/size-estimates.md](./integration/size-estimates.md) | Data size estimates per source | Final |
+| [integration/wikidata-pharma.md](./integration/wikidata-pharma.md) | Wikidata pharmaceutical integration | Final |
+| [integration/integration-guide.md](./integration/integration-guide.md) | Data integration guide | Final |
+| [integration/compound-pathway-linking.md](./integration/compound-pathway-linking.md) | Compound-pathway linking | Final |
 
 ---
 
@@ -124,7 +135,32 @@ Database schema documentation: [schemas/index.md](./schemas/index.md)
 
 ## Research
 
-Deep-dive analysis: [research/](./research/)
+| Document | Content | Status |
+|----------|---------|--------|
+| [research/interventions-priority.md](./research/interventions-priority.md) | Intervention source priorities | Final |
+| [research/literature-priority.md](./research/literature-priority.md) | Literature source priorities | Final |
+
+---
+
+## Downloads
+
+Bulk download guides for major data sources.
+
+| Document | Content | Status |
+|----------|---------|--------|
+| [downloads/processing-pipeline.md](./downloads/processing-pipeline.md) | Data processing pipeline | Final |
+| [downloads/traditional-medicine.md](./downloads/traditional-medicine.md) | Traditional medicine downloads | Final |
+| [downloads/pharmaceuticals.md](./downloads/pharmaceuticals.md) | Pharmaceutical data downloads | Final |
+| [downloads/pathways-targets.md](./downloads/pathways-targets.md) | Pathway & target downloads | Final |
+| [downloads/wikidata-bulk.md](./downloads/wikidata-bulk.md) | Wikidata bulk downloads | Final |
+
+---
+
+## Gap Analysis
+
+| Document | Content | Status |
+|----------|---------|--------|
+| [schema-gaps.md](./schema-gaps.md) | Missing data source details | Final |
 
 ---
 
@@ -132,5 +168,6 @@ Deep-dive analysis: [research/](./research/)
 
 | Version | Date | Author | Changes |
 |---------|------|--------|---------|
+| 2.1 | January 2026 | Data Engineering | Added 18 files from research.old migration (downloads, literature, integration, research) |
 | 2.0 | January 2026 | Data Engineering | Reorganized into domain subdirectories, removed 43-XX prefixes |
 | 1.0 | January 2026 | Data Engineering | Initial index with migration mapping |

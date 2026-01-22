@@ -1,1 +1,62 @@
-{"key1":{"value":"test"},"key2":{"value":"test2"}}
+{
+  "entries": {
+    "key1": {
+      "value": "test",
+      "key": "key1",
+      "metadata": {},
+      "storedAt": "2025-01-20T03:22:00.000Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-01-20T03:22:00.000Z"
+    },
+    "key2": {
+      "value": "test2",
+      "key": "key2",
+      "metadata": {},
+      "storedAt": "2025-01-20T03:22:00.000Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-01-20T03:22:00.000Z"
+    },
+    "test-mcp-key": {
+      "key": "test-mcp-key",
+      "value": "test-mcp-value",
+      "metadata": {},
+      "storedAt": "2026-01-21T21:48:06.145Z",
+      "accessCount": 0,
+      "lastAccessed": "2026-01-21T21:48:06.145Z"
+    },
+    "mcp-final-test": {
+      "key": "mcp-final-test",
+      "value": "MCP memory fully operational",
+      "metadata": {},
+      "storedAt": "2026-01-21T21:48:45.852Z",
+      "accessCount": 0,
+      "lastAccessed": "2026-01-21T21:48:45.852Z"
+    },
+    "ruvector-test-2026": {
+      "key": "ruvector-test-2026",
+      "value": "Testing RuVector operational memory with HNSW indexing and semantic search capabilities",
+      "metadata": {
+        "test": true,
+        "timestamp": "2026-01-21",
+        "type": "operational-test"
+      },
+      "storedAt": "2026-01-21T22:50:05.255Z",
+      "accessCount": 0,
+      "lastAccessed": "2026-01-21T22:50:05.255Z"
+    },
+    "hardware-optimization-2026-01-21": {
+      "key": "hardware-optimization-2026-01-21",
+      "value": "Optimized claude-flow for AMD Ryzen 9 7950X3D (32 threads) with 187GB RAM. Settings: maxAgents=100, HNSW(m=48,ef_construction=400,ef_search=200), flashAttention=true, workerThreads=16, memoryLimit=64GB, cacheSize=8192, maxEntries=50M",
+      "metadata": {
+        "type": "optimization",
+        "hardware": "AMD Ryzen 9 7950X3D",
+        "ram": "187GB",
+        "threads": 32
+      },
+      "storedAt": "2026-01-21T22:56:32.946Z",
+      "accessCount": 0,
+      "lastAccessed": "2026-01-21T22:56:32.946Z"
+    }
+  },
+  "version": "3.0.0"
+}
