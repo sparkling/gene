@@ -76,7 +76,7 @@ What is the change we're proposing/doing?
 | Document | Relationship |
 |----------|--------------|
 | [44-ARCHITECTURE](../40-product/44-ARCHITECTURE.md) | Implements these decisions |
-| [43-DATA-SOURCES](../40-product/data-sources/43-00-INDEX.md) | Data source inventory |
+| [43-DATA-SOURCES](../data/source/INDEX.md) | Data source inventory |
 
 ---
 

@@ -356,7 +356,7 @@ assert(mthfr_mtr > mthfr_brca1, 'Methylation genes should cluster together');
 | Document | Relationship |
 |----------|--------------|
 | [44-ARCHITECTURE](./44-ARCHITECTURE.md) | Parent architecture (to be updated) |
-| [43-DATA-SOURCES](./data-sources/43-00-INDEX.md) | Data source inventory |
+| [43-DATA-SOURCES](../../data/source/INDEX.md) | Data source inventory |
 | [ADR Index](../adr/README.md) | Architecture decisions |
 
 ---

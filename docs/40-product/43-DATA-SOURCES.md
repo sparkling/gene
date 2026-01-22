@@ -10,7 +10,7 @@
 
 ## TL;DR
 
-The platform integrates data from THREE WORLDS: Modern Genetics (1.2B+ SNPs), Traditional Medicine (100K+ compounds across TCM, Ayurveda, Kampo, Western Herbal), and Nutritional Science (380K+ foods). **250+ databases cataloged** across 26 specialized documents covering genetics, traditional medicine, interventions, health domains, pathways, literature, and technical integration. This document serves as the master index; see detailed files in [`data-sources/`](./data-sources/) for complete database catalogs.
+The platform integrates data from THREE WORLDS: Modern Genetics (1.2B+ SNPs), Traditional Medicine (100K+ compounds across TCM, Ayurveda, Kampo, Western Herbal), and Nutritional Science (380K+ foods). **250+ databases cataloged** across 26 specialized documents covering genetics, traditional medicine, interventions, health domains, pathways, literature, and technical integration. This document serves as the master index; see detailed files in [`data-sources/`](../../data/source/) for complete database catalogs.
 
 ---
 
@@ -20,58 +20,58 @@ The platform integrates data from THREE WORLDS: Modern Genetics (1.2B+ SNPs), Tr
 
 | Doc | Title | Databases | Size |
 |-----|-------|-----------|------|
-| [43-11](./data-sources/43-11-GENETICS-PRIMARY.md) | **Genetics Primary** | Population, functional annotation, epigenetics, structural variants, 30 total | 28KB |
+| [43-11](../../data/source/genetics/PRIMARY.md) | **Genetics Primary** | Population, functional annotation, epigenetics, structural variants, 30 total | 28KB |
 
 ### Traditional Medicine (World 2)
 
 | Doc | Title | Databases | Size |
 |-----|-------|-----------|------|
-| [43-21](./data-sources/43-21-TCM.md) | **TCM** | BATMAN-TCM, HERB, SymMap, TCMBank, 20 total | 27KB |
-| [43-22](./data-sources/43-22-AYURVEDA.md) | **Ayurveda** | IMPPAT, OSADHI, GRAYU, TKDL, 16 total | 22KB |
-| [43-23](./data-sources/43-23-KAMPO.md) | **Kampo** | KampoDB, STORK, TM-MC, 15+ total | 22KB |
-| [43-24](./data-sources/43-24-WESTERN-HERBAL.md) | **Western Herbal** | DSLD, Dr. Duke's, EMA, 27 total | 27KB |
-| [43-25](./data-sources/43-25-GLOBAL-TRADITIONAL.md) | **Global Traditional** | African, Latin American medicine, 15 total | 18KB |
+| [43-21](../../data/source/traditional/TCM.md) | **TCM** | BATMAN-TCM, HERB, SymMap, TCMBank, 20 total | 27KB |
+| [43-22](../../data/source/traditional/AYURVEDA.md) | **Ayurveda** | IMPPAT, OSADHI, GRAYU, TKDL, 16 total | 22KB |
+| [43-23](../../data/source/traditional/KAMPO.md) | **Kampo** | KampoDB, STORK, TM-MC, 15+ total | 22KB |
+| [43-24](../../data/source/traditional/WESTERN-HERBAL.md) | **Western Herbal** | DSLD, Dr. Duke's, EMA, 27 total | 27KB |
+| [43-25](../../data/source/traditional/GLOBAL.md) | **Global Traditional** | African, Latin American medicine, 15 total | 18KB |
 
 ### Interventions (Cross-World)
 
 | Doc | Title | Databases | Size |
 |-----|-------|-----------|------|
-| [43-51](./data-sources/43-51-PHARMACEUTICALS.md) | **Pharmaceuticals** | PharmGKB, CPIC, DrugBank, ChEMBL, 22 total | 27KB |
-| [43-52](./data-sources/43-52-NATURAL-PRODUCTS.md) | **Natural Products** | COCONUT, LOTUS, NPASS, NPAtlas | 28KB |
-| [43-53](./data-sources/43-53-DRUG-METABOLISM.md) | **Drug Metabolism** | CYP450, drug interactions, transporters, 21 total | 24KB |
+| [43-51](../../data/source/compounds/PHARMACEUTICALS.md) | **Pharmaceuticals** | PharmGKB, CPIC, DrugBank, ChEMBL, 22 total | 27KB |
+| [43-52](../../data/source/compounds/NATURAL-PRODUCTS.md) | **Natural Products** | COCONUT, LOTUS, NPASS, NPAtlas | 28KB |
+| [43-53](../../data/source/compounds/DRUG-METABOLISM.md) | **Drug Metabolism** | CYP450, drug interactions, transporters, 21 total | 24KB |
 
 ### Health Domains
 
 | Doc | Title | Focus | Size |
 |-----|-------|-------|------|
-| [43-71](./data-sources/43-71-MENTAL-COGNITIVE.md) | **Mental-Cognitive** | Psychiatry, neurology, cognition | 25KB |
-| [43-72](./data-sources/43-72-CARDIO-METABOLIC.md) | **Cardio-Metabolic** | Heart, diabetes, metabolic | 17KB |
-| [43-73](./data-sources/43-73-CANCER-ONCOLOGY.md) | **Cancer-Oncology** | COSMIC, cBioPortal, OncoKB | 15KB |
-| [43-74](./data-sources/43-74-AUTOIMMUNE.md) | **Autoimmune** | Autoimmune, hormones | 21KB |
-| [43-75](./data-sources/43-75-RARE-DISEASES.md) | **Rare Diseases** | Orphanet, OMIM, HPO | 18KB |
-| [43-76](./data-sources/43-76-WOMENS-PEDIATRIC.md) | **Women's-Pediatric** | Reproductive, pediatric | 24KB |
-| [43-77](./data-sources/43-77-MICROBIOME.md) | **Microbiome** | Gut, oral, skin microbiome | 15KB |
-| [43-78](./data-sources/43-78-ALLERGY-PAIN.md) | **Allergy-Pain** | Allergy, histamine, mast cell, pain | 25KB |
-| [43-79](./data-sources/43-79-SLEEP-LONGEVITY-NUTRI.md) | **Sleep-Longevity-Nutri** | Circadian, aging, nutrigenomics, 30 total | 22KB |
+| [43-71](../../data/source/diseases/MENTAL-COGNITIVE.md) | **Mental-Cognitive** | Psychiatry, neurology, cognition | 25KB |
+| [43-72](../../data/source/diseases/CARDIO-METABOLIC.md) | **Cardio-Metabolic** | Heart, diabetes, metabolic | 17KB |
+| [43-73](../../data/source/diseases/CANCER-ONCOLOGY.md) | **Cancer-Oncology** | COSMIC, cBioPortal, OncoKB | 15KB |
+| [43-74](../../data/source/diseases/AUTOIMMUNE.md) | **Autoimmune** | Autoimmune, hormones | 21KB |
+| [43-75](../../data/source/diseases/RARE.md) | **Rare Diseases** | Orphanet, OMIM, HPO | 18KB |
+| [43-76](../../data/source/diseases/WOMENS-PEDIATRIC.md) | **Women's-Pediatric** | Reproductive, pediatric | 24KB |
+| [43-77](../../data/source/diseases/MICROBIOME.md) | **Microbiome** | Gut, oral, skin microbiome | 15KB |
+| [43-78](../../data/source/diseases/ALLERGY-PAIN.md) | **Allergy-Pain** | Allergy, histamine, mast cell, pain | 25KB |
+| [43-79](../../data/source/diseases/SLEEP-LONGEVITY-NUTRI.md) | **Sleep-Longevity-Nutri** | Circadian, aging, nutrigenomics, 30 total | 22KB |
 
 ### Pathways & Literature
 
 | Doc | Title | Content | Size |
 |-----|-------|---------|------|
-| [43-41](./data-sources/43-41-PATHWAYS-PRIMARY.md) | **Pathways Primary** | Reactome, WikiPathways, KEGG | 23KB |
-| [43-43](./data-sources/43-43-PATHWAYS-DISEASE.md) | **Disease Pathways** | DisGeNET, OMIM, HPO | 16KB |
-| [43-61](./data-sources/43-61-LITERATURE-SOURCES.md) | **Literature** | PubMed, PMC, OpenAlex | 19KB |
+| [43-41](../../data/source/pathways/PRIMARY.md) | **Pathways Primary** | Reactome, WikiPathways, KEGG | 23KB |
+| [43-43](../../data/source/pathways/DISEASE.md) | **Disease Pathways** | DisGeNET, OMIM, HPO | 16KB |
+| [43-61](../../data/source/literature/SOURCES.md) | **Literature** | PubMed, PMC, OpenAlex | 19KB |
 
 ### Integration & Technical
 
 | Doc | Title | Content | Size |
 |-----|-------|---------|------|
-| [43-81](./data-sources/43-81-BIOMARKERS-LABS.md) | **Biomarkers-Labs** | Lab standards, biomarker databases, 21 total | 22KB |
-| [43-83](./data-sources/43-83-ENVIRONMENTAL-MITO.md) | **Environmental-Mito** | Toxicogenomics, mitochondrial, 14 total | 18KB |
-| [43-84](./data-sources/43-84-WIKIPEDIA-WIKIDATA.md) | **Wikipedia-Wikidata** | Semantic web, Wikidata extraction | 20KB |
-| [43-85](./data-sources/43-85-ALT-DATA-SOURCES.md) | **Alt Data Sources** | Alternative access methods, 15 sources | 16KB |
+| [43-81](../../data/source/clinical/BIOMARKERS-LABS.md) | **Biomarkers-Labs** | Lab standards, biomarker databases, 21 total | 22KB |
+| [43-83](../../data/source/clinical/ENVIRONMENTAL-MITO.md) | **Environmental-Mito** | Toxicogenomics, mitochondrial, 14 total | 18KB |
+| [43-84](../../data/source/integration/WIKIPEDIA-WIKIDATA.md) | **Wikipedia-Wikidata** | Semantic web, Wikidata extraction | 20KB |
+| [43-85](../../data/source/integration/ALT-SOURCES.md) | **Alt Data Sources** | Alternative access methods, 15 sources | 16KB |
 
-**Full Index:** [data-sources/43-00-INDEX.md](./data-sources/43-00-INDEX.md)
+**Full Index:** [data-sources/43-00-INDEX.md](../../data/source/INDEX.md)
 
 ---
 
@@ -400,7 +400,7 @@ The platform integrates knowledge across 10 domains:
 | [44-ARCHITECTURE](./44-ARCHITECTURE.md) | Informs database design |
 | [45-DATA-MODEL](./45-DATA-MODEL.md) | Informs entity structure |
 | [42-ROADMAP](./42-ROADMAP.md) | Informed by integration priority |
-| [data-sources/43-00-INDEX.md](./data-sources/43-00-INDEX.md) | Detailed navigation index |
+| [data-sources/43-00-INDEX.md](../../data/source/INDEX.md) | Detailed navigation index |
 
 ---
 

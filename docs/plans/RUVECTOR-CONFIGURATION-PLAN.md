@@ -22,7 +22,7 @@
 2. **Graph Database** - Knowledge graph for genes/SNPs/pathways/herbs relationships
 3. **PostgreSQL (Separate)** - User domain data (HIPAA-compliant PII)
 
-**Research Documentation:** See `docs/40-product/data-sources/research/hive-ruvector-analysis/` (4,793 lines, 172 KB)
+**Research Documentation:** See `docs/research/graphs/` (4,793 lines, 172 KB)
 
 ---
 
@@ -955,7 +955,7 @@ $$) AS (friend_name agtype);
 
 ## Hive-Mind Research Documentation (v3.0)
 
-**Research Location:** `docs/40-product/data-sources/research/hive-ruvector-analysis/`
+**Research Location:** `docs/research/graphs/`
 
 | Document | Lines | Content |
 |----------|-------|---------|

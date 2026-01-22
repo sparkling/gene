@@ -101,4 +101,4 @@ Dataset: ~15-35M triples (genes, SNPs, pathways, herbs, conditions)
 - [QLever GitHub](https://github.com/ad-freiburg/qlever)
 - [QLever Performance Evaluation](https://github.com/ad-freiburg/qlever/wiki/QLever-performance-evaluation-and-comparison-to-other-SPARQL-engines)
 - [SPARQL 1.1 Specification](https://www.w3.org/TR/sparql11-query/)
-- Research: `docs/40-product/data-sources/research/hive-ruvector-analysis/07-QLEVER-ANALYSIS.md`
+- Research: `docs/research/graphs/07-QLEVER-ANALYSIS.md`

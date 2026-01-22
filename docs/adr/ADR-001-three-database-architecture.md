@@ -92,4 +92,4 @@ Adopt a **three-database architecture** where each database handles its intended
 ## References
 - [QLever GitHub](https://github.com/ad-freiburg/qlever) - SPARQL engine
 - [RuVector Documentation](https://github.com/ruvnet/ruvector) - Vector database
-- Research analysis: `docs/40-product/data-sources/research/hive-ruvector-analysis/`
+- Research analysis: `docs/research/graphs/`
