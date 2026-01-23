@@ -6,6 +6,8 @@ NEVER use `npx @claude-flow/cli` or Bash for claude-flow operations.
 
 MCP tools handle coordination. Task tool spawns agents. Claude Code tools (Edit, Write) do file work.
 
+**Always run from project root.** Claude-flow creates `.claude-flow/` in the current directory. Running from subdirectories creates duplicate state.
+
 ---
 
 ## Swarm
