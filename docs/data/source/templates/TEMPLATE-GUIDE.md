@@ -117,7 +117,7 @@ Examples:
 
 ## Example Files
 
-See `/docs/data/source.new/resource/examples/`:
-- `chembl-CLAUDE.md` - Bioactivity database
-- `gnomad-CLAUDE.md` - Population genetics
-- `clinvar-CLAUDE.md` - Clinical variants
+See these CLAUDE.md files in their respective categories:
+- `02.compounds.molecules/2.7.compound.target.interactions/chembl-CLAUDE.md` - Bioactivity database
+- `01.genetics.genomics/1.3.population.genetics/gnomad-CLAUDE.md` - Population genetics
+- `01.genetics.genomics/1.1.variant.repositories/clinvar-CLAUDE.md` - Clinical variants

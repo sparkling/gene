@@ -1,5 +1,11 @@
 # Claude Code Configuration - Claude Flow V3
 
+## ⚠️ ALWAYS RUN CLAUDE-FLOW FROM PROJECT ROOT
+
+**CRITICAL:** Always run `npx @claude-flow/cli@latest` commands from the project root directory (`/home/claude/src/gene/`). The CLI uses relative paths and will create nested `.claude-flow/` folders if run from subdirectories. This is a bug in the upstream package.
+
+---
+
 ## 🚨 AUTOMATIC SWARM ORCHESTRATION
 
 **When starting work on complex tasks, Claude Code MUST automatically:**
