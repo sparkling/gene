@@ -34,7 +34,7 @@ Validation report documenting schema conformance:
 
 ## Usage
 
-These schema files are referenced by individual domain schemas located in each resource subdirectory (e.g., `01.genetics.genomics/_schema/`). When adding new resources or modifying existing ones, consult these global definitions to ensure consistency.
+These schema files are referenced by individual domain schemas located in each resource subdirectory. When adding new resources or modifying existing ones, consult these global definitions to ensure consistency.
 
 ## Maintenance
 
