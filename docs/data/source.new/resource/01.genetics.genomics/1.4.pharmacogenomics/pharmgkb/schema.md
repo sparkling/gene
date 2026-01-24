@@ -211,6 +211,49 @@ PharmGKB provides curated pharmacogenomics knowledge linking genetic variants to
 
 ---
 
+## API Endpoints
+
+**API Base:** `https://api.pharmgkb.org/v1/` (redirects to ClinPGx)
+**S3 Downloads:** `https://s3.pgkb.org/`
+**Rate Limit:** 2 requests/second
+
+### Core Data Endpoints
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/data/clinicalAnnotation` | GET | Clinical annotations |
+| `/data/gene` | GET | Gene information |
+| `/data/chemical` | GET | Drug/chemical data |
+| `/data/variant` | GET | Genetic variants |
+| `/data/label` | GET | Drug label annotations |
+| `/data/guideline` | GET | Dosing guidelines |
+| `/data/pathway` | GET | Pharmacokinetic pathways |
+| `/data/automaticAnnotation` | GET | Automated literature annotations |
+
+### Reference Data
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/data/haplotype` | GET | Star allele definitions |
+| `/data/diplotype` | GET | Diplotype-phenotype mappings |
+| `/data/phenotype` | GET | Phenotype definitions |
+
+---
+
+## S3 Download Files
+
+| Resource | Format | Size | URL |
+|----------|--------|------|-----|
+| Clinical Annotations | TSV | ~20 MB | https://s3.pgkb.org/data/clinical_annotations.tsv.zip |
+| Drug Labels | TSV | ~10 MB | https://s3.pgkb.org/data/drug_labels.tsv.zip |
+| Variant-Drug Annotations | TSV | ~15 MB | https://s3.pgkb.org/data/var_drug_ann.tsv.zip |
+| Variant-Phenotype Annotations | TSV | ~8 MB | https://s3.pgkb.org/data/var_pheno_ann.tsv.zip |
+| Pathways Data | TSV | ~5 MB | https://s3.pgkb.org/data/pathways.tsv.zip |
+| Guidelines | JSON/PDF | ~50 MB | https://cpicpgx.org/guidelines/ |
+| REST API | JSON | - | https://api.pharmgkb.org/v1/ |
+
+---
+
 ## Glossary
 
 | Term | Definition |
@@ -223,6 +266,24 @@ PharmGKB provides curated pharmacogenomics knowledge linking genetic variants to
 | PD | Pharmacodynamics - drug action |
 | Level 1A | Highest evidence - guideline annotation |
 | Star Allele | Haplotype designation (e.g., *1, *2) |
+
+### Acronyms
+
+| Acronym | Expansion | Notes |
+|---------|-----------|-------|
+| PharmGKB | Pharmacogenomics Knowledge Base | Database name |
+| ClinPGx | Clinical Pharmacogenomics | Rebrand name |
+| CPIC | Clinical Pharmacogenetics Implementation Consortium | Guideline source |
+| DPWG | Dutch Pharmacogenetics Working Group | Guideline source |
+| PGx | Pharmacogenomics | Field abbreviation |
+| CYP | Cytochrome P450 | Enzyme family |
+| VKORC1 | Vitamin K Epoxide Reductase Complex 1 | Warfarin target |
+| HGNC | HUGO Gene Nomenclature Committee | Gene naming |
+| rsID | Reference SNP identifier | dbSNP format |
+| HGVS | Human Genome Variation Society | Nomenclature standard |
+| CC BY-SA | Creative Commons Attribution-ShareAlike | License type |
+| FDA | Food and Drug Administration | Drug label source |
+| EMA | European Medicines Agency | Drug label source |
 
 ---
 

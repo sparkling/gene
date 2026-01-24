@@ -153,6 +153,93 @@ Genes (1) ←→ (many) Gene_Categories
 
 ## GraphQL API
 
+**Endpoint**: `https://dgidb.org/api/graphql`
+**Version**: v5
+
+### Core GraphQL Types
+
+#### Gene
+```graphql
+type Gene {
+  id: ID!
+  name: String!
+  conceptId: String!
+  longName: String
+  description: String
+  geneCategories: [GeneCategory!]!
+  geneAliases: [GeneAlias!]!
+  geneClaims: [GeneClaim!]!
+  interactions: [Interaction!]!
+}
+```
+
+#### Drug
+```graphql
+type Drug {
+  id: ID!
+  name: String!
+  conceptId: String!
+  approved: Boolean!
+  immunotherapy: Boolean!
+  antineoplastic: Boolean!
+  drugAliases: [DrugAlias!]!
+  drugAttributes: [DrugAttribute!]!
+  drugApplications: [DrugApplication!]!
+  drugApprovalRatings: [DrugApprovalRating!]!
+  interactions: [Interaction!]!
+}
+```
+
+#### Interaction
+```graphql
+type Interaction {
+  id: ID!
+  gene: Gene!
+  drug: Drug!
+  interactionScore: Float
+  interactionTypes: [InteractionType!]!
+  interactionClaims: [InteractionClaim!]!
+  publications: [Publication!]!
+  sources: [Source!]!
+}
+```
+
+#### InteractionType
+```graphql
+type InteractionType {
+  id: ID!
+  type: String!
+  directionality: String
+}
+```
+
+#### Source
+```graphql
+type Source {
+  id: ID!
+  fullName: String!
+  sourceDbName: String!
+  sourceDbVersion: String
+  citationShort: String
+  citationFull: String
+  pmid: String
+  pmcid: String
+  doi: String
+  sourceUrl: String
+  license: String
+  licenseLink: String
+}
+```
+
+#### Publication
+```graphql
+type Publication {
+  id: ID!
+  pmid: Int
+  citation: String
+}
+```
+
 ### Query Examples
 
 ```graphql
@@ -201,6 +288,52 @@ query {
   genes(geneCategories: ["KINASE"]) {
     name
     interactionCount
+  }
+}
+
+# Search for gene interactions (extended)
+query {
+  genes(names: ["EGFR"]) {
+    nodes {
+      name
+      longName
+      interactions {
+        drug {
+          name
+          approved
+        }
+        interactionTypes {
+          type
+          directionality
+        }
+        interactionScore
+      }
+    }
+  }
+}
+
+# Search by interaction type
+query {
+  interactions(
+    interactionTypes: ["inhibitor"]
+    geneName: "BRAF"
+  ) {
+    nodes {
+      drug {
+        name
+        approved
+      }
+      gene {
+        name
+      }
+      interactionTypes {
+        type
+      }
+      publications {
+        pmid
+        citation
+      }
+    }
   }
 }
 ```
