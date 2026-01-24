@@ -1,0 +1,838 @@
+{
+  "category_id": "01",
+  "category_name": "Genetics & Genomics",
+  "extraction_date": "2026-01-24",
+  "total_data_sources": 25,
+  "subcategories": [
+    {
+      "subcategory_id": "1.1",
+      "subcategory_name": "Variant Repositories",
+      "data_sources": ["ClinVar", "dbSNP", "dbVar"],
+      "unified_fields": [
+        {
+          "name": "variant_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Unique identifier for the variant record",
+          "sources": ["ClinVar (VCV/RCV/SCV)", "dbSNP (rsid)", "dbVar (nsv/nssv)"],
+          "semantic_definition": "Primary key for variant identification across databases",
+          "examples": ["VCV000000123.4", "rs334", "nsv1234567"]
+        },
+        {
+          "name": "chromosome",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Chromosome location of the variant",
+          "sources": ["ClinVar", "dbSNP", "dbVar"],
+          "semantic_definition": "Chromosome identifier (1-22, X, Y, MT)",
+          "examples": ["11", "chr1", "chrX"]
+        },
+        {
+          "name": "position",
+          "type": "integer",
+          "cardinality": "1:1",
+          "description": "Genomic coordinate position",
+          "sources": ["ClinVar", "dbSNP", "dbVar"],
+          "semantic_definition": "1-based genomic coordinate on reference assembly",
+          "examples": [5227002, 10001, 140753336]
+        },
+        {
+          "name": "reference_allele",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Reference sequence at variant position",
+          "sources": ["ClinVar", "dbSNP", "dbVar"],
+          "semantic_definition": "Reference genome allele (IUPAC nucleotides)",
+          "examples": ["A", "T", "AG"]
+        },
+        {
+          "name": "alternate_allele",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Variant/alternate sequence",
+          "sources": ["ClinVar", "dbSNP", "dbVar"],
+          "semantic_definition": "Observed variant allele (IUPAC nucleotides)",
+          "examples": ["T", "A", "A"]
+        },
+        {
+          "name": "variant_type",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Classification of variant type",
+          "sources": ["ClinVar", "dbSNP", "dbVar"],
+          "semantic_definition": "Sequence Ontology term for variant type",
+          "examples": ["SNV", "deletion", "insertion", "structural_variant"]
+        },
+        {
+          "name": "clinical_significance",
+          "type": "string",
+          "cardinality": "1:N",
+          "description": "Clinical interpretation of variant pathogenicity",
+          "sources": ["ClinVar", "dbSNP (via ClinVar)", "dbVar"],
+          "semantic_definition": "ACMG/AMP classification of variant pathogenicity",
+          "examples": ["Pathogenic", "Likely pathogenic", "Uncertain significance", "Benign"]
+        },
+        {
+          "name": "gene_symbol",
+          "type": "string",
+          "cardinality": "1:N",
+          "description": "Gene associated with variant",
+          "sources": ["ClinVar", "dbSNP", "dbVar"],
+          "semantic_definition": "HGNC official gene symbol",
+          "examples": ["HBB", "BRCA1", "TP53"]
+        },
+        {
+          "name": "hgvs_expression",
+          "type": "string",
+          "cardinality": "1:N",
+          "description": "HGVS nomenclature for variant",
+          "sources": ["ClinVar", "dbSNP"],
+          "semantic_definition": "Human Genome Variation Society standardized notation",
+          "examples": ["NM_000518.5:c.20A>T", "NC_000011.10:g.5227002T>A"]
+        },
+        {
+          "name": "assembly",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Reference genome assembly version",
+          "sources": ["ClinVar", "dbSNP", "dbVar"],
+          "semantic_definition": "Genome Reference Consortium build identifier",
+          "examples": ["GRCh38", "GRCh37", "hg38"]
+        }
+      ],
+      "source_specific_fields": {
+        "ClinVar": [
+          {"name": "AlleleID", "type": "integer", "description": "Unique simple variant identifier"},
+          {"name": "VariationID", "type": "integer", "description": "ClinVar variation record ID"},
+          {"name": "ReviewStatus", "type": "string", "description": "Aggregate review status level"},
+          {"name": "NumberSubmitters", "type": "integer", "description": "Number of submitting organizations"},
+          {"name": "DateLastEvaluated", "type": "date", "description": "Most recent evaluation date"},
+          {"name": "PhenotypeIDS", "type": "string", "description": "MedGen CUI identifiers"},
+          {"name": "SomaticClinicalImpact", "type": "string", "description": "Somatic classification"},
+          {"name": "Oncogenicity", "type": "string", "description": "Oncogenicity classification"},
+          {"name": "Origin", "type": "string", "description": "Variant origin (germline, somatic, de novo)"},
+          {"name": "CLNREVSTAT", "type": "string", "description": "VCF review status code"},
+          {"name": "CLNSIG", "type": "string", "description": "VCF clinical significance"},
+          {"name": "CLNDN", "type": "string", "description": "Disease name(s)"},
+          {"name": "CLNDISDB", "type": "string", "description": "Disease database references"},
+          {"name": "MC", "type": "string", "description": "Molecular consequence"}
+        ],
+        "dbSNP": [
+          {"name": "refsnp_id", "type": "string", "description": "RefSNP identifier (without rs prefix)"},
+          {"name": "create_date", "type": "datetime", "description": "Initial submission date"},
+          {"name": "last_update_date", "type": "datetime", "description": "Most recent modification"},
+          {"name": "last_update_build_id", "type": "string", "description": "dbSNP build number"},
+          {"name": "mane_select_ids", "type": "array", "description": "MANE Select transcript IDs"},
+          {"name": "seq_id", "type": "string", "description": "RefSeq sequence accession.version"},
+          {"name": "deleted_sequence", "type": "string", "description": "SPDI deleted sequence"},
+          {"name": "inserted_sequence", "type": "string", "description": "SPDI inserted sequence"},
+          {"name": "allele_count", "type": "integer", "description": "Number of allele observations"},
+          {"name": "total_count", "type": "integer", "description": "Total chromosomes sampled"},
+          {"name": "citations", "type": "array", "description": "PubMed IDs"},
+          {"name": "ALFA_frequencies", "type": "object", "description": "Population-specific frequencies"}
+        ],
+        "dbVar": [
+          {"name": "outermost_start", "type": "integer", "description": "1-based start position"},
+          {"name": "outermost_stop", "type": "integer", "description": "1-based stop position"},
+          {"name": "inner_start", "type": "integer", "description": "Minimum affected start"},
+          {"name": "inner_stop", "type": "integer", "description": "Minimum affected stop"},
+          {"name": "outer_start", "type": "integer", "description": "Maximum boundary start"},
+          {"name": "outer_stop", "type": "integer", "description": "Maximum boundary stop"},
+          {"name": "variant_count", "type": "integer", "description": "Number of supporting variants"},
+          {"name": "method", "type": "string", "description": "Detection method(s)"},
+          {"name": "analysis", "type": "string", "description": "Analysis type(s)"},
+          {"name": "platform", "type": "string", "description": "Sequencing/array platform"},
+          {"name": "study", "type": "string", "description": "Source study accession(s)"},
+          {"name": "SVTYPE", "type": "string", "description": "Structural variant type"},
+          {"name": "SVLEN", "type": "integer", "description": "SV length (negative for deletions)"},
+          {"name": "CIPOS", "type": "string", "description": "Confidence interval around POS"},
+          {"name": "CIEND", "type": "string", "description": "Confidence interval around END"},
+          {"name": "IMPRECISE", "type": "boolean", "description": "Imprecise structural variant flag"},
+          {"name": "bin_size", "type": "string", "description": "Size category (small, medium, large)"}
+        ]
+      }
+    },
+    {
+      "subcategory_id": "1.2",
+      "subcategory_name": "Functional Prediction",
+      "data_sources": ["AlphaMissense", "CADD", "dbNSFP", "SpliceAI"],
+      "unified_fields": [
+        {
+          "name": "chromosome",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Chromosome location",
+          "sources": ["AlphaMissense", "CADD", "dbNSFP", "SpliceAI"],
+          "semantic_definition": "Chromosome identifier",
+          "examples": ["chr1", "1", "22"]
+        },
+        {
+          "name": "position",
+          "type": "integer",
+          "cardinality": "1:1",
+          "description": "Genomic coordinate",
+          "sources": ["AlphaMissense", "CADD", "dbNSFP", "SpliceAI"],
+          "semantic_definition": "1-based genomic position",
+          "examples": [10001, 5227002]
+        },
+        {
+          "name": "reference_allele",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Reference allele",
+          "sources": ["AlphaMissense", "CADD", "dbNSFP", "SpliceAI"],
+          "semantic_definition": "Reference genome nucleotide(s)",
+          "examples": ["A", "T", "G"]
+        },
+        {
+          "name": "alternate_allele",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Alternate allele",
+          "sources": ["AlphaMissense", "CADD", "dbNSFP", "SpliceAI"],
+          "semantic_definition": "Variant nucleotide(s)",
+          "examples": ["G", "A", "C"]
+        },
+        {
+          "name": "gene_symbol",
+          "type": "string",
+          "cardinality": "1:N",
+          "description": "Gene symbol",
+          "sources": ["AlphaMissense", "dbNSFP", "SpliceAI"],
+          "semantic_definition": "HGNC gene symbol",
+          "examples": ["BRCA1", "TP53"]
+        },
+        {
+          "name": "transcript_id",
+          "type": "string",
+          "cardinality": "1:N",
+          "description": "Transcript identifier",
+          "sources": ["AlphaMissense", "dbNSFP"],
+          "semantic_definition": "Ensembl or RefSeq transcript ID",
+          "examples": ["ENST00000357654", "NM_007294.4"]
+        }
+      ],
+      "source_specific_fields": {
+        "AlphaMissense": [
+          {"name": "genome", "type": "string", "description": "Reference genome (hg38)"},
+          {"name": "uniprot_id", "type": "string", "description": "UniProt accession"},
+          {"name": "protein_variant", "type": "string", "description": "Amino acid change (e.g., E7V)"},
+          {"name": "am_pathogenicity", "type": "float", "description": "Pathogenicity score (0-1)"},
+          {"name": "am_class", "type": "string", "description": "Classification (likely_benign, ambiguous, likely_pathogenic)"},
+          {"name": "mean_am_pathogenicity", "type": "float", "description": "Gene-level mean pathogenicity"}
+        ],
+        "CADD": [
+          {"name": "RawScore", "type": "float", "description": "Untransformed SVM score"},
+          {"name": "PHRED", "type": "float", "description": "PHRED-scaled score (-10*log10(rank/total))"}
+        ],
+        "dbNSFP": [
+          {"name": "aaref", "type": "string", "description": "Reference amino acid"},
+          {"name": "aaalt", "type": "string", "description": "Alternate amino acid"},
+          {"name": "genename", "type": "string", "description": "Gene name from RefSeq"},
+          {"name": "Ensembl_geneid", "type": "string", "description": "Ensembl gene ID"},
+          {"name": "Ensembl_transcriptid", "type": "string", "description": "Ensembl transcript ID"},
+          {"name": "Ensembl_proteinid", "type": "string", "description": "Ensembl protein ID"},
+          {"name": "Uniprot_acc", "type": "string", "description": "UniProt accession"},
+          {"name": "HGVSc_snpEff", "type": "string", "description": "HGVS coding annotation"},
+          {"name": "HGVSp_snpEff", "type": "string", "description": "HGVS protein annotation"},
+          {"name": "SIFT_score", "type": "float", "description": "SIFT prediction score"},
+          {"name": "SIFT_pred", "type": "string", "description": "SIFT prediction (D/T)"},
+          {"name": "Polyphen2_HDIV_score", "type": "float", "description": "PolyPhen-2 HumDiv score"},
+          {"name": "Polyphen2_HDIV_pred", "type": "string", "description": "PolyPhen-2 HumDiv prediction"},
+          {"name": "Polyphen2_HVAR_score", "type": "float", "description": "PolyPhen-2 HumVar score"},
+          {"name": "Polyphen2_HVAR_pred", "type": "string", "description": "PolyPhen-2 HumVar prediction"},
+          {"name": "LRT_score", "type": "float", "description": "LRT score"},
+          {"name": "MutationTaster_score", "type": "float", "description": "MutationTaster score"},
+          {"name": "MutationAssessor_score", "type": "float", "description": "MutationAssessor score"},
+          {"name": "FATHMM_score", "type": "float", "description": "FATHMM score"},
+          {"name": "PROVEAN_score", "type": "float", "description": "PROVEAN score"},
+          {"name": "MetaSVM_score", "type": "float", "description": "MetaSVM ensemble score"},
+          {"name": "MetaLR_score", "type": "float", "description": "MetaLR ensemble score"},
+          {"name": "REVEL_score", "type": "float", "description": "REVEL ensemble score"},
+          {"name": "CADD_phred", "type": "float", "description": "CADD PHRED-scaled score"},
+          {"name": "AlphaMissense_score", "type": "float", "description": "AlphaMissense pathogenicity"},
+          {"name": "phyloP100way_vertebrate", "type": "float", "description": "Conservation score (100 vertebrates)"},
+          {"name": "phastCons100way_vertebrate", "type": "float", "description": "phastCons conservation score"},
+          {"name": "GERP++_RS", "type": "float", "description": "GERP++ rejected substitution score"},
+          {"name": "gnomAD_exomes_AF", "type": "float", "description": "gnomAD exome allele frequency"},
+          {"name": "gnomAD_genomes_AF", "type": "float", "description": "gnomAD genome allele frequency"},
+          {"name": "1000Gp3_AF", "type": "float", "description": "1000 Genomes Phase 3 AF"},
+          {"name": "TOPMed_AF", "type": "float", "description": "TOPMed allele frequency"},
+          {"name": "clinvar_clnsig", "type": "string", "description": "ClinVar clinical significance"},
+          {"name": "clinvar_review", "type": "string", "description": "ClinVar review status"}
+        ],
+        "SpliceAI": [
+          {"name": "ALLELE", "type": "string", "description": "Alternate allele"},
+          {"name": "SYMBOL", "type": "string", "description": "Gene symbol"},
+          {"name": "DS_AG", "type": "float", "description": "Delta score for acceptor gain"},
+          {"name": "DS_AL", "type": "float", "description": "Delta score for acceptor loss"},
+          {"name": "DS_DG", "type": "float", "description": "Delta score for donor gain"},
+          {"name": "DS_DL", "type": "float", "description": "Delta score for donor loss"},
+          {"name": "DP_AG", "type": "integer", "description": "Distance to acceptor gain"},
+          {"name": "DP_AL", "type": "integer", "description": "Distance to acceptor loss"},
+          {"name": "DP_DG", "type": "integer", "description": "Distance to donor gain"},
+          {"name": "DP_DL", "type": "integer", "description": "Distance to donor loss"}
+        ]
+      }
+    },
+    {
+      "subcategory_id": "1.3",
+      "subcategory_name": "Population Genetics",
+      "data_sources": ["1000 Genomes", "gnomAD", "TOPMed", "UK Biobank"],
+      "unified_fields": [
+        {
+          "name": "chromosome",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Chromosome location",
+          "sources": ["1000 Genomes", "gnomAD", "TOPMed", "UK Biobank"],
+          "semantic_definition": "Chromosome identifier",
+          "examples": ["1", "22", "X"]
+        },
+        {
+          "name": "position",
+          "type": "integer",
+          "cardinality": "1:1",
+          "description": "Genomic position",
+          "sources": ["1000 Genomes", "gnomAD", "TOPMed", "UK Biobank"],
+          "semantic_definition": "1-based coordinate",
+          "examples": [10177, 5227002]
+        },
+        {
+          "name": "reference_allele",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Reference allele",
+          "sources": ["1000 Genomes", "gnomAD", "TOPMed", "UK Biobank"],
+          "semantic_definition": "Reference genome nucleotide(s)",
+          "examples": ["A", "T"]
+        },
+        {
+          "name": "alternate_allele",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Alternate allele",
+          "sources": ["1000 Genomes", "gnomAD", "TOPMed", "UK Biobank"],
+          "semantic_definition": "Variant nucleotide(s)",
+          "examples": ["AC", "G"]
+        },
+        {
+          "name": "allele_frequency",
+          "type": "float",
+          "cardinality": "1:1",
+          "description": "Global allele frequency",
+          "sources": ["1000 Genomes (AF)", "gnomAD (AF)", "TOPMed (allele_freq)"],
+          "semantic_definition": "Proportion of alternate allele in population (0-1)",
+          "examples": [0.425, 0.0108]
+        },
+        {
+          "name": "allele_count",
+          "type": "integer",
+          "cardinality": "1:1",
+          "description": "Count of alternate alleles",
+          "sources": ["1000 Genomes (AC)", "gnomAD (AC)", "TOPMed (allele_count)"],
+          "semantic_definition": "Number of observed alternate alleles",
+          "examples": [2130, 153036]
+        },
+        {
+          "name": "allele_number",
+          "type": "integer",
+          "cardinality": "1:1",
+          "description": "Total number of alleles",
+          "sources": ["1000 Genomes (AN)", "gnomAD (AN)", "TOPMed (allele_num)"],
+          "semantic_definition": "Total alleles in called genotypes",
+          "examples": [5008, 360000]
+        },
+        {
+          "name": "filter",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Quality filter status",
+          "sources": ["gnomAD", "TOPMed"],
+          "semantic_definition": "PASS or filter reason",
+          "examples": ["PASS", "AC0", "RF"]
+        }
+      ],
+      "source_specific_fields": {
+        "1000 Genomes": [
+          {"name": "AFR_AF", "type": "float", "description": "African super-population allele frequency"},
+          {"name": "AMR_AF", "type": "float", "description": "American super-population allele frequency"},
+          {"name": "EAS_AF", "type": "float", "description": "East Asian super-population allele frequency"},
+          {"name": "EUR_AF", "type": "float", "description": "European super-population allele frequency"},
+          {"name": "SAS_AF", "type": "float", "description": "South Asian super-population allele frequency"}
+        ],
+        "gnomAD": [
+          {"name": "nhomalt", "type": "integer", "description": "Number of homozygotes"},
+          {"name": "AC_XX", "type": "integer", "description": "Allele count in XX individuals"},
+          {"name": "AC_XY", "type": "integer", "description": "Allele count in XY individuals"},
+          {"name": "AC_afr", "type": "integer", "description": "Allele count in African/African-American"},
+          {"name": "AC_amr", "type": "integer", "description": "Allele count in Latino/Admixed American"},
+          {"name": "AC_asj", "type": "integer", "description": "Allele count in Ashkenazi Jewish"},
+          {"name": "AC_eas", "type": "integer", "description": "Allele count in East Asian"},
+          {"name": "AC_fin", "type": "integer", "description": "Allele count in Finnish"},
+          {"name": "AC_nfe", "type": "integer", "description": "Allele count in Non-Finnish European"},
+          {"name": "AC_sas", "type": "integer", "description": "Allele count in South Asian"},
+          {"name": "faf95", "type": "float", "description": "Filtering allele frequency (95% CI)"},
+          {"name": "faf99", "type": "float", "description": "Filtering allele frequency (99% CI)"},
+          {"name": "fafmax", "type": "float", "description": "Maximum filtering allele frequency"},
+          {"name": "FS", "type": "float", "description": "Fisher strand bias"},
+          {"name": "MQ", "type": "float", "description": "Mapping quality"},
+          {"name": "QD", "type": "float", "description": "Quality by depth"},
+          {"name": "VQSLOD", "type": "float", "description": "VQSR log-odds"},
+          {"name": "exp_lof", "type": "float", "description": "Expected loss-of-function variants"},
+          {"name": "obs_lof", "type": "integer", "description": "Observed loss-of-function variants"},
+          {"name": "oe_lof", "type": "float", "description": "Observed/expected ratio for LoF"},
+          {"name": "pLI", "type": "float", "description": "Probability of LoF intolerance"},
+          {"name": "LOEUF", "type": "float", "description": "Loss-of-function observed/expected upper bound fraction"},
+          {"name": "lof", "type": "string", "description": "LOFTEE annotation"},
+          {"name": "lof_filter", "type": "string", "description": "LOFTEE filter"},
+          {"name": "lof_flags", "type": "string", "description": "LOFTEE flags"},
+          {"name": "cadd_phred", "type": "float", "description": "CADD PHRED score"},
+          {"name": "revel", "type": "float", "description": "REVEL score"},
+          {"name": "sift", "type": "string", "description": "SIFT prediction"},
+          {"name": "polyphen", "type": "string", "description": "PolyPhen prediction"},
+          {"name": "spliceai_ds_max", "type": "float", "description": "Maximum SpliceAI delta score"}
+        ],
+        "TOPMed": [
+          {"name": "het_count", "type": "integer", "description": "Heterozygote count"},
+          {"name": "hom_count", "type": "integer", "description": "Homozygote count"},
+          {"name": "NWD_ID", "type": "string", "description": "TOPMed sample identifier (authorized access)"}
+        ],
+        "UK Biobank": [
+          {"name": "eid", "type": "integer", "description": "Encrypted participant ID"},
+          {"name": "field_id", "type": "integer", "description": "Data-field identifier"},
+          {"name": "instance", "type": "integer", "description": "Visit instance (0=baseline)"},
+          {"name": "array_index", "type": "integer", "description": "Array position for multi-value fields"},
+          {"name": "genotyping_array", "type": "string", "description": "Array type used"},
+          {"name": "batch", "type": "string", "description": "Genotyping batch"},
+          {"name": "sex_inferred", "type": "integer", "description": "Genetically inferred sex"},
+          {"name": "heterozygosity", "type": "float", "description": "Sample heterozygosity"},
+          {"name": "missingness", "type": "float", "description": "Genotype call rate"},
+          {"name": "genetic_ethnic_grouping", "type": "string", "description": "Genetic ancestry classification"}
+        ]
+      }
+    },
+    {
+      "subcategory_id": "1.4",
+      "subcategory_name": "Pharmacogenomics",
+      "data_sources": ["CPIC", "DPWG", "PharmGKB", "PharmVar"],
+      "unified_fields": [
+        {
+          "name": "gene",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Pharmacogene symbol",
+          "sources": ["CPIC", "DPWG", "PharmGKB", "PharmVar"],
+          "semantic_definition": "HGNC gene symbol for pharmacogene",
+          "examples": ["CYP2D6", "CYP2C19", "SLCO1B1"]
+        },
+        {
+          "name": "drug",
+          "type": "string",
+          "cardinality": "1:N",
+          "description": "Drug name",
+          "sources": ["CPIC", "DPWG", "PharmGKB"],
+          "semantic_definition": "Generic drug name",
+          "examples": ["codeine", "clopidogrel", "simvastatin"]
+        },
+        {
+          "name": "phenotype",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Metabolizer status or phenotype",
+          "sources": ["CPIC", "DPWG", "PharmGKB"],
+          "semantic_definition": "Predicted metabolizer phenotype from diplotype",
+          "examples": ["Poor Metabolizer", "Normal Metabolizer", "Ultrarapid Metabolizer"]
+        },
+        {
+          "name": "recommendation",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Clinical recommendation",
+          "sources": ["CPIC", "DPWG", "PharmGKB"],
+          "semantic_definition": "Dosing guidance or alternative therapy recommendation",
+          "examples": ["Avoid use", "Use standard dose", "Consider 50% dose reduction"]
+        },
+        {
+          "name": "evidence_level",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Evidence strength",
+          "sources": ["CPIC", "DPWG", "PharmGKB"],
+          "semantic_definition": "Classification of evidence supporting recommendation",
+          "examples": ["A", "B", "Strong", "Moderate", "1A", "1B"]
+        }
+      ],
+      "source_specific_fields": {
+        "CPIC": [
+          {"name": "guideline_id", "type": "string", "description": "Unique guideline identifier"},
+          {"name": "publication_doi", "type": "string", "description": "DOI reference"},
+          {"name": "cpic_level", "type": "string", "description": "CPIC level (A, B, C, D)"},
+          {"name": "allele", "type": "string", "description": "Star allele (e.g., *1, *4)"},
+          {"name": "function", "type": "string", "description": "Allele function (Normal/Decreased/No function)"},
+          {"name": "activity_score", "type": "float", "description": "Numeric activity value"},
+          {"name": "strength", "type": "string", "description": "Recommendation strength (Strong/Moderate/Optional)"},
+          {"name": "implications", "type": "string", "description": "Clinical implications"}
+        ],
+        "DPWG": [
+          {"name": "dpwg_id", "type": "string", "description": "DPWG guideline identifier"},
+          {"name": "atc_code", "type": "string", "description": "WHO ATC drug classification code"},
+          {"name": "urgency", "type": "string", "description": "Urgency classification (Urgent/Non-urgent)"},
+          {"name": "diplotype", "type": "string", "description": "Allele combination"},
+          {"name": "activity_score", "type": "float", "description": "Activity score when applicable"}
+        ],
+        "PharmGKB": [
+          {"name": "PharmGKB_Accession", "type": "string", "description": "PA + integer identifier"},
+          {"name": "Is_VIP", "type": "boolean", "description": "Very Important Pharmacogene status"},
+          {"name": "Has_Variant_Annotation", "type": "boolean", "description": "Has curated variants"},
+          {"name": "Annotation_ID", "type": "integer", "description": "Clinical annotation identifier"},
+          {"name": "Level_of_Evidence", "type": "string", "description": "Evidence level (1A, 1B, 2A, 2B, 3, 4)"},
+          {"name": "Phenotype_Category", "type": "string", "description": "Efficacy, Toxicity, Dosage, Metabolism"},
+          {"name": "Trade_Names", "type": "array", "description": "Brand names"},
+          {"name": "ATC_Codes", "type": "array", "description": "ATC classification codes"},
+          {"name": "RxNorm_Identifiers", "type": "array", "description": "RxNorm CUIs"},
+          {"name": "DrugBank_ID", "type": "string", "description": "DrugBank identifier"},
+          {"name": "Has_PGx_On_Label", "type": "boolean", "description": "FDA label PGx info"},
+          {"name": "Variant_Haplotypes", "type": "array", "description": "Associated haplotypes"},
+          {"name": "Biogeographical_Groups", "type": "object", "description": "Population frequencies"},
+          {"name": "Pathway_ID", "type": "string", "description": "Drug pathway identifier"},
+          {"name": "PK_PD", "type": "string", "description": "Pharmacokinetics or pharmacodynamics"}
+        ],
+        "PharmVar": [
+          {"name": "allele_name", "type": "string", "description": "Star notation (e.g., *4)"},
+          {"name": "core_allele", "type": "string", "description": "Core allele (e.g., *4.001)"},
+          {"name": "activity_value", "type": "float", "description": "Activity score (0, 0.5, 1, etc.)"},
+          {"name": "defining_variants", "type": "array", "description": "List of defining variants"},
+          {"name": "ref_seq_id", "type": "string", "description": "NG reference sequence"},
+          {"name": "hgvs_g", "type": "string", "description": "Genomic HGVS"},
+          {"name": "hgvs_c", "type": "string", "description": "Coding HGVS"},
+          {"name": "hgvs_p", "type": "string", "description": "Protein HGVS"},
+          {"name": "rsid", "type": "string", "description": "dbSNP RS ID"},
+          {"name": "impact", "type": "string", "description": "Variant effect type"}
+        ]
+      }
+    },
+    {
+      "subcategory_id": "1.5",
+      "subcategory_name": "Expression & Regulation",
+      "data_sources": ["ENCODE", "eQTLGen", "GTEx", "GWAS Catalog"],
+      "unified_fields": [
+        {
+          "name": "gene_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Gene identifier",
+          "sources": ["ENCODE", "eQTLGen", "GTEx", "GWAS Catalog"],
+          "semantic_definition": "Ensembl gene ID or HGNC symbol",
+          "examples": ["ENSG00000012048", "BRCA1"]
+        },
+        {
+          "name": "variant_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Variant identifier",
+          "sources": ["eQTLGen", "GTEx", "GWAS Catalog"],
+          "semantic_definition": "SNP or variant identifier",
+          "examples": ["rs12345", "chr17_43044295_A_G_b38"]
+        },
+        {
+          "name": "p_value",
+          "type": "float",
+          "cardinality": "1:1",
+          "description": "Association p-value",
+          "sources": ["eQTLGen", "GTEx", "GWAS Catalog"],
+          "semantic_definition": "Statistical significance of association",
+          "examples": [1e-12, 7e-8]
+        },
+        {
+          "name": "effect_size",
+          "type": "float",
+          "cardinality": "1:1",
+          "description": "Effect size/beta/slope",
+          "sources": ["eQTLGen", "GTEx", "GWAS Catalog"],
+          "semantic_definition": "Magnitude and direction of effect",
+          "examples": [0.45, -0.23]
+        }
+      ],
+      "source_specific_fields": {
+        "ENCODE": [
+          {"name": "accession", "type": "string", "description": "ENCODE accession (ENCSR, ENCFF, ENCBS)"},
+          {"name": "assay_title", "type": "string", "description": "Assay name (ChIP-seq, ATAC-seq, RNA-seq)"},
+          {"name": "target", "type": "object", "description": "Target protein/modification"},
+          {"name": "biosample_ontology", "type": "object", "description": "Cell type/tissue information"},
+          {"name": "file_format", "type": "string", "description": "bam, fastq, bigWig, bed, bigBed"},
+          {"name": "output_type", "type": "string", "description": "peaks, signal, alignments"},
+          {"name": "assembly", "type": "string", "description": "GRCh38, hg19, mm10"},
+          {"name": "cCRE_accession", "type": "string", "description": "Candidate cis-regulatory element ID"},
+          {"name": "cCRE_classification", "type": "string", "description": "PLS, pELS, dELS, DNase-H3K4me3, CTCF-only"},
+          {"name": "chrom", "type": "string", "description": "Chromosome"},
+          {"name": "chromStart", "type": "integer", "description": "0-based start position"},
+          {"name": "chromEnd", "type": "integer", "description": "1-based end position"},
+          {"name": "score", "type": "integer", "description": "Normalized signal (0-1000)"},
+          {"name": "itemRgb", "type": "string", "description": "Classification color RGB"}
+        ],
+        "eQTLGen": [
+          {"name": "SNP", "type": "string", "description": "RS ID"},
+          {"name": "SNPChr", "type": "integer", "description": "SNP chromosome"},
+          {"name": "SNPPos", "type": "integer", "description": "SNP position (hg19)"},
+          {"name": "AssessedAllele", "type": "string", "description": "Effect allele"},
+          {"name": "OtherAllele", "type": "string", "description": "Non-effect allele"},
+          {"name": "Zscore", "type": "float", "description": "Association Z-score"},
+          {"name": "Gene", "type": "string", "description": "Ensembl gene ID"},
+          {"name": "GeneSymbol", "type": "string", "description": "HGNC symbol"},
+          {"name": "GeneChr", "type": "integer", "description": "Gene chromosome"},
+          {"name": "GenePos", "type": "integer", "description": "Gene TSS position"},
+          {"name": "NrCohorts", "type": "integer", "description": "Contributing cohorts"},
+          {"name": "NrSamples", "type": "integer", "description": "Sample size"},
+          {"name": "FDR", "type": "float", "description": "False discovery rate"}
+        ],
+        "GTEx": [
+          {"name": "SUBJID", "type": "string", "description": "Subject identifier (GTEX-XXXXX)"},
+          {"name": "SEX", "type": "integer", "description": "1=Male, 2=Female"},
+          {"name": "AGE", "type": "string", "description": "Age bracket (20-29, 30-39, etc.)"},
+          {"name": "DTHHRDY", "type": "integer", "description": "Hardy scale death classification (0-4)"},
+          {"name": "SAMPID", "type": "string", "description": "Sample identifier"},
+          {"name": "SMTS", "type": "string", "description": "Tissue type (general)"},
+          {"name": "SMTSD", "type": "string", "description": "Tissue type (detailed)"},
+          {"name": "SMRIN", "type": "float", "description": "RNA Integrity Number"},
+          {"name": "SMAFRZE", "type": "string", "description": "Analysis freeze (RNASEQ, WGS)"},
+          {"name": "TPM", "type": "float", "description": "Transcripts Per Million"},
+          {"name": "read_counts", "type": "integer", "description": "Raw read counts"},
+          {"name": "tss_distance", "type": "integer", "description": "Distance to transcription start site"},
+          {"name": "ma_samples", "type": "integer", "description": "Minor allele samples"},
+          {"name": "ma_count", "type": "integer", "description": "Minor allele count"},
+          {"name": "maf", "type": "float", "description": "Minor allele frequency"},
+          {"name": "pval_nominal", "type": "float", "description": "Nominal p-value"},
+          {"name": "slope", "type": "float", "description": "Effect size (beta)"},
+          {"name": "slope_se", "type": "float", "description": "Standard error of slope"},
+          {"name": "pval_beta", "type": "float", "description": "Beta-adjusted p-value"},
+          {"name": "phenotype_id", "type": "string", "description": "sQTL intron cluster ID"}
+        ],
+        "GWAS Catalog": [
+          {"name": "accessionId", "type": "string", "description": "GCST study accession number"},
+          {"name": "diseaseTrait", "type": "string", "description": "Reported trait name"},
+          {"name": "initialSampleSize", "type": "string", "description": "Sample description text"},
+          {"name": "snpCount", "type": "integer", "description": "Number of SNPs analyzed"},
+          {"name": "imputed", "type": "boolean", "description": "Whether genotypes were imputed"},
+          {"name": "pubmedId", "type": "string", "description": "PubMed ID"},
+          {"name": "publicationDate", "type": "string", "description": "Publication date (ISO 8601)"},
+          {"name": "author", "type": "object", "description": "First author information"},
+          {"name": "pvalue", "type": "float", "description": "Association p-value"},
+          {"name": "pvalueDescription", "type": "string", "description": "Context (e.g., progression)"},
+          {"name": "riskFrequency", "type": "float", "description": "Risk allele frequency"},
+          {"name": "orPerCopyNum", "type": "float", "description": "Odds ratio per allele copy"},
+          {"name": "betaNum", "type": "float", "description": "Effect size for quantitative traits"},
+          {"name": "betaUnit", "type": "string", "description": "Unit of effect size"},
+          {"name": "range", "type": "string", "description": "Confidence interval notation"},
+          {"name": "rsId", "type": "string", "description": "dbSNP RS identifier"},
+          {"name": "chromosomeName", "type": "string", "description": "Chromosome"},
+          {"name": "chromosomePosition", "type": "integer", "description": "Genomic position"},
+          {"name": "functionalClass", "type": "string", "description": "Sequence Ontology annotation"},
+          {"name": "EFO_trait", "type": "string", "description": "Experimental Factor Ontology trait"},
+          {"name": "EFO_uri", "type": "string", "description": "EFO trait URI"},
+          {"name": "ancestralGroups", "type": "array", "description": "Population ancestry groups"}
+        ]
+      }
+    },
+    {
+      "subcategory_id": "1.6",
+      "subcategory_name": "Cancer Genomics",
+      "data_sources": ["BRCA Exchange", "Cancer Gene Census", "cBioPortal", "CIViC", "COSMIC", "OncoKB"],
+      "unified_fields": [
+        {
+          "name": "gene",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Cancer gene symbol",
+          "sources": ["BRCA Exchange", "Cancer Gene Census", "cBioPortal", "CIViC", "COSMIC", "OncoKB"],
+          "semantic_definition": "HGNC gene symbol",
+          "examples": ["BRAF", "TP53", "BRCA1"]
+        },
+        {
+          "name": "variant",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Variant/alteration name",
+          "sources": ["BRCA Exchange", "cBioPortal", "CIViC", "COSMIC", "OncoKB"],
+          "semantic_definition": "Protein-level variant notation",
+          "examples": ["V600E", "p.Glu23ValfsTer17", "c.1799T>A"]
+        },
+        {
+          "name": "clinical_significance",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Clinical classification",
+          "sources": ["BRCA Exchange", "CIViC", "OncoKB"],
+          "semantic_definition": "Pathogenicity or oncogenicity classification",
+          "examples": ["Pathogenic", "Oncogenic", "Likely Oncogenic"]
+        },
+        {
+          "name": "cancer_type",
+          "type": "string",
+          "cardinality": "1:N",
+          "description": "Associated cancer type(s)",
+          "sources": ["Cancer Gene Census", "cBioPortal", "CIViC", "COSMIC", "OncoKB"],
+          "semantic_definition": "Cancer type or tissue of origin",
+          "examples": ["Melanoma", "Colorectal", "Breast"]
+        },
+        {
+          "name": "evidence_level",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Evidence tier/level",
+          "sources": ["CIViC", "OncoKB"],
+          "semantic_definition": "Tier classification for clinical evidence",
+          "examples": ["A", "B", "1", "2", "3A"]
+        }
+      ],
+      "source_specific_fields": {
+        "BRCA Exchange": [
+          {"name": "Gene_Symbol", "type": "string", "description": "BRCA1 or BRCA2"},
+          {"name": "Genomic_Coordinate_hg38", "type": "string", "description": "chr:pos:ref:alt format"},
+          {"name": "HGVS_cDNA", "type": "string", "description": "Coding DNA change"},
+          {"name": "HGVS_Protein", "type": "string", "description": "Protein change"},
+          {"name": "Reference_Sequence", "type": "string", "description": "Transcript reference"},
+          {"name": "Pathogenicity_expert", "type": "string", "description": "ENIGMA classification"},
+          {"name": "Pathogenicity_all", "type": "string", "description": "Aggregated classification"},
+          {"name": "Clinical_significance_ENIGMA", "type": "string", "description": "ENIGMA expert classification"},
+          {"name": "Clinical_significance_ClinVar", "type": "string", "description": "ClinVar classification"},
+          {"name": "Date_last_evaluated_ENIGMA", "type": "date", "description": "ENIGMA review date"},
+          {"name": "Source", "type": "string", "description": "Contributing databases"},
+          {"name": "SCV_ClinVar", "type": "string", "description": "ClinVar accession"}
+        ],
+        "Cancer Gene Census": [
+          {"name": "Gene Symbol", "type": "string", "description": "HGNC symbol"},
+          {"name": "Name", "type": "string", "description": "Full gene name"},
+          {"name": "Entrez GeneId", "type": "integer", "description": "NCBI gene ID"},
+          {"name": "Genome Location", "type": "string", "description": "Chromosomal location"},
+          {"name": "Tier", "type": "integer", "description": "1 (strong) or 2 (emerging)"},
+          {"name": "Hallmark", "type": "string", "description": "Cancer hallmarks"},
+          {"name": "Role in Cancer", "type": "string", "description": "oncogene, TSG, fusion"},
+          {"name": "Mutation Types", "type": "string", "description": "Mutation type codes (Mis, N, F, S, D, T, A)"},
+          {"name": "Translocation Partner", "type": "string", "description": "Fusion partners"},
+          {"name": "Cancer Types", "type": "string", "description": "Associated cancers"},
+          {"name": "Synonyms", "type": "string", "description": "Alternative names"}
+        ],
+        "cBioPortal": [
+          {"name": "studyId", "type": "string", "description": "Unique study identifier"},
+          {"name": "cancerTypeId", "type": "string", "description": "Cancer type classification"},
+          {"name": "molecularProfileId", "type": "string", "description": "Molecular data profile ID"},
+          {"name": "molecularAlterationType", "type": "string", "description": "MUTATION_EXTENDED, COPY_NUMBER_ALTERATION, etc."},
+          {"name": "datatype", "type": "string", "description": "MAF, DISCRETE, LOG2-VALUE, etc."},
+          {"name": "allSampleCount", "type": "integer", "description": "Total samples in study"},
+          {"name": "referenceGenome", "type": "string", "description": "hg19 or hg38"},
+          {"name": "Hugo_Symbol", "type": "string", "description": "HUGO gene symbol"},
+          {"name": "Entrez_Gene_Id", "type": "integer", "description": "NCBI Gene ID"},
+          {"name": "Chromosome", "type": "string", "description": "Chromosome number"},
+          {"name": "Start_Position", "type": "integer", "description": "Start genomic coordinate"},
+          {"name": "End_Position", "type": "integer", "description": "End genomic coordinate"},
+          {"name": "Variant_Classification", "type": "string", "description": "Mutation functional class"},
+          {"name": "Variant_Type", "type": "string", "description": "SNP/INS/DEL"},
+          {"name": "Reference_Allele", "type": "string", "description": "Reference nucleotide(s)"},
+          {"name": "Tumor_Seq_Allele1", "type": "string", "description": "Tumor allele 1"},
+          {"name": "Tumor_Seq_Allele2", "type": "string", "description": "Tumor allele 2"},
+          {"name": "Tumor_Sample_Barcode", "type": "string", "description": "Sample identifier"},
+          {"name": "clinicalAttributeId", "type": "string", "description": "Clinical attribute ID"},
+          {"name": "patientAttribute", "type": "boolean", "description": "Patient vs sample level"}
+        ],
+        "CIViC": [
+          {"name": "id", "type": "integer", "description": "CIViC entity ID"},
+          {"name": "name", "type": "string", "description": "Variant name"},
+          {"name": "entrez_id", "type": "integer", "description": "NCBI Entrez gene ID"},
+          {"name": "variant_types", "type": "array", "description": "Sequence Ontology terms"},
+          {"name": "coordinates", "type": "object", "description": "Genomic coordinates"},
+          {"name": "hgvs_expressions", "type": "array", "description": "HGVS nomenclature"},
+          {"name": "evidence_type", "type": "string", "description": "Predictive/Diagnostic/Prognostic/Predisposing"},
+          {"name": "evidence_level", "type": "string", "description": "A/B/C/D/E"},
+          {"name": "evidence_direction", "type": "string", "description": "Supports/Does Not Support"},
+          {"name": "clinical_significance", "type": "string", "description": "Sensitivity/Resistance/etc."},
+          {"name": "disease", "type": "object", "description": "Cancer type with DOID"},
+          {"name": "drugs", "type": "array", "description": "Associated therapies"},
+          {"name": "source", "type": "object", "description": "Publication reference"},
+          {"name": "amp_level", "type": "string", "description": "AMP/ASCO/CAP tier"}
+        ],
+        "COSMIC": [
+          {"name": "COSV_ID", "type": "string", "description": "Genomic mutation ID (COSV + integer)"},
+          {"name": "COSM_ID", "type": "string", "description": "Legacy mutation ID (COSM + integer)"},
+          {"name": "Transcript", "type": "string", "description": "Ensembl transcript ID"},
+          {"name": "CDS_Mutation", "type": "string", "description": "CDS-level HGVS"},
+          {"name": "AA_Mutation", "type": "string", "description": "Protein-level HGVS"},
+          {"name": "Mutation_Type", "type": "string", "description": "Substitution, Insertion, etc."},
+          {"name": "Mutation_Description", "type": "string", "description": "Functional consequence"},
+          {"name": "GRCh38_Position", "type": "string", "description": "chr:start-end coordinates"},
+          {"name": "Sample_ID", "type": "integer", "description": "Internal sample ID"},
+          {"name": "Sample_Name", "type": "string", "description": "Sample identifier"},
+          {"name": "Primary_Site", "type": "string", "description": "Anatomical site"},
+          {"name": "Primary_Histology", "type": "string", "description": "Histological type"},
+          {"name": "Sample_Type", "type": "string", "description": "cell line, tumour, etc."},
+          {"name": "Age", "type": "integer", "description": "Patient age"},
+          {"name": "census_tier", "type": "integer", "description": "Cancer Gene Census tier (1 or 2)"},
+          {"name": "Role_in_Cancer", "type": "string", "description": "oncogene, TSG, fusion"},
+          {"name": "Signature", "type": "string", "description": "Mutational signature (SBS/DBS/ID)"},
+          {"name": "Signature_Type", "type": "string", "description": "SBS, DBS, or ID"},
+          {"name": "Contribution", "type": "float", "description": "Signature proportion (0-1)"},
+          {"name": "Proposed_Etiology", "type": "string", "description": "Mutagenic process"},
+          {"name": "Fusion_ID", "type": "integer", "description": "Gene fusion record ID"},
+          {"name": "Gene_5prime", "type": "string", "description": "5' fusion partner"},
+          {"name": "Gene_3prime", "type": "string", "description": "3' fusion partner"}
+        ],
+        "OncoKB": [
+          {"name": "hugoSymbol", "type": "string", "description": "HGNC gene symbol"},
+          {"name": "oncogene", "type": "boolean", "description": "Is oncogene"},
+          {"name": "tsg", "type": "boolean", "description": "Is tumor suppressor gene"},
+          {"name": "geneAliases", "type": "array", "description": "Alternative gene names"},
+          {"name": "background", "type": "string", "description": "Gene description"},
+          {"name": "alteration", "type": "string", "description": "Alteration name (V600E)"},
+          {"name": "alterationType", "type": "string", "description": "Mutation/CNA/Fusion"},
+          {"name": "consequence", "type": "string", "description": "Protein consequence"},
+          {"name": "proteinStart", "type": "integer", "description": "Protein position start"},
+          {"name": "proteinEnd", "type": "integer", "description": "Protein position end"},
+          {"name": "oncogenic", "type": "string", "description": "Oncogenic/Likely Oncogenic/etc."},
+          {"name": "mutationEffect", "type": "object", "description": "Gain/Loss of function"},
+          {"name": "level", "type": "string", "description": "Evidence level (1, 2, 3A, 3B, 4, R1, R2)"},
+          {"name": "cancerTypes", "type": "array", "description": "Applicable cancer types"},
+          {"name": "drugs", "type": "array", "description": "Recommended therapies"},
+          {"name": "pmids", "type": "array", "description": "Supporting PubMed IDs"},
+          {"name": "abstracts", "type": "array", "description": "Conference abstracts"},
+          {"name": "description", "type": "string", "description": "Clinical context"}
+        ]
+      }
+    }
+  ],
+  "cross_subcategory_common_fields": {
+    "genomic_coordinates": {
+      "fields": ["chromosome", "position", "reference_allele", "alternate_allele"],
+      "present_in_subcategories": ["1.1", "1.2", "1.3", "1.5", "1.6"],
+      "description": "Core genomic variant coordinates shared across variant and expression databases"
+    },
+    "gene_identifiers": {
+      "fields": ["gene_symbol", "entrez_gene_id", "ensembl_gene_id"],
+      "present_in_subcategories": ["1.1", "1.2", "1.3", "1.4", "1.5", "1.6"],
+      "description": "Gene identification shared across all genomics databases"
+    },
+    "clinical_significance": {
+      "fields": ["clinical_significance", "pathogenicity", "oncogenicity"],
+      "present_in_subcategories": ["1.1", "1.2", "1.6"],
+      "description": "Variant pathogenicity classifications from clinical and cancer databases"
+    },
+    "population_frequency": {
+      "fields": ["allele_frequency", "allele_count", "allele_number"],
+      "present_in_subcategories": ["1.2", "1.3"],
+      "description": "Population genetics metrics shared between functional prediction and population genetics databases"
+    }
+  },
+  "metadata": {
+    "schema_version": "1.0",
+    "generated_by": "Claude Research Agent",
+    "total_unified_fields": 34,
+    "total_source_specific_fields": 287,
+    "coverage": {
+      "subcategory_1.1_sources": 3,
+      "subcategory_1.2_sources": 4,
+      "subcategory_1.3_sources": 4,
+      "subcategory_1.4_sources": 4,
+      "subcategory_1.5_sources": 4,
+      "subcategory_1.6_sources": 6
+    }
+  }
+}

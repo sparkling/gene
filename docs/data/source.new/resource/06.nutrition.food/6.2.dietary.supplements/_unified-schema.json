@@ -1,0 +1,278 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gene.taxonomy/schemas/6.2-dietary-supplements",
+  "title": "Dietary Supplements Unified Schema",
+  "description": "Unified schema for dietary supplement data integrating ConsumerLab, DSLD, and Natural Medicines sources",
+  "type": "object",
+  "properties": {
+    "product_id": {
+      "type": "string",
+      "description": "Unique identifier for the supplement product",
+      "sources": ["ConsumerLab (review_id)", "DSLD (dsld_id)", "Natural Medicines (monograph_id)"],
+      "example": "CL-2024-VIT-D-001"
+    },
+    "product_name": {
+      "type": "string",
+      "description": "Name of the supplement product",
+      "sources": ["ConsumerLab (product_name)", "DSLD (product_name)", "Natural Medicines (name)"],
+      "example": "Vitamin D3 5000 IU"
+    },
+    "brand_name": {
+      "type": ["string", "null"],
+      "description": "Brand name of the supplement",
+      "sources": ["ConsumerLab (brand)", "DSLD (brand_name)"],
+      "example": "Nature Made"
+    },
+    "upc": {
+      "type": ["string", "null"],
+      "description": "Universal Product Code barcode",
+      "sources": ["ConsumerLab (upc)", "DSLD (upc)"],
+      "example": "012345678901"
+    },
+    "category": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Category classification of the supplement",
+      "sources": ["ConsumerLab (category/subcategory)", "DSLD (ingredient_group)", "Natural Medicines (category)"],
+      "example": ["Vitamins & Minerals", "Vitamins"]
+    },
+    "ingredients": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "ingredient_name": {"type": "string"},
+          "amount": {"type": "string"},
+          "unit": {"type": "string"},
+          "daily_value_percent": {"type": ["string", "null"]},
+          "is_blend_component": {"type": "boolean"},
+          "blend_name": {"type": ["string", "null"]},
+          "source_name": {"type": ["string", "null"]}
+        }
+      },
+      "description": "List of active ingredients with amounts",
+      "sources": ["ConsumerLab (ingredient)", "DSLD (ingredient_name, amount, unit)", "Natural Medicines (scientific_names)"],
+      "example": [{"ingredient_name": "Vitamin D3 (as Cholecalciferol)", "amount": "5000", "unit": "IU", "daily_value_percent": "1250"}]
+    },
+    "serving_size": {
+      "type": ["string", "null"],
+      "description": "Amount per single serving",
+      "sources": ["DSLD (serving_size)"],
+      "example": "1 softgel"
+    },
+    "product_type": {
+      "type": ["string", "null"],
+      "description": "Physical form of the supplement",
+      "sources": ["DSLD (product_type)"],
+      "example": "Softgel"
+    },
+    "net_contents": {
+      "type": ["string", "null"],
+      "description": "Net quantity/count in package",
+      "sources": ["DSLD (net_contents)"],
+      "example": "120 Softgels"
+    },
+    "approval_status": {
+      "type": ["string", "null"],
+      "description": "Quality test result status from ConsumerLab",
+      "sources": ["ConsumerLab (approval_status)"],
+      "enum": ["Approved", "Not Approved", "Voluntarily Withdrawn", null],
+      "example": "Approved"
+    },
+    "test_results": {
+      "type": ["object", "null"],
+      "description": "Comprehensive test result data including potency, purity, contaminants",
+      "sources": ["ConsumerLab"],
+      "properties": {
+        "claimed_amount": {"type": "string"},
+        "actual_amount": {"type": "string"},
+        "percent_of_claim": {"type": "number"}
+      },
+      "example": {"claimed_amount": "5000 IU", "actual_amount": "5120 IU", "percent_of_claim": 102.4}
+    },
+    "heavy_metals": {
+      "type": ["object", "null"],
+      "description": "Heavy metal contamination test results",
+      "sources": ["ConsumerLab"],
+      "properties": {
+        "lead_mcg_daily": {"type": ["number", "string"]},
+        "arsenic_mcg_daily": {"type": ["number", "string"]},
+        "cadmium_mcg_daily": {"type": ["number", "string"]},
+        "mercury_mcg_daily": {"type": ["number", "string"]}
+      },
+      "example": {"lead_mcg_daily": 0.3, "arsenic_mcg_daily": "ND"}
+    },
+    "disintegration": {
+      "type": ["object", "null"],
+      "description": "Tablet/capsule breakdown test results",
+      "sources": ["ConsumerLab"],
+      "properties": {
+        "time_minutes": {"type": "number"},
+        "limit_minutes": {"type": "number"},
+        "status": {"type": "string"}
+      },
+      "example": {"time_minutes": 18, "limit_minutes": 30, "status": "Pass"}
+    },
+    "safety_grade": {
+      "type": ["string", "null"],
+      "description": "Overall safety classification",
+      "sources": ["Natural Medicines (safety_grade)"],
+      "enum": ["Likely Safe", "Possibly Safe", "Possibly Unsafe", "Likely Unsafe", null],
+      "example": "Likely Safe"
+    },
+    "effectiveness_ratings": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "condition": {"type": "string"},
+          "rating": {"type": "string"},
+          "evidence_level": {"type": "string"}
+        }
+      },
+      "description": "Evidence-based efficacy assessment by condition",
+      "sources": ["Natural Medicines (effectiveness_rating)", "ConsumerLab (evidence_summary)"],
+      "example": [{"condition": "bone_health", "rating": "Effective", "evidence_level": "A"}]
+    },
+    "mechanism_of_action": {
+      "type": ["string", "null"],
+      "description": "Pharmacological basis of action",
+      "sources": ["Natural Medicines"],
+      "example": "Curcumin inhibits COX-2, LOX, NF-kB pathways"
+    },
+    "pharmacokinetics": {
+      "type": ["object", "null"],
+      "description": "Absorption, metabolism, and elimination data",
+      "sources": ["Natural Medicines"],
+      "properties": {
+        "absorption": {"type": "string"},
+        "half_life": {"type": "string"},
+        "metabolism": {"type": "string"}
+      },
+      "example": {"absorption": "Poor oral bioavailability", "half_life": "1-2 hours"}
+    },
+    "drug_interactions": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "drug_name": {"type": "string"},
+          "severity": {"type": "string"},
+          "mechanism": {"type": ["string", "null"]}
+        }
+      },
+      "description": "Known drug interaction information",
+      "sources": ["ConsumerLab (drug_interactions)", "Natural Medicines (interaction_severity, interaction_mechanism)"],
+      "example": [{"drug_name": "Corticosteroids", "severity": "Moderate", "mechanism": "CYP3A4 induction"}]
+    },
+    "scientific_names": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Taxonomic names for the ingredient source",
+      "sources": ["Natural Medicines (scientific_names)"],
+      "example": ["Curcuma longa", "Curcuma domestica"]
+    },
+    "common_names": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Alternative/regional names for the ingredient",
+      "sources": ["Natural Medicines (common_names)"],
+      "example": ["Curcumin", "Indian Saffron", "Haridra"]
+    },
+    "dietary_claims": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Health/dietary claims on label",
+      "sources": ["DSLD (dietary_claims)"],
+      "example": ["Gluten Free", "No artificial colors"]
+    },
+    "manufacturer": {
+      "type": ["object", "null"],
+      "description": "Manufacturer/distributor information",
+      "sources": ["DSLD (manufacturer)"],
+      "properties": {
+        "name": {"type": "string"},
+        "city": {"type": "string"},
+        "state": {"type": "string"},
+        "country": {"type": "string"}
+      },
+      "example": {"name": "Nature's Way Products", "city": "Green Bay", "state": "WI"}
+    },
+    "cas_number": {
+      "type": ["string", "null"],
+      "description": "Chemical Abstracts Service registry number",
+      "sources": ["Natural Medicines"],
+      "example": "458-37-7"
+    },
+    "unii": {
+      "type": ["string", "null"],
+      "description": "FDA Unique Ingredient Identifier",
+      "sources": ["Natural Medicines"],
+      "example": "IT942ZTH98"
+    },
+    "_source": {
+      "type": "object",
+      "description": "Metadata about the data source",
+      "properties": {
+        "primary_source": {"type": "string"},
+        "source_id": {"type": "string"},
+        "extraction_date": {"type": "string", "format": "date"},
+        "source_version": {"type": "string"}
+      }
+    }
+  },
+  "required": ["product_id", "product_name"],
+  "field_mappings": {
+    "ConsumerLab": {
+      "review_id": "product_id",
+      "product_name": "product_name",
+      "brand": "brand_name",
+      "upc": "upc",
+      "category": "category",
+      "subcategory": "category",
+      "ingredient": "ingredients[].ingredient_name",
+      "claimed_amount": "ingredients[].amount",
+      "approval_status": "approval_status",
+      "test_results": "test_results",
+      "heavy_metals": "heavy_metals",
+      "disintegration": "disintegration",
+      "evidence_summary": "effectiveness_ratings",
+      "drug_interactions": "drug_interactions"
+    },
+    "DSLD": {
+      "dsld_id": "product_id",
+      "product_name": "product_name",
+      "brand_name": "brand_name",
+      "upc": "upc",
+      "ingredient_group": "category",
+      "ingredient_name": "ingredients[].ingredient_name",
+      "amount": "ingredients[].amount",
+      "unit": "ingredients[].unit",
+      "daily_value_percent": "ingredients[].daily_value_percent",
+      "serving_size": "serving_size",
+      "product_type": "product_type",
+      "net_contents": "net_contents",
+      "is_blend_component": "ingredients[].is_blend_component",
+      "blend_name": "ingredients[].blend_name",
+      "source_name": "ingredients[].source_name",
+      "dietary_claims": "dietary_claims",
+      "manufacturer": "manufacturer"
+    },
+    "Natural Medicines": {
+      "monograph_id": "product_id",
+      "name": "product_name",
+      "category": "category",
+      "scientific_names": "scientific_names",
+      "common_names": "common_names",
+      "safety_grade": "safety_grade",
+      "effectiveness_rating": "effectiveness_ratings",
+      "evidence_level": "effectiveness_ratings[].evidence_level",
+      "mechanism_of_action": "mechanism_of_action",
+      "pharmacokinetics": "pharmacokinetics",
+      "interaction_severity": "drug_interactions[].severity",
+      "interaction_mechanism": "drug_interactions[].mechanism",
+      "cas_number": "cas_number",
+      "unii": "unii"
+    }
+  }
+}

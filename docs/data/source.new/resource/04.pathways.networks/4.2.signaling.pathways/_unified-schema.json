@@ -1,0 +1,171 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gene.example.org/schemas/4.2-signaling-pathways.json",
+  "title": "Signaling Pathways Unified Schema",
+  "description": "Unified schema for signaling pathway data from Pathway Commons",
+  "type": "object",
+  "properties": {
+    "uri": {
+      "type": "string",
+      "description": "Unique resource identifier for the entity (BioPAX URI)",
+      "sources": ["Pathway Commons"],
+      "examples": ["http://identifiers.org/reactome/R-HSA-109581"]
+    },
+    "display_name": {
+      "type": "string",
+      "description": "Human-readable entity name",
+      "sources": ["Pathway Commons"],
+      "examples": ["Apoptosis"]
+    },
+    "organism": {
+      "type": ["object", "null"],
+      "properties": {
+        "display_name": {"type": "string"},
+        "tax_id": {"type": "integer"}
+      },
+      "description": "Species for the pathway",
+      "sources": ["Pathway Commons"],
+      "examples": [{"display_name": "Homo sapiens", "tax_id": 9606}]
+    },
+    "data_source": {
+      "type": ["string", "null"],
+      "description": "Source database of the record",
+      "sources": ["Pathway Commons"],
+      "examples": ["Reactome", "KEGG", "WikiPathways"]
+    },
+    "pathway_components": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Contained reactions and controls",
+      "sources": ["Pathway Commons"]
+    },
+    "pathway_order": {
+      "type": ["array", "null"],
+      "items": {"type": "object"},
+      "description": "Ordered steps in the pathway",
+      "sources": ["Pathway Commons"]
+    },
+    "left": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Reaction substrates (BiochemicalReaction)",
+      "sources": ["Pathway Commons"]
+    },
+    "right": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Reaction products (BiochemicalReaction)",
+      "sources": ["Pathway Commons"]
+    },
+    "conversion_direction": {
+      "type": ["string", "null"],
+      "enum": ["LEFT-TO-RIGHT", "RIGHT-TO-LEFT", "REVERSIBLE", null],
+      "description": "Direction of biochemical conversion",
+      "sources": ["Pathway Commons"]
+    },
+    "ec_numbers": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "EC enzyme classification numbers",
+      "sources": ["Pathway Commons"]
+    },
+    "control_type": {
+      "type": ["string", "null"],
+      "enum": ["ACTIVATION", "INHIBITION", null],
+      "description": "Type of regulatory control",
+      "sources": ["Pathway Commons"]
+    },
+    "controller": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Entity performing the control",
+      "sources": ["Pathway Commons"]
+    },
+    "controlled": {
+      "type": ["string", "null"],
+      "description": "Process being controlled",
+      "sources": ["Pathway Commons"]
+    },
+    "entity_reference": {
+      "type": ["object", "null"],
+      "properties": {
+        "db": {"type": "string"},
+        "id": {"type": "string"}
+      },
+      "description": "Canonical sequence or structure reference",
+      "sources": ["Pathway Commons"]
+    },
+    "features": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {"type": "string"},
+          "position": {"type": "string"}
+        }
+      },
+      "description": "PTMs, domains, binding sites",
+      "sources": ["Pathway Commons"]
+    },
+    "cellular_location": {
+      "type": ["object", "null"],
+      "properties": {
+        "term": {"type": "string"},
+        "go": {"type": "string"}
+      },
+      "description": "Subcellular location from GO",
+      "sources": ["Pathway Commons"]
+    },
+    "components": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Members of a complex",
+      "sources": ["Pathway Commons"]
+    },
+    "component_stoichiometry": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "entity": {"type": "string"},
+          "coefficient": {"type": "integer"}
+        }
+      },
+      "description": "Stoichiometric ratios of complex components",
+      "sources": ["Pathway Commons"]
+    },
+    "_source": {
+      "type": "object",
+      "description": "Metadata about the data source",
+      "properties": {
+        "database": {"type": "string"},
+        "version": {"type": "string"},
+        "access_date": {"type": "string", "format": "date"},
+        "original_id": {"type": "string"}
+      }
+    }
+  },
+  "required": ["uri", "display_name"],
+  "field_mappings": {
+    "Pathway_Commons": {
+      "uri": "uri",
+      "displayName": "display_name",
+      "organism": "organism",
+      "dataSource": "data_source",
+      "pathwayComponent": "pathway_components",
+      "pathwayOrder": "pathway_order",
+      "left": "left",
+      "right": "right",
+      "conversionDirection": "conversion_direction",
+      "eCNumber": "ec_numbers",
+      "controlType": "control_type",
+      "controller": "controller",
+      "controlled": "controlled",
+      "entityReference": "entity_reference",
+      "feature": "features",
+      "cellularLocation": "cellular_location",
+      "component": "components",
+      "componentStoichiometry": "component_stoichiometry"
+    }
+  }
+}

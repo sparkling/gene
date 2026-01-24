@@ -1,0 +1,1291 @@
+{
+  "category_id": "03",
+  "category_name": "Diseases & Phenotypes",
+  "extraction_date": "2026-01-24",
+  "total_sources": 22,
+  "subcategories": [
+    {
+      "subcategory_id": "3.1",
+      "subcategory_name": "Disease Ontologies",
+      "data_sources": ["EFO", "HPO", "ICD", "MeSH", "MONDO", "Orphanet/ORDO"],
+      "unified_fields": [
+        {
+          "name": "id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Primary unique identifier for the disease/ontology term",
+          "sources": ["EFO", "HPO", "ICD", "MeSH", "MONDO", "Orphanet"],
+          "semantic_definition": "Canonical identifier following source-specific patterns",
+          "examples": {
+            "EFO": "EFO_0000685",
+            "HPO": "HP:0001250",
+            "ICD-10": "E11.9",
+            "ICD-11": "5A11",
+            "MeSH": "D003920",
+            "MONDO": "MONDO:0005015",
+            "Orphanet": "Orphanet:558"
+          }
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Primary/preferred name of the disease or ontology term",
+          "sources": ["EFO", "HPO", "ICD", "MeSH", "MONDO", "Orphanet"],
+          "semantic_definition": "Human-readable label for the term"
+        },
+        {
+          "name": "definition",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Textual definition of the disease or phenotype",
+          "sources": ["HPO", "MONDO", "Orphanet"],
+          "semantic_definition": "Formal definition often with citation references"
+        },
+        {
+          "name": "synonyms",
+          "type": "list",
+          "cardinality": "1:N",
+          "description": "Alternative names or aliases for the term",
+          "sources": ["EFO", "HPO", "MeSH", "MONDO", "Orphanet"],
+          "semantic_definition": "List of synonyms with optional type qualifiers (exact, broad, narrow, related)"
+        },
+        {
+          "name": "is_a",
+          "type": "list",
+          "cardinality": "N:M",
+          "description": "Parent term relationships in ontology hierarchy",
+          "sources": ["EFO", "HPO", "MONDO", "Orphanet/ORDO"],
+          "semantic_definition": "Hierarchical subclass relationship to parent terms"
+        },
+        {
+          "name": "xref",
+          "type": "list",
+          "cardinality": "1:N",
+          "description": "Cross-references to external databases and ontologies",
+          "sources": ["EFO", "HPO", "ICD", "MeSH", "MONDO", "Orphanet"],
+          "semantic_definition": "Mappings to other identifier systems (UMLS, SNOMED, OMIM, etc.)"
+        }
+      ],
+      "source_specific_fields": {
+        "EFO": [
+          {
+            "name": "efo_id",
+            "type": "string",
+            "pattern": "EFO_[0-9]{7}",
+            "description": "Experimental Factor Ontology identifier"
+          }
+        ],
+        "HPO": [
+          {
+            "name": "comment",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Additional notes about the phenotype term"
+          },
+          {
+            "name": "created_by",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Curator who created the term"
+          },
+          {
+            "name": "creation_date",
+            "type": "datetime",
+            "cardinality": "1:1",
+            "description": "Date the term was created"
+          },
+          {
+            "name": "subset",
+            "type": "list",
+            "cardinality": "1:N",
+            "description": "Subsets the term belongs to (hpo_slim, hposlim_core)"
+          },
+          {
+            "name": "alt_id",
+            "type": "list",
+            "cardinality": "1:N",
+            "description": "Alternative/obsolete identifiers for the term"
+          }
+        ],
+        "ICD": [
+          {
+            "name": "icd10_code",
+            "type": "string",
+            "pattern": "[A-Z][0-9]{2}(\\.[0-9]{1,4})?",
+            "description": "ICD-10 classification code"
+          },
+          {
+            "name": "icd11_code",
+            "type": "string",
+            "pattern": "[A-Z0-9]{4,6}",
+            "description": "ICD-11 entity code"
+          },
+          {
+            "name": "block_code",
+            "type": "string",
+            "pattern": "[A-Z][0-9]{2}-[A-Z][0-9]{2}",
+            "description": "ICD chapter block range"
+          }
+        ],
+        "MeSH": [
+          {
+            "name": "mesh_ui",
+            "type": "string",
+            "pattern": "D[0-9]{6}",
+            "description": "MeSH unique identifier"
+          },
+          {
+            "name": "tree_number",
+            "type": "string",
+            "pattern": "C[0-9]{2}(\\.[0-9]{3})+",
+            "description": "MeSH tree hierarchy position"
+          },
+          {
+            "name": "entry_term",
+            "type": "list",
+            "cardinality": "1:N",
+            "description": "Entry terms for indexing"
+          }
+        ],
+        "MONDO": [
+          {
+            "name": "exactMatch",
+            "type": "list",
+            "cardinality": "1:N",
+            "description": "1:1 equivalence axioms to other disease IDs"
+          },
+          {
+            "name": "closeMatch",
+            "type": "list",
+            "cardinality": "1:N",
+            "description": "Very similar but not exact matches"
+          },
+          {
+            "name": "narrowMatch",
+            "type": "list",
+            "cardinality": "1:N",
+            "description": "More specific concept mappings"
+          },
+          {
+            "name": "broadMatch",
+            "type": "list",
+            "cardinality": "1:N",
+            "description": "More general concept mappings"
+          }
+        ],
+        "Orphanet": [
+          {
+            "name": "orpha_code",
+            "type": "integer",
+            "description": "Numeric Orphanet disease code"
+          },
+          {
+            "name": "orpha_group",
+            "type": "enum",
+            "values": ["Disorder", "Group", "Subtype"],
+            "description": "Classification of entity type"
+          },
+          {
+            "name": "disorder_type",
+            "type": "object",
+            "description": "Type of disorder (disease, malformation, etc.)"
+          },
+          {
+            "name": "association_type",
+            "type": "string",
+            "description": "Type of gene-disease relationship",
+            "values": ["Disease-causing germline mutation(s) in", "Disease-causing somatic mutation(s) in", "Major susceptibility factor in", "Modifying germline mutation in"]
+          },
+          {
+            "name": "association_status",
+            "type": "enum",
+            "values": ["Assessed", "Not validated"],
+            "description": "Curation status of gene-disease association"
+          }
+        ]
+      }
+    },
+    {
+      "subcategory_id": "3.2",
+      "subcategory_name": "Phenotype Databases",
+      "data_sources": ["HPO Annotations", "OMIM", "Orphanet Phenotypes"],
+      "unified_fields": [
+        {
+          "name": "disease_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Disease database identifier",
+          "sources": ["HPO Annotations", "OMIM", "Orphanet Phenotypes"],
+          "semantic_definition": "Primary key linking to disease records",
+          "examples": ["OMIM:154700", "ORPHA:558", "MONDO:0007947"]
+        },
+        {
+          "name": "disease_name",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Name of the disease",
+          "sources": ["HPO Annotations", "OMIM", "Orphanet Phenotypes"],
+          "semantic_definition": "Human-readable disease label"
+        },
+        {
+          "name": "hpo_id",
+          "type": "string",
+          "cardinality": "N:M",
+          "description": "HPO phenotype term identifier",
+          "sources": ["HPO Annotations", "Orphanet Phenotypes"],
+          "semantic_definition": "Links disease to phenotypic features",
+          "pattern": "HP:[0-9]{7}"
+        },
+        {
+          "name": "frequency",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Frequency of phenotype occurrence in affected individuals",
+          "sources": ["HPO Annotations", "Orphanet Phenotypes"],
+          "semantic_definition": "HPO frequency term or numeric fraction",
+          "examples": ["HP:0040281 (Very frequent)", "12/45", "80-99%"]
+        },
+        {
+          "name": "gene_id",
+          "type": "integer",
+          "cardinality": "N:M",
+          "description": "NCBI Gene identifier for associated genes",
+          "sources": ["HPO Annotations", "OMIM"],
+          "semantic_definition": "Links phenotypes to causative/associated genes"
+        },
+        {
+          "name": "gene_symbol",
+          "type": "string",
+          "cardinality": "N:M",
+          "description": "HGNC gene symbol",
+          "sources": ["HPO Annotations", "OMIM"],
+          "semantic_definition": "Human-readable gene identifier"
+        }
+      ],
+      "source_specific_fields": {
+        "HPO_Annotations": [
+          {
+            "name": "qualifier",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "NOT if phenotype is excluded from disease"
+          },
+          {
+            "name": "reference",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Evidence source (PMID, OMIM number)"
+          },
+          {
+            "name": "evidence",
+            "type": "enum",
+            "values": ["IEA", "TAS", "PCS"],
+            "description": "Evidence code for annotation"
+          },
+          {
+            "name": "onset",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Age of onset (HPO term)"
+          },
+          {
+            "name": "sex",
+            "type": "enum",
+            "values": ["MALE", "FEMALE"],
+            "description": "Sex specificity of phenotype"
+          },
+          {
+            "name": "modifier",
+            "type": "string",
+            "cardinality": "1:N",
+            "description": "Clinical modifiers (semicolon-separated HP terms)"
+          },
+          {
+            "name": "aspect",
+            "type": "enum",
+            "values": ["P", "I", "C", "M", "H"],
+            "description": "HPO branch (Phenotype, Inheritance, Course, Modifier, History)"
+          },
+          {
+            "name": "biocuration",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Curator ID and date stamp"
+          }
+        ],
+        "OMIM": [
+          {
+            "name": "mim_number",
+            "type": "string",
+            "pattern": "[*#%+]?[0-9]{6}",
+            "description": "MIM number with prefix indicating entry type"
+          },
+          {
+            "name": "entry_type",
+            "type": "enum",
+            "values": ["gene (*)", "phenotype (#)", "combined (+)", "unknown (%)"],
+            "description": "Type of OMIM entry based on prefix"
+          },
+          {
+            "name": "allelic_variants",
+            "type": "list",
+            "cardinality": "1:N",
+            "description": "Known pathogenic variants"
+          }
+        ],
+        "Orphanet_Phenotypes": [
+          {
+            "name": "hpo_frequency",
+            "type": "object",
+            "description": "Structured frequency classification",
+            "values": {
+              "HP:0040280": "Obligate (100%)",
+              "HP:0040281": "Very frequent (80-99%)",
+              "HP:0040282": "Frequent (30-79%)",
+              "HP:0040283": "Occasional (5-29%)",
+              "HP:0040284": "Very rare (1-4%)",
+              "HP:0040285": "Excluded (0%)"
+            }
+          },
+          {
+            "name": "diagnostic",
+            "type": "boolean",
+            "description": "Whether phenotype is a diagnostic criterion"
+          }
+        ]
+      }
+    },
+    {
+      "subcategory_id": "3.3",
+      "subcategory_name": "Disease-Gene Associations & Pharmacogenomics",
+      "data_sources": ["DisGeNET", "Open Targets", "PharmGKB"],
+      "unified_fields": [
+        {
+          "name": "gene_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Gene identifier (NCBI Gene ID or Ensembl ID)",
+          "sources": ["DisGeNET", "Open Targets", "PharmGKB"],
+          "semantic_definition": "Primary gene reference",
+          "examples": ["3157", "ENSG00000146648", "PA126"]
+        },
+        {
+          "name": "gene_symbol",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "HGNC approved gene symbol",
+          "sources": ["DisGeNET", "Open Targets", "PharmGKB"],
+          "semantic_definition": "Human-readable gene identifier"
+        },
+        {
+          "name": "disease_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Disease identifier (UMLS CUI, EFO ID, etc.)",
+          "sources": ["DisGeNET", "Open Targets"],
+          "semantic_definition": "Primary disease reference",
+          "examples": ["C0020443", "EFO_0000311"]
+        },
+        {
+          "name": "disease_name",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Disease or phenotype name",
+          "sources": ["DisGeNET", "Open Targets", "PharmGKB"],
+          "semantic_definition": "Human-readable disease label"
+        },
+        {
+          "name": "score",
+          "type": "float",
+          "cardinality": "1:1",
+          "description": "Association confidence score (0-1)",
+          "sources": ["DisGeNET", "Open Targets"],
+          "semantic_definition": "Aggregated evidence score"
+        },
+        {
+          "name": "evidence_level",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Evidence strength classification",
+          "sources": ["DisGeNET", "PharmGKB"],
+          "semantic_definition": "Curated evidence tier",
+          "examples": ["1A", "2B", "high confidence"]
+        },
+        {
+          "name": "pmid",
+          "type": "list",
+          "cardinality": "1:N",
+          "description": "PubMed IDs supporting the association",
+          "sources": ["DisGeNET", "Open Targets", "PharmGKB"],
+          "semantic_definition": "Literature evidence references"
+        }
+      ],
+      "source_specific_fields": {
+        "DisGeNET": [
+          {
+            "name": "EI",
+            "type": "float",
+            "range": [0, 1],
+            "description": "Evidence Index measuring consistency across publications"
+          },
+          {
+            "name": "DSI",
+            "type": "float",
+            "range": [0, 1],
+            "description": "Disease Specificity Index (inverse of associated diseases)"
+          },
+          {
+            "name": "DPI",
+            "type": "float",
+            "range": [0, 1],
+            "description": "Disease Pleiotropy Index (spread across disease classes)"
+          },
+          {
+            "name": "associationType",
+            "type": "enum",
+            "values": ["Therapeutic", "Biomarker", "GeneticVariation", "Causal", "SomaticMutation", "GermlineMutation", "Susceptibility"],
+            "description": "Type of gene-disease relationship"
+          },
+          {
+            "name": "snpId",
+            "type": "string",
+            "pattern": "rs[0-9]+",
+            "description": "dbSNP variant identifier for VDAs"
+          },
+          {
+            "name": "chromosome",
+            "type": "string",
+            "description": "Chromosome location"
+          },
+          {
+            "name": "position",
+            "type": "integer",
+            "description": "GRCh38 genomic position"
+          },
+          {
+            "name": "consequence",
+            "type": "string",
+            "description": "VEP variant consequence type"
+          },
+          {
+            "name": "NofPmids",
+            "type": "integer",
+            "description": "Number of supporting publications"
+          }
+        ],
+        "Open_Targets": [
+          {
+            "name": "targetId",
+            "type": "string",
+            "pattern": "ENSG[0-9]{11}",
+            "description": "Ensembl gene ID for target"
+          },
+          {
+            "name": "diseaseId",
+            "type": "string",
+            "pattern": "EFO_[0-9]+",
+            "description": "EFO disease identifier"
+          },
+          {
+            "name": "datatypeScores",
+            "type": "object",
+            "description": "Scores per data type (genetic, drug, pathway, etc.)"
+          },
+          {
+            "name": "evidenceCount",
+            "type": "integer",
+            "description": "Total number of evidence strings"
+          },
+          {
+            "name": "tractability",
+            "type": "object",
+            "description": "Druggability assessment by modality"
+          },
+          {
+            "name": "safety",
+            "type": "object",
+            "description": "Safety liability information"
+          },
+          {
+            "name": "mechanismOfAction",
+            "type": "string",
+            "description": "Drug mechanism of action"
+          },
+          {
+            "name": "clinicalPhase",
+            "type": "integer",
+            "range": [0, 4],
+            "description": "Clinical trial phase for known drugs"
+          }
+        ],
+        "PharmGKB": [
+          {
+            "name": "pgkb_id",
+            "type": "string",
+            "pattern": "PA[0-9]+",
+            "description": "PharmGKB accession for entities"
+          },
+          {
+            "name": "haplotype",
+            "type": "string",
+            "description": "Star allele haplotype (e.g., CYP2C9*2)"
+          },
+          {
+            "name": "diplotype",
+            "type": "string",
+            "description": "Diplotype (e.g., CYP2C9*1/*2)"
+          },
+          {
+            "name": "phenotype",
+            "type": "string",
+            "description": "Metabolizer phenotype classification",
+            "examples": ["Poor Metabolizer", "Intermediate Metabolizer", "Normal Metabolizer", "Ultra-rapid Metabolizer"]
+          },
+          {
+            "name": "activityValue",
+            "type": "string",
+            "description": "Functional impact of allele",
+            "examples": ["Decreased function", "No function", "Normal function"]
+          },
+          {
+            "name": "recommendation",
+            "type": "string",
+            "description": "Clinical prescribing recommendation"
+          },
+          {
+            "name": "guideline_source",
+            "type": "enum",
+            "values": ["CPIC", "DPWG", "FDA"],
+            "description": "Source of clinical guideline"
+          },
+          {
+            "name": "frequency",
+            "type": "object",
+            "description": "Population allele frequencies by ethnicity"
+          }
+        ]
+      }
+    },
+    {
+      "subcategory_id": "3.4",
+      "subcategory_name": "Cancer/Oncology & Drug-Disease Targets",
+      "data_sources": ["GDC/TCGA", "DGIdb"],
+      "unified_fields": [
+        {
+          "name": "gene_symbol",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "HGNC gene symbol",
+          "sources": ["GDC/TCGA", "DGIdb"],
+          "semantic_definition": "Gene identifier for mutations/interactions"
+        },
+        {
+          "name": "sample_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Sample or patient identifier",
+          "sources": ["GDC/TCGA"],
+          "semantic_definition": "Unique specimen identifier"
+        },
+        {
+          "name": "cancer_type",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Cancer type or project code",
+          "sources": ["GDC/TCGA"],
+          "semantic_definition": "Disease classification",
+          "examples": ["TCGA-BRCA", "LUAD", "COAD"]
+        },
+        {
+          "name": "drug_name",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Drug or compound name",
+          "sources": ["DGIdb"],
+          "semantic_definition": "Therapeutic agent identifier"
+        },
+        {
+          "name": "interaction_type",
+          "type": "string",
+          "cardinality": "1:N",
+          "description": "Type of drug-gene interaction",
+          "sources": ["DGIdb"],
+          "semantic_definition": "Mechanism of drug action",
+          "examples": ["inhibitor", "activator", "antagonist", "agonist"]
+        }
+      ],
+      "source_specific_fields": {
+        "GDC_TCGA": [
+          {
+            "name": "case_id",
+            "type": "UUID",
+            "description": "GDC unique case identifier"
+          },
+          {
+            "name": "submitter_id",
+            "type": "string",
+            "pattern": "TCGA-[A-Z]{2}-[A-Z0-9]{4}",
+            "description": "TCGA barcode for patient/sample"
+          },
+          {
+            "name": "project_id",
+            "type": "string",
+            "description": "Project identifier (e.g., TCGA-BRCA)"
+          },
+          {
+            "name": "primary_site",
+            "type": "string",
+            "description": "Anatomic site of tumor"
+          },
+          {
+            "name": "sample_type",
+            "type": "enum",
+            "values": ["Primary Tumor", "Recurrent Tumor", "Metastatic", "Blood Derived Normal", "Solid Tissue Normal"],
+            "description": "Type of biological specimen"
+          },
+          {
+            "name": "Hugo_Symbol",
+            "type": "string",
+            "description": "Gene symbol for somatic mutation"
+          },
+          {
+            "name": "Chromosome",
+            "type": "string",
+            "description": "Chromosome of mutation"
+          },
+          {
+            "name": "Start_Position",
+            "type": "integer",
+            "description": "Mutation start position"
+          },
+          {
+            "name": "End_Position",
+            "type": "integer",
+            "description": "Mutation end position"
+          },
+          {
+            "name": "Reference_Allele",
+            "type": "string",
+            "description": "Reference allele"
+          },
+          {
+            "name": "Tumor_Seq_Allele2",
+            "type": "string",
+            "description": "Alternate/tumor allele"
+          },
+          {
+            "name": "Variant_Classification",
+            "type": "enum",
+            "values": ["Missense_Mutation", "Nonsense_Mutation", "Frame_Shift_Del", "Frame_Shift_Ins", "Splice_Site", "Silent"],
+            "description": "Functional classification of variant"
+          },
+          {
+            "name": "Variant_Type",
+            "type": "enum",
+            "values": ["SNP", "INS", "DEL", "DNP", "TNP"],
+            "description": "Type of sequence variant"
+          },
+          {
+            "name": "HGVSc",
+            "type": "string",
+            "description": "HGVS coding notation"
+          },
+          {
+            "name": "HGVSp",
+            "type": "string",
+            "description": "HGVS protein notation"
+          },
+          {
+            "name": "t_depth",
+            "type": "integer",
+            "description": "Tumor sequencing depth"
+          },
+          {
+            "name": "t_alt_count",
+            "type": "integer",
+            "description": "Tumor alternate allele count"
+          },
+          {
+            "name": "data_type",
+            "type": "string",
+            "description": "Type of data file (Aligned Reads, Gene Expression, etc.)"
+          },
+          {
+            "name": "experimental_strategy",
+            "type": "enum",
+            "values": ["WXS", "WGS", "RNA-Seq", "miRNA-Seq", "Methylation Array"],
+            "description": "Experimental methodology"
+          },
+          {
+            "name": "access",
+            "type": "enum",
+            "values": ["open", "controlled"],
+            "description": "Data access level"
+          }
+        ],
+        "DGIdb": [
+          {
+            "name": "conceptId",
+            "type": "string",
+            "description": "Normalized identifier for genes or drugs"
+          },
+          {
+            "name": "interactionScore",
+            "type": "float",
+            "description": "Strength of drug-gene interaction"
+          },
+          {
+            "name": "approved",
+            "type": "boolean",
+            "description": "FDA approval status of drug"
+          },
+          {
+            "name": "immunotherapy",
+            "type": "boolean",
+            "description": "Whether drug is immunotherapy"
+          },
+          {
+            "name": "antineoplastic",
+            "type": "boolean",
+            "description": "Anti-cancer activity flag"
+          },
+          {
+            "name": "geneCategories",
+            "type": "list",
+            "description": "Categories like KINASE, TUMOR SUPPRESSOR, DRUGGABLE GENOME"
+          },
+          {
+            "name": "sources",
+            "type": "list",
+            "description": "Data sources supporting interaction"
+          },
+          {
+            "name": "publications",
+            "type": "list",
+            "description": "Supporting publication PMIDs"
+          }
+        ]
+      }
+    },
+    {
+      "subcategory_id": "3.5",
+      "subcategory_name": "Rare/Orphan Diseases",
+      "data_sources": ["DECIPHER", "Orphanet", "PanelApp"],
+      "unified_fields": [
+        {
+          "name": "disease_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Rare disease identifier",
+          "sources": ["DECIPHER", "Orphanet", "PanelApp"],
+          "semantic_definition": "Primary key for rare disease"
+        },
+        {
+          "name": "disease_name",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Name of rare disease",
+          "sources": ["DECIPHER", "Orphanet", "PanelApp"],
+          "semantic_definition": "Human-readable disease label"
+        },
+        {
+          "name": "gene_symbol",
+          "type": "string",
+          "cardinality": "N:M",
+          "description": "Associated gene symbol",
+          "sources": ["DECIPHER", "Orphanet", "PanelApp"],
+          "semantic_definition": "HGNC gene symbol"
+        },
+        {
+          "name": "hpo_id",
+          "type": "string",
+          "cardinality": "N:M",
+          "description": "HPO phenotype identifiers",
+          "sources": ["DECIPHER", "Orphanet"],
+          "semantic_definition": "Clinical feature annotations"
+        },
+        {
+          "name": "inheritance_pattern",
+          "type": "string",
+          "cardinality": "1:N",
+          "description": "Mode of inheritance",
+          "sources": ["Orphanet", "PanelApp"],
+          "semantic_definition": "Genetic inheritance classification",
+          "examples": ["autosomal dominant", "autosomal recessive", "X-linked", "mitochondrial"]
+        }
+      ],
+      "source_specific_fields": {
+        "DECIPHER": [
+          {
+            "name": "decipher_id",
+            "type": "integer",
+            "description": "DECIPHER patient/record identifier"
+          },
+          {
+            "name": "cnv_type",
+            "type": "string",
+            "description": "Copy number variant type (gain/loss)"
+          },
+          {
+            "name": "hi_score",
+            "type": "float",
+            "description": "Haploinsufficiency prediction score"
+          },
+          {
+            "name": "pLI",
+            "type": "float",
+            "description": "Probability of loss-of-function intolerance"
+          },
+          {
+            "name": "LOEUF",
+            "type": "float",
+            "description": "LoF observed/expected upper bound fraction"
+          },
+          {
+            "name": "pathogenicity",
+            "type": "string",
+            "description": "Variant classification"
+          },
+          {
+            "name": "ensembl_gene",
+            "type": "string",
+            "pattern": "ENSG[0-9]{11}",
+            "description": "Ensembl gene identifier"
+          }
+        ],
+        "Orphanet": [
+          {
+            "name": "orpha_code",
+            "type": "integer",
+            "description": "Orphanet disease code"
+          },
+          {
+            "name": "disorder_type",
+            "type": "object",
+            "description": "Classification (disease, malformation, group)"
+          },
+          {
+            "name": "average_age_of_onset",
+            "type": "list",
+            "description": "Age categories for disease onset"
+          },
+          {
+            "name": "prevalence",
+            "type": "string",
+            "description": "Disease prevalence estimate"
+          },
+          {
+            "name": "prevalence_class",
+            "type": "string",
+            "description": "Categorical prevalence classification"
+          },
+          {
+            "name": "prevalence_geographic",
+            "type": "string",
+            "description": "Geographic scope of prevalence"
+          },
+          {
+            "name": "gene_association_type",
+            "type": "string",
+            "description": "Type of gene-disease relationship"
+          },
+          {
+            "name": "gene_association_status",
+            "type": "enum",
+            "values": ["Assessed", "Not validated"],
+            "description": "Curation status of gene link"
+          },
+          {
+            "name": "hgnc_id",
+            "type": "integer",
+            "description": "HGNC gene identifier"
+          },
+          {
+            "name": "gene_locus",
+            "type": "string",
+            "description": "Chromosomal location"
+          },
+          {
+            "name": "external_references",
+            "type": "list",
+            "description": "Cross-references to OMIM, ICD, UMLS, MeSH"
+          }
+        ],
+        "PanelApp": [
+          {
+            "name": "panel_id",
+            "type": "integer",
+            "description": "Gene panel identifier"
+          },
+          {
+            "name": "panel_name",
+            "type": "string",
+            "description": "Name of gene panel"
+          },
+          {
+            "name": "evidence_level",
+            "type": "integer",
+            "range": [0, 3],
+            "description": "Gene evidence level (0-3)"
+          },
+          {
+            "name": "confidence_color",
+            "type": "enum",
+            "values": ["Green", "Amber", "Red", "Gray"],
+            "description": "Visual confidence indicator"
+          },
+          {
+            "name": "hgnc_id",
+            "type": "string",
+            "pattern": "HGNC:[0-9]+",
+            "description": "HGNC gene identifier"
+          },
+          {
+            "name": "expert_reviews",
+            "type": "integer",
+            "description": "Number of expert reviews"
+          }
+        ]
+      }
+    },
+    {
+      "subcategory_id": "3.6",
+      "subcategory_name": "Autoimmune/Inflammatory Diseases",
+      "data_sources": ["ImmunoBase", "IPD-IMGT/HLA"],
+      "unified_fields": [
+        {
+          "name": "gene_symbol",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Gene symbol (HGNC or HLA locus)",
+          "sources": ["ImmunoBase", "IPD-IMGT/HLA"],
+          "semantic_definition": "Gene identifier"
+        },
+        {
+          "name": "disease_association",
+          "type": "string",
+          "cardinality": "N:M",
+          "description": "Associated autoimmune/inflammatory disease",
+          "sources": ["ImmunoBase", "IPD-IMGT/HLA"],
+          "semantic_definition": "Disease linked to genetic variant"
+        },
+        {
+          "name": "snp_id",
+          "type": "string",
+          "cardinality": "1:N",
+          "description": "dbSNP variant identifier",
+          "sources": ["ImmunoBase"],
+          "semantic_definition": "Associated genetic variant",
+          "pattern": "rs[0-9]+"
+        }
+      ],
+      "source_specific_fields": {
+        "ImmunoBase": [
+          {
+            "name": "disease_code",
+            "type": "string",
+            "description": "Disease abbreviation",
+            "examples": ["T1D", "RA", "CEL", "MS", "CD", "UC"]
+          },
+          {
+            "name": "region_id",
+            "type": "string",
+            "description": "Chromosomal region identifier",
+            "examples": ["1p13.2", "6p21.32"]
+          },
+          {
+            "name": "credible_set",
+            "type": "list",
+            "description": "Fine-mapped credible set of variants"
+          },
+          {
+            "name": "gwas_loci",
+            "type": "integer",
+            "description": "Number of associated GWAS loci"
+          }
+        ],
+        "IPD_IMGT_HLA": [
+          {
+            "name": "hla_allele",
+            "type": "string",
+            "pattern": "HLA-[A-Z]+[0-9]*\\*[0-9:]+",
+            "description": "Full HLA allele designation",
+            "examples": ["HLA-A*02:01:01:01", "HLA-DRB1*04:01"]
+          },
+          {
+            "name": "allele_group",
+            "type": "string",
+            "pattern": "HLA-[A-Z]+\\*[0-9]+",
+            "description": "Allele group (serological equivalent)"
+          },
+          {
+            "name": "ipd_accession",
+            "type": "string",
+            "pattern": "HLA[0-9]+",
+            "description": "IPD database accession"
+          },
+          {
+            "name": "gene_locus",
+            "type": "string",
+            "pattern": "HLA-[A-Z]+[0-9]*",
+            "description": "HLA gene locus"
+          },
+          {
+            "name": "sequence_type",
+            "type": "string",
+            "description": "Type of sequence data",
+            "examples": ["genomic", "cDNA", "protein"]
+          }
+        ]
+      }
+    },
+    {
+      "subcategory_id": "3.7",
+      "subcategory_name": "Mental Health/Neurological",
+      "data_sources": ["Allen Brain Atlas", "PGC", "SynGO"],
+      "unified_fields": [
+        {
+          "name": "gene_symbol",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Gene symbol",
+          "sources": ["Allen Brain Atlas", "PGC", "SynGO"],
+          "semantic_definition": "HGNC gene identifier"
+        },
+        {
+          "name": "brain_region",
+          "type": "string",
+          "cardinality": "N:M",
+          "description": "Brain anatomical region",
+          "sources": ["Allen Brain Atlas", "SynGO"],
+          "semantic_definition": "Neuroanatomical structure"
+        },
+        {
+          "name": "disorder",
+          "type": "string",
+          "cardinality": "N:M",
+          "description": "Psychiatric or neurological disorder",
+          "sources": ["PGC"],
+          "semantic_definition": "Mental health condition"
+        },
+        {
+          "name": "snp_id",
+          "type": "string",
+          "cardinality": "1:N",
+          "description": "Associated genetic variant",
+          "sources": ["PGC"],
+          "semantic_definition": "dbSNP identifier",
+          "pattern": "rs[0-9]+"
+        }
+      ],
+      "source_specific_fields": {
+        "Allen_Brain_Atlas": [
+          {
+            "name": "structure_id",
+            "type": "integer",
+            "description": "Allen Brain structure identifier"
+          },
+          {
+            "name": "structure_acronym",
+            "type": "string",
+            "description": "Structure abbreviation",
+            "examples": ["HIP", "CTX", "TH"]
+          },
+          {
+            "name": "donor_id",
+            "type": "string",
+            "pattern": "H[0-9]+\\.[0-9]+",
+            "description": "Human brain donor identifier"
+          },
+          {
+            "name": "expression_level",
+            "type": "float",
+            "description": "Gene expression value"
+          },
+          {
+            "name": "data_type",
+            "type": "enum",
+            "values": ["microarray", "RNA-seq", "ISH"],
+            "description": "Expression profiling method"
+          }
+        ],
+        "PGC": [
+          {
+            "name": "gwas_study_id",
+            "type": "string",
+            "description": "PGC study identifier",
+            "examples": ["PGC_SCZ3", "PGC_BIP3", "PGC_MDD3"]
+          },
+          {
+            "name": "disorder_code",
+            "type": "string",
+            "description": "Psychiatric disorder abbreviation",
+            "examples": ["SCZ", "BIP", "MDD", "ADHD", "ASD"]
+          },
+          {
+            "name": "p_value",
+            "type": "float",
+            "description": "GWAS association p-value"
+          },
+          {
+            "name": "odds_ratio",
+            "type": "float",
+            "description": "Effect size (odds ratio)"
+          },
+          {
+            "name": "sample_size",
+            "type": "integer",
+            "description": "Total GWAS sample size"
+          },
+          {
+            "name": "loci_count",
+            "type": "integer",
+            "description": "Number of genome-wide significant loci"
+          }
+        ],
+        "SynGO": [
+          {
+            "name": "syngo_term",
+            "type": "string",
+            "pattern": "SYNGO:[0-9]+",
+            "description": "SynGO ontology term"
+          },
+          {
+            "name": "go_term",
+            "type": "string",
+            "pattern": "GO:[0-9]{7}",
+            "description": "Gene Ontology term"
+          },
+          {
+            "name": "uniprot_id",
+            "type": "string",
+            "pattern": "[A-Z0-9]{6,10}",
+            "description": "UniProt protein identifier"
+          },
+          {
+            "name": "synaptic_location",
+            "type": "string",
+            "description": "Synaptic localization (pre/post-synaptic)"
+          },
+          {
+            "name": "synaptic_function",
+            "type": "string",
+            "description": "Synaptic biological process"
+          },
+          {
+            "name": "evidence_code",
+            "type": "string",
+            "pattern": "ECO:[0-9]+",
+            "description": "Evidence ontology code"
+          },
+          {
+            "name": "supporting_pmid",
+            "type": "list",
+            "description": "Supporting publication PMIDs"
+          }
+        ]
+      }
+    }
+  ],
+  "cross_category_identifiers": {
+    "disease_identifiers": [
+      {
+        "name": "MONDO",
+        "pattern": "MONDO:[0-9]{7}",
+        "description": "Unified disease ontology (pivot identifier)",
+        "used_by": ["MONDO", "HPO", "DisGeNET", "Orphanet"]
+      },
+      {
+        "name": "EFO",
+        "pattern": "EFO_[0-9]{7}",
+        "description": "Experimental Factor Ontology (GWAS/Open Targets)",
+        "used_by": ["EFO", "Open Targets", "GWAS Catalog"]
+      },
+      {
+        "name": "OMIM",
+        "pattern": "[*#%+]?[0-9]{6}",
+        "description": "Mendelian disease identifier",
+        "used_by": ["OMIM", "HPO", "MONDO", "Orphanet", "DisGeNET"]
+      },
+      {
+        "name": "Orphanet",
+        "pattern": "Orphanet:[0-9]+",
+        "description": "Rare disease identifier",
+        "used_by": ["Orphanet", "MONDO", "HPO", "DECIPHER"]
+      },
+      {
+        "name": "ICD-10",
+        "pattern": "[A-Z][0-9]{2}(\\.[0-9]{1,4})?",
+        "description": "WHO disease classification",
+        "used_by": ["ICD", "Orphanet", "MONDO"]
+      },
+      {
+        "name": "UMLS CUI",
+        "pattern": "C[0-9]{7}",
+        "description": "UMLS Concept Unique Identifier",
+        "used_by": ["DisGeNET", "MeSH", "HPO"]
+      }
+    ],
+    "phenotype_identifiers": [
+      {
+        "name": "HPO",
+        "pattern": "HP:[0-9]{7}",
+        "description": "Human Phenotype Ontology term",
+        "used_by": ["HPO", "Orphanet", "DECIPHER", "DisGeNET"]
+      }
+    ],
+    "gene_identifiers": [
+      {
+        "name": "NCBI Gene ID",
+        "pattern": "[0-9]+",
+        "description": "NCBI Entrez Gene identifier",
+        "used_by": ["DisGeNET", "HPO", "PharmGKB"]
+      },
+      {
+        "name": "Ensembl Gene ID",
+        "pattern": "ENSG[0-9]{11}",
+        "description": "Ensembl gene identifier",
+        "used_by": ["Open Targets", "GDC/TCGA", "DECIPHER"]
+      },
+      {
+        "name": "HGNC Symbol",
+        "pattern": "[A-Z0-9]+",
+        "description": "HUGO gene symbol",
+        "used_by": ["All sources"]
+      },
+      {
+        "name": "HGNC ID",
+        "pattern": "HGNC:[0-9]+",
+        "description": "HUGO Gene Nomenclature Committee ID",
+        "used_by": ["Orphanet", "PanelApp", "PharmGKB"]
+      }
+    ],
+    "variant_identifiers": [
+      {
+        "name": "dbSNP rsID",
+        "pattern": "rs[0-9]+",
+        "description": "dbSNP reference SNP identifier",
+        "used_by": ["DisGeNET", "ImmunoBase", "PGC", "PharmGKB"]
+      }
+    ]
+  },
+  "common_field_patterns": {
+    "evidence_scores": {
+      "description": "Numeric confidence/evidence scores typically ranging 0-1",
+      "sources": ["DisGeNET (GDA score)", "Open Targets (overall score)", "PharmGKB (evidence level)"]
+    },
+    "cross_references": {
+      "description": "Links to external databases and ontologies",
+      "common_targets": ["OMIM", "MONDO", "HPO", "UMLS", "MeSH", "SNOMED CT", "ICD-10"]
+    },
+    "publication_references": {
+      "description": "Literature citations supporting annotations",
+      "format": "PMID integers or full citations"
+    },
+    "frequency_annotations": {
+      "description": "How often a phenotype/variant occurs",
+      "formats": ["HPO frequency terms", "Percentages", "Fractions (n/N)"]
+    }
+  }
+}

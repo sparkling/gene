@@ -1,0 +1,338 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gene.example.org/schemas/1.3-population-genetics.json",
+  "title": "Population Genetics Unified Schema",
+  "description": "Unified schema for population genetics data from 1000 Genomes, gnomAD, TOPMed, and UK Biobank",
+  "type": "object",
+  "properties": {
+    "chromosome": {
+      "type": "string",
+      "description": "Chromosome identifier",
+      "sources": ["1000 Genomes", "gnomAD", "TOPMed", "UK Biobank"],
+      "examples": ["1", "22", "X"]
+    },
+    "position": {
+      "type": "integer",
+      "description": "1-based genomic coordinate",
+      "sources": ["1000 Genomes", "gnomAD", "TOPMed", "UK Biobank"],
+      "examples": [10177, 5227002]
+    },
+    "reference_allele": {
+      "type": "string",
+      "description": "Reference genome nucleotide(s)",
+      "sources": ["1000 Genomes", "gnomAD", "TOPMed", "UK Biobank"],
+      "examples": ["A", "T"]
+    },
+    "alternate_allele": {
+      "type": "string",
+      "description": "Variant nucleotide(s)",
+      "sources": ["1000 Genomes", "gnomAD", "TOPMed", "UK Biobank"],
+      "examples": ["AC", "G"]
+    },
+    "allele_frequency": {
+      "type": ["number", "null"],
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Global allele frequency (proportion of alternate allele)",
+      "sources": ["1000 Genomes (AF)", "gnomAD (AF)", "TOPMed (allele_freq)"],
+      "examples": [0.425, 0.0108]
+    },
+    "allele_count": {
+      "type": ["integer", "null"],
+      "description": "Count of alternate alleles observed",
+      "sources": ["1000 Genomes (AC)", "gnomAD (AC)", "TOPMed (allele_count)"],
+      "examples": [2130, 153036]
+    },
+    "allele_number": {
+      "type": ["integer", "null"],
+      "description": "Total alleles in called genotypes",
+      "sources": ["1000 Genomes (AN)", "gnomAD (AN)", "TOPMed (allele_num)"],
+      "examples": [5008, 360000]
+    },
+    "filter_status": {
+      "type": ["string", "null"],
+      "description": "Quality filter status (PASS or filter reason)",
+      "sources": ["gnomAD", "TOPMed"],
+      "examples": ["PASS", "AC0", "RF"]
+    },
+    "af_african": {
+      "type": ["number", "null"],
+      "description": "African/African-American population allele frequency",
+      "sources": ["1000 Genomes (AFR_AF)", "gnomAD (AC_afr derived)"]
+    },
+    "af_american": {
+      "type": ["number", "null"],
+      "description": "American/Latino population allele frequency",
+      "sources": ["1000 Genomes (AMR_AF)", "gnomAD (AC_amr derived)"]
+    },
+    "af_east_asian": {
+      "type": ["number", "null"],
+      "description": "East Asian population allele frequency",
+      "sources": ["1000 Genomes (EAS_AF)", "gnomAD (AC_eas derived)"]
+    },
+    "af_european": {
+      "type": ["number", "null"],
+      "description": "European population allele frequency",
+      "sources": ["1000 Genomes (EUR_AF)", "gnomAD (AC_nfe derived)"]
+    },
+    "af_south_asian": {
+      "type": ["number", "null"],
+      "description": "South Asian population allele frequency",
+      "sources": ["1000 Genomes (SAS_AF)", "gnomAD (AC_sas derived)"]
+    },
+    "gnomad_homozygote_count": {
+      "type": ["integer", "null"],
+      "description": "Number of homozygotes",
+      "sources": ["gnomAD"]
+    },
+    "gnomad_ac_xx": {
+      "type": ["integer", "null"],
+      "description": "Allele count in XX individuals",
+      "sources": ["gnomAD"]
+    },
+    "gnomad_ac_xy": {
+      "type": ["integer", "null"],
+      "description": "Allele count in XY individuals",
+      "sources": ["gnomAD"]
+    },
+    "gnomad_af_ashkenazi": {
+      "type": ["number", "null"],
+      "description": "Ashkenazi Jewish allele frequency",
+      "sources": ["gnomAD"]
+    },
+    "gnomad_af_finnish": {
+      "type": ["number", "null"],
+      "description": "Finnish allele frequency",
+      "sources": ["gnomAD"]
+    },
+    "gnomad_faf95": {
+      "type": ["number", "null"],
+      "description": "Filtering allele frequency (95% CI)",
+      "sources": ["gnomAD"]
+    },
+    "gnomad_faf99": {
+      "type": ["number", "null"],
+      "description": "Filtering allele frequency (99% CI)",
+      "sources": ["gnomAD"]
+    },
+    "gnomad_fafmax": {
+      "type": ["number", "null"],
+      "description": "Maximum filtering allele frequency",
+      "sources": ["gnomAD"]
+    },
+    "qc_fisher_strand": {
+      "type": ["number", "null"],
+      "description": "Fisher strand bias (FS)",
+      "sources": ["gnomAD"]
+    },
+    "qc_mapping_quality": {
+      "type": ["number", "null"],
+      "description": "Mapping quality (MQ)",
+      "sources": ["gnomAD"]
+    },
+    "qc_quality_by_depth": {
+      "type": ["number", "null"],
+      "description": "Quality by depth (QD)",
+      "sources": ["gnomAD"]
+    },
+    "qc_vqslod": {
+      "type": ["number", "null"],
+      "description": "VQSR log-odds",
+      "sources": ["gnomAD"]
+    },
+    "constraint_expected_lof": {
+      "type": ["number", "null"],
+      "description": "Expected loss-of-function variants",
+      "sources": ["gnomAD"]
+    },
+    "constraint_observed_lof": {
+      "type": ["integer", "null"],
+      "description": "Observed loss-of-function variants",
+      "sources": ["gnomAD"]
+    },
+    "constraint_oe_lof": {
+      "type": ["number", "null"],
+      "description": "Observed/expected ratio for LoF",
+      "sources": ["gnomAD"]
+    },
+    "constraint_pli": {
+      "type": ["number", "null"],
+      "description": "Probability of LoF intolerance",
+      "sources": ["gnomAD"]
+    },
+    "constraint_loeuf": {
+      "type": ["number", "null"],
+      "description": "LoF observed/expected upper bound fraction",
+      "sources": ["gnomAD"]
+    },
+    "loftee_annotation": {
+      "type": ["string", "null"],
+      "description": "LOFTEE annotation",
+      "sources": ["gnomAD"]
+    },
+    "loftee_filter": {
+      "type": ["string", "null"],
+      "description": "LOFTEE filter",
+      "sources": ["gnomAD"]
+    },
+    "loftee_flags": {
+      "type": ["string", "null"],
+      "description": "LOFTEE flags",
+      "sources": ["gnomAD"]
+    },
+    "annotation_cadd_phred": {
+      "type": ["number", "null"],
+      "description": "CADD PHRED score",
+      "sources": ["gnomAD"]
+    },
+    "annotation_revel": {
+      "type": ["number", "null"],
+      "description": "REVEL score",
+      "sources": ["gnomAD"]
+    },
+    "annotation_sift": {
+      "type": ["string", "null"],
+      "description": "SIFT prediction",
+      "sources": ["gnomAD"]
+    },
+    "annotation_polyphen": {
+      "type": ["string", "null"],
+      "description": "PolyPhen prediction",
+      "sources": ["gnomAD"]
+    },
+    "annotation_spliceai_max": {
+      "type": ["number", "null"],
+      "description": "Maximum SpliceAI delta score",
+      "sources": ["gnomAD"]
+    },
+    "topmed_het_count": {
+      "type": ["integer", "null"],
+      "description": "Heterozygote count",
+      "sources": ["TOPMed"]
+    },
+    "topmed_hom_count": {
+      "type": ["integer", "null"],
+      "description": "Homozygote count",
+      "sources": ["TOPMed"]
+    },
+    "topmed_sample_id": {
+      "type": ["string", "null"],
+      "description": "TOPMed sample identifier (authorized access)",
+      "sources": ["TOPMed"]
+    },
+    "ukb_participant_id": {
+      "type": ["integer", "null"],
+      "description": "Encrypted participant ID",
+      "sources": ["UK Biobank"]
+    },
+    "ukb_field_id": {
+      "type": ["integer", "null"],
+      "description": "Data-field identifier",
+      "sources": ["UK Biobank"]
+    },
+    "ukb_instance": {
+      "type": ["integer", "null"],
+      "description": "Visit instance (0=baseline)",
+      "sources": ["UK Biobank"]
+    },
+    "ukb_genotyping_array": {
+      "type": ["string", "null"],
+      "description": "Genotyping array type used",
+      "sources": ["UK Biobank"]
+    },
+    "ukb_batch": {
+      "type": ["string", "null"],
+      "description": "Genotyping batch",
+      "sources": ["UK Biobank"]
+    },
+    "ukb_sex_inferred": {
+      "type": ["integer", "null"],
+      "description": "Genetically inferred sex",
+      "sources": ["UK Biobank"]
+    },
+    "ukb_heterozygosity": {
+      "type": ["number", "null"],
+      "description": "Sample heterozygosity",
+      "sources": ["UK Biobank"]
+    },
+    "ukb_missingness": {
+      "type": ["number", "null"],
+      "description": "Genotype call rate",
+      "sources": ["UK Biobank"]
+    },
+    "ukb_genetic_ancestry": {
+      "type": ["string", "null"],
+      "description": "Genetic ancestry classification",
+      "sources": ["UK Biobank"]
+    },
+    "_source": {
+      "type": "object",
+      "description": "Metadata about the data source",
+      "properties": {
+        "database": {"type": "string"},
+        "version": {"type": "string"},
+        "access_date": {"type": "string", "format": "date"}
+      }
+    }
+  },
+  "required": ["chromosome", "position", "reference_allele", "alternate_allele"],
+  "field_mappings": {
+    "1000_Genomes": {
+      "AF": "allele_frequency",
+      "AC": "allele_count",
+      "AN": "allele_number",
+      "AFR_AF": "af_african",
+      "AMR_AF": "af_american",
+      "EAS_AF": "af_east_asian",
+      "EUR_AF": "af_european",
+      "SAS_AF": "af_south_asian"
+    },
+    "gnomAD": {
+      "AF": "allele_frequency",
+      "AC": "allele_count",
+      "AN": "allele_number",
+      "nhomalt": "gnomad_homozygote_count",
+      "AC_XX": "gnomad_ac_xx",
+      "AC_XY": "gnomad_ac_xy",
+      "faf95": "gnomad_faf95",
+      "faf99": "gnomad_faf99",
+      "fafmax": "gnomad_fafmax",
+      "FS": "qc_fisher_strand",
+      "MQ": "qc_mapping_quality",
+      "QD": "qc_quality_by_depth",
+      "VQSLOD": "qc_vqslod",
+      "exp_lof": "constraint_expected_lof",
+      "obs_lof": "constraint_observed_lof",
+      "oe_lof": "constraint_oe_lof",
+      "pLI": "constraint_pli",
+      "LOEUF": "constraint_loeuf",
+      "lof": "loftee_annotation",
+      "lof_filter": "loftee_filter",
+      "lof_flags": "loftee_flags",
+      "cadd_phred": "annotation_cadd_phred",
+      "revel": "annotation_revel",
+      "sift": "annotation_sift",
+      "polyphen": "annotation_polyphen",
+      "spliceai_ds_max": "annotation_spliceai_max"
+    },
+    "TOPMed": {
+      "allele_freq": "allele_frequency",
+      "allele_count": "allele_count",
+      "allele_num": "allele_number",
+      "het_count": "topmed_het_count",
+      "hom_count": "topmed_hom_count",
+      "NWD_ID": "topmed_sample_id"
+    },
+    "UK_Biobank": {
+      "eid": "ukb_participant_id",
+      "field_id": "ukb_field_id",
+      "instance": "ukb_instance",
+      "genotyping_array": "ukb_genotyping_array",
+      "batch": "ukb_batch",
+      "sex_inferred": "ukb_sex_inferred",
+      "heterozygosity": "ukb_heterozygosity",
+      "missingness": "ukb_missingness",
+      "genetic_ethnic_grouping": "ukb_genetic_ancestry"
+    }
+  }
+}

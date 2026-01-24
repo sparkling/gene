@@ -1,0 +1,158 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gene.example.org/schemas/3.2-phenotype-databases.json",
+  "title": "Phenotype Databases Unified Schema",
+  "description": "Unified schema for phenotype database data from HPO Annotations, OMIM, and Orphanet Phenotypes",
+  "type": "object",
+  "properties": {
+    "disease_id": {
+      "type": "string",
+      "description": "Disease database identifier",
+      "sources": ["HPO Annotations", "OMIM", "Orphanet Phenotypes"],
+      "examples": ["OMIM:154700", "ORPHA:558", "MONDO:0007947"]
+    },
+    "disease_name": {
+      "type": "string",
+      "description": "Name of the disease",
+      "sources": ["HPO Annotations", "OMIM", "Orphanet Phenotypes"]
+    },
+    "hpo_ids": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "HPO phenotype term identifiers",
+      "sources": ["HPO Annotations", "Orphanet Phenotypes"],
+      "pattern": "HP:[0-9]{7}"
+    },
+    "frequency": {
+      "type": ["string", "null"],
+      "description": "Frequency of phenotype occurrence in affected individuals",
+      "sources": ["HPO Annotations", "Orphanet Phenotypes"],
+      "examples": ["HP:0040281 (Very frequent)", "12/45", "80-99%"]
+    },
+    "gene_id": {
+      "type": ["integer", "null"],
+      "description": "NCBI Gene identifier for associated genes",
+      "sources": ["HPO Annotations", "OMIM"]
+    },
+    "gene_symbol": {
+      "type": ["string", "null"],
+      "description": "HGNC gene symbol",
+      "sources": ["HPO Annotations", "OMIM"]
+    },
+    "qualifier": {
+      "type": ["string", "null"],
+      "description": "NOT if phenotype is excluded from disease",
+      "sources": ["HPO Annotations"]
+    },
+    "reference": {
+      "type": ["string", "null"],
+      "description": "Evidence source (PMID, OMIM number)",
+      "sources": ["HPO Annotations"]
+    },
+    "evidence": {
+      "type": ["string", "null"],
+      "enum": ["IEA", "TAS", "PCS", null],
+      "description": "Evidence code for annotation",
+      "sources": ["HPO Annotations"]
+    },
+    "onset": {
+      "type": ["string", "null"],
+      "description": "Age of onset (HPO term)",
+      "sources": ["HPO Annotations"]
+    },
+    "sex": {
+      "type": ["string", "null"],
+      "enum": ["MALE", "FEMALE", null],
+      "description": "Sex specificity of phenotype",
+      "sources": ["HPO Annotations"]
+    },
+    "modifier": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Clinical modifiers (HP terms)",
+      "sources": ["HPO Annotations"]
+    },
+    "aspect": {
+      "type": ["string", "null"],
+      "enum": ["P", "I", "C", "M", "H", null],
+      "description": "HPO branch (Phenotype, Inheritance, Course, Modifier, History)",
+      "sources": ["HPO Annotations"]
+    },
+    "biocuration": {
+      "type": ["string", "null"],
+      "description": "Curator ID and date stamp",
+      "sources": ["HPO Annotations"]
+    },
+    "mim_number": {
+      "type": ["string", "null"],
+      "description": "MIM number with prefix indicating entry type",
+      "sources": ["OMIM"],
+      "pattern": "[*#%+]?[0-9]{6}"
+    },
+    "entry_type": {
+      "type": ["string", "null"],
+      "enum": ["gene (*)", "phenotype (#)", "combined (+)", "unknown (%)", null],
+      "description": "Type of OMIM entry based on prefix",
+      "sources": ["OMIM"]
+    },
+    "allelic_variants": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Known pathogenic variants",
+      "sources": ["OMIM"]
+    },
+    "hpo_frequency": {
+      "type": ["object", "null"],
+      "description": "Structured frequency classification",
+      "sources": ["Orphanet Phenotypes"]
+    },
+    "diagnostic": {
+      "type": ["boolean", "null"],
+      "description": "Whether phenotype is a diagnostic criterion",
+      "sources": ["Orphanet Phenotypes"]
+    },
+    "_source": {
+      "type": "object",
+      "description": "Metadata about the data source",
+      "properties": {
+        "database": {"type": "string"},
+        "version": {"type": "string"},
+        "access_date": {"type": "string", "format": "date"},
+        "original_id": {"type": "string"}
+      }
+    }
+  },
+  "required": ["disease_id", "disease_name"],
+  "field_mappings": {
+    "HPO_Annotations": {
+      "DatabaseID": "disease_id",
+      "DiseaseName": "disease_name",
+      "HPO_ID": "hpo_ids",
+      "Frequency": "frequency",
+      "Gene_ID": "gene_id",
+      "Gene_Symbol": "gene_symbol",
+      "Qualifier": "qualifier",
+      "Reference": "reference",
+      "Evidence": "evidence",
+      "Onset": "onset",
+      "Sex": "sex",
+      "Modifier": "modifier",
+      "Aspect": "aspect",
+      "Biocuration": "biocuration"
+    },
+    "OMIM": {
+      "MIM_Number": "mim_number",
+      "Title": "disease_name",
+      "MIM_Entry_Type": "entry_type",
+      "Gene_Symbols": "gene_symbol",
+      "Allelic_Variants": "allelic_variants"
+    },
+    "Orphanet_Phenotypes": {
+      "OrphaCode": "disease_id",
+      "Name": "disease_name",
+      "HPO_ID": "hpo_ids",
+      "HPO_Frequency": "hpo_frequency",
+      "Diagnostic": "diagnostic"
+    }
+  }
+}

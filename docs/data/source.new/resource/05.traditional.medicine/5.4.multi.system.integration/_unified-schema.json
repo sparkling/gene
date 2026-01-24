@@ -1,0 +1,240 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gene.example.org/schemas/5.4-multi-system-integration.json",
+  "title": "Multi-System Traditional Medicine Integration Unified Schema",
+  "description": "Unified schema for multi-system traditional medicine integration data from HIT 2.0",
+  "type": "object",
+  "properties": {
+    "ingredient_id": {
+      "type": "string",
+      "description": "Unique herbal ingredient identifier",
+      "sources": ["HIT 2.0"],
+      "examples": ["HIT001234"]
+    },
+    "ingredient_name": {
+      "type": ["string", "null"],
+      "description": "Chemical compound name",
+      "sources": ["HIT 2.0"]
+    },
+    "pubchem_cid": {
+      "type": ["integer", "null"],
+      "description": "PubChem Compound Identifier",
+      "sources": ["HIT 2.0"]
+    },
+    "chembl_id": {
+      "type": ["string", "null"],
+      "description": "ChEMBL compound identifier",
+      "sources": ["HIT 2.0"]
+    },
+    "cas_number": {
+      "type": ["string", "null"],
+      "description": "CAS registry number",
+      "sources": ["HIT 2.0"]
+    },
+    "inchi_key": {
+      "type": ["string", "null"],
+      "description": "InChIKey hash (27 characters)",
+      "sources": ["HIT 2.0"]
+    },
+    "smiles": {
+      "type": ["string", "null"],
+      "description": "SMILES notation",
+      "sources": ["HIT 2.0"]
+    },
+    "molecular_formula": {
+      "type": ["string", "null"],
+      "description": "Chemical formula",
+      "sources": ["HIT 2.0"]
+    },
+    "molecular_weight": {
+      "type": ["number", "null"],
+      "description": "Molecular weight in Daltons",
+      "sources": ["HIT 2.0"]
+    },
+    "target_id": {
+      "type": ["string", "null"],
+      "description": "Target protein identifier (UniProt accession or gene symbol)",
+      "sources": ["HIT 2.0"]
+    },
+    "gene_symbol": {
+      "type": ["string", "null"],
+      "description": "HGNC gene symbol",
+      "sources": ["HIT 2.0"]
+    },
+    "uniprot_id": {
+      "type": ["string", "null"],
+      "description": "UniProt protein accession",
+      "sources": ["HIT 2.0"]
+    },
+    "hit_interaction_id": {
+      "type": ["string", "null"],
+      "description": "Unique interaction record identifier",
+      "sources": ["HIT 2.0"]
+    },
+    "hit_interaction_type": {
+      "type": ["string", "null"],
+      "enum": ["inhibitor", "agonist", "antagonist", "modulator", "binder", "substrate", null],
+      "description": "Type of compound-target interaction",
+      "sources": ["HIT 2.0"]
+    },
+    "hit_experimental_method": {
+      "type": ["string", "null"],
+      "description": "Experimental method used to validate interaction",
+      "sources": ["HIT 2.0"]
+    },
+    "hit_assay_type": {
+      "type": ["string", "null"],
+      "description": "Specific assay type",
+      "sources": ["HIT 2.0"]
+    },
+    "hit_binding_affinity_metric": {
+      "type": ["string", "null"],
+      "enum": ["IC50", "Ki", "Kd", "EC50", "KD", null],
+      "description": "Type of binding affinity measurement",
+      "sources": ["HIT 2.0"]
+    },
+    "hit_binding_affinity_value": {
+      "type": ["number", "null"],
+      "description": "Quantitative binding affinity value",
+      "sources": ["HIT 2.0"]
+    },
+    "hit_binding_affinity_unit": {
+      "type": ["string", "null"],
+      "description": "Unit for binding affinity (nM, uM, mM)",
+      "sources": ["HIT 2.0"]
+    },
+    "hit_binding_affinity_relation": {
+      "type": ["string", "null"],
+      "enum": ["=", "<", ">", "~", null],
+      "description": "Relation symbol for affinity value",
+      "sources": ["HIT 2.0"]
+    },
+    "hit_confidence_level": {
+      "type": ["string", "null"],
+      "enum": ["high", "medium", "low", null],
+      "description": "Confidence level of experimental evidence",
+      "sources": ["HIT 2.0"]
+    },
+    "hit_pubmed_id": {
+      "type": ["integer", "null"],
+      "description": "PubMed literature reference",
+      "sources": ["HIT 2.0"]
+    },
+    "hit_doi": {
+      "type": ["string", "null"],
+      "description": "Digital Object Identifier for publication",
+      "sources": ["HIT 2.0"]
+    },
+    "hit_authors": {
+      "type": ["string", "null"],
+      "description": "Publication authors",
+      "sources": ["HIT 2.0"]
+    },
+    "hit_journal": {
+      "type": ["string", "null"],
+      "description": "Publication journal",
+      "sources": ["HIT 2.0"]
+    },
+    "hit_publication_year": {
+      "type": ["integer", "null"],
+      "description": "Publication year",
+      "sources": ["HIT 2.0"]
+    },
+    "hit_protein_class": {
+      "type": ["string", "null"],
+      "description": "Target protein functional class (Kinase, GPCR, Nuclear Receptor, Enzyme, Channel)",
+      "sources": ["HIT 2.0"]
+    },
+    "hit_organism": {
+      "type": ["string", "null"],
+      "enum": ["Human", "Mouse", "Rat", null],
+      "description": "Target organism species",
+      "sources": ["HIT 2.0"]
+    },
+    "hit_herbal_source": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "herb_name": {"type": "string"},
+          "traditional_system": {"type": "string"},
+          "plant_part": {"type": "string"}
+        }
+      },
+      "description": "Herbal source information",
+      "sources": ["HIT 2.0"]
+    },
+    "hit_traditional_system": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Traditional medicine system of source",
+      "sources": ["HIT 2.0"]
+    },
+    "hit_pathway_associations": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Associated biological pathways (KEGG or other identifiers)",
+      "sources": ["HIT 2.0"]
+    },
+    "hit_disease_associations": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Associated diseases (MESH, OMIM identifiers)",
+      "sources": ["HIT 2.0"]
+    },
+    "hit_validation_status": {
+      "type": ["string", "null"],
+      "enum": ["validated", null],
+      "description": "Experimental validation status (HIT 2.0 only contains validated interactions)",
+      "sources": ["HIT 2.0"]
+    },
+    "_source": {
+      "type": "object",
+      "description": "Metadata about the data source",
+      "properties": {
+        "database": {"type": "string"},
+        "version": {"type": "string"},
+        "access_date": {"type": "string", "format": "date"},
+        "original_id": {"type": "string"}
+      }
+    }
+  },
+  "required": ["ingredient_id"],
+  "field_mappings": {
+    "HIT_2_0": {
+      "ingredient_id": "ingredient_id",
+      "ingredient_name": "ingredient_name",
+      "pubchem_cid": "pubchem_cid",
+      "chembl_id": "chembl_id",
+      "cas_number": "cas_number",
+      "inchi_key": "inchi_key",
+      "smiles": "smiles",
+      "molecular_formula": "molecular_formula",
+      "molecular_weight": "molecular_weight",
+      "target_id": "target_id",
+      "gene_symbol": "gene_symbol",
+      "uniprot_id": "uniprot_id",
+      "interaction_id": "hit_interaction_id",
+      "interaction_type": "hit_interaction_type",
+      "experimental_method": "hit_experimental_method",
+      "assay_type": "hit_assay_type",
+      "binding_affinity_metric": "hit_binding_affinity_metric",
+      "binding_affinity_value": "hit_binding_affinity_value",
+      "binding_affinity_unit": "hit_binding_affinity_unit",
+      "binding_affinity_relation": "hit_binding_affinity_relation",
+      "confidence_level": "hit_confidence_level",
+      "pubmed_id": "hit_pubmed_id",
+      "doi": "hit_doi",
+      "authors": "hit_authors",
+      "journal": "hit_journal",
+      "publication_year": "hit_publication_year",
+      "protein_class": "hit_protein_class",
+      "organism": "hit_organism",
+      "herbal_source": "hit_herbal_source",
+      "traditional_system": "hit_traditional_system",
+      "pathway_associations": "hit_pathway_associations",
+      "disease_associations": "hit_disease_associations",
+      "validation_status": "hit_validation_status"
+    }
+  }
+}

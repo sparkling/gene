@@ -1,0 +1,1242 @@
+{
+  "category_id": "06",
+  "category_name": "Nutrition & Food",
+  "extraction_date": "2026-01-24",
+  "total_data_sources": 8,
+  "subcategories": [
+    {
+      "subcategory_id": "6.1",
+      "subcategory_name": "Food Composition",
+      "data_sources": ["Open Food Facts", "FooDB"],
+      "unified_fields": [
+        {
+          "name": "food_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Primary identifier for a food item",
+          "sources": ["Open Food Facts (code/barcode)", "FooDB (food_id/public_id)"],
+          "semantic_definition": "Unique identifier for a food product or item in the database",
+          "examples": ["3017620425035", "FOOD00234"]
+        },
+        {
+          "name": "food_name",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Common name of the food product",
+          "sources": ["Open Food Facts (product_name)", "FooDB (name)"],
+          "semantic_definition": "Human-readable name for the food item",
+          "examples": ["Nutella hazelnut spread", "Apple, raw, unpeeled"]
+        },
+        {
+          "name": "scientific_name",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Scientific/Latin name of the food source organism",
+          "sources": ["FooDB (name_scientific)"],
+          "semantic_definition": "Taxonomic nomenclature for biological food sources",
+          "examples": ["Angelica keiskei", "Malus domestica"]
+        },
+        {
+          "name": "food_category",
+          "type": "string",
+          "cardinality": "N:M",
+          "description": "Category classification of the food",
+          "sources": ["Open Food Facts (categories_tags)", "FooDB (food_group)"],
+          "semantic_definition": "Hierarchical classification of food type",
+          "examples": ["en:breakfast-cereals", "Herbs and Spices"]
+        },
+        {
+          "name": "brand",
+          "type": "string",
+          "cardinality": "1:N",
+          "description": "Brand name of the product",
+          "sources": ["Open Food Facts (brands)"],
+          "semantic_definition": "Commercial brand identifier",
+          "examples": ["Ferrero", "Coca-Cola"]
+        },
+        {
+          "name": "nutrient_values",
+          "type": "object",
+          "cardinality": "1:N",
+          "description": "Nutritional content per 100g",
+          "sources": ["Open Food Facts", "FooDB (via contents table)"],
+          "semantic_definition": "Quantified macronutrient and micronutrient values",
+          "examples": [
+            {"energy_kcal": 539, "protein_g": 6.3, "fat_g": 30.7, "carbs_g": 57.5}
+          ]
+        },
+        {
+          "name": "compound_content",
+          "type": "object",
+          "cardinality": "1:N",
+          "description": "Chemical compound content in the food",
+          "sources": ["FooDB (contents table with source_type='Compound')"],
+          "semantic_definition": "Concentration of bioactive or chemical compounds in food",
+          "examples": [{"compound": "Quercetin", "content": 4.01, "unit": "mg/100g"}]
+        }
+      ],
+      "source_specific_fields": {
+        "Open Food Facts": [
+          {
+            "name": "nutriscore_grade",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Nutri-Score nutritional grade from A (best) to E (worst)",
+            "examples": ["a", "b", "c", "d", "e"]
+          },
+          {
+            "name": "nova_group",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "NOVA food processing classification (1-4, 4=ultra-processed)",
+            "examples": [1, 2, 3, 4]
+          },
+          {
+            "name": "ecoscore_grade",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Environmental impact grade from A (best) to E (worst)",
+            "examples": ["a", "b", "c", "d", "e"]
+          },
+          {
+            "name": "quantity",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Package quantity with unit",
+            "examples": ["400 g", "1 L"]
+          }
+        ],
+        "FooDB": [
+          {
+            "name": "compound_id",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Unique identifier for chemical compounds (FDB prefix)",
+            "examples": ["FDB000001"]
+          },
+          {
+            "name": "moldb_smiles",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "SMILES notation representing molecular structure",
+            "examples": ["CC(=O)Oc1ccccc1C(=O)O"]
+          },
+          {
+            "name": "moldb_inchikey",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "InChI key - unique chemical structure identifier",
+            "examples": ["BSYNRYMUTXBXSQ-UHFFFAOYSA-N"]
+          },
+          {
+            "name": "cas_number",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Chemical Abstracts Service registry number",
+            "examples": ["7084-24-4"]
+          },
+          {
+            "name": "itis_id",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "Integrated Taxonomic Information System ID for species",
+            "examples": [18098]
+          },
+          {
+            "name": "export_status",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "Compound status indicator (1=active, 2=inactive)",
+            "examples": [1, 2]
+          },
+          {
+            "name": "orig_content",
+            "type": "decimal",
+            "cardinality": "1:1",
+            "description": "Measured or average concentration of compound in food",
+            "examples": [25.3]
+          },
+          {
+            "name": "orig_unit",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Unit of measurement for compound concentration",
+            "examples": ["mg/100g", "mcg/100g"]
+          }
+        ]
+      }
+    },
+    {
+      "subcategory_id": "6.2",
+      "subcategory_name": "Dietary Supplements",
+      "data_sources": ["ConsumerLab", "DSLD", "Natural Medicines"],
+      "unified_fields": [
+        {
+          "name": "product_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Unique identifier for the supplement product",
+          "sources": ["ConsumerLab (review_id)", "DSLD (dsld_id)", "Natural Medicines (monograph_id)"],
+          "semantic_definition": "Primary key for identifying a specific supplement product or ingredient monograph",
+          "examples": ["CL-2024-VIT-D-001", "123456", "NM-001234"]
+        },
+        {
+          "name": "product_name",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Name of the supplement product",
+          "sources": ["ConsumerLab (product_name)", "DSLD (product_name)", "Natural Medicines (name)"],
+          "semantic_definition": "Commercial or scientific name of the supplement",
+          "examples": ["Vitamin D3 5000 IU", "Turmeric"]
+        },
+        {
+          "name": "brand_name",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Brand name of the supplement",
+          "sources": ["ConsumerLab (brand)", "DSLD (brand_name)"],
+          "semantic_definition": "Commercial brand identifier for the product",
+          "examples": ["Nature Made", "Nature's Way"]
+        },
+        {
+          "name": "upc",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Universal Product Code barcode",
+          "sources": ["ConsumerLab (upc)", "DSLD (upc)"],
+          "semantic_definition": "Standard retail barcode identifier",
+          "examples": ["012345678901", "033674100233"]
+        },
+        {
+          "name": "category",
+          "type": "string",
+          "cardinality": "1:N",
+          "description": "Category classification of the supplement",
+          "sources": ["ConsumerLab (category/subcategory)", "DSLD (ingredient_group)", "Natural Medicines (category)"],
+          "semantic_definition": "Classification of supplement type",
+          "examples": ["Vitamins & Minerals", "Herbs/Botanicals", "Vitamins"]
+        },
+        {
+          "name": "ingredient_name",
+          "type": "string",
+          "cardinality": "1:N",
+          "description": "Name of the active ingredient",
+          "sources": ["ConsumerLab (ingredient)", "DSLD (ingredient_name)", "Natural Medicines (scientific_names)"],
+          "semantic_definition": "Active ingredient or component name",
+          "examples": ["Vitamin D3 (as Cholecalciferol)", "Curcuma longa"]
+        },
+        {
+          "name": "amount",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Amount of ingredient per serving",
+          "sources": ["ConsumerLab (claimed_amount)", "DSLD (amount)"],
+          "semantic_definition": "Quantified amount of ingredient in each serving",
+          "examples": ["5000 IU", "500 mg"]
+        },
+        {
+          "name": "unit",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Unit of measurement for ingredient amount",
+          "sources": ["ConsumerLab", "DSLD (unit)"],
+          "semantic_definition": "Measurement unit for dosage",
+          "examples": ["IU", "mg", "mcg"]
+        },
+        {
+          "name": "daily_value_percent",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Percentage of FDA recommended daily intake",
+          "sources": ["DSLD (daily_value_percent)"],
+          "semantic_definition": "Nutrient content relative to recommended daily value",
+          "examples": ["1250", "100", "50"]
+        },
+        {
+          "name": "serving_size",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Amount per single serving",
+          "sources": ["DSLD (serving_size)"],
+          "semantic_definition": "Recommended serving portion",
+          "examples": ["1 softgel", "2 capsules"]
+        }
+      ],
+      "source_specific_fields": {
+        "ConsumerLab": [
+          {
+            "name": "approval_status",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Quality test result status",
+            "examples": ["Approved", "Not Approved", "Voluntarily Withdrawn"]
+          },
+          {
+            "name": "test_results",
+            "type": "object",
+            "cardinality": "1:1",
+            "description": "Comprehensive test result data including potency, purity, contaminants",
+            "examples": [{"claimed_amount": "5000 IU", "actual_amount": "5120 IU", "percent_of_claim": 102.4}]
+          },
+          {
+            "name": "heavy_metals",
+            "type": "object",
+            "cardinality": "1:1",
+            "description": "Heavy metal contamination test results (lead, arsenic, cadmium, mercury)",
+            "examples": [{"lead_mcg_daily": 0.3, "arsenic_mcg_daily": "ND"}]
+          },
+          {
+            "name": "disintegration",
+            "type": "object",
+            "cardinality": "1:1",
+            "description": "Tablet/capsule breakdown test results",
+            "examples": [{"time_minutes": 18, "limit_minutes": 30, "status": "Pass"}]
+          },
+          {
+            "name": "evidence_summary",
+            "type": "object",
+            "cardinality": "1:N",
+            "description": "Evidence ratings for health claims by condition",
+            "examples": [{"bone_health": "Strong evidence", "immune_function": "Moderate evidence"}]
+          },
+          {
+            "name": "drug_interactions",
+            "type": "array",
+            "cardinality": "1:N",
+            "description": "Known drug interaction information",
+            "examples": [["Corticosteroids", "Orlistat", "Thiazide diuretics"]]
+          }
+        ],
+        "DSLD": [
+          {
+            "name": "dsld_id",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "DSLD internal unique identifier",
+            "examples": [123456]
+          },
+          {
+            "name": "net_contents",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Net quantity/count in package",
+            "examples": ["120 Softgels", "90 Tablets"]
+          },
+          {
+            "name": "product_type",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Physical form of the supplement",
+            "examples": ["Softgel", "Capsule", "Tablet", "Powder", "Liquid"]
+          },
+          {
+            "name": "dietary_claims",
+            "type": "array",
+            "cardinality": "1:N",
+            "description": "Health/dietary claims on label",
+            "examples": [["Gluten Free", "No artificial colors"]]
+          },
+          {
+            "name": "nhp_id",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Canadian Natural Health Product ID if applicable",
+            "examples": ["NPN12345678"]
+          },
+          {
+            "name": "is_blend_component",
+            "type": "boolean",
+            "cardinality": "1:1",
+            "description": "Whether ingredient is part of a proprietary blend",
+            "examples": [true, false]
+          },
+          {
+            "name": "blend_name",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Name of proprietary blend if applicable",
+            "examples": ["Energy Blend", "Immune Support Complex"]
+          },
+          {
+            "name": "source_name",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Source organism or material for ingredient",
+            "examples": ["Lanolin", "Fish oil"]
+          },
+          {
+            "name": "manufacturer",
+            "type": "object",
+            "cardinality": "1:N",
+            "description": "Manufacturer/distributor information",
+            "examples": [{"name": "Nature's Way Products", "city": "Green Bay", "state": "WI"}]
+          }
+        ],
+        "Natural Medicines": [
+          {
+            "name": "monograph_id",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Unique identifier for ingredient monograph",
+            "examples": ["NM-001234"]
+          },
+          {
+            "name": "scientific_names",
+            "type": "array",
+            "cardinality": "1:N",
+            "description": "Taxonomic names for the ingredient source",
+            "examples": [["Curcuma longa", "Curcuma domestica"]]
+          },
+          {
+            "name": "common_names",
+            "type": "array",
+            "cardinality": "1:N",
+            "description": "Alternative/regional names for the ingredient",
+            "examples": [["Curcumin", "Indian Saffron", "Haridra"]]
+          },
+          {
+            "name": "safety_grade",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Overall safety classification",
+            "examples": ["Likely Safe", "Possibly Safe", "Possibly Unsafe", "Likely Unsafe"]
+          },
+          {
+            "name": "effectiveness_rating",
+            "type": "string",
+            "cardinality": "1:N",
+            "description": "Evidence-based efficacy assessment by condition",
+            "examples": ["Effective", "Likely Effective", "Possibly Effective", "Insufficient Evidence"]
+          },
+          {
+            "name": "evidence_level",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Quality of supporting research",
+            "examples": ["A", "B", "C", "D"]
+          },
+          {
+            "name": "mechanism_of_action",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Pharmacological basis of action",
+            "examples": ["Curcumin inhibits COX-2, LOX, NF-kB pathways"]
+          },
+          {
+            "name": "pharmacokinetics",
+            "type": "object",
+            "cardinality": "1:1",
+            "description": "Absorption, metabolism, and elimination data",
+            "examples": [{"absorption": "Poor oral bioavailability", "half_life": "1-2 hours"}]
+          },
+          {
+            "name": "interaction_severity",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Clinical significance of drug-supplement interaction",
+            "examples": ["Contraindicated", "Major", "Moderate", "Minor", "Unknown"]
+          },
+          {
+            "name": "interaction_mechanism",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Mechanism of drug interaction (e.g., CYP enzyme effects)",
+            "examples": ["CYP3A4 induction", "CYP2C9 inhibition"]
+          },
+          {
+            "name": "cas_number",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Chemical Abstracts Service registry number",
+            "examples": ["458-37-7"]
+          },
+          {
+            "name": "unii",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "FDA Unique Ingredient Identifier",
+            "examples": ["IT942ZTH98"]
+          }
+        ]
+      }
+    },
+    {
+      "subcategory_id": "6.3",
+      "subcategory_name": "Bioactive Food Compounds",
+      "data_sources": ["eBASIS"],
+      "unified_fields": [
+        {
+          "name": "component_id",
+          "type": "integer",
+          "cardinality": "1:1",
+          "description": "Unique identifier for bioactive compound",
+          "sources": ["eBASIS (component_id)"],
+          "semantic_definition": "Primary key for a bioactive compound in the database",
+          "examples": [1234]
+        },
+        {
+          "name": "component_name",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Name of the bioactive compound",
+          "sources": ["eBASIS (component_name)"],
+          "semantic_definition": "Common or systematic name of the compound",
+          "examples": ["Quercetin", "Beta-carotene", "Resveratrol"]
+        },
+        {
+          "name": "component_group",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Major category of bioactive compounds",
+          "sources": ["eBASIS (component_group)"],
+          "semantic_definition": "Classification of compound by chemical class",
+          "examples": ["Flavonoids", "Carotenoids", "Phenolic Acids", "Glucosinolates"]
+        },
+        {
+          "name": "component_subgroup",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Subcategory within component group",
+          "sources": ["eBASIS (component_subgroup)"],
+          "semantic_definition": "More specific classification within the major group",
+          "examples": ["Flavonols", "Flavones", "Anthocyanidins"]
+        },
+        {
+          "name": "food_id",
+          "type": "integer",
+          "cardinality": "1:1",
+          "description": "Unique identifier for the food source",
+          "sources": ["eBASIS (food_id)"],
+          "semantic_definition": "Primary key for food item containing the compound",
+          "examples": [101]
+        },
+        {
+          "name": "food_name",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Common name of the food",
+          "sources": ["eBASIS (food_name)"],
+          "semantic_definition": "Human-readable food name",
+          "examples": ["Apple, raw, with skin", "Red onion, raw"]
+        },
+        {
+          "name": "scientific_name",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Scientific name of the food source organism",
+          "sources": ["eBASIS (scientific_name)"],
+          "semantic_definition": "Taxonomic binomial name",
+          "examples": ["Malus domestica", "Allium cepa"]
+        },
+        {
+          "name": "composition_value",
+          "type": "decimal",
+          "cardinality": "1:1",
+          "description": "Concentration value of compound in food",
+          "sources": ["eBASIS (value)"],
+          "semantic_definition": "Measured amount of compound per unit food",
+          "examples": [4.01, 233.84]
+        },
+        {
+          "name": "composition_unit",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Unit of measurement for concentration",
+          "sources": ["eBASIS (unit)"],
+          "semantic_definition": "Measurement unit for compound content",
+          "examples": ["mg/100g", "mcg/100g"]
+        },
+        {
+          "name": "data_quality_score",
+          "type": "integer",
+          "cardinality": "1:1",
+          "description": "EuroFIR quality rating (1-5, 5=excellent)",
+          "sources": ["eBASIS (data_quality_score)"],
+          "semantic_definition": "Assessment of data reliability and documentation quality",
+          "examples": [1, 2, 3, 4, 5]
+        }
+      ],
+      "source_specific_fields": {
+        "eBASIS": [
+          {
+            "name": "cas_number",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Chemical Abstracts Service registry number",
+            "examples": ["117-39-5"]
+          },
+          {
+            "name": "pubchem_cid",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "PubChem compound identifier",
+            "examples": [5280343]
+          },
+          {
+            "name": "molecular_formula",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Chemical formula of the compound",
+            "examples": ["C15H10O7"]
+          },
+          {
+            "name": "molecular_weight",
+            "type": "decimal",
+            "cardinality": "1:1",
+            "description": "Molecular weight in g/mol",
+            "examples": [302.236]
+          },
+          {
+            "name": "iupac_name",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "IUPAC systematic chemical name",
+            "examples": ["2-(3,4-dihydroxyphenyl)-3,5,7-trihydroxychromen-4-one"]
+          },
+          {
+            "name": "inchi",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "International Chemical Identifier string",
+            "examples": ["InChI=1S/C15H10O7/c16-7-4-10(19)..."]
+          },
+          {
+            "name": "inchikey",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Hashed InChI identifier",
+            "examples": ["REFJWTPEDVJJIY-UHFFFAOYSA-N"]
+          },
+          {
+            "name": "synonyms",
+            "type": "array",
+            "cardinality": "1:N",
+            "description": "Alternative names for the compound",
+            "examples": [["Sophoretin", "Meletin", "Quercetine"]]
+          },
+          {
+            "name": "langual_code",
+            "type": "string",
+            "cardinality": "1:N",
+            "description": "LanguaL food description thesaurus code",
+            "examples": ["A0148", "B1001"]
+          },
+          {
+            "name": "eurofir_code",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "EuroFIR food code",
+            "examples": ["FR001234"]
+          },
+          {
+            "name": "edible_portion",
+            "type": "decimal",
+            "cardinality": "1:1",
+            "description": "Percentage of food that is consumable",
+            "examples": [95.0]
+          },
+          {
+            "name": "value_type",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Type of measurement value (mean, median, single)",
+            "examples": ["mean", "median", "single"]
+          },
+          {
+            "name": "min_value",
+            "type": "decimal",
+            "cardinality": "1:1",
+            "description": "Minimum observed concentration",
+            "examples": [2.10]
+          },
+          {
+            "name": "max_value",
+            "type": "decimal",
+            "cardinality": "1:1",
+            "description": "Maximum observed concentration",
+            "examples": [6.45]
+          },
+          {
+            "name": "n_samples",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "Number of samples analyzed",
+            "examples": [12]
+          },
+          {
+            "name": "std_dev",
+            "type": "decimal",
+            "cardinality": "1:1",
+            "description": "Standard deviation of measurements",
+            "examples": [1.23]
+          },
+          {
+            "name": "analytical_method",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Analytical technique used (HPLC, GC-MS, etc.)",
+            "examples": ["HPLC-DAD", "GC-MS"]
+          },
+          {
+            "name": "reference_id",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "Reference to source publication",
+            "examples": [5678]
+          },
+          {
+            "name": "pubmed_id",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "PubMed reference ID",
+            "examples": [32145678]
+          },
+          {
+            "name": "doi",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Digital Object Identifier for publication",
+            "examples": ["10.1016/j.jfca.2020.103567"]
+          }
+        ]
+      }
+    },
+    {
+      "subcategory_id": "6.4",
+      "subcategory_name": "Metabolomics",
+      "data_sources": ["Exposome-Explorer", "HMDB"],
+      "unified_fields": [
+        {
+          "name": "metabolite_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Unique identifier for the metabolite",
+          "sources": ["Exposome-Explorer (biomarker_id)", "HMDB (accession)"],
+          "semantic_definition": "Primary key for a metabolite or biomarker in the database",
+          "examples": ["123", "HMDB0000001"]
+        },
+        {
+          "name": "metabolite_name",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Name of the metabolite or biomarker",
+          "sources": ["Exposome-Explorer (biomarker_name)", "HMDB (name)"],
+          "semantic_definition": "Common or systematic name of the compound",
+          "examples": ["4-O-methylgallic acid", "1-Methylhistidine"]
+        },
+        {
+          "name": "pubchem_cid",
+          "type": "integer",
+          "cardinality": "1:1",
+          "description": "PubChem compound identifier",
+          "sources": ["Exposome-Explorer", "HMDB"],
+          "semantic_definition": "Cross-reference to PubChem database",
+          "examples": [13159, 92105]
+        },
+        {
+          "name": "hmdb_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Human Metabolome Database identifier",
+          "sources": ["Exposome-Explorer (hmdb_id)", "HMDB (accession)"],
+          "semantic_definition": "HMDB accession number for cross-referencing",
+          "examples": ["HMDB0002122", "HMDB0000001"]
+        },
+        {
+          "name": "chebi_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "ChEBI chemical entities identifier",
+          "sources": ["Exposome-Explorer", "HMDB"],
+          "semantic_definition": "Cross-reference to ChEBI database",
+          "examples": ["CHEBI:50599", "CHEBI:16243"]
+        },
+        {
+          "name": "cas_number",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Chemical Abstracts Service registry number",
+          "sources": ["Exposome-Explorer", "HMDB (cas_registry_number)"],
+          "semantic_definition": "Unique chemical substance identifier",
+          "examples": ["3934-84-7", "332-80-9"]
+        },
+        {
+          "name": "molecular_formula",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Chemical formula of the metabolite",
+          "sources": ["Exposome-Explorer", "HMDB (chemical_formula)"],
+          "semantic_definition": "Elemental composition formula",
+          "examples": ["C8H8O5", "C7H11N3O2"]
+        },
+        {
+          "name": "smiles",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "SMILES notation for molecular structure",
+          "sources": ["HMDB (smiles)"],
+          "semantic_definition": "Simplified molecular structure representation",
+          "examples": ["CN1C=NC(CC(N)C(O)=O)=C1"]
+        },
+        {
+          "name": "inchi",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "International Chemical Identifier",
+          "sources": ["HMDB (inchi)"],
+          "semantic_definition": "Structured chemical identifier",
+          "examples": ["InChI=1S/C7H11N3O2/c1-10-4-9-5..."]
+        },
+        {
+          "name": "inchikey",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Hashed InChI key for structure lookup",
+          "sources": ["HMDB (inchikey)"],
+          "semantic_definition": "Fixed-length hash of InChI for fast lookup",
+          "examples": ["BRMWTNUJHUMWMS-LURJTMIESA-N"]
+        },
+        {
+          "name": "specimen_type",
+          "type": "string",
+          "cardinality": "1:N",
+          "description": "Biological sample type where metabolite is measured",
+          "sources": ["Exposome-Explorer", "HMDB (biofluid)"],
+          "semantic_definition": "Type of biological matrix for measurement",
+          "examples": ["plasma", "urine", "serum", "Blood", "CSF"]
+        },
+        {
+          "name": "concentration_value",
+          "type": "decimal",
+          "cardinality": "1:1",
+          "description": "Measured concentration in biological sample",
+          "sources": ["Exposome-Explorer (mean_concentration)", "HMDB (concentration_value)"],
+          "semantic_definition": "Quantified amount in biological matrix",
+          "examples": [5.2, 0.065]
+        },
+        {
+          "name": "concentration_unit",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Unit for concentration measurement",
+          "sources": ["Exposome-Explorer", "HMDB (concentration_units)"],
+          "semantic_definition": "Measurement unit for metabolite concentration",
+          "examples": ["uM", "umol/L", "ng/mL"]
+        }
+      ],
+      "source_specific_fields": {
+        "Exposome-Explorer": [
+          {
+            "name": "biomarker_id",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "Unique identifier for biomarker",
+            "examples": [123]
+          },
+          {
+            "name": "biomarker_type",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Type of biomarker (metabolite, nutrient, etc.)",
+            "examples": ["metabolite", "nutrient", "Phenolic acid metabolite"]
+          },
+          {
+            "name": "exposure_id",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "Unique identifier for exposure",
+            "examples": [789]
+          },
+          {
+            "name": "exposure_name",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Name of dietary or environmental exposure",
+            "examples": ["Tea consumption", "Coffee consumption", "Red meat intake"]
+          },
+          {
+            "name": "exposure_category",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Category of exposure (Dietary, Environmental, etc.)",
+            "examples": ["Dietary", "Environmental"]
+          },
+          {
+            "name": "exposure_subcategory",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Subcategory of exposure",
+            "examples": ["Beverages", "Fruits", "Pollutants"]
+          },
+          {
+            "name": "association_type",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Direction of biomarker-exposure relationship",
+            "examples": ["positive", "negative", "correlation"]
+          },
+          {
+            "name": "effect_size",
+            "type": "decimal",
+            "cardinality": "1:1",
+            "description": "Magnitude of association (correlation coefficient, OR)",
+            "examples": [0.42]
+          },
+          {
+            "name": "effect_unit",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Type of effect size metric",
+            "examples": ["Pearson correlation", "Odds ratio"]
+          },
+          {
+            "name": "p_value",
+            "type": "decimal",
+            "cardinality": "1:1",
+            "description": "Statistical significance",
+            "examples": [0.00001]
+          },
+          {
+            "name": "confidence_interval",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "95% confidence interval for effect size",
+            "examples": ["0.35-0.49"]
+          },
+          {
+            "name": "sample_size",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "Number of subjects in study",
+            "examples": [450]
+          },
+          {
+            "name": "population",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Study population description",
+            "examples": ["European adults", "Free-living adults, US"]
+          },
+          {
+            "name": "study_type",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Type of epidemiological study",
+            "examples": ["cross-sectional", "cohort", "intervention", "case-control"]
+          }
+        ],
+        "HMDB": [
+          {
+            "name": "accession",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "HMDB accession number (e.g., HMDB0000001)",
+            "examples": ["HMDB0000001"]
+          },
+          {
+            "name": "version",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "Database version for the metabolite record",
+            "examples": [5]
+          },
+          {
+            "name": "iupac_name",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "IUPAC systematic name",
+            "examples": ["(2S)-2-amino-3-(1-methyl-1H-imidazol-4-yl)propanoic acid"]
+          },
+          {
+            "name": "average_molecular_weight",
+            "type": "decimal",
+            "cardinality": "1:1",
+            "description": "Average molecular weight in g/mol",
+            "examples": [169.181]
+          },
+          {
+            "name": "monoisotopic_molecular_weight",
+            "type": "decimal",
+            "cardinality": "1:1",
+            "description": "Monoisotopic mass for MS identification",
+            "examples": [169.085126611]
+          },
+          {
+            "name": "state",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Physical state of the compound",
+            "examples": ["Solid", "Liquid", "Gas"]
+          },
+          {
+            "name": "biofluid_locations",
+            "type": "array",
+            "cardinality": "1:N",
+            "description": "Biofluids where metabolite is found",
+            "examples": [["Blood", "Urine", "CSF"]]
+          },
+          {
+            "name": "cellular_locations",
+            "type": "array",
+            "cardinality": "1:N",
+            "description": "Cellular compartments where metabolite is present",
+            "examples": [["Cytoplasm", "Mitochondria"]]
+          },
+          {
+            "name": "tissue_locations",
+            "type": "array",
+            "cardinality": "1:N",
+            "description": "Tissues where metabolite is found",
+            "examples": [["Muscle", "Liver"]]
+          },
+          {
+            "name": "disease_name",
+            "type": "string",
+            "cardinality": "1:N",
+            "description": "Disease associated with metabolite levels",
+            "examples": ["Histidinemia", "Diabetes"]
+          },
+          {
+            "name": "omim_id",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Online Mendelian Inheritance in Man identifier",
+            "examples": ["235800"]
+          },
+          {
+            "name": "concentration_change",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Direction of change in disease state",
+            "examples": ["Elevated", "Reduced"]
+          },
+          {
+            "name": "pathway_name",
+            "type": "string",
+            "cardinality": "1:N",
+            "description": "Metabolic pathway involving the metabolite",
+            "examples": ["Histidine metabolism", "Glycolysis"]
+          },
+          {
+            "name": "kegg_id",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "KEGG compound identifier",
+            "examples": ["C01152"]
+          },
+          {
+            "name": "smpdb_id",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Small Molecule Pathway Database ID",
+            "examples": ["SMP00001"]
+          },
+          {
+            "name": "drugbank_id",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "DrugBank database identifier",
+            "examples": ["DB00118"]
+          },
+          {
+            "name": "foodb_id",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "FooDB database identifier for food connection",
+            "examples": ["FDB000001"]
+          },
+          {
+            "name": "ms_spectrum",
+            "type": "object",
+            "cardinality": "1:N",
+            "description": "Mass spectrometry spectral data",
+            "examples": [{"spectrum_type": "MS/MS", "ionization_mode": "Positive", "peaks": []}]
+          },
+          {
+            "name": "nmr_spectrum",
+            "type": "object",
+            "cardinality": "1:N",
+            "description": "NMR spectral data for identification",
+            "examples": [{"nucleus": "1H", "frequency": "400 MHz"}]
+          },
+          {
+            "name": "taxonomy",
+            "type": "object",
+            "cardinality": "1:1",
+            "description": "Chemical classification taxonomy",
+            "examples": [{"kingdom": "Organic compounds", "superclass": "Organic acids"}]
+          },
+          {
+            "name": "condition",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Health condition (Normal or disease name)",
+            "examples": ["Normal", "Diabetes", "Cancer"]
+          },
+          {
+            "name": "age",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Age group of subjects",
+            "examples": ["Adult (>18 years)", "Pediatric"]
+          },
+          {
+            "name": "sex",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Sex of study subjects",
+            "examples": ["Male", "Female", "Both"]
+          },
+          {
+            "name": "subject_count",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "Number of subjects in concentration study",
+            "examples": [120]
+          },
+          {
+            "name": "pubmed_id",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "PubMed reference ID for source data",
+            "examples": [12345678]
+          }
+        ]
+      }
+    }
+  ],
+  "cross_category_common_fields": {
+    "chemical_identifiers": {
+      "description": "Common chemical identification fields found across multiple sources",
+      "fields": [
+        {
+          "name": "cas_number",
+          "sources": ["FooDB", "eBASIS", "Natural Medicines", "Exposome-Explorer", "HMDB"],
+          "description": "Chemical Abstracts Service registry number"
+        },
+        {
+          "name": "pubchem_cid",
+          "sources": ["eBASIS", "Exposome-Explorer", "HMDB"],
+          "description": "PubChem compound identifier"
+        },
+        {
+          "name": "inchikey",
+          "sources": ["FooDB", "eBASIS", "HMDB"],
+          "description": "Hashed International Chemical Identifier"
+        },
+        {
+          "name": "smiles",
+          "sources": ["FooDB", "HMDB"],
+          "description": "SMILES molecular structure notation"
+        },
+        {
+          "name": "molecular_formula",
+          "sources": ["FooDB", "eBASIS", "Exposome-Explorer", "HMDB"],
+          "description": "Chemical elemental formula"
+        },
+        {
+          "name": "molecular_weight",
+          "sources": ["FooDB", "eBASIS", "HMDB"],
+          "description": "Molecular mass in g/mol"
+        }
+      ]
+    },
+    "food_identifiers": {
+      "description": "Common food identification fields",
+      "fields": [
+        {
+          "name": "food_name",
+          "sources": ["Open Food Facts", "FooDB", "eBASIS"],
+          "description": "Common name of food item"
+        },
+        {
+          "name": "scientific_name",
+          "sources": ["FooDB", "eBASIS", "Natural Medicines"],
+          "description": "Taxonomic scientific name"
+        },
+        {
+          "name": "food_group",
+          "sources": ["Open Food Facts", "FooDB", "eBASIS", "Exposome-Explorer"],
+          "description": "Category classification of food"
+        }
+      ]
+    },
+    "concentration_fields": {
+      "description": "Common concentration/composition measurement fields",
+      "fields": [
+        {
+          "name": "value/concentration",
+          "sources": ["FooDB (orig_content)", "eBASIS (value)", "Exposome-Explorer (concentration_value)", "HMDB (concentration_value)"],
+          "description": "Measured concentration value"
+        },
+        {
+          "name": "unit",
+          "sources": ["FooDB (orig_unit)", "eBASIS (unit)", "DSLD (unit)", "Exposome-Explorer (concentration_units)", "HMDB (concentration_units)"],
+          "description": "Unit of measurement"
+        },
+        {
+          "name": "min/max values",
+          "sources": ["FooDB", "eBASIS", "Exposome-Explorer", "HMDB"],
+          "description": "Range of measured values"
+        },
+        {
+          "name": "n_samples/subject_count",
+          "sources": ["eBASIS", "Exposome-Explorer", "HMDB"],
+          "description": "Number of samples/subjects analyzed"
+        }
+      ]
+    },
+    "reference_fields": {
+      "description": "Common bibliographic reference fields",
+      "fields": [
+        {
+          "name": "pubmed_id",
+          "sources": ["eBASIS", "Natural Medicines", "Exposome-Explorer", "HMDB"],
+          "description": "PubMed article identifier"
+        },
+        {
+          "name": "doi",
+          "sources": ["eBASIS", "Exposome-Explorer", "HMDB"],
+          "description": "Digital Object Identifier"
+        }
+      ]
+    },
+    "supplement_identifiers": {
+      "description": "Common supplement product identification fields",
+      "fields": [
+        {
+          "name": "upc",
+          "sources": ["ConsumerLab", "DSLD"],
+          "description": "Universal Product Code barcode"
+        },
+        {
+          "name": "brand_name",
+          "sources": ["Open Food Facts", "ConsumerLab", "DSLD"],
+          "description": "Commercial brand name"
+        },
+        {
+          "name": "product_name",
+          "sources": ["Open Food Facts", "ConsumerLab", "DSLD"],
+          "description": "Product name"
+        }
+      ]
+    }
+  },
+  "summary": {
+    "total_unified_fields_6_1": 7,
+    "total_source_specific_fields_6_1": 12,
+    "total_unified_fields_6_2": 10,
+    "total_source_specific_fields_6_2": 34,
+    "total_unified_fields_6_3": 10,
+    "total_source_specific_fields_6_3": 18,
+    "total_unified_fields_6_4": 13,
+    "total_source_specific_fields_6_4": 40,
+    "key_cross_references": [
+      "HMDB ID links metabolomics to food composition databases",
+      "FooDB ID provides cross-reference between HMDB and food compounds",
+      "PubChem CID enables linking across all chemical databases",
+      "CAS number is universal chemical identifier across all sources",
+      "InChIKey enables structural matching across databases"
+    ]
+  }
+}

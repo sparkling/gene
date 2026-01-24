@@ -1,0 +1,300 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gene.example.org/schemas/4.1-metabolic-pathways.json",
+  "title": "Metabolic Pathways Unified Schema",
+  "description": "Unified schema for metabolic pathway data from KEGG, Reactome, and WikiPathways",
+  "type": "object",
+  "properties": {
+    "pathway_id": {
+      "type": "string",
+      "description": "Primary identifier for the pathway",
+      "sources": ["KEGG", "Reactome", "WikiPathways"],
+      "examples": ["hsa00010", "R-HSA-1430728", "WP554"]
+    },
+    "pathway_name": {
+      "type": "string",
+      "description": "Human-readable name of the pathway",
+      "sources": ["KEGG", "Reactome", "WikiPathways"],
+      "examples": ["Glycolysis / Gluconeogenesis", "Metabolism", "Cholesterol biosynthesis pathway"]
+    },
+    "organism": {
+      "type": ["string", "null"],
+      "description": "Species/organism the pathway applies to",
+      "sources": ["KEGG", "Reactome", "WikiPathways"],
+      "examples": ["hsa", "Homo sapiens"]
+    },
+    "gene_entries": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string"},
+          "symbol": {"type": "string"},
+          "name": {"type": "string"}
+        }
+      },
+      "description": "Genes/gene products participating in the pathway",
+      "sources": ["KEGG", "Reactome", "WikiPathways"]
+    },
+    "compound_entries": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string"},
+          "name": {"type": "string"}
+        }
+      },
+      "description": "Metabolites/compounds in the pathway",
+      "sources": ["KEGG", "Reactome", "WikiPathways"]
+    },
+    "reactions": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string"},
+          "substrates": {"type": "array", "items": {"type": "string"}},
+          "products": {"type": "array", "items": {"type": "string"}},
+          "enzyme": {"type": "string"}
+        }
+      },
+      "description": "Biochemical reactions comprising the pathway",
+      "sources": ["KEGG", "Reactome", "WikiPathways"]
+    },
+    "cross_references": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "database": {"type": "string"},
+          "id": {"type": "string"}
+        }
+      },
+      "description": "Links to external databases",
+      "sources": ["KEGG", "Reactome", "WikiPathways"]
+    },
+    "kegg_entry_type": {
+      "type": ["string", "null"],
+      "enum": ["ortholog", "enzyme", "gene", "group", "compound", "map", "brite", "other", null],
+      "description": "Type of KGML entry",
+      "sources": ["KEGG"]
+    },
+    "kegg_relation_type": {
+      "type": ["string", "null"],
+      "enum": ["ECrel", "PPrel", "GErel", "PCrel", "maplink", null],
+      "description": "Type of molecular relation",
+      "sources": ["KEGG"]
+    },
+    "kegg_relation_subtype": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Specific interaction type (activation, inhibition, phosphorylation, etc.)",
+      "sources": ["KEGG"]
+    },
+    "kegg_graphics": {
+      "type": ["object", "null"],
+      "description": "Visual rendering properties (x, y coordinates, colors)",
+      "sources": ["KEGG"]
+    },
+    "kegg_reaction_type": {
+      "type": ["string", "null"],
+      "enum": ["reversible", "irreversible", null],
+      "description": "Reversibility of reaction",
+      "sources": ["KEGG"]
+    },
+    "reactome_db_id": {
+      "type": ["integer", "null"],
+      "description": "Internal Reactome database identifier",
+      "sources": ["Reactome"]
+    },
+    "reactome_st_id": {
+      "type": ["string", "null"],
+      "description": "Stable identifier persistent across releases",
+      "sources": ["Reactome"]
+    },
+    "reactome_st_id_version": {
+      "type": ["string", "null"],
+      "description": "Versioned stable identifier",
+      "sources": ["Reactome"]
+    },
+    "reactome_schema_class": {
+      "type": ["string", "null"],
+      "description": "Neo4j node type classification",
+      "sources": ["Reactome"]
+    },
+    "compartment": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Cellular locations where reaction occurs",
+      "sources": ["Reactome"]
+    },
+    "go_biological_process": {
+      "type": ["object", "null"],
+      "description": "Associated GO Biological Process annotation",
+      "sources": ["Reactome"]
+    },
+    "literature_references": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "pmid": {"type": "integer"},
+          "title": {"type": "string"}
+        }
+      },
+      "description": "PubMed citations supporting the annotation",
+      "sources": ["Reactome"]
+    },
+    "input": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Reaction input entities (substrates)",
+      "sources": ["Reactome"]
+    },
+    "output": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Reaction output entities (products)",
+      "sources": ["Reactome"]
+    },
+    "catalyst_activity": {
+      "type": ["array", "null"],
+      "items": {"type": "object"},
+      "description": "Enzymatic activities catalyzing the reaction",
+      "sources": ["Reactome"]
+    },
+    "has_event": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Child events within a pathway",
+      "sources": ["Reactome"]
+    },
+    "reference_entity": {
+      "type": ["object", "null"],
+      "description": "External database reference (UniProt, ChEBI)",
+      "sources": ["Reactome"]
+    },
+    "is_in_disease": {
+      "type": ["boolean", "null"],
+      "description": "Flag indicating disease-related pathway",
+      "sources": ["Reactome"]
+    },
+    "is_inferred": {
+      "type": ["boolean", "null"],
+      "description": "Flag indicating orthology inference",
+      "sources": ["Reactome"]
+    },
+    "wikipathways_graph_id": {
+      "type": ["string", "null"],
+      "description": "Unique identifier within GPML document",
+      "sources": ["WikiPathways"]
+    },
+    "wikipathways_datanode_type": {
+      "type": ["string", "null"],
+      "enum": ["GeneProduct", "Metabolite", "Protein", "Rna", "Complex", "Pathway", "Unknown", null],
+      "description": "Classification of pathway node",
+      "sources": ["WikiPathways"]
+    },
+    "wikipathways_text_label": {
+      "type": ["string", "null"],
+      "description": "Display text on node",
+      "sources": ["WikiPathways"]
+    },
+    "wikipathways_arrow_head": {
+      "type": ["string", "null"],
+      "description": "Interaction type using MIM notation",
+      "sources": ["WikiPathways"]
+    },
+    "wikipathways_group_style": {
+      "type": ["string", "null"],
+      "enum": ["None", "Group", "Complex", "Pathway", null],
+      "description": "Visual grouping style for complexes",
+      "sources": ["WikiPathways"]
+    },
+    "wikipathways_state": {
+      "type": ["array", "null"],
+      "items": {"type": "object"},
+      "description": "Post-translational modification markers",
+      "sources": ["WikiPathways"]
+    },
+    "wikipathways_shape": {
+      "type": ["object", "null"],
+      "description": "Cellular compartment shapes",
+      "sources": ["WikiPathways"]
+    },
+    "wikipathways_graphics": {
+      "type": ["object", "null"],
+      "description": "Visual rendering properties",
+      "sources": ["WikiPathways"]
+    },
+    "wikipathways_xref_database": {
+      "type": ["string", "null"],
+      "description": "External database for cross-reference",
+      "sources": ["WikiPathways"]
+    },
+    "_source": {
+      "type": "object",
+      "description": "Metadata about the data source",
+      "properties": {
+        "database": {"type": "string"},
+        "version": {"type": "string"},
+        "access_date": {"type": "string", "format": "date"},
+        "original_id": {"type": "string"}
+      }
+    }
+  },
+  "required": ["pathway_id", "pathway_name"],
+  "field_mappings": {
+    "KEGG": {
+      "pathway_id": "pathway_id",
+      "name": "pathway_name",
+      "org": "organism",
+      "entry": "gene_entries",
+      "compound": "compound_entries",
+      "reaction": "reactions",
+      "link": "cross_references",
+      "entry_type": "kegg_entry_type",
+      "relation_type": "kegg_relation_type",
+      "relation_subtype": "kegg_relation_subtype",
+      "graphics": "kegg_graphics",
+      "reaction_type": "kegg_reaction_type"
+    },
+    "Reactome": {
+      "stId": "reactome_st_id",
+      "dbId": "reactome_db_id",
+      "stIdVersion": "reactome_st_id_version",
+      "displayName": "pathway_name",
+      "speciesName": "organism",
+      "schemaClass": "reactome_schema_class",
+      "compartment": "compartment",
+      "goBiologicalProcess": "go_biological_process",
+      "literatureReference": "literature_references",
+      "input": "input",
+      "output": "output",
+      "catalystActivity": "catalyst_activity",
+      "hasEvent": "has_event",
+      "referenceEntity": "reference_entity",
+      "isInDisease": "is_in_disease",
+      "isInferred": "is_inferred"
+    },
+    "WikiPathways": {
+      "wpid": "pathway_id",
+      "Name": "pathway_name",
+      "Organism": "organism",
+      "DataNode": "gene_entries",
+      "Metabolite": "compound_entries",
+      "Interaction": "reactions",
+      "Xref": "cross_references",
+      "GraphId": "wikipathways_graph_id",
+      "DataNode_Type": "wikipathways_datanode_type",
+      "TextLabel": "wikipathways_text_label",
+      "ArrowHead": "wikipathways_arrow_head",
+      "Group_Style": "wikipathways_group_style",
+      "State": "wikipathways_state",
+      "Shape": "wikipathways_shape",
+      "Graphics": "wikipathways_graphics",
+      "Xref_Database": "wikipathways_xref_database"
+    }
+  }
+}

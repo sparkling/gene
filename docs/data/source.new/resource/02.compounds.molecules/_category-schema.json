@@ -1,0 +1,1482 @@
+{
+  "category_id": "02",
+  "category_name": "Compounds & Molecules",
+  "extraction_date": "2026-01-24",
+  "subcategories": [
+    {
+      "subcategory_id": "2.1",
+      "subcategory_name": "Natural Products",
+      "data_sources": ["COCONUT", "Dr. Duke's", "LOTUS", "NPASS", "NPAtlas"],
+      "unified_fields": [
+        {
+          "name": "compound_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Primary identifier for natural product compound",
+          "sources": ["COCONUT", "NPASS", "NPAtlas"],
+          "semantic_definition": "Unique identifier assigned by each database (e.g., CNP0123456, NPC12345, NPA012345)",
+          "examples": ["CNP0123456", "NPC12345", "NPA012345"]
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Common or trivial name of the natural product",
+          "sources": ["COCONUT", "Dr. Duke's", "LOTUS", "NPASS", "NPAtlas"],
+          "semantic_definition": "Human-readable name for the compound",
+          "examples": ["Artemisinin", "Curcumin", "Quercetin"]
+        },
+        {
+          "name": "canonical_smiles",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Simplified Molecular Input Line Entry System notation",
+          "sources": ["COCONUT", "LOTUS", "NPASS", "NPAtlas"],
+          "semantic_definition": "Standardized SMILES without stereochemistry information",
+          "examples": ["CC(C)CCCC(C)C", "CC(=O)Oc1ccccc1C(=O)O"]
+        },
+        {
+          "name": "isomeric_smiles",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "SMILES with stereochemistry preserved",
+          "sources": ["COCONUT", "LOTUS"],
+          "semantic_definition": "SMILES notation that includes stereochemical information",
+          "examples": ["C[C@@H](O)c1ccccc1"]
+        },
+        {
+          "name": "inchi",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "IUPAC International Chemical Identifier",
+          "sources": ["COCONUT", "LOTUS", "NPASS", "NPAtlas"],
+          "semantic_definition": "Standard structure representation developed by IUPAC",
+          "examples": ["InChI=1S/C6H12O6/c7-1-2-3(8)..."]
+        },
+        {
+          "name": "inchi_key",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "27-character hashed InChI for fast lookups",
+          "sources": ["COCONUT", "LOTUS", "NPASS", "NPAtlas"],
+          "semantic_definition": "Fixed-length hash of InChI enabling exact structure matching",
+          "examples": ["BSYNRYMUTXBXSQ-UHFFFAOYSA-N"]
+        },
+        {
+          "name": "molecular_formula",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Chemical formula showing atom composition",
+          "sources": ["COCONUT", "Dr. Duke's", "LOTUS", "NPASS", "NPAtlas"],
+          "semantic_definition": "Elemental composition of the compound",
+          "examples": ["C21H30O2", "C9H8O4"]
+        },
+        {
+          "name": "molecular_weight",
+          "type": "decimal",
+          "cardinality": "1:1",
+          "description": "Molecular weight in Daltons",
+          "sources": ["COCONUT", "Dr. Duke's", "LOTUS", "NPASS", "NPAtlas"],
+          "semantic_definition": "Average molecular mass considering isotope distribution",
+          "examples": [282.35, 180.16]
+        },
+        {
+          "name": "organism_source",
+          "type": "object[]",
+          "cardinality": "1:N",
+          "description": "Biological organisms producing the natural product",
+          "sources": ["COCONUT", "Dr. Duke's", "LOTUS", "NPASS", "NPAtlas"],
+          "semantic_definition": "Species or organisms from which compound was isolated",
+          "examples": [{"name": "Artemisia annua", "ncbi_taxon_id": 35608}]
+        },
+        {
+          "name": "ncbi_taxon_id",
+          "type": "integer",
+          "cardinality": "1:1",
+          "description": "NCBI Taxonomy identifier for source organism",
+          "sources": ["COCONUT", "LOTUS", "NPASS", "NPAtlas"],
+          "semantic_definition": "Unique identifier from NCBI Taxonomy database",
+          "examples": [35608, 3702]
+        },
+        {
+          "name": "compound_class",
+          "type": "string",
+          "cardinality": "1:N",
+          "description": "Natural product classification",
+          "sources": ["COCONUT", "NPASS", "NPAtlas"],
+          "semantic_definition": "Chemical or biosynthetic class of the compound",
+          "examples": ["Terpenoid", "Alkaloid", "Flavonoid", "Polyketide"]
+        },
+        {
+          "name": "references",
+          "type": "object[]",
+          "cardinality": "1:N",
+          "description": "Literature citations for compound isolation/characterization",
+          "sources": ["LOTUS", "NPASS", "NPAtlas"],
+          "semantic_definition": "Publications documenting the compound",
+          "examples": [{"doi": "10.1016/j.phytochem.2018.01.001", "pmid": 29371045}]
+        }
+      ],
+      "source_specific_fields": {
+        "COCONUT": [
+          {
+            "name": "coconut_id",
+            "type": "string",
+            "description": "COCONUT identifier (CNP prefix)",
+            "examples": ["CNP0123456"]
+          },
+          {
+            "name": "sugar_free_smiles",
+            "type": "string",
+            "description": "SMILES with glycosidic moieties removed"
+          },
+          {
+            "name": "qed_drug_likeliness",
+            "type": "decimal",
+            "description": "Quantitative Estimate of Drug-likeness (0-1)"
+          },
+          {
+            "name": "lipinski_rule_of_5",
+            "type": "integer",
+            "description": "Number of Lipinski rule violations (0-4)"
+          },
+          {
+            "name": "murko_framework",
+            "type": "string",
+            "description": "Core molecular scaffold structure"
+          }
+        ],
+        "Dr. Duke's": [
+          {
+            "name": "cas_number",
+            "type": "string",
+            "description": "CAS Registry Number",
+            "examples": ["458-37-7"]
+          },
+          {
+            "name": "biological_activity",
+            "type": "string[]",
+            "description": "Documented biological activities (1,900+ types)"
+          },
+          {
+            "name": "ethnobotanical_use",
+            "type": "object[]",
+            "description": "Traditional/ethnobotanical uses with culture and region"
+          },
+          {
+            "name": "plant_part",
+            "type": "string",
+            "description": "Part of plant containing compound"
+          },
+          {
+            "name": "concentration_range",
+            "type": "object",
+            "description": "Concentration in plant (low/high values in ppm)"
+          }
+        ],
+        "LOTUS": [
+          {
+            "name": "wikidataId",
+            "type": "string",
+            "description": "Wikidata Q-identifier",
+            "examples": ["Q312879"]
+          },
+          {
+            "name": "npl_score",
+            "type": "decimal",
+            "description": "Natural product likeness score"
+          },
+          {
+            "name": "deep_smiles",
+            "type": "string",
+            "description": "DeepSMILES representation"
+          }
+        ],
+        "NPASS": [
+          {
+            "name": "npc_id",
+            "type": "string",
+            "description": "NPASS compound ID (NPC prefix)",
+            "examples": ["NPC12345"]
+          },
+          {
+            "name": "activity_value",
+            "type": "decimal",
+            "description": "Quantitative bioactivity (IC50, Ki, etc.)"
+          },
+          {
+            "name": "activity_type",
+            "type": "string",
+            "description": "Type of bioactivity measurement"
+          },
+          {
+            "name": "target_protein",
+            "type": "object",
+            "description": "Biological target with UniProt reference"
+          }
+        ],
+        "NPAtlas": [
+          {
+            "name": "npa_id",
+            "type": "string",
+            "description": "NPAtlas identifier (NPA prefix)",
+            "examples": ["NPA012345"]
+          },
+          {
+            "name": "origin_type",
+            "type": "string",
+            "description": "bacterial, fungal, or marine"
+          },
+          {
+            "name": "cluster_type",
+            "type": "string",
+            "description": "Biosynthetic gene cluster type"
+          },
+          {
+            "name": "isolation_source",
+            "type": "string",
+            "description": "Environment of isolation (marine, soil, etc.)"
+          }
+        ]
+      }
+    },
+    {
+      "subcategory_id": "2.2",
+      "subcategory_name": "Pharmaceuticals",
+      "data_sources": ["ChEMBL", "DailyMed", "DrugBank", "Orange Book", "RxNorm"],
+      "unified_fields": [
+        {
+          "name": "drug_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Primary identifier for drug compound",
+          "sources": ["ChEMBL", "DrugBank", "RxNorm"],
+          "semantic_definition": "Database-specific identifier (CHEMBL25, DB00945, RXCUI)",
+          "examples": ["CHEMBL25", "DB00945", "2670"]
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Drug name (generic or brand)",
+          "sources": ["ChEMBL", "DailyMed", "DrugBank", "Orange Book", "RxNorm"],
+          "semantic_definition": "Preferred name for the drug substance",
+          "examples": ["Aspirin", "Acetaminophen"]
+        },
+        {
+          "name": "canonical_smiles",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Canonical SMILES notation",
+          "sources": ["ChEMBL", "DrugBank"],
+          "semantic_definition": "Standardized SMILES for molecular structure",
+          "examples": ["CC(=O)Oc1ccccc1C(=O)O"]
+        },
+        {
+          "name": "inchi_key",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "InChI Key identifier",
+          "sources": ["ChEMBL", "DrugBank"],
+          "semantic_definition": "27-character hash for structure matching",
+          "examples": ["BSYNRYMUTXBXSQ-UHFFFAOYSA-N"]
+        },
+        {
+          "name": "molecular_weight",
+          "type": "decimal",
+          "cardinality": "1:1",
+          "description": "Molecular weight in Daltons",
+          "sources": ["ChEMBL", "DrugBank"],
+          "semantic_definition": "Average molecular mass",
+          "examples": [180.16]
+        },
+        {
+          "name": "molecular_formula",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Chemical formula",
+          "sources": ["ChEMBL", "DrugBank"],
+          "semantic_definition": "Elemental composition",
+          "examples": ["C9H8O4"]
+        },
+        {
+          "name": "drug_type",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Type classification of drug",
+          "sources": ["ChEMBL", "DrugBank"],
+          "semantic_definition": "Small molecule, biotech, antibody, etc.",
+          "examples": ["small molecule", "biotech"]
+        },
+        {
+          "name": "approval_status",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Regulatory approval status",
+          "sources": ["ChEMBL", "DrugBank", "Orange Book"],
+          "semantic_definition": "Clinical phase or approval status",
+          "examples": ["approved", "investigational", "Phase III"]
+        },
+        {
+          "name": "targets",
+          "type": "object[]",
+          "cardinality": "1:N",
+          "description": "Drug targets with actions",
+          "sources": ["ChEMBL", "DrugBank"],
+          "semantic_definition": "Proteins/receptors that drug interacts with",
+          "examples": [{"name": "Cyclooxygenase-1", "uniprot_id": "P23219", "action": "inhibitor"}]
+        },
+        {
+          "name": "uniprot_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "UniProt accession for target protein",
+          "sources": ["ChEMBL", "DrugBank"],
+          "semantic_definition": "UniProt protein identifier",
+          "examples": ["P23219", "P35354"]
+        }
+      ],
+      "source_specific_fields": {
+        "ChEMBL": [
+          {
+            "name": "chembl_id",
+            "type": "string",
+            "description": "ChEMBL identifier",
+            "examples": ["CHEMBL25"]
+          },
+          {
+            "name": "molregno",
+            "type": "integer",
+            "description": "Internal molecule registration number"
+          },
+          {
+            "name": "max_phase",
+            "type": "integer",
+            "description": "Highest clinical phase (0-4)"
+          },
+          {
+            "name": "pchembl_value",
+            "type": "decimal",
+            "description": "Standardized -log10 activity value"
+          },
+          {
+            "name": "natural_product",
+            "type": "boolean",
+            "description": "Natural product flag"
+          },
+          {
+            "name": "np_likeness_score",
+            "type": "decimal",
+            "description": "Natural product likeness score"
+          },
+          {
+            "name": "qed_weighted",
+            "type": "decimal",
+            "description": "QED drug-likeness score"
+          },
+          {
+            "name": "confidence_score",
+            "type": "integer",
+            "description": "Target assignment confidence (0-9)"
+          }
+        ],
+        "DailyMed": [
+          {
+            "name": "set_id",
+            "type": "uuid",
+            "description": "Unique SPL document identifier"
+          },
+          {
+            "name": "ndc",
+            "type": "string",
+            "description": "National Drug Code (10-11 digits)"
+          },
+          {
+            "name": "spl_section",
+            "type": "object[]",
+            "description": "Label sections with LOINC codes"
+          },
+          {
+            "name": "unii",
+            "type": "string",
+            "description": "FDA Unique Ingredient Identifier"
+          },
+          {
+            "name": "application_number",
+            "type": "string",
+            "description": "NDA/ANDA/BLA number"
+          }
+        ],
+        "DrugBank": [
+          {
+            "name": "drugbank_id",
+            "type": "string",
+            "description": "DrugBank identifier (DB00001 format)",
+            "examples": ["DB00945"]
+          },
+          {
+            "name": "cas_number",
+            "type": "string",
+            "description": "CAS registry number"
+          },
+          {
+            "name": "mechanism_of_action",
+            "type": "text",
+            "description": "Detailed MOA description"
+          },
+          {
+            "name": "drug_interactions",
+            "type": "object[]",
+            "description": "Drug-drug interactions with severity"
+          },
+          {
+            "name": "half_life",
+            "type": "string",
+            "description": "Elimination half-life"
+          },
+          {
+            "name": "protein_binding",
+            "type": "string",
+            "description": "Protein binding percentage"
+          },
+          {
+            "name": "pathways",
+            "type": "object[]",
+            "description": "Associated KEGG/SMPDB pathways"
+          }
+        ],
+        "Orange Book": [
+          {
+            "name": "appl_no",
+            "type": "string",
+            "description": "NDA/ANDA/BLA number"
+          },
+          {
+            "name": "te_code",
+            "type": "string",
+            "description": "Therapeutic equivalence code (AA, AB, BC, etc.)"
+          },
+          {
+            "name": "patent_no",
+            "type": "string",
+            "description": "Patent number"
+          },
+          {
+            "name": "patent_expire_date",
+            "type": "date",
+            "description": "Patent expiration date"
+          },
+          {
+            "name": "exclusivity_code",
+            "type": "string",
+            "description": "Market exclusivity code (NCE, NP, etc.)"
+          },
+          {
+            "name": "reference_drug",
+            "type": "boolean",
+            "description": "Is Reference Listed Drug"
+          }
+        ],
+        "RxNorm": [
+          {
+            "name": "rxcui",
+            "type": "string",
+            "description": "RxNorm Concept Unique Identifier"
+          },
+          {
+            "name": "tty",
+            "type": "string",
+            "description": "Term type (IN, SCD, SBD, etc.)"
+          },
+          {
+            "name": "sab",
+            "type": "string",
+            "description": "Source abbreviation"
+          },
+          {
+            "name": "rela",
+            "type": "string",
+            "description": "Relationship attribute"
+          },
+          {
+            "name": "dose_form",
+            "type": "string",
+            "description": "Dosage form"
+          },
+          {
+            "name": "strength",
+            "type": "string",
+            "description": "Drug strength"
+          }
+        ]
+      }
+    },
+    {
+      "subcategory_id": "2.4",
+      "subcategory_name": "Food Compounds & Nutrients",
+      "data_sources": ["Phenol-Explorer", "PhytoHub", "USDA FoodData"],
+      "unified_fields": [
+        {
+          "name": "compound_id",
+          "type": "string/integer",
+          "cardinality": "1:1",
+          "description": "Primary identifier for compound",
+          "sources": ["Phenol-Explorer", "PhytoHub", "USDA FoodData"],
+          "semantic_definition": "Database-specific identifier",
+          "examples": ["1", "PHUB000001", "167512"]
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Compound or nutrient name",
+          "sources": ["Phenol-Explorer", "PhytoHub", "USDA FoodData"],
+          "semantic_definition": "Human-readable compound name",
+          "examples": ["Quercetin", "Vitamin C"]
+        },
+        {
+          "name": "smiles",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "SMILES structure notation",
+          "sources": ["Phenol-Explorer", "PhytoHub"],
+          "semantic_definition": "Molecular structure in SMILES format"
+        },
+        {
+          "name": "inchi_key",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "InChI Key identifier",
+          "sources": ["PhytoHub"],
+          "semantic_definition": "27-character structure hash"
+        },
+        {
+          "name": "molecular_weight",
+          "type": "decimal",
+          "cardinality": "1:1",
+          "description": "Molecular weight in Daltons",
+          "sources": ["Phenol-Explorer", "PhytoHub"],
+          "semantic_definition": "Average molecular mass"
+        },
+        {
+          "name": "food_sources",
+          "type": "object[]",
+          "cardinality": "1:N",
+          "description": "Foods containing the compound",
+          "sources": ["Phenol-Explorer", "PhytoHub", "USDA FoodData"],
+          "semantic_definition": "Food items with content values"
+        },
+        {
+          "name": "content_value",
+          "type": "decimal",
+          "cardinality": "1:1",
+          "description": "Amount in food",
+          "sources": ["Phenol-Explorer", "PhytoHub", "USDA FoodData"],
+          "semantic_definition": "Quantitative content measurement"
+        },
+        {
+          "name": "content_unit",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Unit of measurement",
+          "sources": ["Phenol-Explorer", "PhytoHub", "USDA FoodData"],
+          "semantic_definition": "mg/100g, mg/100ml, etc."
+        }
+      ],
+      "source_specific_fields": {
+        "Phenol-Explorer": [
+          {
+            "name": "class",
+            "type": "string",
+            "description": "Polyphenol class (Flavonoids, Phenolic acids, etc.)"
+          },
+          {
+            "name": "subclass",
+            "type": "string",
+            "description": "Polyphenol subclass"
+          },
+          {
+            "name": "pubchem_cid",
+            "type": "integer",
+            "description": "PubChem compound ID"
+          },
+          {
+            "name": "cas_number",
+            "type": "string",
+            "description": "CAS registry number"
+          },
+          {
+            "name": "metabolites",
+            "type": "object[]",
+            "description": "Human metabolites (Phase I/II, microbial)"
+          },
+          {
+            "name": "pharmacokinetics",
+            "type": "object",
+            "description": "Cmax, Tmax, AUC values"
+          }
+        ],
+        "PhytoHub": [
+          {
+            "name": "phytohub_id",
+            "type": "string",
+            "description": "PhytoHub identifier (PHUB prefix)",
+            "examples": ["PHUB000001"]
+          },
+          {
+            "name": "compound_type",
+            "type": "string",
+            "description": "parent, phase1, phase2, microbial"
+          },
+          {
+            "name": "parent_id",
+            "type": "string",
+            "description": "Parent compound for metabolites"
+          },
+          {
+            "name": "transformation",
+            "type": "string",
+            "description": "Metabolic transformation type"
+          },
+          {
+            "name": "ms_spectra",
+            "type": "object[]",
+            "description": "MS/MS reference spectra (m/z, intensity)"
+          },
+          {
+            "name": "external_ids",
+            "type": "object[]",
+            "description": "Cross-references to PubChem, HMDB, ChEBI"
+          }
+        ],
+        "USDA FoodData": [
+          {
+            "name": "fdc_id",
+            "type": "integer",
+            "description": "FoodData Central ID"
+          },
+          {
+            "name": "data_type",
+            "type": "string",
+            "description": "Foundation, SR Legacy, Branded, FNDDS"
+          },
+          {
+            "name": "nutrient_id",
+            "type": "integer",
+            "description": "Nutrient identifier"
+          },
+          {
+            "name": "nutrient_nbr",
+            "type": "string",
+            "description": "USDA nutrient number"
+          },
+          {
+            "name": "food_portions",
+            "type": "object[]",
+            "description": "Serving sizes with gram weights"
+          },
+          {
+            "name": "gtin_upc",
+            "type": "string",
+            "description": "Product barcode (branded foods)"
+          }
+        ]
+      }
+    },
+    {
+      "subcategory_id": "2.5",
+      "subcategory_name": "Drug Metabolism & Pharmacokinetics",
+      "data_sources": ["SuperCYP", "SwissADME"],
+      "unified_fields": [
+        {
+          "name": "compound_id",
+          "type": "string/integer",
+          "cardinality": "1:1",
+          "description": "Primary identifier for compound",
+          "sources": ["SuperCYP", "SwissADME"],
+          "semantic_definition": "Database-specific identifier"
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Drug/compound name",
+          "sources": ["SuperCYP", "SwissADME"],
+          "semantic_definition": "Human-readable compound name"
+        },
+        {
+          "name": "smiles",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Canonical SMILES structure",
+          "sources": ["SuperCYP", "SwissADME"],
+          "semantic_definition": "Molecular structure notation"
+        },
+        {
+          "name": "molecular_weight",
+          "type": "decimal",
+          "cardinality": "1:1",
+          "description": "Molecular weight in Daltons",
+          "sources": ["SuperCYP", "SwissADME"],
+          "semantic_definition": "Average molecular mass"
+        },
+        {
+          "name": "cyp_interactions",
+          "type": "object[]",
+          "cardinality": "1:N",
+          "description": "CYP450 enzyme interactions",
+          "sources": ["SuperCYP", "SwissADME"],
+          "semantic_definition": "Substrate/inhibitor/inducer relationships with CYP isoforms"
+        }
+      ],
+      "source_specific_fields": {
+        "SuperCYP": [
+          {
+            "name": "cyp_id",
+            "type": "string",
+            "description": "CYP isoform identifier (e.g., CYP3A4)"
+          },
+          {
+            "name": "interaction_type",
+            "type": "string",
+            "description": "substrate, inhibitor, inducer"
+          },
+          {
+            "name": "strength",
+            "type": "string",
+            "description": "strong, moderate, weak"
+          },
+          {
+            "name": "ki_value",
+            "type": "decimal",
+            "description": "Inhibition constant (uM)"
+          },
+          {
+            "name": "ic50_value",
+            "type": "decimal",
+            "description": "IC50 (uM)"
+          },
+          {
+            "name": "induction_fold",
+            "type": "decimal",
+            "description": "Fold induction"
+          },
+          {
+            "name": "evidence_level",
+            "type": "string",
+            "description": "in_vitro, in_vivo, clinical"
+          },
+          {
+            "name": "drugbank_id",
+            "type": "string",
+            "description": "DrugBank identifier"
+          }
+        ],
+        "SwissADME": [
+          {
+            "name": "inchikey",
+            "type": "string",
+            "description": "InChI Key identifier"
+          },
+          {
+            "name": "tpsa",
+            "type": "decimal",
+            "description": "Topological Polar Surface Area"
+          },
+          {
+            "name": "hbd",
+            "type": "integer",
+            "description": "Hydrogen bond donors"
+          },
+          {
+            "name": "hba",
+            "type": "integer",
+            "description": "Hydrogen bond acceptors"
+          },
+          {
+            "name": "rotatable_bonds",
+            "type": "integer",
+            "description": "Rotatable bond count"
+          },
+          {
+            "name": "consensus_logp",
+            "type": "decimal",
+            "description": "Average of 5 LogP methods"
+          },
+          {
+            "name": "lipinski_violations",
+            "type": "integer",
+            "description": "Rule of 5 violations (0-4)"
+          },
+          {
+            "name": "bioavailability_score",
+            "type": "decimal",
+            "description": "Abbott bioavailability score (0-1)"
+          },
+          {
+            "name": "gi_absorption",
+            "type": "string",
+            "description": "GI absorption (High/Low)"
+          },
+          {
+            "name": "bbb_permeant",
+            "type": "string",
+            "description": "BBB permeation (Yes/No)"
+          },
+          {
+            "name": "pgp_substrate",
+            "type": "string",
+            "description": "P-glycoprotein substrate (Yes/No)"
+          },
+          {
+            "name": "pains_alerts",
+            "type": "integer",
+            "description": "PAINS pattern matches"
+          },
+          {
+            "name": "synthetic_accessibility",
+            "type": "decimal",
+            "description": "SA score (1-10, lower=easier)"
+          }
+        ]
+      }
+    },
+    {
+      "subcategory_id": "2.6",
+      "subcategory_name": "Chemical Ontology & Classification",
+      "data_sources": ["ChEBI", "ClassyFire", "NPClassifier", "PubChem"],
+      "unified_fields": [
+        {
+          "name": "compound_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Primary identifier for compound/concept",
+          "sources": ["ChEBI", "ClassyFire", "NPClassifier", "PubChem"],
+          "semantic_definition": "Database-specific identifier",
+          "examples": ["CHEBI:17234", "CHEMONTID:0000300", "2244"]
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Compound or classification name",
+          "sources": ["ChEBI", "ClassyFire", "NPClassifier", "PubChem"],
+          "semantic_definition": "Human-readable name"
+        },
+        {
+          "name": "canonical_smiles",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Canonical SMILES structure",
+          "sources": ["ChEBI", "ClassyFire", "NPClassifier", "PubChem"],
+          "semantic_definition": "Molecular structure notation"
+        },
+        {
+          "name": "inchi",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "InChI identifier",
+          "sources": ["ChEBI", "PubChem"],
+          "semantic_definition": "IUPAC standard structure"
+        },
+        {
+          "name": "inchi_key",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "InChI Key",
+          "sources": ["ChEBI", "ClassyFire", "PubChem"],
+          "semantic_definition": "27-character structure hash"
+        },
+        {
+          "name": "molecular_formula",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Molecular formula",
+          "sources": ["ChEBI", "PubChem"],
+          "semantic_definition": "Elemental composition"
+        },
+        {
+          "name": "classification_hierarchy",
+          "type": "object[]",
+          "cardinality": "1:N",
+          "description": "Hierarchical classification from kingdom to class",
+          "sources": ["ChEBI", "ClassyFire", "NPClassifier"],
+          "semantic_definition": "Ontological classification path"
+        },
+        {
+          "name": "cross_references",
+          "type": "object[]",
+          "cardinality": "1:N",
+          "description": "Links to external databases",
+          "sources": ["ChEBI", "PubChem"],
+          "semantic_definition": "Cross-database identifiers"
+        }
+      ],
+      "source_specific_fields": {
+        "ChEBI": [
+          {
+            "name": "chebi_id",
+            "type": "string",
+            "description": "ChEBI identifier (CHEBI:##### format)",
+            "examples": ["CHEBI:17234"]
+          },
+          {
+            "name": "definition",
+            "type": "string",
+            "description": "Textual definition"
+          },
+          {
+            "name": "synonyms",
+            "type": "string[]",
+            "description": "Alternative names"
+          },
+          {
+            "name": "mass",
+            "type": "decimal",
+            "description": "Monoisotopic mass"
+          },
+          {
+            "name": "charge",
+            "type": "integer",
+            "description": "Formal charge"
+          },
+          {
+            "name": "star",
+            "type": "integer",
+            "description": "Curation level (1-3)"
+          },
+          {
+            "name": "is_a",
+            "type": "string[]",
+            "description": "Parent classes"
+          },
+          {
+            "name": "has_role",
+            "type": "string[]",
+            "description": "Biological/chemical roles"
+          },
+          {
+            "name": "is_conjugate_acid_of",
+            "type": "string",
+            "description": "Conjugate base reference"
+          },
+          {
+            "name": "is_enantiomer_of",
+            "type": "string",
+            "description": "Mirror image isomer"
+          }
+        ],
+        "ClassyFire": [
+          {
+            "name": "chemont_id",
+            "type": "string",
+            "description": "ChemOnt identifier",
+            "examples": ["CHEMONTID:0000300"]
+          },
+          {
+            "name": "kingdom",
+            "type": "object",
+            "description": "Top-level classification"
+          },
+          {
+            "name": "superclass",
+            "type": "object",
+            "description": "Second-level classification"
+          },
+          {
+            "name": "class",
+            "type": "object",
+            "description": "Third-level classification"
+          },
+          {
+            "name": "subclass",
+            "type": "object",
+            "description": "Fourth-level classification"
+          },
+          {
+            "name": "direct_parent",
+            "type": "object",
+            "description": "Most specific classification"
+          },
+          {
+            "name": "alternative_parents",
+            "type": "object[]",
+            "description": "Additional valid classification paths"
+          },
+          {
+            "name": "substituents",
+            "type": "string[]",
+            "description": "Functional group substituents"
+          },
+          {
+            "name": "molecular_framework",
+            "type": "string",
+            "description": "Structural framework description"
+          }
+        ],
+        "NPClassifier": [
+          {
+            "name": "pathway",
+            "type": "string",
+            "description": "Biosynthetic pathway (7 types)"
+          },
+          {
+            "name": "pathway_score",
+            "type": "decimal",
+            "description": "Pathway confidence (0-1)"
+          },
+          {
+            "name": "superclass",
+            "type": "string",
+            "description": "NP superclass (35+ types)"
+          },
+          {
+            "name": "superclass_score",
+            "type": "decimal",
+            "description": "Superclass confidence (0-1)"
+          },
+          {
+            "name": "class",
+            "type": "string",
+            "description": "NP class (200+ types)"
+          },
+          {
+            "name": "class_score",
+            "type": "decimal",
+            "description": "Class confidence (0-1)"
+          },
+          {
+            "name": "isglycoside",
+            "type": "boolean",
+            "description": "Glycoside moiety detected"
+          }
+        ],
+        "PubChem": [
+          {
+            "name": "cid",
+            "type": "integer",
+            "description": "PubChem Compound ID",
+            "examples": [2244]
+          },
+          {
+            "name": "iupac_name",
+            "type": "string",
+            "description": "IUPAC systematic name"
+          },
+          {
+            "name": "isomeric_smiles",
+            "type": "string",
+            "description": "SMILES with stereochemistry"
+          },
+          {
+            "name": "xlogp",
+            "type": "decimal",
+            "description": "Computed LogP"
+          },
+          {
+            "name": "exact_mass",
+            "type": "decimal",
+            "description": "Monoisotopic mass"
+          },
+          {
+            "name": "tpsa",
+            "type": "decimal",
+            "description": "Topological polar surface area"
+          },
+          {
+            "name": "complexity",
+            "type": "decimal",
+            "description": "Molecular complexity score"
+          },
+          {
+            "name": "bioactivity",
+            "type": "object[]",
+            "description": "Bioassay results"
+          },
+          {
+            "name": "patents",
+            "type": "object[]",
+            "description": "Patent references"
+          },
+          {
+            "name": "literature",
+            "type": "object[]",
+            "description": "PubMed references"
+          },
+          {
+            "name": "fingerprint2d",
+            "type": "string",
+            "description": "PubChem fingerprint"
+          }
+        ]
+      }
+    },
+    {
+      "subcategory_id": "2.7",
+      "subcategory_name": "Compound-Target Interactions",
+      "data_sources": ["BindingDB", "DGIdb", "GtoPdb", "TTD"],
+      "unified_fields": [
+        {
+          "name": "compound_id",
+          "type": "string/integer",
+          "cardinality": "1:1",
+          "description": "Primary identifier for compound/ligand",
+          "sources": ["BindingDB", "DGIdb", "GtoPdb", "TTD"],
+          "semantic_definition": "Database-specific identifier"
+        },
+        {
+          "name": "compound_name",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Drug/compound name",
+          "sources": ["BindingDB", "DGIdb", "GtoPdb", "TTD"],
+          "semantic_definition": "Human-readable compound name"
+        },
+        {
+          "name": "smiles",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "SMILES structure",
+          "sources": ["BindingDB", "GtoPdb"],
+          "semantic_definition": "Molecular structure notation"
+        },
+        {
+          "name": "inchi_key",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "InChI Key",
+          "sources": ["BindingDB", "GtoPdb"],
+          "semantic_definition": "27-character structure hash"
+        },
+        {
+          "name": "target_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Target identifier",
+          "sources": ["BindingDB", "DGIdb", "GtoPdb", "TTD"],
+          "semantic_definition": "Database-specific target identifier"
+        },
+        {
+          "name": "target_name",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Target protein/gene name",
+          "sources": ["BindingDB", "DGIdb", "GtoPdb", "TTD"],
+          "semantic_definition": "Human-readable target name"
+        },
+        {
+          "name": "uniprot_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "UniProt accession",
+          "sources": ["BindingDB", "GtoPdb", "TTD"],
+          "semantic_definition": "UniProt protein identifier"
+        },
+        {
+          "name": "interaction_type",
+          "type": "string",
+          "cardinality": "1:N",
+          "description": "Type of interaction",
+          "sources": ["BindingDB", "DGIdb", "GtoPdb", "TTD"],
+          "semantic_definition": "inhibitor, agonist, antagonist, etc."
+        },
+        {
+          "name": "affinity_value",
+          "type": "decimal",
+          "cardinality": "1:1",
+          "description": "Binding affinity measurement",
+          "sources": ["BindingDB", "GtoPdb"],
+          "semantic_definition": "Quantitative binding value"
+        },
+        {
+          "name": "affinity_type",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Type of affinity measurement",
+          "sources": ["BindingDB", "GtoPdb"],
+          "semantic_definition": "IC50, Ki, Kd, EC50, pKi, etc."
+        },
+        {
+          "name": "affinity_unit",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Unit of measurement",
+          "sources": ["BindingDB"],
+          "semantic_definition": "nM, uM, mM"
+        }
+      ],
+      "source_specific_fields": {
+        "BindingDB": [
+          {
+            "name": "monomer_id",
+            "type": "integer",
+            "description": "BindingDB ligand ID"
+          },
+          {
+            "name": "bindingdb_id",
+            "type": "integer",
+            "description": "BindingDB interaction record ID"
+          },
+          {
+            "name": "affinity_relation",
+            "type": "string",
+            "description": "=, <, >, ~"
+          },
+          {
+            "name": "ph",
+            "type": "decimal",
+            "description": "Assay pH"
+          },
+          {
+            "name": "temperature",
+            "type": "decimal",
+            "description": "Temperature (C)"
+          },
+          {
+            "name": "pdb_ids",
+            "type": "string[]",
+            "description": "PDB structure IDs"
+          },
+          {
+            "name": "pmid",
+            "type": "integer",
+            "description": "PubMed ID"
+          }
+        ],
+        "DGIdb": [
+          {
+            "name": "concept_id",
+            "type": "string",
+            "description": "Normalized gene/drug ID"
+          },
+          {
+            "name": "gene_categories",
+            "type": "string[]",
+            "description": "Druggability categories (KINASE, etc.)"
+          },
+          {
+            "name": "interaction_score",
+            "type": "decimal",
+            "description": "Confidence score"
+          },
+          {
+            "name": "sources",
+            "type": "string[]",
+            "description": "Source databases (40+)"
+          },
+          {
+            "name": "approved",
+            "type": "boolean",
+            "description": "FDA approval status"
+          },
+          {
+            "name": "chembl_id",
+            "type": "string",
+            "description": "ChEMBL identifier"
+          },
+          {
+            "name": "entrez_id",
+            "type": "integer",
+            "description": "NCBI Entrez Gene ID"
+          }
+        ],
+        "GtoPdb": [
+          {
+            "name": "gtopdb_target_id",
+            "type": "integer",
+            "description": "GtoPdb target ID"
+          },
+          {
+            "name": "gtopdb_ligand_id",
+            "type": "integer",
+            "description": "GtoPdb ligand ID"
+          },
+          {
+            "name": "systematic_name",
+            "type": "string",
+            "description": "IUPHAR systematic name"
+          },
+          {
+            "name": "target_family",
+            "type": "string",
+            "description": "GPCR, ion_channel, kinase, etc."
+          },
+          {
+            "name": "selectivity",
+            "type": "string",
+            "description": "Selective/Non-selective"
+          },
+          {
+            "name": "endogenous",
+            "type": "boolean",
+            "description": "Endogenous ligand flag"
+          },
+          {
+            "name": "inn",
+            "type": "string",
+            "description": "International nonproprietary name"
+          },
+          {
+            "name": "hgnc_symbol",
+            "type": "string",
+            "description": "HGNC gene symbol"
+          }
+        ],
+        "TTD": [
+          {
+            "name": "ttd_target_id",
+            "type": "string",
+            "description": "TTD target ID (TTDT prefix)"
+          },
+          {
+            "name": "ttd_drug_id",
+            "type": "string",
+            "description": "TTD drug ID (6 chars)"
+          },
+          {
+            "name": "target_validation",
+            "type": "string",
+            "description": "Successful, clinical, literature"
+          },
+          {
+            "name": "development_status",
+            "type": "string",
+            "description": "Approved, Phase I-III, etc."
+          },
+          {
+            "name": "drug_class",
+            "type": "string",
+            "description": "Small molecule, antibody, etc."
+          },
+          {
+            "name": "indication",
+            "type": "string",
+            "description": "Therapeutic indication"
+          },
+          {
+            "name": "icd_11_code",
+            "type": "string",
+            "description": "ICD-11 disease classification"
+          },
+          {
+            "name": "pathway_associations",
+            "type": "object[]",
+            "description": "KEGG, Reactome pathway links"
+          }
+        ]
+      }
+    }
+  ],
+  "common_chemical_identifiers": {
+    "description": "Chemical identifiers that appear across multiple subcategories and enable cross-database linking",
+    "identifiers": [
+      {
+        "name": "inchi_key",
+        "type": "string",
+        "format": "27 characters (XXXXXXXXXXXXXX-YYYYYYYYYY-Z)",
+        "description": "InChI Key - primary cross-reference identifier for exact structure matching",
+        "found_in": ["2.1", "2.2", "2.4", "2.5", "2.6", "2.7"]
+      },
+      {
+        "name": "canonical_smiles",
+        "type": "string",
+        "description": "Canonical SMILES - standardized structure notation without stereochemistry",
+        "found_in": ["2.1", "2.2", "2.4", "2.5", "2.6", "2.7"]
+      },
+      {
+        "name": "inchi",
+        "type": "string",
+        "description": "International Chemical Identifier - IUPAC standard structure representation",
+        "found_in": ["2.1", "2.2", "2.6"]
+      },
+      {
+        "name": "cas_number",
+        "type": "string",
+        "description": "CAS Registry Number - Chemical Abstracts Service identifier",
+        "found_in": ["2.1", "2.2", "2.4"]
+      },
+      {
+        "name": "pubchem_cid",
+        "type": "integer",
+        "description": "PubChem Compound ID - links to PubChem database",
+        "found_in": ["2.1", "2.2", "2.4", "2.6"]
+      },
+      {
+        "name": "chembl_id",
+        "type": "string",
+        "format": "CHEMBL + digits",
+        "description": "ChEMBL identifier - links to bioactivity data",
+        "found_in": ["2.2", "2.7"]
+      },
+      {
+        "name": "drugbank_id",
+        "type": "string",
+        "format": "DB + 5 digits",
+        "description": "DrugBank identifier - links to comprehensive drug data",
+        "found_in": ["2.2", "2.5"]
+      },
+      {
+        "name": "uniprot_id",
+        "type": "string",
+        "format": "6-10 characters",
+        "description": "UniProt accession - links to protein target data",
+        "found_in": ["2.2", "2.5", "2.7"]
+      },
+      {
+        "name": "chebi_id",
+        "type": "string",
+        "format": "CHEBI:digits",
+        "description": "ChEBI identifier - links to chemical ontology",
+        "found_in": ["2.4", "2.6"]
+      }
+    ]
+  },
+  "molecular_properties_fields": {
+    "description": "Common molecular property fields found across subcategories",
+    "properties": [
+      {
+        "name": "molecular_weight",
+        "type": "decimal",
+        "unit": "Daltons (Da)",
+        "found_in": ["2.1", "2.2", "2.4", "2.5", "2.6", "2.7"]
+      },
+      {
+        "name": "molecular_formula",
+        "type": "string",
+        "example": "C9H8O4",
+        "found_in": ["2.1", "2.2", "2.4", "2.5", "2.6"]
+      },
+      {
+        "name": "logp",
+        "type": "decimal",
+        "description": "Partition coefficient (octanol/water)",
+        "found_in": ["2.1", "2.2", "2.5", "2.6"]
+      },
+      {
+        "name": "tpsa",
+        "type": "decimal",
+        "unit": "Angstrom squared",
+        "description": "Topological polar surface area",
+        "found_in": ["2.1", "2.2", "2.5", "2.6"]
+      },
+      {
+        "name": "hbd",
+        "type": "integer",
+        "description": "Hydrogen bond donors",
+        "found_in": ["2.1", "2.2", "2.5", "2.7"]
+      },
+      {
+        "name": "hba",
+        "type": "integer",
+        "description": "Hydrogen bond acceptors",
+        "found_in": ["2.1", "2.2", "2.5", "2.7"]
+      },
+      {
+        "name": "rotatable_bonds",
+        "type": "integer",
+        "description": "Number of rotatable bonds",
+        "found_in": ["2.1", "2.2", "2.5", "2.7"]
+      }
+    ]
+  }
+}

@@ -1,0 +1,177 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gene.example.org/schemas/3.7-mental-health-neurological.json",
+  "title": "Mental Health/Neurological Unified Schema",
+  "description": "Unified schema for mental health/neurological data from Allen Brain Atlas, PGC, and SynGO",
+  "type": "object",
+  "properties": {
+    "gene_symbol": {
+      "type": "string",
+      "description": "HGNC gene symbol",
+      "sources": ["Allen Brain Atlas", "PGC", "SynGO"]
+    },
+    "brain_regions": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Brain anatomical regions",
+      "sources": ["Allen Brain Atlas", "SynGO"]
+    },
+    "disorders": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Psychiatric or neurological disorders",
+      "sources": ["PGC"]
+    },
+    "snp_ids": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Associated genetic variants",
+      "sources": ["PGC"],
+      "pattern": "rs[0-9]+"
+    },
+    "structure_id": {
+      "type": ["integer", "null"],
+      "description": "Allen Brain structure identifier",
+      "sources": ["Allen Brain Atlas"]
+    },
+    "structure_acronym": {
+      "type": ["string", "null"],
+      "description": "Structure abbreviation",
+      "sources": ["Allen Brain Atlas"],
+      "examples": ["HIP", "CTX", "TH"]
+    },
+    "donor_id": {
+      "type": ["string", "null"],
+      "description": "Human brain donor identifier",
+      "sources": ["Allen Brain Atlas"],
+      "pattern": "H[0-9]+\\.[0-9]+"
+    },
+    "expression_level": {
+      "type": ["number", "null"],
+      "description": "Gene expression value",
+      "sources": ["Allen Brain Atlas"]
+    },
+    "data_type": {
+      "type": ["string", "null"],
+      "enum": ["microarray", "RNA-seq", "ISH", null],
+      "description": "Expression profiling method",
+      "sources": ["Allen Brain Atlas"]
+    },
+    "gwas_study_id": {
+      "type": ["string", "null"],
+      "description": "PGC study identifier",
+      "sources": ["PGC"],
+      "examples": ["PGC_SCZ3", "PGC_BIP3", "PGC_MDD3"]
+    },
+    "disorder_code": {
+      "type": ["string", "null"],
+      "description": "Psychiatric disorder abbreviation",
+      "sources": ["PGC"],
+      "examples": ["SCZ", "BIP", "MDD", "ADHD", "ASD"]
+    },
+    "p_value": {
+      "type": ["number", "null"],
+      "description": "GWAS association p-value",
+      "sources": ["PGC"]
+    },
+    "odds_ratio": {
+      "type": ["number", "null"],
+      "description": "Effect size (odds ratio)",
+      "sources": ["PGC"]
+    },
+    "sample_size": {
+      "type": ["integer", "null"],
+      "description": "Total GWAS sample size",
+      "sources": ["PGC"]
+    },
+    "loci_count": {
+      "type": ["integer", "null"],
+      "description": "Number of genome-wide significant loci",
+      "sources": ["PGC"]
+    },
+    "syngo_term": {
+      "type": ["string", "null"],
+      "description": "SynGO ontology term",
+      "sources": ["SynGO"],
+      "pattern": "SYNGO:[0-9]+"
+    },
+    "go_term": {
+      "type": ["string", "null"],
+      "description": "Gene Ontology term",
+      "sources": ["SynGO"],
+      "pattern": "GO:[0-9]{7}"
+    },
+    "uniprot_id": {
+      "type": ["string", "null"],
+      "description": "UniProt protein identifier",
+      "sources": ["SynGO"],
+      "pattern": "[A-Z0-9]{6,10}"
+    },
+    "synaptic_location": {
+      "type": ["string", "null"],
+      "description": "Synaptic localization (pre/post-synaptic)",
+      "sources": ["SynGO"]
+    },
+    "synaptic_function": {
+      "type": ["string", "null"],
+      "description": "Synaptic biological process",
+      "sources": ["SynGO"]
+    },
+    "evidence_code": {
+      "type": ["string", "null"],
+      "description": "Evidence ontology code",
+      "sources": ["SynGO"],
+      "pattern": "ECO:[0-9]+"
+    },
+    "supporting_pmids": {
+      "type": ["array", "null"],
+      "items": {"type": "integer"},
+      "description": "Supporting publication PMIDs",
+      "sources": ["SynGO"]
+    },
+    "_source": {
+      "type": "object",
+      "description": "Metadata about the data source",
+      "properties": {
+        "database": {"type": "string"},
+        "version": {"type": "string"},
+        "access_date": {"type": "string", "format": "date"},
+        "original_id": {"type": "string"}
+      }
+    }
+  },
+  "required": ["gene_symbol"],
+  "field_mappings": {
+    "Allen_Brain_Atlas": {
+      "gene_symbol": "gene_symbol",
+      "structure_id": "structure_id",
+      "structure_acronym": "structure_acronym",
+      "structure_name": "brain_regions",
+      "donor_id": "donor_id",
+      "expression_level": "expression_level",
+      "data_type": "data_type"
+    },
+    "PGC": {
+      "gene_symbol": "gene_symbol",
+      "gwas_study_id": "gwas_study_id",
+      "disorder": "disorders",
+      "disorder_code": "disorder_code",
+      "snp_id": "snp_ids",
+      "p_value": "p_value",
+      "odds_ratio": "odds_ratio",
+      "sample_size": "sample_size",
+      "loci_count": "loci_count"
+    },
+    "SynGO": {
+      "gene_symbol": "gene_symbol",
+      "syngo_term": "syngo_term",
+      "go_term": "go_term",
+      "uniprot_id": "uniprot_id",
+      "synaptic_location": "synaptic_location",
+      "synaptic_function": "synaptic_function",
+      "evidence_code": "evidence_code",
+      "supporting_pmid": "supporting_pmids",
+      "brain_region": "brain_regions"
+    }
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gene.example.org/schemas/3.6-autoimmune-inflammatory.json",
+  "title": "Autoimmune/Inflammatory Diseases Unified Schema",
+  "description": "Unified schema for autoimmune/inflammatory disease data from ImmunoBase and IPD-IMGT/HLA",
+  "type": "object",
+  "properties": {
+    "gene_symbol": {
+      "type": "string",
+      "description": "Gene symbol (HGNC or HLA locus)",
+      "sources": ["ImmunoBase", "IPD-IMGT/HLA"]
+    },
+    "disease_associations": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Associated autoimmune/inflammatory diseases",
+      "sources": ["ImmunoBase", "IPD-IMGT/HLA"]
+    },
+    "snp_ids": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "dbSNP variant identifiers",
+      "sources": ["ImmunoBase"],
+      "pattern": "rs[0-9]+"
+    },
+    "disease_code": {
+      "type": ["string", "null"],
+      "description": "Disease abbreviation",
+      "sources": ["ImmunoBase"],
+      "examples": ["T1D", "RA", "CEL", "MS", "CD", "UC"]
+    },
+    "region_id": {
+      "type": ["string", "null"],
+      "description": "Chromosomal region identifier",
+      "sources": ["ImmunoBase"],
+      "examples": ["1p13.2", "6p21.32"]
+    },
+    "credible_set": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Fine-mapped credible set of variants",
+      "sources": ["ImmunoBase"]
+    },
+    "gwas_loci": {
+      "type": ["integer", "null"],
+      "description": "Number of associated GWAS loci",
+      "sources": ["ImmunoBase"]
+    },
+    "hla_allele": {
+      "type": ["string", "null"],
+      "description": "Full HLA allele designation",
+      "sources": ["IPD-IMGT/HLA"],
+      "examples": ["HLA-A*02:01:01:01", "HLA-DRB1*04:01"],
+      "pattern": "HLA-[A-Z]+[0-9]*\\*[0-9:]+"
+    },
+    "allele_group": {
+      "type": ["string", "null"],
+      "description": "Allele group (serological equivalent)",
+      "sources": ["IPD-IMGT/HLA"],
+      "pattern": "HLA-[A-Z]+\\*[0-9]+"
+    },
+    "ipd_accession": {
+      "type": ["string", "null"],
+      "description": "IPD database accession",
+      "sources": ["IPD-IMGT/HLA"],
+      "pattern": "HLA[0-9]+"
+    },
+    "gene_locus": {
+      "type": ["string", "null"],
+      "description": "HLA gene locus",
+      "sources": ["IPD-IMGT/HLA"],
+      "pattern": "HLA-[A-Z]+[0-9]*"
+    },
+    "sequence_type": {
+      "type": ["string", "null"],
+      "description": "Type of sequence data",
+      "sources": ["IPD-IMGT/HLA"],
+      "examples": ["genomic", "cDNA", "protein"]
+    },
+    "_source": {
+      "type": "object",
+      "description": "Metadata about the data source",
+      "properties": {
+        "database": {"type": "string"},
+        "version": {"type": "string"},
+        "access_date": {"type": "string", "format": "date"},
+        "original_id": {"type": "string"}
+      }
+    }
+  },
+  "required": ["gene_symbol"],
+  "field_mappings": {
+    "ImmunoBase": {
+      "gene_symbol": "gene_symbol",
+      "disease": "disease_associations",
+      "disease_code": "disease_code",
+      "snp_id": "snp_ids",
+      "region_id": "region_id",
+      "credible_set": "credible_set",
+      "gwas_loci": "gwas_loci"
+    },
+    "IPD_IMGT_HLA": {
+      "locus": "gene_symbol",
+      "allele": "hla_allele",
+      "allele_group": "allele_group",
+      "accession": "ipd_accession",
+      "gene_locus": "gene_locus",
+      "sequence_type": "sequence_type",
+      "disease_association": "disease_associations"
+    }
+  }
+}

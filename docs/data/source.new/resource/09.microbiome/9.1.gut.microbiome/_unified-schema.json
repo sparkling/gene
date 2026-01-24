@@ -1,0 +1,370 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gene.taxonomy/schemas/9.1-gut-microbiome",
+  "title": "Gut Microbiome Unified Schema",
+  "description": "Unified schema for gut microbiome data integrating GMrepo, gutMGene, HMP, and MetaHIT sources",
+  "type": "object",
+  "properties": {
+    "project_id": {
+      "type": ["string", "null"],
+      "description": "BioProject accession identifying a collection of related samples",
+      "sources": ["GMrepo", "HMP", "MetaHIT"],
+      "example": "PRJEB6070"
+    },
+    "sample_id": {
+      "type": "string",
+      "description": "BioSample accession for individual biological samples",
+      "sources": ["GMrepo", "HMP", "MetaHIT"],
+      "example": "SAMN1234567"
+    },
+    "run_id": {
+      "type": ["string", "null"],
+      "description": "Sequencing run accession identifier from SRA/ENA archives",
+      "sources": ["GMrepo", "HMP"],
+      "example": "SRR1234567"
+    },
+    "taxon_id": {
+      "type": "integer",
+      "description": "NCBI Taxonomy identifier for microbial species or genus",
+      "sources": ["GMrepo", "gutMGene", "HMP", "MetaHIT"],
+      "example": 816
+    },
+    "taxon_name": {
+      "type": "string",
+      "description": "Scientific name of the microbial taxon",
+      "sources": ["GMrepo", "gutMGene", "HMP", "MetaHIT"],
+      "example": "Bacteroides"
+    },
+    "rank": {
+      "type": ["string", "null"],
+      "description": "Taxonomic rank (kingdom to species)",
+      "sources": ["GMrepo", "MetaHIT"],
+      "enum": ["kingdom", "phylum", "class", "order", "family", "genus", "species", null],
+      "example": "genus"
+    },
+    "relative_abundance": {
+      "type": ["number", "null"],
+      "description": "Proportion of a taxon in a sample (0-1 scale)",
+      "sources": ["GMrepo", "HMP", "MetaHIT"],
+      "minimum": 0,
+      "maximum": 1,
+      "example": 0.2534
+    },
+    "read_count": {
+      "type": ["integer", "null"],
+      "description": "Number of sequencing reads mapped to a taxon",
+      "sources": ["GMrepo", "HMP", "MetaHIT"],
+      "example": 15234
+    },
+    "phenotype": {
+      "type": ["string", "null"],
+      "description": "Disease or health status annotation for a sample",
+      "sources": ["GMrepo", "HMP"],
+      "example": "Type 2 diabetes"
+    },
+    "phenotype_mesh_id": {
+      "type": ["string", "null"],
+      "description": "Medical Subject Headings identifier for standardized phenotype",
+      "sources": ["GMrepo"],
+      "example": "D003924"
+    },
+    "sequencing_type": {
+      "type": ["string", "null"],
+      "description": "Method used for microbiome profiling",
+      "sources": ["GMrepo", "HMP", "MetaHIT"],
+      "enum": ["16S", "WGS", null],
+      "example": "16S"
+    },
+    "host_metadata": {
+      "type": ["object", "null"],
+      "description": "Host/subject demographic information",
+      "properties": {
+        "age": {
+          "type": ["integer", "null"],
+          "description": "Age of the human subject in years"
+        },
+        "sex": {
+          "type": ["string", "null"],
+          "description": "Biological sex of the human subject",
+          "enum": ["male", "female", "unknown", null]
+        },
+        "bmi": {
+          "type": ["number", "null"],
+          "description": "Body mass index"
+        },
+        "country": {
+          "type": ["string", "null"],
+          "description": "Country of sample origin"
+        },
+        "race": {
+          "type": ["string", "null"],
+          "description": "Ethnicity classification"
+        }
+      },
+      "sources": ["GMrepo", "HMP", "MetaHIT"],
+      "example": {"age": 45, "sex": "male", "bmi": 28.5, "country": "USA"}
+    },
+    "gene_associations": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "gene_id": {"type": "string"},
+          "gene_symbol": {"type": "string"},
+          "direction": {"type": "string", "enum": ["up", "down", "increased", "decreased", "altered"]},
+          "fold_change": {"type": "number"},
+          "p_value": {"type": "number"},
+          "tissue": {"type": "string"},
+          "experiment_type": {"type": "string"},
+          "model": {"type": "string"},
+          "pmid": {"type": "integer"}
+        }
+      },
+      "description": "Host gene expression associations with microbe",
+      "sources": ["gutMGene"],
+      "example": [{"gene_symbol": "IL10", "direction": "up", "fold_change": 2.5, "tissue": "colon"}]
+    },
+    "phenotype_associations": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "phenotype": {"type": "string"},
+          "direction": {"type": "string", "enum": ["increased", "decreased", "altered"]},
+          "effect_size": {"type": "number"},
+          "p_value": {"type": "number"},
+          "study_count": {"type": "integer"},
+          "marker_count": {"type": "integer"}
+        }
+      },
+      "description": "Taxon-phenotype associations",
+      "sources": ["GMrepo"],
+      "example": [{"phenotype": "Type 2 diabetes", "direction": "increased", "effect_size": 0.45}]
+    },
+    "enterotype": {
+      "type": ["string", "null"],
+      "description": "Gut microbiome community type classification",
+      "sources": ["MetaHIT"],
+      "enum": ["Bacteroides", "Prevotella", "Ruminococcus", null],
+      "example": "Bacteroides"
+    },
+    "subject_id": {
+      "type": ["string", "null"],
+      "description": "Randomized identifier for study participant (HIPAA-compliant)",
+      "sources": ["HMP"],
+      "example": "HMP2_J12345"
+    },
+    "visit_number": {
+      "type": ["integer", "null"],
+      "description": "Sequential number indicating order of clinical visits",
+      "sources": ["HMP"],
+      "example": 1
+    },
+    "fma_body_site": {
+      "type": ["string", "null"],
+      "description": "Foundational Model of Anatomy term for sample location",
+      "sources": ["HMP"],
+      "example": "UBERON:0001988"
+    },
+    "mixs_metadata": {
+      "type": ["object", "null"],
+      "description": "Minimum Information about any (x) Sequence metadata",
+      "sources": ["HMP"],
+      "properties": {
+        "biome": {"type": "string"},
+        "collection_date": {"type": "string"},
+        "geo_loc_name": {"type": "string"},
+        "env_package": {"type": "string"}
+      },
+      "example": {"biome": "ENVO:00000446", "env_package": "human-gut"}
+    },
+    "checksums": {
+      "type": ["object", "null"],
+      "description": "File integrity verification hashes",
+      "sources": ["HMP"],
+      "properties": {
+        "md5": {"type": "string"},
+        "sha1": {"type": "string"},
+        "sha256": {"type": "string"}
+      }
+    },
+    "matrix_type": {
+      "type": ["string", "null"],
+      "description": "Classification of processed abundance data type",
+      "sources": ["HMP"],
+      "enum": ["16s_community", "wgs_community", "wgs_functional", null],
+      "example": "16s_community"
+    },
+    "functional_annotations": {
+      "type": ["object", "null"],
+      "description": "Functional gene annotations",
+      "sources": ["MetaHIT"],
+      "properties": {
+        "kegg_ko": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "KEGG Ortholog identifiers"
+        },
+        "eggnog": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "eggNOG ortholog group annotations"
+        },
+        "cog": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "COG category assignments"
+        }
+      },
+      "example": {"kegg_ko": ["K00001", "K00002"], "eggnog": ["COG0001"]}
+    },
+    "microbe_characteristics": {
+      "type": ["object", "null"],
+      "description": "Microbial phenotypic characteristics",
+      "sources": ["gutMGene"],
+      "properties": {
+        "gram_stain": {
+          "type": "string",
+          "enum": ["positive", "negative", "variable"]
+        },
+        "oxygen_req": {
+          "type": "string",
+          "enum": ["aerobic", "anaerobic", "facultative"]
+        },
+        "host_species": {
+          "type": "string"
+        }
+      },
+      "example": {"gram_stain": "negative", "oxygen_req": "anaerobic"}
+    },
+    "sequencing_metadata": {
+      "type": ["object", "null"],
+      "description": "Sequencing run metadata",
+      "sources": ["HMP", "MetaHIT"],
+      "properties": {
+        "seq_model": {"type": "string"},
+        "exp_length": {"type": "integer"},
+        "coverage": {"type": "number"},
+        "sequencing_depth": {"type": "integer"}
+      },
+      "example": {"seq_model": "Illumina MiSeq", "sequencing_depth": 1000000}
+    },
+    "antibiotics_usage": {
+      "type": ["string", "null"],
+      "description": "Recent antibiotic use status",
+      "sources": ["GMrepo"],
+      "enum": ["yes", "no", "unknown", null],
+      "example": "no"
+    },
+    "ibd_status": {
+      "type": ["string", "null"],
+      "description": "Inflammatory bowel disease status",
+      "sources": ["MetaHIT"],
+      "enum": ["CD", "UC", "healthy", null],
+      "example": "healthy"
+    },
+    "pmid": {
+      "type": ["array", "null"],
+      "items": {"type": "integer"},
+      "description": "PubMed identifiers for literature evidence",
+      "sources": ["gutMGene", "HMP"],
+      "example": [28123456]
+    },
+    "_source": {
+      "type": "object",
+      "description": "Metadata about the data source",
+      "properties": {
+        "primary_source": {"type": "string"},
+        "source_id": {"type": "string"},
+        "extraction_date": {"type": "string", "format": "date"},
+        "source_version": {"type": "string"}
+      }
+    }
+  },
+  "required": ["sample_id", "taxon_id", "taxon_name"],
+  "field_mappings": {
+    "GMrepo": {
+      "project_id": "project_id",
+      "run_id": "run_id",
+      "taxon_id": "taxon_id",
+      "taxon_name": "taxon_name",
+      "relative_abundance": "relative_abundance",
+      "read_count": "read_count",
+      "phenotype": "phenotype",
+      "mesh_id": "phenotype_mesh_id",
+      "sequencing_type": "sequencing_type",
+      "host_age": "host_metadata.age",
+      "host_sex": "host_metadata.sex",
+      "host_bmi": "host_metadata.bmi",
+      "country": "host_metadata.country",
+      "direction": "phenotype_associations[].direction",
+      "effect_size": "phenotype_associations[].effect_size",
+      "p_value": "phenotype_associations[].p_value",
+      "marker_count": "phenotype_associations[].marker_count",
+      "study_count": "phenotype_associations[].study_count",
+      "rank": "rank",
+      "antibiotics_usage": "antibiotics_usage"
+    },
+    "gutMGene": {
+      "taxon_id": "taxon_id",
+      "taxon_name": "taxon_name",
+      "gene_id": "gene_associations[].gene_id",
+      "gene_symbol": "gene_associations[].gene_symbol",
+      "direction": "gene_associations[].direction",
+      "fold_change": "gene_associations[].fold_change",
+      "p_value": "gene_associations[].p_value",
+      "tissue": "gene_associations[].tissue",
+      "experiment_type": "gene_associations[].experiment_type",
+      "model": "gene_associations[].model",
+      "pmid": "pmid",
+      "gram_stain": "microbe_characteristics.gram_stain",
+      "oxygen_req": "microbe_characteristics.oxygen_req",
+      "host_species": "microbe_characteristics.host_species"
+    },
+    "HMP": {
+      "project_id": "project_id",
+      "sample_id": "sample_id",
+      "run_id": "run_id",
+      "taxon_id": "taxon_id",
+      "taxon_name": "taxon_name",
+      "relative_abundance": "relative_abundance",
+      "read_count": "read_count",
+      "phenotype": "phenotype",
+      "sequencing_type": "sequencing_type",
+      "host_age": "host_metadata.age",
+      "host_sex": "host_metadata.sex",
+      "country": "host_metadata.country",
+      "race": "host_metadata.race",
+      "rand_subject_id": "subject_id",
+      "visit_number": "visit_number",
+      "fma_body_site": "fma_body_site",
+      "mixs": "mixs_metadata",
+      "checksums": "checksums",
+      "matrix_type": "matrix_type",
+      "seq_model": "sequencing_metadata.seq_model",
+      "exp_length": "sequencing_metadata.exp_length",
+      "pmid": "pmid"
+    },
+    "MetaHIT": {
+      "project_id": "project_id",
+      "sample_id": "sample_id",
+      "taxon_id": "taxon_id",
+      "taxon_name": "taxon_name",
+      "relative_abundance": "relative_abundance",
+      "read_count": "read_count",
+      "sequencing_type": "sequencing_type",
+      "host_age": "host_metadata.age",
+      "host_sex": "host_metadata.sex",
+      "host_bmi": "host_metadata.bmi",
+      "country": "host_metadata.country",
+      "rank": "rank",
+      "enterotype": "enterotype",
+      "kegg_ko": "functional_annotations.kegg_ko",
+      "eggnog": "functional_annotations.eggnog",
+      "cog": "functional_annotations.cog",
+      "ibd_status": "ibd_status",
+      "coverage": "sequencing_metadata.coverage",
+      "sequencing_depth": "sequencing_metadata.sequencing_depth"
+    }
+  }
+}

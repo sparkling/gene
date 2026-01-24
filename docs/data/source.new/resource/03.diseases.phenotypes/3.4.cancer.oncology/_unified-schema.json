@@ -1,0 +1,229 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gene.example.org/schemas/3.4-cancer-oncology-drug-targets.json",
+  "title": "Cancer/Oncology and Drug-Disease Targets Unified Schema",
+  "description": "Unified schema for cancer genomics data from GDC/TCGA and DGIdb",
+  "type": "object",
+  "properties": {
+    "gene_symbol": {
+      "type": "string",
+      "description": "HGNC gene symbol",
+      "sources": ["GDC/TCGA", "DGIdb"]
+    },
+    "sample_id": {
+      "type": ["string", "null"],
+      "description": "Sample or patient identifier",
+      "sources": ["GDC/TCGA"]
+    },
+    "cancer_type": {
+      "type": ["string", "null"],
+      "description": "Cancer type or project code",
+      "sources": ["GDC/TCGA"],
+      "examples": ["TCGA-BRCA", "LUAD", "COAD"]
+    },
+    "drug_name": {
+      "type": ["string", "null"],
+      "description": "Drug or compound name",
+      "sources": ["DGIdb"]
+    },
+    "interaction_types": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Types of drug-gene interaction",
+      "sources": ["DGIdb"],
+      "examples": ["inhibitor", "activator", "antagonist", "agonist"]
+    },
+    "case_id": {
+      "type": ["string", "null"],
+      "description": "GDC unique case identifier (UUID)",
+      "sources": ["GDC/TCGA"]
+    },
+    "submitter_id": {
+      "type": ["string", "null"],
+      "description": "TCGA barcode for patient/sample",
+      "sources": ["GDC/TCGA"],
+      "pattern": "TCGA-[A-Z]{2}-[A-Z0-9]{4}"
+    },
+    "project_id": {
+      "type": ["string", "null"],
+      "description": "Project identifier (e.g., TCGA-BRCA)",
+      "sources": ["GDC/TCGA"]
+    },
+    "primary_site": {
+      "type": ["string", "null"],
+      "description": "Anatomic site of tumor",
+      "sources": ["GDC/TCGA"]
+    },
+    "sample_type": {
+      "type": ["string", "null"],
+      "enum": ["Primary Tumor", "Recurrent Tumor", "Metastatic", "Blood Derived Normal", "Solid Tissue Normal", null],
+      "description": "Type of biological specimen",
+      "sources": ["GDC/TCGA"]
+    },
+    "chromosome": {
+      "type": ["string", "null"],
+      "description": "Chromosome of mutation",
+      "sources": ["GDC/TCGA"]
+    },
+    "start_position": {
+      "type": ["integer", "null"],
+      "description": "Mutation start position",
+      "sources": ["GDC/TCGA"]
+    },
+    "end_position": {
+      "type": ["integer", "null"],
+      "description": "Mutation end position",
+      "sources": ["GDC/TCGA"]
+    },
+    "reference_allele": {
+      "type": ["string", "null"],
+      "description": "Reference allele",
+      "sources": ["GDC/TCGA"]
+    },
+    "tumor_allele": {
+      "type": ["string", "null"],
+      "description": "Alternate/tumor allele",
+      "sources": ["GDC/TCGA"]
+    },
+    "variant_classification": {
+      "type": ["string", "null"],
+      "enum": ["Missense_Mutation", "Nonsense_Mutation", "Frame_Shift_Del", "Frame_Shift_Ins", "Splice_Site", "Silent", null],
+      "description": "Functional classification of variant",
+      "sources": ["GDC/TCGA"]
+    },
+    "variant_type": {
+      "type": ["string", "null"],
+      "enum": ["SNP", "INS", "DEL", "DNP", "TNP", null],
+      "description": "Type of sequence variant",
+      "sources": ["GDC/TCGA"]
+    },
+    "hgvsc": {
+      "type": ["string", "null"],
+      "description": "HGVS coding notation",
+      "sources": ["GDC/TCGA"]
+    },
+    "hgvsp": {
+      "type": ["string", "null"],
+      "description": "HGVS protein notation",
+      "sources": ["GDC/TCGA"]
+    },
+    "t_depth": {
+      "type": ["integer", "null"],
+      "description": "Tumor sequencing depth",
+      "sources": ["GDC/TCGA"]
+    },
+    "t_alt_count": {
+      "type": ["integer", "null"],
+      "description": "Tumor alternate allele count",
+      "sources": ["GDC/TCGA"]
+    },
+    "data_type": {
+      "type": ["string", "null"],
+      "description": "Type of data file (Aligned Reads, Gene Expression, etc.)",
+      "sources": ["GDC/TCGA"]
+    },
+    "experimental_strategy": {
+      "type": ["string", "null"],
+      "enum": ["WXS", "WGS", "RNA-Seq", "miRNA-Seq", "Methylation Array", null],
+      "description": "Experimental methodology",
+      "sources": ["GDC/TCGA"]
+    },
+    "access": {
+      "type": ["string", "null"],
+      "enum": ["open", "controlled", null],
+      "description": "Data access level",
+      "sources": ["GDC/TCGA"]
+    },
+    "concept_id": {
+      "type": ["string", "null"],
+      "description": "Normalized identifier for genes or drugs",
+      "sources": ["DGIdb"]
+    },
+    "interaction_score": {
+      "type": ["number", "null"],
+      "description": "Strength of drug-gene interaction",
+      "sources": ["DGIdb"]
+    },
+    "approved": {
+      "type": ["boolean", "null"],
+      "description": "FDA approval status of drug",
+      "sources": ["DGIdb"]
+    },
+    "immunotherapy": {
+      "type": ["boolean", "null"],
+      "description": "Whether drug is immunotherapy",
+      "sources": ["DGIdb"]
+    },
+    "antineoplastic": {
+      "type": ["boolean", "null"],
+      "description": "Anti-cancer activity flag",
+      "sources": ["DGIdb"]
+    },
+    "gene_categories": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Categories like KINASE, TUMOR SUPPRESSOR, DRUGGABLE GENOME",
+      "sources": ["DGIdb"]
+    },
+    "dgidb_sources": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Data sources supporting interaction",
+      "sources": ["DGIdb"]
+    },
+    "publications": {
+      "type": ["array", "null"],
+      "items": {"type": "integer"},
+      "description": "Supporting publication PMIDs",
+      "sources": ["DGIdb"]
+    },
+    "_source": {
+      "type": "object",
+      "description": "Metadata about the data source",
+      "properties": {
+        "database": {"type": "string"},
+        "version": {"type": "string"},
+        "access_date": {"type": "string", "format": "date"},
+        "original_id": {"type": "string"}
+      }
+    }
+  },
+  "required": ["gene_symbol"],
+  "field_mappings": {
+    "GDC_TCGA": {
+      "case_id": "case_id",
+      "submitter_id": "submitter_id",
+      "project_id": "project_id",
+      "primary_site": "primary_site",
+      "sample_type": "sample_type",
+      "Hugo_Symbol": "gene_symbol",
+      "Chromosome": "chromosome",
+      "Start_Position": "start_position",
+      "End_Position": "end_position",
+      "Reference_Allele": "reference_allele",
+      "Tumor_Seq_Allele2": "tumor_allele",
+      "Variant_Classification": "variant_classification",
+      "Variant_Type": "variant_type",
+      "HGVSc": "hgvsc",
+      "HGVSp": "hgvsp",
+      "t_depth": "t_depth",
+      "t_alt_count": "t_alt_count",
+      "data_type": "data_type",
+      "experimental_strategy": "experimental_strategy",
+      "access": "access"
+    },
+    "DGIdb": {
+      "gene_name": "gene_symbol",
+      "drug_name": "drug_name",
+      "conceptId": "concept_id",
+      "interactionTypes": "interaction_types",
+      "interactionScore": "interaction_score",
+      "approved": "approved",
+      "immunotherapy": "immunotherapy",
+      "antineoplastic": "antineoplastic",
+      "geneCategories": "gene_categories",
+      "sources": "dgidb_sources",
+      "publications": "publications"
+    }
+  }
+}

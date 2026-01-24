@@ -1,0 +1,397 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gene.example.org/schemas/5.3-western-global-herbal.json",
+  "title": "Western/Global Herbal Medicine Unified Schema",
+  "description": "Unified schema for Western/global herbal medicine data from NAPRALERT and EMA Herbal",
+  "type": "object",
+  "properties": {
+    "organism_id": {
+      "type": "string",
+      "description": "Unique identifier for biological organism/plant source",
+      "sources": ["NAPRALERT"]
+    },
+    "scientific_name": {
+      "type": ["string", "null"],
+      "description": "Binomial scientific name",
+      "sources": ["NAPRALERT", "EMA Herbal"]
+    },
+    "family": {
+      "type": ["string", "null"],
+      "description": "Botanical family",
+      "sources": ["NAPRALERT", "EMA Herbal"]
+    },
+    "common_names": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {"type": "string"},
+          "language": {"type": "string"}
+        }
+      },
+      "description": "Vernacular names by language/region",
+      "sources": ["NAPRALERT", "EMA Herbal"]
+    },
+    "compound_id": {
+      "type": ["string", "null"],
+      "description": "Unique compound identifier",
+      "sources": ["NAPRALERT"]
+    },
+    "compound_name": {
+      "type": ["string", "null"],
+      "description": "Chemical compound name",
+      "sources": ["NAPRALERT"]
+    },
+    "cas_number": {
+      "type": ["string", "null"],
+      "description": "Chemical Abstracts Service registry number",
+      "sources": ["NAPRALERT"]
+    },
+    "molecular_formula": {
+      "type": ["string", "null"],
+      "description": "Chemical formula",
+      "sources": ["NAPRALERT"]
+    },
+    "molecular_weight": {
+      "type": ["number", "null"],
+      "description": "Molecular weight in Daltons",
+      "sources": ["NAPRALERT"]
+    },
+    "plant_part": {
+      "type": ["string", "null"],
+      "description": "Plant part used or studied (radix, folium, flos, etc.)",
+      "sources": ["NAPRALERT", "EMA Herbal"]
+    },
+    "napralert_record_id": {
+      "type": ["string", "null"],
+      "description": "NAPRALERT citation record identifier",
+      "sources": ["NAPRALERT"]
+    },
+    "napralert_kingdom": {
+      "type": ["string", "null"],
+      "enum": ["Plantae", "Fungi", "Bacteria", "Animalia", null],
+      "description": "Biological kingdom of source organism",
+      "sources": ["NAPRALERT"]
+    },
+    "napralert_geographic_distribution": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Native geographic regions",
+      "sources": ["NAPRALERT"]
+    },
+    "napralert_ethnobotanical_use": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "use_id": {"type": "string"},
+          "traditional_use": {"type": "string"},
+          "preparation_method": {"type": "string"},
+          "administration_route": {"type": "string"},
+          "dosage": {"type": "string"},
+          "geographic_origin": {"type": "string"},
+          "cultural_group": {"type": "string"},
+          "plant_part": {"type": "string"},
+          "literature_ref": {"type": "string"}
+        }
+      },
+      "description": "Traditional/indigenous use documentation",
+      "sources": ["NAPRALERT"]
+    },
+    "napralert_bioactivity": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "activity_id": {"type": "string"},
+          "activity_type": {"type": "string"},
+          "target": {"type": "string"},
+          "test_system": {"type": "string"},
+          "result": {"type": "string"},
+          "dose": {"type": "string"},
+          "unit": {"type": "string"},
+          "effect_type": {"type": "string"},
+          "literature_ref": {"type": "string"}
+        }
+      },
+      "description": "Pharmacological activity record",
+      "sources": ["NAPRALERT"]
+    },
+    "napralert_chemistry_record": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "chemistry_id": {"type": "string"},
+          "isolation_method": {"type": "string"},
+          "yield": {"type": "string"},
+          "identification_method": {"type": "string"},
+          "literature_ref": {"type": "string"}
+        }
+      },
+      "description": "Chemical isolation/identification data",
+      "sources": ["NAPRALERT"]
+    },
+    "napralert_toxicology_record": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "toxicology_id": {"type": "string"},
+          "toxicity_type": {"type": "string"},
+          "test_system": {"type": "string"},
+          "endpoint": {"type": "string"},
+          "value": {"type": "number"},
+          "unit": {"type": "string"},
+          "route": {"type": "string"},
+          "adverse_effects": {"type": "array", "items": {"type": "string"}},
+          "literature_ref": {"type": "string"}
+        }
+      },
+      "description": "Safety and toxicity data",
+      "sources": ["NAPRALERT"]
+    },
+    "napralert_compound_class": {
+      "type": ["string", "null"],
+      "description": "Chemical class classification (e.g., Diarylheptanoid, Alkaloid)",
+      "sources": ["NAPRALERT"]
+    },
+    "napralert_pubmed_id": {
+      "type": ["integer", "null"],
+      "description": "PubMed literature identifier",
+      "sources": ["NAPRALERT"]
+    },
+    "napralert_data_types": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Types of data in literature record",
+      "sources": ["NAPRALERT"]
+    },
+    "ema_substance_id": {
+      "type": ["string", "null"],
+      "description": "EMA herbal substance reference number",
+      "sources": ["EMA Herbal"]
+    },
+    "ema_latin_name": {
+      "type": ["string", "null"],
+      "description": "Botanical Latin name with plant part",
+      "sources": ["EMA Herbal"]
+    },
+    "ema_pharmacopoeia_reference": {
+      "type": ["string", "null"],
+      "description": "European Pharmacopoeia monograph reference",
+      "sources": ["EMA Herbal"]
+    },
+    "ema_monograph_id": {
+      "type": ["string", "null"],
+      "description": "HMPC monograph identifier (EMA/HMPC/xxxxxx/xxxx)",
+      "sources": ["EMA Herbal"]
+    },
+    "ema_adoption_date": {
+      "type": ["string", "null"],
+      "format": "date",
+      "description": "HMPC monograph adoption date",
+      "sources": ["EMA Herbal"]
+    },
+    "ema_revision_date": {
+      "type": ["string", "null"],
+      "format": "date",
+      "description": "Latest revision date",
+      "sources": ["EMA Herbal"]
+    },
+    "ema_status": {
+      "type": ["string", "null"],
+      "enum": ["Final", "Draft", "Under revision", null],
+      "description": "Monograph status",
+      "sources": ["EMA Herbal"]
+    },
+    "ema_use_category": {
+      "type": ["string", "null"],
+      "enum": ["Well-established", "Traditional", null],
+      "description": "Regulatory use classification",
+      "sources": ["EMA Herbal"]
+    },
+    "ema_therapeutic_indication": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Approved therapeutic indication",
+      "sources": ["EMA Herbal"]
+    },
+    "ema_posology": {
+      "type": ["object", "null"],
+      "description": "Dosage and administration details",
+      "sources": ["EMA Herbal"],
+      "properties": {
+        "adults": {"type": "string"},
+        "children": {"type": "string"},
+        "elderly": {"type": "string"},
+        "duration": {"type": "string"}
+      }
+    },
+    "ema_preparation": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "preparation_type": {"type": "string"},
+          "description": {"type": "string"},
+          "extraction_solvent": {"type": "string"},
+          "drug_extract_ratio": {"type": "string"},
+          "standardization": {"type": "string"}
+        }
+      },
+      "description": "Pharmaceutical preparation specification",
+      "sources": ["EMA Herbal"]
+    },
+    "ema_preparation_type": {
+      "type": ["string", "null"],
+      "enum": ["Herbal substance", "Powdered", "Dry extract", "Soft extract", "Liquid extract", "Tincture", "Expressed juice", "Essential oil", null],
+      "description": "Type of herbal preparation",
+      "sources": ["EMA Herbal"]
+    },
+    "ema_drug_extract_ratio": {
+      "type": ["string", "null"],
+      "description": "DER specification for extracts (e.g., 4-7:1)",
+      "sources": ["EMA Herbal"]
+    },
+    "ema_standardization": {
+      "type": ["string", "null"],
+      "description": "Marker compound standardization",
+      "sources": ["EMA Herbal"],
+      "examples": ["Valerenic acids 0.1-0.8%", "Hypericin 0.1-0.3%"]
+    },
+    "ema_contraindications": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "condition": {"type": "string"},
+          "severity": {"type": "string"},
+          "evidence_level": {"type": "string"}
+        }
+      },
+      "description": "Conditions where use is contraindicated",
+      "sources": ["EMA Herbal"]
+    },
+    "ema_warnings": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Special warnings and precautions",
+      "sources": ["EMA Herbal"]
+    },
+    "ema_interactions": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "interacting_substance": {"type": "string"},
+          "effect": {"type": "string"},
+          "severity": {"type": "string"},
+          "mechanism": {"type": "string"},
+          "evidence": {"type": "string"}
+        }
+      },
+      "description": "Drug-herb interactions",
+      "sources": ["EMA Herbal"]
+    },
+    "ema_pregnancy_data": {
+      "type": ["object", "null"],
+      "description": "Pregnancy and lactation safety data",
+      "sources": ["EMA Herbal"],
+      "properties": {
+        "pregnancy_category": {"type": "string"},
+        "lactation_category": {"type": "string"},
+        "recommendation": {"type": "string"}
+      }
+    },
+    "ema_adverse_effects": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "effect": {"type": "string"},
+          "frequency": {"type": "string"},
+          "meddra_term": {"type": "string"},
+          "system_organ_class": {"type": "string"}
+        }
+      },
+      "description": "Known adverse reactions",
+      "sources": ["EMA Herbal"]
+    },
+    "ema_community_list_entry": {
+      "type": ["object", "null"],
+      "description": "EU Community list harmonized entry",
+      "sources": ["EMA Herbal"],
+      "properties": {
+        "entry_id": {"type": "string"},
+        "herbal_preparations": {"type": "array", "items": {"type": "object"}},
+        "indication": {"type": "string"},
+        "route": {"type": "string"},
+        "posology": {"type": "string"},
+        "period_of_use": {"type": "string"},
+        "restrictions": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "_source": {
+      "type": "object",
+      "description": "Metadata about the data source",
+      "properties": {
+        "database": {"type": "string"},
+        "version": {"type": "string"},
+        "access_date": {"type": "string", "format": "date"},
+        "original_id": {"type": "string"}
+      }
+    }
+  },
+  "required": ["organism_id"],
+  "field_mappings": {
+    "NAPRALERT": {
+      "organism_id": "organism_id",
+      "scientific_name": "scientific_name",
+      "family": "family",
+      "common_names": "common_names",
+      "compound_id": "compound_id",
+      "compound_name": "compound_name",
+      "cas_number": "cas_number",
+      "molecular_formula": "molecular_formula",
+      "molecular_weight": "molecular_weight",
+      "plant_part": "plant_part",
+      "record_id": "napralert_record_id",
+      "kingdom": "napralert_kingdom",
+      "geographic_distribution": "napralert_geographic_distribution",
+      "ethnobotanical_use": "napralert_ethnobotanical_use",
+      "bioactivity": "napralert_bioactivity",
+      "chemistry_record": "napralert_chemistry_record",
+      "toxicology_record": "napralert_toxicology_record",
+      "compound_class": "napralert_compound_class",
+      "pubmed_id": "napralert_pubmed_id",
+      "data_types": "napralert_data_types"
+    },
+    "EMA_Herbal": {
+      "scientific_name": "scientific_name",
+      "family": "family",
+      "common_names": "common_names",
+      "plant_part": "plant_part",
+      "substance_id": "ema_substance_id",
+      "latin_name": "ema_latin_name",
+      "pharmacopoeia_reference": "ema_pharmacopoeia_reference",
+      "monograph_id": "ema_monograph_id",
+      "adoption_date": "ema_adoption_date",
+      "revision_date": "ema_revision_date",
+      "status": "ema_status",
+      "use_category": "ema_use_category",
+      "therapeutic_indication": "ema_therapeutic_indication",
+      "posology": "ema_posology",
+      "preparation": "ema_preparation",
+      "preparation_type": "ema_preparation_type",
+      "drug_extract_ratio": "ema_drug_extract_ratio",
+      "standardization": "ema_standardization",
+      "contraindications": "ema_contraindications",
+      "warnings": "ema_warnings",
+      "interactions": "ema_interactions",
+      "pregnancy_data": "ema_pregnancy_data",
+      "adverse_effects": "ema_adverse_effects",
+      "community_list_entry": "ema_community_list_entry"
+    }
+  }
+}

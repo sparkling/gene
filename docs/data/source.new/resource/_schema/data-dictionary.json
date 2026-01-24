@@ -1,0 +1,1621 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Biomedical Data Integration - Shared Fields Registry",
+  "description": "Comprehensive registry of shared fields across 9 biomedical data categories, enabling cross-category data integration and linking",
+  "version": "1.0.0",
+  "generated": "2026-01-24",
+  "metadata": {
+    "total_categories": 9,
+    "total_shared_fields": 47,
+    "total_identifier_hubs": 5,
+    "total_cross_category_links": 89
+  },
+  "shared_fields": [
+    {
+      "canonical_name": "gene_symbol",
+      "definition": "Official HGNC gene symbol representing a specific gene locus",
+      "type": "string",
+      "categories_where_used": [
+        "01-genetics-genomics",
+        "02-compounds-molecules",
+        "03-diseases-phenotypes",
+        "04-pathways-networks",
+        "05-traditional-medicine",
+        "07-proteins-molecular",
+        "09-microbiome"
+      ],
+      "total_sources_using": 78,
+      "aliases": ["gene", "symbol", "hgnc_symbol", "gene_name", "geneSymbol", "SYMBOL"],
+      "format": "^[A-Z][A-Z0-9-]+$",
+      "example": "BRCA1",
+      "primary_authority": "HGNC",
+      "identifier_hub": "gene"
+    },
+    {
+      "canonical_name": "pmid",
+      "definition": "PubMed unique identifier for biomedical literature references",
+      "type": "integer",
+      "categories_where_used": [
+        "01-genetics-genomics",
+        "03-diseases-phenotypes",
+        "04-pathways-networks",
+        "05-traditional-medicine",
+        "08-literature-knowledge",
+        "09-microbiome"
+      ],
+      "total_sources_using": 65,
+      "aliases": ["pubmed_id", "PubMed_ID", "pubmedId", "PMID", "pubmed"],
+      "format": "^[0-9]{1,8}$",
+      "example": "12345678",
+      "primary_authority": "NCBI PubMed",
+      "identifier_hub": "publication"
+    },
+    {
+      "canonical_name": "uniprot_accession",
+      "definition": "UniProt Knowledge Base accession number for protein sequences",
+      "type": "string",
+      "categories_where_used": [
+        "02-compounds-molecules",
+        "04-pathways-networks",
+        "05-traditional-medicine",
+        "07-proteins-molecular",
+        "08-literature-knowledge",
+        "09-microbiome"
+      ],
+      "total_sources_using": 58,
+      "aliases": ["uniprot_id", "UniProt_ID", "uniprotId", "accession", "uniprot", "UniProtKB"],
+      "format": "^[OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9]([A-Z][A-Z0-9]{2}[0-9]){1,2}$",
+      "example": "P04637",
+      "primary_authority": "UniProt Consortium",
+      "identifier_hub": "protein"
+    },
+    {
+      "canonical_name": "pubchem_cid",
+      "definition": "PubChem Compound Identifier for chemical substances",
+      "type": "integer",
+      "categories_where_used": [
+        "02-compounds-molecules",
+        "05-traditional-medicine",
+        "06-nutrition-food",
+        "08-literature-knowledge",
+        "09-microbiome"
+      ],
+      "total_sources_using": 52,
+      "aliases": ["PubChem_CID", "pubchem_compound_id", "cid", "compound_id"],
+      "format": "^[0-9]+$",
+      "example": "2244",
+      "primary_authority": "NCBI PubChem",
+      "identifier_hub": "compound"
+    },
+    {
+      "canonical_name": "ncbi_taxonomy_id",
+      "definition": "NCBI Taxonomy database identifier for organisms",
+      "type": "integer",
+      "categories_where_used": [
+        "02-compounds-molecules",
+        "04-pathways-networks",
+        "07-proteins-molecular",
+        "09-microbiome"
+      ],
+      "total_sources_using": 48,
+      "aliases": ["taxon_id", "tax_id", "taxonomy_id", "ncbi_taxon_id", "organism_id", "microbe_taxid"],
+      "format": "^[0-9]+$",
+      "example": "9606",
+      "primary_authority": "NCBI Taxonomy"
+    },
+    {
+      "canonical_name": "entrez_gene_id",
+      "definition": "NCBI Entrez Gene database unique identifier",
+      "type": "integer",
+      "categories_where_used": [
+        "01-genetics-genomics",
+        "03-diseases-phenotypes",
+        "04-pathways-networks",
+        "07-proteins-molecular",
+        "08-literature-knowledge"
+      ],
+      "total_sources_using": 45,
+      "aliases": ["gene_id", "ncbi_gene_id", "GeneID", "entrez_id", "NCBI_Gene"],
+      "format": "^[0-9]+$",
+      "example": "672",
+      "primary_authority": "NCBI Gene",
+      "identifier_hub": "gene"
+    },
+    {
+      "canonical_name": "inchi_key",
+      "definition": "International Chemical Identifier hash key for unique compound identification",
+      "type": "string",
+      "categories_where_used": [
+        "02-compounds-molecules",
+        "04-pathways-networks",
+        "05-traditional-medicine",
+        "06-nutrition-food"
+      ],
+      "total_sources_using": 42,
+      "aliases": ["inchikey", "InChIKey", "INCHI_KEY", "stdinchikey"],
+      "format": "^[A-Z]{14}-[A-Z]{10}-[A-Z]$",
+      "example": "BSYNRYMUTXBXSQ-UHFFFAOYSA-N",
+      "primary_authority": "IUPAC InChI Trust",
+      "identifier_hub": "compound"
+    },
+    {
+      "canonical_name": "mondo_id",
+      "definition": "Mondo Disease Ontology identifier for disease classification",
+      "type": "string",
+      "categories_where_used": [
+        "03-diseases-phenotypes",
+        "04-pathways-networks",
+        "08-literature-knowledge",
+        "09-microbiome"
+      ],
+      "total_sources_using": 38,
+      "aliases": ["MONDO", "mondo", "mondo_term_id"],
+      "format": "^MONDO:[0-9]{7}$",
+      "example": "MONDO:0005015",
+      "primary_authority": "Mondo Disease Ontology",
+      "identifier_hub": "disease"
+    },
+    {
+      "canonical_name": "chembl_id",
+      "definition": "ChEMBL database identifier for bioactive molecules",
+      "type": "string",
+      "categories_where_used": [
+        "02-compounds-molecules",
+        "05-traditional-medicine",
+        "08-literature-knowledge",
+        "09-microbiome"
+      ],
+      "total_sources_using": 36,
+      "aliases": ["ChEMBL_ID", "chembl", "molecule_chembl_id"],
+      "format": "^CHEMBL[0-9]+$",
+      "example": "CHEMBL25",
+      "primary_authority": "EMBL-EBI ChEMBL",
+      "identifier_hub": "compound"
+    },
+    {
+      "canonical_name": "doi",
+      "definition": "Digital Object Identifier for scholarly publications",
+      "type": "string",
+      "categories_where_used": [
+        "01-genetics-genomics",
+        "03-diseases-phenotypes",
+        "08-literature-knowledge"
+      ],
+      "total_sources_using": 35,
+      "aliases": ["DOI", "article_doi", "publication_doi"],
+      "format": "^10\\.[0-9]{4,}/[^\\s]+$",
+      "example": "10.1038/nature12373",
+      "primary_authority": "International DOI Foundation",
+      "identifier_hub": "publication"
+    },
+    {
+      "canonical_name": "ensembl_gene_id",
+      "definition": "Ensembl database gene identifier",
+      "type": "string",
+      "categories_where_used": [
+        "01-genetics-genomics",
+        "03-diseases-phenotypes",
+        "04-pathways-networks",
+        "07-proteins-molecular"
+      ],
+      "total_sources_using": 34,
+      "aliases": ["ensembl_id", "ENSG", "ensemblId", "Ensembl_Gene"],
+      "format": "^ENSG[0-9]{11}$",
+      "example": "ENSG00000141510",
+      "primary_authority": "Ensembl",
+      "identifier_hub": "gene"
+    },
+    {
+      "canonical_name": "chebi_id",
+      "definition": "Chemical Entities of Biological Interest ontology identifier",
+      "type": "string",
+      "categories_where_used": [
+        "02-compounds-molecules",
+        "06-nutrition-food",
+        "08-literature-knowledge",
+        "09-microbiome"
+      ],
+      "total_sources_using": 32,
+      "aliases": ["ChEBI_ID", "chebi", "CHEBI"],
+      "format": "^CHEBI:[0-9]+$",
+      "example": "CHEBI:15377",
+      "primary_authority": "EMBL-EBI ChEBI",
+      "identifier_hub": "compound"
+    },
+    {
+      "canonical_name": "canonical_smiles",
+      "definition": "Canonical SMILES notation for molecular structure representation",
+      "type": "string",
+      "categories_where_used": [
+        "02-compounds-molecules",
+        "05-traditional-medicine",
+        "06-nutrition-food",
+        "09-microbiome"
+      ],
+      "total_sources_using": 31,
+      "aliases": ["smiles", "SMILES", "isomeric_smiles", "smiles_string"],
+      "example": "CC(=O)OC1=CC=CC=C1C(=O)O",
+      "primary_authority": "Daylight Chemical Information Systems"
+    },
+    {
+      "canonical_name": "mesh_id",
+      "definition": "Medical Subject Headings vocabulary identifier",
+      "type": "string",
+      "categories_where_used": [
+        "03-diseases-phenotypes",
+        "05-traditional-medicine",
+        "08-literature-knowledge",
+        "09-microbiome"
+      ],
+      "total_sources_using": 30,
+      "aliases": ["MeSH_ID", "mesh", "mesh_term_id", "mesh_descriptor_id"],
+      "format": "^D[0-9]{6}$",
+      "example": "D001943",
+      "primary_authority": "NLM MeSH",
+      "identifier_hub": "disease"
+    },
+    {
+      "canonical_name": "hpo_id",
+      "definition": "Human Phenotype Ontology term identifier",
+      "type": "string",
+      "categories_where_used": [
+        "01-genetics-genomics",
+        "03-diseases-phenotypes",
+        "08-literature-knowledge"
+      ],
+      "total_sources_using": 28,
+      "aliases": ["HPO", "hpo", "phenotype_id", "hpo_term_id"],
+      "format": "^HP:[0-9]{7}$",
+      "example": "HP:0001250",
+      "primary_authority": "Human Phenotype Ontology",
+      "identifier_hub": "disease"
+    },
+    {
+      "canonical_name": "drugbank_id",
+      "definition": "DrugBank database identifier for drugs and drug targets",
+      "type": "string",
+      "categories_where_used": [
+        "02-compounds-molecules",
+        "05-traditional-medicine",
+        "06-nutrition-food",
+        "08-literature-knowledge"
+      ],
+      "total_sources_using": 28,
+      "aliases": ["DrugBank_ID", "drugbank", "drug_bank_id"],
+      "format": "^DB[0-9]{5}$",
+      "example": "DB00945",
+      "primary_authority": "DrugBank",
+      "identifier_hub": "compound"
+    },
+    {
+      "canonical_name": "omim_id",
+      "definition": "Online Mendelian Inheritance in Man identifier for genetic disorders",
+      "type": "integer",
+      "categories_where_used": [
+        "01-genetics-genomics",
+        "03-diseases-phenotypes",
+        "08-literature-knowledge"
+      ],
+      "total_sources_using": 26,
+      "aliases": ["OMIM", "omim", "mim_number", "omim_number"],
+      "format": "^[0-9]{6}$",
+      "example": "114480",
+      "primary_authority": "OMIM",
+      "identifier_hub": "disease"
+    },
+    {
+      "canonical_name": "hmdb_id",
+      "definition": "Human Metabolome Database identifier for metabolites",
+      "type": "string",
+      "categories_where_used": [
+        "02-compounds-molecules",
+        "06-nutrition-food",
+        "09-microbiome"
+      ],
+      "total_sources_using": 25,
+      "aliases": ["HMDB_ID", "hmdb", "metabolite_id"],
+      "format": "^HMDB[0-9]{7}$",
+      "example": "HMDB0000001",
+      "primary_authority": "HMDB",
+      "identifier_hub": "compound"
+    },
+    {
+      "canonical_name": "go_term_id",
+      "definition": "Gene Ontology term identifier for functional annotation",
+      "type": "string",
+      "categories_where_used": [
+        "04-pathways-networks",
+        "07-proteins-molecular",
+        "08-literature-knowledge"
+      ],
+      "total_sources_using": 24,
+      "aliases": ["go_id", "GO", "go_term", "gene_ontology_id"],
+      "format": "^GO:[0-9]{7}$",
+      "example": "GO:0008150",
+      "primary_authority": "Gene Ontology Consortium"
+    },
+    {
+      "canonical_name": "kegg_pathway_id",
+      "definition": "KEGG pathway database identifier",
+      "type": "string",
+      "categories_where_used": [
+        "04-pathways-networks",
+        "05-traditional-medicine",
+        "09-microbiome"
+      ],
+      "total_sources_using": 23,
+      "aliases": ["kegg_id", "KEGG", "pathway_id", "kegg_pathway"],
+      "format": "^(hsa|map|ko)[0-9]{5}$",
+      "example": "hsa04151",
+      "primary_authority": "KEGG"
+    },
+    {
+      "canonical_name": "pdb_id",
+      "definition": "Protein Data Bank identifier for 3D protein structures",
+      "type": "string",
+      "categories_where_used": [
+        "02-compounds-molecules",
+        "07-proteins-molecular",
+        "08-literature-knowledge"
+      ],
+      "total_sources_using": 22,
+      "aliases": ["PDB_ID", "pdb", "structure_id", "pdb_entry"],
+      "format": "^[0-9][A-Z0-9]{3}$",
+      "example": "1TUP",
+      "primary_authority": "RCSB PDB",
+      "identifier_hub": "protein"
+    },
+    {
+      "canonical_name": "cas_number",
+      "definition": "Chemical Abstracts Service registry number for chemical substances",
+      "type": "string",
+      "categories_where_used": [
+        "02-compounds-molecules",
+        "05-traditional-medicine",
+        "06-nutrition-food"
+      ],
+      "total_sources_using": 21,
+      "aliases": ["CAS", "cas_rn", "cas_registry_number", "CAS_Number"],
+      "format": "^[0-9]{2,7}-[0-9]{2}-[0-9]$",
+      "example": "50-78-2",
+      "primary_authority": "Chemical Abstracts Service",
+      "identifier_hub": "compound"
+    },
+    {
+      "canonical_name": "molecular_weight",
+      "definition": "Molecular weight of a compound in Daltons",
+      "type": "number",
+      "categories_where_used": [
+        "02-compounds-molecules",
+        "05-traditional-medicine",
+        "06-nutrition-food"
+      ],
+      "total_sources_using": 21,
+      "aliases": ["mol_weight", "MW", "mass", "molecular_mass", "exact_mass"],
+      "unit": "Da",
+      "example": 180.16
+    },
+    {
+      "canonical_name": "molecular_formula",
+      "definition": "Molecular formula representing atomic composition",
+      "type": "string",
+      "categories_where_used": [
+        "02-compounds-molecules",
+        "05-traditional-medicine",
+        "06-nutrition-food"
+      ],
+      "total_sources_using": 20,
+      "aliases": ["formula", "mol_formula", "chemical_formula"],
+      "format": "^[A-Z][a-z]?[0-9]*([A-Z][a-z]?[0-9]*)*$",
+      "example": "C6H12O6"
+    },
+    {
+      "canonical_name": "chromosome",
+      "definition": "Chromosome identifier for genomic location",
+      "type": "string",
+      "categories_where_used": [
+        "01-genetics-genomics",
+        "03-diseases-phenotypes",
+        "07-proteins-molecular"
+      ],
+      "total_sources_using": 19,
+      "aliases": ["chr", "chrom", "chromosome_id", "seq_region_name"],
+      "format": "^(chr)?([1-9]|1[0-9]|2[0-2]|X|Y|MT?)$",
+      "example": "chr17"
+    },
+    {
+      "canonical_name": "position",
+      "definition": "Genomic coordinate position (1-based)",
+      "type": "integer",
+      "categories_where_used": [
+        "01-genetics-genomics",
+        "03-diseases-phenotypes"
+      ],
+      "total_sources_using": 18,
+      "aliases": ["pos", "start", "genomic_position", "coordinate"],
+      "example": 7577120
+    },
+    {
+      "canonical_name": "orphanet_id",
+      "definition": "Orphanet rare disease identifier",
+      "type": "string",
+      "categories_where_used": [
+        "03-diseases-phenotypes",
+        "08-literature-knowledge"
+      ],
+      "total_sources_using": 17,
+      "aliases": ["ORPHA", "orpha", "orphanet", "orpha_code"],
+      "format": "^ORPHA:[0-9]+$",
+      "example": "ORPHA:558",
+      "primary_authority": "Orphanet",
+      "identifier_hub": "disease"
+    },
+    {
+      "canonical_name": "icd10_code",
+      "definition": "International Classification of Diseases 10th revision code",
+      "type": "string",
+      "categories_where_used": [
+        "03-diseases-phenotypes",
+        "09-microbiome"
+      ],
+      "total_sources_using": 16,
+      "aliases": ["ICD10", "icd_10", "icd10", "icd10cm_code"],
+      "format": "^[A-Z][0-9]{2}(\\.[0-9]{1,4})?$",
+      "example": "E11.9",
+      "primary_authority": "WHO ICD",
+      "identifier_hub": "disease"
+    },
+    {
+      "canonical_name": "doid",
+      "definition": "Disease Ontology identifier",
+      "type": "string",
+      "categories_where_used": [
+        "03-diseases-phenotypes",
+        "09-microbiome"
+      ],
+      "total_sources_using": 15,
+      "aliases": ["DOID", "disease_ontology_id", "do_id"],
+      "format": "^DOID:[0-9]+$",
+      "example": "DOID:9352",
+      "primary_authority": "Disease Ontology",
+      "identifier_hub": "disease"
+    },
+    {
+      "canonical_name": "umls_cui",
+      "definition": "Unified Medical Language System Concept Unique Identifier",
+      "type": "string",
+      "categories_where_used": [
+        "03-diseases-phenotypes",
+        "08-literature-knowledge"
+      ],
+      "total_sources_using": 15,
+      "aliases": ["CUI", "umls", "umls_id", "concept_id"],
+      "format": "^C[0-9]{7}$",
+      "example": "C0011849",
+      "primary_authority": "NLM UMLS",
+      "identifier_hub": "disease"
+    },
+    {
+      "canonical_name": "refseq_id",
+      "definition": "NCBI Reference Sequence identifier for nucleotide/protein sequences",
+      "type": "string",
+      "categories_where_used": [
+        "01-genetics-genomics",
+        "07-proteins-molecular"
+      ],
+      "total_sources_using": 14,
+      "aliases": ["RefSeq", "refseq", "refseq_accession", "refseq_protein_id", "refseq_mrna_id"],
+      "format": "^(NC|NG|NM|NR|NP|XM|XR|XP|WP)_[0-9]+\\.[0-9]+$",
+      "example": "NM_000546.6",
+      "primary_authority": "NCBI RefSeq",
+      "identifier_hub": "protein"
+    },
+    {
+      "canonical_name": "hgnc_id",
+      "definition": "HUGO Gene Nomenclature Committee identifier",
+      "type": "string",
+      "categories_where_used": [
+        "01-genetics-genomics",
+        "07-proteins-molecular"
+      ],
+      "total_sources_using": 14,
+      "aliases": ["HGNC", "hgnc", "hgnc_gene_id"],
+      "format": "^HGNC:[0-9]+$",
+      "example": "HGNC:1100",
+      "primary_authority": "HGNC",
+      "identifier_hub": "gene"
+    },
+    {
+      "canonical_name": "clinical_significance",
+      "definition": "Clinical interpretation of genetic variant pathogenicity",
+      "type": "string",
+      "categories_where_used": [
+        "01-genetics-genomics",
+        "03-diseases-phenotypes"
+      ],
+      "total_sources_using": 13,
+      "aliases": ["clinsig", "pathogenicity", "classification", "interpretation"],
+      "enum": ["pathogenic", "likely_pathogenic", "uncertain_significance", "likely_benign", "benign"],
+      "example": "pathogenic"
+    },
+    {
+      "canonical_name": "variant_id",
+      "definition": "Unique identifier for genetic variants (dbSNP rsID or similar)",
+      "type": "string",
+      "categories_where_used": [
+        "01-genetics-genomics",
+        "03-diseases-phenotypes"
+      ],
+      "total_sources_using": 13,
+      "aliases": ["rsid", "rs_id", "dbsnp_id", "variant", "variation_id"],
+      "format": "^rs[0-9]+$",
+      "example": "rs7412",
+      "primary_authority": "dbSNP"
+    },
+    {
+      "canonical_name": "reactome_id",
+      "definition": "Reactome pathway database identifier",
+      "type": "string",
+      "categories_where_used": [
+        "04-pathways-networks",
+        "07-proteins-molecular"
+      ],
+      "total_sources_using": 12,
+      "aliases": ["Reactome", "reactome", "reactome_pathway_id"],
+      "format": "^R-HSA-[0-9]+$",
+      "example": "R-HSA-109582",
+      "primary_authority": "Reactome"
+    },
+    {
+      "canonical_name": "efo_id",
+      "definition": "Experimental Factor Ontology identifier",
+      "type": "string",
+      "categories_where_used": [
+        "03-diseases-phenotypes",
+        "08-literature-knowledge"
+      ],
+      "total_sources_using": 11,
+      "aliases": ["EFO", "efo", "experimental_factor_id"],
+      "format": "^EFO:[0-9]{7}$",
+      "example": "EFO:0000400",
+      "primary_authority": "EBI EFO",
+      "identifier_hub": "disease"
+    },
+    {
+      "canonical_name": "pmcid",
+      "definition": "PubMed Central article identifier",
+      "type": "string",
+      "categories_where_used": [
+        "08-literature-knowledge",
+        "03-diseases-phenotypes"
+      ],
+      "total_sources_using": 10,
+      "aliases": ["PMC_ID", "pmc", "pmc_id"],
+      "format": "^PMC[0-9]+$",
+      "example": "PMC3531190",
+      "primary_authority": "NCBI PMC",
+      "identifier_hub": "publication"
+    },
+    {
+      "canonical_name": "kegg_compound_id",
+      "definition": "KEGG Compound database identifier",
+      "type": "string",
+      "categories_where_used": [
+        "02-compounds-molecules",
+        "05-traditional-medicine",
+        "09-microbiome"
+      ],
+      "total_sources_using": 10,
+      "aliases": ["kegg_cpd", "KEGG_Compound", "kegg_compound"],
+      "format": "^C[0-9]{5}$",
+      "example": "C00031",
+      "primary_authority": "KEGG",
+      "identifier_hub": "compound"
+    },
+    {
+      "canonical_name": "kegg_orthology_id",
+      "definition": "KEGG Orthology identifier for functional orthologs",
+      "type": "string",
+      "categories_where_used": [
+        "04-pathways-networks",
+        "09-microbiome"
+      ],
+      "total_sources_using": 9,
+      "aliases": ["kegg_ko", "KO", "ko_id"],
+      "format": "^K[0-9]{5}$",
+      "example": "K00001",
+      "primary_authority": "KEGG"
+    },
+    {
+      "canonical_name": "uberon_id",
+      "definition": "Uberon cross-species anatomy ontology identifier",
+      "type": "string",
+      "categories_where_used": [
+        "03-diseases-phenotypes",
+        "09-microbiome"
+      ],
+      "total_sources_using": 8,
+      "aliases": ["UBERON", "uberon", "anatomy_id"],
+      "format": "^UBERON:[0-9]{7}$",
+      "example": "UBERON:0000955",
+      "primary_authority": "Uberon"
+    },
+    {
+      "canonical_name": "foodb_id",
+      "definition": "FooDB food compound database identifier",
+      "type": "string",
+      "categories_where_used": [
+        "06-nutrition-food"
+      ],
+      "total_sources_using": 8,
+      "aliases": ["FooDB_ID", "foodb", "food_compound_id"],
+      "format": "^FDB[0-9]{6}$",
+      "example": "FDB000001",
+      "primary_authority": "FooDB"
+    },
+    {
+      "canonical_name": "interpro_id",
+      "definition": "InterPro protein family/domain identifier",
+      "type": "string",
+      "categories_where_used": [
+        "07-proteins-molecular",
+        "04-pathways-networks"
+      ],
+      "total_sources_using": 7,
+      "aliases": ["InterPro", "interpro", "ipr_id"],
+      "format": "^IPR[0-9]{6}$",
+      "example": "IPR000980",
+      "primary_authority": "InterPro"
+    },
+    {
+      "canonical_name": "clinvar_id",
+      "definition": "ClinVar database variant identifier",
+      "type": "integer",
+      "categories_where_used": [
+        "01-genetics-genomics",
+        "03-diseases-phenotypes"
+      ],
+      "total_sources_using": 7,
+      "aliases": ["ClinVar_ID", "clinvar", "variation_id", "clinvar_accession"],
+      "example": 12345,
+      "primary_authority": "NCBI ClinVar"
+    },
+    {
+      "canonical_name": "confidence_score",
+      "definition": "Numerical confidence score for data quality or interaction strength",
+      "type": "number",
+      "categories_where_used": [
+        "04-pathways-networks",
+        "02-compounds-molecules"
+      ],
+      "total_sources_using": 6,
+      "aliases": ["score", "confidence", "combined_score", "evidence_score"],
+      "minimum": 0,
+      "maximum": 1,
+      "example": 0.95
+    },
+    {
+      "canonical_name": "organism",
+      "definition": "Scientific name of the organism",
+      "type": "string",
+      "categories_where_used": [
+        "04-pathways-networks",
+        "07-proteins-molecular",
+        "09-microbiome"
+      ],
+      "total_sources_using": 6,
+      "aliases": ["species", "organism_name", "scientific_name"],
+      "example": "Homo sapiens"
+    },
+    {
+      "canonical_name": "wikidata_qid",
+      "definition": "Wikidata item identifier for cross-linking entities",
+      "type": "string",
+      "categories_where_used": [
+        "08-literature-knowledge"
+      ],
+      "total_sources_using": 5,
+      "aliases": ["wikidata_id", "QID", "wikidata"],
+      "format": "^Q[0-9]+$",
+      "example": "Q7187",
+      "primary_authority": "Wikidata"
+    }
+  ],
+  "identifier_hubs": {
+    "gene": {
+      "description": "Central hub for gene-related identifiers enabling cross-database gene linking",
+      "primary_identifier": "gene_symbol",
+      "secondary_identifiers": [
+        "entrez_gene_id",
+        "ensembl_gene_id",
+        "hgnc_id",
+        "refseq_id"
+      ],
+      "categories_connected": [
+        "01-genetics-genomics",
+        "02-compounds-molecules",
+        "03-diseases-phenotypes",
+        "04-pathways-networks",
+        "05-traditional-medicine",
+        "07-proteins-molecular",
+        "08-literature-knowledge",
+        "09-microbiome"
+      ],
+      "external_authorities": [
+        {"name": "HGNC", "url": "https://www.genenames.org/"},
+        {"name": "NCBI Gene", "url": "https://www.ncbi.nlm.nih.gov/gene/"},
+        {"name": "Ensembl", "url": "https://www.ensembl.org/"}
+      ],
+      "wikidata_property": "P351",
+      "mapping_strategies": [
+        "Direct symbol match (case-insensitive)",
+        "HGNC ID to symbol lookup",
+        "Ensembl to Entrez cross-reference",
+        "Alias/synonym resolution"
+      ]
+    },
+    "protein": {
+      "description": "Central hub for protein identifiers linking sequence, structure, and function",
+      "primary_identifier": "uniprot_accession",
+      "secondary_identifiers": [
+        "refseq_id",
+        "pdb_id",
+        "ensembl_protein_id"
+      ],
+      "categories_connected": [
+        "02-compounds-molecules",
+        "04-pathways-networks",
+        "05-traditional-medicine",
+        "07-proteins-molecular",
+        "08-literature-knowledge",
+        "09-microbiome"
+      ],
+      "external_authorities": [
+        {"name": "UniProt", "url": "https://www.uniprot.org/"},
+        {"name": "PDB", "url": "https://www.rcsb.org/"},
+        {"name": "RefSeq", "url": "https://www.ncbi.nlm.nih.gov/refseq/"}
+      ],
+      "wikidata_property": "P352",
+      "mapping_strategies": [
+        "UniProt accession direct lookup",
+        "Gene symbol to protein mapping",
+        "PDB to UniProt cross-reference",
+        "Isoform resolution via UniProt"
+      ]
+    },
+    "compound": {
+      "description": "Central hub for chemical compound identifiers linking drugs, metabolites, and natural products",
+      "primary_identifier": "inchi_key",
+      "secondary_identifiers": [
+        "pubchem_cid",
+        "chembl_id",
+        "drugbank_id",
+        "chebi_id",
+        "hmdb_id",
+        "kegg_compound_id",
+        "cas_number"
+      ],
+      "categories_connected": [
+        "02-compounds-molecules",
+        "05-traditional-medicine",
+        "06-nutrition-food",
+        "08-literature-knowledge",
+        "09-microbiome"
+      ],
+      "external_authorities": [
+        {"name": "PubChem", "url": "https://pubchem.ncbi.nlm.nih.gov/"},
+        {"name": "ChEMBL", "url": "https://www.ebi.ac.uk/chembl/"},
+        {"name": "DrugBank", "url": "https://go.drugbank.com/"},
+        {"name": "ChEBI", "url": "https://www.ebi.ac.uk/chebi/"},
+        {"name": "HMDB", "url": "https://hmdb.ca/"}
+      ],
+      "wikidata_property": "P662",
+      "mapping_strategies": [
+        "InChI Key exact match (structure-based)",
+        "PubChem CID lookup",
+        "SMILES canonicalization and match",
+        "Cross-database ID mapping via UniChem"
+      ]
+    },
+    "disease": {
+      "description": "Central hub for disease and phenotype identifiers enabling clinical data integration",
+      "primary_identifier": "mondo_id",
+      "secondary_identifiers": [
+        "omim_id",
+        "hpo_id",
+        "mesh_id",
+        "orphanet_id",
+        "icd10_code",
+        "doid",
+        "umls_cui",
+        "efo_id"
+      ],
+      "categories_connected": [
+        "01-genetics-genomics",
+        "03-diseases-phenotypes",
+        "04-pathways-networks",
+        "05-traditional-medicine",
+        "08-literature-knowledge",
+        "09-microbiome"
+      ],
+      "external_authorities": [
+        {"name": "Mondo", "url": "https://mondo.monarchinitiative.org/"},
+        {"name": "OMIM", "url": "https://www.omim.org/"},
+        {"name": "HPO", "url": "https://hpo.jax.org/"},
+        {"name": "Orphanet", "url": "https://www.orpha.net/"},
+        {"name": "MeSH", "url": "https://www.nlm.nih.gov/mesh/"}
+      ],
+      "wikidata_property": "P5270",
+      "mapping_strategies": [
+        "MONDO ID as unifying identifier",
+        "OMIM to MONDO mapping",
+        "HPO phenotype to disease association",
+        "ICD-10 to MONDO/OMIM cross-reference",
+        "UMLS CUI semantic linking"
+      ]
+    },
+    "publication": {
+      "description": "Central hub for literature identifiers linking research evidence",
+      "primary_identifier": "pmid",
+      "secondary_identifiers": [
+        "doi",
+        "pmcid"
+      ],
+      "categories_connected": [
+        "01-genetics-genomics",
+        "03-diseases-phenotypes",
+        "04-pathways-networks",
+        "05-traditional-medicine",
+        "08-literature-knowledge",
+        "09-microbiome"
+      ],
+      "external_authorities": [
+        {"name": "PubMed", "url": "https://pubmed.ncbi.nlm.nih.gov/"},
+        {"name": "DOI", "url": "https://www.doi.org/"},
+        {"name": "PMC", "url": "https://www.ncbi.nlm.nih.gov/pmc/"}
+      ],
+      "wikidata_property": "P698",
+      "mapping_strategies": [
+        "PMID direct lookup",
+        "DOI resolution to PMID",
+        "PMC to PubMed cross-reference",
+        "Title/author fuzzy matching"
+      ]
+    }
+  },
+  "cross_category_links": [
+    {
+      "field": "gene_symbol",
+      "from_category": "01-genetics-genomics",
+      "to_category": "03-diseases-phenotypes",
+      "link_type": "gene_disease_association",
+      "cardinality": "N:M",
+      "description": "Links genetic variants to associated diseases via gene symbols"
+    },
+    {
+      "field": "gene_symbol",
+      "from_category": "01-genetics-genomics",
+      "to_category": "04-pathways-networks",
+      "link_type": "gene_pathway_membership",
+      "cardinality": "N:M",
+      "description": "Links genes to biological pathways they participate in"
+    },
+    {
+      "field": "gene_symbol",
+      "from_category": "01-genetics-genomics",
+      "to_category": "07-proteins-molecular",
+      "link_type": "gene_protein_encoding",
+      "cardinality": "1:N",
+      "description": "Links genes to their encoded protein products"
+    },
+    {
+      "field": "gene_symbol",
+      "from_category": "03-diseases-phenotypes",
+      "to_category": "04-pathways-networks",
+      "link_type": "disease_pathway_involvement",
+      "cardinality": "N:M",
+      "description": "Links disease-associated genes to affected pathways"
+    },
+    {
+      "field": "gene_symbol",
+      "from_category": "04-pathways-networks",
+      "to_category": "05-traditional-medicine",
+      "link_type": "target_compound_association",
+      "cardinality": "N:M",
+      "description": "Links pathway genes to traditional medicine compound targets"
+    },
+    {
+      "field": "gene_symbol",
+      "from_category": "04-pathways-networks",
+      "to_category": "09-microbiome",
+      "link_type": "microbiome_gene_interaction",
+      "cardinality": "N:M",
+      "description": "Links host genes to microbiome-mediated effects"
+    },
+    {
+      "field": "uniprot_accession",
+      "from_category": "07-proteins-molecular",
+      "to_category": "02-compounds-molecules",
+      "link_type": "drug_target_binding",
+      "cardinality": "N:M",
+      "description": "Links proteins to compounds that bind/interact with them"
+    },
+    {
+      "field": "uniprot_accession",
+      "from_category": "07-proteins-molecular",
+      "to_category": "04-pathways-networks",
+      "link_type": "protein_pathway_function",
+      "cardinality": "N:M",
+      "description": "Links proteins to pathways where they function"
+    },
+    {
+      "field": "uniprot_accession",
+      "from_category": "07-proteins-molecular",
+      "to_category": "05-traditional-medicine",
+      "link_type": "herbal_target_interaction",
+      "cardinality": "N:M",
+      "description": "Links proteins to traditional medicine compound interactions"
+    },
+    {
+      "field": "uniprot_accession",
+      "from_category": "04-pathways-networks",
+      "to_category": "09-microbiome",
+      "link_type": "microbiome_protein_effect",
+      "cardinality": "N:M",
+      "description": "Links proteins affected by microbiome metabolites"
+    },
+    {
+      "field": "pubchem_cid",
+      "from_category": "02-compounds-molecules",
+      "to_category": "05-traditional-medicine",
+      "link_type": "compound_source_identification",
+      "cardinality": "1:N",
+      "description": "Links synthetic compounds to natural product equivalents"
+    },
+    {
+      "field": "pubchem_cid",
+      "from_category": "02-compounds-molecules",
+      "to_category": "06-nutrition-food",
+      "link_type": "food_compound_identity",
+      "cardinality": "1:N",
+      "description": "Links drug compounds to dietary sources"
+    },
+    {
+      "field": "pubchem_cid",
+      "from_category": "05-traditional-medicine",
+      "to_category": "06-nutrition-food",
+      "link_type": "natural_compound_overlap",
+      "cardinality": "N:M",
+      "description": "Links herbal compounds to food-derived compounds"
+    },
+    {
+      "field": "pubchem_cid",
+      "from_category": "02-compounds-molecules",
+      "to_category": "09-microbiome",
+      "link_type": "microbiome_metabolite_identity",
+      "cardinality": "1:N",
+      "description": "Links compounds to microbiome-produced metabolites"
+    },
+    {
+      "field": "pubchem_cid",
+      "from_category": "06-nutrition-food",
+      "to_category": "09-microbiome",
+      "link_type": "diet_microbiome_metabolite",
+      "cardinality": "N:M",
+      "description": "Links dietary compounds to microbiome transformation products"
+    },
+    {
+      "field": "inchi_key",
+      "from_category": "02-compounds-molecules",
+      "to_category": "05-traditional-medicine",
+      "link_type": "structure_based_identity",
+      "cardinality": "1:1",
+      "description": "Exact structural match between databases"
+    },
+    {
+      "field": "inchi_key",
+      "from_category": "02-compounds-molecules",
+      "to_category": "06-nutrition-food",
+      "link_type": "structure_based_identity",
+      "cardinality": "1:1",
+      "description": "Exact structural match for food compounds"
+    },
+    {
+      "field": "inchi_key",
+      "from_category": "05-traditional-medicine",
+      "to_category": "06-nutrition-food",
+      "link_type": "natural_product_overlap",
+      "cardinality": "1:1",
+      "description": "Structural identity between herbal and food compounds"
+    },
+    {
+      "field": "chembl_id",
+      "from_category": "02-compounds-molecules",
+      "to_category": "05-traditional-medicine",
+      "link_type": "bioactivity_data_link",
+      "cardinality": "1:N",
+      "description": "Links ChEMBL bioactivity data to traditional medicine compounds"
+    },
+    {
+      "field": "chembl_id",
+      "from_category": "02-compounds-molecules",
+      "to_category": "08-literature-knowledge",
+      "link_type": "compound_literature_evidence",
+      "cardinality": "1:N",
+      "description": "Links compounds to literature mentions via ChEMBL"
+    },
+    {
+      "field": "drugbank_id",
+      "from_category": "02-compounds-molecules",
+      "to_category": "05-traditional-medicine",
+      "link_type": "drug_natural_product_mapping",
+      "cardinality": "1:N",
+      "description": "Links approved drugs to natural product origins"
+    },
+    {
+      "field": "drugbank_id",
+      "from_category": "02-compounds-molecules",
+      "to_category": "06-nutrition-food",
+      "link_type": "drug_food_interaction",
+      "cardinality": "N:M",
+      "description": "Links drugs to food interaction data"
+    },
+    {
+      "field": "chebi_id",
+      "from_category": "02-compounds-molecules",
+      "to_category": "06-nutrition-food",
+      "link_type": "chemical_ontology_link",
+      "cardinality": "1:1",
+      "description": "Links compounds via ChEBI ontology"
+    },
+    {
+      "field": "chebi_id",
+      "from_category": "06-nutrition-food",
+      "to_category": "09-microbiome",
+      "link_type": "metabolite_ontology_link",
+      "cardinality": "1:1",
+      "description": "Links food/microbiome metabolites via ChEBI"
+    },
+    {
+      "field": "hmdb_id",
+      "from_category": "02-compounds-molecules",
+      "to_category": "06-nutrition-food",
+      "link_type": "metabolome_compound_link",
+      "cardinality": "1:1",
+      "description": "Links compounds in human metabolome"
+    },
+    {
+      "field": "hmdb_id",
+      "from_category": "06-nutrition-food",
+      "to_category": "09-microbiome",
+      "link_type": "diet_metabolome_microbiome",
+      "cardinality": "1:N",
+      "description": "Links dietary metabolites to microbiome effects"
+    },
+    {
+      "field": "hmdb_id",
+      "from_category": "02-compounds-molecules",
+      "to_category": "09-microbiome",
+      "link_type": "metabolite_microbiome_source",
+      "cardinality": "1:N",
+      "description": "Links metabolites to microbiome production"
+    },
+    {
+      "field": "mondo_id",
+      "from_category": "03-diseases-phenotypes",
+      "to_category": "04-pathways-networks",
+      "link_type": "disease_pathway_mechanism",
+      "cardinality": "N:M",
+      "description": "Links diseases to mechanistic pathways"
+    },
+    {
+      "field": "mondo_id",
+      "from_category": "03-diseases-phenotypes",
+      "to_category": "08-literature-knowledge",
+      "link_type": "disease_literature_annotation",
+      "cardinality": "1:N",
+      "description": "Links diseases to literature evidence"
+    },
+    {
+      "field": "mondo_id",
+      "from_category": "03-diseases-phenotypes",
+      "to_category": "09-microbiome",
+      "link_type": "microbiome_disease_association",
+      "cardinality": "N:M",
+      "description": "Links diseases to microbiome dysbiosis patterns"
+    },
+    {
+      "field": "hpo_id",
+      "from_category": "03-diseases-phenotypes",
+      "to_category": "01-genetics-genomics",
+      "link_type": "phenotype_genotype_association",
+      "cardinality": "N:M",
+      "description": "Links phenotypes to causative genetic variants"
+    },
+    {
+      "field": "hpo_id",
+      "from_category": "03-diseases-phenotypes",
+      "to_category": "08-literature-knowledge",
+      "link_type": "phenotype_literature_mention",
+      "cardinality": "1:N",
+      "description": "Links phenotypes to literature descriptions"
+    },
+    {
+      "field": "omim_id",
+      "from_category": "03-diseases-phenotypes",
+      "to_category": "01-genetics-genomics",
+      "link_type": "mendelian_gene_disease",
+      "cardinality": "N:M",
+      "description": "Links Mendelian diseases to causative genes"
+    },
+    {
+      "field": "omim_id",
+      "from_category": "03-diseases-phenotypes",
+      "to_category": "08-literature-knowledge",
+      "link_type": "omim_literature_reference",
+      "cardinality": "1:N",
+      "description": "Links OMIM entries to supporting literature"
+    },
+    {
+      "field": "mesh_id",
+      "from_category": "03-diseases-phenotypes",
+      "to_category": "08-literature-knowledge",
+      "link_type": "mesh_indexing_link",
+      "cardinality": "1:N",
+      "description": "Links diseases to MeSH-indexed literature"
+    },
+    {
+      "field": "mesh_id",
+      "from_category": "03-diseases-phenotypes",
+      "to_category": "05-traditional-medicine",
+      "link_type": "traditional_indication_mapping",
+      "cardinality": "N:M",
+      "description": "Links diseases to traditional medicine indications"
+    },
+    {
+      "field": "mesh_id",
+      "from_category": "03-diseases-phenotypes",
+      "to_category": "09-microbiome",
+      "link_type": "microbiome_condition_link",
+      "cardinality": "N:M",
+      "description": "Links conditions to microbiome research via MeSH"
+    },
+    {
+      "field": "icd10_code",
+      "from_category": "03-diseases-phenotypes",
+      "to_category": "09-microbiome",
+      "link_type": "clinical_microbiome_association",
+      "cardinality": "N:M",
+      "description": "Links clinical diagnoses to microbiome studies"
+    },
+    {
+      "field": "doid",
+      "from_category": "03-diseases-phenotypes",
+      "to_category": "09-microbiome",
+      "link_type": "disease_ontology_microbiome",
+      "cardinality": "N:M",
+      "description": "Links Disease Ontology terms to microbiome associations"
+    },
+    {
+      "field": "pmid",
+      "from_category": "08-literature-knowledge",
+      "to_category": "01-genetics-genomics",
+      "link_type": "variant_evidence_citation",
+      "cardinality": "N:M",
+      "description": "Links literature to genetic variant evidence"
+    },
+    {
+      "field": "pmid",
+      "from_category": "08-literature-knowledge",
+      "to_category": "03-diseases-phenotypes",
+      "link_type": "disease_literature_citation",
+      "cardinality": "N:M",
+      "description": "Links literature to disease descriptions"
+    },
+    {
+      "field": "pmid",
+      "from_category": "08-literature-knowledge",
+      "to_category": "04-pathways-networks",
+      "link_type": "pathway_evidence_citation",
+      "cardinality": "N:M",
+      "description": "Links literature to pathway discoveries"
+    },
+    {
+      "field": "pmid",
+      "from_category": "08-literature-knowledge",
+      "to_category": "05-traditional-medicine",
+      "link_type": "traditional_medicine_evidence",
+      "cardinality": "N:M",
+      "description": "Links literature to traditional medicine research"
+    },
+    {
+      "field": "pmid",
+      "from_category": "08-literature-knowledge",
+      "to_category": "09-microbiome",
+      "link_type": "microbiome_study_citation",
+      "cardinality": "N:M",
+      "description": "Links literature to microbiome studies"
+    },
+    {
+      "field": "doi",
+      "from_category": "08-literature-knowledge",
+      "to_category": "01-genetics-genomics",
+      "link_type": "publication_identifier_link",
+      "cardinality": "1:N",
+      "description": "Links DOIs to genetic data publications"
+    },
+    {
+      "field": "doi",
+      "from_category": "08-literature-knowledge",
+      "to_category": "03-diseases-phenotypes",
+      "link_type": "publication_identifier_link",
+      "cardinality": "1:N",
+      "description": "Links DOIs to disease publications"
+    },
+    {
+      "field": "ncbi_taxonomy_id",
+      "from_category": "09-microbiome",
+      "to_category": "04-pathways-networks",
+      "link_type": "organism_pathway_annotation",
+      "cardinality": "1:N",
+      "description": "Links organisms to their metabolic pathways"
+    },
+    {
+      "field": "ncbi_taxonomy_id",
+      "from_category": "09-microbiome",
+      "to_category": "07-proteins-molecular",
+      "link_type": "organism_proteome_link",
+      "cardinality": "1:N",
+      "description": "Links organisms to their protein sequences"
+    },
+    {
+      "field": "ncbi_taxonomy_id",
+      "from_category": "07-proteins-molecular",
+      "to_category": "04-pathways-networks",
+      "link_type": "species_pathway_conservation",
+      "cardinality": "N:M",
+      "description": "Links species proteins to conserved pathways"
+    },
+    {
+      "field": "kegg_pathway_id",
+      "from_category": "04-pathways-networks",
+      "to_category": "05-traditional-medicine",
+      "link_type": "herbal_pathway_target",
+      "cardinality": "N:M",
+      "description": "Links pathways to traditional medicine targets"
+    },
+    {
+      "field": "kegg_pathway_id",
+      "from_category": "04-pathways-networks",
+      "to_category": "09-microbiome",
+      "link_type": "microbiome_metabolic_pathway",
+      "cardinality": "N:M",
+      "description": "Links microbial metabolic pathways"
+    },
+    {
+      "field": "kegg_compound_id",
+      "from_category": "02-compounds-molecules",
+      "to_category": "04-pathways-networks",
+      "link_type": "compound_pathway_role",
+      "cardinality": "N:M",
+      "description": "Links compounds to pathways where they function"
+    },
+    {
+      "field": "kegg_compound_id",
+      "from_category": "05-traditional-medicine",
+      "to_category": "04-pathways-networks",
+      "link_type": "natural_compound_pathway",
+      "cardinality": "N:M",
+      "description": "Links natural compounds to affected pathways"
+    },
+    {
+      "field": "kegg_compound_id",
+      "from_category": "02-compounds-molecules",
+      "to_category": "09-microbiome",
+      "link_type": "microbial_compound_production",
+      "cardinality": "N:M",
+      "description": "Links compounds to microbial producers"
+    },
+    {
+      "field": "kegg_orthology_id",
+      "from_category": "04-pathways-networks",
+      "to_category": "09-microbiome",
+      "link_type": "ortholog_microbiome_function",
+      "cardinality": "N:M",
+      "description": "Links functional orthologs to microbiome genes"
+    },
+    {
+      "field": "go_term_id",
+      "from_category": "04-pathways-networks",
+      "to_category": "07-proteins-molecular",
+      "link_type": "protein_function_annotation",
+      "cardinality": "N:M",
+      "description": "Links GO terms to annotated proteins"
+    },
+    {
+      "field": "go_term_id",
+      "from_category": "07-proteins-molecular",
+      "to_category": "08-literature-knowledge",
+      "link_type": "go_literature_evidence",
+      "cardinality": "N:M",
+      "description": "Links GO annotations to literature evidence"
+    },
+    {
+      "field": "pdb_id",
+      "from_category": "07-proteins-molecular",
+      "to_category": "02-compounds-molecules",
+      "link_type": "structure_ligand_binding",
+      "cardinality": "N:M",
+      "description": "Links protein structures to bound ligands"
+    },
+    {
+      "field": "pdb_id",
+      "from_category": "07-proteins-molecular",
+      "to_category": "08-literature-knowledge",
+      "link_type": "structure_publication_link",
+      "cardinality": "1:N",
+      "description": "Links structures to structural biology publications"
+    },
+    {
+      "field": "reactome_id",
+      "from_category": "04-pathways-networks",
+      "to_category": "07-proteins-molecular",
+      "link_type": "reactome_protein_participation",
+      "cardinality": "N:M",
+      "description": "Links Reactome pathways to participant proteins"
+    },
+    {
+      "field": "interpro_id",
+      "from_category": "07-proteins-molecular",
+      "to_category": "04-pathways-networks",
+      "link_type": "domain_pathway_association",
+      "cardinality": "N:M",
+      "description": "Links protein domains to pathway functions"
+    },
+    {
+      "field": "entrez_gene_id",
+      "from_category": "01-genetics-genomics",
+      "to_category": "07-proteins-molecular",
+      "link_type": "gene_protein_mapping",
+      "cardinality": "1:N",
+      "description": "Links Entrez genes to encoded proteins"
+    },
+    {
+      "field": "entrez_gene_id",
+      "from_category": "01-genetics-genomics",
+      "to_category": "04-pathways-networks",
+      "link_type": "gene_pathway_annotation",
+      "cardinality": "N:M",
+      "description": "Links Entrez genes to pathway databases"
+    },
+    {
+      "field": "entrez_gene_id",
+      "from_category": "01-genetics-genomics",
+      "to_category": "08-literature-knowledge",
+      "link_type": "gene_literature_reference",
+      "cardinality": "1:N",
+      "description": "Links genes to literature mentions"
+    },
+    {
+      "field": "ensembl_gene_id",
+      "from_category": "01-genetics-genomics",
+      "to_category": "07-proteins-molecular",
+      "link_type": "ensembl_protein_mapping",
+      "cardinality": "1:N",
+      "description": "Links Ensembl genes to protein products"
+    },
+    {
+      "field": "ensembl_gene_id",
+      "from_category": "01-genetics-genomics",
+      "to_category": "04-pathways-networks",
+      "link_type": "ensembl_pathway_link",
+      "cardinality": "N:M",
+      "description": "Links Ensembl genes to pathway annotations"
+    },
+    {
+      "field": "ensembl_gene_id",
+      "from_category": "01-genetics-genomics",
+      "to_category": "03-diseases-phenotypes",
+      "link_type": "ensembl_disease_variant",
+      "cardinality": "N:M",
+      "description": "Links Ensembl genes to disease associations"
+    },
+    {
+      "field": "hgnc_id",
+      "from_category": "01-genetics-genomics",
+      "to_category": "07-proteins-molecular",
+      "link_type": "hgnc_protein_nomenclature",
+      "cardinality": "1:N",
+      "description": "Links HGNC gene IDs to protein naming"
+    },
+    {
+      "field": "refseq_id",
+      "from_category": "01-genetics-genomics",
+      "to_category": "07-proteins-molecular",
+      "link_type": "refseq_transcript_protein",
+      "cardinality": "1:N",
+      "description": "Links RefSeq transcripts to proteins"
+    },
+    {
+      "field": "variant_id",
+      "from_category": "01-genetics-genomics",
+      "to_category": "03-diseases-phenotypes",
+      "link_type": "variant_disease_association",
+      "cardinality": "N:M",
+      "description": "Links genetic variants to disease phenotypes"
+    },
+    {
+      "field": "clinvar_id",
+      "from_category": "01-genetics-genomics",
+      "to_category": "03-diseases-phenotypes",
+      "link_type": "clinvar_disease_interpretation",
+      "cardinality": "1:N",
+      "description": "Links ClinVar variants to disease interpretations"
+    },
+    {
+      "field": "clinical_significance",
+      "from_category": "01-genetics-genomics",
+      "to_category": "03-diseases-phenotypes",
+      "link_type": "pathogenicity_classification",
+      "cardinality": "N:M",
+      "description": "Links variants to disease via pathogenicity"
+    },
+    {
+      "field": "uberon_id",
+      "from_category": "03-diseases-phenotypes",
+      "to_category": "09-microbiome",
+      "link_type": "anatomy_microbiome_site",
+      "cardinality": "N:M",
+      "description": "Links anatomical sites to microbiome niches"
+    },
+    {
+      "field": "molecular_weight",
+      "from_category": "02-compounds-molecules",
+      "to_category": "05-traditional-medicine",
+      "link_type": "compound_property_match",
+      "cardinality": "N:M",
+      "description": "Links compounds by molecular weight for identification"
+    },
+    {
+      "field": "molecular_weight",
+      "from_category": "02-compounds-molecules",
+      "to_category": "06-nutrition-food",
+      "link_type": "compound_property_match",
+      "cardinality": "N:M",
+      "description": "Links compounds by molecular weight for identification"
+    },
+    {
+      "field": "molecular_formula",
+      "from_category": "02-compounds-molecules",
+      "to_category": "05-traditional-medicine",
+      "link_type": "formula_based_identity",
+      "cardinality": "N:M",
+      "description": "Links compounds by molecular formula"
+    },
+    {
+      "field": "molecular_formula",
+      "from_category": "02-compounds-molecules",
+      "to_category": "06-nutrition-food",
+      "link_type": "formula_based_identity",
+      "cardinality": "N:M",
+      "description": "Links compounds by molecular formula"
+    },
+    {
+      "field": "canonical_smiles",
+      "from_category": "02-compounds-molecules",
+      "to_category": "05-traditional-medicine",
+      "link_type": "structure_matching",
+      "cardinality": "1:1",
+      "description": "Exact structural match via canonical SMILES"
+    },
+    {
+      "field": "canonical_smiles",
+      "from_category": "02-compounds-molecules",
+      "to_category": "06-nutrition-food",
+      "link_type": "structure_matching",
+      "cardinality": "1:1",
+      "description": "Exact structural match via canonical SMILES"
+    },
+    {
+      "field": "canonical_smiles",
+      "from_category": "05-traditional-medicine",
+      "to_category": "06-nutrition-food",
+      "link_type": "natural_compound_identity",
+      "cardinality": "1:1",
+      "description": "Structural identity between natural product databases"
+    },
+    {
+      "field": "canonical_smiles",
+      "from_category": "02-compounds-molecules",
+      "to_category": "09-microbiome",
+      "link_type": "metabolite_structure_match",
+      "cardinality": "1:N",
+      "description": "Links drug compounds to microbiome metabolites by structure"
+    },
+    {
+      "field": "cas_number",
+      "from_category": "02-compounds-molecules",
+      "to_category": "05-traditional-medicine",
+      "link_type": "chemical_registry_link",
+      "cardinality": "1:1",
+      "description": "Links via CAS registry number"
+    },
+    {
+      "field": "cas_number",
+      "from_category": "02-compounds-molecules",
+      "to_category": "06-nutrition-food",
+      "link_type": "chemical_registry_link",
+      "cardinality": "1:1",
+      "description": "Links via CAS registry number"
+    },
+    {
+      "field": "organism",
+      "from_category": "07-proteins-molecular",
+      "to_category": "04-pathways-networks",
+      "link_type": "species_pathway_context",
+      "cardinality": "1:N",
+      "description": "Links proteins to species-specific pathways"
+    },
+    {
+      "field": "organism",
+      "from_category": "07-proteins-molecular",
+      "to_category": "09-microbiome",
+      "link_type": "microbial_protein_source",
+      "cardinality": "1:N",
+      "description": "Links proteins to source microorganisms"
+    },
+    {
+      "field": "confidence_score",
+      "from_category": "04-pathways-networks",
+      "to_category": "02-compounds-molecules",
+      "link_type": "interaction_quality_filter",
+      "cardinality": "N:M",
+      "description": "Quality-filtered protein-compound interactions"
+    }
+  ],
+  "integration_guidelines": {
+    "identifier_resolution_priority": [
+      "Use InChI Key for compound identity (structure-based, unambiguous)",
+      "Use gene_symbol with HGNC validation for gene identity",
+      "Use UniProt accession for protein identity",
+      "Use MONDO ID for disease unification (maps to OMIM, Orphanet, etc.)",
+      "Use PMID for literature references (most comprehensive coverage)"
+    ],
+    "cross_reference_strategies": [
+      {
+        "name": "Structure-based compound linking",
+        "method": "Match InChI Keys across compound databases for exact structural identity",
+        "fallback": "Use canonical SMILES with standardization, then PubChem CID"
+      },
+      {
+        "name": "Gene-centric integration",
+        "method": "Use HGNC symbol as primary, cross-reference via Entrez/Ensembl",
+        "fallback": "Alias resolution through HGNC multi-symbol search"
+      },
+      {
+        "name": "Disease ontology unification",
+        "method": "Use MONDO as integration layer, map from OMIM/HPO/Orphanet",
+        "fallback": "MeSH or UMLS CUI for broader coverage"
+      },
+      {
+        "name": "Literature evidence linking",
+        "method": "Use PMID as primary key, resolve DOIs via CrossRef",
+        "fallback": "Title/author fuzzy matching for unlisted publications"
+      }
+    ],
+    "data_quality_recommendations": [
+      "Always validate identifiers against primary authorities",
+      "Use confidence scores to filter low-quality associations",
+      "Track provenance through source database citations",
+      "Apply cardinality constraints during data integration",
+      "Implement version tracking for ontology terms"
+    ],
+    "api_endpoints": {
+      "gene_resolution": "https://rest.genenames.org/search/",
+      "protein_resolution": "https://rest.uniprot.org/uniprotkb/",
+      "compound_resolution": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/",
+      "disease_resolution": "https://api.monarchinitiative.org/api/",
+      "literature_resolution": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/"
+    }
+  }
+}

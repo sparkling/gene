@@ -1,0 +1,236 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gene.example.org/schemas/2.4-food-compounds-nutrients.json",
+  "title": "Food Compounds and Nutrients Unified Schema",
+  "description": "Unified schema for food compound data from Phenol-Explorer, PhytoHub, and USDA FoodData",
+  "type": "object",
+  "properties": {
+    "compound_id": {
+      "type": ["string", "integer"],
+      "description": "Primary identifier for compound",
+      "sources": ["Phenol-Explorer", "PhytoHub", "USDA FoodData"],
+      "examples": ["1", "PHUB000001", "167512"]
+    },
+    "name": {
+      "type": "string",
+      "description": "Compound or nutrient name",
+      "sources": ["Phenol-Explorer", "PhytoHub", "USDA FoodData"],
+      "examples": ["Quercetin", "Vitamin C"]
+    },
+    "smiles": {
+      "type": ["string", "null"],
+      "description": "SMILES structure notation",
+      "sources": ["Phenol-Explorer", "PhytoHub"]
+    },
+    "inchi_key": {
+      "type": ["string", "null"],
+      "description": "InChI Key identifier",
+      "sources": ["PhytoHub"]
+    },
+    "molecular_weight": {
+      "type": ["number", "null"],
+      "description": "Molecular weight in Daltons",
+      "sources": ["Phenol-Explorer", "PhytoHub"]
+    },
+    "food_sources": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "food_name": {"type": "string"},
+          "food_id": {"type": "string"},
+          "content_value": {"type": "number"},
+          "content_unit": {"type": "string"}
+        }
+      },
+      "description": "Foods containing the compound",
+      "sources": ["Phenol-Explorer", "PhytoHub", "USDA FoodData"]
+    },
+    "content_value": {
+      "type": ["number", "null"],
+      "description": "Amount in food",
+      "sources": ["Phenol-Explorer", "PhytoHub", "USDA FoodData"]
+    },
+    "content_unit": {
+      "type": ["string", "null"],
+      "description": "Unit of measurement (mg/100g, mg/100ml, etc.)",
+      "sources": ["Phenol-Explorer", "PhytoHub", "USDA FoodData"]
+    },
+    "compound_class": {
+      "type": ["string", "null"],
+      "description": "Polyphenol class (Flavonoids, Phenolic acids, etc.)",
+      "sources": ["Phenol-Explorer"]
+    },
+    "subclass": {
+      "type": ["string", "null"],
+      "description": "Polyphenol subclass",
+      "sources": ["Phenol-Explorer"]
+    },
+    "pubchem_cid": {
+      "type": ["integer", "null"],
+      "description": "PubChem compound ID",
+      "sources": ["Phenol-Explorer"]
+    },
+    "cas_number": {
+      "type": ["string", "null"],
+      "description": "CAS registry number",
+      "sources": ["Phenol-Explorer"]
+    },
+    "metabolites": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {"type": "string"},
+          "type": {"type": "string"},
+          "phase": {"type": "string"}
+        }
+      },
+      "description": "Human metabolites (Phase I/II, microbial)",
+      "sources": ["Phenol-Explorer"]
+    },
+    "pharmacokinetics": {
+      "type": ["object", "null"],
+      "properties": {
+        "cmax": {"type": "number"},
+        "tmax": {"type": "number"},
+        "auc": {"type": "number"}
+      },
+      "description": "Cmax, Tmax, AUC values",
+      "sources": ["Phenol-Explorer"]
+    },
+    "phytohub_id": {
+      "type": ["string", "null"],
+      "description": "PhytoHub identifier (PHUB prefix)",
+      "sources": ["PhytoHub"],
+      "examples": ["PHUB000001"]
+    },
+    "compound_type": {
+      "type": ["string", "null"],
+      "description": "Compound type (parent, phase1, phase2, microbial)",
+      "sources": ["PhytoHub"]
+    },
+    "parent_id": {
+      "type": ["string", "null"],
+      "description": "Parent compound for metabolites",
+      "sources": ["PhytoHub"]
+    },
+    "transformation": {
+      "type": ["string", "null"],
+      "description": "Metabolic transformation type",
+      "sources": ["PhytoHub"]
+    },
+    "ms_spectra": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "mz": {"type": "number"},
+          "intensity": {"type": "number"}
+        }
+      },
+      "description": "MS/MS reference spectra",
+      "sources": ["PhytoHub"]
+    },
+    "external_ids": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "database": {"type": "string"},
+          "id": {"type": "string"}
+        }
+      },
+      "description": "Cross-references to PubChem, HMDB, ChEBI",
+      "sources": ["PhytoHub"]
+    },
+    "fdc_id": {
+      "type": ["integer", "null"],
+      "description": "FoodData Central ID",
+      "sources": ["USDA FoodData"]
+    },
+    "data_type": {
+      "type": ["string", "null"],
+      "description": "Data type (Foundation, SR Legacy, Branded, FNDDS)",
+      "sources": ["USDA FoodData"]
+    },
+    "nutrient_id": {
+      "type": ["integer", "null"],
+      "description": "Nutrient identifier",
+      "sources": ["USDA FoodData"]
+    },
+    "nutrient_nbr": {
+      "type": ["string", "null"],
+      "description": "USDA nutrient number",
+      "sources": ["USDA FoodData"]
+    },
+    "food_portions": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "measure_unit": {"type": "string"},
+          "gram_weight": {"type": "number"},
+          "amount": {"type": "number"}
+        }
+      },
+      "description": "Serving sizes with gram weights",
+      "sources": ["USDA FoodData"]
+    },
+    "gtin_upc": {
+      "type": ["string", "null"],
+      "description": "Product barcode (branded foods)",
+      "sources": ["USDA FoodData"]
+    },
+    "_source": {
+      "type": "object",
+      "description": "Metadata about the data source",
+      "properties": {
+        "database": {"type": "string"},
+        "version": {"type": "string"},
+        "access_date": {"type": "string", "format": "date"},
+        "original_id": {"type": "string"}
+      }
+    }
+  },
+  "required": ["name"],
+  "field_mappings": {
+    "Phenol_Explorer": {
+      "compound_id": "compound_id",
+      "name": "name",
+      "smiles": "smiles",
+      "molecular_weight": "molecular_weight",
+      "class": "compound_class",
+      "subclass": "subclass",
+      "pubchem_cid": "pubchem_cid",
+      "cas_number": "cas_number",
+      "metabolites": "metabolites",
+      "pharmacokinetics": "pharmacokinetics",
+      "food_content": "food_sources"
+    },
+    "PhytoHub": {
+      "phytohub_id": "phytohub_id",
+      "name": "name",
+      "smiles": "smiles",
+      "inchi_key": "inchi_key",
+      "molecular_weight": "molecular_weight",
+      "compound_type": "compound_type",
+      "parent_id": "parent_id",
+      "transformation": "transformation",
+      "ms_spectra": "ms_spectra",
+      "external_ids": "external_ids",
+      "food_content": "food_sources"
+    },
+    "USDA_FoodData": {
+      "fdcId": "fdc_id",
+      "description": "name",
+      "dataType": "data_type",
+      "nutrient_id": "nutrient_id",
+      "nutrientNumber": "nutrient_nbr",
+      "foodPortions": "food_portions",
+      "gtinUpc": "gtin_upc",
+      "amount": "content_value",
+      "unitName": "content_unit"
+    }
+  }
+}

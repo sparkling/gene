@@ -1,0 +1,162 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gene.taxonomy/schemas/6.1-food-composition",
+  "title": "Food Composition Unified Schema",
+  "description": "Unified schema for food composition data integrating Open Food Facts and FooDB sources",
+  "type": "object",
+  "properties": {
+    "food_id": {
+      "type": "string",
+      "description": "Primary identifier for a food item",
+      "sources": ["Open Food Facts (code/barcode)", "FooDB (food_id/public_id)"],
+      "example": "3017620425035"
+    },
+    "food_name": {
+      "type": "string",
+      "description": "Common name of the food product",
+      "sources": ["Open Food Facts (product_name)", "FooDB (name)"],
+      "example": "Nutella hazelnut spread"
+    },
+    "scientific_name": {
+      "type": ["string", "null"],
+      "description": "Scientific/Latin name of the food source organism",
+      "sources": ["FooDB (name_scientific)"],
+      "example": "Malus domestica"
+    },
+    "food_category": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Category classification of the food",
+      "sources": ["Open Food Facts (categories_tags)", "FooDB (food_group)"],
+      "example": ["en:breakfast-cereals", "Herbs and Spices"]
+    },
+    "brand": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Brand name(s) of the product",
+      "sources": ["Open Food Facts (brands)"],
+      "example": ["Ferrero"]
+    },
+    "nutrient_values": {
+      "type": ["object", "null"],
+      "description": "Nutritional content per 100g",
+      "sources": ["Open Food Facts", "FooDB (via contents table)"],
+      "properties": {
+        "energy_kcal": {"type": "number"},
+        "protein_g": {"type": "number"},
+        "fat_g": {"type": "number"},
+        "carbs_g": {"type": "number"},
+        "fiber_g": {"type": "number"},
+        "sugar_g": {"type": "number"},
+        "sodium_mg": {"type": "number"}
+      },
+      "example": {"energy_kcal": 539, "protein_g": 6.3, "fat_g": 30.7, "carbs_g": 57.5}
+    },
+    "compound_content": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "compound_name": {"type": "string"},
+          "compound_id": {"type": "string"},
+          "content": {"type": "number"},
+          "unit": {"type": "string"}
+        }
+      },
+      "description": "Chemical compound content in the food",
+      "sources": ["FooDB (contents table with source_type='Compound')"],
+      "example": [{"compound_name": "Quercetin", "compound_id": "FDB000001", "content": 4.01, "unit": "mg/100g"}]
+    },
+    "nutriscore_grade": {
+      "type": ["string", "null"],
+      "description": "Nutri-Score nutritional grade from A (best) to E (worst)",
+      "sources": ["Open Food Facts"],
+      "enum": ["a", "b", "c", "d", "e", null],
+      "example": "b"
+    },
+    "nova_group": {
+      "type": ["integer", "null"],
+      "description": "NOVA food processing classification (1-4, 4=ultra-processed)",
+      "sources": ["Open Food Facts"],
+      "minimum": 1,
+      "maximum": 4,
+      "example": 4
+    },
+    "ecoscore_grade": {
+      "type": ["string", "null"],
+      "description": "Environmental impact grade from A (best) to E (worst)",
+      "sources": ["Open Food Facts"],
+      "enum": ["a", "b", "c", "d", "e", null],
+      "example": "c"
+    },
+    "quantity": {
+      "type": ["string", "null"],
+      "description": "Package quantity with unit",
+      "sources": ["Open Food Facts"],
+      "example": "400 g"
+    },
+    "moldb_smiles": {
+      "type": ["string", "null"],
+      "description": "SMILES notation representing molecular structure",
+      "sources": ["FooDB"],
+      "example": "CC(=O)Oc1ccccc1C(=O)O"
+    },
+    "moldb_inchikey": {
+      "type": ["string", "null"],
+      "description": "InChI key - unique chemical structure identifier",
+      "sources": ["FooDB"],
+      "example": "BSYNRYMUTXBXSQ-UHFFFAOYSA-N"
+    },
+    "cas_number": {
+      "type": ["string", "null"],
+      "description": "Chemical Abstracts Service registry number",
+      "sources": ["FooDB"],
+      "example": "7084-24-4"
+    },
+    "itis_id": {
+      "type": ["integer", "null"],
+      "description": "Integrated Taxonomic Information System ID for species",
+      "sources": ["FooDB"],
+      "example": 18098
+    },
+    "_source": {
+      "type": "object",
+      "description": "Metadata about the data source",
+      "properties": {
+        "primary_source": {"type": "string"},
+        "source_id": {"type": "string"},
+        "extraction_date": {"type": "string", "format": "date"},
+        "source_version": {"type": "string"}
+      }
+    }
+  },
+  "required": ["food_id", "food_name"],
+  "field_mappings": {
+    "Open Food Facts": {
+      "code": "food_id",
+      "barcode": "food_id",
+      "product_name": "food_name",
+      "categories_tags": "food_category",
+      "brands": "brand",
+      "nutriscore_grade": "nutriscore_grade",
+      "nova_group": "nova_group",
+      "ecoscore_grade": "ecoscore_grade",
+      "quantity": "quantity",
+      "nutriments": "nutrient_values"
+    },
+    "FooDB": {
+      "food_id": "food_id",
+      "public_id": "food_id",
+      "name": "food_name",
+      "name_scientific": "scientific_name",
+      "food_group": "food_category",
+      "compound_id": "compound_content[].compound_id",
+      "moldb_smiles": "moldb_smiles",
+      "moldb_inchikey": "moldb_inchikey",
+      "cas_number": "cas_number",
+      "itis_id": "itis_id",
+      "orig_content": "compound_content[].content",
+      "orig_unit": "compound_content[].unit"
+    }
+  }
+}

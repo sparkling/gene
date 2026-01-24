@@ -1,0 +1,333 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gene.taxonomy/schemas/6.4-metabolomics",
+  "title": "Metabolomics Unified Schema",
+  "description": "Unified schema for metabolomics data integrating Exposome-Explorer and HMDB sources",
+  "type": "object",
+  "properties": {
+    "metabolite_id": {
+      "type": "string",
+      "description": "Unique identifier for the metabolite",
+      "sources": ["Exposome-Explorer (biomarker_id)", "HMDB (accession)"],
+      "example": "HMDB0000001"
+    },
+    "metabolite_name": {
+      "type": "string",
+      "description": "Name of the metabolite or biomarker",
+      "sources": ["Exposome-Explorer (biomarker_name)", "HMDB (name)"],
+      "example": "1-Methylhistidine"
+    },
+    "pubchem_cid": {
+      "type": ["integer", "null"],
+      "description": "PubChem compound identifier",
+      "sources": ["Exposome-Explorer", "HMDB"],
+      "example": 92105
+    },
+    "hmdb_id": {
+      "type": ["string", "null"],
+      "description": "Human Metabolome Database identifier",
+      "sources": ["Exposome-Explorer (hmdb_id)", "HMDB (accession)"],
+      "example": "HMDB0000001"
+    },
+    "chebi_id": {
+      "type": ["string", "null"],
+      "description": "ChEBI chemical entities identifier",
+      "sources": ["Exposome-Explorer", "HMDB"],
+      "example": "CHEBI:16243"
+    },
+    "cas_number": {
+      "type": ["string", "null"],
+      "description": "Chemical Abstracts Service registry number",
+      "sources": ["Exposome-Explorer", "HMDB (cas_registry_number)"],
+      "example": "332-80-9"
+    },
+    "molecular_formula": {
+      "type": ["string", "null"],
+      "description": "Chemical formula of the metabolite",
+      "sources": ["Exposome-Explorer", "HMDB (chemical_formula)"],
+      "example": "C7H11N3O2"
+    },
+    "smiles": {
+      "type": ["string", "null"],
+      "description": "SMILES notation for molecular structure",
+      "sources": ["HMDB (smiles)"],
+      "example": "CN1C=NC(CC(N)C(O)=O)=C1"
+    },
+    "inchi": {
+      "type": ["string", "null"],
+      "description": "International Chemical Identifier",
+      "sources": ["HMDB (inchi)"],
+      "example": "InChI=1S/C7H11N3O2/c1-10-4-9-5..."
+    },
+    "inchikey": {
+      "type": ["string", "null"],
+      "description": "Hashed InChI key for structure lookup",
+      "sources": ["HMDB (inchikey)"],
+      "example": "BRMWTNUJHUMWMS-LURJTMIESA-N"
+    },
+    "iupac_name": {
+      "type": ["string", "null"],
+      "description": "IUPAC systematic name",
+      "sources": ["HMDB"],
+      "example": "(2S)-2-amino-3-(1-methyl-1H-imidazol-4-yl)propanoic acid"
+    },
+    "average_molecular_weight": {
+      "type": ["number", "null"],
+      "description": "Average molecular weight in g/mol",
+      "sources": ["HMDB"],
+      "example": 169.181
+    },
+    "monoisotopic_molecular_weight": {
+      "type": ["number", "null"],
+      "description": "Monoisotopic mass for MS identification",
+      "sources": ["HMDB"],
+      "example": 169.085126611
+    },
+    "specimen_types": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Biological sample types where metabolite is measured",
+      "sources": ["Exposome-Explorer", "HMDB (biofluid)"],
+      "example": ["Blood", "Urine", "CSF"]
+    },
+    "concentrations": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "specimen_type": {"type": "string"},
+          "value": {"type": "number"},
+          "unit": {"type": "string"},
+          "condition": {"type": "string"},
+          "age": {"type": "string"},
+          "sex": {"type": "string"},
+          "subject_count": {"type": "integer"}
+        }
+      },
+      "description": "Measured concentrations in biological samples",
+      "sources": ["Exposome-Explorer (mean_concentration)", "HMDB (concentration_value)"],
+      "example": [{"specimen_type": "Blood", "value": 5.2, "unit": "uM", "condition": "Normal"}]
+    },
+    "biofluid_locations": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Biofluids where metabolite is found",
+      "sources": ["HMDB"],
+      "example": ["Blood", "Urine", "CSF"]
+    },
+    "cellular_locations": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Cellular compartments where metabolite is present",
+      "sources": ["HMDB"],
+      "example": ["Cytoplasm", "Mitochondria"]
+    },
+    "tissue_locations": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Tissues where metabolite is found",
+      "sources": ["HMDB"],
+      "example": ["Muscle", "Liver"]
+    },
+    "state": {
+      "type": ["string", "null"],
+      "description": "Physical state of the compound",
+      "sources": ["HMDB"],
+      "example": "Solid"
+    },
+    "taxonomy": {
+      "type": ["object", "null"],
+      "description": "Chemical classification taxonomy",
+      "sources": ["HMDB"],
+      "properties": {
+        "kingdom": {"type": "string"},
+        "superclass": {"type": "string"},
+        "class": {"type": "string"},
+        "subclass": {"type": "string"}
+      },
+      "example": {"kingdom": "Organic compounds", "superclass": "Organic acids"}
+    },
+    "disease_associations": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "disease_name": {"type": "string"},
+          "omim_id": {"type": "string"},
+          "concentration_change": {"type": "string"}
+        }
+      },
+      "description": "Diseases associated with metabolite levels",
+      "sources": ["HMDB"],
+      "example": [{"disease_name": "Histidinemia", "omim_id": "235800", "concentration_change": "Elevated"}]
+    },
+    "pathways": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "pathway_name": {"type": "string"},
+          "kegg_id": {"type": "string"},
+          "smpdb_id": {"type": "string"}
+        }
+      },
+      "description": "Metabolic pathways involving the metabolite",
+      "sources": ["HMDB"],
+      "example": [{"pathway_name": "Histidine metabolism", "kegg_id": "C01152", "smpdb_id": "SMP00001"}]
+    },
+    "exposures": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "exposure_id": {"type": "integer"},
+          "exposure_name": {"type": "string"},
+          "exposure_category": {"type": "string"},
+          "exposure_subcategory": {"type": "string"},
+          "association_type": {"type": "string"},
+          "effect_size": {"type": "number"},
+          "effect_unit": {"type": "string"},
+          "p_value": {"type": "number"},
+          "confidence_interval": {"type": "string"},
+          "sample_size": {"type": "integer"},
+          "population": {"type": "string"},
+          "study_type": {"type": "string"}
+        }
+      },
+      "description": "Dietary or environmental exposure associations",
+      "sources": ["Exposome-Explorer"],
+      "example": [{"exposure_name": "Tea consumption", "exposure_category": "Dietary", "effect_size": 0.42, "p_value": 0.00001}]
+    },
+    "biomarker_type": {
+      "type": ["string", "null"],
+      "description": "Type of biomarker (metabolite, nutrient, etc.)",
+      "sources": ["Exposome-Explorer"],
+      "example": "Phenolic acid metabolite"
+    },
+    "drugbank_id": {
+      "type": ["string", "null"],
+      "description": "DrugBank database identifier",
+      "sources": ["HMDB"],
+      "example": "DB00118"
+    },
+    "foodb_id": {
+      "type": ["string", "null"],
+      "description": "FooDB database identifier for food connection",
+      "sources": ["HMDB"],
+      "example": "FDB000001"
+    },
+    "ms_spectra": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "spectrum_type": {"type": "string"},
+          "ionization_mode": {"type": "string"},
+          "peaks": {"type": "array"}
+        }
+      },
+      "description": "Mass spectrometry spectral data",
+      "sources": ["HMDB"],
+      "example": [{"spectrum_type": "MS/MS", "ionization_mode": "Positive"}]
+    },
+    "nmr_spectra": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "nucleus": {"type": "string"},
+          "frequency": {"type": "string"}
+        }
+      },
+      "description": "NMR spectral data for identification",
+      "sources": ["HMDB"],
+      "example": [{"nucleus": "1H", "frequency": "400 MHz"}]
+    },
+    "pubmed_id": {
+      "type": ["integer", "null"],
+      "description": "PubMed reference ID for source data",
+      "sources": ["Exposome-Explorer", "HMDB"],
+      "example": 12345678
+    },
+    "version": {
+      "type": ["integer", "null"],
+      "description": "Database version for the metabolite record",
+      "sources": ["HMDB"],
+      "example": 5
+    },
+    "_source": {
+      "type": "object",
+      "description": "Metadata about the data source",
+      "properties": {
+        "primary_source": {"type": "string"},
+        "source_id": {"type": "string"},
+        "extraction_date": {"type": "string", "format": "date"},
+        "source_version": {"type": "string"}
+      }
+    }
+  },
+  "required": ["metabolite_id", "metabolite_name"],
+  "field_mappings": {
+    "Exposome-Explorer": {
+      "biomarker_id": "metabolite_id",
+      "biomarker_name": "metabolite_name",
+      "biomarker_type": "biomarker_type",
+      "hmdb_id": "hmdb_id",
+      "pubchem_cid": "pubchem_cid",
+      "chebi_id": "chebi_id",
+      "cas_number": "cas_number",
+      "molecular_formula": "molecular_formula",
+      "specimen_type": "specimen_types",
+      "mean_concentration": "concentrations[].value",
+      "concentration_unit": "concentrations[].unit",
+      "exposure_id": "exposures[].exposure_id",
+      "exposure_name": "exposures[].exposure_name",
+      "exposure_category": "exposures[].exposure_category",
+      "exposure_subcategory": "exposures[].exposure_subcategory",
+      "association_type": "exposures[].association_type",
+      "effect_size": "exposures[].effect_size",
+      "effect_unit": "exposures[].effect_unit",
+      "p_value": "exposures[].p_value",
+      "confidence_interval": "exposures[].confidence_interval",
+      "sample_size": "exposures[].sample_size",
+      "population": "exposures[].population",
+      "study_type": "exposures[].study_type"
+    },
+    "HMDB": {
+      "accession": "metabolite_id",
+      "name": "metabolite_name",
+      "version": "version",
+      "iupac_name": "iupac_name",
+      "chemical_formula": "molecular_formula",
+      "average_molecular_weight": "average_molecular_weight",
+      "monoisotopic_molecular_weight": "monoisotopic_molecular_weight",
+      "smiles": "smiles",
+      "inchi": "inchi",
+      "inchikey": "inchikey",
+      "cas_registry_number": "cas_number",
+      "state": "state",
+      "biofluid": "specimen_types",
+      "biofluid_locations": "biofluid_locations",
+      "cellular_locations": "cellular_locations",
+      "tissue_locations": "tissue_locations",
+      "concentration_value": "concentrations[].value",
+      "concentration_units": "concentrations[].unit",
+      "condition": "concentrations[].condition",
+      "age": "concentrations[].age",
+      "sex": "concentrations[].sex",
+      "subject_count": "concentrations[].subject_count",
+      "disease_name": "disease_associations[].disease_name",
+      "omim_id": "disease_associations[].omim_id",
+      "concentration_change": "disease_associations[].concentration_change",
+      "pathway_name": "pathways[].pathway_name",
+      "kegg_id": "pathways[].kegg_id",
+      "smpdb_id": "pathways[].smpdb_id",
+      "drugbank_id": "drugbank_id",
+      "foodb_id": "foodb_id",
+      "taxonomy": "taxonomy",
+      "ms_spectrum": "ms_spectra",
+      "nmr_spectrum": "nmr_spectra",
+      "pubmed_id": "pubmed_id"
+    }
+  }
+}

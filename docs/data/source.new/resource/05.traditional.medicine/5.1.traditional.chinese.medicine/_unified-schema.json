@@ -1,0 +1,656 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gene.example.org/schemas/5.1-traditional-chinese-medicine.json",
+  "title": "Traditional Chinese Medicine Unified Schema",
+  "description": "Unified schema for TCM data from HERB, ETCM, TCMBank, TCMSID, SymMap, and BATMAN-TCM",
+  "type": "object",
+  "properties": {
+    "herb_id": {
+      "type": "string",
+      "description": "Unique identifier for a TCM herb within the database",
+      "sources": ["HERB", "ETCM", "TCMBank", "TCMSID", "SymMap", "BATMAN-TCM"],
+      "examples": ["HERB001234", "H001", "SMHB00001"]
+    },
+    "herb_name_chinese": {
+      "type": ["string", "null"],
+      "description": "Chinese character name of the herb",
+      "sources": ["HERB", "ETCM", "TCMBank", "TCMSID", "SymMap", "BATMAN-TCM"]
+    },
+    "herb_name_pinyin": {
+      "type": ["string", "null"],
+      "description": "Romanized pronunciation of the herb name using Pinyin system",
+      "sources": ["HERB", "ETCM", "TCMBank", "TCMSID", "SymMap", "BATMAN-TCM"],
+      "examples": ["Huang Qi", "Jiang Huang", "Gan Cao"]
+    },
+    "herb_name_english": {
+      "type": ["string", "null"],
+      "description": "English common name of the herb",
+      "sources": ["HERB", "ETCM", "TCMBank", "TCMSID", "SymMap", "BATMAN-TCM"]
+    },
+    "herb_name_latin": {
+      "type": ["string", "null"],
+      "description": "Botanical Latin binomial name",
+      "sources": ["HERB", "ETCM", "TCMBank", "TCMSID", "SymMap", "BATMAN-TCM"],
+      "examples": ["Astragalus membranaceus", "Panax ginseng"]
+    },
+    "tcm_nature": {
+      "type": ["string", "null"],
+      "enum": ["cold", "cool", "neutral", "warm", "hot", null],
+      "description": "TCM thermal nature classification (Xing)",
+      "sources": ["HERB", "ETCM", "SymMap", "BATMAN-TCM"]
+    },
+    "tcm_flavor": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "TCM flavor classification (Wei)",
+      "sources": ["HERB", "ETCM", "SymMap", "BATMAN-TCM"]
+    },
+    "meridian_tropism": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "TCM organ/meridian affinity (Gui Jing)",
+      "sources": ["HERB", "ETCM", "SymMap", "BATMAN-TCM"]
+    },
+    "compound_id": {
+      "type": ["string", "null"],
+      "description": "Unique identifier for a chemical compound/ingredient",
+      "sources": ["HERB", "ETCM", "TCMBank", "TCMSID", "SymMap", "BATMAN-TCM"],
+      "examples": ["C001", "TCM001234", "MOL000001", "SMCP00001"]
+    },
+    "compound_name": {
+      "type": ["string", "null"],
+      "description": "Chemical compound name",
+      "sources": ["HERB", "ETCM", "TCMBank", "TCMSID", "SymMap", "BATMAN-TCM"]
+    },
+    "pubchem_cid": {
+      "type": ["integer", "null"],
+      "description": "PubChem Compound Identifier for cross-referencing",
+      "sources": ["HERB", "ETCM", "TCMBank", "TCMSID", "SymMap", "BATMAN-TCM"],
+      "examples": [5280343, 969516]
+    },
+    "smiles": {
+      "type": ["string", "null"],
+      "description": "Simplified Molecular Input Line Entry System notation",
+      "sources": ["HERB", "ETCM", "TCMBank", "TCMSID", "SymMap", "BATMAN-TCM"]
+    },
+    "inchi_key": {
+      "type": ["string", "null"],
+      "description": "International Chemical Identifier key (27 characters)",
+      "sources": ["HERB", "TCMBank", "BATMAN-TCM"]
+    },
+    "molecular_formula": {
+      "type": ["string", "null"],
+      "description": "Chemical formula showing element counts",
+      "sources": ["HERB", "ETCM", "TCMBank", "TCMSID", "SymMap", "BATMAN-TCM"],
+      "examples": ["C21H20O6", "C28H38O6"]
+    },
+    "molecular_weight": {
+      "type": ["number", "null"],
+      "description": "Molecular weight in Daltons",
+      "sources": ["HERB", "ETCM", "TCMBank", "TCMSID", "SymMap", "BATMAN-TCM"]
+    },
+    "target_id": {
+      "type": ["string", "null"],
+      "description": "Identifier for target protein/gene",
+      "sources": ["HERB", "ETCM", "TCMBank", "TCMSID", "SymMap", "BATMAN-TCM"]
+    },
+    "gene_symbol": {
+      "type": ["string", "null"],
+      "description": "HGNC-approved gene symbol",
+      "sources": ["HERB", "ETCM", "TCMBank", "TCMSID", "SymMap", "BATMAN-TCM"],
+      "examples": ["TP53", "EGFR", "MTOR"]
+    },
+    "uniprot_id": {
+      "type": ["string", "null"],
+      "description": "UniProt protein accession number",
+      "sources": ["HERB", "ETCM", "TCMBank", "TCMSID", "SymMap", "BATMAN-TCM"],
+      "examples": ["P04637", "P00533"]
+    },
+    "entrez_gene_id": {
+      "type": ["integer", "null"],
+      "description": "NCBI Entrez Gene identifier",
+      "sources": ["HERB", "SymMap", "BATMAN-TCM"]
+    },
+    "disease_id": {
+      "type": ["string", "null"],
+      "description": "Identifier for disease entity",
+      "sources": ["HERB", "ETCM", "TCMBank", "TCMSID", "SymMap", "BATMAN-TCM"]
+    },
+    "disease_name": {
+      "type": ["string", "null"],
+      "description": "Disease or condition name",
+      "sources": ["HERB", "ETCM", "TCMBank", "TCMSID", "SymMap", "BATMAN-TCM"]
+    },
+    "mesh_id": {
+      "type": ["string", "null"],
+      "description": "Medical Subject Headings identifier",
+      "sources": ["HERB", "ETCM", "TCMBank", "SymMap", "BATMAN-TCM"]
+    },
+    "formula_id": {
+      "type": ["string", "null"],
+      "description": "Unique identifier for TCM formula/prescription",
+      "sources": ["ETCM", "TCMBank", "BATMAN-TCM"]
+    },
+    "formula_name_chinese": {
+      "type": ["string", "null"],
+      "description": "Chinese character name of the formula",
+      "sources": ["ETCM", "TCMBank", "BATMAN-TCM"]
+    },
+    "formula_name_pinyin": {
+      "type": ["string", "null"],
+      "description": "Romanized formula name in Pinyin",
+      "sources": ["ETCM", "TCMBank", "BATMAN-TCM"],
+      "examples": ["Bu Zhong Yi Qi Tang", "Liu Wei Di Huang Wan"]
+    },
+    "classical_source": {
+      "type": ["string", "null"],
+      "description": "Historical text reference for formula origin",
+      "sources": ["ETCM", "TCMBank", "BATMAN-TCM"]
+    },
+    "herb_role": {
+      "type": ["string", "null"],
+      "enum": ["jun", "chen", "zuo", "shi", null],
+      "description": "Role of herb in formula composition (Jun-Chen-Zuo-Shi)",
+      "sources": ["ETCM", "BATMAN-TCM"]
+    },
+    "source_herbs": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Array of herb IDs that contain this compound",
+      "sources": ["HERB", "ETCM", "TCMBank", "TCMSID", "SymMap", "BATMAN-TCM"]
+    },
+    "predicted_targets": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Array of computationally predicted target protein IDs",
+      "sources": ["ETCM", "TCMBank", "TCMSID", "BATMAN-TCM"]
+    },
+    "kegg_pathways": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "pathway_id": {"type": "string"},
+          "pathway_name": {"type": "string"}
+        }
+      },
+      "description": "KEGG pathway associations",
+      "sources": ["TCMSID", "BATMAN-TCM"]
+    },
+    "herb_geo_accession": {
+      "type": ["string", "null"],
+      "description": "Gene Expression Omnibus accession number",
+      "sources": ["HERB"]
+    },
+    "herb_expression_experiments": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Array of GEO accession numbers for herb expression studies",
+      "sources": ["HERB"]
+    },
+    "herb_connectivity_score": {
+      "type": ["number", "null"],
+      "description": "Signature connectivity score comparing herb to disease (-1 to +1)",
+      "sources": ["HERB"]
+    },
+    "herb_differential_genes": {
+      "type": ["object", "null"],
+      "description": "Up and down-regulated genes from treatment",
+      "sources": ["HERB"],
+      "properties": {
+        "upregulated": {"type": "array", "items": {"type": "string"}},
+        "downregulated": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "etcm_actions": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Therapeutic actions of herb according to TCM theory",
+      "sources": ["ETCM"]
+    },
+    "etcm_indications": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Disease patterns/conditions treated",
+      "sources": ["ETCM"]
+    },
+    "etcm_therapeutic_category": {
+      "type": ["string", "null"],
+      "description": "Classification of formula by therapeutic function",
+      "sources": ["ETCM"]
+    },
+    "etcm_herb_dosage": {
+      "type": ["string", "null"],
+      "description": "Recommended dosage of herb in formula",
+      "sources": ["ETCM"]
+    },
+    "tcmbank_chembl_id": {
+      "type": ["string", "null"],
+      "description": "ChEMBL compound identifier",
+      "sources": ["TCMBank"]
+    },
+    "tcmbank_cas_number": {
+      "type": ["string", "null"],
+      "description": "Chemical Abstracts Service registry number",
+      "sources": ["TCMBank"]
+    },
+    "tcmbank_logp": {
+      "type": ["number", "null"],
+      "description": "Partition coefficient (lipophilicity)",
+      "sources": ["TCMBank"]
+    },
+    "tcmbank_tpsa": {
+      "type": ["number", "null"],
+      "description": "Topological Polar Surface Area in Angstrom squared",
+      "sources": ["TCMBank"]
+    },
+    "tcmbank_hydrogen_bond_donors": {
+      "type": ["integer", "null"],
+      "description": "Count of hydrogen bond donor atoms",
+      "sources": ["TCMBank"]
+    },
+    "tcmbank_hydrogen_bond_acceptors": {
+      "type": ["integer", "null"],
+      "description": "Count of hydrogen bond acceptor atoms",
+      "sources": ["TCMBank"]
+    },
+    "tcmbank_rotatable_bonds": {
+      "type": ["integer", "null"],
+      "description": "Count of rotatable bonds",
+      "sources": ["TCMBank"]
+    },
+    "tcmbank_lipinski_violations": {
+      "type": ["integer", "null"],
+      "description": "Number of Lipinski Rule of Five violations",
+      "sources": ["TCMBank"]
+    },
+    "tcmbank_pains_alerts": {
+      "type": ["integer", "null"],
+      "description": "Pan-Assay Interference Compounds alert count",
+      "sources": ["TCMBank"]
+    },
+    "tcmbank_gi_absorption": {
+      "type": ["string", "null"],
+      "enum": ["High", "Low", null],
+      "description": "Predicted gastrointestinal absorption",
+      "sources": ["TCMBank"]
+    },
+    "tcmbank_bbb_permeant": {
+      "type": ["string", "null"],
+      "enum": ["Yes", "No", null],
+      "description": "Predicted blood-brain barrier permeability",
+      "sources": ["TCMBank"]
+    },
+    "tcmbank_cyp_inhibitors": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "CYP450 enzymes inhibited by compound",
+      "sources": ["TCMBank"]
+    },
+    "tcmbank_ames_mutagenicity": {
+      "type": ["string", "null"],
+      "enum": ["Yes", "No", null],
+      "description": "Predicted Ames test mutagenicity",
+      "sources": ["TCMBank"]
+    },
+    "tcmbank_hepatotoxicity_risk": {
+      "type": ["string", "null"],
+      "enum": ["High", "Medium", "Low", null],
+      "description": "Predicted hepatotoxicity risk level",
+      "sources": ["TCMBank"]
+    },
+    "tcmsid_oral_bioavailability": {
+      "type": ["number", "null"],
+      "description": "Oral Bioavailability percentage (>=30% favorable)",
+      "sources": ["TCMSID"]
+    },
+    "tcmsid_drug_likeness": {
+      "type": ["number", "null"],
+      "description": "Drug-Likeness score (>=0.18 drug-like)",
+      "sources": ["TCMSID"]
+    },
+    "tcmsid_caco2": {
+      "type": ["number", "null"],
+      "description": "Caco-2 cell permeability (>=-0.4 good)",
+      "sources": ["TCMSID"]
+    },
+    "tcmsid_bbb": {
+      "type": ["number", "null"],
+      "description": "Blood-Brain Barrier permeability score",
+      "sources": ["TCMSID"]
+    },
+    "tcmsid_half_life": {
+      "type": ["string", "null"],
+      "enum": ["Long", "Short", null],
+      "description": "Pharmacokinetic half-life classification",
+      "sources": ["TCMSID"]
+    },
+    "symmap_symptom_id": {
+      "type": ["string", "null"],
+      "description": "Unique identifier for TCM symptom",
+      "sources": ["SymMap"]
+    },
+    "symmap_symptom_name_chinese": {
+      "type": ["string", "null"],
+      "description": "Chinese name of TCM symptom",
+      "sources": ["SymMap"]
+    },
+    "symmap_symptom_name_english": {
+      "type": ["string", "null"],
+      "description": "English translation of symptom",
+      "sources": ["SymMap"]
+    },
+    "symmap_tcm_pattern": {
+      "type": ["string", "null"],
+      "description": "TCM syndrome/pattern classification (Zheng)",
+      "sources": ["SymMap"]
+    },
+    "symmap_hpo_mappings": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "hpo_id": {"type": "string"},
+          "hpo_term": {"type": "string"},
+          "mapping_confidence": {"type": "number"}
+        }
+      },
+      "description": "Human Phenotype Ontology mappings for symptom",
+      "sources": ["SymMap"]
+    },
+    "symmap_symptom_herb_associations": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Herbs traditionally associated with treating this symptom",
+      "sources": ["SymMap"]
+    },
+    "symmap_symptom_gene_associations": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Genes associated with this symptom via HPO mapping",
+      "sources": ["SymMap"]
+    },
+    "symmap_omim_id": {
+      "type": ["integer", "null"],
+      "description": "Online Mendelian Inheritance in Man identifier",
+      "sources": ["SymMap"]
+    },
+    "batman_tti_id": {
+      "type": ["string", "null"],
+      "description": "Unique Target-TCM Interaction identifier",
+      "sources": ["BATMAN-TCM"]
+    },
+    "batman_interaction_type": {
+      "type": ["string", "null"],
+      "enum": ["known", "predicted", null],
+      "description": "Classification of interaction as known or predicted",
+      "sources": ["BATMAN-TCM"]
+    },
+    "batman_confidence_score": {
+      "type": ["number", "null"],
+      "description": "Prediction confidence score (0-1)",
+      "sources": ["BATMAN-TCM"]
+    },
+    "batman_evidence_source": {
+      "type": ["string", "null"],
+      "description": "Database source of known interaction",
+      "sources": ["BATMAN-TCM"]
+    },
+    "batman_binding_data": {
+      "type": ["object", "null"],
+      "description": "Quantitative binding affinity data",
+      "sources": ["BATMAN-TCM"],
+      "properties": {
+        "activity_type": {"type": "string"},
+        "activity_value": {"type": "number"},
+        "activity_unit": {"type": "string"}
+      }
+    },
+    "batman_pubmed_ids": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "PubMed literature references",
+      "sources": ["BATMAN-TCM"]
+    },
+    "batman_stitch_score": {
+      "type": ["integer", "null"],
+      "description": "STITCH database combined score (0-1000)",
+      "sources": ["BATMAN-TCM"]
+    },
+    "batman_enrichment_ratio": {
+      "type": ["number", "null"],
+      "description": "KEGG pathway enrichment ratio",
+      "sources": ["BATMAN-TCM"]
+    },
+    "batman_pharmacopoeia_status": {
+      "type": ["string", "null"],
+      "enum": ["CP2020", "not_listed", null],
+      "description": "Chinese Pharmacopoeia listing status",
+      "sources": ["BATMAN-TCM"]
+    },
+    "batman_herb_processing": {
+      "type": ["string", "null"],
+      "description": "Processing method for herb preparation",
+      "sources": ["BATMAN-TCM"]
+    },
+    "batman_drugbank_id": {
+      "type": ["string", "null"],
+      "description": "DrugBank database identifier",
+      "sources": ["BATMAN-TCM"]
+    },
+    "_source": {
+      "type": "object",
+      "description": "Metadata about the data source",
+      "properties": {
+        "database": {"type": "string"},
+        "version": {"type": "string"},
+        "access_date": {"type": "string", "format": "date"},
+        "original_id": {"type": "string"}
+      }
+    }
+  },
+  "required": ["herb_id"],
+  "field_mappings": {
+    "HERB": {
+      "herb_id": "herb_id",
+      "Herb_cn_name": "herb_name_chinese",
+      "Herb_pinyin_name": "herb_name_pinyin",
+      "Herb_en_name": "herb_name_english",
+      "Herb_latin_name": "herb_name_latin",
+      "nature": "tcm_nature",
+      "flavor": "tcm_flavor",
+      "meridians": "meridian_tropism",
+      "Ingredient_id": "compound_id",
+      "Molecule_name": "compound_name",
+      "PubChem_id": "pubchem_cid",
+      "SMILES": "smiles",
+      "InChIKey": "inchi_key",
+      "Formula": "molecular_formula",
+      "MW": "molecular_weight",
+      "Target_id": "target_id",
+      "Gene_name": "gene_symbol",
+      "Uniprot_id": "uniprot_id",
+      "Entrez_id": "entrez_gene_id",
+      "Disease_id": "disease_id",
+      "Disease_name": "disease_name",
+      "MeSH_id": "mesh_id",
+      "GEO_Accession": "herb_geo_accession",
+      "Expression_Experiments": "herb_expression_experiments",
+      "Connectivity_Score": "herb_connectivity_score",
+      "Differential_Genes": "herb_differential_genes"
+    },
+    "ETCM": {
+      "Herb_id": "herb_id",
+      "Herb_cn": "herb_name_chinese",
+      "Herb_pinyin": "herb_name_pinyin",
+      "Herb_en": "herb_name_english",
+      "Herb_latin": "herb_name_latin",
+      "Nature": "tcm_nature",
+      "Flavor": "tcm_flavor",
+      "Meridian": "meridian_tropism",
+      "Ingredient_id": "compound_id",
+      "Ingredient_name": "compound_name",
+      "PubChem_CID": "pubchem_cid",
+      "SMILES": "smiles",
+      "Molecular_Formula": "molecular_formula",
+      "Molecular_Weight": "molecular_weight",
+      "Target_id": "target_id",
+      "Gene_Symbol": "gene_symbol",
+      "UniProt_ID": "uniprot_id",
+      "Disease_ID": "disease_id",
+      "Disease_Name": "disease_name",
+      "MeSH_ID": "mesh_id",
+      "Formula_id": "formula_id",
+      "Formula_cn": "formula_name_chinese",
+      "Formula_pinyin": "formula_name_pinyin",
+      "Classical_Source": "classical_source",
+      "Herb_Role": "herb_role",
+      "Source_Herbs": "source_herbs",
+      "Predicted_Targets": "predicted_targets",
+      "Actions": "etcm_actions",
+      "Indications": "etcm_indications",
+      "Therapeutic_Category": "etcm_therapeutic_category",
+      "Herb_Dosage": "etcm_herb_dosage"
+    },
+    "TCMBank": {
+      "Herb_ID": "herb_id",
+      "Chinese_Name": "herb_name_chinese",
+      "Pinyin_Name": "herb_name_pinyin",
+      "English_Name": "herb_name_english",
+      "Latin_Name": "herb_name_latin",
+      "Compound_ID": "compound_id",
+      "Compound_Name": "compound_name",
+      "PubChem_CID": "pubchem_cid",
+      "SMILES": "smiles",
+      "InChIKey": "inchi_key",
+      "Molecular_Formula": "molecular_formula",
+      "Molecular_Weight": "molecular_weight",
+      "Target_ID": "target_id",
+      "Gene_Symbol": "gene_symbol",
+      "UniProt_ID": "uniprot_id",
+      "Disease_ID": "disease_id",
+      "Disease_Name": "disease_name",
+      "MeSH_ID": "mesh_id",
+      "Formula_ID": "formula_id",
+      "Formula_CN": "formula_name_chinese",
+      "Formula_Pinyin": "formula_name_pinyin",
+      "Source_Herbs": "source_herbs",
+      "Predicted_Targets": "predicted_targets",
+      "ChEMBL_ID": "tcmbank_chembl_id",
+      "CAS_Number": "tcmbank_cas_number",
+      "LogP": "tcmbank_logp",
+      "TPSA": "tcmbank_tpsa",
+      "HBD": "tcmbank_hydrogen_bond_donors",
+      "HBA": "tcmbank_hydrogen_bond_acceptors",
+      "Rotatable_Bonds": "tcmbank_rotatable_bonds",
+      "Lipinski_Violations": "tcmbank_lipinski_violations",
+      "PAINS_Alerts": "tcmbank_pains_alerts",
+      "GI_Absorption": "tcmbank_gi_absorption",
+      "BBB_Permeant": "tcmbank_bbb_permeant",
+      "CYP_Inhibitors": "tcmbank_cyp_inhibitors",
+      "Ames_Mutagenicity": "tcmbank_ames_mutagenicity",
+      "Hepatotoxicity_Risk": "tcmbank_hepatotoxicity_risk"
+    },
+    "TCMSID": {
+      "Herb_ID": "herb_id",
+      "Chinese_Name": "herb_name_chinese",
+      "Pinyin_Name": "herb_name_pinyin",
+      "English_Name": "herb_name_english",
+      "Latin_Name": "herb_name_latin",
+      "Compound_ID": "compound_id",
+      "Compound_Name": "compound_name",
+      "PubChem_CID": "pubchem_cid",
+      "SMILES": "smiles",
+      "Molecular_Formula": "molecular_formula",
+      "Molecular_Weight": "molecular_weight",
+      "Target_ID": "target_id",
+      "Gene_Symbol": "gene_symbol",
+      "UniProt_ID": "uniprot_id",
+      "Disease_ID": "disease_id",
+      "Disease_Name": "disease_name",
+      "Source_Herbs": "source_herbs",
+      "Predicted_Targets": "predicted_targets",
+      "KEGG_Pathways": "kegg_pathways",
+      "OB": "tcmsid_oral_bioavailability",
+      "DL": "tcmsid_drug_likeness",
+      "Caco2": "tcmsid_caco2",
+      "BBB": "tcmsid_bbb",
+      "HL": "tcmsid_half_life"
+    },
+    "SymMap": {
+      "Herb_ID": "herb_id",
+      "Chinese_Name": "herb_name_chinese",
+      "Pinyin_Name": "herb_name_pinyin",
+      "English_Name": "herb_name_english",
+      "Latin_Name": "herb_name_latin",
+      "Nature": "tcm_nature",
+      "Flavor": "tcm_flavor",
+      "Meridian": "meridian_tropism",
+      "Compound_ID": "compound_id",
+      "Compound_Name": "compound_name",
+      "PubChem_CID": "pubchem_cid",
+      "SMILES": "smiles",
+      "Molecular_Formula": "molecular_formula",
+      "Molecular_Weight": "molecular_weight",
+      "Target_ID": "target_id",
+      "Gene_Symbol": "gene_symbol",
+      "UniProt_ID": "uniprot_id",
+      "Entrez_Gene_ID": "entrez_gene_id",
+      "Disease_ID": "disease_id",
+      "Disease_Name": "disease_name",
+      "MeSH_ID": "mesh_id",
+      "Source_Herbs": "source_herbs",
+      "Symptom_ID": "symmap_symptom_id",
+      "Symptom_CN": "symmap_symptom_name_chinese",
+      "Symptom_EN": "symmap_symptom_name_english",
+      "TCM_Pattern": "symmap_tcm_pattern",
+      "HPO_Mappings": "symmap_hpo_mappings",
+      "Symptom_Herb_Associations": "symmap_symptom_herb_associations",
+      "Symptom_Gene_Associations": "symmap_symptom_gene_associations",
+      "OMIM_ID": "symmap_omim_id"
+    },
+    "BATMAN_TCM": {
+      "Herb_ID": "herb_id",
+      "Chinese_Name": "herb_name_chinese",
+      "Pinyin_Name": "herb_name_pinyin",
+      "English_Name": "herb_name_english",
+      "Latin_Name": "herb_name_latin",
+      "Nature": "tcm_nature",
+      "Flavor": "tcm_flavor",
+      "Meridian": "meridian_tropism",
+      "Compound_ID": "compound_id",
+      "Compound_Name": "compound_name",
+      "PubChem_CID": "pubchem_cid",
+      "SMILES": "smiles",
+      "InChIKey": "inchi_key",
+      "Molecular_Formula": "molecular_formula",
+      "Molecular_Weight": "molecular_weight",
+      "Target_ID": "target_id",
+      "Gene_Symbol": "gene_symbol",
+      "UniProt_ID": "uniprot_id",
+      "Entrez_Gene_ID": "entrez_gene_id",
+      "Disease_ID": "disease_id",
+      "Disease_Name": "disease_name",
+      "MeSH_ID": "mesh_id",
+      "Formula_ID": "formula_id",
+      "Formula_CN": "formula_name_chinese",
+      "Formula_Pinyin": "formula_name_pinyin",
+      "Classical_Source": "classical_source",
+      "Herb_Role": "herb_role",
+      "Source_Herbs": "source_herbs",
+      "Predicted_Targets": "predicted_targets",
+      "KEGG_Pathways": "kegg_pathways",
+      "TTI_ID": "batman_tti_id",
+      "Interaction_Type": "batman_interaction_type",
+      "Confidence_Score": "batman_confidence_score",
+      "Evidence_Source": "batman_evidence_source",
+      "Binding_Data": "batman_binding_data",
+      "PubMed_IDs": "batman_pubmed_ids",
+      "STITCH_Score": "batman_stitch_score",
+      "Enrichment_Ratio": "batman_enrichment_ratio",
+      "Pharmacopoeia_Status": "batman_pharmacopoeia_status",
+      "Herb_Processing": "batman_herb_processing",
+      "DrugBank_ID": "batman_drugbank_id"
+    }
+  }
+}

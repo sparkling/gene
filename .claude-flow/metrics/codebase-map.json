@@ -1,11 +1,11 @@
 {
-  "timestamp": "2026-01-24T02:40:37.062Z",
+  "timestamp": "2026-01-24T13:42:57.064Z",
   "projectRoot": "/home/claude/src/gene",
   "structure": {
-    "hasPackageJson": true,
+    "hasPackageJson": false,
     "hasTsConfig": false,
     "hasClaudeConfig": true,
     "hasClaudeFlow": true
   },
-  "scannedAt": 1769222437062
+  "scannedAt": 1769262177064
 }

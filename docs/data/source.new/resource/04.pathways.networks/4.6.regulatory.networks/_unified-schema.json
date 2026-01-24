@@ -1,0 +1,182 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gene.example.org/schemas/4.6-regulatory-networks.json",
+  "title": "Regulatory Networks Unified Schema",
+  "description": "Unified schema for regulatory network data from ENCODE, JASPAR, and ChIP-Atlas",
+  "type": "object",
+  "properties": {
+    "regulator_id": {
+      "type": "string",
+      "description": "Identifier for the regulatory element or transcription factor",
+      "sources": ["ENCODE", "JASPAR", "ChIP-Atlas"]
+    },
+    "regulator_name": {
+      "type": ["string", "null"],
+      "description": "Name of the transcription factor or regulator",
+      "sources": ["ENCODE", "JASPAR", "ChIP-Atlas"]
+    },
+    "target_gene": {
+      "type": ["string", "null"],
+      "description": "Target gene symbol",
+      "sources": ["ENCODE", "JASPAR", "ChIP-Atlas"]
+    },
+    "chromosome": {
+      "type": ["string", "null"],
+      "description": "Chromosome location",
+      "sources": ["ENCODE", "JASPAR", "ChIP-Atlas"]
+    },
+    "start_position": {
+      "type": ["integer", "null"],
+      "description": "Start coordinate (0-based)",
+      "sources": ["ENCODE", "JASPAR", "ChIP-Atlas"]
+    },
+    "end_position": {
+      "type": ["integer", "null"],
+      "description": "End coordinate",
+      "sources": ["ENCODE", "JASPAR", "ChIP-Atlas"]
+    },
+    "assembly": {
+      "type": ["string", "null"],
+      "description": "Genome assembly version",
+      "sources": ["ENCODE", "JASPAR", "ChIP-Atlas"],
+      "examples": ["GRCh38", "hg38", "hg19"]
+    },
+    "score": {
+      "type": ["number", "null"],
+      "description": "Confidence or binding score",
+      "sources": ["ENCODE", "JASPAR", "ChIP-Atlas"]
+    },
+    "encode_accession": {
+      "type": ["string", "null"],
+      "description": "ENCODE experiment accession",
+      "sources": ["ENCODE"]
+    },
+    "encode_assay": {
+      "type": ["string", "null"],
+      "description": "ENCODE assay type",
+      "sources": ["ENCODE"]
+    },
+    "encode_target": {
+      "type": ["string", "null"],
+      "description": "ENCODE target (TF or histone)",
+      "sources": ["ENCODE"]
+    },
+    "biosample": {
+      "type": ["string", "null"],
+      "description": "Cell type or tissue",
+      "sources": ["ENCODE", "ChIP-Atlas"]
+    },
+    "jaspar_matrix_id": {
+      "type": ["string", "null"],
+      "description": "JASPAR matrix identifier",
+      "sources": ["JASPAR"]
+    },
+    "jaspar_tf_name": {
+      "type": ["string", "null"],
+      "description": "Transcription factor name",
+      "sources": ["JASPAR"]
+    },
+    "jaspar_class": {
+      "type": ["string", "null"],
+      "description": "TF structural class",
+      "sources": ["JASPAR"]
+    },
+    "jaspar_family": {
+      "type": ["string", "null"],
+      "description": "TF family",
+      "sources": ["JASPAR"]
+    },
+    "position_weight_matrix": {
+      "type": ["object", "null"],
+      "description": "Position weight matrix for binding motif",
+      "sources": ["JASPAR"]
+    },
+    "consensus_sequence": {
+      "type": ["string", "null"],
+      "description": "Consensus binding sequence",
+      "sources": ["JASPAR"]
+    },
+    "information_content": {
+      "type": ["number", "null"],
+      "description": "Total information content of the motif",
+      "sources": ["JASPAR"]
+    },
+    "chipatlas_experiment_id": {
+      "type": ["string", "null"],
+      "description": "ChIP-Atlas experiment identifier",
+      "sources": ["ChIP-Atlas"]
+    },
+    "chipatlas_antigen": {
+      "type": ["string", "null"],
+      "description": "Target antigen (TF or histone modification)",
+      "sources": ["ChIP-Atlas"]
+    },
+    "chipatlas_cell_type": {
+      "type": ["string", "null"],
+      "description": "Cell type classification",
+      "sources": ["ChIP-Atlas"]
+    },
+    "peak_calling_method": {
+      "type": ["string", "null"],
+      "description": "Peak calling algorithm used",
+      "sources": ["ENCODE", "ChIP-Atlas"]
+    },
+    "fold_enrichment": {
+      "type": ["number", "null"],
+      "description": "Fold enrichment over background",
+      "sources": ["ENCODE", "ChIP-Atlas"]
+    },
+    "q_value": {
+      "type": ["number", "null"],
+      "description": "FDR-corrected significance",
+      "sources": ["ENCODE", "ChIP-Atlas"]
+    },
+    "_source": {
+      "type": "object",
+      "description": "Metadata about the data source",
+      "properties": {
+        "database": {"type": "string"},
+        "version": {"type": "string"},
+        "access_date": {"type": "string", "format": "date"},
+        "original_id": {"type": "string"}
+      }
+    }
+  },
+  "required": ["regulator_id"],
+  "field_mappings": {
+    "ENCODE": {
+      "accession": "encode_accession",
+      "assay_title": "encode_assay",
+      "target": "encode_target",
+      "biosample_ontology": "biosample",
+      "assembly": "assembly",
+      "chrom": "chromosome",
+      "chromStart": "start_position",
+      "chromEnd": "end_position",
+      "score": "score",
+      "foldEnrichment": "fold_enrichment",
+      "qValue": "q_value"
+    },
+    "JASPAR": {
+      "matrix_id": "jaspar_matrix_id",
+      "name": "jaspar_tf_name",
+      "class": "jaspar_class",
+      "family": "jaspar_family",
+      "pfm": "position_weight_matrix",
+      "consensus": "consensus_sequence",
+      "information_content": "information_content"
+    },
+    "ChIP_Atlas": {
+      "experiment_id": "chipatlas_experiment_id",
+      "antigen": "chipatlas_antigen",
+      "cell_type": "chipatlas_cell_type",
+      "assembly": "assembly",
+      "chrom": "chromosome",
+      "start": "start_position",
+      "end": "end_position",
+      "score": "score",
+      "fold_enrichment": "fold_enrichment",
+      "qvalue": "q_value"
+    }
+  }
+}

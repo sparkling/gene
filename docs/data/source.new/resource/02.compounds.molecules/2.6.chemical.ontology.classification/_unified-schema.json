@@ -1,0 +1,351 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gene.example.org/schemas/2.6-chemical-ontology-classification.json",
+  "title": "Chemical Ontology and Classification Unified Schema",
+  "description": "Unified schema for chemical classification data from ChEBI, ClassyFire, NPClassifier, and PubChem",
+  "type": "object",
+  "properties": {
+    "compound_id": {
+      "type": "string",
+      "description": "Primary identifier for compound/concept",
+      "sources": ["ChEBI", "ClassyFire", "NPClassifier", "PubChem"],
+      "examples": ["CHEBI:17234", "CHEMONTID:0000300", "2244"]
+    },
+    "name": {
+      "type": "string",
+      "description": "Compound or classification name",
+      "sources": ["ChEBI", "ClassyFire", "NPClassifier", "PubChem"]
+    },
+    "canonical_smiles": {
+      "type": ["string", "null"],
+      "description": "Canonical SMILES structure",
+      "sources": ["ChEBI", "ClassyFire", "NPClassifier", "PubChem"]
+    },
+    "inchi": {
+      "type": ["string", "null"],
+      "description": "InChI identifier",
+      "sources": ["ChEBI", "PubChem"]
+    },
+    "inchi_key": {
+      "type": ["string", "null"],
+      "description": "InChI Key",
+      "sources": ["ChEBI", "ClassyFire", "PubChem"]
+    },
+    "molecular_formula": {
+      "type": ["string", "null"],
+      "description": "Molecular formula",
+      "sources": ["ChEBI", "PubChem"]
+    },
+    "classification_hierarchy": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "level": {"type": "string"},
+          "name": {"type": "string"},
+          "id": {"type": "string"}
+        }
+      },
+      "description": "Hierarchical classification from kingdom to class",
+      "sources": ["ChEBI", "ClassyFire", "NPClassifier"]
+    },
+    "cross_references": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "database": {"type": "string"},
+          "id": {"type": "string"}
+        }
+      },
+      "description": "Links to external databases",
+      "sources": ["ChEBI", "PubChem"]
+    },
+    "chebi_id": {
+      "type": ["string", "null"],
+      "description": "ChEBI identifier (CHEBI:##### format)",
+      "sources": ["ChEBI"],
+      "examples": ["CHEBI:17234"]
+    },
+    "definition": {
+      "type": ["string", "null"],
+      "description": "Textual definition",
+      "sources": ["ChEBI"]
+    },
+    "synonyms": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Alternative names",
+      "sources": ["ChEBI"]
+    },
+    "mass": {
+      "type": ["number", "null"],
+      "description": "Monoisotopic mass",
+      "sources": ["ChEBI"]
+    },
+    "charge": {
+      "type": ["integer", "null"],
+      "description": "Formal charge",
+      "sources": ["ChEBI"]
+    },
+    "star": {
+      "type": ["integer", "null"],
+      "description": "Curation level (1-3)",
+      "sources": ["ChEBI"]
+    },
+    "is_a": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Parent classes",
+      "sources": ["ChEBI"]
+    },
+    "has_role": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Biological/chemical roles",
+      "sources": ["ChEBI"]
+    },
+    "is_conjugate_acid_of": {
+      "type": ["string", "null"],
+      "description": "Conjugate base reference",
+      "sources": ["ChEBI"]
+    },
+    "is_enantiomer_of": {
+      "type": ["string", "null"],
+      "description": "Mirror image isomer",
+      "sources": ["ChEBI"]
+    },
+    "chemont_id": {
+      "type": ["string", "null"],
+      "description": "ChemOnt identifier",
+      "sources": ["ClassyFire"],
+      "examples": ["CHEMONTID:0000300"]
+    },
+    "cf_kingdom": {
+      "type": ["object", "null"],
+      "description": "ClassyFire top-level classification",
+      "sources": ["ClassyFire"]
+    },
+    "cf_superclass": {
+      "type": ["object", "null"],
+      "description": "ClassyFire second-level classification",
+      "sources": ["ClassyFire"]
+    },
+    "cf_class": {
+      "type": ["object", "null"],
+      "description": "ClassyFire third-level classification",
+      "sources": ["ClassyFire"]
+    },
+    "cf_subclass": {
+      "type": ["object", "null"],
+      "description": "ClassyFire fourth-level classification",
+      "sources": ["ClassyFire"]
+    },
+    "cf_direct_parent": {
+      "type": ["object", "null"],
+      "description": "ClassyFire most specific classification",
+      "sources": ["ClassyFire"]
+    },
+    "cf_alternative_parents": {
+      "type": ["array", "null"],
+      "items": {"type": "object"},
+      "description": "Additional valid classification paths",
+      "sources": ["ClassyFire"]
+    },
+    "cf_substituents": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Functional group substituents",
+      "sources": ["ClassyFire"]
+    },
+    "cf_molecular_framework": {
+      "type": ["string", "null"],
+      "description": "Structural framework description",
+      "sources": ["ClassyFire"]
+    },
+    "npc_pathway": {
+      "type": ["string", "null"],
+      "description": "Biosynthetic pathway (7 types)",
+      "sources": ["NPClassifier"]
+    },
+    "npc_pathway_score": {
+      "type": ["number", "null"],
+      "description": "Pathway confidence (0-1)",
+      "sources": ["NPClassifier"]
+    },
+    "npc_superclass": {
+      "type": ["string", "null"],
+      "description": "NP superclass (35+ types)",
+      "sources": ["NPClassifier"]
+    },
+    "npc_superclass_score": {
+      "type": ["number", "null"],
+      "description": "Superclass confidence (0-1)",
+      "sources": ["NPClassifier"]
+    },
+    "npc_class": {
+      "type": ["string", "null"],
+      "description": "NP class (200+ types)",
+      "sources": ["NPClassifier"]
+    },
+    "npc_class_score": {
+      "type": ["number", "null"],
+      "description": "Class confidence (0-1)",
+      "sources": ["NPClassifier"]
+    },
+    "is_glycoside": {
+      "type": ["boolean", "null"],
+      "description": "Glycoside moiety detected",
+      "sources": ["NPClassifier"]
+    },
+    "pubchem_cid": {
+      "type": ["integer", "null"],
+      "description": "PubChem Compound ID",
+      "sources": ["PubChem"],
+      "examples": [2244]
+    },
+    "iupac_name": {
+      "type": ["string", "null"],
+      "description": "IUPAC systematic name",
+      "sources": ["PubChem"]
+    },
+    "isomeric_smiles": {
+      "type": ["string", "null"],
+      "description": "SMILES with stereochemistry",
+      "sources": ["PubChem"]
+    },
+    "xlogp": {
+      "type": ["number", "null"],
+      "description": "Computed LogP",
+      "sources": ["PubChem"]
+    },
+    "exact_mass": {
+      "type": ["number", "null"],
+      "description": "Monoisotopic mass",
+      "sources": ["PubChem"]
+    },
+    "tpsa": {
+      "type": ["number", "null"],
+      "description": "Topological polar surface area",
+      "sources": ["PubChem"]
+    },
+    "complexity": {
+      "type": ["number", "null"],
+      "description": "Molecular complexity score",
+      "sources": ["PubChem"]
+    },
+    "bioactivity": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "assay_id": {"type": "string"},
+          "activity": {"type": "string"},
+          "target": {"type": "string"}
+        }
+      },
+      "description": "Bioassay results",
+      "sources": ["PubChem"]
+    },
+    "patents": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "patent_id": {"type": "string"},
+          "title": {"type": "string"}
+        }
+      },
+      "description": "Patent references",
+      "sources": ["PubChem"]
+    },
+    "literature": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "pmid": {"type": "integer"},
+          "title": {"type": "string"}
+        }
+      },
+      "description": "PubMed references",
+      "sources": ["PubChem"]
+    },
+    "fingerprint2d": {
+      "type": ["string", "null"],
+      "description": "PubChem fingerprint",
+      "sources": ["PubChem"]
+    },
+    "_source": {
+      "type": "object",
+      "description": "Metadata about the data source",
+      "properties": {
+        "database": {"type": "string"},
+        "version": {"type": "string"},
+        "access_date": {"type": "string", "format": "date"},
+        "original_id": {"type": "string"}
+      }
+    }
+  },
+  "required": ["name"],
+  "field_mappings": {
+    "ChEBI": {
+      "CHEBI_ID": "chebi_id",
+      "NAME": "name",
+      "SMILES": "canonical_smiles",
+      "InChI": "inchi",
+      "InChIKey": "inchi_key",
+      "FORMULA": "molecular_formula",
+      "DEFINITION": "definition",
+      "SYNONYM": "synonyms",
+      "MASS": "mass",
+      "CHARGE": "charge",
+      "STAR": "star",
+      "IS_A": "is_a",
+      "HAS_ROLE": "has_role",
+      "IS_CONJUGATE_ACID_OF": "is_conjugate_acid_of",
+      "IS_ENANTIOMER_OF": "is_enantiomer_of"
+    },
+    "ClassyFire": {
+      "chemont_id": "chemont_id",
+      "smiles": "canonical_smiles",
+      "inchikey": "inchi_key",
+      "kingdom": "cf_kingdom",
+      "superclass": "cf_superclass",
+      "class": "cf_class",
+      "subclass": "cf_subclass",
+      "direct_parent": "cf_direct_parent",
+      "alternative_parents": "cf_alternative_parents",
+      "substituents": "cf_substituents",
+      "molecular_framework": "cf_molecular_framework"
+    },
+    "NPClassifier": {
+      "smiles": "canonical_smiles",
+      "pathway": "npc_pathway",
+      "pathway_score": "npc_pathway_score",
+      "superclass": "npc_superclass",
+      "superclass_score": "npc_superclass_score",
+      "class": "npc_class",
+      "class_score": "npc_class_score",
+      "isglycoside": "is_glycoside"
+    },
+    "PubChem": {
+      "CID": "pubchem_cid",
+      "Title": "name",
+      "CanonicalSMILES": "canonical_smiles",
+      "IsomericSMILES": "isomeric_smiles",
+      "InChI": "inchi",
+      "InChIKey": "inchi_key",
+      "MolecularFormula": "molecular_formula",
+      "IUPACName": "iupac_name",
+      "XLogP": "xlogp",
+      "ExactMass": "exact_mass",
+      "TPSA": "tpsa",
+      "Complexity": "complexity",
+      "bioactivity": "bioactivity",
+      "patents": "patents",
+      "literature": "literature",
+      "Fingerprint2D": "fingerprint2d"
+    }
+  }
+}

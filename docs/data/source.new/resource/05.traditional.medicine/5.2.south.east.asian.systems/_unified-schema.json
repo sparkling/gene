@@ -1,0 +1,609 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gene.example.org/schemas/5.2-south-east-asian-systems.json",
+  "title": "South/East Asian Traditional Medicine Systems Unified Schema",
+  "description": "Unified schema for South/East Asian traditional medicine data from NPACT, TM-MC, IMPPAT, and KampoDB",
+  "type": "object",
+  "properties": {
+    "plant_id": {
+      "type": "string",
+      "description": "Unique identifier for medicinal plant",
+      "sources": ["NPACT", "TM-MC", "IMPPAT"],
+      "examples": ["TMMC_P_001234", "IMPPAT_PLANT_03985", "NAP_ORG_045678"]
+    },
+    "botanical_name": {
+      "type": ["string", "null"],
+      "description": "Scientific Latin binomial name",
+      "sources": ["NPACT", "TM-MC", "IMPPAT", "KampoDB"]
+    },
+    "family": {
+      "type": ["string", "null"],
+      "description": "Botanical family classification",
+      "sources": ["NPACT", "TM-MC", "IMPPAT"]
+    },
+    "compound_id": {
+      "type": ["string", "null"],
+      "description": "Unique compound identifier",
+      "sources": ["NPACT", "TM-MC", "IMPPAT", "KampoDB"]
+    },
+    "compound_name": {
+      "type": ["string", "null"],
+      "description": "Chemical compound name",
+      "sources": ["NPACT", "TM-MC", "IMPPAT", "KampoDB"]
+    },
+    "pubchem_cid": {
+      "type": ["integer", "null"],
+      "description": "PubChem Compound Identifier",
+      "sources": ["NPACT", "TM-MC", "IMPPAT", "KampoDB"]
+    },
+    "smiles": {
+      "type": ["string", "null"],
+      "description": "SMILES molecular notation",
+      "sources": ["NPACT", "TM-MC", "IMPPAT"]
+    },
+    "molecular_formula": {
+      "type": ["string", "null"],
+      "description": "Chemical formula",
+      "sources": ["NPACT", "TM-MC", "IMPPAT", "KampoDB"]
+    },
+    "molecular_weight": {
+      "type": ["number", "null"],
+      "description": "Molecular weight in Daltons",
+      "sources": ["NPACT", "TM-MC", "IMPPAT"]
+    },
+    "target_id": {
+      "type": ["string", "null"],
+      "description": "Target protein identifier",
+      "sources": ["NPACT", "TM-MC", "IMPPAT", "KampoDB"]
+    },
+    "gene_symbol": {
+      "type": ["string", "null"],
+      "description": "HGNC gene symbol",
+      "sources": ["NPACT", "TM-MC", "IMPPAT", "KampoDB"]
+    },
+    "uniprot_id": {
+      "type": ["string", "null"],
+      "description": "UniProt protein accession",
+      "sources": ["NPACT", "TM-MC", "IMPPAT"]
+    },
+    "traditional_system": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Traditional medicine system of origin",
+      "sources": ["TM-MC", "IMPPAT"]
+    },
+    "plant_part": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Plant parts containing compound or used therapeutically",
+      "sources": ["NPACT", "TM-MC", "IMPPAT"]
+    },
+    "npact_id": {
+      "type": ["string", "null"],
+      "description": "NPACT internal compound identifier",
+      "sources": ["NPACT"]
+    },
+    "npact_activity_id": {
+      "type": ["string", "null"],
+      "description": "Unique activity measurement identifier",
+      "sources": ["NPACT"]
+    },
+    "npact_activity_type": {
+      "type": ["string", "null"],
+      "enum": ["IC50", "EC50", "GI50", "LC50", "CC50", null],
+      "description": "Type of bioactivity measurement",
+      "sources": ["NPACT"]
+    },
+    "npact_activity_value": {
+      "type": ["number", "null"],
+      "description": "Quantitative activity value",
+      "sources": ["NPACT"]
+    },
+    "npact_activity_unit": {
+      "type": ["string", "null"],
+      "description": "Unit for activity measurement (nM, uM, mM, ug/mL)",
+      "sources": ["NPACT"]
+    },
+    "npact_cell_line_name": {
+      "type": ["string", "null"],
+      "description": "Cancer cell line tested",
+      "sources": ["NPACT"],
+      "examples": ["MCF-7", "A549", "HeLa", "HT-29"]
+    },
+    "npact_cancer_type": {
+      "type": ["string", "null"],
+      "description": "Cancer type for cell line",
+      "sources": ["NPACT"],
+      "examples": ["Breast", "Lung", "Colon", "Leukemia", "Liver"]
+    },
+    "npact_assay_type": {
+      "type": ["string", "null"],
+      "description": "Type of assay performed",
+      "sources": ["NPACT"]
+    },
+    "npact_pubmed_id": {
+      "type": ["integer", "null"],
+      "description": "PubMed reference ID",
+      "sources": ["NPACT"]
+    },
+    "npact_bioavailability_score": {
+      "type": ["number", "null"],
+      "description": "Predicted oral bioavailability score",
+      "sources": ["NPACT"]
+    },
+    "tmmc_system_code": {
+      "type": ["string", "null"],
+      "enum": ["AYU", "TCM", "UNA", "SID", "KAM", "JAM", null],
+      "description": "Traditional system abbreviation",
+      "sources": ["TM-MC"]
+    },
+    "tmmc_local_name": {
+      "type": ["string", "null"],
+      "description": "Plant name in local language of traditional system",
+      "sources": ["TM-MC"]
+    },
+    "tmmc_convergent_uses": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "indication": {"type": "string"},
+          "systems_agreeing": {"type": "array", "items": {"type": "string"}},
+          "confidence": {"type": "string"}
+        }
+      },
+      "description": "Therapeutic uses shared across multiple systems",
+      "sources": ["TM-MC"]
+    },
+    "tmmc_cross_system_validation": {
+      "type": ["object", "null"],
+      "description": "Cross-cultural validation metadata",
+      "sources": ["TM-MC"],
+      "properties": {
+        "systems_present": {"type": "array", "items": {"type": "string"}},
+        "shared_compounds": {"type": "integer"},
+        "shared_uses": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "tmmc_ayurveda_properties": {
+      "type": ["object", "null"],
+      "description": "Ayurvedic property classification",
+      "sources": ["TM-MC"],
+      "properties": {
+        "rasa": {"type": "array", "items": {"type": "string"}},
+        "guna": {"type": "array", "items": {"type": "string"}},
+        "vipaka": {"type": "string"},
+        "virya": {"type": "string"},
+        "dosha_effect": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "tmmc_indication_id": {
+      "type": ["string", "null"],
+      "description": "Therapeutic indication identifier",
+      "sources": ["TM-MC"]
+    },
+    "tmmc_traditional_terms": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "system": {"type": "string"},
+          "term": {"type": "string"}
+        }
+      },
+      "description": "Indication terminology by system",
+      "sources": ["TM-MC"]
+    },
+    "imppat_plant_id": {
+      "type": ["string", "null"],
+      "description": "IMPPAT plant identifier",
+      "sources": ["IMPPAT"]
+    },
+    "imppat_id": {
+      "type": ["string", "null"],
+      "description": "IMPPAT phytochemical identifier",
+      "sources": ["IMPPAT"]
+    },
+    "imppat_vernacular_names": {
+      "type": ["object", "null"],
+      "description": "Names in 10 Indian languages",
+      "sources": ["IMPPAT"],
+      "properties": {
+        "hindi": {"type": "string"},
+        "tamil": {"type": "string"},
+        "telugu": {"type": "string"},
+        "kannada": {"type": "string"},
+        "malayalam": {"type": "string"},
+        "bengali": {"type": "string"},
+        "gujarati": {"type": "string"},
+        "marathi": {"type": "string"},
+        "punjabi": {"type": "string"},
+        "oriya": {"type": "string"}
+      }
+    },
+    "imppat_iupac_name": {
+      "type": ["string", "null"],
+      "description": "Systematic IUPAC chemical name",
+      "sources": ["IMPPAT"]
+    },
+    "imppat_inchi": {
+      "type": ["string", "null"],
+      "description": "International Chemical Identifier",
+      "sources": ["IMPPAT"]
+    },
+    "imppat_inchi_key": {
+      "type": ["string", "null"],
+      "description": "InChIKey hash (27 characters)",
+      "sources": ["IMPPAT"]
+    },
+    "imppat_deepsmiles": {
+      "type": ["string", "null"],
+      "description": "DeepSMILES notation for ML applications",
+      "sources": ["IMPPAT"]
+    },
+    "imppat_source_plant_parts": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Plant parts where compound was isolated",
+      "sources": ["IMPPAT"]
+    },
+    "imppat_iucn_conservation_status": {
+      "type": ["string", "null"],
+      "description": "IUCN Red List conservation status",
+      "sources": ["IMPPAT"]
+    },
+    "imppat_lipinski_rule_of_five": {
+      "type": ["object", "null"],
+      "description": "Lipinski drug-likeness assessment",
+      "sources": ["IMPPAT"],
+      "properties": {
+        "passes": {"type": "boolean"},
+        "violations": {"type": "integer"},
+        "mw_ok": {"type": "boolean"},
+        "logp_ok": {"type": "boolean"},
+        "hbd_ok": {"type": "boolean"},
+        "hba_ok": {"type": "boolean"}
+      }
+    },
+    "imppat_ghose_filter": {
+      "type": ["object", "null"],
+      "description": "Ghose drug-likeness filter",
+      "sources": ["IMPPAT"],
+      "properties": {
+        "passes": {"type": "boolean"},
+        "violations": {"type": "integer"}
+      }
+    },
+    "imppat_veber_filter": {
+      "type": ["object", "null"],
+      "description": "Veber oral bioavailability filter",
+      "sources": ["IMPPAT"],
+      "properties": {
+        "passes": {"type": "boolean"},
+        "rotatable_bonds_ok": {"type": "boolean"},
+        "tpsa_ok": {"type": "boolean"}
+      }
+    },
+    "imppat_qed_score": {
+      "type": ["number", "null"],
+      "description": "Quantitative Estimate of Drug-likeness (0-1)",
+      "sources": ["IMPPAT"]
+    },
+    "imppat_np_likeness_score": {
+      "type": ["number", "null"],
+      "description": "Natural Product likeness score",
+      "sources": ["IMPPAT"]
+    },
+    "imppat_admet_absorption": {
+      "type": ["object", "null"],
+      "description": "ADMET absorption properties",
+      "sources": ["IMPPAT"],
+      "properties": {
+        "gi_absorption": {"type": "string"},
+        "pgp_substrate": {"type": "string"},
+        "water_solubility": {"type": "string"},
+        "caco2_permeability": {"type": "number"}
+      }
+    },
+    "imppat_admet_distribution": {
+      "type": ["object", "null"],
+      "description": "ADMET distribution properties",
+      "sources": ["IMPPAT"],
+      "properties": {
+        "bbb_permeant": {"type": "string"},
+        "vdss": {"type": "number"}
+      }
+    },
+    "imppat_admet_metabolism": {
+      "type": ["object", "null"],
+      "description": "CYP450 inhibition predictions",
+      "sources": ["IMPPAT"],
+      "properties": {
+        "cyp1a2_inhibitor": {"type": "string"},
+        "cyp2c19_inhibitor": {"type": "string"},
+        "cyp2c9_inhibitor": {"type": "string"},
+        "cyp2d6_inhibitor": {"type": "string"},
+        "cyp3a4_inhibitor": {"type": "string"}
+      }
+    },
+    "imppat_admet_toxicity": {
+      "type": ["object", "null"],
+      "description": "Predicted toxicity properties",
+      "sources": ["IMPPAT"],
+      "properties": {
+        "ames_mutagenicity": {"type": "string"},
+        "hepatotoxicity": {"type": "string"},
+        "herg_inhibition": {"type": "string"},
+        "skin_sensitization": {"type": "string"}
+      }
+    },
+    "imppat_descriptor_count": {
+      "type": ["integer", "null"],
+      "description": "Number of computed molecular descriptors (up to 1875)",
+      "sources": ["IMPPAT"]
+    },
+    "imppat_hgnc_id": {
+      "type": ["string", "null"],
+      "description": "HUGO Gene Nomenclature Committee identifier",
+      "sources": ["IMPPAT"]
+    },
+    "imppat_combined_score": {
+      "type": ["integer", "null"],
+      "description": "STITCH combined confidence score (0-1000)",
+      "sources": ["IMPPAT"]
+    },
+    "imppat_therapeutic_use": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Traditional therapeutic application",
+      "sources": ["IMPPAT"]
+    },
+    "imppat_murcko_scaffold": {
+      "type": ["object", "null"],
+      "description": "Murcko scaffold decomposition",
+      "sources": ["IMPPAT"],
+      "properties": {
+        "generic_node_bond": {"type": "string"},
+        "generic_node": {"type": "string"},
+        "graph": {"type": "string"}
+      }
+    },
+    "imppat_npclassifier": {
+      "type": ["object", "null"],
+      "description": "Natural product classification",
+      "sources": ["IMPPAT"],
+      "properties": {
+        "biosynthetic_pathway": {"type": "string"},
+        "superclass": {"type": "string"},
+        "class": {"type": "string"},
+        "subclass": {"type": "string"}
+      }
+    },
+    "kampo_formula_id": {
+      "type": ["string", "null"],
+      "description": "Kampo formula code identifier",
+      "sources": ["KampoDB"],
+      "examples": ["KT", "YKS", "TSS"]
+    },
+    "kampo_formula_name": {
+      "type": ["string", "null"],
+      "description": "Romanized Kampo formula name",
+      "sources": ["KampoDB"],
+      "examples": ["Kakkonto", "Yokukansankan"]
+    },
+    "kampo_formula_name_jp": {
+      "type": ["string", "null"],
+      "description": "Japanese kanji formula name",
+      "sources": ["KampoDB"]
+    },
+    "kampo_phonetic": {
+      "type": ["string", "null"],
+      "description": "Japanese kana pronunciation",
+      "sources": ["KampoDB"]
+    },
+    "kampo_crude_id": {
+      "type": ["integer", "null"],
+      "description": "Crude drug identifier (0-179)",
+      "sources": ["KampoDB"]
+    },
+    "kampo_crude_name": {
+      "type": ["string", "null"],
+      "description": "English crude drug name",
+      "sources": ["KampoDB"],
+      "examples": ["Cinnamon Bark", "Ephedra Herb", "Ginger"]
+    },
+    "kampo_crude_name_jp": {
+      "type": ["string", "null"],
+      "description": "Japanese crude drug name",
+      "sources": ["KampoDB"]
+    },
+    "kampo_origin": {
+      "type": ["string", "null"],
+      "description": "Botanical/biological source",
+      "sources": ["KampoDB"]
+    },
+    "kampo_protein_id": {
+      "type": ["integer", "null"],
+      "description": "NCBI Gene ID for target protein",
+      "sources": ["KampoDB"]
+    },
+    "kampo_protein_name": {
+      "type": ["string", "null"],
+      "description": "Gene symbol/name",
+      "sources": ["KampoDB"]
+    },
+    "kampo_protein_aliases": {
+      "type": ["string", "null"],
+      "description": "Comma-separated alias names",
+      "sources": ["KampoDB"]
+    },
+    "kampo_domain_id": {
+      "type": ["integer", "null"],
+      "description": "Protein structural domain identifier",
+      "sources": ["KampoDB"]
+    },
+    "kampo_affinity_kcal_mol": {
+      "type": ["number", "null"],
+      "description": "Predicted binding affinity from docking (kcal/mol)",
+      "sources": ["KampoDB"]
+    },
+    "kampo_ligand_atoms": {
+      "type": ["integer", "null"],
+      "description": "Number of atoms in ligand",
+      "sources": ["KampoDB"]
+    },
+    "kampo_protein_atoms": {
+      "type": ["integer", "null"],
+      "description": "Number of atoms in protein domain",
+      "sources": ["KampoDB"]
+    },
+    "kampo_kegg_pathway_id": {
+      "type": ["string", "null"],
+      "description": "KEGG pathway identifier",
+      "sources": ["KampoDB"]
+    },
+    "kampo_kegg_disease_id": {
+      "type": ["string", "null"],
+      "description": "KEGG disease identifier",
+      "sources": ["KampoDB"]
+    },
+    "kampo_go_process": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "GO Biological Process terms",
+      "sources": ["KampoDB"]
+    },
+    "kampo_go_function": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "GO Molecular Function terms",
+      "sources": ["KampoDB"]
+    },
+    "_source": {
+      "type": "object",
+      "description": "Metadata about the data source",
+      "properties": {
+        "database": {"type": "string"},
+        "version": {"type": "string"},
+        "access_date": {"type": "string", "format": "date"},
+        "original_id": {"type": "string"}
+      }
+    }
+  },
+  "required": ["plant_id"],
+  "field_mappings": {
+    "NPACT": {
+      "compound_id": "npact_id",
+      "plant_id": "plant_id",
+      "scientific_name": "botanical_name",
+      "family": "family",
+      "compound_name": "compound_name",
+      "pubchem_cid": "pubchem_cid",
+      "smiles": "smiles",
+      "molecular_formula": "molecular_formula",
+      "molecular_weight": "molecular_weight",
+      "target_id": "target_id",
+      "gene_symbol": "gene_symbol",
+      "uniprot_id": "uniprot_id",
+      "plant_part": "plant_part",
+      "activity_id": "npact_activity_id",
+      "activity_type": "npact_activity_type",
+      "activity_value": "npact_activity_value",
+      "activity_unit": "npact_activity_unit",
+      "cell_line_name": "npact_cell_line_name",
+      "cancer_type": "npact_cancer_type",
+      "assay_type": "npact_assay_type",
+      "pubmed_id": "npact_pubmed_id",
+      "bioavailability_score": "npact_bioavailability_score"
+    },
+    "TM_MC": {
+      "plant_id": "plant_id",
+      "scientific_name": "botanical_name",
+      "family": "family",
+      "compound_id": "compound_id",
+      "compound_name": "compound_name",
+      "pubchem_cid": "pubchem_cid",
+      "smiles": "smiles",
+      "molecular_formula": "molecular_formula",
+      "molecular_weight": "molecular_weight",
+      "target_id": "target_id",
+      "gene_symbol": "gene_symbol",
+      "uniprot_id": "uniprot_id",
+      "traditional_system": "traditional_system",
+      "plant_part": "plant_part",
+      "system_code": "tmmc_system_code",
+      "local_name": "tmmc_local_name",
+      "convergent_uses": "tmmc_convergent_uses",
+      "cross_system_validation": "tmmc_cross_system_validation",
+      "ayurveda_properties": "tmmc_ayurveda_properties",
+      "indication_id": "tmmc_indication_id",
+      "traditional_terms": "tmmc_traditional_terms"
+    },
+    "IMPPAT": {
+      "plant_id": "imppat_plant_id",
+      "scientific_name": "botanical_name",
+      "family": "family",
+      "compound_id": "imppat_id",
+      "compound_name": "compound_name",
+      "pubchem_cid": "pubchem_cid",
+      "smiles": "smiles",
+      "molecular_formula": "molecular_formula",
+      "molecular_weight": "molecular_weight",
+      "target_id": "target_id",
+      "gene_symbol": "gene_symbol",
+      "uniprot_id": "uniprot_id",
+      "traditional_system": "traditional_system",
+      "plant_part": "plant_part",
+      "vernacular_names": "imppat_vernacular_names",
+      "iupac_name": "imppat_iupac_name",
+      "inchi": "imppat_inchi",
+      "inchi_key": "imppat_inchi_key",
+      "deepsmiles": "imppat_deepsmiles",
+      "source_plant_parts": "imppat_source_plant_parts",
+      "iucn_conservation_status": "imppat_iucn_conservation_status",
+      "lipinski_rule_of_five": "imppat_lipinski_rule_of_five",
+      "ghose_filter": "imppat_ghose_filter",
+      "veber_filter": "imppat_veber_filter",
+      "qed_score": "imppat_qed_score",
+      "np_likeness_score": "imppat_np_likeness_score",
+      "admet_absorption": "imppat_admet_absorption",
+      "admet_distribution": "imppat_admet_distribution",
+      "admet_metabolism": "imppat_admet_metabolism",
+      "admet_toxicity": "imppat_admet_toxicity",
+      "descriptor_count": "imppat_descriptor_count",
+      "hgnc_id": "imppat_hgnc_id",
+      "combined_score": "imppat_combined_score",
+      "therapeutic_use": "imppat_therapeutic_use",
+      "murcko_scaffold": "imppat_murcko_scaffold",
+      "npclassifier": "imppat_npclassifier"
+    },
+    "KampoDB": {
+      "scientific_name": "botanical_name",
+      "compound_id": "compound_id",
+      "compound_name": "compound_name",
+      "pubchem_cid": "pubchem_cid",
+      "molecular_formula": "molecular_formula",
+      "target_id": "target_id",
+      "gene_symbol": "gene_symbol",
+      "formula_id": "kampo_formula_id",
+      "formula_name": "kampo_formula_name",
+      "formula_name_jp": "kampo_formula_name_jp",
+      "phonetic": "kampo_phonetic",
+      "crude_id": "kampo_crude_id",
+      "crude_name": "kampo_crude_name",
+      "crude_name_jp": "kampo_crude_name_jp",
+      "origin": "kampo_origin",
+      "protein_id": "kampo_protein_id",
+      "protein_name": "kampo_protein_name",
+      "protein_aliases": "kampo_protein_aliases",
+      "domain_id": "kampo_domain_id",
+      "affinity_kcal_mol": "kampo_affinity_kcal_mol",
+      "ligand_atoms": "kampo_ligand_atoms",
+      "protein_atoms": "kampo_protein_atoms",
+      "kegg_pathway_id": "kampo_kegg_pathway_id",
+      "kegg_disease_id": "kampo_kegg_disease_id",
+      "go_process": "kampo_go_process",
+      "go_function": "kampo_go_function"
+    }
+  }
+}

@@ -1,0 +1,347 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gene.taxonomy/schemas/7.2-protein-structures",
+  "title": "Protein Structures Unified Schema",
+  "description": "Unified schema for protein structure data integrating PDB, AlphaFold DB, and SWISS-MODEL sources",
+  "type": "object",
+  "properties": {
+    "entry_id": {
+      "type": "string",
+      "description": "Primary structure identifier",
+      "sources": ["PDB", "AlphaFold DB", "SWISS-MODEL"],
+      "example": "1TUP"
+    },
+    "uniprot_accession": {
+      "type": ["string", "null"],
+      "description": "UniProt accession for the protein",
+      "sources": ["PDB", "AlphaFold DB", "SWISS-MODEL"],
+      "example": "P04637"
+    },
+    "sequence": {
+      "type": "string",
+      "description": "Protein sequence in the structure",
+      "sources": ["PDB", "AlphaFold DB", "SWISS-MODEL"],
+      "example": "MEEPQSDPSVEPPLSQETFSDLWKLL..."
+    },
+    "organism": {
+      "type": ["string", "null"],
+      "description": "Source organism scientific name",
+      "sources": ["PDB", "AlphaFold DB", "SWISS-MODEL"],
+      "example": "Homo sapiens"
+    },
+    "tax_id": {
+      "type": ["integer", "null"],
+      "description": "NCBI taxonomy ID",
+      "sources": ["PDB", "AlphaFold DB", "SWISS-MODEL"],
+      "example": 9606
+    },
+    "chains": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "chain_id": {"type": "string"},
+          "sequence": {"type": "string"},
+          "entity_type": {"type": "string"}
+        }
+      },
+      "description": "Polymer chains in the structure",
+      "sources": ["PDB", "AlphaFold DB", "SWISS-MODEL"],
+      "example": [{"chain_id": "A", "sequence": "MEEPQ...", "entity_type": "polypeptide(L)"}]
+    },
+    "residues": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "residue_number": {"type": "integer"},
+          "residue_name": {"type": "string"},
+          "chain_id": {"type": "string"},
+          "b_factor": {"type": "number"},
+          "occupancy": {"type": "number"}
+        }
+      },
+      "description": "Per-residue information",
+      "sources": ["PDB", "AlphaFold DB", "SWISS-MODEL"],
+      "example": [{"residue_number": 1, "residue_name": "MET", "chain_id": "A", "b_factor": 92.5, "occupancy": 1.0}]
+    },
+    "structure_type": {
+      "type": "string",
+      "description": "Whether structure is experimental or predicted",
+      "enum": ["experimental", "predicted_ai", "predicted_homology"],
+      "example": "experimental"
+    },
+    "title": {
+      "type": ["string", "null"],
+      "description": "Structure title or description",
+      "sources": ["PDB (struct.title)"],
+      "example": "CRYSTAL STRUCTURE OF THE TETRAMERIZATION DOMAIN OF P53"
+    },
+    "experimental_method": {
+      "type": ["string", "null"],
+      "description": "Experimental method used to determine structure",
+      "sources": ["PDB (exptl.method)"],
+      "enum": ["X-RAY DIFFRACTION", "ELECTRON MICROSCOPY", "SOLUTION NMR", "SOLID-STATE NMR", null],
+      "example": "X-RAY DIFFRACTION"
+    },
+    "resolution": {
+      "type": ["number", "null"],
+      "description": "Resolution in Angstroms (experimental structures)",
+      "sources": ["PDB (refine.ls_d_res_high)", "SWISS-MODEL (template_resolution)"],
+      "example": 1.7
+    },
+    "r_factor_work": {
+      "type": ["number", "null"],
+      "description": "R-work factor for crystallography",
+      "sources": ["PDB (refine.ls_R_factor_R_work)"],
+      "example": 0.194
+    },
+    "r_factor_free": {
+      "type": ["number", "null"],
+      "description": "R-free factor for crystallography",
+      "sources": ["PDB (refine.ls_R_factor_R_free)"],
+      "example": 0.256
+    },
+    "deposition_date": {
+      "type": ["string", "null"],
+      "description": "Date structure was deposited",
+      "sources": ["PDB (pdbx_database_status.recvd_initial_deposition_date)"],
+      "format": "date",
+      "example": "1994-05-15"
+    },
+    "release_status": {
+      "type": ["string", "null"],
+      "description": "Entry release status",
+      "sources": ["PDB (pdbx_database_status.status_code)"],
+      "enum": ["REL", "HOLD", "OBS", null],
+      "example": "REL"
+    },
+    "em_resolution": {
+      "type": ["number", "null"],
+      "description": "Cryo-EM resolution in Angstroms",
+      "sources": ["PDB (em_3d_reconstruction.resolution)"],
+      "example": 2.8
+    },
+    "nmr_models": {
+      "type": ["integer", "null"],
+      "description": "Number of NMR models in ensemble",
+      "sources": ["PDB (pdbx_nmr_ensemble.conformers_submitted_total_number)"],
+      "example": 20
+    },
+    "alphafold_entry_id": {
+      "type": ["string", "null"],
+      "description": "AlphaFold entry ID",
+      "sources": ["AlphaFold DB (entryId)"],
+      "example": "AF-P04637-F1"
+    },
+    "uniprot_id": {
+      "type": ["string", "null"],
+      "description": "UniProt entry name",
+      "sources": ["AlphaFold DB (uniprotId)"],
+      "example": "P53_HUMAN"
+    },
+    "gene": {
+      "type": ["string", "null"],
+      "description": "Gene name",
+      "sources": ["AlphaFold DB"],
+      "example": "TP53"
+    },
+    "model_created_date": {
+      "type": ["string", "null"],
+      "description": "Date the prediction model was generated",
+      "sources": ["AlphaFold DB (modelCreatedDate)", "SWISS-MODEL (created_date)"],
+      "format": "date",
+      "example": "2022-07-01"
+    },
+    "model_version": {
+      "type": ["integer", "null"],
+      "description": "AlphaFold model version (1-4)",
+      "sources": ["AlphaFold DB (latestVersion)"],
+      "example": 4
+    },
+    "sequence_length": {
+      "type": ["integer", "null"],
+      "description": "Full protein sequence length",
+      "sources": ["AlphaFold DB (sequenceLength)"],
+      "example": 393
+    },
+    "sequence_checksum": {
+      "type": ["string", "null"],
+      "description": "CRC64 checksum of sequence",
+      "sources": ["AlphaFold DB (sequenceChecksum)"],
+      "example": "AD5C149FD8106131"
+    },
+    "plddt": {
+      "type": ["array", "null"],
+      "items": {"type": "number"},
+      "description": "Per-residue pLDDT confidence scores (0-100)",
+      "sources": ["AlphaFold DB"],
+      "example": [92.5, 45.3, 78.9]
+    },
+    "plddt_mean": {
+      "type": ["number", "null"],
+      "description": "Mean pLDDT score across all residues",
+      "sources": ["AlphaFold DB"],
+      "example": 85.2
+    },
+    "predicted_aligned_error": {
+      "type": ["array", "null"],
+      "description": "PAE matrix (NxN) in Angstroms",
+      "sources": ["AlphaFold DB"],
+      "example": [[0.5, 2.3], [2.3, 0.4]]
+    },
+    "max_predicted_aligned_error": {
+      "type": ["number", "null"],
+      "description": "Maximum PAE scale value",
+      "sources": ["AlphaFold DB"],
+      "example": 31.75
+    },
+    "ptm": {
+      "type": ["number", "null"],
+      "description": "Predicted TM-score (global fold quality)",
+      "sources": ["AlphaFold DB"],
+      "example": 0.85
+    },
+    "fragment_number": {
+      "type": ["integer", "null"],
+      "description": "Fragment index for long proteins (>1400 residues)",
+      "sources": ["AlphaFold DB"],
+      "example": 1
+    },
+    "template": {
+      "type": ["string", "null"],
+      "description": "Template PDB ID + chain used for homology modeling",
+      "sources": ["SWISS-MODEL"],
+      "example": "1tup.1.A"
+    },
+    "template_identity": {
+      "type": ["number", "null"],
+      "description": "Sequence identity to template (0-1)",
+      "sources": ["SWISS-MODEL (identity)"],
+      "example": 0.95
+    },
+    "template_similarity": {
+      "type": ["number", "null"],
+      "description": "Sequence similarity to template (0-1)",
+      "sources": ["SWISS-MODEL (similarity)"],
+      "example": 0.98
+    },
+    "coverage": {
+      "type": ["number", "null"],
+      "description": "Sequence coverage by model (0-1)",
+      "sources": ["SWISS-MODEL"],
+      "example": 0.85
+    },
+    "model_range": {
+      "type": ["object", "null"],
+      "description": "Residue range covered by model",
+      "sources": ["SWISS-MODEL"],
+      "properties": {
+        "from": {"type": "integer"},
+        "to": {"type": "integer"}
+      },
+      "example": {"from": 94, "to": 289}
+    },
+    "qmean": {
+      "type": ["number", "null"],
+      "description": "QMEAN Z-score (-4 to 0, higher is better)",
+      "sources": ["SWISS-MODEL"],
+      "example": -0.85
+    },
+    "qmean_disco": {
+      "type": ["number", "null"],
+      "description": "QMEANDisCo score (0-1, higher is better)",
+      "sources": ["SWISS-MODEL"],
+      "example": 0.78
+    },
+    "qmean_local": {
+      "type": ["array", "null"],
+      "items": {"type": "number"},
+      "description": "Per-residue QMEAN scores (0-1)",
+      "sources": ["SWISS-MODEL"],
+      "example": [0.72, 0.85]
+    },
+    "oligo_state": {
+      "type": ["string", "null"],
+      "description": "Oligomeric state of the model",
+      "sources": ["SWISS-MODEL"],
+      "example": "tetramer"
+    },
+    "template_method": {
+      "type": ["string", "null"],
+      "description": "Experimental method of the template structure",
+      "sources": ["SWISS-MODEL"],
+      "example": "X-ray"
+    },
+    "_source": {
+      "type": "object",
+      "description": "Metadata about the data source",
+      "properties": {
+        "primary_source": {"type": "string"},
+        "source_id": {"type": "string"},
+        "extraction_date": {"type": "string", "format": "date"},
+        "source_version": {"type": "string"}
+      }
+    }
+  },
+  "required": ["entry_id", "sequence", "structure_type"],
+  "field_mappings": {
+    "PDB": {
+      "entry.id": "entry_id",
+      "entity_poly.pdbx_seq_one_letter_code": "sequence",
+      "entity_src_gen.pdbx_gene_src_scientific_name": "organism",
+      "entity_src_gen.pdbx_gene_src_ncbi_taxonomy_id": "tax_id",
+      "entity_poly.entity_id": "chains[].chain_id",
+      "entity.type": "chains[].entity_type",
+      "struct.title": "title",
+      "exptl.method": "experimental_method",
+      "refine.ls_d_res_high": "resolution",
+      "refine.ls_R_factor_R_work": "r_factor_work",
+      "refine.ls_R_factor_R_free": "r_factor_free",
+      "pdbx_database_status.recvd_initial_deposition_date": "deposition_date",
+      "pdbx_database_status.status_code": "release_status",
+      "em_3d_reconstruction.resolution": "em_resolution",
+      "pdbx_nmr_ensemble.conformers_submitted_total_number": "nmr_models",
+      "polymer_entity_instances[].rcsb_polymer_instance_annotation": "residues"
+    },
+    "AlphaFold DB": {
+      "entryId": "entry_id",
+      "uniprotAccession": "uniprot_accession",
+      "uniprotSequence": "sequence",
+      "organismScientificName": "organism",
+      "taxId": "tax_id",
+      "uniprotId": "uniprot_id",
+      "gene": "gene",
+      "modelCreatedDate": "model_created_date",
+      "latestVersion": "model_version",
+      "sequenceLength": "sequence_length",
+      "sequenceChecksum": "sequence_checksum",
+      "confidenceScore": "plddt",
+      "pLDDT": "plddt",
+      "predicted_aligned_error": "predicted_aligned_error",
+      "max_predicted_aligned_error": "max_predicted_aligned_error",
+      "pTM": "ptm",
+      "fragmentNumber": "fragment_number"
+    },
+    "SWISS-MODEL": {
+      "model_id": "entry_id",
+      "uniprot_ac": "uniprot_accession",
+      "sequence": "sequence",
+      "organism": "organism",
+      "tax_id": "tax_id",
+      "template": "template",
+      "identity": "template_identity",
+      "similarity": "template_similarity",
+      "coverage": "coverage",
+      "from": "model_range.from",
+      "to": "model_range.to",
+      "qmean": "qmean",
+      "qmean_disco": "qmean_disco",
+      "qmean_local": "qmean_local",
+      "oligo_state": "oligo_state",
+      "created_date": "model_created_date",
+      "template_resolution": "resolution",
+      "template_method": "template_method"
+    }
+  }
+}

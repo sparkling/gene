@@ -1,0 +1,280 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gene.example.org/schemas/1.4-pharmacogenomics.json",
+  "title": "Pharmacogenomics Unified Schema",
+  "description": "Unified schema for pharmacogenomics data from CPIC, DPWG, PharmGKB, and PharmVar",
+  "type": "object",
+  "properties": {
+    "gene": {
+      "type": "string",
+      "description": "HGNC gene symbol for pharmacogene",
+      "sources": ["CPIC", "DPWG", "PharmGKB", "PharmVar"],
+      "examples": ["CYP2D6", "CYP2C19", "SLCO1B1"]
+    },
+    "drugs": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Generic drug name(s)",
+      "sources": ["CPIC", "DPWG", "PharmGKB"],
+      "examples": ["codeine", "clopidogrel", "simvastatin"]
+    },
+    "phenotype": {
+      "type": ["string", "null"],
+      "description": "Predicted metabolizer status or phenotype from diplotype",
+      "sources": ["CPIC", "DPWG", "PharmGKB"],
+      "examples": ["Poor Metabolizer", "Normal Metabolizer", "Ultrarapid Metabolizer"]
+    },
+    "recommendation": {
+      "type": ["string", "null"],
+      "description": "Dosing guidance or alternative therapy recommendation",
+      "sources": ["CPIC", "DPWG", "PharmGKB"],
+      "examples": ["Avoid use", "Use standard dose", "Consider 50% dose reduction"]
+    },
+    "evidence_level": {
+      "type": ["string", "null"],
+      "description": "Classification of evidence supporting recommendation",
+      "sources": ["CPIC", "DPWG", "PharmGKB"],
+      "examples": ["A", "B", "Strong", "Moderate", "1A", "1B"]
+    },
+    "cpic_guideline_id": {
+      "type": ["string", "null"],
+      "description": "CPIC unique guideline identifier",
+      "sources": ["CPIC"]
+    },
+    "cpic_publication_doi": {
+      "type": ["string", "null"],
+      "description": "DOI reference for CPIC guideline",
+      "sources": ["CPIC"]
+    },
+    "cpic_level": {
+      "type": ["string", "null"],
+      "enum": ["A", "B", "C", "D", null],
+      "description": "CPIC level (A, B, C, D)",
+      "sources": ["CPIC"]
+    },
+    "allele": {
+      "type": ["string", "null"],
+      "description": "Star allele (e.g., *1, *4)",
+      "sources": ["CPIC", "PharmVar"]
+    },
+    "allele_function": {
+      "type": ["string", "null"],
+      "description": "Allele function (Normal/Decreased/No function)",
+      "sources": ["CPIC", "PharmVar"]
+    },
+    "activity_score": {
+      "type": ["number", "null"],
+      "description": "Numeric activity value",
+      "sources": ["CPIC", "DPWG", "PharmVar"]
+    },
+    "recommendation_strength": {
+      "type": ["string", "null"],
+      "description": "Recommendation strength (Strong/Moderate/Optional)",
+      "sources": ["CPIC"]
+    },
+    "clinical_implications": {
+      "type": ["string", "null"],
+      "description": "Clinical implications of phenotype",
+      "sources": ["CPIC"]
+    },
+    "dpwg_id": {
+      "type": ["string", "null"],
+      "description": "DPWG guideline identifier",
+      "sources": ["DPWG"]
+    },
+    "atc_code": {
+      "type": ["string", "null"],
+      "description": "WHO ATC drug classification code",
+      "sources": ["DPWG", "PharmGKB"]
+    },
+    "dpwg_urgency": {
+      "type": ["string", "null"],
+      "enum": ["Urgent", "Non-urgent", null],
+      "description": "Urgency classification",
+      "sources": ["DPWG"]
+    },
+    "diplotype": {
+      "type": ["string", "null"],
+      "description": "Allele combination",
+      "sources": ["DPWG", "PharmGKB"]
+    },
+    "pharmgkb_accession": {
+      "type": ["string", "null"],
+      "description": "PharmGKB PA + integer identifier",
+      "sources": ["PharmGKB"]
+    },
+    "is_vip_gene": {
+      "type": ["boolean", "null"],
+      "description": "Very Important Pharmacogene status",
+      "sources": ["PharmGKB"]
+    },
+    "has_variant_annotation": {
+      "type": ["boolean", "null"],
+      "description": "Has curated variants",
+      "sources": ["PharmGKB"]
+    },
+    "annotation_id": {
+      "type": ["integer", "null"],
+      "description": "Clinical annotation identifier",
+      "sources": ["PharmGKB"]
+    },
+    "phenotype_category": {
+      "type": ["string", "null"],
+      "description": "Efficacy, Toxicity, Dosage, or Metabolism",
+      "sources": ["PharmGKB"]
+    },
+    "trade_names": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Brand names for drug",
+      "sources": ["PharmGKB"]
+    },
+    "atc_codes": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "ATC classification codes",
+      "sources": ["PharmGKB"]
+    },
+    "rxnorm_ids": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "RxNorm CUIs",
+      "sources": ["PharmGKB"]
+    },
+    "drugbank_id": {
+      "type": ["string", "null"],
+      "description": "DrugBank identifier",
+      "sources": ["PharmGKB"]
+    },
+    "has_pgx_on_label": {
+      "type": ["boolean", "null"],
+      "description": "FDA label contains PGx info",
+      "sources": ["PharmGKB"]
+    },
+    "variant_haplotypes": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Associated haplotypes",
+      "sources": ["PharmGKB"]
+    },
+    "population_frequencies": {
+      "type": ["object", "null"],
+      "description": "Biogeographical population frequencies",
+      "sources": ["PharmGKB"]
+    },
+    "pathway_id": {
+      "type": ["string", "null"],
+      "description": "Drug pathway identifier",
+      "sources": ["PharmGKB"]
+    },
+    "pk_pd_type": {
+      "type": ["string", "null"],
+      "description": "Pharmacokinetics or pharmacodynamics",
+      "sources": ["PharmGKB"]
+    },
+    "pharmvar_allele_name": {
+      "type": ["string", "null"],
+      "description": "Star notation (e.g., *4)",
+      "sources": ["PharmVar"]
+    },
+    "pharmvar_core_allele": {
+      "type": ["string", "null"],
+      "description": "Core allele (e.g., *4.001)",
+      "sources": ["PharmVar"]
+    },
+    "defining_variants": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "List of defining variants",
+      "sources": ["PharmVar"]
+    },
+    "reference_sequence_id": {
+      "type": ["string", "null"],
+      "description": "NG reference sequence",
+      "sources": ["PharmVar"]
+    },
+    "hgvs_genomic": {
+      "type": ["string", "null"],
+      "description": "Genomic HGVS notation",
+      "sources": ["PharmVar"]
+    },
+    "hgvs_coding": {
+      "type": ["string", "null"],
+      "description": "Coding HGVS notation",
+      "sources": ["PharmVar"]
+    },
+    "hgvs_protein": {
+      "type": ["string", "null"],
+      "description": "Protein HGVS notation",
+      "sources": ["PharmVar"]
+    },
+    "rsid": {
+      "type": ["string", "null"],
+      "description": "dbSNP RS ID",
+      "sources": ["PharmVar"]
+    },
+    "variant_impact": {
+      "type": ["string", "null"],
+      "description": "Variant effect type",
+      "sources": ["PharmVar"]
+    },
+    "_source": {
+      "type": "object",
+      "description": "Metadata about the data source",
+      "properties": {
+        "database": {"type": "string"},
+        "version": {"type": "string"},
+        "access_date": {"type": "string", "format": "date"}
+      }
+    }
+  },
+  "required": ["gene"],
+  "field_mappings": {
+    "CPIC": {
+      "guideline_id": "cpic_guideline_id",
+      "publication_doi": "cpic_publication_doi",
+      "cpic_level": "cpic_level",
+      "allele": "allele",
+      "function": "allele_function",
+      "activity_score": "activity_score",
+      "strength": "recommendation_strength",
+      "implications": "clinical_implications"
+    },
+    "DPWG": {
+      "dpwg_id": "dpwg_id",
+      "atc_code": "atc_code",
+      "urgency": "dpwg_urgency",
+      "diplotype": "diplotype",
+      "activity_score": "activity_score"
+    },
+    "PharmGKB": {
+      "PharmGKB_Accession": "pharmgkb_accession",
+      "Is_VIP": "is_vip_gene",
+      "Has_Variant_Annotation": "has_variant_annotation",
+      "Annotation_ID": "annotation_id",
+      "Level_of_Evidence": "evidence_level",
+      "Phenotype_Category": "phenotype_category",
+      "Trade_Names": "trade_names",
+      "ATC_Codes": "atc_codes",
+      "RxNorm_Identifiers": "rxnorm_ids",
+      "DrugBank_ID": "drugbank_id",
+      "Has_PGx_On_Label": "has_pgx_on_label",
+      "Variant_Haplotypes": "variant_haplotypes",
+      "Biogeographical_Groups": "population_frequencies",
+      "Pathway_ID": "pathway_id",
+      "PK_PD": "pk_pd_type"
+    },
+    "PharmVar": {
+      "allele_name": "pharmvar_allele_name",
+      "core_allele": "pharmvar_core_allele",
+      "activity_value": "activity_score",
+      "defining_variants": "defining_variants",
+      "ref_seq_id": "reference_sequence_id",
+      "hgvs_g": "hgvs_genomic",
+      "hgvs_c": "hgvs_coding",
+      "hgvs_p": "hgvs_protein",
+      "rsid": "rsid",
+      "impact": "variant_impact"
+    }
+  }
+}

@@ -1,0 +1,298 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gene.example.org/schemas/1.1-variant-repositories.json",
+  "title": "Variant Repositories Unified Schema",
+  "description": "Unified schema for variant repository data from ClinVar, dbSNP, and dbVar",
+  "type": "object",
+  "properties": {
+    "variant_id": {
+      "type": "string",
+      "description": "Unique identifier for the variant record",
+      "sources": ["ClinVar (VCV/RCV/SCV)", "dbSNP (rsid)", "dbVar (nsv/nssv)"],
+      "examples": ["VCV000000123.4", "rs334", "nsv1234567"]
+    },
+    "chromosome": {
+      "type": "string",
+      "description": "Chromosome location of the variant",
+      "sources": ["ClinVar", "dbSNP", "dbVar"],
+      "examples": ["11", "chr1", "chrX"]
+    },
+    "position": {
+      "type": "integer",
+      "description": "1-based genomic coordinate position on reference assembly",
+      "sources": ["ClinVar", "dbSNP", "dbVar"],
+      "examples": [5227002, 10001, 140753336]
+    },
+    "reference_allele": {
+      "type": "string",
+      "description": "Reference genome allele (IUPAC nucleotides)",
+      "sources": ["ClinVar", "dbSNP", "dbVar"],
+      "examples": ["A", "T", "AG"]
+    },
+    "alternate_allele": {
+      "type": "string",
+      "description": "Observed variant allele (IUPAC nucleotides)",
+      "sources": ["ClinVar", "dbSNP", "dbVar"],
+      "examples": ["T", "A", "A"]
+    },
+    "variant_type": {
+      "type": "string",
+      "description": "Sequence Ontology term for variant type classification",
+      "sources": ["ClinVar", "dbSNP", "dbVar"],
+      "examples": ["SNV", "deletion", "insertion", "structural_variant"]
+    },
+    "clinical_significance": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "ACMG/AMP clinical interpretation of variant pathogenicity",
+      "sources": ["ClinVar", "dbSNP (via ClinVar)", "dbVar"],
+      "examples": ["Pathogenic", "Likely pathogenic", "Uncertain significance", "Benign"]
+    },
+    "gene_symbols": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "HGNC official gene symbol(s) associated with variant",
+      "sources": ["ClinVar", "dbSNP", "dbVar"],
+      "examples": ["HBB", "BRCA1", "TP53"]
+    },
+    "hgvs_expressions": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Human Genome Variation Society standardized notation",
+      "sources": ["ClinVar", "dbSNP"],
+      "examples": ["NM_000518.5:c.20A>T", "NC_000011.10:g.5227002T>A"]
+    },
+    "assembly": {
+      "type": "string",
+      "description": "Genome Reference Consortium build identifier",
+      "sources": ["ClinVar", "dbSNP", "dbVar"],
+      "examples": ["GRCh38", "GRCh37", "hg38"]
+    },
+    "clinvar_allele_id": {
+      "type": ["integer", "null"],
+      "description": "ClinVar unique simple variant identifier",
+      "sources": ["ClinVar"]
+    },
+    "clinvar_variation_id": {
+      "type": ["integer", "null"],
+      "description": "ClinVar variation record ID",
+      "sources": ["ClinVar"]
+    },
+    "review_status": {
+      "type": ["string", "null"],
+      "description": "Aggregate review status level",
+      "sources": ["ClinVar"]
+    },
+    "number_submitters": {
+      "type": ["integer", "null"],
+      "description": "Number of submitting organizations",
+      "sources": ["ClinVar"]
+    },
+    "date_last_evaluated": {
+      "type": ["string", "null"],
+      "format": "date",
+      "description": "Most recent evaluation date",
+      "sources": ["ClinVar"]
+    },
+    "phenotype_ids": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "MedGen CUI identifiers for associated phenotypes",
+      "sources": ["ClinVar"]
+    },
+    "somatic_clinical_impact": {
+      "type": ["string", "null"],
+      "description": "Somatic classification",
+      "sources": ["ClinVar"]
+    },
+    "oncogenicity": {
+      "type": ["string", "null"],
+      "description": "Oncogenicity classification",
+      "sources": ["ClinVar"]
+    },
+    "origin": {
+      "type": ["string", "null"],
+      "description": "Variant origin (germline, somatic, de novo)",
+      "sources": ["ClinVar"]
+    },
+    "disease_names": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Associated disease name(s)",
+      "sources": ["ClinVar"]
+    },
+    "molecular_consequence": {
+      "type": ["string", "null"],
+      "description": "Molecular consequence annotation",
+      "sources": ["ClinVar"]
+    },
+    "dbsnp_refsnp_id": {
+      "type": ["string", "null"],
+      "description": "RefSNP identifier (without rs prefix)",
+      "sources": ["dbSNP"]
+    },
+    "dbsnp_create_date": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "Initial submission date to dbSNP",
+      "sources": ["dbSNP"]
+    },
+    "dbsnp_last_update": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "Most recent modification date",
+      "sources": ["dbSNP"]
+    },
+    "mane_select_ids": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "MANE Select transcript IDs",
+      "sources": ["dbSNP"]
+    },
+    "allele_count": {
+      "type": ["integer", "null"],
+      "description": "Number of allele observations",
+      "sources": ["dbSNP"]
+    },
+    "total_count": {
+      "type": ["integer", "null"],
+      "description": "Total chromosomes sampled",
+      "sources": ["dbSNP"]
+    },
+    "citations": {
+      "type": ["array", "null"],
+      "items": {"type": "integer"},
+      "description": "PubMed IDs",
+      "sources": ["dbSNP"]
+    },
+    "population_frequencies": {
+      "type": ["object", "null"],
+      "description": "Population-specific allele frequencies (ALFA)",
+      "sources": ["dbSNP"]
+    },
+    "dbvar_outermost_start": {
+      "type": ["integer", "null"],
+      "description": "1-based start position (dbVar)",
+      "sources": ["dbVar"]
+    },
+    "dbvar_outermost_stop": {
+      "type": ["integer", "null"],
+      "description": "1-based stop position (dbVar)",
+      "sources": ["dbVar"]
+    },
+    "dbvar_inner_start": {
+      "type": ["integer", "null"],
+      "description": "Minimum affected start (dbVar)",
+      "sources": ["dbVar"]
+    },
+    "dbvar_inner_stop": {
+      "type": ["integer", "null"],
+      "description": "Minimum affected stop (dbVar)",
+      "sources": ["dbVar"]
+    },
+    "sv_variant_count": {
+      "type": ["integer", "null"],
+      "description": "Number of supporting variants (structural variants)",
+      "sources": ["dbVar"]
+    },
+    "detection_method": {
+      "type": ["string", "null"],
+      "description": "Detection method(s) for structural variants",
+      "sources": ["dbVar"]
+    },
+    "analysis_type": {
+      "type": ["string", "null"],
+      "description": "Analysis type(s)",
+      "sources": ["dbVar"]
+    },
+    "platform": {
+      "type": ["string", "null"],
+      "description": "Sequencing/array platform",
+      "sources": ["dbVar"]
+    },
+    "study_accession": {
+      "type": ["string", "null"],
+      "description": "Source study accession(s)",
+      "sources": ["dbVar"]
+    },
+    "sv_type": {
+      "type": ["string", "null"],
+      "description": "Structural variant type (SVTYPE)",
+      "sources": ["dbVar"]
+    },
+    "sv_length": {
+      "type": ["integer", "null"],
+      "description": "SV length (negative for deletions)",
+      "sources": ["dbVar"]
+    },
+    "is_imprecise": {
+      "type": ["boolean", "null"],
+      "description": "Imprecise structural variant flag",
+      "sources": ["dbVar"]
+    },
+    "size_category": {
+      "type": ["string", "null"],
+      "description": "Size category (small, medium, large)",
+      "sources": ["dbVar"]
+    },
+    "_source": {
+      "type": "object",
+      "description": "Metadata about the data source",
+      "properties": {
+        "database": {"type": "string"},
+        "version": {"type": "string"},
+        "access_date": {"type": "string", "format": "date"},
+        "original_id": {"type": "string"}
+      }
+    }
+  },
+  "required": ["variant_id", "chromosome", "position"],
+  "field_mappings": {
+    "ClinVar": {
+      "AlleleID": "clinvar_allele_id",
+      "VariationID": "clinvar_variation_id",
+      "ReviewStatus": "review_status",
+      "CLNREVSTAT": "review_status",
+      "NumberSubmitters": "number_submitters",
+      "DateLastEvaluated": "date_last_evaluated",
+      "PhenotypeIDS": "phenotype_ids",
+      "SomaticClinicalImpact": "somatic_clinical_impact",
+      "Oncogenicity": "oncogenicity",
+      "Origin": "origin",
+      "CLNDN": "disease_names",
+      "MC": "molecular_consequence",
+      "GeneSymbol": "gene_symbols",
+      "ClinicalSignificance": "clinical_significance",
+      "CLNSIG": "clinical_significance"
+    },
+    "dbSNP": {
+      "refsnp_id": "dbsnp_refsnp_id",
+      "create_date": "dbsnp_create_date",
+      "last_update_date": "dbsnp_last_update",
+      "mane_select_ids": "mane_select_ids",
+      "allele_count": "allele_count",
+      "total_count": "total_count",
+      "citations": "citations",
+      "ALFA_frequencies": "population_frequencies",
+      "CHROM": "chromosome",
+      "POS": "position",
+      "REF": "reference_allele",
+      "ALT": "alternate_allele"
+    },
+    "dbVar": {
+      "outermost_start": "dbvar_outermost_start",
+      "outermost_stop": "dbvar_outermost_stop",
+      "inner_start": "dbvar_inner_start",
+      "inner_stop": "dbvar_inner_stop",
+      "variant_count": "sv_variant_count",
+      "method": "detection_method",
+      "analysis": "analysis_type",
+      "platform": "platform",
+      "study": "study_accession",
+      "SVTYPE": "sv_type",
+      "SVLEN": "sv_length",
+      "IMPRECISE": "is_imprecise",
+      "bin_size": "size_category"
+    }
+  }
+}

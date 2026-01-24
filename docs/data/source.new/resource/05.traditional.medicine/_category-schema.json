@@ -1,0 +1,2135 @@
+{
+  "category_id": "05",
+  "category_name": "Traditional Medicine",
+  "extraction_date": "2026-01-24",
+  "subcategories": [
+    {
+      "subcategory_id": "5.1",
+      "subcategory_name": "Traditional Chinese Medicine",
+      "data_sources": [
+        "HERB",
+        "ETCM",
+        "TCMBank",
+        "TCMSID",
+        "SymMap",
+        "BATMAN-TCM"
+      ],
+      "unified_fields": [
+        {
+          "name": "herb_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Unique identifier for a TCM herb within the database",
+          "sources": ["HERB", "ETCM", "TCMBank", "TCMSID", "SymMap", "BATMAN-TCM"],
+          "semantic_definition": "Primary key for herb entity, format varies by database (e.g., HERB001234, H001, HERB001234, SMHB00001)",
+          "examples": ["HERB001234", "H001", "HERB001234", "SMHB00001"]
+        },
+        {
+          "name": "herb_name_chinese",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Chinese character name of the herb",
+          "sources": ["HERB", "ETCM", "TCMBank", "TCMSID", "SymMap", "BATMAN-TCM"],
+          "semantic_definition": "Traditional Chinese name in Chinese characters"
+        },
+        {
+          "name": "herb_name_pinyin",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Romanized pronunciation of the herb name using Pinyin system",
+          "sources": ["HERB", "ETCM", "TCMBank", "TCMSID", "SymMap", "BATMAN-TCM"],
+          "semantic_definition": "Pinyin transliteration of Chinese herb name",
+          "examples": ["Huang Qi", "Jiang Huang", "Gan Cao"]
+        },
+        {
+          "name": "herb_name_english",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "English common name of the herb",
+          "sources": ["HERB", "ETCM", "TCMBank", "TCMSID", "SymMap", "BATMAN-TCM"],
+          "semantic_definition": "Standardized English vernacular name"
+        },
+        {
+          "name": "herb_name_latin",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Botanical Latin binomial name",
+          "sources": ["HERB", "ETCM", "TCMBank", "TCMSID", "SymMap", "BATMAN-TCM"],
+          "semantic_definition": "Scientific taxonomic name following binomial nomenclature",
+          "examples": ["Astragalus membranaceus", "Panax ginseng"]
+        },
+        {
+          "name": "tcm_nature",
+          "type": "enum",
+          "cardinality": "1:1",
+          "description": "TCM thermal nature classification (Xing)",
+          "sources": ["HERB", "ETCM", "SymMap", "BATMAN-TCM"],
+          "semantic_definition": "Five-level thermal property classification according to TCM theory",
+          "allowed_values": ["cold", "cool", "neutral", "warm", "hot"],
+          "tcm_term_chinese": "Xing (性)"
+        },
+        {
+          "name": "tcm_flavor",
+          "type": "array[string]",
+          "cardinality": "1:N",
+          "description": "TCM flavor classification (Wei)",
+          "sources": ["HERB", "ETCM", "SymMap", "BATMAN-TCM"],
+          "semantic_definition": "Taste properties according to TCM theory, multiple flavors possible",
+          "allowed_values": ["sweet", "bitter", "sour", "salty", "pungent", "astringent"],
+          "tcm_term_chinese": "Wei (味)"
+        },
+        {
+          "name": "meridian_tropism",
+          "type": "array[string]",
+          "cardinality": "1:N",
+          "description": "TCM organ/meridian affinity (Gui Jing)",
+          "sources": ["HERB", "ETCM", "SymMap", "BATMAN-TCM"],
+          "semantic_definition": "Target organ systems according to TCM channel theory",
+          "allowed_values": ["lung", "heart", "liver", "spleen", "kidney", "stomach", "gallbladder", "bladder", "large_intestine", "small_intestine", "triple_burner", "pericardium"],
+          "tcm_term_chinese": "Gui Jing (归经)"
+        },
+        {
+          "name": "compound_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Unique identifier for a chemical compound/ingredient",
+          "sources": ["HERB", "ETCM", "TCMBank", "TCMSID", "SymMap", "BATMAN-TCM"],
+          "semantic_definition": "Primary key for compound entity",
+          "examples": ["C001", "TCM001234", "MOL000001", "SMCP00001"]
+        },
+        {
+          "name": "compound_name",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Chemical compound name",
+          "sources": ["HERB", "ETCM", "TCMBank", "TCMSID", "SymMap", "BATMAN-TCM"],
+          "semantic_definition": "Primary chemical name, may include IUPAC or common name"
+        },
+        {
+          "name": "pubchem_cid",
+          "type": "integer",
+          "cardinality": "1:1",
+          "description": "PubChem Compound Identifier for cross-referencing",
+          "sources": ["HERB", "ETCM", "TCMBank", "TCMSID", "SymMap", "BATMAN-TCM"],
+          "semantic_definition": "Standardized compound identifier from NCBI PubChem database",
+          "examples": [5280343, 969516]
+        },
+        {
+          "name": "smiles",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Simplified Molecular Input Line Entry System notation",
+          "sources": ["HERB", "ETCM", "TCMBank", "TCMSID", "SymMap", "BATMAN-TCM"],
+          "semantic_definition": "Linear text representation of molecular structure"
+        },
+        {
+          "name": "inchi_key",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "International Chemical Identifier key (27 characters)",
+          "sources": ["HERB", "TCMBank", "BATMAN-TCM"],
+          "semantic_definition": "Hashed version of InChI for compound lookup and deduplication"
+        },
+        {
+          "name": "molecular_formula",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Chemical formula showing element counts",
+          "sources": ["HERB", "ETCM", "TCMBank", "TCMSID", "SymMap", "BATMAN-TCM"],
+          "semantic_definition": "Elemental composition notation (e.g., C21H20O6)",
+          "examples": ["C21H20O6", "C28H38O6"]
+        },
+        {
+          "name": "molecular_weight",
+          "type": "float",
+          "cardinality": "1:1",
+          "description": "Molecular weight in Daltons",
+          "sources": ["HERB", "ETCM", "TCMBank", "TCMSID", "SymMap", "BATMAN-TCM"],
+          "semantic_definition": "Sum of atomic weights of all atoms in the molecule",
+          "unit": "Da"
+        },
+        {
+          "name": "target_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Identifier for target protein/gene",
+          "sources": ["HERB", "ETCM", "TCMBank", "TCMSID", "SymMap", "BATMAN-TCM"],
+          "semantic_definition": "Primary key for target entity, typically UniProt accession or gene symbol"
+        },
+        {
+          "name": "gene_symbol",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "HGNC-approved gene symbol",
+          "sources": ["HERB", "ETCM", "TCMBank", "TCMSID", "SymMap", "BATMAN-TCM"],
+          "semantic_definition": "Standardized human gene symbol from HUGO Gene Nomenclature Committee",
+          "examples": ["TP53", "EGFR", "MTOR"]
+        },
+        {
+          "name": "uniprot_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "UniProt protein accession number",
+          "sources": ["HERB", "ETCM", "TCMBank", "TCMSID", "SymMap", "BATMAN-TCM"],
+          "semantic_definition": "Universal Protein Resource accession for protein sequence identification",
+          "examples": ["P04637", "P00533"]
+        },
+        {
+          "name": "entrez_gene_id",
+          "type": "integer",
+          "cardinality": "1:1",
+          "description": "NCBI Entrez Gene identifier",
+          "sources": ["HERB", "SymMap", "BATMAN-TCM"],
+          "semantic_definition": "NCBI gene identifier for cross-referencing"
+        },
+        {
+          "name": "disease_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Identifier for disease entity",
+          "sources": ["HERB", "ETCM", "TCMBank", "TCMSID", "SymMap", "BATMAN-TCM"],
+          "semantic_definition": "Disease identifier, typically MESH ID or internal ID"
+        },
+        {
+          "name": "disease_name",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Disease or condition name",
+          "sources": ["HERB", "ETCM", "TCMBank", "TCMSID", "SymMap", "BATMAN-TCM"],
+          "semantic_definition": "Standardized disease nomenclature"
+        },
+        {
+          "name": "mesh_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Medical Subject Headings identifier",
+          "sources": ["HERB", "ETCM", "TCMBank", "SymMap", "BATMAN-TCM"],
+          "semantic_definition": "NLM controlled vocabulary identifier for diseases"
+        },
+        {
+          "name": "formula_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Unique identifier for TCM formula/prescription",
+          "sources": ["ETCM", "TCMBank", "BATMAN-TCM"],
+          "semantic_definition": "Primary key for formula entity representing multi-herb preparations"
+        },
+        {
+          "name": "formula_name_chinese",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Chinese character name of the formula",
+          "sources": ["ETCM", "TCMBank", "BATMAN-TCM"],
+          "semantic_definition": "Traditional Chinese formula name in characters"
+        },
+        {
+          "name": "formula_name_pinyin",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Romanized formula name in Pinyin",
+          "sources": ["ETCM", "TCMBank", "BATMAN-TCM"],
+          "semantic_definition": "Pinyin transliteration for formula identification",
+          "examples": ["Bu Zhong Yi Qi Tang", "Liu Wei Di Huang Wan"]
+        },
+        {
+          "name": "classical_source",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Historical text reference for formula origin",
+          "sources": ["ETCM", "TCMBank", "BATMAN-TCM"],
+          "semantic_definition": "Reference to classical TCM literature where formula was first documented"
+        },
+        {
+          "name": "herb_role",
+          "type": "enum",
+          "cardinality": "1:1",
+          "description": "Role of herb in formula composition",
+          "sources": ["ETCM", "BATMAN-TCM"],
+          "semantic_definition": "Jun-Chen-Zuo-Shi classification indicating functional role",
+          "allowed_values": ["jun", "chen", "zuo", "shi"],
+          "allowed_values_english": ["sovereign", "minister", "assistant", "envoy"],
+          "tcm_term_chinese": "Jun Chen Zuo Shi (君臣佐使)"
+        },
+        {
+          "name": "source_herbs",
+          "type": "array[string]",
+          "cardinality": "1:N",
+          "description": "Array of herb IDs that contain this compound",
+          "sources": ["HERB", "ETCM", "TCMBank", "TCMSID", "SymMap", "BATMAN-TCM"],
+          "semantic_definition": "Back-reference from compound to source herbs (many-to-many relationship)"
+        },
+        {
+          "name": "predicted_targets",
+          "type": "array[string]",
+          "cardinality": "1:N",
+          "description": "Array of computationally predicted target protein IDs",
+          "sources": ["ETCM", "TCMBank", "TCMSID", "BATMAN-TCM"],
+          "semantic_definition": "Target proteins predicted through computational methods (not experimentally validated)"
+        },
+        {
+          "name": "kegg_pathways",
+          "type": "array[object]",
+          "cardinality": "1:N",
+          "description": "KEGG pathway associations",
+          "sources": ["TCMSID", "BATMAN-TCM"],
+          "semantic_definition": "KEGG pathway IDs and names associated with targets",
+          "examples": [{"pathway_id": "hsa04151", "pathway_name": "PI3K-Akt signaling pathway"}]
+        }
+      ],
+      "source_specific_fields": {
+        "HERB": [
+          {
+            "name": "geo_accession",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Gene Expression Omnibus accession number",
+            "semantic_definition": "GEO series accession (GSE format) linking to expression experiments",
+            "examples": ["GSE12345"]
+          },
+          {
+            "name": "expression_experiments",
+            "type": "array[string]",
+            "cardinality": "1:N",
+            "description": "Array of GEO accession numbers for herb expression studies",
+            "semantic_definition": "Links to transcriptomic experiments studying herb effects"
+          },
+          {
+            "name": "connectivity_score",
+            "type": "float",
+            "cardinality": "1:1",
+            "description": "Signature connectivity score comparing herb to disease",
+            "semantic_definition": "Score from -1 to +1 indicating expression pattern similarity or opposition",
+            "range": "-1 to +1"
+          },
+          {
+            "name": "differential_genes",
+            "type": "object",
+            "cardinality": "1:1",
+            "description": "Up and down-regulated genes from treatment",
+            "semantic_definition": "Gene lists significantly changed by herb treatment",
+            "structure": {"upregulated": "array[string]", "downregulated": "array[string]"}
+          },
+          {
+            "name": "fold_change_threshold",
+            "type": "float",
+            "cardinality": "1:1",
+            "description": "Minimum fold change for differential expression",
+            "semantic_definition": "Cutoff value typically >= 2 for significant expression changes"
+          }
+        ],
+        "ETCM": [
+          {
+            "name": "actions",
+            "type": "array[string]",
+            "cardinality": "1:N",
+            "description": "Therapeutic actions of herb according to TCM theory",
+            "semantic_definition": "Traditional therapeutic effects like 'tonifies qi', 'clears heat'"
+          },
+          {
+            "name": "indications",
+            "type": "array[string]",
+            "cardinality": "1:N",
+            "description": "Disease patterns/conditions treated",
+            "semantic_definition": "TCM pattern diagnoses and Western disease names"
+          },
+          {
+            "name": "therapeutic_category",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Classification of formula by therapeutic function",
+            "semantic_definition": "Category such as 'tonifying formulas', 'heat-clearing formulas'"
+          },
+          {
+            "name": "herb_dosage",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Recommended dosage of herb in formula",
+            "semantic_definition": "Traditional weight measure for herb in formula preparation"
+          }
+        ],
+        "TCMBank": [
+          {
+            "name": "chembl_id",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "ChEMBL compound identifier",
+            "semantic_definition": "EBI ChEMBL database identifier for bioactivity data linkage"
+          },
+          {
+            "name": "cas_number",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Chemical Abstracts Service registry number",
+            "semantic_definition": "Unique chemical compound identifier assigned by CAS"
+          },
+          {
+            "name": "logP",
+            "type": "float",
+            "cardinality": "1:1",
+            "description": "Partition coefficient (lipophilicity)",
+            "semantic_definition": "Octanol-water partition coefficient indicating membrane permeability"
+          },
+          {
+            "name": "tpsa",
+            "type": "float",
+            "cardinality": "1:1",
+            "description": "Topological Polar Surface Area",
+            "semantic_definition": "Surface area contributed by polar atoms, predictor of absorption",
+            "unit": "Angstrom squared"
+          },
+          {
+            "name": "hydrogen_bond_donors",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "Count of hydrogen bond donor atoms",
+            "semantic_definition": "Lipinski RO5 parameter (<=5 for drug-like)"
+          },
+          {
+            "name": "hydrogen_bond_acceptors",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "Count of hydrogen bond acceptor atoms",
+            "semantic_definition": "Lipinski RO5 parameter (<=10 for drug-like)"
+          },
+          {
+            "name": "rotatable_bonds",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "Count of rotatable bonds",
+            "semantic_definition": "Molecular flexibility indicator, <=10 for Veber rule"
+          },
+          {
+            "name": "lipinski_violations",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "Number of Lipinski Rule of Five violations",
+            "semantic_definition": "Count from 0-4, <=1 typically acceptable for oral drugs"
+          },
+          {
+            "name": "pains_alerts",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "Pan-Assay Interference Compounds alert count",
+            "semantic_definition": "Number of PAINS structural alerts flagging potential assay interference"
+          },
+          {
+            "name": "gi_absorption",
+            "type": "enum",
+            "cardinality": "1:1",
+            "description": "Predicted gastrointestinal absorption",
+            "allowed_values": ["High", "Low"]
+          },
+          {
+            "name": "bbb_permeant",
+            "type": "enum",
+            "cardinality": "1:1",
+            "description": "Predicted blood-brain barrier permeability",
+            "allowed_values": ["Yes", "No"]
+          },
+          {
+            "name": "cyp_inhibitors",
+            "type": "array[string]",
+            "cardinality": "1:N",
+            "description": "CYP450 enzymes inhibited by compound",
+            "examples": ["CYP1A2", "CYP2C9", "CYP2D6", "CYP3A4"]
+          },
+          {
+            "name": "ames_mutagenicity",
+            "type": "enum",
+            "cardinality": "1:1",
+            "description": "Predicted Ames test mutagenicity",
+            "allowed_values": ["Yes", "No"]
+          },
+          {
+            "name": "hepatotoxicity_risk",
+            "type": "enum",
+            "cardinality": "1:1",
+            "description": "Predicted hepatotoxicity risk level",
+            "allowed_values": ["High", "Medium", "Low"]
+          }
+        ],
+        "TCMSID": [
+          {
+            "name": "ob",
+            "type": "float",
+            "cardinality": "1:1",
+            "description": "Oral Bioavailability percentage",
+            "semantic_definition": "Fraction of oral dose reaching systemic circulation (>=30% favorable)",
+            "unit": "percent",
+            "threshold": 30
+          },
+          {
+            "name": "dl",
+            "type": "float",
+            "cardinality": "1:1",
+            "description": "Drug-Likeness score",
+            "semantic_definition": "Quantitative estimate of similarity to known drugs (>=0.18 drug-like)",
+            "range": "0-1",
+            "threshold": 0.18
+          },
+          {
+            "name": "caco2",
+            "type": "float",
+            "cardinality": "1:1",
+            "description": "Caco-2 cell permeability",
+            "semantic_definition": "Predicted intestinal epithelial permeability (>=-0.4 good)",
+            "threshold": -0.4
+          },
+          {
+            "name": "bbb",
+            "type": "float",
+            "cardinality": "1:1",
+            "description": "Blood-Brain Barrier permeability score",
+            "semantic_definition": "Predicted BBB penetration ability (>=-0.3 suggests penetration)",
+            "threshold": -0.3
+          },
+          {
+            "name": "hl",
+            "type": "enum",
+            "cardinality": "1:1",
+            "description": "Pharmacokinetic half-life classification",
+            "semantic_definition": "Elimination half-life category",
+            "allowed_values": ["Long", "Short"]
+          },
+          {
+            "name": "drug_like_compounds",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "Count of compounds passing OB>=30 and DL>=0.18 filters",
+            "semantic_definition": "Number of ADME-filtered compounds for an herb"
+          }
+        ],
+        "SymMap": [
+          {
+            "name": "symptom_id",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Unique identifier for TCM symptom",
+            "semantic_definition": "SymMap internal ID for symptom entity (e.g., SMSY00001)"
+          },
+          {
+            "name": "symptom_name_chinese",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Chinese name of TCM symptom",
+            "semantic_definition": "Traditional symptom name in Chinese characters"
+          },
+          {
+            "name": "symptom_name_english",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "English translation of symptom",
+            "semantic_definition": "Standardized English symptom name"
+          },
+          {
+            "name": "tcm_pattern",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "TCM syndrome/pattern classification (Zheng)",
+            "semantic_definition": "Traditional diagnostic pattern associated with symptom",
+            "tcm_term_chinese": "Zheng (证)"
+          },
+          {
+            "name": "hpo_mappings",
+            "type": "array[object]",
+            "cardinality": "1:N",
+            "description": "Human Phenotype Ontology mappings for symptom",
+            "semantic_definition": "Cross-reference to standardized modern phenotype ontology",
+            "structure": {
+              "hpo_id": "string (HP:XXXXXXX format)",
+              "hpo_term": "string",
+              "mapping_confidence": "float"
+            },
+            "examples": [{"hpo_id": "HP:0002315", "hpo_term": "Headache", "mapping_confidence": 0.95}]
+          },
+          {
+            "name": "symptom_herb_associations",
+            "type": "array[string]",
+            "cardinality": "1:N",
+            "description": "Herbs traditionally associated with treating this symptom",
+            "semantic_definition": "Many-to-many relationship between symptoms and herbs"
+          },
+          {
+            "name": "symptom_gene_associations",
+            "type": "array[string]",
+            "cardinality": "1:N",
+            "description": "Genes associated with this symptom via HPO mapping",
+            "semantic_definition": "Molecular basis of symptom through phenotype-gene linkage"
+          },
+          {
+            "name": "omim_id",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "Online Mendelian Inheritance in Man identifier",
+            "semantic_definition": "OMIM disease/phenotype identifier for genetic linkage"
+          }
+        ],
+        "BATMAN-TCM": [
+          {
+            "name": "tti_id",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Unique Target-TCM Interaction identifier",
+            "semantic_definition": "Primary key for compound-target interaction record"
+          },
+          {
+            "name": "interaction_type",
+            "type": "enum",
+            "cardinality": "1:1",
+            "description": "Classification of interaction as known or predicted",
+            "allowed_values": ["known", "predicted"],
+            "semantic_definition": "Indicates experimental validation status of interaction"
+          },
+          {
+            "name": "confidence_score",
+            "type": "float",
+            "cardinality": "1:1",
+            "description": "Prediction confidence score",
+            "semantic_definition": "Score from 0-1 indicating reliability of predicted interaction",
+            "range": "0-1"
+          },
+          {
+            "name": "evidence_source",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Database source of known interaction",
+            "semantic_definition": "Origin database for curated interactions",
+            "allowed_values": ["ChEMBL", "CTD", "STITCH", "DGIdb", "literature"]
+          },
+          {
+            "name": "binding_data",
+            "type": "object",
+            "cardinality": "1:1",
+            "description": "Quantitative binding affinity data",
+            "semantic_definition": "Experimental binding measurements from source databases",
+            "structure": {
+              "activity_type": "string (IC50|Ki|EC50|Kd)",
+              "activity_value": "float",
+              "activity_unit": "string (nM|uM|mM)"
+            }
+          },
+          {
+            "name": "pubmed_ids",
+            "type": "array[string]",
+            "cardinality": "1:N",
+            "description": "PubMed literature references",
+            "semantic_definition": "PMIDs supporting the interaction"
+          },
+          {
+            "name": "stitch_score",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "STITCH database combined score",
+            "semantic_definition": "Evidence score from STITCH (0-1000 scale)",
+            "range": "0-1000"
+          },
+          {
+            "name": "enrichment_ratio",
+            "type": "float",
+            "cardinality": "1:1",
+            "description": "KEGG pathway enrichment ratio",
+            "semantic_definition": "Ratio of observed to expected pathway hits"
+          },
+          {
+            "name": "pharmacopoeia_status",
+            "type": "enum",
+            "cardinality": "1:1",
+            "description": "Chinese Pharmacopoeia listing status",
+            "allowed_values": ["CP2020", "not_listed"],
+            "semantic_definition": "Official pharmacopoeia recognition status"
+          },
+          {
+            "name": "herb_processing",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Processing method for herb preparation",
+            "semantic_definition": "Traditional processing techniques applied to raw herb"
+          },
+          {
+            "name": "drugbank_id",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "DrugBank database identifier",
+            "semantic_definition": "Cross-reference to DrugBank for approved drug compounds"
+          }
+        ]
+      }
+    },
+    {
+      "subcategory_id": "5.2",
+      "subcategory_name": "South/East Asian Systems",
+      "data_sources": [
+        "NPACT",
+        "TM-MC",
+        "IMPPAT",
+        "KampoDB"
+      ],
+      "unified_fields": [
+        {
+          "name": "plant_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Unique identifier for medicinal plant",
+          "sources": ["NPACT", "TM-MC", "IMPPAT"],
+          "semantic_definition": "Primary key for plant entity",
+          "examples": ["TMMC_P_001234", "IMPPAT_PLANT_03985", "NAP_ORG_045678"]
+        },
+        {
+          "name": "botanical_name",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Scientific Latin binomial name",
+          "sources": ["NPACT", "TM-MC", "IMPPAT", "KampoDB"],
+          "semantic_definition": "Taxonomic name following binomial nomenclature"
+        },
+        {
+          "name": "family",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Botanical family classification",
+          "sources": ["NPACT", "TM-MC", "IMPPAT"],
+          "semantic_definition": "Plant taxonomic family (e.g., Zingiberaceae, Solanaceae)"
+        },
+        {
+          "name": "compound_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Unique compound identifier",
+          "sources": ["NPACT", "TM-MC", "IMPPAT", "KampoDB"],
+          "semantic_definition": "Primary key for compound entity"
+        },
+        {
+          "name": "compound_name",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Chemical compound name",
+          "sources": ["NPACT", "TM-MC", "IMPPAT", "KampoDB"],
+          "semantic_definition": "Primary chemical name"
+        },
+        {
+          "name": "pubchem_cid",
+          "type": "integer",
+          "cardinality": "1:1",
+          "description": "PubChem Compound Identifier",
+          "sources": ["NPACT", "TM-MC", "IMPPAT", "KampoDB"],
+          "semantic_definition": "Standardized compound identifier from PubChem"
+        },
+        {
+          "name": "smiles",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "SMILES molecular notation",
+          "sources": ["NPACT", "TM-MC", "IMPPAT"],
+          "semantic_definition": "Linear text representation of molecular structure"
+        },
+        {
+          "name": "molecular_formula",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Chemical formula",
+          "sources": ["NPACT", "TM-MC", "IMPPAT", "KampoDB"],
+          "semantic_definition": "Elemental composition notation"
+        },
+        {
+          "name": "molecular_weight",
+          "type": "float",
+          "cardinality": "1:1",
+          "description": "Molecular weight in Daltons",
+          "sources": ["NPACT", "TM-MC", "IMPPAT"],
+          "semantic_definition": "Sum of atomic weights"
+        },
+        {
+          "name": "target_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Target protein identifier",
+          "sources": ["NPACT", "TM-MC", "IMPPAT", "KampoDB"],
+          "semantic_definition": "Primary key for target entity"
+        },
+        {
+          "name": "gene_symbol",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "HGNC gene symbol",
+          "sources": ["NPACT", "TM-MC", "IMPPAT", "KampoDB"],
+          "semantic_definition": "Standardized human gene symbol"
+        },
+        {
+          "name": "uniprot_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "UniProt protein accession",
+          "sources": ["NPACT", "TM-MC", "IMPPAT"],
+          "semantic_definition": "Universal protein identifier"
+        },
+        {
+          "name": "traditional_system",
+          "type": "enum",
+          "cardinality": "1:N",
+          "description": "Traditional medicine system of origin",
+          "sources": ["TM-MC", "IMPPAT"],
+          "semantic_definition": "Traditional medical system using this plant",
+          "allowed_values": ["Ayurveda", "TCM", "Unani", "Siddha", "Kampo", "Jamu", "Sowa-Rigpa", "Homeopathy", "Western Herbal"]
+        },
+        {
+          "name": "plant_part",
+          "type": "array[string]",
+          "cardinality": "1:N",
+          "description": "Plant parts containing compound or used therapeutically",
+          "sources": ["NPACT", "TM-MC", "IMPPAT"],
+          "semantic_definition": "Anatomical parts of plant",
+          "allowed_values": ["root", "leaf", "bark", "seed", "flower", "fruit", "stem", "rhizome", "tuber", "whole plant"]
+        }
+      ],
+      "source_specific_fields": {
+        "NPACT": [
+          {
+            "name": "npact_id",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "NPACT internal compound identifier",
+            "semantic_definition": "Primary key format NPACT001234"
+          },
+          {
+            "name": "activity_id",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Unique activity measurement identifier",
+            "semantic_definition": "Primary key for activity data record"
+          },
+          {
+            "name": "activity_type",
+            "type": "enum",
+            "cardinality": "1:1",
+            "description": "Type of bioactivity measurement",
+            "allowed_values": ["IC50", "EC50", "GI50", "LC50", "CC50"],
+            "semantic_definition": "Standard activity endpoint types"
+          },
+          {
+            "name": "activity_value",
+            "type": "float",
+            "cardinality": "1:1",
+            "description": "Quantitative activity value",
+            "semantic_definition": "Numeric concentration for activity endpoint"
+          },
+          {
+            "name": "activity_unit",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Unit for activity measurement",
+            "semantic_definition": "Concentration unit (nM, uM, mM, ug/mL)"
+          },
+          {
+            "name": "cell_line_name",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Cancer cell line tested",
+            "semantic_definition": "Standardized cell line identifier",
+            "examples": ["MCF-7", "A549", "HeLa", "HT-29"]
+          },
+          {
+            "name": "cancer_type",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Cancer type for cell line",
+            "semantic_definition": "Tissue origin of cancer",
+            "examples": ["Breast", "Lung", "Colon", "Leukemia", "Liver"]
+          },
+          {
+            "name": "assay_type",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Type of assay performed",
+            "semantic_definition": "Experimental assay methodology"
+          },
+          {
+            "name": "pubmed_id",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "PubMed reference ID",
+            "semantic_definition": "Literature citation supporting activity data"
+          },
+          {
+            "name": "bioavailability_score",
+            "type": "float",
+            "cardinality": "1:1",
+            "description": "Predicted oral bioavailability score",
+            "semantic_definition": "Computational estimate of absorption"
+          }
+        ],
+        "TM-MC": [
+          {
+            "name": "system_code",
+            "type": "enum",
+            "cardinality": "1:1",
+            "description": "Traditional system abbreviation",
+            "allowed_values": ["AYU", "TCM", "UNA", "SID", "KAM", "JAM"],
+            "semantic_definition": "Short code for traditional medicine system"
+          },
+          {
+            "name": "local_name",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Plant name in local language of traditional system",
+            "semantic_definition": "Vernacular name within specific tradition"
+          },
+          {
+            "name": "convergent_uses",
+            "type": "array[object]",
+            "cardinality": "1:N",
+            "description": "Therapeutic uses shared across multiple systems",
+            "semantic_definition": "Cross-validated traditional applications",
+            "structure": {
+              "indication": "string",
+              "systems_agreeing": "array[string]",
+              "confidence": "enum (high|medium|low)"
+            }
+          },
+          {
+            "name": "cross_system_validation",
+            "type": "object",
+            "cardinality": "1:1",
+            "description": "Cross-cultural validation metadata",
+            "semantic_definition": "Evidence of convergent use across traditions",
+            "structure": {
+              "systems_present": "array[string]",
+              "shared_compounds": "integer",
+              "shared_uses": "array[string]"
+            }
+          },
+          {
+            "name": "ayurveda_properties",
+            "type": "object",
+            "cardinality": "1:1",
+            "description": "Ayurvedic property classification",
+            "semantic_definition": "Ayurvedic pharmacological properties",
+            "structure": {
+              "rasa": "array[string]",
+              "guna": "array[string]",
+              "vipaka": "string",
+              "virya": "string",
+              "dosha_effect": "array[string]"
+            }
+          },
+          {
+            "name": "indication_id",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Therapeutic indication identifier",
+            "semantic_definition": "Primary key for indication entity"
+          },
+          {
+            "name": "traditional_terms",
+            "type": "array[object]",
+            "cardinality": "1:N",
+            "description": "Indication terminology by system",
+            "semantic_definition": "System-specific names for same indication",
+            "structure": {"system": "string", "term": "string"}
+          }
+        ],
+        "IMPPAT": [
+          {
+            "name": "imppat_plant_id",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "IMPPAT plant identifier",
+            "semantic_definition": "Format IMPPAT_PLANT_XXXXX"
+          },
+          {
+            "name": "imppat_id",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "IMPPAT phytochemical identifier",
+            "semantic_definition": "Format IMPPAT_CHEM_XXXXX or IMPHY######"
+          },
+          {
+            "name": "vernacular_names",
+            "type": "object",
+            "cardinality": "1:1",
+            "description": "Names in 10 Indian languages",
+            "semantic_definition": "Multilingual Indian vernacular names",
+            "structure": {
+              "hindi": "string",
+              "tamil": "string",
+              "telugu": "string",
+              "kannada": "string",
+              "malayalam": "string",
+              "bengali": "string",
+              "gujarati": "string",
+              "marathi": "string",
+              "punjabi": "string",
+              "oriya": "string"
+            }
+          },
+          {
+            "name": "iupac_name",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Systematic IUPAC chemical name",
+            "semantic_definition": "International Union of Pure and Applied Chemistry nomenclature"
+          },
+          {
+            "name": "inchi",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "International Chemical Identifier",
+            "semantic_definition": "Full InChI string for compound"
+          },
+          {
+            "name": "inchi_key",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "InChIKey hash",
+            "semantic_definition": "27-character hashed InChI"
+          },
+          {
+            "name": "deepsmiles",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "DeepSMILES notation for ML applications",
+            "semantic_definition": "Extended SMILES format optimized for machine learning"
+          },
+          {
+            "name": "source_plant_parts",
+            "type": "array[string]",
+            "cardinality": "1:N",
+            "description": "Plant parts where compound was isolated",
+            "semantic_definition": "Tissue-level localization of compound"
+          },
+          {
+            "name": "iucn_conservation_status",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "IUCN Red List conservation status",
+            "semantic_definition": "International conservation assessment status"
+          },
+          {
+            "name": "lipinski_rule_of_five",
+            "type": "object",
+            "cardinality": "1:1",
+            "description": "Lipinski drug-likeness assessment",
+            "semantic_definition": "Rule of Five compliance",
+            "structure": {
+              "passes": "boolean",
+              "violations": "integer",
+              "mw_ok": "boolean",
+              "logp_ok": "boolean",
+              "hbd_ok": "boolean",
+              "hba_ok": "boolean"
+            }
+          },
+          {
+            "name": "ghose_filter",
+            "type": "object",
+            "cardinality": "1:1",
+            "description": "Ghose drug-likeness filter",
+            "semantic_definition": "Ghose filter compliance",
+            "structure": {"passes": "boolean", "violations": "integer"}
+          },
+          {
+            "name": "veber_filter",
+            "type": "object",
+            "cardinality": "1:1",
+            "description": "Veber oral bioavailability filter",
+            "semantic_definition": "Veber filter compliance",
+            "structure": {"passes": "boolean", "rotatable_bonds_ok": "boolean", "tpsa_ok": "boolean"}
+          },
+          {
+            "name": "qed_score",
+            "type": "float",
+            "cardinality": "1:1",
+            "description": "Quantitative Estimate of Drug-likeness",
+            "semantic_definition": "Weighted QED score from 0-1",
+            "range": "0-1"
+          },
+          {
+            "name": "np_likeness_score",
+            "type": "float",
+            "cardinality": "1:1",
+            "description": "Natural Product likeness score",
+            "semantic_definition": "Similarity to known natural products"
+          },
+          {
+            "name": "admet_absorption",
+            "type": "object",
+            "cardinality": "1:1",
+            "description": "ADMET absorption properties",
+            "semantic_definition": "Predicted absorption characteristics",
+            "structure": {
+              "gi_absorption": "enum (High|Low)",
+              "pgp_substrate": "enum (Yes|No)",
+              "water_solubility": "string",
+              "caco2_permeability": "float"
+            }
+          },
+          {
+            "name": "admet_distribution",
+            "type": "object",
+            "cardinality": "1:1",
+            "description": "ADMET distribution properties",
+            "structure": {"bbb_permeant": "enum (Yes|No)", "vdss": "float"}
+          },
+          {
+            "name": "admet_metabolism",
+            "type": "object",
+            "cardinality": "1:1",
+            "description": "CYP450 inhibition predictions",
+            "structure": {
+              "cyp1a2_inhibitor": "enum (Yes|No)",
+              "cyp2c19_inhibitor": "enum (Yes|No)",
+              "cyp2c9_inhibitor": "enum (Yes|No)",
+              "cyp2d6_inhibitor": "enum (Yes|No)",
+              "cyp3a4_inhibitor": "enum (Yes|No)"
+            }
+          },
+          {
+            "name": "admet_toxicity",
+            "type": "object",
+            "cardinality": "1:1",
+            "description": "Predicted toxicity properties",
+            "structure": {
+              "ames_mutagenicity": "enum (Yes|No)",
+              "hepatotoxicity": "enum (Yes|No)",
+              "herg_inhibition": "enum (Yes|No)",
+              "skin_sensitization": "enum (Yes|No)"
+            }
+          },
+          {
+            "name": "descriptor_count",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "Number of computed molecular descriptors",
+            "semantic_definition": "1,875 2D and 3D descriptors available"
+          },
+          {
+            "name": "hgnc_id",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "HUGO Gene Nomenclature Committee identifier",
+            "semantic_definition": "HGNC gene ID for target proteins"
+          },
+          {
+            "name": "combined_score",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "STITCH combined confidence score",
+            "semantic_definition": "Score >=700 indicates high confidence",
+            "range": "0-1000",
+            "threshold": 700
+          },
+          {
+            "name": "therapeutic_use",
+            "type": "string",
+            "cardinality": "1:N",
+            "description": "Traditional therapeutic application",
+            "semantic_definition": "Traditional medicinal use from literature"
+          },
+          {
+            "name": "murcko_scaffold",
+            "type": "object",
+            "cardinality": "1:1",
+            "description": "Murcko scaffold decomposition",
+            "semantic_definition": "Core molecular framework analysis",
+            "structure": {
+              "generic_node_bond": "string",
+              "generic_node": "string",
+              "graph": "string"
+            }
+          },
+          {
+            "name": "npclassifier",
+            "type": "object",
+            "cardinality": "1:1",
+            "description": "Natural product classification",
+            "semantic_definition": "NPClassifier/ClassyFire classification",
+            "structure": {
+              "biosynthetic_pathway": "string",
+              "superclass": "string",
+              "class": "string",
+              "subclass": "string"
+            }
+          }
+        ],
+        "KampoDB": [
+          {
+            "name": "formula_id",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Kampo formula code identifier",
+            "semantic_definition": "Short string code (e.g., 'KT' for Kakkonto)",
+            "examples": ["KT", "YKS", "TSS"]
+          },
+          {
+            "name": "formula_name",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Romanized Kampo formula name",
+            "semantic_definition": "English romanization of Japanese name",
+            "examples": ["Kakkonto", "Yokukansankan"]
+          },
+          {
+            "name": "formula_name_jp",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Japanese kanji formula name",
+            "semantic_definition": "Traditional Japanese characters",
+            "examples": ["葛根湯", "抑肝散"]
+          },
+          {
+            "name": "phonetic",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Japanese kana pronunciation",
+            "semantic_definition": "Hiragana pronunciation guide",
+            "examples": ["かっこんとう"]
+          },
+          {
+            "name": "crude_id",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "Crude drug identifier (0-179)",
+            "semantic_definition": "KampoDB internal crude drug ID"
+          },
+          {
+            "name": "crude_name",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "English crude drug name",
+            "semantic_definition": "Common English name for raw material",
+            "examples": ["Cinnamon Bark", "Ephedra Herb", "Ginger"]
+          },
+          {
+            "name": "crude_name_jp",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Japanese crude drug name",
+            "semantic_definition": "Japanese kanji for crude drug",
+            "examples": ["桂皮", "麻黄", "生姜"]
+          },
+          {
+            "name": "origin",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Botanical/biological source",
+            "semantic_definition": "Scientific source organism name",
+            "examples": ["Cinnamomum cassia", "Ephedra sinica"]
+          },
+          {
+            "name": "protein_id",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "NCBI Gene ID for target protein",
+            "semantic_definition": "NCBI Entrez Gene identifier"
+          },
+          {
+            "name": "protein_name",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Gene symbol/name",
+            "semantic_definition": "HGNC gene symbol",
+            "examples": ["MTOR", "CYP3A4", "BCL2"]
+          },
+          {
+            "name": "protein_aliases",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Comma-separated alias names",
+            "semantic_definition": "Alternative gene names/symbols"
+          },
+          {
+            "name": "domain_id",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "Protein structural domain identifier",
+            "semantic_definition": "Domain used for docking simulation"
+          },
+          {
+            "name": "affinity_kcal_mol",
+            "type": "float",
+            "cardinality": "1:1",
+            "description": "Predicted binding affinity from docking",
+            "semantic_definition": "AutoDock Vina binding energy (more negative = stronger)",
+            "unit": "kcal/mol",
+            "examples": [-7.8, -6.5]
+          },
+          {
+            "name": "ligand_atoms",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "Number of atoms in ligand",
+            "semantic_definition": "Atom count for compound in docking"
+          },
+          {
+            "name": "protein_atoms",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "Number of atoms in protein domain",
+            "semantic_definition": "Atom count for protein domain in docking"
+          },
+          {
+            "name": "kegg_pathway_id",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "KEGG pathway identifier",
+            "semantic_definition": "hsa prefix for human pathways",
+            "examples": ["hsa04150", "hsa04151"]
+          },
+          {
+            "name": "kegg_disease_id",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "KEGG disease identifier",
+            "semantic_definition": "KEGG disease annotation"
+          },
+          {
+            "name": "go_process",
+            "type": "array[string]",
+            "cardinality": "1:N",
+            "description": "GO Biological Process terms",
+            "semantic_definition": "Gene Ontology biological process annotations"
+          },
+          {
+            "name": "go_function",
+            "type": "array[string]",
+            "cardinality": "1:N",
+            "description": "GO Molecular Function terms",
+            "semantic_definition": "Gene Ontology molecular function annotations"
+          }
+        ]
+      }
+    },
+    {
+      "subcategory_id": "5.3",
+      "subcategory_name": "Western/Global Herbal",
+      "data_sources": [
+        "NAPRALERT",
+        "EMA Herbal"
+      ],
+      "unified_fields": [
+        {
+          "name": "organism_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Unique identifier for biological organism/plant source",
+          "sources": ["NAPRALERT"],
+          "semantic_definition": "Primary key for organism entity"
+        },
+        {
+          "name": "scientific_name",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Binomial scientific name",
+          "sources": ["NAPRALERT", "EMA Herbal"],
+          "semantic_definition": "Latin taxonomic binomial nomenclature"
+        },
+        {
+          "name": "family",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Botanical family",
+          "sources": ["NAPRALERT", "EMA Herbal"],
+          "semantic_definition": "Plant taxonomic family classification"
+        },
+        {
+          "name": "common_names",
+          "type": "array[object]",
+          "cardinality": "1:N",
+          "description": "Vernacular names by language/region",
+          "sources": ["NAPRALERT", "EMA Herbal"],
+          "semantic_definition": "Common names with language attribution",
+          "structure": {"name": "string", "language": "string"}
+        },
+        {
+          "name": "compound_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Unique compound identifier",
+          "sources": ["NAPRALERT"],
+          "semantic_definition": "Natural product compound primary key"
+        },
+        {
+          "name": "compound_name",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Chemical compound name",
+          "sources": ["NAPRALERT"],
+          "semantic_definition": "Primary chemical name"
+        },
+        {
+          "name": "cas_number",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Chemical Abstracts Service registry number",
+          "sources": ["NAPRALERT"],
+          "semantic_definition": "Unique CAS chemical identifier"
+        },
+        {
+          "name": "molecular_formula",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Chemical formula",
+          "sources": ["NAPRALERT"],
+          "semantic_definition": "Elemental composition"
+        },
+        {
+          "name": "molecular_weight",
+          "type": "float",
+          "cardinality": "1:1",
+          "description": "Molecular weight in Daltons",
+          "sources": ["NAPRALERT"],
+          "semantic_definition": "Sum of atomic weights"
+        },
+        {
+          "name": "plant_part",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Plant part used or studied",
+          "sources": ["NAPRALERT", "EMA Herbal"],
+          "semantic_definition": "Standardized plant part terminology (radix, folium, flos, etc.)"
+        }
+      ],
+      "source_specific_fields": {
+        "NAPRALERT": [
+          {
+            "name": "record_id",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "NAPRALERT citation record identifier",
+            "semantic_definition": "Primary key for literature record"
+          },
+          {
+            "name": "kingdom",
+            "type": "enum",
+            "cardinality": "1:1",
+            "description": "Biological kingdom of source organism",
+            "allowed_values": ["Plantae", "Fungi", "Bacteria", "Animalia"]
+          },
+          {
+            "name": "geographic_distribution",
+            "type": "array[string]",
+            "cardinality": "1:N",
+            "description": "Native geographic regions",
+            "semantic_definition": "Regions where organism is naturally found"
+          },
+          {
+            "name": "ethnobotanical_use",
+            "type": "object",
+            "cardinality": "1:N",
+            "description": "Traditional/indigenous use documentation",
+            "structure": {
+              "use_id": "string",
+              "traditional_use": "string",
+              "preparation_method": "string",
+              "administration_route": "string",
+              "dosage": "string",
+              "geographic_origin": "string",
+              "cultural_group": "string",
+              "plant_part": "string",
+              "literature_ref": "string"
+            }
+          },
+          {
+            "name": "bioactivity",
+            "type": "object",
+            "cardinality": "1:N",
+            "description": "Pharmacological activity record",
+            "structure": {
+              "activity_id": "string",
+              "activity_type": "string",
+              "target": "string",
+              "test_system": "string",
+              "result": "string",
+              "dose": "string",
+              "unit": "string",
+              "effect_type": "enum (Active|Inactive|Moderate)",
+              "literature_ref": "string"
+            }
+          },
+          {
+            "name": "chemistry_record",
+            "type": "object",
+            "cardinality": "1:N",
+            "description": "Chemical isolation/identification data",
+            "structure": {
+              "chemistry_id": "string",
+              "isolation_method": "string",
+              "yield": "string",
+              "identification_method": "string",
+              "literature_ref": "string"
+            }
+          },
+          {
+            "name": "toxicology_record",
+            "type": "object",
+            "cardinality": "1:N",
+            "description": "Safety and toxicity data",
+            "structure": {
+              "toxicology_id": "string",
+              "toxicity_type": "enum (Acute|Chronic|Subacute|Reproductive|Developmental)",
+              "test_system": "string",
+              "endpoint": "string (LD50|LC50|NOAEL|LOAEL)",
+              "value": "float",
+              "unit": "string",
+              "route": "string",
+              "adverse_effects": "array[string]",
+              "literature_ref": "string"
+            }
+          },
+          {
+            "name": "compound_class",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Chemical class classification",
+            "semantic_definition": "Natural product structural class (e.g., Diarylheptanoid, Alkaloid)"
+          },
+          {
+            "name": "pubmed_id",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "PubMed literature identifier",
+            "semantic_definition": "PMID for literature citation if available"
+          },
+          {
+            "name": "data_types",
+            "type": "array[string]",
+            "cardinality": "1:N",
+            "description": "Types of data in literature record",
+            "allowed_values": ["Ethnobotany", "Pharmacology", "Chemistry", "Toxicology"]
+          }
+        ],
+        "EMA Herbal": [
+          {
+            "name": "substance_id",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "EMA herbal substance reference number",
+            "semantic_definition": "EMA internal identifier for herbal substance"
+          },
+          {
+            "name": "latin_name",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Botanical Latin name with plant part",
+            "semantic_definition": "Binomial with standardized plant part suffix"
+          },
+          {
+            "name": "pharmacopoeia_reference",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "European Pharmacopoeia monograph reference",
+            "semantic_definition": "Ph. Eur. monograph number"
+          },
+          {
+            "name": "monograph_id",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "HMPC monograph identifier",
+            "semantic_definition": "Format EMA/HMPC/xxxxxx/xxxx"
+          },
+          {
+            "name": "adoption_date",
+            "type": "date",
+            "cardinality": "1:1",
+            "description": "HMPC monograph adoption date",
+            "semantic_definition": "Date monograph was officially adopted"
+          },
+          {
+            "name": "revision_date",
+            "type": "date",
+            "cardinality": "1:1",
+            "description": "Latest revision date",
+            "semantic_definition": "Most recent monograph update"
+          },
+          {
+            "name": "status",
+            "type": "enum",
+            "cardinality": "1:1",
+            "description": "Monograph status",
+            "allowed_values": ["Final", "Draft", "Under revision"]
+          },
+          {
+            "name": "use_category",
+            "type": "enum",
+            "cardinality": "1:1",
+            "description": "Regulatory use classification",
+            "allowed_values": ["Well-established", "Traditional"],
+            "semantic_definition": "Evidence basis for approved use"
+          },
+          {
+            "name": "therapeutic_indication",
+            "type": "string",
+            "cardinality": "1:N",
+            "description": "Approved therapeutic indication",
+            "semantic_definition": "Officially approved medicinal use"
+          },
+          {
+            "name": "posology",
+            "type": "object",
+            "cardinality": "1:1",
+            "description": "Dosage and administration details",
+            "structure": {
+              "adults": "string",
+              "children": "string",
+              "elderly": "string",
+              "duration": "string"
+            }
+          },
+          {
+            "name": "preparation",
+            "type": "object",
+            "cardinality": "1:N",
+            "description": "Pharmaceutical preparation specification",
+            "structure": {
+              "preparation_type": "enum",
+              "description": "string",
+              "extraction_solvent": "string",
+              "drug_extract_ratio": "string",
+              "standardization": "string"
+            }
+          },
+          {
+            "name": "preparation_type",
+            "type": "enum",
+            "cardinality": "1:1",
+            "description": "Type of herbal preparation",
+            "allowed_values": ["Herbal substance", "Powdered", "Dry extract", "Soft extract", "Liquid extract", "Tincture", "Expressed juice", "Essential oil"]
+          },
+          {
+            "name": "drug_extract_ratio",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "DER specification for extracts",
+            "semantic_definition": "Ratio of plant material to extract (e.g., 4-7:1)",
+            "examples": ["4-7:1", "1:1", "1:5"]
+          },
+          {
+            "name": "standardization",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Marker compound standardization",
+            "semantic_definition": "Chemical standardization requirement",
+            "examples": ["Valerenic acids 0.1-0.8%", "Hypericin 0.1-0.3%"]
+          },
+          {
+            "name": "contraindications",
+            "type": "array[object]",
+            "cardinality": "1:N",
+            "description": "Conditions where use is contraindicated",
+            "structure": {
+              "condition": "string",
+              "severity": "enum (Absolute|Relative)",
+              "evidence_level": "enum (Clinical|Preclinical|Theoretical)"
+            }
+          },
+          {
+            "name": "warnings",
+            "type": "array[string]",
+            "cardinality": "1:N",
+            "description": "Special warnings and precautions",
+            "semantic_definition": "Safety warnings for use"
+          },
+          {
+            "name": "interactions",
+            "type": "array[object]",
+            "cardinality": "1:N",
+            "description": "Drug-herb interactions",
+            "structure": {
+              "interacting_substance": "string",
+              "effect": "string",
+              "severity": "enum (Major|Moderate|Minor)",
+              "mechanism": "string",
+              "evidence": "string"
+            }
+          },
+          {
+            "name": "pregnancy_data",
+            "type": "object",
+            "cardinality": "1:1",
+            "description": "Pregnancy and lactation safety data",
+            "structure": {
+              "pregnancy_category": "string",
+              "lactation_category": "string",
+              "recommendation": "string"
+            }
+          },
+          {
+            "name": "adverse_effects",
+            "type": "array[object]",
+            "cardinality": "1:N",
+            "description": "Known adverse reactions",
+            "structure": {
+              "effect": "string",
+              "frequency": "enum (Very common|Common|Uncommon|Rare|Very rare)",
+              "meddra_term": "string",
+              "system_organ_class": "string"
+            }
+          },
+          {
+            "name": "community_list_entry",
+            "type": "object",
+            "cardinality": "1:1",
+            "description": "EU Community list harmonized entry",
+            "structure": {
+              "entry_id": "string",
+              "herbal_preparations": "array[object]",
+              "indication": "string",
+              "route": "string",
+              "posology": "string",
+              "period_of_use": "string",
+              "restrictions": "array[string]"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "subcategory_id": "5.4",
+      "subcategory_name": "Multi-System Integration",
+      "data_sources": [
+        "HIT 2.0"
+      ],
+      "unified_fields": [
+        {
+          "name": "ingredient_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Unique herbal ingredient identifier",
+          "sources": ["HIT 2.0"],
+          "semantic_definition": "Primary key format HIT001234"
+        },
+        {
+          "name": "ingredient_name",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Chemical compound name",
+          "sources": ["HIT 2.0"],
+          "semantic_definition": "Primary name for herbal ingredient"
+        },
+        {
+          "name": "pubchem_cid",
+          "type": "integer",
+          "cardinality": "1:1",
+          "description": "PubChem Compound Identifier",
+          "sources": ["HIT 2.0"],
+          "semantic_definition": "Standardized compound identifier"
+        },
+        {
+          "name": "chembl_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "ChEMBL compound identifier",
+          "sources": ["HIT 2.0"],
+          "semantic_definition": "EBI ChEMBL database identifier"
+        },
+        {
+          "name": "cas_number",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "CAS registry number",
+          "sources": ["HIT 2.0"],
+          "semantic_definition": "Chemical Abstracts Service identifier"
+        },
+        {
+          "name": "inchi_key",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "InChIKey hash",
+          "sources": ["HIT 2.0"],
+          "semantic_definition": "27-character standardized chemical identifier"
+        },
+        {
+          "name": "smiles",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "SMILES notation",
+          "sources": ["HIT 2.0"],
+          "semantic_definition": "Linear molecular structure representation"
+        },
+        {
+          "name": "molecular_formula",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Chemical formula",
+          "sources": ["HIT 2.0"],
+          "semantic_definition": "Elemental composition"
+        },
+        {
+          "name": "molecular_weight",
+          "type": "float",
+          "cardinality": "1:1",
+          "description": "Molecular weight",
+          "sources": ["HIT 2.0"],
+          "semantic_definition": "Sum of atomic weights in Daltons"
+        },
+        {
+          "name": "target_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Target protein identifier",
+          "sources": ["HIT 2.0"],
+          "semantic_definition": "UniProt accession or gene symbol"
+        },
+        {
+          "name": "gene_symbol",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "HGNC gene symbol",
+          "sources": ["HIT 2.0"],
+          "semantic_definition": "Standardized human gene symbol"
+        },
+        {
+          "name": "uniprot_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "UniProt protein accession",
+          "sources": ["HIT 2.0"],
+          "semantic_definition": "Universal protein identifier"
+        }
+      ],
+      "source_specific_fields": {
+        "HIT 2.0": [
+          {
+            "name": "interaction_id",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Unique interaction record identifier",
+            "semantic_definition": "Primary key format HIT_INT_001234"
+          },
+          {
+            "name": "interaction_type",
+            "type": "enum",
+            "cardinality": "1:1",
+            "description": "Type of compound-target interaction",
+            "allowed_values": ["inhibitor", "agonist", "antagonist", "modulator", "binder", "substrate"],
+            "semantic_definition": "Functional nature of interaction"
+          },
+          {
+            "name": "experimental_method",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Experimental method used to validate interaction",
+            "semantic_definition": "Assay methodology (binding assay, enzyme inhibition, cell-based, etc.)"
+          },
+          {
+            "name": "assay_type",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Specific assay type",
+            "semantic_definition": "Detailed assay description"
+          },
+          {
+            "name": "binding_affinity_metric",
+            "type": "enum",
+            "cardinality": "1:1",
+            "description": "Type of binding affinity measurement",
+            "allowed_values": ["IC50", "Ki", "Kd", "EC50", "KD"],
+            "semantic_definition": "Standard binding affinity endpoint"
+          },
+          {
+            "name": "binding_affinity_value",
+            "type": "float",
+            "cardinality": "1:1",
+            "description": "Quantitative binding affinity value",
+            "semantic_definition": "Numeric affinity measurement"
+          },
+          {
+            "name": "binding_affinity_unit",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Unit for binding affinity",
+            "semantic_definition": "Concentration unit (nM, uM, mM)"
+          },
+          {
+            "name": "binding_affinity_relation",
+            "type": "enum",
+            "cardinality": "1:1",
+            "description": "Relation symbol for affinity value",
+            "allowed_values": ["=", "<", ">", "~"],
+            "semantic_definition": "Equality or inequality for measurement"
+          },
+          {
+            "name": "confidence_level",
+            "type": "enum",
+            "cardinality": "1:1",
+            "description": "Confidence level of experimental evidence",
+            "allowed_values": ["high", "medium", "low"],
+            "semantic_definition": "Quality assessment of evidence"
+          },
+          {
+            "name": "pubmed_id",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "PubMed literature reference",
+            "semantic_definition": "PMID supporting the interaction"
+          },
+          {
+            "name": "doi",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Digital Object Identifier for publication",
+            "semantic_definition": "DOI link to source publication"
+          },
+          {
+            "name": "authors",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Publication authors",
+            "semantic_definition": "Author list for literature citation"
+          },
+          {
+            "name": "journal",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Publication journal",
+            "semantic_definition": "Journal name for citation"
+          },
+          {
+            "name": "publication_year",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "Publication year",
+            "semantic_definition": "Year of publication"
+          },
+          {
+            "name": "protein_class",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Target protein functional class",
+            "semantic_definition": "Classification such as Kinase, GPCR, Nuclear Receptor, Enzyme, Channel"
+          },
+          {
+            "name": "organism",
+            "type": "enum",
+            "cardinality": "1:1",
+            "description": "Target organism species",
+            "allowed_values": ["Human", "Mouse", "Rat"],
+            "semantic_definition": "Species of target protein"
+          },
+          {
+            "name": "herbal_source",
+            "type": "object",
+            "cardinality": "1:N",
+            "description": "Herbal source information",
+            "structure": {
+              "herb_name": "string",
+              "traditional_system": "enum (TCM|Ayurveda|Kampo|Western)",
+              "plant_part": "string"
+            }
+          },
+          {
+            "name": "traditional_system",
+            "type": "enum",
+            "cardinality": "1:N",
+            "description": "Traditional medicine system of source",
+            "allowed_values": ["TCM", "Ayurveda", "Kampo", "Western", "African Traditional"],
+            "semantic_definition": "Medical tradition using this ingredient"
+          },
+          {
+            "name": "pathway_associations",
+            "type": "array[string]",
+            "cardinality": "1:N",
+            "description": "Associated biological pathways",
+            "semantic_definition": "KEGG or other pathway identifiers"
+          },
+          {
+            "name": "disease_associations",
+            "type": "array[string]",
+            "cardinality": "1:N",
+            "description": "Associated diseases",
+            "semantic_definition": "Disease identifiers (MESH, OMIM, etc.)"
+          },
+          {
+            "name": "validation_status",
+            "type": "enum",
+            "cardinality": "1:1",
+            "description": "Experimental validation status",
+            "allowed_values": ["validated"],
+            "semantic_definition": "HIT 2.0 only contains experimentally validated interactions"
+          }
+        ]
+      }
+    }
+  ],
+  "cross_subcategory_common_fields": [
+    {
+      "field_name": "pubchem_cid",
+      "description": "PubChem Compound Identifier - universal compound cross-reference",
+      "present_in": ["5.1", "5.2", "5.4"],
+      "semantic_importance": "Primary identifier for compound structure standardization across databases"
+    },
+    {
+      "field_name": "smiles",
+      "description": "SMILES molecular notation - universal structure representation",
+      "present_in": ["5.1", "5.2", "5.3"],
+      "semantic_importance": "Enables structure-based searching and comparison"
+    },
+    {
+      "field_name": "gene_symbol",
+      "description": "HGNC gene symbol - standardized target identifier",
+      "present_in": ["5.1", "5.2", "5.4"],
+      "semantic_importance": "Primary identifier for target protein gene"
+    },
+    {
+      "field_name": "uniprot_id",
+      "description": "UniProt protein accession - universal protein identifier",
+      "present_in": ["5.1", "5.2", "5.4"],
+      "semantic_importance": "Cross-reference for protein sequence and annotation"
+    },
+    {
+      "field_name": "botanical_name",
+      "description": "Latin binomial scientific name",
+      "present_in": ["5.1", "5.2", "5.3"],
+      "semantic_importance": "Taxonomic standardization for plant identification"
+    },
+    {
+      "field_name": "molecular_weight",
+      "description": "Molecular weight in Daltons",
+      "present_in": ["5.1", "5.2", "5.3", "5.4"],
+      "semantic_importance": "Universal physical property for compound characterization"
+    },
+    {
+      "field_name": "molecular_formula",
+      "description": "Chemical elemental composition",
+      "present_in": ["5.1", "5.2", "5.3", "5.4"],
+      "semantic_importance": "Basic chemical identity information"
+    },
+    {
+      "field_name": "plant_part",
+      "description": "Anatomical part of plant (root, leaf, bark, etc.)",
+      "present_in": ["5.1", "5.2", "5.3", "5.4"],
+      "semantic_importance": "Tissue-level localization of compounds and therapeutic uses"
+    },
+    {
+      "field_name": "traditional_system",
+      "description": "Traditional medicine system (TCM, Ayurveda, Kampo, etc.)",
+      "present_in": ["5.2", "5.4"],
+      "semantic_importance": "Cultural/geographic origin of traditional knowledge"
+    }
+  ],
+  "herb_formula_relationship_fields": [
+    {
+      "relationship": "herb-compound",
+      "cardinality": "N:M",
+      "description": "Many herbs contain many compounds; many compounds found in multiple herbs",
+      "key_fields": ["herb_id", "compound_id", "source_herbs"],
+      "present_in": ["5.1", "5.2"]
+    },
+    {
+      "relationship": "compound-target",
+      "cardinality": "N:M",
+      "description": "Many compounds interact with many targets; many targets have multiple ligands",
+      "key_fields": ["compound_id", "target_id", "predicted_targets", "validated_targets"],
+      "present_in": ["5.1", "5.2", "5.4"]
+    },
+    {
+      "relationship": "formula-herb",
+      "cardinality": "N:M",
+      "description": "Formulas contain multiple herbs; herbs appear in multiple formulas",
+      "key_fields": ["formula_id", "herb_id", "herb_role"],
+      "present_in": ["5.1", "5.2"]
+    },
+    {
+      "relationship": "symptom-herb",
+      "cardinality": "N:M",
+      "description": "Symptoms treated by multiple herbs; herbs treat multiple symptoms",
+      "key_fields": ["symptom_id", "herb_id", "symptom_herb_associations"],
+      "present_in": ["5.1"]
+    },
+    {
+      "relationship": "symptom-gene",
+      "cardinality": "N:M",
+      "description": "Symptoms associated with multiple genes via phenotype mapping",
+      "key_fields": ["symptom_id", "gene_symbol", "hpo_mappings"],
+      "present_in": ["5.1"]
+    }
+  ],
+  "traditional_indication_fields": [
+    {
+      "field_name": "tcm_nature",
+      "tcm_term": "Xing (性)",
+      "description": "Five-level thermal classification",
+      "values": ["cold", "cool", "neutral", "warm", "hot"],
+      "present_in": ["5.1"]
+    },
+    {
+      "field_name": "tcm_flavor",
+      "tcm_term": "Wei (味)",
+      "description": "Taste-based therapeutic classification",
+      "values": ["sweet", "bitter", "sour", "salty", "pungent", "astringent"],
+      "present_in": ["5.1"]
+    },
+    {
+      "field_name": "meridian_tropism",
+      "tcm_term": "Gui Jing (归经)",
+      "description": "Target organ/meridian affinity",
+      "values": "12 primary meridians + pericardium",
+      "present_in": ["5.1"]
+    },
+    {
+      "field_name": "tcm_pattern",
+      "tcm_term": "Zheng (证)",
+      "description": "TCM syndrome/pattern diagnosis",
+      "present_in": ["5.1"]
+    },
+    {
+      "field_name": "herb_role",
+      "tcm_term": "Jun Chen Zuo Shi (君臣佐使)",
+      "description": "Hierarchical role in formula composition",
+      "values": ["sovereign", "minister", "assistant", "envoy"],
+      "present_in": ["5.1"]
+    },
+    {
+      "field_name": "ayurveda_properties",
+      "description": "Ayurvedic pharmacological classification",
+      "sub_fields": ["rasa", "guna", "vipaka", "virya", "dosha_effect"],
+      "present_in": ["5.2"]
+    },
+    {
+      "field_name": "use_category",
+      "description": "EMA regulatory classification (well-established vs traditional use)",
+      "present_in": ["5.3"]
+    }
+  ],
+  "compound_target_interaction_fields": [
+    {
+      "field_name": "binding_affinity",
+      "description": "Quantitative measure of compound-target interaction strength",
+      "metrics": ["IC50", "Ki", "Kd", "EC50", "KD"],
+      "units": ["nM", "uM", "mM"],
+      "present_in": ["5.1", "5.2", "5.4"]
+    },
+    {
+      "field_name": "interaction_type",
+      "description": "Classification of interaction (known vs predicted, or functional type)",
+      "values_by_source": {
+        "BATMAN-TCM": ["known", "predicted"],
+        "HIT 2.0": ["inhibitor", "agonist", "antagonist", "modulator", "binder", "substrate"]
+      },
+      "present_in": ["5.1", "5.4"]
+    },
+    {
+      "field_name": "confidence_score",
+      "description": "Prediction confidence or evidence quality score",
+      "present_in": ["5.1", "5.2", "5.4"]
+    },
+    {
+      "field_name": "experimental_method",
+      "description": "Assay method used for validation",
+      "present_in": ["5.4"]
+    }
+  ],
+  "metadata": {
+    "total_data_sources": 13,
+    "total_unified_fields": 87,
+    "total_source_specific_fields": 156,
+    "extraction_methodology": "Manual schema analysis from database documentation",
+    "notes": [
+      "Fields marked 1:1 cardinality are single-valued; 1:N are multi-valued arrays",
+      "N:M relationships indicate many-to-many associations between entities",
+      "Semantic definitions capture the meaning and intended use of each field",
+      "Cross-references to PubChem, UniProt, KEGG enable multi-database integration",
+      "TCM-specific terminology includes Chinese terms (Pinyin) with definitions",
+      "ADMET/drug-likeness fields are computational predictions, not experimental"
+    ]
+  }
+}

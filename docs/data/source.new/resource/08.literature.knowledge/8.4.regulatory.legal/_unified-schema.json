@@ -1,0 +1,506 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gene.taxonomy/schemas/8.4-regulatory-legal",
+  "title": "Regulatory & Legal Unified Schema",
+  "description": "Unified schema for regulatory and legal data integrating ClinicalTrials.gov and FDA OpenFDA sources",
+  "type": "object",
+  "properties": {
+    "record_id": {
+      "type": "string",
+      "description": "Primary identifier for the regulatory record",
+      "sources": ["ClinicalTrials.gov:nctId", "FDA OpenFDA:various"],
+      "example": "NCT00000001"
+    },
+    "record_type": {
+      "type": "string",
+      "description": "Type of regulatory record",
+      "enum": ["clinical_trial", "adverse_event", "drug_label", "recall"],
+      "example": "clinical_trial"
+    },
+    "status": {
+      "type": ["string", "null"],
+      "description": "Current status of the record",
+      "sources": ["ClinicalTrials.gov:overallStatus", "FDA OpenFDA:status"],
+      "example": "RECRUITING"
+    },
+    "title": {
+      "type": "string",
+      "description": "Official title of the study or product",
+      "sources": ["ClinicalTrials.gov:briefTitle/officialTitle", "FDA OpenFDA:brand_name"],
+      "example": "Study of Drug X in Type 2 Diabetes"
+    },
+    "sponsor": {
+      "type": ["string", "null"],
+      "description": "Organization sponsoring the trial or marketing the product",
+      "sources": ["ClinicalTrials.gov:leadSponsor", "FDA OpenFDA:manufacturer_name"],
+      "example": "Pfizer Inc"
+    },
+    "start_date": {
+      "type": ["string", "null"],
+      "description": "Date of study initiation or marketing start",
+      "sources": ["ClinicalTrials.gov:startDateStruct", "FDA OpenFDA:marketing_start_date"],
+      "format": "date",
+      "example": "2023-06-01"
+    },
+    "completion_date": {
+      "type": ["string", "null"],
+      "description": "Expected or actual completion date",
+      "sources": ["ClinicalTrials.gov:completionDateStruct", "FDA OpenFDA:marketing_end_date"],
+      "format": "date",
+      "example": "2026-06-30"
+    },
+    "conditions": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Medical conditions or diseases addressed",
+      "sources": ["ClinicalTrials.gov:conditions", "FDA OpenFDA:indications_and_usage"],
+      "example": ["Type 2 Diabetes Mellitus", "Hyperglycemia"]
+    },
+    "interventions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {"type": "string"},
+          "name": {"type": "string"},
+          "description": {"type": "string"}
+        }
+      },
+      "description": "Drugs, devices, or procedures being tested or marketed",
+      "sources": ["ClinicalTrials.gov:interventions", "FDA OpenFDA:medicinalproduct"],
+      "example": [{"type": "DRUG", "name": "Drug X"}]
+    },
+    "clinical_trial_data": {
+      "type": ["object", "null"],
+      "description": "ClinicalTrials.gov specific data",
+      "sources": ["ClinicalTrials.gov"],
+      "properties": {
+        "nct_id": {
+          "type": "string",
+          "description": "NCT number (National Clinical Trial identifier)"
+        },
+        "org_study_id": {
+          "type": "string",
+          "description": "Sponsor-assigned study identifier"
+        },
+        "secondary_ids": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Secondary identifiers (EUDRACT, etc.)"
+        },
+        "acronym": {
+          "type": "string",
+          "description": "Study acronym"
+        },
+        "organization_class": {
+          "type": "string",
+          "description": "Sponsor type (INDUSTRY, NIH, OTHER)"
+        },
+        "overall_status": {
+          "type": "string",
+          "description": "Recruitment status"
+        },
+        "expanded_access": {
+          "type": "boolean",
+          "description": "Whether expanded access is available"
+        },
+        "study_type": {
+          "type": "string",
+          "description": "Study type (INTERVENTIONAL, OBSERVATIONAL)"
+        },
+        "phases": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Trial phases (PHASE1, PHASE2, etc.)"
+        },
+        "design": {
+          "type": "object",
+          "properties": {
+            "allocation": {"type": "string"},
+            "intervention_model": {"type": "string"},
+            "masking": {"type": "string"},
+            "who_masked": {"type": "array", "items": {"type": "string"}},
+            "primary_purpose": {"type": "string"}
+          },
+          "description": "Study design details"
+        },
+        "enrollment_count": {
+          "type": "integer",
+          "description": "Target or actual enrollment"
+        },
+        "arm_groups": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": {"type": "string"},
+              "type": {"type": "string"},
+              "description": {"type": "string"}
+            }
+          },
+          "description": "Treatment arms"
+        },
+        "outcomes": {
+          "type": "object",
+          "properties": {
+            "primary": {"type": "array"},
+            "secondary": {"type": "array"}
+          },
+          "description": "Primary and secondary endpoints"
+        },
+        "eligibility": {
+          "type": "object",
+          "properties": {
+            "criteria": {"type": "string"},
+            "minimum_age": {"type": "string"},
+            "maximum_age": {"type": "string"},
+            "sex": {"type": "string"},
+            "healthy_volunteers": {"type": "boolean"}
+          },
+          "description": "Eligibility criteria"
+        },
+        "locations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "facility": {"type": "string"},
+              "city": {"type": "string"},
+              "country": {"type": "string"},
+              "geo_point": {"type": "object"}
+            }
+          },
+          "description": "Study site locations"
+        },
+        "results": {
+          "type": "object",
+          "properties": {
+            "participant_flow": {"type": "object"},
+            "baseline_characteristics": {"type": "object"},
+            "outcome_measures": {"type": "array"},
+            "adverse_events": {"type": "object"}
+          },
+          "description": "Trial results data"
+        },
+        "fda_regulated_drug": {
+          "type": "boolean",
+          "description": "Whether FDA-regulated drug study"
+        },
+        "fda_regulated_device": {
+          "type": "boolean",
+          "description": "Whether FDA-regulated device study"
+        }
+      }
+    },
+    "fda_adverse_event_data": {
+      "type": ["object", "null"],
+      "description": "FDA FAERS adverse event data",
+      "sources": ["FDA OpenFDA"],
+      "properties": {
+        "safety_report_id": {
+          "type": "string",
+          "description": "FAERS unique report identifier"
+        },
+        "safety_report_version": {
+          "type": "string",
+          "description": "Report version number"
+        },
+        "receive_date": {
+          "type": "string",
+          "description": "Date FDA received report"
+        },
+        "report_type": {
+          "type": "string",
+          "description": "Report type (1=Spontaneous, 2=Literature, 3=Study)"
+        },
+        "serious": {
+          "type": "boolean",
+          "description": "Whether serious adverse event"
+        },
+        "seriousness_details": {
+          "type": "object",
+          "properties": {
+            "death": {"type": "boolean"},
+            "hospitalization": {"type": "boolean"},
+            "life_threatening": {"type": "boolean"},
+            "disabling": {"type": "boolean"}
+          },
+          "description": "Seriousness indicators"
+        },
+        "occur_country": {
+          "type": "string",
+          "description": "Country where event occurred"
+        },
+        "patient": {
+          "type": "object",
+          "properties": {
+            "age": {"type": "string"},
+            "sex": {"type": "string"},
+            "weight": {"type": "string"}
+          },
+          "description": "Patient demographics"
+        },
+        "reaction": {
+          "type": "object",
+          "properties": {
+            "meddra_pt": {"type": "string"},
+            "outcome": {"type": "string"}
+          },
+          "description": "Reaction details"
+        },
+        "drug": {
+          "type": "object",
+          "properties": {
+            "characterization": {"type": "string"},
+            "medicinal_product": {"type": "string"},
+            "authorization_numb": {"type": "string"},
+            "dosage_text": {"type": "string"},
+            "indication": {"type": "string"},
+            "administration_route": {"type": "string"},
+            "action_drug": {"type": "string"}
+          },
+          "description": "Drug information"
+        },
+        "reporter_qualification": {
+          "type": "string",
+          "description": "Reporter type"
+        }
+      }
+    },
+    "fda_drug_label_data": {
+      "type": ["object", "null"],
+      "description": "FDA drug labeling (SPL) data",
+      "sources": ["FDA OpenFDA"],
+      "properties": {
+        "spl_id": {
+          "type": "string",
+          "description": "SPL document UUID"
+        },
+        "set_id": {
+          "type": "string",
+          "description": "SPL set UUID (groups versions)"
+        },
+        "effective_time": {
+          "type": "string",
+          "description": "Label effective date"
+        },
+        "indications_and_usage": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Approved therapeutic uses"
+        },
+        "dosage_and_administration": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Dosing instructions"
+        },
+        "contraindications": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Contraindication warnings"
+        },
+        "warnings_and_cautions": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Safety warnings"
+        },
+        "adverse_reactions": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Reported side effects"
+        },
+        "drug_interactions": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Drug-drug interactions"
+        },
+        "boxed_warning": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Black box warning text"
+        },
+        "clinical_pharmacology": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Mechanism and PK/PD"
+        },
+        "application_number": {
+          "type": "string",
+          "description": "NDA/ANDA/BLA number"
+        },
+        "brand_name": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Proprietary name(s)"
+        },
+        "generic_name": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Non-proprietary name(s)"
+        },
+        "product_ndc": {
+          "type": "string",
+          "description": "NDC product code"
+        },
+        "package_ndc": {
+          "type": "string",
+          "description": "NDC with package segment"
+        },
+        "product_type": {
+          "type": "string",
+          "description": "Product type"
+        },
+        "dosage_form": {
+          "type": "string",
+          "description": "Physical form"
+        },
+        "route": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Route(s) of administration"
+        },
+        "active_ingredients": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {"type": "string"},
+              "strength": {"type": "string"}
+            }
+          },
+          "description": "Active ingredients"
+        },
+        "labeler_name": {
+          "type": "string",
+          "description": "Manufacturer/distributor"
+        },
+        "dea_schedule": {
+          "type": "string",
+          "description": "DEA schedule (CI-CV)"
+        },
+        "marketing_category": {
+          "type": "string",
+          "description": "Category (NDA, ANDA, BLA, OTC)"
+        },
+        "pharmacologic_classes": {
+          "type": "object",
+          "properties": {
+            "epc": {"type": "array", "items": {"type": "string"}},
+            "moa": {"type": "array", "items": {"type": "string"}},
+            "pe": {"type": "array", "items": {"type": "string"}}
+          },
+          "description": "Pharmacologic class codes"
+        },
+        "rxcui": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "RxNorm concept identifier(s)"
+        },
+        "unii": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Unique Ingredient Identifier(s)"
+        }
+      }
+    },
+    "fda_recall_data": {
+      "type": ["object", "null"],
+      "description": "FDA recall information",
+      "sources": ["FDA OpenFDA"],
+      "properties": {
+        "recall_number": {
+          "type": "string",
+          "description": "Unique recall identifier"
+        },
+        "recall_classification": {
+          "type": "string",
+          "description": "Recall class (I, II, III)"
+        },
+        "recalling_firm": {
+          "type": "string",
+          "description": "Company initiating recall"
+        },
+        "reason_for_recall": {
+          "type": "string",
+          "description": "Recall reason explanation"
+        },
+        "distribution_pattern": {
+          "type": "string",
+          "description": "Geographic distribution"
+        },
+        "voluntary_mandated": {
+          "type": "string",
+          "description": "Recall initiation type"
+        },
+        "code_info": {
+          "type": "string",
+          "description": "Lot numbers and expiration dates"
+        }
+      }
+    },
+    "_source": {
+      "type": "object",
+      "description": "Metadata about the data source",
+      "properties": {
+        "primary_source": {"type": "string"},
+        "source_id": {"type": "string"},
+        "extraction_date": {"type": "string", "format": "date"},
+        "source_version": {"type": "string"}
+      }
+    }
+  },
+  "required": ["record_id", "record_type", "title"],
+  "field_mappings": {
+    "ClinicalTrials.gov": {
+      "nctId": "record_id",
+      "overallStatus": "status",
+      "briefTitle": "title",
+      "officialTitle": "title",
+      "leadSponsor.name": "sponsor",
+      "startDateStruct.date": "start_date",
+      "completionDateStruct.date": "completion_date",
+      "conditions": "conditions",
+      "interventions": "interventions",
+      "orgStudyId": "clinical_trial_data.org_study_id",
+      "secondaryIds": "clinical_trial_data.secondary_ids",
+      "acronym": "clinical_trial_data.acronym",
+      "organization.class": "clinical_trial_data.organization_class",
+      "expandedAccess": "clinical_trial_data.expanded_access",
+      "studyType": "clinical_trial_data.study_type",
+      "phases": "clinical_trial_data.phases",
+      "designInfo": "clinical_trial_data.design",
+      "enrollmentCount": "clinical_trial_data.enrollment_count",
+      "armGroups": "clinical_trial_data.arm_groups",
+      "primaryOutcomes": "clinical_trial_data.outcomes.primary",
+      "secondaryOutcomes": "clinical_trial_data.outcomes.secondary",
+      "eligibility": "clinical_trial_data.eligibility",
+      "locations": "clinical_trial_data.locations",
+      "results": "clinical_trial_data.results",
+      "fdaRegulatedDrug": "clinical_trial_data.fda_regulated_drug",
+      "fdaRegulatedDevice": "clinical_trial_data.fda_regulated_device"
+    },
+    "FDA OpenFDA": {
+      "safetyreportid": "record_id",
+      "safetyreportversion": "fda_adverse_event_data.safety_report_version",
+      "receivedate": "fda_adverse_event_data.receive_date",
+      "reporttype": "fda_adverse_event_data.report_type",
+      "serious": "fda_adverse_event_data.serious",
+      "seriousnessdeath": "fda_adverse_event_data.seriousness_details.death",
+      "occurcountry": "fda_adverse_event_data.occur_country",
+      "patient": "fda_adverse_event_data.patient",
+      "reaction": "fda_adverse_event_data.reaction",
+      "drug": "fda_adverse_event_data.drug",
+      "spl_id": "fda_drug_label_data.spl_id",
+      "set_id": "fda_drug_label_data.set_id",
+      "effective_time": "fda_drug_label_data.effective_time",
+      "indications_and_usage": "fda_drug_label_data.indications_and_usage",
+      "brand_name": "fda_drug_label_data.brand_name",
+      "generic_name": "fda_drug_label_data.generic_name",
+      "product_ndc": "fda_drug_label_data.product_ndc",
+      "recall_number": "fda_recall_data.recall_number",
+      "classification": "fda_recall_data.recall_classification",
+      "recalling_firm": "fda_recall_data.recalling_firm",
+      "reason_for_recall": "fda_recall_data.reason_for_recall"
+    }
+  }
+}

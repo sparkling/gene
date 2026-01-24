@@ -1,0 +1,304 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gene.taxonomy/schemas/9.3-microbe-host-interactions",
+  "title": "Microbe-Host Interactions Unified Schema",
+  "description": "Unified schema for microbe-host interaction data integrating gutMDisorder, MASI, and VMH sources",
+  "type": "object",
+  "properties": {
+    "interaction_id": {
+      "type": "string",
+      "description": "Unique identifier for the microbe-host interaction",
+      "sources": ["gutMDisorder (association_id)", "MASI (interaction_id)"],
+      "example": "GMD_00001"
+    },
+    "microbe_taxid": {
+      "type": ["integer", "null"],
+      "description": "NCBI Taxonomy identifier for microbe",
+      "sources": ["gutMDisorder", "VMH"],
+      "example": 816
+    },
+    "microbe_name": {
+      "type": "string",
+      "description": "Scientific name of microbe",
+      "sources": ["gutMDisorder", "MASI", "VMH"],
+      "example": "Bacteroides vulgatus"
+    },
+    "microbe_rank": {
+      "type": ["string", "null"],
+      "description": "Taxonomic rank of microbe",
+      "sources": ["gutMDisorder"],
+      "enum": ["species", "genus", "family", "order", "phylum", null],
+      "example": "species"
+    },
+    "disease_association": {
+      "type": ["object", "null"],
+      "description": "Disease association information",
+      "sources": ["gutMDisorder", "VMH"],
+      "properties": {
+        "disease_name": {"type": "string"},
+        "disease_category": {"type": "string"},
+        "icd10_code": {"type": "string"},
+        "mesh_id": {"type": "string"},
+        "doid": {"type": "string"},
+        "direction": {
+          "type": "string",
+          "enum": ["increased", "decreased", "altered"]
+        }
+      },
+      "example": {"disease_name": "Type 2 Diabetes", "direction": "increased", "doid": "DOID:9352"}
+    },
+    "statistical_evidence": {
+      "type": ["object", "null"],
+      "description": "Statistical evidence for association",
+      "sources": ["gutMDisorder"],
+      "properties": {
+        "effect_size": {"type": "number"},
+        "p_value": {"type": "number"},
+        "sample_size": {"type": "integer"},
+        "cases": {"type": "integer"},
+        "controls": {"type": "integer"}
+      },
+      "example": {"effect_size": 0.45, "p_value": 0.001, "sample_size": 200}
+    },
+    "study_metadata": {
+      "type": ["object", "null"],
+      "description": "Study design information",
+      "sources": ["gutMDisorder"],
+      "properties": {
+        "study_design": {"type": "string"},
+        "method": {"type": "string"},
+        "pmid": {"type": "integer"}
+      },
+      "example": {"study_design": "case-control", "method": "16S rRNA sequencing", "pmid": 28123456}
+    },
+    "metabolite_signaling": {
+      "type": ["object", "null"],
+      "description": "Metabolite-mediated signaling interaction",
+      "sources": ["MASI"],
+      "properties": {
+        "metabolite_id": {"type": "string"},
+        "metabolite_name": {"type": "string"},
+        "metabolite_class": {"type": "string"},
+        "microbe_source": {"type": "string"},
+        "pubchem_cid": {"type": "integer"},
+        "hmdb_id": {"type": "string"},
+        "chebi_id": {"type": "string"},
+        "smiles": {"type": "string"}
+      },
+      "example": {"metabolite_name": "Butyrate", "metabolite_class": "Short-chain fatty acid", "pubchem_cid": 264}
+    },
+    "host_target": {
+      "type": ["object", "null"],
+      "description": "Host molecular target information",
+      "sources": ["MASI"],
+      "properties": {
+        "target_name": {"type": "string"},
+        "target_type": {"type": "string"},
+        "symbol": {"type": "string"},
+        "uniprot_id": {"type": "string"},
+        "effect": {
+          "type": "string",
+          "enum": ["activate", "inhibit", "modulate", "substrate"]
+        },
+        "tissue_expression": {
+          "type": "array",
+          "items": {"type": "string"}
+        }
+      },
+      "example": {"target_name": "GPR43", "target_type": "GPCR", "effect": "activate", "uniprot_id": "O15552"}
+    },
+    "pathway_effects": {
+      "type": ["object", "null"],
+      "description": "Affected pathways and downstream effects",
+      "sources": ["MASI", "VMH"],
+      "properties": {
+        "pathway": {"type": "string"},
+        "pathway_id": {"type": "string"},
+        "pathway_category": {"type": "string"},
+        "downstream_effects": {
+          "type": "array",
+          "items": {"type": "string"}
+        }
+      },
+      "example": {"pathway": "Prolactin signaling", "pathway_category": "Signal transduction"}
+    },
+    "binding_affinity": {
+      "type": ["object", "null"],
+      "description": "Binding affinity and mechanism details",
+      "sources": ["MASI"],
+      "properties": {
+        "kd": {"type": "string"},
+        "mechanism": {"type": "string"}
+      }
+    },
+    "metabolic_model": {
+      "type": ["object", "null"],
+      "description": "Genome-scale metabolic model information",
+      "sources": ["VMH"],
+      "properties": {
+        "model_id": {"type": "string"},
+        "organism_name": {"type": "string"},
+        "strain": {"type": "string"},
+        "reactions_count": {"type": "integer"},
+        "metabolites_count": {"type": "integer"},
+        "genes_count": {"type": "integer"}
+      },
+      "example": {"model_id": "Bacteroides_thetaiotaomicron_VPI_5482", "reactions_count": 1498}
+    },
+    "metabolite_info": {
+      "type": ["object", "null"],
+      "description": "Detailed metabolite information from VMH",
+      "sources": ["VMH"],
+      "properties": {
+        "metabolite_id": {"type": "string"},
+        "metabolite_name": {"type": "string"},
+        "formula": {"type": "string"},
+        "charge": {"type": "integer"},
+        "compartment": {"type": "string"},
+        "kegg_id": {"type": "string"},
+        "hmdb_id": {"type": "string"},
+        "chebi_id": {"type": "string"},
+        "pubchem_cid": {"type": "integer"},
+        "inchi": {"type": "string"}
+      },
+      "example": {"metabolite_id": "but[e]", "metabolite_name": "Butyrate", "formula": "C4H7O2", "compartment": "e"}
+    },
+    "reaction_info": {
+      "type": ["object", "null"],
+      "description": "Metabolic reaction information",
+      "sources": ["VMH"],
+      "properties": {
+        "rxn_id": {"type": "string"},
+        "equation": {"type": "string"},
+        "subsystem": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "gpr": {"type": "string"},
+        "lb": {"type": "number"},
+        "ub": {"type": "number"},
+        "reversibility": {"type": "boolean"},
+        "ec_number": {"type": "string"}
+      },
+      "example": {"rxn_id": "HEX1", "equation": "atp[c] + glc_D[c] -> adp[c] + g6p[c] + h[c]"}
+    },
+    "microbe_phenotype": {
+      "type": ["object", "null"],
+      "description": "Microbial phenotypic characteristics",
+      "sources": ["VMH"],
+      "properties": {
+        "gram_stain": {"type": "string"},
+        "oxygen_status": {"type": "string"}
+      }
+    },
+    "cross_references": {
+      "type": ["object", "null"],
+      "description": "Cross-references to external databases",
+      "properties": {
+        "uniprot_id": {"type": "string"},
+        "entrez_id": {"type": "integer"},
+        "bigg_id": {"type": "string"}
+      },
+      "sources": ["MASI", "VMH"]
+    },
+    "pmid": {
+      "type": ["array", "null"],
+      "items": {"type": "integer"},
+      "description": "PubMed identifiers for literature evidence",
+      "sources": ["gutMDisorder", "MASI"],
+      "example": [28123456]
+    },
+    "_source": {
+      "type": "object",
+      "description": "Metadata about the data source",
+      "properties": {
+        "primary_source": {"type": "string"},
+        "source_id": {"type": "string"},
+        "extraction_date": {"type": "string", "format": "date"},
+        "source_version": {"type": "string"}
+      }
+    }
+  },
+  "required": ["microbe_name"],
+  "field_mappings": {
+    "gutMDisorder": {
+      "association_id": "interaction_id",
+      "microbe_taxid": "microbe_taxid",
+      "microbe_name": "microbe_name",
+      "microbe_rank": "microbe_rank",
+      "disease_name": "disease_association.disease_name",
+      "disease_category": "disease_association.disease_category",
+      "icd10_code": "disease_association.icd10_code",
+      "mesh_id": "disease_association.mesh_id",
+      "doid": "disease_association.doid",
+      "direction": "disease_association.direction",
+      "effect_size": "statistical_evidence.effect_size",
+      "p_value": "statistical_evidence.p_value",
+      "sample_size": "statistical_evidence.sample_size",
+      "cases": "statistical_evidence.cases",
+      "controls": "statistical_evidence.controls",
+      "study_design": "study_metadata.study_design",
+      "method": "study_metadata.method",
+      "pmid": "pmid"
+    },
+    "MASI": {
+      "interaction_id": "interaction_id",
+      "microbe_name": "microbe_name",
+      "microbe_source": "metabolite_signaling.microbe_source",
+      "metabolite_id": "metabolite_signaling.metabolite_id",
+      "metabolite_name": "metabolite_signaling.metabolite_name",
+      "metabolite_class": "metabolite_signaling.metabolite_class",
+      "pubchem_cid": "metabolite_signaling.pubchem_cid",
+      "hmdb_id": "metabolite_signaling.hmdb_id",
+      "chebi_id": "metabolite_signaling.chebi_id",
+      "smiles": "metabolite_signaling.smiles",
+      "target_name": "host_target.target_name",
+      "target_type": "host_target.target_type",
+      "symbol": "host_target.symbol",
+      "uniprot_id": "host_target.uniprot_id",
+      "effect": "host_target.effect",
+      "tissue_expression": "host_target.tissue_expression",
+      "pathway": "pathway_effects.pathway",
+      "pathway_id": "pathway_effects.pathway_id",
+      "pathway_category": "pathway_effects.pathway_category",
+      "downstream_effects": "pathway_effects.downstream_effects",
+      "kd": "binding_affinity.kd",
+      "mechanism": "binding_affinity.mechanism",
+      "pmid": "pmid"
+    },
+    "VMH": {
+      "microbe_taxid": "microbe_taxid",
+      "microbe_name": "microbe_name",
+      "model_id": "metabolic_model.model_id",
+      "organism_name": "metabolic_model.organism_name",
+      "strain": "metabolic_model.strain",
+      "reactions_count": "metabolic_model.reactions_count",
+      "metabolites_count": "metabolic_model.metabolites_count",
+      "genes_count": "metabolic_model.genes_count",
+      "metabolite_id": "metabolite_info.metabolite_id",
+      "metabolite_name": "metabolite_info.metabolite_name",
+      "formula": "metabolite_info.formula",
+      "charge": "metabolite_info.charge",
+      "compartment": "metabolite_info.compartment",
+      "kegg_id": "metabolite_info.kegg_id",
+      "hmdb_id": "metabolite_info.hmdb_id",
+      "chebi_id": "metabolite_info.chebi_id",
+      "pubchem_cid": "metabolite_info.pubchem_cid",
+      "inchi": "metabolite_info.inchi",
+      "rxn_id": "reaction_info.rxn_id",
+      "equation": "reaction_info.equation",
+      "subsystem": "reaction_info.subsystem",
+      "gpr": "reaction_info.gpr",
+      "lb": "reaction_info.lb",
+      "ub": "reaction_info.ub",
+      "reversibility": "reaction_info.reversibility",
+      "ec_number": "reaction_info.ec_number",
+      "gram_stain": "microbe_phenotype.gram_stain",
+      "oxygen_status": "microbe_phenotype.oxygen_status",
+      "uniprot_id": "cross_references.uniprot_id",
+      "entrez_id": "cross_references.entrez_id",
+      "bigg_id": "cross_references.bigg_id",
+      "pathway": "pathway_effects.pathway"
+    }
+  }
+}

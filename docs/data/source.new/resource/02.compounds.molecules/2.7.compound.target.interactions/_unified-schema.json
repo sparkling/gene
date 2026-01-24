@@ -1,0 +1,298 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gene.example.org/schemas/2.7-compound-target-interactions.json",
+  "title": "Compound-Target Interactions Unified Schema",
+  "description": "Unified schema for compound-target interaction data from BindingDB, DGIdb, GtoPdb, and TTD",
+  "type": "object",
+  "properties": {
+    "compound_id": {
+      "type": ["string", "integer"],
+      "description": "Primary identifier for compound/ligand",
+      "sources": ["BindingDB", "DGIdb", "GtoPdb", "TTD"]
+    },
+    "compound_name": {
+      "type": "string",
+      "description": "Drug/compound name",
+      "sources": ["BindingDB", "DGIdb", "GtoPdb", "TTD"]
+    },
+    "smiles": {
+      "type": ["string", "null"],
+      "description": "SMILES structure",
+      "sources": ["BindingDB", "GtoPdb"]
+    },
+    "inchi_key": {
+      "type": ["string", "null"],
+      "description": "InChI Key",
+      "sources": ["BindingDB", "GtoPdb"]
+    },
+    "target_id": {
+      "type": ["string", "null"],
+      "description": "Target identifier",
+      "sources": ["BindingDB", "DGIdb", "GtoPdb", "TTD"]
+    },
+    "target_name": {
+      "type": ["string", "null"],
+      "description": "Target protein/gene name",
+      "sources": ["BindingDB", "DGIdb", "GtoPdb", "TTD"]
+    },
+    "uniprot_id": {
+      "type": ["string", "null"],
+      "description": "UniProt accession",
+      "sources": ["BindingDB", "GtoPdb", "TTD"]
+    },
+    "interaction_types": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Types of interaction (inhibitor, agonist, antagonist, etc.)",
+      "sources": ["BindingDB", "DGIdb", "GtoPdb", "TTD"]
+    },
+    "affinity_value": {
+      "type": ["number", "null"],
+      "description": "Binding affinity measurement",
+      "sources": ["BindingDB", "GtoPdb"]
+    },
+    "affinity_type": {
+      "type": ["string", "null"],
+      "description": "Type of affinity measurement (IC50, Ki, Kd, EC50, pKi, etc.)",
+      "sources": ["BindingDB", "GtoPdb"]
+    },
+    "affinity_unit": {
+      "type": ["string", "null"],
+      "description": "Unit of measurement (nM, uM, mM)",
+      "sources": ["BindingDB"]
+    },
+    "monomer_id": {
+      "type": ["integer", "null"],
+      "description": "BindingDB ligand ID",
+      "sources": ["BindingDB"]
+    },
+    "bindingdb_id": {
+      "type": ["integer", "null"],
+      "description": "BindingDB interaction record ID",
+      "sources": ["BindingDB"]
+    },
+    "affinity_relation": {
+      "type": ["string", "null"],
+      "description": "Affinity relation (=, <, >, ~)",
+      "sources": ["BindingDB"]
+    },
+    "assay_ph": {
+      "type": ["number", "null"],
+      "description": "Assay pH",
+      "sources": ["BindingDB"]
+    },
+    "assay_temperature": {
+      "type": ["number", "null"],
+      "description": "Temperature (C)",
+      "sources": ["BindingDB"]
+    },
+    "pdb_ids": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "PDB structure IDs",
+      "sources": ["BindingDB"]
+    },
+    "pmid": {
+      "type": ["integer", "null"],
+      "description": "PubMed ID",
+      "sources": ["BindingDB"]
+    },
+    "concept_id": {
+      "type": ["string", "null"],
+      "description": "Normalized gene/drug ID",
+      "sources": ["DGIdb"]
+    },
+    "gene_categories": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Druggability categories (KINASE, etc.)",
+      "sources": ["DGIdb"]
+    },
+    "interaction_score": {
+      "type": ["number", "null"],
+      "description": "Confidence score",
+      "sources": ["DGIdb"]
+    },
+    "dgidb_sources": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Source databases (40+)",
+      "sources": ["DGIdb"]
+    },
+    "approved": {
+      "type": ["boolean", "null"],
+      "description": "FDA approval status",
+      "sources": ["DGIdb"]
+    },
+    "chembl_id": {
+      "type": ["string", "null"],
+      "description": "ChEMBL identifier",
+      "sources": ["DGIdb"]
+    },
+    "entrez_id": {
+      "type": ["integer", "null"],
+      "description": "NCBI Entrez Gene ID",
+      "sources": ["DGIdb"]
+    },
+    "gtopdb_target_id": {
+      "type": ["integer", "null"],
+      "description": "GtoPdb target ID",
+      "sources": ["GtoPdb"]
+    },
+    "gtopdb_ligand_id": {
+      "type": ["integer", "null"],
+      "description": "GtoPdb ligand ID",
+      "sources": ["GtoPdb"]
+    },
+    "systematic_name": {
+      "type": ["string", "null"],
+      "description": "IUPHAR systematic name",
+      "sources": ["GtoPdb"]
+    },
+    "target_family": {
+      "type": ["string", "null"],
+      "description": "Target family (GPCR, ion_channel, kinase, etc.)",
+      "sources": ["GtoPdb"]
+    },
+    "selectivity": {
+      "type": ["string", "null"],
+      "description": "Selectivity (Selective/Non-selective)",
+      "sources": ["GtoPdb"]
+    },
+    "is_endogenous": {
+      "type": ["boolean", "null"],
+      "description": "Endogenous ligand flag",
+      "sources": ["GtoPdb"]
+    },
+    "inn": {
+      "type": ["string", "null"],
+      "description": "International nonproprietary name",
+      "sources": ["GtoPdb"]
+    },
+    "hgnc_symbol": {
+      "type": ["string", "null"],
+      "description": "HGNC gene symbol",
+      "sources": ["GtoPdb"]
+    },
+    "ttd_target_id": {
+      "type": ["string", "null"],
+      "description": "TTD target ID (TTDT prefix)",
+      "sources": ["TTD"]
+    },
+    "ttd_drug_id": {
+      "type": ["string", "null"],
+      "description": "TTD drug ID (6 chars)",
+      "sources": ["TTD"]
+    },
+    "target_validation": {
+      "type": ["string", "null"],
+      "description": "Target validation status (Successful, clinical, literature)",
+      "sources": ["TTD"]
+    },
+    "development_status": {
+      "type": ["string", "null"],
+      "description": "Development status (Approved, Phase I-III, etc.)",
+      "sources": ["TTD"]
+    },
+    "drug_class": {
+      "type": ["string", "null"],
+      "description": "Drug class (Small molecule, antibody, etc.)",
+      "sources": ["TTD"]
+    },
+    "indication": {
+      "type": ["string", "null"],
+      "description": "Therapeutic indication",
+      "sources": ["TTD"]
+    },
+    "icd_11_code": {
+      "type": ["string", "null"],
+      "description": "ICD-11 disease classification",
+      "sources": ["TTD"]
+    },
+    "pathway_associations": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "pathway_id": {"type": "string"},
+          "source": {"type": "string"}
+        }
+      },
+      "description": "KEGG, Reactome pathway links",
+      "sources": ["TTD"]
+    },
+    "_source": {
+      "type": "object",
+      "description": "Metadata about the data source",
+      "properties": {
+        "database": {"type": "string"},
+        "version": {"type": "string"},
+        "access_date": {"type": "string", "format": "date"},
+        "original_id": {"type": "string"}
+      }
+    }
+  },
+  "required": ["compound_name", "target_name"],
+  "field_mappings": {
+    "BindingDB": {
+      "monomer_id": "monomer_id",
+      "ligand_name": "compound_name",
+      "smiles": "smiles",
+      "inchi_key": "inchi_key",
+      "target_name": "target_name",
+      "uniprot_id": "uniprot_id",
+      "activity_type": "affinity_type",
+      "activity_value": "affinity_value",
+      "activity_unit": "affinity_unit",
+      "activity_relation": "affinity_relation",
+      "ph": "assay_ph",
+      "temperature": "assay_temperature",
+      "pdb_ids": "pdb_ids",
+      "pmid": "pmid",
+      "bindingdb_id": "bindingdb_id"
+    },
+    "DGIdb": {
+      "drug_name": "compound_name",
+      "gene_name": "target_name",
+      "concept_id": "concept_id",
+      "gene_categories": "gene_categories",
+      "interaction_types": "interaction_types",
+      "interaction_score": "interaction_score",
+      "sources": "dgidb_sources",
+      "approved": "approved",
+      "chembl_id": "chembl_id",
+      "entrez_id": "entrez_id"
+    },
+    "GtoPdb": {
+      "ligand_id": "gtopdb_ligand_id",
+      "ligand_name": "compound_name",
+      "smiles": "smiles",
+      "inchi_key": "inchi_key",
+      "target_id": "gtopdb_target_id",
+      "target_name": "target_name",
+      "uniprot_id": "uniprot_id",
+      "systematic_name": "systematic_name",
+      "target_family": "target_family",
+      "action": "interaction_types",
+      "selectivity": "selectivity",
+      "endogenous": "is_endogenous",
+      "inn": "inn",
+      "hgnc_symbol": "hgnc_symbol",
+      "affinity_type": "affinity_type",
+      "affinity_value": "affinity_value"
+    },
+    "TTD": {
+      "drug_id": "ttd_drug_id",
+      "drug_name": "compound_name",
+      "target_id": "ttd_target_id",
+      "target_name": "target_name",
+      "uniprot_id": "uniprot_id",
+      "target_validation": "target_validation",
+      "development_status": "development_status",
+      "drug_class": "drug_class",
+      "indication": "indication",
+      "icd_11_code": "icd_11_code",
+      "pathway_associations": "pathway_associations"
+    }
+  }
+}

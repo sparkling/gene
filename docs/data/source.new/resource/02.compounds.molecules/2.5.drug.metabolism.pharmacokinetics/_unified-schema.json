@@ -1,0 +1,224 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gene.example.org/schemas/2.5-drug-metabolism-pharmacokinetics.json",
+  "title": "Drug Metabolism and Pharmacokinetics Unified Schema",
+  "description": "Unified schema for drug metabolism data from SuperCYP and SwissADME",
+  "type": "object",
+  "properties": {
+    "compound_id": {
+      "type": ["string", "integer"],
+      "description": "Primary identifier for compound",
+      "sources": ["SuperCYP", "SwissADME"]
+    },
+    "name": {
+      "type": "string",
+      "description": "Drug/compound name",
+      "sources": ["SuperCYP", "SwissADME"]
+    },
+    "smiles": {
+      "type": ["string", "null"],
+      "description": "Canonical SMILES structure",
+      "sources": ["SuperCYP", "SwissADME"]
+    },
+    "molecular_weight": {
+      "type": ["number", "null"],
+      "description": "Molecular weight in Daltons",
+      "sources": ["SuperCYP", "SwissADME"]
+    },
+    "cyp_interactions": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "cyp_isoform": {"type": "string"},
+          "interaction_type": {"type": "string"},
+          "strength": {"type": "string"},
+          "ki_value": {"type": "number"},
+          "ic50_value": {"type": "number"}
+        }
+      },
+      "description": "CYP450 enzyme interactions",
+      "sources": ["SuperCYP", "SwissADME"]
+    },
+    "cyp_id": {
+      "type": ["string", "null"],
+      "description": "CYP isoform identifier (e.g., CYP3A4)",
+      "sources": ["SuperCYP"]
+    },
+    "interaction_type": {
+      "type": ["string", "null"],
+      "description": "Interaction type (substrate, inhibitor, inducer)",
+      "sources": ["SuperCYP"]
+    },
+    "interaction_strength": {
+      "type": ["string", "null"],
+      "description": "Interaction strength (strong, moderate, weak)",
+      "sources": ["SuperCYP"]
+    },
+    "ki_value": {
+      "type": ["number", "null"],
+      "description": "Inhibition constant (uM)",
+      "sources": ["SuperCYP"]
+    },
+    "ic50_value": {
+      "type": ["number", "null"],
+      "description": "IC50 (uM)",
+      "sources": ["SuperCYP"]
+    },
+    "induction_fold": {
+      "type": ["number", "null"],
+      "description": "Fold induction",
+      "sources": ["SuperCYP"]
+    },
+    "evidence_level": {
+      "type": ["string", "null"],
+      "description": "Evidence level (in_vitro, in_vivo, clinical)",
+      "sources": ["SuperCYP"]
+    },
+    "drugbank_id": {
+      "type": ["string", "null"],
+      "description": "DrugBank identifier",
+      "sources": ["SuperCYP"]
+    },
+    "inchi_key": {
+      "type": ["string", "null"],
+      "description": "InChI Key identifier",
+      "sources": ["SwissADME"]
+    },
+    "tpsa": {
+      "type": ["number", "null"],
+      "description": "Topological Polar Surface Area",
+      "sources": ["SwissADME"]
+    },
+    "hbd": {
+      "type": ["integer", "null"],
+      "description": "Hydrogen bond donors",
+      "sources": ["SwissADME"]
+    },
+    "hba": {
+      "type": ["integer", "null"],
+      "description": "Hydrogen bond acceptors",
+      "sources": ["SwissADME"]
+    },
+    "rotatable_bonds": {
+      "type": ["integer", "null"],
+      "description": "Rotatable bond count",
+      "sources": ["SwissADME"]
+    },
+    "consensus_logp": {
+      "type": ["number", "null"],
+      "description": "Average of 5 LogP methods",
+      "sources": ["SwissADME"]
+    },
+    "lipinski_violations": {
+      "type": ["integer", "null"],
+      "description": "Rule of 5 violations (0-4)",
+      "sources": ["SwissADME"]
+    },
+    "bioavailability_score": {
+      "type": ["number", "null"],
+      "description": "Abbott bioavailability score (0-1)",
+      "sources": ["SwissADME"]
+    },
+    "gi_absorption": {
+      "type": ["string", "null"],
+      "description": "GI absorption (High/Low)",
+      "sources": ["SwissADME"]
+    },
+    "bbb_permeant": {
+      "type": ["string", "null"],
+      "description": "BBB permeation (Yes/No)",
+      "sources": ["SwissADME"]
+    },
+    "pgp_substrate": {
+      "type": ["string", "null"],
+      "description": "P-glycoprotein substrate (Yes/No)",
+      "sources": ["SwissADME"]
+    },
+    "cyp1a2_inhibitor": {
+      "type": ["string", "null"],
+      "description": "CYP1A2 inhibitor prediction (Yes/No)",
+      "sources": ["SwissADME"]
+    },
+    "cyp2c19_inhibitor": {
+      "type": ["string", "null"],
+      "description": "CYP2C19 inhibitor prediction (Yes/No)",
+      "sources": ["SwissADME"]
+    },
+    "cyp2c9_inhibitor": {
+      "type": ["string", "null"],
+      "description": "CYP2C9 inhibitor prediction (Yes/No)",
+      "sources": ["SwissADME"]
+    },
+    "cyp2d6_inhibitor": {
+      "type": ["string", "null"],
+      "description": "CYP2D6 inhibitor prediction (Yes/No)",
+      "sources": ["SwissADME"]
+    },
+    "cyp3a4_inhibitor": {
+      "type": ["string", "null"],
+      "description": "CYP3A4 inhibitor prediction (Yes/No)",
+      "sources": ["SwissADME"]
+    },
+    "pains_alerts": {
+      "type": ["integer", "null"],
+      "description": "PAINS pattern matches",
+      "sources": ["SwissADME"]
+    },
+    "synthetic_accessibility": {
+      "type": ["number", "null"],
+      "description": "SA score (1-10, lower=easier)",
+      "sources": ["SwissADME"]
+    },
+    "_source": {
+      "type": "object",
+      "description": "Metadata about the data source",
+      "properties": {
+        "database": {"type": "string"},
+        "version": {"type": "string"},
+        "access_date": {"type": "string", "format": "date"},
+        "original_id": {"type": "string"}
+      }
+    }
+  },
+  "required": ["name"],
+  "field_mappings": {
+    "SuperCYP": {
+      "drug_id": "compound_id",
+      "drug_name": "name",
+      "smiles": "smiles",
+      "molecular_weight": "molecular_weight",
+      "cyp_id": "cyp_id",
+      "interaction_type": "interaction_type",
+      "strength": "interaction_strength",
+      "ki_value": "ki_value",
+      "ic50_value": "ic50_value",
+      "induction_fold": "induction_fold",
+      "evidence_level": "evidence_level",
+      "drugbank_id": "drugbank_id"
+    },
+    "SwissADME": {
+      "molecule_name": "name",
+      "smiles": "smiles",
+      "inchikey": "inchi_key",
+      "mw": "molecular_weight",
+      "tpsa": "tpsa",
+      "hbd": "hbd",
+      "hba": "hba",
+      "rotatable_bonds": "rotatable_bonds",
+      "consensus_logp": "consensus_logp",
+      "lipinski_violations": "lipinski_violations",
+      "bioavailability_score": "bioavailability_score",
+      "gi_absorption": "gi_absorption",
+      "bbb_permeant": "bbb_permeant",
+      "pgp_substrate": "pgp_substrate",
+      "cyp1a2_inhibitor": "cyp1a2_inhibitor",
+      "cyp2c19_inhibitor": "cyp2c19_inhibitor",
+      "cyp2c9_inhibitor": "cyp2c9_inhibitor",
+      "cyp2d6_inhibitor": "cyp2d6_inhibitor",
+      "cyp3a4_inhibitor": "cyp3a4_inhibitor",
+      "pains_alerts": "pains_alerts",
+      "synthetic_accessibility": "synthetic_accessibility"
+    }
+  }
+}

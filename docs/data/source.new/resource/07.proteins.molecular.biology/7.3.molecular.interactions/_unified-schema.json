@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gene.taxonomy/schemas/7.3-molecular-interactions",
+  "title": "Molecular Interactions Unified Schema",
+  "description": "Unified schema placeholder for molecular interaction data. Note: Primary data is maintained in category 04.pathways.networks (IntAct, Reactome, STRING). This subcategory references those sources.",
+  "type": "object",
+  "properties": {
+    "interaction_id": {
+      "type": "string",
+      "description": "Unique identifier for the molecular interaction",
+      "sources": ["IntAct", "STRING", "Reactome"],
+      "example": "EBI-1234567"
+    },
+    "interaction_type": {
+      "type": "string",
+      "description": "Type of molecular interaction",
+      "enum": ["physical", "genetic", "functional", "regulatory"],
+      "example": "physical"
+    },
+    "participants": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "participant_id": {"type": "string"},
+          "participant_type": {"type": "string"},
+          "uniprot_accession": {"type": "string"},
+          "gene_name": {"type": "string"},
+          "organism": {"type": "string"},
+          "tax_id": {"type": "integer"}
+        }
+      },
+      "description": "Molecules participating in the interaction",
+      "example": [{"uniprot_accession": "P04637", "gene_name": "TP53"}, {"uniprot_accession": "Q00987", "gene_name": "MDM2"}]
+    },
+    "detection_method": {
+      "type": ["string", "null"],
+      "description": "Experimental method used to detect the interaction",
+      "example": "two hybrid"
+    },
+    "confidence_score": {
+      "type": ["number", "null"],
+      "description": "Confidence score for the interaction (0-1)",
+      "example": 0.9
+    },
+    "pubmed_ids": {
+      "type": ["array", "null"],
+      "items": {"type": "integer"},
+      "description": "PubMed IDs supporting the interaction",
+      "example": [12345678]
+    },
+    "_source": {
+      "type": "object",
+      "description": "Metadata about the data source",
+      "properties": {
+        "primary_source": {"type": "string"},
+        "source_id": {"type": "string"},
+        "extraction_date": {"type": "string", "format": "date"},
+        "source_version": {"type": "string"}
+      }
+    }
+  },
+  "required": ["interaction_id", "participants"],
+  "cross_references": {
+    "primary_location": "../../04.pathways.networks/",
+    "sources": [
+      {
+        "name": "IntAct",
+        "description": "Molecular interaction database from EMBL-EBI",
+        "location": "../../04.pathways.networks/intact/"
+      },
+      {
+        "name": "Reactome",
+        "description": "Pathway database with interaction data",
+        "location": "../../04.pathways.networks/reactome/"
+      },
+      {
+        "name": "STRING",
+        "description": "Protein-protein interaction networks",
+        "location": "../../04.pathways.networks/string/"
+      }
+    ]
+  },
+  "note": "This subcategory serves as a reference point. For full molecular interaction schemas, see category 04.pathways.networks unified schemas."
+}

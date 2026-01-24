@@ -1,0 +1,367 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gene.example.org/schemas/1.2-functional-prediction.json",
+  "title": "Functional Prediction Unified Schema",
+  "description": "Unified schema for functional prediction data from AlphaMissense, CADD, dbNSFP, and SpliceAI",
+  "type": "object",
+  "properties": {
+    "chromosome": {
+      "type": "string",
+      "description": "Chromosome identifier",
+      "sources": ["AlphaMissense", "CADD", "dbNSFP", "SpliceAI"],
+      "examples": ["chr1", "1", "22"]
+    },
+    "position": {
+      "type": "integer",
+      "description": "1-based genomic position",
+      "sources": ["AlphaMissense", "CADD", "dbNSFP", "SpliceAI"],
+      "examples": [10001, 5227002]
+    },
+    "reference_allele": {
+      "type": "string",
+      "description": "Reference genome nucleotide(s)",
+      "sources": ["AlphaMissense", "CADD", "dbNSFP", "SpliceAI"],
+      "examples": ["A", "T", "G"]
+    },
+    "alternate_allele": {
+      "type": "string",
+      "description": "Variant nucleotide(s)",
+      "sources": ["AlphaMissense", "CADD", "dbNSFP", "SpliceAI"],
+      "examples": ["G", "A", "C"]
+    },
+    "gene_symbols": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "HGNC gene symbol(s)",
+      "sources": ["AlphaMissense", "dbNSFP", "SpliceAI"],
+      "examples": ["BRCA1", "TP53"]
+    },
+    "transcript_ids": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Ensembl or RefSeq transcript ID(s)",
+      "sources": ["AlphaMissense", "dbNSFP"],
+      "examples": ["ENST00000357654", "NM_007294.4"]
+    },
+    "alphamissense_genome": {
+      "type": ["string", "null"],
+      "description": "Reference genome version (hg38)",
+      "sources": ["AlphaMissense"]
+    },
+    "alphamissense_uniprot_id": {
+      "type": ["string", "null"],
+      "description": "UniProt accession",
+      "sources": ["AlphaMissense"]
+    },
+    "alphamissense_protein_variant": {
+      "type": ["string", "null"],
+      "description": "Amino acid change (e.g., E7V)",
+      "sources": ["AlphaMissense"]
+    },
+    "alphamissense_pathogenicity": {
+      "type": ["number", "null"],
+      "minimum": 0,
+      "maximum": 1,
+      "description": "AlphaMissense pathogenicity score (0-1)",
+      "sources": ["AlphaMissense"]
+    },
+    "alphamissense_class": {
+      "type": ["string", "null"],
+      "enum": ["likely_benign", "ambiguous", "likely_pathogenic", null],
+      "description": "AlphaMissense classification",
+      "sources": ["AlphaMissense"]
+    },
+    "alphamissense_gene_mean": {
+      "type": ["number", "null"],
+      "description": "Gene-level mean pathogenicity",
+      "sources": ["AlphaMissense"]
+    },
+    "cadd_raw_score": {
+      "type": ["number", "null"],
+      "description": "CADD untransformed SVM score",
+      "sources": ["CADD"]
+    },
+    "cadd_phred": {
+      "type": ["number", "null"],
+      "description": "CADD PHRED-scaled score (-10*log10(rank/total))",
+      "sources": ["CADD", "dbNSFP"]
+    },
+    "dbnsfp_ref_amino_acid": {
+      "type": ["string", "null"],
+      "description": "Reference amino acid",
+      "sources": ["dbNSFP"]
+    },
+    "dbnsfp_alt_amino_acid": {
+      "type": ["string", "null"],
+      "description": "Alternate amino acid",
+      "sources": ["dbNSFP"]
+    },
+    "ensembl_gene_id": {
+      "type": ["string", "null"],
+      "description": "Ensembl gene ID",
+      "sources": ["dbNSFP"]
+    },
+    "ensembl_transcript_id": {
+      "type": ["string", "null"],
+      "description": "Ensembl transcript ID",
+      "sources": ["dbNSFP"]
+    },
+    "ensembl_protein_id": {
+      "type": ["string", "null"],
+      "description": "Ensembl protein ID",
+      "sources": ["dbNSFP"]
+    },
+    "uniprot_accession": {
+      "type": ["string", "null"],
+      "description": "UniProt accession",
+      "sources": ["dbNSFP"]
+    },
+    "hgvs_coding": {
+      "type": ["string", "null"],
+      "description": "HGVS coding annotation",
+      "sources": ["dbNSFP"]
+    },
+    "hgvs_protein": {
+      "type": ["string", "null"],
+      "description": "HGVS protein annotation",
+      "sources": ["dbNSFP"]
+    },
+    "sift_score": {
+      "type": ["number", "null"],
+      "description": "SIFT prediction score",
+      "sources": ["dbNSFP"]
+    },
+    "sift_prediction": {
+      "type": ["string", "null"],
+      "description": "SIFT prediction (D=Deleterious/T=Tolerated)",
+      "sources": ["dbNSFP"]
+    },
+    "polyphen2_hdiv_score": {
+      "type": ["number", "null"],
+      "description": "PolyPhen-2 HumDiv score",
+      "sources": ["dbNSFP"]
+    },
+    "polyphen2_hdiv_prediction": {
+      "type": ["string", "null"],
+      "description": "PolyPhen-2 HumDiv prediction",
+      "sources": ["dbNSFP"]
+    },
+    "polyphen2_hvar_score": {
+      "type": ["number", "null"],
+      "description": "PolyPhen-2 HumVar score",
+      "sources": ["dbNSFP"]
+    },
+    "polyphen2_hvar_prediction": {
+      "type": ["string", "null"],
+      "description": "PolyPhen-2 HumVar prediction",
+      "sources": ["dbNSFP"]
+    },
+    "lrt_score": {
+      "type": ["number", "null"],
+      "description": "LRT score",
+      "sources": ["dbNSFP"]
+    },
+    "mutationtaster_score": {
+      "type": ["number", "null"],
+      "description": "MutationTaster score",
+      "sources": ["dbNSFP"]
+    },
+    "mutationassessor_score": {
+      "type": ["number", "null"],
+      "description": "MutationAssessor score",
+      "sources": ["dbNSFP"]
+    },
+    "fathmm_score": {
+      "type": ["number", "null"],
+      "description": "FATHMM score",
+      "sources": ["dbNSFP"]
+    },
+    "provean_score": {
+      "type": ["number", "null"],
+      "description": "PROVEAN score",
+      "sources": ["dbNSFP"]
+    },
+    "metasvm_score": {
+      "type": ["number", "null"],
+      "description": "MetaSVM ensemble score",
+      "sources": ["dbNSFP"]
+    },
+    "metalr_score": {
+      "type": ["number", "null"],
+      "description": "MetaLR ensemble score",
+      "sources": ["dbNSFP"]
+    },
+    "revel_score": {
+      "type": ["number", "null"],
+      "description": "REVEL ensemble score",
+      "sources": ["dbNSFP"]
+    },
+    "phylop_100way": {
+      "type": ["number", "null"],
+      "description": "Conservation score (100 vertebrates)",
+      "sources": ["dbNSFP"]
+    },
+    "phastcons_100way": {
+      "type": ["number", "null"],
+      "description": "phastCons conservation score",
+      "sources": ["dbNSFP"]
+    },
+    "gerp_rs": {
+      "type": ["number", "null"],
+      "description": "GERP++ rejected substitution score",
+      "sources": ["dbNSFP"]
+    },
+    "gnomad_exomes_af": {
+      "type": ["number", "null"],
+      "description": "gnomAD exome allele frequency",
+      "sources": ["dbNSFP"]
+    },
+    "gnomad_genomes_af": {
+      "type": ["number", "null"],
+      "description": "gnomAD genome allele frequency",
+      "sources": ["dbNSFP"]
+    },
+    "thousand_genomes_af": {
+      "type": ["number", "null"],
+      "description": "1000 Genomes Phase 3 AF",
+      "sources": ["dbNSFP"]
+    },
+    "topmed_af": {
+      "type": ["number", "null"],
+      "description": "TOPMed allele frequency",
+      "sources": ["dbNSFP"]
+    },
+    "clinvar_significance": {
+      "type": ["string", "null"],
+      "description": "ClinVar clinical significance",
+      "sources": ["dbNSFP"]
+    },
+    "clinvar_review": {
+      "type": ["string", "null"],
+      "description": "ClinVar review status",
+      "sources": ["dbNSFP"]
+    },
+    "spliceai_allele": {
+      "type": ["string", "null"],
+      "description": "SpliceAI alternate allele",
+      "sources": ["SpliceAI"]
+    },
+    "spliceai_gene_symbol": {
+      "type": ["string", "null"],
+      "description": "SpliceAI gene symbol",
+      "sources": ["SpliceAI"]
+    },
+    "spliceai_ds_ag": {
+      "type": ["number", "null"],
+      "description": "Delta score for acceptor gain",
+      "sources": ["SpliceAI"]
+    },
+    "spliceai_ds_al": {
+      "type": ["number", "null"],
+      "description": "Delta score for acceptor loss",
+      "sources": ["SpliceAI"]
+    },
+    "spliceai_ds_dg": {
+      "type": ["number", "null"],
+      "description": "Delta score for donor gain",
+      "sources": ["SpliceAI"]
+    },
+    "spliceai_ds_dl": {
+      "type": ["number", "null"],
+      "description": "Delta score for donor loss",
+      "sources": ["SpliceAI"]
+    },
+    "spliceai_dp_ag": {
+      "type": ["integer", "null"],
+      "description": "Distance to acceptor gain",
+      "sources": ["SpliceAI"]
+    },
+    "spliceai_dp_al": {
+      "type": ["integer", "null"],
+      "description": "Distance to acceptor loss",
+      "sources": ["SpliceAI"]
+    },
+    "spliceai_dp_dg": {
+      "type": ["integer", "null"],
+      "description": "Distance to donor gain",
+      "sources": ["SpliceAI"]
+    },
+    "spliceai_dp_dl": {
+      "type": ["integer", "null"],
+      "description": "Distance to donor loss",
+      "sources": ["SpliceAI"]
+    },
+    "_source": {
+      "type": "object",
+      "description": "Metadata about the data source",
+      "properties": {
+        "database": {"type": "string"},
+        "version": {"type": "string"},
+        "access_date": {"type": "string", "format": "date"}
+      }
+    }
+  },
+  "required": ["chromosome", "position", "reference_allele", "alternate_allele"],
+  "field_mappings": {
+    "AlphaMissense": {
+      "genome": "alphamissense_genome",
+      "uniprot_id": "alphamissense_uniprot_id",
+      "protein_variant": "alphamissense_protein_variant",
+      "am_pathogenicity": "alphamissense_pathogenicity",
+      "am_class": "alphamissense_class",
+      "mean_am_pathogenicity": "alphamissense_gene_mean"
+    },
+    "CADD": {
+      "RawScore": "cadd_raw_score",
+      "PHRED": "cadd_phred"
+    },
+    "dbNSFP": {
+      "aaref": "dbnsfp_ref_amino_acid",
+      "aaalt": "dbnsfp_alt_amino_acid",
+      "genename": "gene_symbols",
+      "Ensembl_geneid": "ensembl_gene_id",
+      "Ensembl_transcriptid": "ensembl_transcript_id",
+      "Ensembl_proteinid": "ensembl_protein_id",
+      "Uniprot_acc": "uniprot_accession",
+      "HGVSc_snpEff": "hgvs_coding",
+      "HGVSp_snpEff": "hgvs_protein",
+      "SIFT_score": "sift_score",
+      "SIFT_pred": "sift_prediction",
+      "Polyphen2_HDIV_score": "polyphen2_hdiv_score",
+      "Polyphen2_HDIV_pred": "polyphen2_hdiv_prediction",
+      "Polyphen2_HVAR_score": "polyphen2_hvar_score",
+      "Polyphen2_HVAR_pred": "polyphen2_hvar_prediction",
+      "LRT_score": "lrt_score",
+      "MutationTaster_score": "mutationtaster_score",
+      "MutationAssessor_score": "mutationassessor_score",
+      "FATHMM_score": "fathmm_score",
+      "PROVEAN_score": "provean_score",
+      "MetaSVM_score": "metasvm_score",
+      "MetaLR_score": "metalr_score",
+      "REVEL_score": "revel_score",
+      "CADD_phred": "cadd_phred",
+      "AlphaMissense_score": "alphamissense_pathogenicity",
+      "phyloP100way_vertebrate": "phylop_100way",
+      "phastCons100way_vertebrate": "phastcons_100way",
+      "GERP++_RS": "gerp_rs",
+      "gnomAD_exomes_AF": "gnomad_exomes_af",
+      "gnomAD_genomes_AF": "gnomad_genomes_af",
+      "1000Gp3_AF": "thousand_genomes_af",
+      "TOPMed_AF": "topmed_af",
+      "clinvar_clnsig": "clinvar_significance",
+      "clinvar_review": "clinvar_review"
+    },
+    "SpliceAI": {
+      "ALLELE": "spliceai_allele",
+      "SYMBOL": "spliceai_gene_symbol",
+      "DS_AG": "spliceai_ds_ag",
+      "DS_AL": "spliceai_ds_al",
+      "DS_DG": "spliceai_ds_dg",
+      "DS_DL": "spliceai_ds_dl",
+      "DP_AG": "spliceai_dp_ag",
+      "DP_AL": "spliceai_dp_al",
+      "DP_DG": "spliceai_dp_dg",
+      "DP_DL": "spliceai_dp_dl"
+    }
+  }
+}

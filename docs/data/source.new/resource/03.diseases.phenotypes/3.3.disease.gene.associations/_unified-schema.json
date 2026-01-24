@@ -1,0 +1,247 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gene.example.org/schemas/3.3-disease-gene-associations.json",
+  "title": "Disease-Gene Associations and Pharmacogenomics Unified Schema",
+  "description": "Unified schema for disease-gene association data from DisGeNET, Open Targets, and PharmGKB",
+  "type": "object",
+  "properties": {
+    "gene_id": {
+      "type": "string",
+      "description": "Gene identifier (NCBI Gene ID or Ensembl ID)",
+      "sources": ["DisGeNET", "Open Targets", "PharmGKB"],
+      "examples": ["3157", "ENSG00000146648", "PA126"]
+    },
+    "gene_symbol": {
+      "type": "string",
+      "description": "HGNC approved gene symbol",
+      "sources": ["DisGeNET", "Open Targets", "PharmGKB"]
+    },
+    "disease_id": {
+      "type": ["string", "null"],
+      "description": "Disease identifier (UMLS CUI, EFO ID, etc.)",
+      "sources": ["DisGeNET", "Open Targets"],
+      "examples": ["C0020443", "EFO_0000311"]
+    },
+    "disease_name": {
+      "type": "string",
+      "description": "Disease or phenotype name",
+      "sources": ["DisGeNET", "Open Targets", "PharmGKB"]
+    },
+    "score": {
+      "type": ["number", "null"],
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Association confidence score (0-1)",
+      "sources": ["DisGeNET", "Open Targets"]
+    },
+    "evidence_level": {
+      "type": ["string", "null"],
+      "description": "Evidence strength classification",
+      "sources": ["DisGeNET", "PharmGKB"],
+      "examples": ["1A", "2B", "high confidence"]
+    },
+    "pmids": {
+      "type": ["array", "null"],
+      "items": {"type": "integer"},
+      "description": "PubMed IDs supporting the association",
+      "sources": ["DisGeNET", "Open Targets", "PharmGKB"]
+    },
+    "ei": {
+      "type": ["number", "null"],
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Evidence Index measuring consistency across publications",
+      "sources": ["DisGeNET"]
+    },
+    "dsi": {
+      "type": ["number", "null"],
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Disease Specificity Index",
+      "sources": ["DisGeNET"]
+    },
+    "dpi": {
+      "type": ["number", "null"],
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Disease Pleiotropy Index",
+      "sources": ["DisGeNET"]
+    },
+    "association_type": {
+      "type": ["string", "null"],
+      "description": "Type of gene-disease relationship",
+      "sources": ["DisGeNET"]
+    },
+    "snp_id": {
+      "type": ["string", "null"],
+      "description": "dbSNP variant identifier for VDAs",
+      "sources": ["DisGeNET"],
+      "pattern": "rs[0-9]+"
+    },
+    "chromosome": {
+      "type": ["string", "null"],
+      "description": "Chromosome location",
+      "sources": ["DisGeNET"]
+    },
+    "position": {
+      "type": ["integer", "null"],
+      "description": "GRCh38 genomic position",
+      "sources": ["DisGeNET"]
+    },
+    "consequence": {
+      "type": ["string", "null"],
+      "description": "VEP variant consequence type",
+      "sources": ["DisGeNET"]
+    },
+    "number_of_pmids": {
+      "type": ["integer", "null"],
+      "description": "Number of supporting publications",
+      "sources": ["DisGeNET"]
+    },
+    "target_id": {
+      "type": ["string", "null"],
+      "description": "Ensembl gene ID for target",
+      "sources": ["Open Targets"],
+      "pattern": "ENSG[0-9]{11}"
+    },
+    "ot_disease_id": {
+      "type": ["string", "null"],
+      "description": "EFO disease identifier",
+      "sources": ["Open Targets"],
+      "pattern": "EFO_[0-9]+"
+    },
+    "datatype_scores": {
+      "type": ["object", "null"],
+      "description": "Scores per data type (genetic, drug, pathway, etc.)",
+      "sources": ["Open Targets"]
+    },
+    "evidence_count": {
+      "type": ["integer", "null"],
+      "description": "Total number of evidence strings",
+      "sources": ["Open Targets"]
+    },
+    "tractability": {
+      "type": ["object", "null"],
+      "description": "Druggability assessment by modality",
+      "sources": ["Open Targets"]
+    },
+    "safety": {
+      "type": ["object", "null"],
+      "description": "Safety liability information",
+      "sources": ["Open Targets"]
+    },
+    "mechanism_of_action": {
+      "type": ["string", "null"],
+      "description": "Drug mechanism of action",
+      "sources": ["Open Targets"]
+    },
+    "clinical_phase": {
+      "type": ["integer", "null"],
+      "minimum": 0,
+      "maximum": 4,
+      "description": "Clinical trial phase for known drugs",
+      "sources": ["Open Targets"]
+    },
+    "pgkb_id": {
+      "type": ["string", "null"],
+      "description": "PharmGKB accession for entities",
+      "sources": ["PharmGKB"],
+      "pattern": "PA[0-9]+"
+    },
+    "haplotype": {
+      "type": ["string", "null"],
+      "description": "Star allele haplotype (e.g., CYP2C9*2)",
+      "sources": ["PharmGKB"]
+    },
+    "diplotype": {
+      "type": ["string", "null"],
+      "description": "Diplotype (e.g., CYP2C9*1/*2)",
+      "sources": ["PharmGKB"]
+    },
+    "phenotype": {
+      "type": ["string", "null"],
+      "description": "Metabolizer phenotype classification",
+      "sources": ["PharmGKB"],
+      "examples": ["Poor Metabolizer", "Intermediate Metabolizer", "Normal Metabolizer", "Ultra-rapid Metabolizer"]
+    },
+    "activity_value": {
+      "type": ["string", "null"],
+      "description": "Functional impact of allele",
+      "sources": ["PharmGKB"],
+      "examples": ["Decreased function", "No function", "Normal function"]
+    },
+    "recommendation": {
+      "type": ["string", "null"],
+      "description": "Clinical prescribing recommendation",
+      "sources": ["PharmGKB"]
+    },
+    "guideline_source": {
+      "type": ["string", "null"],
+      "enum": ["CPIC", "DPWG", "FDA", null],
+      "description": "Source of clinical guideline",
+      "sources": ["PharmGKB"]
+    },
+    "population_frequency": {
+      "type": ["object", "null"],
+      "description": "Population allele frequencies by ethnicity",
+      "sources": ["PharmGKB"]
+    },
+    "_source": {
+      "type": "object",
+      "description": "Metadata about the data source",
+      "properties": {
+        "database": {"type": "string"},
+        "version": {"type": "string"},
+        "access_date": {"type": "string", "format": "date"},
+        "original_id": {"type": "string"}
+      }
+    }
+  },
+  "required": ["gene_symbol", "disease_name"],
+  "field_mappings": {
+    "DisGeNET": {
+      "geneId": "gene_id",
+      "geneSymbol": "gene_symbol",
+      "diseaseId": "disease_id",
+      "diseaseName": "disease_name",
+      "score": "score",
+      "EI": "ei",
+      "DSI": "dsi",
+      "DPI": "dpi",
+      "associationType": "association_type",
+      "snpId": "snp_id",
+      "chromosome": "chromosome",
+      "position": "position",
+      "consequence": "consequence",
+      "NofPmids": "number_of_pmids",
+      "pmid": "pmids"
+    },
+    "Open_Targets": {
+      "targetId": "target_id",
+      "approvedSymbol": "gene_symbol",
+      "diseaseId": "ot_disease_id",
+      "diseaseName": "disease_name",
+      "score": "score",
+      "datatypeScores": "datatype_scores",
+      "evidenceCount": "evidence_count",
+      "tractability": "tractability",
+      "safety": "safety",
+      "mechanismOfAction": "mechanism_of_action",
+      "clinicalPhase": "clinical_phase"
+    },
+    "PharmGKB": {
+      "pgkb_id": "pgkb_id",
+      "Symbol": "gene_symbol",
+      "Gene_ID": "gene_id",
+      "Phenotype_Category": "disease_name",
+      "Level_of_Evidence": "evidence_level",
+      "Haplotype": "haplotype",
+      "Diplotype": "diplotype",
+      "Phenotype": "phenotype",
+      "Activity_Value": "activity_value",
+      "Recommendation": "recommendation",
+      "Guideline_Source": "guideline_source",
+      "Biogeographical_Frequency": "population_frequency"
+    }
+  }
+}

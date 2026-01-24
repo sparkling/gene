@@ -1,0 +1,340 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gene.taxonomy/schemas/8.3-identifier-mapping",
+  "title": "Identifier Mapping Unified Schema",
+  "description": "Unified schema for identifier mapping data integrating NCBI E-Link, PMC ID Converter, and UniProt ID Mapping sources",
+  "type": "object",
+  "properties": {
+    "source_id": {
+      "type": "string",
+      "description": "Input identifier to be mapped",
+      "sources": ["NCBI E-Link:Id", "PMC ID Converter:requested-id", "UniProt ID Mapping:from_id"],
+      "example": "12345678"
+    },
+    "source_database": {
+      "type": "string",
+      "description": "Database the source identifier belongs to",
+      "sources": ["NCBI E-Link:DbFrom", "PMC ID Converter:idtype", "UniProt ID Mapping:from"],
+      "example": "pubmed"
+    },
+    "target_ids": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string"},
+          "database": {"type": "string"},
+          "score": {"type": ["number", "null"]},
+          "link_name": {"type": ["string", "null"]}
+        }
+      },
+      "description": "Mapped identifiers in target databases",
+      "sources": ["NCBI E-Link", "PMC ID Converter", "UniProt ID Mapping"],
+      "example": [{"id": "7157", "database": "gene"}, {"id": "PMC1234567", "database": "pmc"}]
+    },
+    "mapping_score": {
+      "type": ["number", "null"],
+      "description": "Confidence or relevance score for the mapping",
+      "sources": ["NCBI E-Link:Score"],
+      "example": 1000
+    },
+    "ncbi_elink_data": {
+      "type": ["object", "null"],
+      "description": "NCBI E-Link specific mapping information",
+      "sources": ["NCBI E-Link"],
+      "properties": {
+        "link_name": {
+          "type": "string",
+          "description": "Named link type (e.g., pubmed_gene)"
+        },
+        "has_linkout": {
+          "type": "boolean",
+          "description": "Whether record has external links"
+        },
+        "has_neighbor": {
+          "type": "boolean",
+          "description": "Whether record has related records"
+        },
+        "linkset_db": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Array of link sets to target databases"
+        },
+        "query_key": {
+          "type": "string",
+          "description": "History server query key"
+        },
+        "linkouts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "url": {"type": "string"},
+              "provider_name": {"type": "string"},
+              "category": {"type": "string"},
+              "attribute": {"type": "string"}
+            }
+          },
+          "description": "External LinkOut URLs with provider info"
+        },
+        "related_pubmed": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Related PubMed articles"
+        },
+        "linked_genes": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Associated gene IDs"
+        },
+        "linked_proteins": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Associated protein IDs"
+        },
+        "linked_clinvar": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Clinical variants for gene"
+        },
+        "linked_snps": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "SNP variants for gene"
+        }
+      }
+    },
+    "pmc_converter_data": {
+      "type": ["object", "null"],
+      "description": "PMC ID Converter specific mapping information",
+      "sources": ["PMC ID Converter"],
+      "properties": {
+        "pmid": {
+          "type": ["string", "null"],
+          "description": "PubMed identifier"
+        },
+        "pmcid": {
+          "type": ["string", "null"],
+          "description": "PubMed Central identifier with PMC prefix"
+        },
+        "doi": {
+          "type": ["string", "null"],
+          "description": "Digital Object Identifier"
+        },
+        "mid": {
+          "type": ["string", "null"],
+          "description": "NIH Manuscript ID (NIHMS format)"
+        },
+        "live": {
+          "type": ["boolean", "null"],
+          "description": "Whether article is publicly accessible"
+        },
+        "status": {
+          "type": ["string", "null"],
+          "description": "Article status (current, retracted, removed, preprint)"
+        },
+        "errata": {
+          "type": ["object", "null"],
+          "description": "Correction/erratum information with linked PMID/DOI",
+          "properties": {
+            "pmid": {"type": "string"},
+            "doi": {"type": "string"}
+          }
+        },
+        "versions": {
+          "type": ["array", "null"],
+          "items": {"type": "string"},
+          "description": "Version history with PMCID.version format"
+        },
+        "release_date": {
+          "type": ["string", "null"],
+          "format": "date",
+          "description": "Public release date"
+        },
+        "error_message": {
+          "type": ["string", "null"],
+          "description": "Error message if mapping failed"
+        }
+      }
+    },
+    "uniprot_mapping_data": {
+      "type": ["object", "null"],
+      "description": "UniProt ID Mapping specific information",
+      "sources": ["UniProt ID Mapping"],
+      "properties": {
+        "uniprot_accession": {
+          "type": ["string", "null"],
+          "description": "UniProtKB accession (primary protein ID)"
+        },
+        "uniprot_id": {
+          "type": ["string", "null"],
+          "description": "UniProt entry name (mnemonic)"
+        },
+        "gene_id": {
+          "type": ["string", "null"],
+          "description": "NCBI Entrez Gene identifier"
+        },
+        "refseq": {
+          "type": ["string", "null"],
+          "description": "NCBI RefSeq protein accession"
+        },
+        "pdb_ids": {
+          "type": ["array", "null"],
+          "items": {"type": "string"},
+          "description": "Protein Data Bank structure IDs"
+        },
+        "go_terms": {
+          "type": ["array", "null"],
+          "items": {"type": "string"},
+          "description": "Gene Ontology term accessions"
+        },
+        "uniref100": {
+          "type": ["string", "null"],
+          "description": "UniRef100 cluster ID"
+        },
+        "uniref90": {
+          "type": ["string", "null"],
+          "description": "UniRef90 cluster ID"
+        },
+        "uniref50": {
+          "type": ["string", "null"],
+          "description": "UniRef50 cluster ID"
+        },
+        "uniparc": {
+          "type": ["string", "null"],
+          "description": "UniParc sequence archive ID"
+        },
+        "ncbi_taxon": {
+          "type": ["string", "null"],
+          "description": "NCBI Taxonomy ID"
+        },
+        "omim": {
+          "type": ["string", "null"],
+          "description": "OMIM disease ID"
+        },
+        "pubmed_refs": {
+          "type": ["array", "null"],
+          "items": {"type": "string"},
+          "description": "PubMed reference IDs"
+        },
+        "embl": {
+          "type": ["string", "null"],
+          "description": "EMBL/GenBank nucleotide accession"
+        },
+        "ensembl_transcript": {
+          "type": ["string", "null"],
+          "description": "Ensembl transcript ID"
+        },
+        "ensembl_protein": {
+          "type": ["string", "null"],
+          "description": "Ensembl protein ID"
+        },
+        "hgnc": {
+          "type": ["string", "null"],
+          "description": "HGNC identifier"
+        },
+        "pfam": {
+          "type": ["array", "null"],
+          "items": {"type": "string"},
+          "description": "Pfam protein family IDs"
+        },
+        "interpro": {
+          "type": ["array", "null"],
+          "items": {"type": "string"},
+          "description": "InterPro domain IDs"
+        },
+        "drugbank": {
+          "type": ["array", "null"],
+          "items": {"type": "string"},
+          "description": "DrugBank drug IDs"
+        },
+        "chembl": {
+          "type": ["array", "null"],
+          "items": {"type": "string"},
+          "description": "ChEMBL compound IDs"
+        },
+        "reactome": {
+          "type": ["array", "null"],
+          "items": {"type": "string"},
+          "description": "Reactome pathway IDs"
+        }
+      }
+    },
+    "_source": {
+      "type": "object",
+      "description": "Metadata about the data source",
+      "properties": {
+        "primary_source": {"type": "string"},
+        "source_id": {"type": "string"},
+        "extraction_date": {"type": "string", "format": "date"},
+        "source_version": {"type": "string"}
+      }
+    }
+  },
+  "required": ["source_id", "source_database", "target_ids"],
+  "field_mappings": {
+    "NCBI E-Link": {
+      "Id": "source_id",
+      "DbFrom": "source_database",
+      "Link/Id": "target_ids[].id",
+      "DbTo": "target_ids[].database",
+      "Score": "mapping_score",
+      "link_name": "ncbi_elink_data.link_name",
+      "HasLinkOut": "ncbi_elink_data.has_linkout",
+      "HasNeighbor": "ncbi_elink_data.has_neighbor",
+      "LinkSetDb": "ncbi_elink_data.linkset_db",
+      "QueryKey": "ncbi_elink_data.query_key",
+      "ObjUrl": "ncbi_elink_data.linkouts",
+      "ProviderName": "ncbi_elink_data.linkouts[].provider_name",
+      "Category": "ncbi_elink_data.linkouts[].category",
+      "Attribute": "ncbi_elink_data.linkouts[].attribute",
+      "pubmed_pubmed": "ncbi_elink_data.related_pubmed",
+      "pubmed_gene": "ncbi_elink_data.linked_genes",
+      "pubmed_protein": "ncbi_elink_data.linked_proteins",
+      "gene_clinvar": "ncbi_elink_data.linked_clinvar",
+      "gene_snp": "ncbi_elink_data.linked_snps"
+    },
+    "PMC ID Converter": {
+      "requested-id": "source_id",
+      "idtype": "source_database",
+      "pmid": "pmc_converter_data.pmid",
+      "pmcid": "pmc_converter_data.pmcid",
+      "doi": "pmc_converter_data.doi",
+      "mid": "pmc_converter_data.mid",
+      "live": "pmc_converter_data.live",
+      "status": "pmc_converter_data.status",
+      "errata": "pmc_converter_data.errata",
+      "versions": "pmc_converter_data.versions",
+      "release-date": "pmc_converter_data.release_date",
+      "errmsg": "pmc_converter_data.error_message"
+    },
+    "UniProt ID Mapping": {
+      "from_id": "source_id",
+      "from": "source_database",
+      "to_id": "target_ids[].id",
+      "to": "target_ids[].database",
+      "UniProtKB_AC-ID": "uniprot_mapping_data.uniprot_accession",
+      "UniProtKB-ID": "uniprot_mapping_data.uniprot_id",
+      "GeneID": "uniprot_mapping_data.gene_id",
+      "RefSeq": "uniprot_mapping_data.refseq",
+      "PDB": "uniprot_mapping_data.pdb_ids",
+      "GO": "uniprot_mapping_data.go_terms",
+      "UniRef100": "uniprot_mapping_data.uniref100",
+      "UniRef90": "uniprot_mapping_data.uniref90",
+      "UniRef50": "uniprot_mapping_data.uniref50",
+      "UniParc": "uniprot_mapping_data.uniparc",
+      "NCBI_TaxID": "uniprot_mapping_data.ncbi_taxon",
+      "OMIM": "uniprot_mapping_data.omim",
+      "PubMed": "uniprot_mapping_data.pubmed_refs",
+      "EMBL": "uniprot_mapping_data.embl",
+      "Ensembl_TRS": "uniprot_mapping_data.ensembl_transcript",
+      "Ensembl_PRO": "uniprot_mapping_data.ensembl_protein",
+      "HGNC": "uniprot_mapping_data.hgnc",
+      "Pfam": "uniprot_mapping_data.pfam",
+      "InterPro": "uniprot_mapping_data.interpro",
+      "DrugBank": "uniprot_mapping_data.drugbank",
+      "ChEMBL": "uniprot_mapping_data.chembl",
+      "Reactome": "uniprot_mapping_data.reactome"
+    }
+  }
+}

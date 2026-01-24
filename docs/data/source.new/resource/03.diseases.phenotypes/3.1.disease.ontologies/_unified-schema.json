@@ -1,0 +1,236 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gene.example.org/schemas/3.1-disease-ontologies.json",
+  "title": "Disease Ontologies Unified Schema",
+  "description": "Unified schema for disease ontology data from EFO, HPO, ICD, MeSH, MONDO, and Orphanet/ORDO",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Primary unique identifier for the disease/ontology term",
+      "sources": ["EFO", "HPO", "ICD", "MeSH", "MONDO", "Orphanet"],
+      "examples": ["EFO_0000685", "HP:0001250", "E11.9", "5A11", "D003920", "MONDO:0005015", "Orphanet:558"]
+    },
+    "name": {
+      "type": "string",
+      "description": "Primary/preferred name of the disease or ontology term",
+      "sources": ["EFO", "HPO", "ICD", "MeSH", "MONDO", "Orphanet"]
+    },
+    "definition": {
+      "type": ["string", "null"],
+      "description": "Textual definition of the disease or phenotype",
+      "sources": ["HPO", "MONDO", "Orphanet"]
+    },
+    "synonyms": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Alternative names or aliases for the term",
+      "sources": ["EFO", "HPO", "MeSH", "MONDO", "Orphanet"]
+    },
+    "is_a": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Parent term relationships in ontology hierarchy",
+      "sources": ["EFO", "HPO", "MONDO", "Orphanet/ORDO"]
+    },
+    "xref": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Cross-references to external databases and ontologies (UMLS, SNOMED, OMIM, etc.)",
+      "sources": ["EFO", "HPO", "ICD", "MeSH", "MONDO", "Orphanet"]
+    },
+    "efo_id": {
+      "type": ["string", "null"],
+      "description": "Experimental Factor Ontology identifier",
+      "sources": ["EFO"],
+      "pattern": "EFO_[0-9]{7}"
+    },
+    "hpo_comment": {
+      "type": ["string", "null"],
+      "description": "Additional notes about the phenotype term",
+      "sources": ["HPO"]
+    },
+    "created_by": {
+      "type": ["string", "null"],
+      "description": "Curator who created the term",
+      "sources": ["HPO"]
+    },
+    "creation_date": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "Date the term was created",
+      "sources": ["HPO"]
+    },
+    "subset": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Subsets the term belongs to (hpo_slim, hposlim_core)",
+      "sources": ["HPO"]
+    },
+    "alt_id": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Alternative/obsolete identifiers for the term",
+      "sources": ["HPO"]
+    },
+    "icd10_code": {
+      "type": ["string", "null"],
+      "description": "ICD-10 classification code",
+      "sources": ["ICD"],
+      "pattern": "[A-Z][0-9]{2}(\\.[0-9]{1,4})?"
+    },
+    "icd11_code": {
+      "type": ["string", "null"],
+      "description": "ICD-11 entity code",
+      "sources": ["ICD"],
+      "pattern": "[A-Z0-9]{4,6}"
+    },
+    "block_code": {
+      "type": ["string", "null"],
+      "description": "ICD chapter block range",
+      "sources": ["ICD"],
+      "pattern": "[A-Z][0-9]{2}-[A-Z][0-9]{2}"
+    },
+    "mesh_ui": {
+      "type": ["string", "null"],
+      "description": "MeSH unique identifier",
+      "sources": ["MeSH"],
+      "pattern": "D[0-9]{6}"
+    },
+    "tree_number": {
+      "type": ["string", "null"],
+      "description": "MeSH tree hierarchy position",
+      "sources": ["MeSH"],
+      "pattern": "C[0-9]{2}(\\.[0-9]{3})+"
+    },
+    "entry_term": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Entry terms for indexing",
+      "sources": ["MeSH"]
+    },
+    "exact_match": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "1:1 equivalence axioms to other disease IDs",
+      "sources": ["MONDO"]
+    },
+    "close_match": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Very similar but not exact matches",
+      "sources": ["MONDO"]
+    },
+    "narrow_match": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "More specific concept mappings",
+      "sources": ["MONDO"]
+    },
+    "broad_match": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "More general concept mappings",
+      "sources": ["MONDO"]
+    },
+    "orpha_code": {
+      "type": ["integer", "null"],
+      "description": "Numeric Orphanet disease code",
+      "sources": ["Orphanet"]
+    },
+    "orpha_group": {
+      "type": ["string", "null"],
+      "enum": ["Disorder", "Group", "Subtype", null],
+      "description": "Classification of entity type",
+      "sources": ["Orphanet"]
+    },
+    "disorder_type": {
+      "type": ["object", "null"],
+      "description": "Type of disorder (disease, malformation, etc.)",
+      "sources": ["Orphanet"]
+    },
+    "association_type": {
+      "type": ["string", "null"],
+      "description": "Type of gene-disease relationship",
+      "sources": ["Orphanet"]
+    },
+    "association_status": {
+      "type": ["string", "null"],
+      "enum": ["Assessed", "Not validated", null],
+      "description": "Curation status of gene-disease association",
+      "sources": ["Orphanet"]
+    },
+    "_source": {
+      "type": "object",
+      "description": "Metadata about the data source",
+      "properties": {
+        "database": {"type": "string"},
+        "version": {"type": "string"},
+        "access_date": {"type": "string", "format": "date"},
+        "original_id": {"type": "string"}
+      }
+    }
+  },
+  "required": ["id", "name"],
+  "field_mappings": {
+    "EFO": {
+      "id": "efo_id",
+      "label": "name",
+      "definition": "definition",
+      "synonyms": "synonyms",
+      "is_a": "is_a",
+      "xref": "xref"
+    },
+    "HPO": {
+      "id": "id",
+      "name": "name",
+      "def": "definition",
+      "synonym": "synonyms",
+      "is_a": "is_a",
+      "xref": "xref",
+      "comment": "hpo_comment",
+      "created_by": "created_by",
+      "creation_date": "creation_date",
+      "subset": "subset",
+      "alt_id": "alt_id"
+    },
+    "ICD": {
+      "code": "id",
+      "title": "name",
+      "icd10_code": "icd10_code",
+      "icd11_code": "icd11_code",
+      "block_code": "block_code"
+    },
+    "MeSH": {
+      "UI": "mesh_ui",
+      "MH": "name",
+      "MS": "definition",
+      "SY": "synonyms",
+      "MN": "tree_number",
+      "ENTRY": "entry_term"
+    },
+    "MONDO": {
+      "id": "id",
+      "label": "name",
+      "definition": "definition",
+      "synonyms": "synonyms",
+      "is_a": "is_a",
+      "xref": "xref",
+      "exactMatch": "exact_match",
+      "closeMatch": "close_match",
+      "narrowMatch": "narrow_match",
+      "broadMatch": "broad_match"
+    },
+    "Orphanet": {
+      "OrphaCode": "orpha_code",
+      "Name": "name",
+      "Definition": "definition",
+      "Synonym": "synonyms",
+      "OrphaGroup": "orpha_group",
+      "DisorderType": "disorder_type",
+      "AssociationType": "association_type",
+      "AssociationStatus": "association_status",
+      "ExternalReference": "xref"
+    }
+  }
+}

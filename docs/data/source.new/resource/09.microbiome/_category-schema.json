@@ -1,0 +1,1438 @@
+{
+  "schema_extraction": {
+    "category_id": "09",
+    "category_name": "Microbiome",
+    "extraction_date": "2026-01-24",
+    "total_sources": 10,
+    "subcategories": 3
+  },
+  "subcategories": [
+    {
+      "subcategory_id": "9.1",
+      "subcategory_name": "Gut Microbiome",
+      "data_sources": ["GMrepo", "gutMGene", "HMP", "MetaHIT"],
+      "unified_fields": [
+        {
+          "name": "project_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "BioProject accession identifying a collection of related samples",
+          "sources": ["GMrepo", "HMP", "MetaHIT"],
+          "semantic_definition": "Unique identifier from NCBI BioProject (PRJNA/PRJEB format)",
+          "examples": ["PRJEB6070", "PRJNA12345"]
+        },
+        {
+          "name": "sample_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "BioSample accession for individual biological samples",
+          "sources": ["GMrepo", "HMP", "MetaHIT"],
+          "semantic_definition": "Unique identifier for a physical sample collected from a subject",
+          "examples": ["SAMN1234567", "SRS001001"]
+        },
+        {
+          "name": "run_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Sequencing run accession identifier from SRA/ENA archives",
+          "sources": ["GMrepo", "HMP"],
+          "semantic_definition": "Identifier for a specific sequencing run (SRR/ERR format)",
+          "examples": ["SRR1234567", "ERR123456"]
+        },
+        {
+          "name": "taxon_id",
+          "type": "integer",
+          "cardinality": "N:1",
+          "description": "NCBI Taxonomy identifier for microbial species or genus",
+          "sources": ["GMrepo", "gutMGene", "HMP", "MetaHIT"],
+          "semantic_definition": "Standard taxonomic identifier from NCBI Taxonomy database",
+          "examples": [816, 1263, 853]
+        },
+        {
+          "name": "taxon_name",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Scientific name of the microbial taxon",
+          "sources": ["GMrepo", "gutMGene", "HMP", "MetaHIT"],
+          "semantic_definition": "Binomial or higher-rank taxonomic name",
+          "examples": ["Bacteroides", "Faecalibacterium prausnitzii", "Ruminococcus"]
+        },
+        {
+          "name": "relative_abundance",
+          "type": "float",
+          "cardinality": "N:M",
+          "description": "Proportion of a taxon in a sample (0-1 scale)",
+          "sources": ["GMrepo", "HMP", "MetaHIT"],
+          "semantic_definition": "Normalized abundance value representing proportion of total community",
+          "examples": [0.2534, 0.1234, 0.05]
+        },
+        {
+          "name": "read_count",
+          "type": "integer",
+          "cardinality": "N:M",
+          "description": "Number of sequencing reads mapped to a taxon",
+          "sources": ["GMrepo", "HMP", "MetaHIT"],
+          "semantic_definition": "Raw count of sequencing reads assigned to a taxonomic unit",
+          "examples": [15234, 7421, 1000]
+        },
+        {
+          "name": "phenotype",
+          "type": "string",
+          "cardinality": "N:M",
+          "description": "Disease or health status annotation for a sample",
+          "sources": ["GMrepo", "HMP"],
+          "semantic_definition": "Clinical phenotype or condition associated with the sample",
+          "examples": ["Type 2 diabetes", "Health", "IBD"]
+        },
+        {
+          "name": "phenotype_mesh_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Medical Subject Headings identifier for standardized phenotype",
+          "sources": ["GMrepo"],
+          "semantic_definition": "MeSH term ID for disease/condition standardization",
+          "examples": ["D003924", "D006262"]
+        },
+        {
+          "name": "sequencing_type",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Method used for microbiome profiling",
+          "sources": ["GMrepo", "HMP", "MetaHIT"],
+          "semantic_definition": "Sequencing technology/approach (16S rRNA or whole-genome shotgun)",
+          "examples": ["16S", "WGS"]
+        },
+        {
+          "name": "host_age",
+          "type": "integer",
+          "cardinality": "1:1",
+          "description": "Age of the human subject in years",
+          "sources": ["GMrepo", "HMP", "MetaHIT"],
+          "semantic_definition": "Subject age at time of sample collection",
+          "examples": [45, 38, 52]
+        },
+        {
+          "name": "host_sex",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Biological sex of the human subject",
+          "sources": ["GMrepo", "HMP", "MetaHIT"],
+          "semantic_definition": "Subject sex classification",
+          "examples": ["male", "female", "unknown"]
+        },
+        {
+          "name": "host_bmi",
+          "type": "float",
+          "cardinality": "1:1",
+          "description": "Body mass index of the human subject",
+          "sources": ["GMrepo", "MetaHIT"],
+          "semantic_definition": "Weight in kg divided by height in meters squared",
+          "examples": [28.5, 24.5, 22.1]
+        },
+        {
+          "name": "country",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Country of sample origin",
+          "sources": ["GMrepo", "HMP", "MetaHIT"],
+          "semantic_definition": "Geographic location where sample was collected",
+          "examples": ["China", "USA", "Denmark", "Spain"]
+        },
+        {
+          "name": "gene_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Gene catalog identifier for microbial gene",
+          "sources": ["gutMGene", "MetaHIT"],
+          "semantic_definition": "Unique identifier for a microbial gene in reference catalog",
+          "examples": ["MH0001_GL0000001", "3586"]
+        },
+        {
+          "name": "gene_symbol",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Host gene symbol (official symbol)",
+          "sources": ["gutMGene"],
+          "semantic_definition": "Standard gene symbol for host (human/mouse) genes",
+          "examples": ["IL10", "TNF", "GAPDH"]
+        },
+        {
+          "name": "direction",
+          "type": "enum",
+          "cardinality": "1:1",
+          "description": "Direction of change (increased, decreased, or altered)",
+          "sources": ["GMrepo", "gutMGene"],
+          "semantic_definition": "Whether taxon/gene is elevated or reduced in condition vs control",
+          "examples": ["up", "down", "increased", "decreased", "altered"]
+        },
+        {
+          "name": "effect_size",
+          "type": "float",
+          "cardinality": "1:1",
+          "description": "Magnitude of association between taxon/gene and phenotype",
+          "sources": ["GMrepo", "gutMGene"],
+          "semantic_definition": "Statistical measure of association strength",
+          "examples": [0.45, 2.5, 0.4]
+        },
+        {
+          "name": "p_value",
+          "type": "float",
+          "cardinality": "1:1",
+          "description": "Statistical significance of the association",
+          "sources": ["GMrepo", "gutMGene"],
+          "semantic_definition": "Probability value from statistical test",
+          "examples": [0.001, 0.05, 0.0001]
+        },
+        {
+          "name": "pmid",
+          "type": "integer",
+          "cardinality": "1:N",
+          "description": "PubMed identifier for literature evidence",
+          "sources": ["gutMGene", "HMP"],
+          "semantic_definition": "NCBI PubMed ID linking to publication",
+          "examples": [28123456, 25567908]
+        },
+        {
+          "name": "rank",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Taxonomic rank (kingdom to species)",
+          "sources": ["GMrepo", "MetaHIT"],
+          "semantic_definition": "Level in taxonomic hierarchy",
+          "examples": ["genus", "species", "phylum", "family"]
+        },
+        {
+          "name": "enterotype",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Gut microbiome community type classification",
+          "sources": ["MetaHIT"],
+          "semantic_definition": "One of three dominant enterotype classifications",
+          "examples": ["Bacteroides", "Prevotella", "Ruminococcus"]
+        },
+        {
+          "name": "rand_subject_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Randomized identifier for study participant (HIPAA-compliant)",
+          "sources": ["HMP"],
+          "semantic_definition": "De-identified subject identifier for privacy",
+          "examples": ["HMP2_J12345"]
+        },
+        {
+          "name": "visit_number",
+          "type": "integer",
+          "cardinality": "1:N",
+          "description": "Sequential number indicating order of clinical visits",
+          "sources": ["HMP"],
+          "semantic_definition": "Longitudinal visit index starting at 1",
+          "examples": [1, 2, 3]
+        },
+        {
+          "name": "fma_body_site",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Foundational Model of Anatomy term for sample location",
+          "sources": ["HMP"],
+          "semantic_definition": "Ontology term for anatomical body site",
+          "examples": ["UBERON:0001988"]
+        },
+        {
+          "name": "mixs",
+          "type": "object",
+          "cardinality": "1:1",
+          "description": "Minimum Information about any (x) Sequence metadata fields",
+          "sources": ["HMP"],
+          "semantic_definition": "GSC standard metadata including biome, collection_date, geo_loc_name",
+          "examples": [{"biome": "ENVO:00000446", "env_package": "human-gut"}]
+        },
+        {
+          "name": "checksums",
+          "type": "object",
+          "cardinality": "1:1",
+          "description": "File integrity verification hashes",
+          "sources": ["HMP"],
+          "semantic_definition": "MD5, SHA1, SHA256 hashes for data integrity",
+          "examples": [{"md5": "d41d8cd98f00b204e9800998ecf8427e"}]
+        },
+        {
+          "name": "matrix_type",
+          "type": "enum",
+          "cardinality": "1:1",
+          "description": "Classification of processed abundance data type",
+          "sources": ["HMP"],
+          "semantic_definition": "Type of community or functional profile matrix",
+          "examples": ["16s_community", "wgs_community", "wgs_functional"]
+        },
+        {
+          "name": "kegg_ko",
+          "type": "string",
+          "cardinality": "N:M",
+          "description": "KEGG Ortholog identifier for functional annotation",
+          "sources": ["MetaHIT"],
+          "semantic_definition": "KEGG Orthology ID for gene function",
+          "examples": ["K00001", "K00002"]
+        },
+        {
+          "name": "eggnog",
+          "type": "string",
+          "cardinality": "N:M",
+          "description": "eggNOG ortholog group annotation",
+          "sources": ["MetaHIT"],
+          "semantic_definition": "Evolutionary genealogy of genes annotation",
+          "examples": ["COG0001"]
+        },
+        {
+          "name": "tissue",
+          "type": "string",
+          "cardinality": "1:N",
+          "description": "Tissue or organ where gene expression was measured",
+          "sources": ["gutMGene"],
+          "semantic_definition": "Anatomical location of host gene expression change",
+          "examples": ["colon", "liver", "intestine", "brain"]
+        },
+        {
+          "name": "experiment_type",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Type of experimental approach used",
+          "sources": ["gutMGene"],
+          "semantic_definition": "Experimental design for detecting interaction",
+          "examples": ["mono-colonization", "antibiotic treatment", "FMT"]
+        },
+        {
+          "name": "model",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Model system used in the experiment",
+          "sources": ["gutMGene"],
+          "semantic_definition": "Experimental model (organism, cell line, etc.)",
+          "examples": ["germ-free mice", "Caco-2", "human cohorts"]
+        },
+        {
+          "name": "fold_change",
+          "type": "float",
+          "cardinality": "1:1",
+          "description": "Expression fold change between conditions",
+          "sources": ["gutMGene"],
+          "semantic_definition": "Ratio of expression in treatment vs control",
+          "examples": [2.5, 0.4, 1.8]
+        }
+      ],
+      "source_specific_fields": {
+        "GMrepo": [
+          {
+            "name": "antibiotics_usage",
+            "type": "string",
+            "description": "Recent antibiotic use status",
+            "examples": ["yes", "no", "unknown"]
+          },
+          {
+            "name": "marker_count",
+            "type": "integer",
+            "description": "Number of marker taxa for a phenotype"
+          },
+          {
+            "name": "study_count",
+            "type": "integer",
+            "description": "Number of supporting studies for marker association"
+          }
+        ],
+        "gutMGene": [
+          {
+            "name": "association_id",
+            "type": "integer",
+            "description": "Unique microbe-gene association identifier"
+          },
+          {
+            "name": "host_species",
+            "type": "string",
+            "description": "Host organism species",
+            "examples": ["Homo sapiens", "Mus musculus"]
+          },
+          {
+            "name": "gram_stain",
+            "type": "string",
+            "description": "Gram staining classification of microbe",
+            "examples": ["positive", "negative"]
+          },
+          {
+            "name": "oxygen_req",
+            "type": "string",
+            "description": "Oxygen requirements of microbe",
+            "examples": ["aerobic", "anaerobic", "facultative"]
+          },
+          {
+            "name": "condition",
+            "type": "string",
+            "description": "Experimental condition description"
+          }
+        ],
+        "HMP": [
+          {
+            "name": "race",
+            "type": "enum",
+            "description": "Ethnicity classification",
+            "examples": ["caucasian", "african_american", "asian"]
+          },
+          {
+            "name": "interval",
+            "type": "integer",
+            "description": "Days since last visit"
+          },
+          {
+            "name": "clinic_id",
+            "type": "string",
+            "description": "Clinical site identifier"
+          },
+          {
+            "name": "seq_model",
+            "type": "string",
+            "description": "Sequencing instrument model",
+            "examples": ["Illumina MiSeq", "Illumina HiSeq"]
+          },
+          {
+            "name": "exp_length",
+            "type": "integer",
+            "description": "Expected number of bases or reads in sequence file"
+          },
+          {
+            "name": "subtype",
+            "type": "string",
+            "description": "Classification distinguishing host vs microbiome data"
+          },
+          {
+            "name": "pride_id",
+            "type": "string",
+            "description": "PRIDE archive identifier for proteomics data"
+          },
+          {
+            "name": "analyzer",
+            "type": "string",
+            "description": "Mass analyzer type for proteomics"
+          }
+        ],
+        "MetaHIT": [
+          {
+            "name": "ibd_status",
+            "type": "string",
+            "description": "Inflammatory bowel disease status",
+            "examples": ["CD", "UC", "healthy"]
+          },
+          {
+            "name": "cog",
+            "type": "string",
+            "description": "COG category assignment"
+          },
+          {
+            "name": "sample_origin",
+            "type": "string",
+            "description": "Source sample ID for gene catalog entry"
+          },
+          {
+            "name": "coverage",
+            "type": "float",
+            "description": "Read coverage for gene"
+          },
+          {
+            "name": "sequencing_depth",
+            "type": "integer",
+            "description": "Total reads in sample"
+          }
+        ]
+      },
+      "common_cross_references": [
+        {"database": "NCBI Taxonomy", "id_field": "taxon_id", "usage": "Microbial species identification"},
+        {"database": "MeSH", "id_field": "mesh_id", "usage": "Disease/phenotype standardization"},
+        {"database": "NCBI SRA", "id_field": "run_id", "usage": "Raw sequence data access"},
+        {"database": "NCBI BioSample", "id_field": "sample_id", "usage": "Sample metadata"},
+        {"database": "NCBI Gene", "id_field": "gene_id", "usage": "Host gene identification"},
+        {"database": "PubMed", "id_field": "pmid", "usage": "Literature evidence"},
+        {"database": "KEGG", "id_field": "kegg_ko", "usage": "Functional annotation"}
+      ]
+    },
+    {
+      "subcategory_id": "9.2",
+      "subcategory_name": "Body Site Microbiomes",
+      "data_sources": ["HMP", "HOMD", "mBodyMap"],
+      "unified_fields": [
+        {
+          "name": "body_site",
+          "type": "string",
+          "cardinality": "1:N",
+          "description": "Specific anatomical location for microbiome sampling",
+          "sources": ["HMP", "HOMD", "mBodyMap"],
+          "semantic_definition": "Anatomical sampling location within major body region",
+          "examples": ["Tongue dorsum", "Stool", "Anterior nares", "Buccal mucosa"]
+        },
+        {
+          "name": "supersite",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Major body region grouping multiple body sites",
+          "sources": ["HMP", "mBodyMap"],
+          "semantic_definition": "Top-level anatomical classification (5 categories in HMP)",
+          "examples": ["Oral", "Gastrointestinal", "Skin", "Airways", "Urogenital"]
+        },
+        {
+          "name": "site_code",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Hierarchical site code for body location",
+          "sources": ["mBodyMap"],
+          "semantic_definition": "Structured code in {Region}_{Subregion}_{Specific_Site} format",
+          "examples": ["GI_LI_COLON", "ORAL_BUCCAL", "SKIN_ARM_FOSSA"]
+        },
+        {
+          "name": "fma_body_site",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Foundational Model of Anatomy ontology term for body site",
+          "sources": ["HMP"],
+          "semantic_definition": "FMA/UBERON ontology identifier for anatomical location",
+          "examples": ["UBERON:0001988", "UBERON:0009471"]
+        },
+        {
+          "name": "sample_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Unique sample identifier",
+          "sources": ["HMP", "mBodyMap"],
+          "semantic_definition": "Primary key for sample record",
+          "examples": ["SRS011084", "MBMAP_S0001234"]
+        },
+        {
+          "name": "subject_id",
+          "type": "string",
+          "cardinality": "1:N",
+          "description": "Subject/participant identifier",
+          "sources": ["HMP", "mBodyMap"],
+          "semantic_definition": "De-identified subject identifier linking samples",
+          "examples": ["HMP_SUBJ_001", "SUB001"]
+        },
+        {
+          "name": "taxon_id",
+          "type": "integer",
+          "cardinality": "N:1",
+          "description": "NCBI Taxonomy identifier for microbial species",
+          "sources": ["HMP", "HOMD", "mBodyMap"],
+          "semantic_definition": "Standard taxonomic identifier from NCBI",
+          "examples": [1309, 816, 853]
+        },
+        {
+          "name": "taxon_name",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Scientific name of the microbial taxon",
+          "sources": ["HMP", "HOMD", "mBodyMap"],
+          "semantic_definition": "Binomial or higher-rank taxonomic name",
+          "examples": ["Streptococcus mutans", "Bacteroides vulgatus"]
+        },
+        {
+          "name": "relative_abundance",
+          "type": "float",
+          "cardinality": "N:M",
+          "description": "Proportion of taxon in sample (0-1 scale)",
+          "sources": ["HMP", "mBodyMap"],
+          "semantic_definition": "Normalized abundance value representing proportion",
+          "examples": [0.15, 0.08, 0.12]
+        },
+        {
+          "name": "homt_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Human Oral Microbiome Taxon identifier",
+          "sources": ["HOMD"],
+          "semantic_definition": "HOMD-specific taxon numbering system (HMT-###)",
+          "examples": ["HMT-096", "HMT-707", "HMT-274"]
+        },
+        {
+          "name": "cultivation_status",
+          "type": "enum",
+          "cardinality": "1:1",
+          "description": "Cultivation status of oral taxon",
+          "sources": ["HOMD"],
+          "semantic_definition": "Whether species is cultivated and named",
+          "examples": ["Named", "Unnamed", "Provisional"]
+        },
+        {
+          "name": "shannon",
+          "type": "float",
+          "cardinality": "1:1",
+          "description": "Shannon diversity index",
+          "sources": ["mBodyMap"],
+          "semantic_definition": "Alpha diversity metric measuring species richness and evenness",
+          "examples": [3.8, 2.5, 1.5]
+        },
+        {
+          "name": "simpson",
+          "type": "float",
+          "cardinality": "1:1",
+          "description": "Simpson diversity index",
+          "sources": ["mBodyMap"],
+          "semantic_definition": "Alpha diversity metric for dominance/evenness",
+          "examples": [0.92, 0.85, 0.70]
+        },
+        {
+          "name": "observed_species",
+          "type": "integer",
+          "cardinality": "1:1",
+          "description": "Number of species detected in sample",
+          "sources": ["mBodyMap"],
+          "semantic_definition": "Species richness count",
+          "examples": [185, 100, 50]
+        },
+        {
+          "name": "health_status",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Health or disease status of subject",
+          "sources": ["HMP", "mBodyMap"],
+          "semantic_definition": "Clinical classification of subject health",
+          "examples": ["healthy", "IBD", "periodontal disease"]
+        },
+        {
+          "name": "sequencing_method",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Sequencing technology used",
+          "sources": ["HMP", "mBodyMap"],
+          "semantic_definition": "Method for microbiome profiling",
+          "examples": ["16S_V4", "16S", "WGS"]
+        },
+        {
+          "name": "genome_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Reference genome identifier",
+          "sources": ["HMP", "HOMD"],
+          "semantic_definition": "Unique identifier for genome assembly",
+          "examples": ["HOMD_GEN_096_001", "HMP_GENOME_001"]
+        },
+        {
+          "name": "genome_size",
+          "type": "integer",
+          "cardinality": "1:1",
+          "description": "Genome size in base pairs",
+          "sources": ["HMP", "HOMD"],
+          "semantic_definition": "Total length of genome assembly",
+          "examples": [2032807, 3200000]
+        },
+        {
+          "name": "gc_content",
+          "type": "float",
+          "cardinality": "1:1",
+          "description": "GC percentage of genome",
+          "sources": ["HMP", "HOMD"],
+          "semantic_definition": "Proportion of guanine and cytosine bases",
+          "examples": [36.8, 42.5]
+        },
+        {
+          "name": "assembly_level",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Completeness level of genome assembly",
+          "sources": ["HMP", "HOMD"],
+          "semantic_definition": "Assembly status (Complete, Draft, Contig)",
+          "examples": ["Complete", "Draft", "Contig"]
+        },
+        {
+          "name": "gene_count",
+          "type": "integer",
+          "cardinality": "1:1",
+          "description": "Number of predicted genes in genome",
+          "sources": ["HMP", "HOMD"],
+          "semantic_definition": "Total predicted coding sequences",
+          "examples": [1963, 2500]
+        },
+        {
+          "name": "phylum",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Taxonomic phylum classification",
+          "sources": ["HOMD", "mBodyMap"],
+          "semantic_definition": "Major taxonomic division",
+          "examples": ["Firmicutes", "Bacteroidetes", "Actinobacteria"]
+        },
+        {
+          "name": "gram_stain",
+          "type": "enum",
+          "cardinality": "1:1",
+          "description": "Gram staining classification",
+          "sources": ["HOMD"],
+          "semantic_definition": "Bacterial cell wall classification",
+          "examples": ["positive", "negative", "variable"]
+        },
+        {
+          "name": "oxygen_req",
+          "type": "enum",
+          "cardinality": "1:1",
+          "description": "Oxygen requirements for growth",
+          "sources": ["HOMD"],
+          "semantic_definition": "Metabolic oxygen classification",
+          "examples": ["aerobic", "anaerobic", "facultative"]
+        },
+        {
+          "name": "cell_shape",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Morphological cell shape",
+          "sources": ["HOMD"],
+          "semantic_definition": "Bacterial cell morphology",
+          "examples": ["coccus", "rod", "filament", "spirochete"]
+        },
+        {
+          "name": "type_strain",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Type strain designation for species definition",
+          "sources": ["HOMD"],
+          "semantic_definition": "Reference strain for taxonomic type",
+          "examples": ["ATCC 25175", "DSM 12345"]
+        },
+        {
+          "name": "disease_association",
+          "type": "array",
+          "cardinality": "1:N",
+          "description": "Associated diseases or conditions",
+          "sources": ["HOMD"],
+          "semantic_definition": "Clinical conditions linked to taxon",
+          "examples": [["dental caries", "endocarditis"], ["periodontitis"]]
+        },
+        {
+          "name": "oral_sites",
+          "type": "array",
+          "cardinality": "1:N",
+          "description": "Oral cavity locations where taxon is found",
+          "sources": ["HOMD"],
+          "semantic_definition": "Specific oral habitats for the taxon",
+          "examples": [["teeth", "plaque", "saliva"], ["tongue", "buccal"]]
+        }
+      ],
+      "source_specific_fields": {
+        "HMP": [
+          {
+            "name": "rand_subject_id",
+            "type": "string",
+            "description": "Randomized HIPAA-compliant subject ID"
+          },
+          {
+            "name": "variable_region",
+            "type": "string",
+            "description": "16S rRNA variable region sequenced",
+            "examples": ["V1-V3", "V3-V5", "V4"]
+          },
+          {
+            "name": "lib_layout",
+            "type": "string",
+            "description": "Library layout (paired or fragment)"
+          },
+          {
+            "name": "insert_size",
+            "type": "integer",
+            "description": "Library insert size"
+          },
+          {
+            "name": "matrix_type",
+            "type": "enum",
+            "description": "Abundance matrix type classification"
+          }
+        ],
+        "HOMD": [
+          {
+            "name": "sequence_id",
+            "type": "string",
+            "description": "16S rRNA sequence identifier"
+          },
+          {
+            "name": "clone_id",
+            "type": "string",
+            "description": "Clone identifier for sequence"
+          },
+          {
+            "name": "genbank_acc",
+            "type": "string",
+            "description": "GenBank accession for sequence"
+          },
+          {
+            "name": "ncbi_assembly",
+            "type": "string",
+            "description": "NCBI Assembly accession",
+            "examples": ["GCF_000007465.2"]
+          },
+          {
+            "name": "motility",
+            "type": "boolean",
+            "description": "Whether organism is motile"
+          },
+          {
+            "name": "spore_forming",
+            "type": "boolean",
+            "description": "Ability to form spores"
+          },
+          {
+            "name": "growth_temp",
+            "type": "string",
+            "description": "Optimal growth temperature"
+          }
+        ],
+        "mBodyMap": [
+          {
+            "name": "site_category",
+            "type": "string",
+            "description": "Major body region category"
+          },
+          {
+            "name": "anatomy_term",
+            "type": "string",
+            "description": "Anatomical ontology term (UBERON)"
+          },
+          {
+            "name": "sample_count",
+            "type": "integer",
+            "description": "Number of samples for body site"
+          },
+          {
+            "name": "study_count",
+            "type": "integer",
+            "description": "Number of studies for body site"
+          },
+          {
+            "name": "study_id",
+            "type": "string",
+            "description": "Source study identifier"
+          },
+          {
+            "name": "dominant_phyla",
+            "type": "array",
+            "description": "Most abundant phyla at body site"
+          },
+          {
+            "name": "typical_shannon",
+            "type": "float",
+            "description": "Typical Shannon diversity for site"
+          },
+          {
+            "name": "typical_richness",
+            "type": "integer",
+            "description": "Typical species richness for site"
+          },
+          {
+            "name": "chao1",
+            "type": "float",
+            "description": "Chao1 richness estimate"
+          },
+          {
+            "name": "evenness",
+            "type": "float",
+            "description": "Pielou evenness index"
+          },
+          {
+            "name": "absolute_count",
+            "type": "integer",
+            "description": "Absolute read count for taxon"
+          }
+        ]
+      },
+      "common_cross_references": [
+        {"database": "NCBI Taxonomy", "id_field": "taxon_id", "usage": "Species identification"},
+        {"database": "UBERON", "id_field": "fma_body_site", "usage": "Body site ontology"},
+        {"database": "FMA", "id_field": "fma_body_site", "usage": "Anatomical terms"},
+        {"database": "NCBI Assembly", "id_field": "ncbi_assembly", "usage": "Genome links"},
+        {"database": "GenBank", "id_field": "genbank_acc", "usage": "Sequence links"},
+        {"database": "ATCC/DSMZ", "id_field": "type_strain", "usage": "Type strain references"},
+        {"database": "SILVA", "id_field": "sequence_id", "usage": "16S database"}
+      ]
+    },
+    {
+      "subcategory_id": "9.3",
+      "subcategory_name": "Microbe-Host Interactions",
+      "data_sources": ["gutMDisorder", "MASI", "VMH"],
+      "unified_fields": [
+        {
+          "name": "microbe_taxid",
+          "type": "integer",
+          "cardinality": "N:1",
+          "description": "NCBI Taxonomy identifier for microbe",
+          "sources": ["gutMDisorder", "VMH"],
+          "semantic_definition": "Standard taxonomic identifier from NCBI Taxonomy",
+          "examples": [816, 853, 818]
+        },
+        {
+          "name": "microbe_name",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Scientific name of microbe",
+          "sources": ["gutMDisorder", "MASI", "VMH"],
+          "semantic_definition": "Species or genus name of microbial organism",
+          "examples": ["Bacteroides vulgatus", "Faecalibacterium prausnitzii"]
+        },
+        {
+          "name": "disease_name",
+          "type": "string",
+          "cardinality": "N:M",
+          "description": "Name of disease or disorder",
+          "sources": ["gutMDisorder", "VMH"],
+          "semantic_definition": "Clinical disease or condition name",
+          "examples": ["Type 2 Diabetes", "Crohn's Disease", "Obesity"]
+        },
+        {
+          "name": "disease_category",
+          "type": "string",
+          "cardinality": "1:N",
+          "description": "Broad disease category classification",
+          "sources": ["gutMDisorder"],
+          "semantic_definition": "Major disease grouping",
+          "examples": ["Metabolic disorders", "Gastrointestinal", "Neurological"]
+        },
+        {
+          "name": "icd10_code",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "ICD-10 disease classification code",
+          "sources": ["gutMDisorder"],
+          "semantic_definition": "International Classification of Diseases code",
+          "examples": ["E11", "K50", "E66"]
+        },
+        {
+          "name": "mesh_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Medical Subject Headings identifier",
+          "sources": ["gutMDisorder"],
+          "semantic_definition": "MeSH controlled vocabulary ID for disease",
+          "examples": ["D003924", "D003424"]
+        },
+        {
+          "name": "doid",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Disease Ontology identifier",
+          "sources": ["gutMDisorder"],
+          "semantic_definition": "DO identifier for standardized disease naming",
+          "examples": ["DOID:9352", "DOID:8778"]
+        },
+        {
+          "name": "direction",
+          "type": "enum",
+          "cardinality": "1:1",
+          "description": "Direction of change in disease context",
+          "sources": ["gutMDisorder"],
+          "semantic_definition": "Whether microbe is increased, decreased, or altered in disease",
+          "examples": ["increased", "decreased", "altered"]
+        },
+        {
+          "name": "effect",
+          "type": "enum",
+          "cardinality": "1:1",
+          "description": "Effect type on host target or pathway",
+          "sources": ["MASI"],
+          "semantic_definition": "Molecular effect of metabolite on target",
+          "examples": ["activate", "inhibit", "modulate", "substrate"]
+        },
+        {
+          "name": "pmid",
+          "type": "integer",
+          "cardinality": "1:N",
+          "description": "PubMed identifier for literature evidence",
+          "sources": ["gutMDisorder", "MASI"],
+          "semantic_definition": "NCBI PubMed ID linking to publication",
+          "examples": [28123456, 29234567]
+        },
+        {
+          "name": "sample_size",
+          "type": "integer",
+          "cardinality": "1:1",
+          "description": "Total number of subjects in study",
+          "sources": ["gutMDisorder"],
+          "semantic_definition": "Combined case and control count",
+          "examples": [200, 150, 300]
+        },
+        {
+          "name": "cases",
+          "type": "integer",
+          "cardinality": "1:1",
+          "description": "Number of disease cases in study",
+          "sources": ["gutMDisorder"],
+          "semantic_definition": "Subject count with disease",
+          "examples": [100, 75, 150]
+        },
+        {
+          "name": "controls",
+          "type": "integer",
+          "cardinality": "1:1",
+          "description": "Number of healthy controls in study",
+          "sources": ["gutMDisorder"],
+          "semantic_definition": "Subject count without disease",
+          "examples": [100, 75, 150]
+        },
+        {
+          "name": "effect_size",
+          "type": "float",
+          "cardinality": "1:1",
+          "description": "Magnitude of association",
+          "sources": ["gutMDisorder"],
+          "semantic_definition": "Statistical effect size measure",
+          "examples": [0.45, 1.8, 0.3]
+        },
+        {
+          "name": "p_value",
+          "type": "float",
+          "cardinality": "1:1",
+          "description": "Statistical significance",
+          "sources": ["gutMDisorder"],
+          "semantic_definition": "P-value from statistical test",
+          "examples": [0.001, 0.05, 0.0001]
+        },
+        {
+          "name": "study_design",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Type of study design",
+          "sources": ["gutMDisorder"],
+          "semantic_definition": "Epidemiological study design classification",
+          "examples": ["case-control", "cohort", "cross-sectional", "RCT"]
+        },
+        {
+          "name": "method",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Detection or sequencing method",
+          "sources": ["gutMDisorder"],
+          "semantic_definition": "Technique used for microbiome profiling",
+          "examples": ["16S rRNA sequencing", "WGS", "culture"]
+        },
+        {
+          "name": "metabolite_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Metabolite identifier",
+          "sources": ["MASI", "VMH"],
+          "semantic_definition": "Unique identifier for microbial metabolite",
+          "examples": ["glc_D[c]", "but[e]"]
+        },
+        {
+          "name": "metabolite_name",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Name of metabolite",
+          "sources": ["MASI", "VMH"],
+          "semantic_definition": "Common or systematic name of metabolite",
+          "examples": ["Butyrate", "Indole", "D-Glucose"]
+        },
+        {
+          "name": "pubchem_cid",
+          "type": "integer",
+          "cardinality": "1:1",
+          "description": "PubChem compound identifier",
+          "sources": ["MASI", "VMH"],
+          "semantic_definition": "PubChem database compound ID",
+          "examples": [264, 798, 5793]
+        },
+        {
+          "name": "hmdb_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Human Metabolome Database identifier",
+          "sources": ["MASI", "VMH"],
+          "semantic_definition": "HMDB accession number",
+          "examples": ["HMDB0000039", "HMDB0000122"]
+        },
+        {
+          "name": "chebi_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "ChEBI identifier",
+          "sources": ["MASI", "VMH"],
+          "semantic_definition": "Chemical Entities of Biological Interest ID",
+          "examples": ["17634", "30089"]
+        },
+        {
+          "name": "kegg_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "KEGG compound identifier",
+          "sources": ["VMH"],
+          "semantic_definition": "KEGG Compound database ID",
+          "examples": ["C00031", "C00001"]
+        },
+        {
+          "name": "target_name",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Host target protein/receptor name",
+          "sources": ["MASI"],
+          "semantic_definition": "Name of host molecular target",
+          "examples": ["GPR43", "AHR", "FMO3"]
+        },
+        {
+          "name": "target_type",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Type of host target",
+          "sources": ["MASI"],
+          "semantic_definition": "Classification of target molecule",
+          "examples": ["GPCR", "Nuclear receptor", "Enzyme", "Ion channel"]
+        },
+        {
+          "name": "uniprot_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "UniProt protein accession",
+          "sources": ["MASI", "VMH"],
+          "semantic_definition": "UniProt database protein identifier",
+          "examples": ["O15552", "P05177"]
+        },
+        {
+          "name": "pathway",
+          "type": "string",
+          "cardinality": "N:M",
+          "description": "Signaling or metabolic pathway",
+          "sources": ["MASI", "VMH"],
+          "semantic_definition": "Biological pathway affected",
+          "examples": ["Prolactin signaling", "Glycolysis", "NF-kB"]
+        },
+        {
+          "name": "rxn_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Metabolic reaction identifier",
+          "sources": ["VMH"],
+          "semantic_definition": "Unique identifier for metabolic reaction",
+          "examples": ["HEX1", "PFK", "EX_glc_D(e)"]
+        },
+        {
+          "name": "formula",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Chemical or stoichiometric formula",
+          "sources": ["VMH"],
+          "semantic_definition": "Molecular formula or reaction stoichiometry",
+          "examples": ["C6H12O6", "C10H12N5O13P3"]
+        },
+        {
+          "name": "equation",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Human-readable reaction equation",
+          "sources": ["VMH"],
+          "semantic_definition": "Metabolic reaction in readable format",
+          "examples": ["atp[c] + glc_D[c] -> adp[c] + g6p[c] + h[c]"]
+        },
+        {
+          "name": "subsystem",
+          "type": "string",
+          "cardinality": "1:N",
+          "description": "Metabolic subsystem classification",
+          "sources": ["VMH"],
+          "semantic_definition": "Functional grouping of reactions",
+          "examples": ["Glycolysis/gluconeogenesis", "Amino acid metabolism"]
+        },
+        {
+          "name": "gpr",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Gene-Protein-Reaction association rule",
+          "sources": ["VMH"],
+          "semantic_definition": "Boolean expression linking genes to reaction",
+          "examples": ["(HKDC1) or (GCK) or (HK3) or (HK2) or (HK1)"]
+        },
+        {
+          "name": "lb",
+          "type": "float",
+          "cardinality": "1:1",
+          "description": "Lower bound for reaction flux",
+          "sources": ["VMH"],
+          "semantic_definition": "Minimum allowed flux value",
+          "examples": [0, -1000]
+        },
+        {
+          "name": "ub",
+          "type": "float",
+          "cardinality": "1:1",
+          "description": "Upper bound for reaction flux",
+          "sources": ["VMH"],
+          "semantic_definition": "Maximum allowed flux value",
+          "examples": [1000, 0]
+        },
+        {
+          "name": "reversibility",
+          "type": "boolean",
+          "cardinality": "1:1",
+          "description": "Whether reaction is reversible",
+          "sources": ["VMH"],
+          "semantic_definition": "Can reaction proceed in both directions",
+          "examples": [true, false]
+        },
+        {
+          "name": "compartment",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Cellular compartment for metabolite",
+          "sources": ["VMH"],
+          "semantic_definition": "Subcellular location using standard codes",
+          "examples": ["c", "e", "m", "n"]
+        },
+        {
+          "name": "model_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Metabolic model identifier",
+          "sources": ["VMH"],
+          "semantic_definition": "AGORA model identifier for microbe",
+          "examples": ["Bacteroides_thetaiotaomicron_VPI_5482"]
+        },
+        {
+          "name": "reactions_count",
+          "type": "integer",
+          "cardinality": "1:1",
+          "description": "Number of reactions in model",
+          "sources": ["VMH"],
+          "semantic_definition": "Total reaction count in GEM",
+          "examples": [1498, 13543]
+        },
+        {
+          "name": "metabolites_count",
+          "type": "integer",
+          "cardinality": "1:1",
+          "description": "Number of metabolites in model",
+          "sources": ["VMH"],
+          "semantic_definition": "Total metabolite count in GEM",
+          "examples": [1371, 4140]
+        },
+        {
+          "name": "genes_count",
+          "type": "integer",
+          "cardinality": "1:1",
+          "description": "Number of genes in model",
+          "sources": ["VMH"],
+          "semantic_definition": "Total gene count in GEM",
+          "examples": [872, 2248]
+        }
+      ],
+      "source_specific_fields": {
+        "gutMDisorder": [
+          {
+            "name": "association_id",
+            "type": "integer",
+            "description": "Unique microbe-disease association identifier"
+          },
+          {
+            "name": "microbe_rank",
+            "type": "string",
+            "description": "Taxonomic rank of microbe",
+            "examples": ["species", "genus", "family"]
+          },
+          {
+            "name": "disease_id",
+            "type": "string",
+            "description": "Internal disease identifier"
+          }
+        ],
+        "MASI": [
+          {
+            "name": "interaction_id",
+            "type": "integer",
+            "description": "Unique signaling interaction identifier"
+          },
+          {
+            "name": "microbe_source",
+            "type": "string",
+            "description": "Microbe(s) producing the metabolite"
+          },
+          {
+            "name": "metabolite_class",
+            "type": "string",
+            "description": "Chemical class of metabolite",
+            "examples": ["Short-chain fatty acid", "Indole", "Bile acid derivative"]
+          },
+          {
+            "name": "smiles",
+            "type": "string",
+            "description": "SMILES structure notation"
+          },
+          {
+            "name": "target_id",
+            "type": "string",
+            "description": "Internal target identifier"
+          },
+          {
+            "name": "symbol",
+            "type": "string",
+            "description": "Gene/protein symbol for target"
+          },
+          {
+            "name": "tissue_expression",
+            "type": "array",
+            "description": "Tissues where target is expressed"
+          },
+          {
+            "name": "pathway_id",
+            "type": "string",
+            "description": "KEGG or Reactome pathway ID"
+          },
+          {
+            "name": "pathway_category",
+            "type": "string",
+            "description": "Pathway classification category"
+          },
+          {
+            "name": "downstream_effects",
+            "type": "array",
+            "description": "Biological outcomes of interaction"
+          },
+          {
+            "name": "kd",
+            "type": "string",
+            "description": "Dissociation constant for binding"
+          },
+          {
+            "name": "mechanism",
+            "type": "string",
+            "description": "Molecular mechanism description"
+          }
+        ],
+        "VMH": [
+          {
+            "name": "organism_name",
+            "type": "string",
+            "description": "Full organism name for model"
+          },
+          {
+            "name": "strain",
+            "type": "string",
+            "description": "Strain designation"
+          },
+          {
+            "name": "gram_stain",
+            "type": "string",
+            "description": "Gram staining classification"
+          },
+          {
+            "name": "oxygen_status",
+            "type": "string",
+            "description": "Oxygen requirement status"
+          },
+          {
+            "name": "charge",
+            "type": "integer",
+            "description": "Molecular charge of metabolite"
+          },
+          {
+            "name": "inchi",
+            "type": "string",
+            "description": "InChI structure representation"
+          },
+          {
+            "name": "ec_number",
+            "type": "string",
+            "description": "Enzyme Commission classification"
+          },
+          {
+            "name": "entrez_id",
+            "type": "integer",
+            "description": "NCBI Entrez Gene ID"
+          },
+          {
+            "name": "bigg_id",
+            "type": "string",
+            "description": "BiGG Models database identifier"
+          }
+        ]
+      },
+      "common_cross_references": [
+        {"database": "NCBI Taxonomy", "id_field": "microbe_taxid", "usage": "Microbe identification"},
+        {"database": "ICD-10", "id_field": "icd10_code", "usage": "Disease classification"},
+        {"database": "MeSH", "id_field": "mesh_id", "usage": "Medical subject headings"},
+        {"database": "Disease Ontology", "id_field": "doid", "usage": "Disease ontology"},
+        {"database": "PubMed", "id_field": "pmid", "usage": "Literature evidence"},
+        {"database": "PubChem", "id_field": "pubchem_cid", "usage": "Compound identification"},
+        {"database": "HMDB", "id_field": "hmdb_id", "usage": "Metabolite data"},
+        {"database": "ChEBI", "id_field": "chebi_id", "usage": "Chemical ontology"},
+        {"database": "UniProt", "id_field": "uniprot_id", "usage": "Protein targets"},
+        {"database": "KEGG", "id_field": "kegg_id", "usage": "Pathway/compound mapping"},
+        {"database": "Reactome", "id_field": "pathway_id", "usage": "Pathway details"},
+        {"database": "BiGG Models", "id_field": "bigg_id", "usage": "Model compatibility"}
+      ]
+    }
+  ],
+  "cross_subcategory_analysis": {
+    "shared_fields_across_all_subcategories": [
+      {
+        "name": "taxon_id/microbe_taxid",
+        "description": "NCBI Taxonomy identifier - universal microbial identifier",
+        "present_in": ["9.1", "9.2", "9.3"]
+      },
+      {
+        "name": "taxon_name/microbe_name",
+        "description": "Scientific name of microbial organism",
+        "present_in": ["9.1", "9.2", "9.3"]
+      },
+      {
+        "name": "phylum",
+        "description": "Major taxonomic division",
+        "present_in": ["9.1", "9.2", "9.3"]
+      },
+      {
+        "name": "gram_stain",
+        "description": "Cell wall classification",
+        "present_in": ["9.1", "9.2", "9.3"]
+      },
+      {
+        "name": "pmid",
+        "description": "PubMed literature reference",
+        "present_in": ["9.1", "9.2", "9.3"]
+      }
+    ],
+    "key_semantic_categories": {
+      "microbial_taxonomy": {
+        "fields": ["taxon_id", "taxon_name", "rank", "phylum", "homt_id", "ncbi_taxid"],
+        "description": "Fields for identifying and classifying microbial organisms"
+      },
+      "sample_metadata": {
+        "fields": ["sample_id", "subject_id", "host_age", "host_sex", "host_bmi", "country", "health_status", "sequencing_method"],
+        "description": "Fields describing sample and subject characteristics"
+      },
+      "abundance_data": {
+        "fields": ["relative_abundance", "read_count", "absolute_count", "fold_change", "effect_size"],
+        "description": "Quantitative abundance and expression measurements"
+      },
+      "host_microbe_interactions": {
+        "fields": ["direction", "effect", "disease_name", "target_name", "pathway", "metabolite_name"],
+        "description": "Fields describing interactions between microbes and host"
+      },
+      "body_site_classification": {
+        "fields": ["body_site", "supersite", "site_code", "fma_body_site", "oral_sites", "tissue"],
+        "description": "Anatomical location and body site classification"
+      },
+      "metabolic_modeling": {
+        "fields": ["rxn_id", "metabolite_id", "gpr", "subsystem", "lb", "ub", "model_id"],
+        "description": "Fields for genome-scale metabolic reconstruction"
+      },
+      "diversity_metrics": {
+        "fields": ["shannon", "simpson", "chao1", "observed_species", "evenness"],
+        "description": "Alpha diversity and richness measurements"
+      }
+    },
+    "common_ontologies": [
+      {"ontology": "NCBI Taxonomy", "usage": "Microbial species identification", "id_format": "integer TaxID"},
+      {"ontology": "MeSH", "usage": "Disease/phenotype standardization", "id_format": "D###### format"},
+      {"ontology": "UBERON", "usage": "Body site anatomy", "id_format": "UBERON:####### format"},
+      {"ontology": "FMA", "usage": "Anatomical terms", "id_format": "FMA ID"},
+      {"ontology": "ICD-10", "usage": "Disease classification", "id_format": "Letter+digits"},
+      {"ontology": "Disease Ontology", "usage": "Disease standardization", "id_format": "DOID:###### format"},
+      {"ontology": "ChEBI", "usage": "Chemical entities", "id_format": "integer ChEBI ID"},
+      {"ontology": "KEGG", "usage": "Pathways and compounds", "id_format": "C#####, K##### format"},
+      {"ontology": "ENVO", "usage": "Environment classification", "id_format": "ENVO:######## format"}
+    ]
+  },
+  "data_format_summary": {
+    "primary_formats": ["JSON", "TSV", "FASTA", "SBML", "BIOM"],
+    "common_encodings": ["UTF-8"],
+    "compression": ["gzip"],
+    "api_response_formats": ["JSON"]
+  },
+  "total_unique_fields": 147,
+  "total_unified_fields": 89,
+  "total_source_specific_fields": 58
+}

@@ -1,0 +1,799 @@
+{
+  "category_id": "07",
+  "category_name": "Proteins & Molecular Biology",
+  "extraction_date": "2026-01-24",
+  "subcategories": [
+    {
+      "subcategory_id": "7.1",
+      "subcategory_name": "Protein Sequences & Annotations",
+      "data_sources": ["UniProt", "RefSeq"],
+      "unified_fields": [
+        {
+          "name": "accession",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Primary stable identifier for the protein entry",
+          "sources": ["UniProt", "RefSeq"],
+          "semantic_definition": "Unique alphanumeric identifier that permanently identifies a protein record. UniProt uses format like P04637, RefSeq uses prefix-based format like NP_000537.3",
+          "examples": ["P04637", "NP_000537.3", "Q9Y6K9"]
+        },
+        {
+          "name": "sequence",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Amino acid sequence of the protein",
+          "sources": ["UniProt", "RefSeq"],
+          "semantic_definition": "Complete amino acid sequence using standard single-letter codes (ACDEFGHIKLMNPQRSTVWY)",
+          "examples": ["MEEPQSDPSVEPPLSQETFSDLWKLL..."]
+        },
+        {
+          "name": "length",
+          "type": "integer",
+          "cardinality": "1:1",
+          "description": "Number of amino acids in the sequence",
+          "sources": ["UniProt", "RefSeq"],
+          "semantic_definition": "Integer count of residues in the canonical protein sequence",
+          "examples": [393, 1234, 256]
+        },
+        {
+          "name": "organism",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Source organism for the protein",
+          "sources": ["UniProt", "RefSeq"],
+          "semantic_definition": "Scientific name of the organism from which the protein originates",
+          "examples": ["Homo sapiens", "Mus musculus"]
+        },
+        {
+          "name": "taxonomy",
+          "type": "array",
+          "cardinality": "1:N",
+          "description": "Taxonomic lineage from kingdom to species",
+          "sources": ["UniProt", "RefSeq"],
+          "semantic_definition": "Ordered array of taxonomic ranks representing the evolutionary classification",
+          "examples": [["Eukaryota", "Metazoa", "Chordata", "Mammalia", "Primates", "Hominidae", "Homo"]]
+        },
+        {
+          "name": "gene",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Gene symbol encoding the protein",
+          "sources": ["UniProt", "RefSeq"],
+          "semantic_definition": "Official gene symbol (e.g., HGNC approved symbol for human genes)",
+          "examples": ["TP53", "BRCA1", "EGFR"]
+        },
+        {
+          "name": "gene_id",
+          "type": "integer",
+          "cardinality": "1:1",
+          "description": "NCBI Gene ID",
+          "sources": ["UniProt", "RefSeq"],
+          "semantic_definition": "Numeric identifier from NCBI Gene database linking to gene record",
+          "examples": [7157, 672, 1956]
+        },
+        {
+          "name": "features",
+          "type": "array",
+          "cardinality": "1:N",
+          "description": "Annotated sequence features (domains, sites, variants)",
+          "sources": ["UniProt", "RefSeq"],
+          "semantic_definition": "Collection of annotations mapped to specific sequence positions including domains, binding sites, PTMs, and variants",
+          "examples": [{"type": "Domain", "location": {"start": 102, "end": 292}, "description": "p53 DNA-binding"}]
+        },
+        {
+          "name": "dbxrefs",
+          "type": "array",
+          "cardinality": "1:N",
+          "description": "Cross-references to external databases",
+          "sources": ["UniProt", "RefSeq"],
+          "semantic_definition": "Links to related entries in other databases including PDB, Ensembl, HGNC, OMIM, etc.",
+          "examples": [{"database": "PDB", "id": "1TUP"}, {"database": "HGNC", "id": "11998"}]
+        },
+        {
+          "name": "definition",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Protein description or full name",
+          "sources": ["UniProt", "RefSeq"],
+          "semantic_definition": "Human-readable description of the protein including recommended name and organism",
+          "examples": ["Cellular tumor antigen p53 [Homo sapiens]"]
+        }
+      ],
+      "source_specific_fields": {
+        "UniProt": [
+          {
+            "name": "id",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Entry name (mnemonic identifier)",
+            "examples": ["P53_HUMAN", "BRCA1_HUMAN"],
+            "semantic_definition": "Human-readable mnemonic combining protein and organism"
+          },
+          {
+            "name": "reviewed",
+            "type": "boolean",
+            "cardinality": "1:1",
+            "description": "Swiss-Prot (true) or TrEMBL (false) status",
+            "examples": [true, false],
+            "semantic_definition": "Indicates manual curation status - reviewed entries are in Swiss-Prot"
+          },
+          {
+            "name": "proteinExistence",
+            "type": "enum",
+            "cardinality": "1:1",
+            "description": "Protein existence evidence level (1-5)",
+            "examples": ["1: Evidence at protein level", "3: Inferred from homology"],
+            "semantic_definition": "PE level indicating confidence in protein existence based on evidence type"
+          },
+          {
+            "name": "molWeight",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "Molecular weight in Daltons",
+            "examples": [43653, 126000],
+            "semantic_definition": "Calculated molecular weight of the canonical sequence in Daltons"
+          },
+          {
+            "name": "crc64",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "CRC64 checksum of sequence",
+            "examples": ["AD5C149FD8106131"],
+            "semantic_definition": "64-bit cyclic redundancy check for sequence verification"
+          },
+          {
+            "name": "md5",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "MD5 checksum of sequence",
+            "examples": ["a1b2c3d4e5f6..."],
+            "semantic_definition": "MD5 hash for sequence integrity verification"
+          },
+          {
+            "name": "proteinDescription",
+            "type": "object",
+            "cardinality": "1:1",
+            "description": "Recommended and alternative protein names",
+            "examples": [{"recommendedName": {"fullName": "Cellular tumor antigen p53"}}],
+            "semantic_definition": "Structured protein nomenclature including recommended, alternative, and submitted names"
+          },
+          {
+            "name": "genes",
+            "type": "array",
+            "cardinality": "1:N",
+            "description": "Gene names including primary and synonyms",
+            "examples": [[{"geneName": {"value": "TP53"}, "synonyms": [{"value": "P53"}]}]],
+            "semantic_definition": "Complete gene nomenclature including official symbol, synonyms, ordered locus names, and ORF names"
+          },
+          {
+            "name": "comments",
+            "type": "array",
+            "cardinality": "1:N",
+            "description": "Functional annotation comments",
+            "examples": [{"commentType": "FUNCTION", "texts": [{"value": "Acts as a tumor suppressor..."}]}],
+            "semantic_definition": "Curated annotations covering function, disease, subcellular location, PTM, etc."
+          },
+          {
+            "name": "keywords",
+            "type": "array",
+            "cardinality": "1:N",
+            "description": "UniProt controlled vocabulary keywords",
+            "examples": [["Tumor suppressor", "DNA-binding", "Nucleus"]],
+            "semantic_definition": "Standardized terms from UniProt keyword vocabulary for categorization"
+          },
+          {
+            "name": "references",
+            "type": "array",
+            "cardinality": "1:N",
+            "description": "Literature citations",
+            "examples": [{"citation": {"title": "...", "journal": "Nature"}}],
+            "semantic_definition": "Publications supporting the entry annotations"
+          }
+        ],
+        "RefSeq": [
+          {
+            "name": "gi",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "GenInfo Identifier (legacy, deprecated)",
+            "examples": [4557757],
+            "semantic_definition": "Deprecated numeric identifier from NCBI GenInfo system"
+          },
+          {
+            "name": "locus",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Gene locus tag",
+            "examples": ["TP53", "NP_000537"],
+            "semantic_definition": "Locus identifier from the source genome annotation"
+          },
+          {
+            "name": "coded_by",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Source transcript accession",
+            "examples": ["NM_000546.6:203..1384"],
+            "semantic_definition": "Reference to the nucleotide sequence encoding this protein with CDS coordinates"
+          },
+          {
+            "name": "chromosome",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Chromosome location",
+            "examples": ["17", "X", "MT"],
+            "semantic_definition": "Chromosome on which the encoding gene is located"
+          },
+          {
+            "name": "map_location",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Cytogenetic location",
+            "examples": ["17p13.1", "Xq28"],
+            "semantic_definition": "Cytogenetic band location on the chromosome"
+          },
+          {
+            "name": "annotation_status",
+            "type": "enum",
+            "cardinality": "1:1",
+            "description": "Curation/validation status",
+            "examples": ["VALIDATED", "REVIEWED", "PREDICTED"],
+            "semantic_definition": "Level of manual review and validation applied to the record"
+          },
+          {
+            "name": "version",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "Sequence version number",
+            "examples": [1, 3, 5],
+            "semantic_definition": "Integer version incremented when sequence changes"
+          }
+        ]
+      },
+      "cross_reference_mappings": [
+        {
+          "from_source": "UniProt",
+          "to_source": "RefSeq",
+          "from_field": "accession",
+          "to_field": "accession",
+          "mapping_type": "1:N",
+          "notes": "One UniProt entry may map to multiple RefSeq proteins (isoforms)"
+        },
+        {
+          "from_source": "UniProt",
+          "to_source": "RefSeq",
+          "from_field": "dbReferences[database=RefSeq].id",
+          "to_field": "accession",
+          "mapping_type": "1:N",
+          "notes": "Direct cross-reference via UniProt dbReferences"
+        }
+      ]
+    },
+    {
+      "subcategory_id": "7.2",
+      "subcategory_name": "Protein Structures",
+      "data_sources": ["PDB", "AlphaFold DB", "SWISS-MODEL"],
+      "unified_fields": [
+        {
+          "name": "entry_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Primary structure identifier",
+          "sources": ["PDB", "AlphaFold DB", "SWISS-MODEL"],
+          "semantic_definition": "Unique identifier for the structure entry. PDB uses 4-character codes, AlphaFold uses AF-{UniProt}-F{n} format, SWISS-MODEL uses internal IDs",
+          "examples": ["1TUP", "AF-P04637-F1", "5a1b2c3d4e"]
+        },
+        {
+          "name": "uniprot_accession",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "UniProt accession for the protein",
+          "sources": ["PDB", "AlphaFold DB", "SWISS-MODEL"],
+          "semantic_definition": "Link to UniProt entry for the modeled/determined protein",
+          "examples": ["P04637", "Q9Y6K9"]
+        },
+        {
+          "name": "sequence",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Protein sequence in the structure",
+          "sources": ["PDB", "AlphaFold DB", "SWISS-MODEL"],
+          "semantic_definition": "Amino acid sequence of the protein chain(s) in the structure",
+          "examples": ["CSALNSSYIN...", "MEEPQSDPSVEPPLSQETFSDLWKLL..."]
+        },
+        {
+          "name": "atom_coordinates",
+          "type": "array",
+          "cardinality": "1:N",
+          "description": "3D atomic coordinates",
+          "sources": ["PDB", "AlphaFold DB", "SWISS-MODEL"],
+          "semantic_definition": "Cartesian coordinates (x, y, z) in Angstroms for each atom in the structure",
+          "examples": [{"atom_id": 1, "x": 10.123, "y": 20.456, "z": 30.789}]
+        },
+        {
+          "name": "residue_number",
+          "type": "integer",
+          "cardinality": "1:1",
+          "description": "Residue sequence position",
+          "sources": ["PDB", "AlphaFold DB", "SWISS-MODEL"],
+          "semantic_definition": "Position of the residue in the sequence (1-based)",
+          "examples": [1, 102, 393]
+        },
+        {
+          "name": "residue_name",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Amino acid three-letter code",
+          "sources": ["PDB", "AlphaFold DB", "SWISS-MODEL"],
+          "semantic_definition": "Standard three-letter amino acid code (ALA, CYS, etc.)",
+          "examples": ["MET", "CYS", "ALA"]
+        },
+        {
+          "name": "chain_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Chain identifier",
+          "sources": ["PDB", "AlphaFold DB", "SWISS-MODEL"],
+          "semantic_definition": "Single character or short string identifying the polymer chain",
+          "examples": ["A", "B", "L"]
+        },
+        {
+          "name": "b_factor",
+          "type": "float",
+          "cardinality": "1:1",
+          "description": "B-factor or confidence score",
+          "sources": ["PDB", "AlphaFold DB", "SWISS-MODEL"],
+          "semantic_definition": "Atomic displacement parameter (experimental) or confidence score (predicted). For AlphaFold stores pLDDT, for SWISS-MODEL stores local QMEAN",
+          "examples": [15.23, 92.5, 0.78]
+        },
+        {
+          "name": "occupancy",
+          "type": "float",
+          "cardinality": "1:1",
+          "description": "Occupancy value (0-1)",
+          "sources": ["PDB", "AlphaFold DB", "SWISS-MODEL"],
+          "semantic_definition": "Fraction of molecules in crystal with atom at this position (typically 1.0 for predictions)",
+          "examples": [1.0, 0.5]
+        },
+        {
+          "name": "organism",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Source organism scientific name",
+          "sources": ["PDB", "AlphaFold DB", "SWISS-MODEL"],
+          "semantic_definition": "Scientific name of the organism from which the protein originates",
+          "examples": ["Homo sapiens", "Escherichia coli"]
+        },
+        {
+          "name": "tax_id",
+          "type": "integer",
+          "cardinality": "1:1",
+          "description": "NCBI taxonomy ID",
+          "sources": ["PDB", "AlphaFold DB", "SWISS-MODEL"],
+          "semantic_definition": "Numeric identifier from NCBI taxonomy database",
+          "examples": [9606, 10090, 562]
+        }
+      ],
+      "source_specific_fields": {
+        "PDB": [
+          {
+            "name": "struct.title",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Structure title",
+            "examples": ["CRYSTAL STRUCTURE OF THE TETRAMERIZATION DOMAIN OF P53"],
+            "semantic_definition": "Descriptive title of the deposited structure"
+          },
+          {
+            "name": "exptl.method",
+            "type": "enum",
+            "cardinality": "1:1",
+            "description": "Experimental method",
+            "examples": ["X-RAY DIFFRACTION", "ELECTRON MICROSCOPY", "SOLUTION NMR"],
+            "semantic_definition": "Primary experimental technique used to determine the structure"
+          },
+          {
+            "name": "refine.ls_d_res_high",
+            "type": "float",
+            "cardinality": "1:1",
+            "description": "Resolution in Angstroms",
+            "examples": [1.7, 2.5, 3.2],
+            "semantic_definition": "Highest resolution of the diffraction/reconstruction data"
+          },
+          {
+            "name": "refine.ls_R_factor_R_work",
+            "type": "float",
+            "cardinality": "1:1",
+            "description": "R-work factor",
+            "examples": [0.194, 0.21],
+            "semantic_definition": "Crystallographic R-factor measuring model-data agreement"
+          },
+          {
+            "name": "refine.ls_R_factor_R_free",
+            "type": "float",
+            "cardinality": "1:1",
+            "description": "R-free factor",
+            "examples": [0.256, 0.27],
+            "semantic_definition": "Cross-validation R-factor using test set reflections"
+          },
+          {
+            "name": "entity.type",
+            "type": "enum",
+            "cardinality": "1:1",
+            "description": "Entity type (polymer/non-polymer/water)",
+            "examples": ["polymer", "non-polymer", "water"],
+            "semantic_definition": "Classification of molecular entity in the structure"
+          },
+          {
+            "name": "entity_poly.type",
+            "type": "enum",
+            "cardinality": "1:1",
+            "description": "Polymer type",
+            "examples": ["polypeptide(L)", "polyribonucleotide", "polydeoxyribonucleotide"],
+            "semantic_definition": "Type of polymer for protein/nucleic acid entities"
+          },
+          {
+            "name": "pdbx_database_status.recvd_initial_deposition_date",
+            "type": "date",
+            "cardinality": "1:1",
+            "description": "Deposition date",
+            "examples": ["1994-05-15", "2020-03-01"],
+            "semantic_definition": "Date structure was deposited to the PDB"
+          },
+          {
+            "name": "pdbx_database_status.status_code",
+            "type": "enum",
+            "cardinality": "1:1",
+            "description": "Entry status",
+            "examples": ["REL", "HOLD", "OBS"],
+            "semantic_definition": "Release status of the entry (REL=released, HOLD=on hold, OBS=obsolete)"
+          },
+          {
+            "name": "em_3d_reconstruction.resolution",
+            "type": "float",
+            "cardinality": "1:1",
+            "description": "Cryo-EM resolution",
+            "examples": [2.8, 3.5, 4.0],
+            "semantic_definition": "Resolution of cryo-EM reconstruction in Angstroms"
+          },
+          {
+            "name": "pdbx_nmr_ensemble.conformers_submitted_total_number",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "Number of NMR models",
+            "examples": [20, 10],
+            "semantic_definition": "Number of conformational models in NMR ensemble"
+          }
+        ],
+        "AlphaFold DB": [
+          {
+            "name": "entryId",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "AlphaFold entry ID",
+            "examples": ["AF-P04637-F1", "AF-Q9Y6K9-F1"],
+            "semantic_definition": "Unique AlphaFold identifier in format AF-{UniProt}-F{fragment}"
+          },
+          {
+            "name": "uniprotId",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "UniProt entry name",
+            "examples": ["P53_HUMAN", "BRCA1_HUMAN"],
+            "semantic_definition": "UniProt mnemonic identifier for the protein"
+          },
+          {
+            "name": "gene",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Gene name",
+            "examples": ["TP53", "BRCA1"],
+            "semantic_definition": "Gene symbol encoding the protein"
+          },
+          {
+            "name": "modelCreatedDate",
+            "type": "date",
+            "cardinality": "1:1",
+            "description": "Prediction date",
+            "examples": ["2022-07-01", "2023-01-15"],
+            "semantic_definition": "Date the AlphaFold model was generated"
+          },
+          {
+            "name": "latestVersion",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "Model version (1-4)",
+            "examples": [4, 3],
+            "semantic_definition": "AlphaFold model version (v4 is most recent)"
+          },
+          {
+            "name": "sequenceLength",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "Protein length",
+            "examples": [393, 1863],
+            "semantic_definition": "Number of residues in the full UniProt sequence"
+          },
+          {
+            "name": "sequenceChecksum",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "CRC64 checksum",
+            "examples": ["AD5C149FD8106131"],
+            "semantic_definition": "CRC64 checksum of the source sequence"
+          },
+          {
+            "name": "pLDDT",
+            "type": "float",
+            "cardinality": "1:1",
+            "description": "Per-residue confidence score (0-100)",
+            "examples": [92.5, 45.3, 78.9],
+            "semantic_definition": "Predicted local Distance Difference Test score indicating confidence in local structure"
+          },
+          {
+            "name": "predicted_aligned_error",
+            "type": "array",
+            "cardinality": "1:N",
+            "description": "PAE matrix (NxN)",
+            "examples": [[[0.5, 2.3], [2.3, 0.4]]],
+            "semantic_definition": "Matrix of predicted aligned errors between all residue pairs in Angstroms"
+          },
+          {
+            "name": "max_predicted_aligned_error",
+            "type": "float",
+            "cardinality": "1:1",
+            "description": "Maximum PAE scale value",
+            "examples": [31.75],
+            "semantic_definition": "Maximum value of the PAE scale (typically 31.75 Angstroms)"
+          },
+          {
+            "name": "pTM",
+            "type": "float",
+            "cardinality": "1:1",
+            "description": "Predicted TM-score",
+            "examples": [0.85, 0.92],
+            "semantic_definition": "Global fold quality metric predicting TM-score to true structure"
+          },
+          {
+            "name": "fragmentNumber",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "Fragment index for long proteins",
+            "examples": [1, 2],
+            "semantic_definition": "Fragment number for proteins longer than 1400 residues"
+          }
+        ],
+        "SWISS-MODEL": [
+          {
+            "name": "model_id",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Unique model identifier",
+            "examples": ["5a1b2c3d4e"],
+            "semantic_definition": "Internal SWISS-MODEL identifier for this specific model"
+          },
+          {
+            "name": "template",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Template PDB ID + chain",
+            "examples": ["1tup.1.A", "3sak.1.A"],
+            "semantic_definition": "PDB template used for homology modeling"
+          },
+          {
+            "name": "identity",
+            "type": "float",
+            "cardinality": "1:1",
+            "description": "Sequence identity to template (0-1)",
+            "examples": [0.95, 0.35],
+            "semantic_definition": "Fraction of identical residues in target-template alignment"
+          },
+          {
+            "name": "similarity",
+            "type": "float",
+            "cardinality": "1:1",
+            "description": "Sequence similarity to template (0-1)",
+            "examples": [0.98, 0.55],
+            "semantic_definition": "Fraction of similar residues (including conservative substitutions)"
+          },
+          {
+            "name": "coverage",
+            "type": "float",
+            "cardinality": "1:1",
+            "description": "Sequence coverage by model (0-1)",
+            "examples": [0.50, 0.85],
+            "semantic_definition": "Fraction of target sequence covered by the model"
+          },
+          {
+            "name": "from",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "Start residue in UniProt sequence",
+            "examples": [94, 1],
+            "semantic_definition": "First residue position of the modeled region"
+          },
+          {
+            "name": "to",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "End residue in UniProt sequence",
+            "examples": [289, 393],
+            "semantic_definition": "Last residue position of the modeled region"
+          },
+          {
+            "name": "qmean",
+            "type": "float",
+            "cardinality": "1:1",
+            "description": "QMEAN Z-score (-4 to 0)",
+            "examples": [-0.85, -1.5, -2.3],
+            "semantic_definition": "Global model quality score (higher is better, > -1 is excellent)"
+          },
+          {
+            "name": "qmean_disco",
+            "type": "float",
+            "cardinality": "1:1",
+            "description": "QMEANDisCo score (0-1)",
+            "examples": [0.78, 0.65],
+            "semantic_definition": "Distance constraint-based quality score (higher is better)"
+          },
+          {
+            "name": "qmean_local",
+            "type": "float",
+            "cardinality": "1:N",
+            "description": "Per-residue QMEAN (0-1)",
+            "examples": [0.72, 0.85],
+            "semantic_definition": "Local quality estimate per residue stored in B-factor column"
+          },
+          {
+            "name": "oligo_state",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Oligomeric state",
+            "examples": ["monomer", "tetramer", "dimer"],
+            "semantic_definition": "Biological assembly state of the model"
+          },
+          {
+            "name": "created_date",
+            "type": "date",
+            "cardinality": "1:1",
+            "description": "Model generation date",
+            "examples": ["2024-06-15"],
+            "semantic_definition": "Date the homology model was computed"
+          },
+          {
+            "name": "template_resolution",
+            "type": "float",
+            "cardinality": "1:1",
+            "description": "Template structure resolution (Angstroms)",
+            "examples": [1.7, 2.5],
+            "semantic_definition": "Resolution of the experimental template structure"
+          },
+          {
+            "name": "template_method",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Template experimental method",
+            "examples": ["X-ray", "Cryo-EM"],
+            "semantic_definition": "Experimental method used to determine the template structure"
+          }
+        ]
+      },
+      "cross_reference_mappings": [
+        {
+          "from_source": "PDB",
+          "to_source": "UniProt",
+          "from_field": "entity_poly.pdbx_seq_one_letter_code",
+          "to_field": "sequence.value",
+          "mapping_type": "N:1",
+          "notes": "Multiple PDB entries may represent same UniProt protein"
+        },
+        {
+          "from_source": "AlphaFold DB",
+          "to_source": "UniProt",
+          "from_field": "uniprotAccession",
+          "to_field": "accession",
+          "mapping_type": "1:1",
+          "notes": "Direct mapping via UniProt accession"
+        },
+        {
+          "from_source": "SWISS-MODEL",
+          "to_source": "UniProt",
+          "from_field": "uniprot_ac",
+          "to_field": "accession",
+          "mapping_type": "N:1",
+          "notes": "Multiple models may exist per UniProt entry"
+        },
+        {
+          "from_source": "SWISS-MODEL",
+          "to_source": "PDB",
+          "from_field": "template",
+          "to_field": "entry.id",
+          "mapping_type": "N:1",
+          "notes": "Models reference PDB templates"
+        },
+        {
+          "from_source": "AlphaFold DB",
+          "to_source": "PDB",
+          "from_field": "none",
+          "to_field": "none",
+          "mapping_type": "comparison",
+          "notes": "AlphaFold predictions can be compared to experimental PDB structures"
+        }
+      ]
+    },
+    {
+      "subcategory_id": "7.3",
+      "subcategory_name": "Molecular Interactions",
+      "data_sources": [],
+      "note": "Molecular interaction data is maintained in category 04.pathways.networks. This subcategory contains symlinks to IntAct, Reactome, and STRING in the pathways category.",
+      "unified_fields": [],
+      "source_specific_fields": {},
+      "cross_references": [
+        {
+          "source": "IntAct",
+          "location": "../../04.pathways.networks/",
+          "description": "Molecular interaction database"
+        },
+        {
+          "source": "Reactome",
+          "location": "../../04.pathways.networks/",
+          "description": "Pathway database with interaction data"
+        },
+        {
+          "source": "STRING",
+          "location": "../../04.pathways.networks/",
+          "description": "Protein-protein interaction networks"
+        }
+      ]
+    }
+  ],
+  "global_cross_category_mappings": [
+    {
+      "field": "uniprot_accession",
+      "description": "UniProt accession serves as primary key linking sequences to structures",
+      "used_by": ["UniProt", "RefSeq", "PDB", "AlphaFold DB", "SWISS-MODEL"],
+      "semantic_definition": "Universal protein identifier enabling cross-database integration"
+    },
+    {
+      "field": "gene_symbol",
+      "description": "Gene symbols link proteins to genomic context",
+      "used_by": ["UniProt", "RefSeq", "AlphaFold DB"],
+      "semantic_definition": "Official gene nomenclature (HGNC for human) enabling gene-protein mapping"
+    },
+    {
+      "field": "pdb_id",
+      "description": "PDB identifier linking to 3D structural data",
+      "used_by": ["PDB", "UniProt", "RefSeq", "SWISS-MODEL"],
+      "semantic_definition": "4-character alphanumeric PDB identifier for experimental structures"
+    },
+    {
+      "field": "taxonomy_id",
+      "description": "NCBI taxonomy ID for organism identification",
+      "used_by": ["UniProt", "RefSeq", "PDB", "AlphaFold DB"],
+      "semantic_definition": "Numeric identifier from NCBI taxonomy enabling organism-based queries"
+    },
+    {
+      "field": "sequence",
+      "description": "Amino acid sequence enabling sequence-based matching",
+      "used_by": ["UniProt", "RefSeq", "PDB", "AlphaFold DB", "SWISS-MODEL"],
+      "semantic_definition": "One-letter amino acid sequence for alignment and identity calculations"
+    }
+  ],
+  "quality_metrics_summary": {
+    "experimental_structures": {
+      "source": "PDB",
+      "metrics": ["resolution", "R-factor", "R-free", "Ramachandran outliers", "clashscore"]
+    },
+    "predicted_structures_ai": {
+      "source": "AlphaFold DB",
+      "metrics": ["pLDDT", "PAE", "pTM"]
+    },
+    "predicted_structures_homology": {
+      "source": "SWISS-MODEL",
+      "metrics": ["QMEAN", "QMEANDisCo", "sequence_identity", "coverage"]
+    },
+    "sequence_evidence": {
+      "source": "UniProt",
+      "metrics": ["protein_existence_level", "reviewed_status"]
+    }
+  }
+}

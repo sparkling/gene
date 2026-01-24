@@ -1,0 +1,335 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gene.example.org/schemas/2.2-pharmaceuticals.json",
+  "title": "Pharmaceuticals Unified Schema",
+  "description": "Unified schema for pharmaceutical data from ChEMBL, DailyMed, DrugBank, Orange Book, and RxNorm",
+  "type": "object",
+  "properties": {
+    "drug_id": {
+      "type": "string",
+      "description": "Primary identifier for drug compound",
+      "sources": ["ChEMBL", "DrugBank", "RxNorm"],
+      "examples": ["CHEMBL25", "DB00945", "2670"]
+    },
+    "name": {
+      "type": "string",
+      "description": "Drug name (generic or brand)",
+      "sources": ["ChEMBL", "DailyMed", "DrugBank", "Orange Book", "RxNorm"],
+      "examples": ["Aspirin", "Acetaminophen"]
+    },
+    "canonical_smiles": {
+      "type": ["string", "null"],
+      "description": "Canonical SMILES notation",
+      "sources": ["ChEMBL", "DrugBank"],
+      "examples": ["CC(=O)Oc1ccccc1C(=O)O"]
+    },
+    "inchi_key": {
+      "type": ["string", "null"],
+      "description": "InChI Key identifier",
+      "sources": ["ChEMBL", "DrugBank"],
+      "examples": ["BSYNRYMUTXBXSQ-UHFFFAOYSA-N"]
+    },
+    "molecular_weight": {
+      "type": ["number", "null"],
+      "description": "Molecular weight in Daltons",
+      "sources": ["ChEMBL", "DrugBank"],
+      "examples": [180.16]
+    },
+    "molecular_formula": {
+      "type": ["string", "null"],
+      "description": "Chemical formula",
+      "sources": ["ChEMBL", "DrugBank"],
+      "examples": ["C9H8O4"]
+    },
+    "drug_type": {
+      "type": ["string", "null"],
+      "description": "Type classification of drug",
+      "sources": ["ChEMBL", "DrugBank"],
+      "examples": ["small molecule", "biotech"]
+    },
+    "approval_status": {
+      "type": ["string", "null"],
+      "description": "Regulatory approval status",
+      "sources": ["ChEMBL", "DrugBank", "Orange Book"],
+      "examples": ["approved", "investigational", "Phase III"]
+    },
+    "targets": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {"type": "string"},
+          "uniprot_id": {"type": "string"},
+          "action": {"type": "string"}
+        }
+      },
+      "description": "Drug targets with actions",
+      "sources": ["ChEMBL", "DrugBank"],
+      "examples": [{"name": "Cyclooxygenase-1", "uniprot_id": "P23219", "action": "inhibitor"}]
+    },
+    "uniprot_id": {
+      "type": ["string", "null"],
+      "description": "UniProt accession for target protein",
+      "sources": ["ChEMBL", "DrugBank"],
+      "examples": ["P23219", "P35354"]
+    },
+    "chembl_id": {
+      "type": ["string", "null"],
+      "description": "ChEMBL identifier",
+      "sources": ["ChEMBL"],
+      "examples": ["CHEMBL25"]
+    },
+    "molregno": {
+      "type": ["integer", "null"],
+      "description": "Internal molecule registration number",
+      "sources": ["ChEMBL"]
+    },
+    "max_phase": {
+      "type": ["integer", "null"],
+      "description": "Highest clinical phase (0-4)",
+      "sources": ["ChEMBL"]
+    },
+    "pchembl_value": {
+      "type": ["number", "null"],
+      "description": "Standardized -log10 activity value",
+      "sources": ["ChEMBL"]
+    },
+    "natural_product": {
+      "type": ["boolean", "null"],
+      "description": "Natural product flag",
+      "sources": ["ChEMBL"]
+    },
+    "np_likeness_score": {
+      "type": ["number", "null"],
+      "description": "Natural product likeness score",
+      "sources": ["ChEMBL"]
+    },
+    "qed_weighted": {
+      "type": ["number", "null"],
+      "description": "QED drug-likeness score",
+      "sources": ["ChEMBL"]
+    },
+    "confidence_score": {
+      "type": ["integer", "null"],
+      "description": "Target assignment confidence (0-9)",
+      "sources": ["ChEMBL"]
+    },
+    "set_id": {
+      "type": ["string", "null"],
+      "description": "Unique SPL document identifier",
+      "sources": ["DailyMed"]
+    },
+    "ndc": {
+      "type": ["string", "null"],
+      "description": "National Drug Code (10-11 digits)",
+      "sources": ["DailyMed"]
+    },
+    "spl_sections": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "loinc_code": {"type": "string"},
+          "content": {"type": "string"}
+        }
+      },
+      "description": "Label sections with LOINC codes",
+      "sources": ["DailyMed"]
+    },
+    "unii": {
+      "type": ["string", "null"],
+      "description": "FDA Unique Ingredient Identifier",
+      "sources": ["DailyMed"]
+    },
+    "application_number": {
+      "type": ["string", "null"],
+      "description": "NDA/ANDA/BLA number",
+      "sources": ["DailyMed", "Orange Book"]
+    },
+    "drugbank_id": {
+      "type": ["string", "null"],
+      "description": "DrugBank identifier (DB00001 format)",
+      "sources": ["DrugBank"],
+      "examples": ["DB00945"]
+    },
+    "cas_number": {
+      "type": ["string", "null"],
+      "description": "CAS registry number",
+      "sources": ["DrugBank"]
+    },
+    "mechanism_of_action": {
+      "type": ["string", "null"],
+      "description": "Detailed MOA description",
+      "sources": ["DrugBank"]
+    },
+    "drug_interactions": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "drug": {"type": "string"},
+          "description": {"type": "string"},
+          "severity": {"type": "string"}
+        }
+      },
+      "description": "Drug-drug interactions with severity",
+      "sources": ["DrugBank"]
+    },
+    "half_life": {
+      "type": ["string", "null"],
+      "description": "Elimination half-life",
+      "sources": ["DrugBank"]
+    },
+    "protein_binding": {
+      "type": ["string", "null"],
+      "description": "Protein binding percentage",
+      "sources": ["DrugBank"]
+    },
+    "pathways": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "pathway_id": {"type": "string"},
+          "name": {"type": "string"},
+          "source": {"type": "string"}
+        }
+      },
+      "description": "Associated KEGG/SMPDB pathways",
+      "sources": ["DrugBank"]
+    },
+    "appl_no": {
+      "type": ["string", "null"],
+      "description": "NDA/ANDA/BLA number",
+      "sources": ["Orange Book"]
+    },
+    "te_code": {
+      "type": ["string", "null"],
+      "description": "Therapeutic equivalence code (AA, AB, BC, etc.)",
+      "sources": ["Orange Book"]
+    },
+    "patent_no": {
+      "type": ["string", "null"],
+      "description": "Patent number",
+      "sources": ["Orange Book"]
+    },
+    "patent_expire_date": {
+      "type": ["string", "null"],
+      "format": "date",
+      "description": "Patent expiration date",
+      "sources": ["Orange Book"]
+    },
+    "exclusivity_code": {
+      "type": ["string", "null"],
+      "description": "Market exclusivity code (NCE, NP, etc.)",
+      "sources": ["Orange Book"]
+    },
+    "reference_drug": {
+      "type": ["boolean", "null"],
+      "description": "Is Reference Listed Drug",
+      "sources": ["Orange Book"]
+    },
+    "rxcui": {
+      "type": ["string", "null"],
+      "description": "RxNorm Concept Unique Identifier",
+      "sources": ["RxNorm"]
+    },
+    "tty": {
+      "type": ["string", "null"],
+      "description": "Term type (IN, SCD, SBD, etc.)",
+      "sources": ["RxNorm"]
+    },
+    "sab": {
+      "type": ["string", "null"],
+      "description": "Source abbreviation",
+      "sources": ["RxNorm"]
+    },
+    "rela": {
+      "type": ["string", "null"],
+      "description": "Relationship attribute",
+      "sources": ["RxNorm"]
+    },
+    "dose_form": {
+      "type": ["string", "null"],
+      "description": "Dosage form",
+      "sources": ["RxNorm"]
+    },
+    "strength": {
+      "type": ["string", "null"],
+      "description": "Drug strength",
+      "sources": ["RxNorm"]
+    },
+    "_source": {
+      "type": "object",
+      "description": "Metadata about the data source",
+      "properties": {
+        "database": {"type": "string"},
+        "version": {"type": "string"},
+        "access_date": {"type": "string", "format": "date"},
+        "original_id": {"type": "string"}
+      }
+    }
+  },
+  "required": ["name"],
+  "field_mappings": {
+    "ChEMBL": {
+      "chembl_id": "chembl_id",
+      "pref_name": "name",
+      "canonical_smiles": "canonical_smiles",
+      "standard_inchi_key": "inchi_key",
+      "full_mwt": "molecular_weight",
+      "molformula": "molecular_formula",
+      "molecule_type": "drug_type",
+      "max_phase": "max_phase",
+      "pchembl_value": "pchembl_value",
+      "natural_product": "natural_product",
+      "np_likeness_score": "np_likeness_score",
+      "qed_weighted": "qed_weighted",
+      "confidence_score": "confidence_score",
+      "molregno": "molregno"
+    },
+    "DailyMed": {
+      "set_id": "set_id",
+      "product_name": "name",
+      "ndc": "ndc",
+      "spl_section": "spl_sections",
+      "unii": "unii",
+      "application_number": "application_number"
+    },
+    "DrugBank": {
+      "drugbank_id": "drugbank_id",
+      "name": "name",
+      "smiles": "canonical_smiles",
+      "inchikey": "inchi_key",
+      "average_mass": "molecular_weight",
+      "chemical_formula": "molecular_formula",
+      "drug_type": "drug_type",
+      "status": "approval_status",
+      "cas_number": "cas_number",
+      "mechanism_of_action": "mechanism_of_action",
+      "drug_interactions": "drug_interactions",
+      "half_life": "half_life",
+      "protein_binding": "protein_binding",
+      "targets": "targets",
+      "pathways": "pathways"
+    },
+    "Orange_Book": {
+      "trade_name": "name",
+      "appl_no": "appl_no",
+      "te_code": "te_code",
+      "patent_no": "patent_no",
+      "patent_expire_date": "patent_expire_date",
+      "exclusivity_code": "exclusivity_code",
+      "rld": "reference_drug"
+    },
+    "RxNorm": {
+      "rxcui": "rxcui",
+      "name": "name",
+      "tty": "tty",
+      "sab": "sab",
+      "rela": "rela",
+      "dose_form": "dose_form",
+      "strength": "strength"
+    }
+  }
+}

@@ -1,0 +1,321 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gene.example.org/schemas/4.3-protein-protein-interactions.json",
+  "title": "Protein-Protein Interactions Unified Schema",
+  "description": "Unified schema for protein-protein interaction data from BioGRID, IntAct, and STRING",
+  "type": "object",
+  "properties": {
+    "interactor_a_id": {
+      "type": "string",
+      "description": "Identifier for first interacting protein",
+      "sources": ["BioGRID", "IntAct", "STRING"],
+      "examples": ["7157", "uniprotkb:P04637", "9606.ENSP00000269305"]
+    },
+    "interactor_b_id": {
+      "type": "string",
+      "description": "Identifier for second interacting protein",
+      "sources": ["BioGRID", "IntAct", "STRING"],
+      "examples": ["3845", "uniprotkb:Q00987", "9606.ENSP00000357274"]
+    },
+    "gene_symbol_a": {
+      "type": ["string", "null"],
+      "description": "Gene symbol for interactor A",
+      "sources": ["BioGRID", "IntAct", "STRING"],
+      "examples": ["TP53", "BRCA1"]
+    },
+    "gene_symbol_b": {
+      "type": ["string", "null"],
+      "description": "Gene symbol for interactor B",
+      "sources": ["BioGRID", "IntAct", "STRING"],
+      "examples": ["KRAS", "MDM2"]
+    },
+    "detection_method": {
+      "type": ["string", "null"],
+      "description": "Experimental method used to detect interaction",
+      "sources": ["BioGRID", "IntAct", "STRING"],
+      "examples": ["Two-hybrid", "psi-mi:\"MI:0018\"(two hybrid)", "experimental (escore)"]
+    },
+    "interaction_type": {
+      "type": ["string", "null"],
+      "description": "Type of molecular interaction",
+      "sources": ["BioGRID", "IntAct", "STRING"],
+      "examples": ["physical", "psi-mi:\"MI:0915\"(physical association)", "functional"]
+    },
+    "publication_ids": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "PubMed IDs of supporting publications",
+      "sources": ["BioGRID", "IntAct", "STRING"]
+    },
+    "organism_a": {
+      "type": ["integer", "null"],
+      "description": "NCBI taxonomy ID for interactor A",
+      "sources": ["BioGRID", "IntAct", "STRING"],
+      "examples": [9606]
+    },
+    "organism_b": {
+      "type": ["integer", "null"],
+      "description": "NCBI taxonomy ID for interactor B",
+      "sources": ["BioGRID", "IntAct", "STRING"],
+      "examples": [9606]
+    },
+    "confidence_score": {
+      "type": ["number", "null"],
+      "description": "Confidence score for the interaction",
+      "sources": ["BioGRID", "IntAct", "STRING"],
+      "examples": [0.73, 0.999]
+    },
+    "biogrid_interaction_id": {
+      "type": ["integer", "null"],
+      "description": "Unique BioGRID interaction identifier",
+      "sources": ["BioGRID"]
+    },
+    "biogrid_id_a": {
+      "type": ["integer", "null"],
+      "description": "BioGRID internal ID for interactor A",
+      "sources": ["BioGRID"]
+    },
+    "biogrid_id_b": {
+      "type": ["integer", "null"],
+      "description": "BioGRID internal ID for interactor B",
+      "sources": ["BioGRID"]
+    },
+    "systematic_name_a": {
+      "type": ["string", "null"],
+      "description": "Systematic gene name for A",
+      "sources": ["BioGRID"]
+    },
+    "synonyms_a": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Alias names",
+      "sources": ["BioGRID"]
+    },
+    "experimental_system": {
+      "type": ["string", "null"],
+      "description": "Specific experimental method",
+      "sources": ["BioGRID"]
+    },
+    "experimental_system_type": {
+      "type": ["string", "null"],
+      "enum": ["physical", "genetic", null],
+      "description": "Broad interaction type",
+      "sources": ["BioGRID"]
+    },
+    "throughput": {
+      "type": ["string", "null"],
+      "enum": ["high", "low", null],
+      "description": "Experiment scale",
+      "sources": ["BioGRID"]
+    },
+    "modification": {
+      "type": ["string", "null"],
+      "description": "Post-translational modification info",
+      "sources": ["BioGRID"]
+    },
+    "ontology_term_ids": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "GO terms",
+      "sources": ["BioGRID"]
+    },
+    "swissprot_accession_a": {
+      "type": ["string", "null"],
+      "description": "UniProt Swiss-Prot accession for A",
+      "sources": ["BioGRID"]
+    },
+    "intact_interaction_ac": {
+      "type": ["string", "null"],
+      "description": "IntAct interaction accession",
+      "sources": ["IntAct"]
+    },
+    "intact_miscore": {
+      "type": ["number", "null"],
+      "description": "IntAct molecular interaction confidence score (0-1)",
+      "sources": ["IntAct"]
+    },
+    "expansion_method": {
+      "type": ["string", "null"],
+      "description": "Complex expansion method",
+      "sources": ["IntAct"]
+    },
+    "biological_role_a": {
+      "type": ["string", "null"],
+      "description": "Biological role of participant A",
+      "sources": ["IntAct"]
+    },
+    "experimental_role_a": {
+      "type": ["string", "null"],
+      "description": "Experimental role of participant A",
+      "sources": ["IntAct"]
+    },
+    "experimental_role_b": {
+      "type": ["string", "null"],
+      "description": "Experimental role of participant B",
+      "sources": ["IntAct"]
+    },
+    "interactor_type_a": {
+      "type": ["string", "null"],
+      "description": "Molecule type of interactor A",
+      "sources": ["IntAct"]
+    },
+    "feature_a": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Binding regions or modifications",
+      "sources": ["IntAct"]
+    },
+    "stoichiometry_a": {
+      "type": ["integer", "null"],
+      "description": "Number of molecules of participant A",
+      "sources": ["IntAct"]
+    },
+    "negative": {
+      "type": ["boolean", "null"],
+      "description": "Flag for negative (non-)interaction",
+      "sources": ["IntAct"]
+    },
+    "host_organism": {
+      "type": ["string", "null"],
+      "description": "Experimental host organism",
+      "sources": ["IntAct"]
+    },
+    "parameters_interaction": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Kinetic parameters (Kd, Ki, etc.)",
+      "sources": ["IntAct"]
+    },
+    "checksum_interaction": {
+      "type": ["string", "null"],
+      "description": "RIGID interaction checksum",
+      "sources": ["IntAct"]
+    },
+    "string_id_a": {
+      "type": ["string", "null"],
+      "description": "STRING protein identifier (taxid.ENSP)",
+      "sources": ["STRING"]
+    },
+    "string_id_b": {
+      "type": ["string", "null"],
+      "description": "STRING protein identifier (taxid.ENSP)",
+      "sources": ["STRING"]
+    },
+    "string_combined_score": {
+      "type": ["number", "null"],
+      "description": "Combined confidence score (0-1)",
+      "sources": ["STRING"]
+    },
+    "string_nscore": {
+      "type": ["number", "null"],
+      "description": "Neighborhood score (gene proximity)",
+      "sources": ["STRING"]
+    },
+    "string_fscore": {
+      "type": ["number", "null"],
+      "description": "Fusion score (gene fusion events)",
+      "sources": ["STRING"]
+    },
+    "string_pscore": {
+      "type": ["number", "null"],
+      "description": "Phylogenetic profile score (co-occurrence)",
+      "sources": ["STRING"]
+    },
+    "string_ascore": {
+      "type": ["number", "null"],
+      "description": "Co-expression score",
+      "sources": ["STRING"]
+    },
+    "string_escore": {
+      "type": ["number", "null"],
+      "description": "Experimental score (lab evidence)",
+      "sources": ["STRING"]
+    },
+    "string_dscore": {
+      "type": ["number", "null"],
+      "description": "Database score (curated sources)",
+      "sources": ["STRING"]
+    },
+    "string_tscore": {
+      "type": ["number", "null"],
+      "description": "Text-mining score (literature co-mentions)",
+      "sources": ["STRING"]
+    },
+    "network_type": {
+      "type": ["string", "null"],
+      "enum": ["functional", "physical", null],
+      "description": "Type of network",
+      "sources": ["STRING"]
+    },
+    "_source": {
+      "type": "object",
+      "description": "Metadata about the data source",
+      "properties": {
+        "database": {"type": "string"},
+        "version": {"type": "string"},
+        "access_date": {"type": "string", "format": "date"},
+        "original_id": {"type": "string"}
+      }
+    }
+  },
+  "required": ["interactor_a_id", "interactor_b_id"],
+  "field_mappings": {
+    "BioGRID": {
+      "BioGRID_Interaction_ID": "biogrid_interaction_id",
+      "BioGRID_ID_A": "biogrid_id_a",
+      "BioGRID_ID_B": "biogrid_id_b",
+      "Entrez_Gene_A": "interactor_a_id",
+      "Entrez_Gene_B": "interactor_b_id",
+      "Official_Symbol_A": "gene_symbol_a",
+      "Official_Symbol_B": "gene_symbol_b",
+      "Systematic_Name_A": "systematic_name_a",
+      "Synonyms_A": "synonyms_a",
+      "Experimental_System": "experimental_system",
+      "Experimental_System_Type": "experimental_system_type",
+      "Throughput": "throughput",
+      "Modification": "modification",
+      "Ontology_Term_IDs": "ontology_term_ids",
+      "SWISS-PROT_Accession_A": "swissprot_accession_a",
+      "Organism_ID_A": "organism_a",
+      "Organism_ID_B": "organism_b",
+      "Pubmed_ID": "publication_ids"
+    },
+    "IntAct": {
+      "interactionAc": "intact_interaction_ac",
+      "idA": "interactor_a_id",
+      "idB": "interactor_b_id",
+      "altA": "gene_symbol_a",
+      "altB": "gene_symbol_b",
+      "detMethod": "detection_method",
+      "type": "interaction_type",
+      "pubid": "publication_ids",
+      "taxidA": "organism_a",
+      "taxidB": "organism_b",
+      "intact-miscore": "intact_miscore",
+      "expansion": "expansion_method",
+      "bioRoleA": "biological_role_a",
+      "expRoleA": "experimental_role_a",
+      "expRoleB": "experimental_role_b",
+      "typeA": "interactor_type_a",
+      "xrefA": "feature_a",
+      "stoichiometryA": "stoichiometry_a",
+      "negative": "negative",
+      "hostOrganism": "host_organism",
+      "parameters": "parameters_interaction",
+      "checksum": "checksum_interaction"
+    },
+    "STRING": {
+      "protein1": "string_id_a",
+      "protein2": "string_id_b",
+      "combined_score": "string_combined_score",
+      "nscore": "string_nscore",
+      "fscore": "string_fscore",
+      "pscore": "string_pscore",
+      "ascore": "string_ascore",
+      "escore": "string_escore",
+      "dscore": "string_dscore",
+      "tscore": "string_tscore",
+      "network_type": "network_type"
+    }
+  }
+}

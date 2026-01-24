@@ -1,3 +1,0 @@
-we need to migrate all of the content in source.new into these new data source folders. Analyse all the types of data available in soruce.new, and create
-  a template for how to organise the files, filenames, and file contents. Include a CLAUDE.md template that contains only core information about each data source
-  that is optimised for AI and LLMs to be loaded into the context, but take care not to load too much into the context. Also have a README.md.

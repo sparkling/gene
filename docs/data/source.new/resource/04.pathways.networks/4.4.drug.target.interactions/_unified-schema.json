@@ -1,0 +1,132 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gene.example.org/schemas/4.4-drug-target-interactions.json",
+  "title": "Drug-Target Interactions Unified Schema",
+  "description": "Unified schema for drug-target interaction data from STITCH",
+  "type": "object",
+  "properties": {
+    "chemical_id": {
+      "type": "string",
+      "description": "STITCH chemical identifier (PubChem CID-based with prefix)",
+      "sources": ["STITCH"],
+      "examples": ["CIDm00002244"]
+    },
+    "protein_id": {
+      "type": "string",
+      "description": "STRING protein identifier (taxid.ENSP format)",
+      "sources": ["STITCH"],
+      "examples": ["9606.ENSP00000269305"]
+    },
+    "chemical_name": {
+      "type": ["string", "null"],
+      "description": "Preferred chemical name",
+      "sources": ["STITCH"],
+      "examples": ["aspirin"]
+    },
+    "combined_score": {
+      "type": ["integer", "null"],
+      "minimum": 0,
+      "maximum": 1000,
+      "description": "Probabilistic confidence score (0-1000)",
+      "sources": ["STITCH"]
+    },
+    "experimental": {
+      "type": ["integer", "null"],
+      "description": "Experimental evidence score (binding assays, structures)",
+      "sources": ["STITCH"]
+    },
+    "prediction": {
+      "type": ["integer", "null"],
+      "description": "Computational prediction score",
+      "sources": ["STITCH"]
+    },
+    "database": {
+      "type": ["integer", "null"],
+      "description": "Curated database annotation score",
+      "sources": ["STITCH"]
+    },
+    "textmining": {
+      "type": ["integer", "null"],
+      "description": "Literature co-occurrence score",
+      "sources": ["STITCH"]
+    },
+    "experimental_direct": {
+      "type": ["integer", "null"],
+      "description": "Direct experimental evidence",
+      "sources": ["STITCH"]
+    },
+    "experimental_transferred": {
+      "type": ["integer", "null"],
+      "description": "Evidence transferred from homologs",
+      "sources": ["STITCH"]
+    },
+    "molecular_weight": {
+      "type": ["number", "null"],
+      "description": "Molecular weight in Daltons",
+      "sources": ["STITCH"]
+    },
+    "smiles": {
+      "type": ["string", "null"],
+      "description": "Canonical SMILES representation",
+      "sources": ["STITCH"]
+    },
+    "inchi_key": {
+      "type": ["string", "null"],
+      "description": "International Chemical Identifier key",
+      "sources": ["STITCH"]
+    },
+    "mode": {
+      "type": ["string", "null"],
+      "enum": ["activation", "inhibition", "binding", "catalysis", "reaction", "expression", "ptmod", null],
+      "description": "Action type/mechanism",
+      "sources": ["STITCH"]
+    },
+    "action": {
+      "type": ["string", "null"],
+      "description": "Specific action annotation",
+      "sources": ["STITCH"]
+    },
+    "is_directional": {
+      "type": ["boolean", "null"],
+      "description": "Whether interaction has directionality",
+      "sources": ["STITCH"]
+    },
+    "a_is_acting": {
+      "type": ["boolean", "null"],
+      "description": "Whether A (chemical) acts on B (protein)",
+      "sources": ["STITCH"]
+    },
+    "_source": {
+      "type": "object",
+      "description": "Metadata about the data source",
+      "properties": {
+        "database": {"type": "string"},
+        "version": {"type": "string"},
+        "access_date": {"type": "string", "format": "date"},
+        "original_id": {"type": "string"}
+      }
+    }
+  },
+  "required": ["chemical_id", "protein_id"],
+  "field_mappings": {
+    "STITCH": {
+      "chemical": "chemical_id",
+      "protein": "protein_id",
+      "chemical_name": "chemical_name",
+      "combined_score": "combined_score",
+      "experimental": "experimental",
+      "prediction": "prediction",
+      "database": "database",
+      "textmining": "textmining",
+      "experimental_direct": "experimental_direct",
+      "experimental_transferred": "experimental_transferred",
+      "molecular_weight": "molecular_weight",
+      "SMILES_string": "smiles",
+      "InChIKey": "inchi_key",
+      "mode": "mode",
+      "action": "action",
+      "is_directional": "is_directional",
+      "a_is_acting": "a_is_acting"
+    }
+  }
+}

@@ -1,0 +1,1736 @@
+{
+  "category_id": "04",
+  "category_name": "Pathways & Networks",
+  "extraction_date": "2026-01-24",
+  "total_subcategories": 6,
+  "total_data_sources": 12,
+  "subcategories": [
+    {
+      "subcategory_id": "4.1",
+      "subcategory_name": "Metabolic Pathways",
+      "data_sources": ["KEGG", "Reactome", "WikiPathways"],
+      "unified_fields": [
+        {
+          "name": "pathway_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Primary identifier for the pathway",
+          "sources": ["KEGG", "Reactome", "WikiPathways"],
+          "semantic_definition": "Unique identifier assigned by each database to reference a biological pathway",
+          "examples": {
+            "KEGG": "hsa00010",
+            "Reactome": "R-HSA-1430728",
+            "WikiPathways": "WP554"
+          }
+        },
+        {
+          "name": "pathway_name",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Human-readable name of the pathway",
+          "sources": ["KEGG", "Reactome", "WikiPathways"],
+          "semantic_definition": "Display name describing the biological pathway or process",
+          "examples": {
+            "KEGG": "Glycolysis / Gluconeogenesis",
+            "Reactome": "Metabolism",
+            "WikiPathways": "Cholesterol biosynthesis pathway"
+          }
+        },
+        {
+          "name": "organism",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Species/organism the pathway applies to",
+          "sources": ["KEGG", "Reactome", "WikiPathways"],
+          "semantic_definition": "Taxonomic organism for which the pathway is annotated",
+          "examples": {
+            "KEGG": "hsa",
+            "Reactome": "Homo sapiens",
+            "WikiPathways": "Homo sapiens"
+          }
+        },
+        {
+          "name": "gene_entries",
+          "type": "array<entity>",
+          "cardinality": "1:N",
+          "description": "Genes/gene products participating in the pathway",
+          "sources": ["KEGG", "Reactome", "WikiPathways"],
+          "semantic_definition": "Collection of gene or gene product entities that participate in the pathway reactions"
+        },
+        {
+          "name": "compound_entries",
+          "type": "array<entity>",
+          "cardinality": "1:N",
+          "description": "Metabolites/compounds in the pathway",
+          "sources": ["KEGG", "Reactome", "WikiPathways"],
+          "semantic_definition": "Small molecules, metabolites, or chemical compounds involved in pathway reactions"
+        },
+        {
+          "name": "reactions",
+          "type": "array<reaction>",
+          "cardinality": "1:N",
+          "description": "Biochemical reactions comprising the pathway",
+          "sources": ["KEGG", "Reactome", "WikiPathways"],
+          "semantic_definition": "Molecular transformations that convert substrates to products within the pathway"
+        },
+        {
+          "name": "cross_references",
+          "type": "array<xref>",
+          "cardinality": "1:N",
+          "description": "Links to external databases",
+          "sources": ["KEGG", "Reactome", "WikiPathways"],
+          "semantic_definition": "References to corresponding entries in other biological databases"
+        }
+      ],
+      "source_specific_fields": {
+        "KEGG": [
+          {
+            "name": "entry_type",
+            "type": "enum",
+            "cardinality": "1:1",
+            "description": "Type of KGML entry",
+            "values": ["ortholog", "enzyme", "gene", "group", "compound", "map", "brite", "other"],
+            "example": "gene"
+          },
+          {
+            "name": "relation_type",
+            "type": "enum",
+            "cardinality": "1:1",
+            "description": "Type of molecular relation",
+            "values": ["ECrel", "PPrel", "GErel", "PCrel", "maplink"],
+            "example": "PPrel"
+          },
+          {
+            "name": "relation_subtype",
+            "type": "string",
+            "cardinality": "1:N",
+            "description": "Specific interaction type (activation, inhibition, phosphorylation, etc.)",
+            "example": "phosphorylation"
+          },
+          {
+            "name": "graphics",
+            "type": "object",
+            "cardinality": "1:1",
+            "description": "Visual rendering properties (x, y coordinates, colors)",
+            "example": {"x": 547, "y": 308, "type": "rectangle"}
+          },
+          {
+            "name": "reaction_type",
+            "type": "enum",
+            "cardinality": "1:1",
+            "description": "Reversibility of reaction",
+            "values": ["reversible", "irreversible"],
+            "example": "irreversible"
+          }
+        ],
+        "Reactome": [
+          {
+            "name": "dbId",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "Internal Reactome database identifier",
+            "example": 1430728
+          },
+          {
+            "name": "stId",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Stable identifier persistent across releases",
+            "example": "R-HSA-1430728"
+          },
+          {
+            "name": "stIdVersion",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Versioned stable identifier",
+            "example": "R-HSA-1430728.16"
+          },
+          {
+            "name": "schemaClass",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Neo4j node type classification",
+            "values": ["TopLevelPathway", "Pathway", "Reaction", "Complex", "EntityWithAccessionedSequence", "SimpleEntity"],
+            "example": "TopLevelPathway"
+          },
+          {
+            "name": "compartment",
+            "type": "array<compartment>",
+            "cardinality": "1:N",
+            "description": "Cellular locations where reaction occurs",
+            "example": ["cytosol", "nucleoplasm"]
+          },
+          {
+            "name": "goBiologicalProcess",
+            "type": "object",
+            "cardinality": "1:1",
+            "description": "Associated GO Biological Process annotation",
+            "example": {"accession": "GO:0008152", "displayName": "metabolic process"}
+          },
+          {
+            "name": "literatureReference",
+            "type": "array<reference>",
+            "cardinality": "1:N",
+            "description": "PubMed citations supporting the annotation",
+            "example": [{"pubMedIdentifier": 10583946}]
+          },
+          {
+            "name": "input",
+            "type": "array<PhysicalEntity>",
+            "cardinality": "1:N",
+            "description": "Reaction input entities (substrates)",
+            "example": ["ATP", "DHCR7"]
+          },
+          {
+            "name": "output",
+            "type": "array<PhysicalEntity>",
+            "cardinality": "1:N",
+            "description": "Reaction output entities (products)",
+            "example": ["ADP", "cholesterol"]
+          },
+          {
+            "name": "catalystActivity",
+            "type": "array<CatalystActivity>",
+            "cardinality": "1:N",
+            "description": "Enzymatic activities catalyzing the reaction",
+            "example": [{"activity": "GO:0016491", "physicalEntity": "DHCR7"}]
+          },
+          {
+            "name": "hasEvent",
+            "type": "array<Event>",
+            "cardinality": "1:N",
+            "description": "Child events within a pathway",
+            "example": ["R-HSA-191273"]
+          },
+          {
+            "name": "referenceEntity",
+            "type": "object",
+            "cardinality": "1:1",
+            "description": "External database reference (UniProt, ChEBI)",
+            "example": {"databaseName": "UniProt", "identifier": "Q9UBM7"}
+          },
+          {
+            "name": "isInDisease",
+            "type": "boolean",
+            "cardinality": "1:1",
+            "description": "Flag indicating disease-related pathway",
+            "example": false
+          },
+          {
+            "name": "isInferred",
+            "type": "boolean",
+            "cardinality": "1:1",
+            "description": "Flag indicating orthology inference",
+            "example": false
+          }
+        ],
+        "WikiPathways": [
+          {
+            "name": "GraphId",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Unique identifier within GPML document",
+            "example": "abc123"
+          },
+          {
+            "name": "DataNode_Type",
+            "type": "enum",
+            "cardinality": "1:1",
+            "description": "Classification of pathway node",
+            "values": ["GeneProduct", "Metabolite", "Protein", "Rna", "Complex", "Pathway", "Unknown"],
+            "example": "GeneProduct"
+          },
+          {
+            "name": "TextLabel",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Display text on node",
+            "example": "HMGCR"
+          },
+          {
+            "name": "ArrowHead",
+            "type": "enum",
+            "cardinality": "1:1",
+            "description": "Interaction type using MIM notation",
+            "values": ["Arrow", "mim-catalysis", "mim-stimulation", "mim-inhibition", "mim-conversion", "mim-modification", "mim-binding", "mim-cleavage", "TBar"],
+            "example": "mim-stimulation"
+          },
+          {
+            "name": "Group_Style",
+            "type": "enum",
+            "cardinality": "1:1",
+            "description": "Visual grouping style for complexes",
+            "values": ["None", "Group", "Complex", "Pathway"],
+            "example": "Complex"
+          },
+          {
+            "name": "State",
+            "type": "object",
+            "cardinality": "1:N",
+            "description": "Post-translational modification markers",
+            "example": {"TextLabel": "P", "GraphRef": "tp53node"}
+          },
+          {
+            "name": "Shape",
+            "type": "object",
+            "cardinality": "1:N",
+            "description": "Cellular compartment shapes",
+            "values": ["Rectangle", "RoundedRectangle", "Oval", "Mitochondria", "Endoplasmic Reticulum", "Golgi Apparatus", "Nucleus", "Cell"],
+            "example": "Mitochondria"
+          },
+          {
+            "name": "Graphics",
+            "type": "object",
+            "cardinality": "1:1",
+            "description": "Visual rendering properties",
+            "example": {"CenterX": 218.39, "CenterY": 190.95, "Width": 66.667, "Height": 20.0, "FillColor": "ffcccc"}
+          },
+          {
+            "name": "Xref_Database",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "External database for cross-reference",
+            "example": "Entrez Gene"
+          }
+        ]
+      }
+    },
+    {
+      "subcategory_id": "4.2",
+      "subcategory_name": "Signaling Pathways",
+      "data_sources": ["Pathway Commons"],
+      "unified_fields": [
+        {
+          "name": "uri",
+          "type": "URI",
+          "cardinality": "1:1",
+          "description": "Unique resource identifier for the entity",
+          "sources": ["Pathway Commons"],
+          "semantic_definition": "BioPAX URI serving as the primary identifier",
+          "examples": {"Pathway Commons": "http://identifiers.org/reactome/R-HSA-109581"}
+        },
+        {
+          "name": "displayName",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Human-readable entity name",
+          "sources": ["Pathway Commons"],
+          "semantic_definition": "Primary display name for pathway or entity",
+          "examples": {"Pathway Commons": "Apoptosis"}
+        },
+        {
+          "name": "organism",
+          "type": "BioSource",
+          "cardinality": "1:1",
+          "description": "Species for the pathway",
+          "sources": ["Pathway Commons"],
+          "semantic_definition": "Taxonomic organism context",
+          "examples": {"Pathway Commons": {"displayName": "Homo sapiens", "taxId": 9606}}
+        },
+        {
+          "name": "dataSource",
+          "type": "Provenance",
+          "cardinality": "1:1",
+          "description": "Source database of the record",
+          "sources": ["Pathway Commons"],
+          "semantic_definition": "Attribution to contributing database",
+          "examples": {"Pathway Commons": "Reactome"}
+        }
+      ],
+      "source_specific_fields": {
+        "Pathway Commons": [
+          {
+            "name": "pathwayComponent",
+            "type": "array<Process>",
+            "cardinality": "1:N",
+            "description": "Contained reactions and controls",
+            "example": ["BiochemicalReaction69541"]
+          },
+          {
+            "name": "pathwayOrder",
+            "type": "array<PathwayStep>",
+            "cardinality": "1:N",
+            "description": "Ordered steps in the pathway",
+            "example": ["step1", "step2"]
+          },
+          {
+            "name": "left",
+            "type": "array<PhysicalEntity>",
+            "cardinality": "1:N",
+            "description": "Reaction substrates (BiochemicalReaction)",
+            "example": ["Protein69523"]
+          },
+          {
+            "name": "right",
+            "type": "array<PhysicalEntity>",
+            "cardinality": "1:N",
+            "description": "Reaction products (BiochemicalReaction)",
+            "example": ["Complex69543"]
+          },
+          {
+            "name": "conversionDirection",
+            "type": "enum",
+            "cardinality": "1:1",
+            "description": "Direction of biochemical conversion",
+            "values": ["LEFT-TO-RIGHT", "RIGHT-TO-LEFT", "REVERSIBLE"],
+            "example": "LEFT-TO-RIGHT"
+          },
+          {
+            "name": "eCNumber",
+            "type": "array<string>",
+            "cardinality": "1:N",
+            "description": "EC enzyme classification numbers",
+            "example": ["1.1.1.1"]
+          },
+          {
+            "name": "controlType",
+            "type": "enum",
+            "cardinality": "1:1",
+            "description": "Type of regulatory control",
+            "values": ["ACTIVATION", "INHIBITION"],
+            "example": "ACTIVATION"
+          },
+          {
+            "name": "controller",
+            "type": "array<Entity>",
+            "cardinality": "1:N",
+            "description": "Entity performing the control",
+            "example": ["TP53 protein"]
+          },
+          {
+            "name": "controlled",
+            "type": "Process",
+            "cardinality": "1:1",
+            "description": "Process being controlled",
+            "example": "BiochemicalReaction69541"
+          },
+          {
+            "name": "entityReference",
+            "type": "Reference",
+            "cardinality": "1:1",
+            "description": "Canonical sequence or structure reference",
+            "example": {"db": "UniProt", "id": "P04637"}
+          },
+          {
+            "name": "feature",
+            "type": "array<EntityFeature>",
+            "cardinality": "1:N",
+            "description": "PTMs, domains, binding sites",
+            "example": [{"type": "phosphorylation", "position": "S15"}]
+          },
+          {
+            "name": "cellularLocation",
+            "type": "CellularLocation",
+            "cardinality": "1:1",
+            "description": "Subcellular location from GO",
+            "example": {"term": "cytosol", "go": "GO:0005829"}
+          },
+          {
+            "name": "component",
+            "type": "array<PhysicalEntity>",
+            "cardinality": "1:N",
+            "description": "Members of a complex",
+            "example": ["APAF1", "CYCS"]
+          },
+          {
+            "name": "componentStoichiometry",
+            "type": "array<Stoichiometry>",
+            "cardinality": "1:N",
+            "description": "Stoichiometric ratios of complex components",
+            "example": [{"entity": "APAF1", "coefficient": 7}]
+          }
+        ]
+      },
+      "sif_interaction_types": [
+        {"type": "INTERACTS_WITH", "description": "Physical binding", "biopax_source": "MolecularInteraction"},
+        {"type": "IN_COMPLEX_WITH", "description": "Shared complex membership", "biopax_source": "Complex"},
+        {"type": "CONTROLS-STATE-CHANGE-OF", "description": "State modification", "biopax_source": "Control"},
+        {"type": "CONTROLS-TRANSPORT-OF", "description": "Localization change", "biopax_source": "Control (Transport)"},
+        {"type": "CONTROLS-PHOSPHORYLATION-OF", "description": "Phosphorylation", "biopax_source": "Control (Modification)"},
+        {"type": "CONTROLS-EXPRESSION-OF", "description": "Transcriptional regulation", "biopax_source": "TemplateReactionRegulation"},
+        {"type": "CATALYSIS-PRECEDES", "description": "Enzyme cascade ordering", "biopax_source": "Catalysis ordering"},
+        {"type": "NEIGHBOR_OF", "description": "Same reaction", "biopax_source": "Neighborhood"},
+        {"type": "REACTS-WITH", "description": "Co-substrates", "biopax_source": "Shared reaction"},
+        {"type": "USED-TO-PRODUCE", "description": "Substrate to product", "biopax_source": "Reaction flow"},
+        {"type": "CHEMICAL-AFFECTS", "description": "Chemical regulation", "biopax_source": "Control"}
+      ]
+    },
+    {
+      "subcategory_id": "4.3",
+      "subcategory_name": "Protein-Protein Interactions",
+      "data_sources": ["BioGRID", "IntAct", "STRING"],
+      "unified_fields": [
+        {
+          "name": "interactor_A_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Identifier for first interacting protein",
+          "sources": ["BioGRID", "IntAct", "STRING"],
+          "semantic_definition": "Primary protein identifier for interactor A",
+          "examples": {
+            "BioGRID": "7157",
+            "IntAct": "uniprotkb:P04637",
+            "STRING": "9606.ENSP00000269305"
+          }
+        },
+        {
+          "name": "interactor_B_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Identifier for second interacting protein",
+          "sources": ["BioGRID", "IntAct", "STRING"],
+          "semantic_definition": "Primary protein identifier for interactor B",
+          "examples": {
+            "BioGRID": "3845",
+            "IntAct": "uniprotkb:Q00987",
+            "STRING": "9606.ENSP00000357274"
+          }
+        },
+        {
+          "name": "gene_symbol_A",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Gene symbol for interactor A",
+          "sources": ["BioGRID", "IntAct", "STRING"],
+          "semantic_definition": "Official gene symbol (HGNC for human)",
+          "examples": {
+            "BioGRID": "TP53",
+            "IntAct": "TP53",
+            "STRING": "TP53"
+          }
+        },
+        {
+          "name": "gene_symbol_B",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Gene symbol for interactor B",
+          "sources": ["BioGRID", "IntAct", "STRING"],
+          "semantic_definition": "Official gene symbol (HGNC for human)",
+          "examples": {
+            "BioGRID": "KRAS",
+            "IntAct": "MDM2",
+            "STRING": "MDM2"
+          }
+        },
+        {
+          "name": "detection_method",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Experimental method used to detect interaction",
+          "sources": ["BioGRID", "IntAct", "STRING"],
+          "semantic_definition": "PSI-MI controlled vocabulary term for detection method",
+          "examples": {
+            "BioGRID": "Two-hybrid",
+            "IntAct": "psi-mi:\"MI:0018\"(two hybrid)",
+            "STRING": "experimental (escore)"
+          }
+        },
+        {
+          "name": "interaction_type",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Type of molecular interaction",
+          "sources": ["BioGRID", "IntAct", "STRING"],
+          "semantic_definition": "Classification of the interaction (physical, genetic, functional)",
+          "examples": {
+            "BioGRID": "physical",
+            "IntAct": "psi-mi:\"MI:0915\"(physical association)",
+            "STRING": "functional"
+          }
+        },
+        {
+          "name": "publication_id",
+          "type": "string",
+          "cardinality": "1:N",
+          "description": "PubMed ID of supporting publication",
+          "sources": ["BioGRID", "IntAct", "STRING"],
+          "semantic_definition": "Literature reference for the interaction evidence",
+          "examples": {
+            "BioGRID": "1535557",
+            "IntAct": "pubmed:1535557",
+            "STRING": "derived from multiple sources"
+          }
+        },
+        {
+          "name": "organism_A",
+          "type": "integer",
+          "cardinality": "1:1",
+          "description": "NCBI taxonomy ID for interactor A",
+          "sources": ["BioGRID", "IntAct", "STRING"],
+          "semantic_definition": "Taxonomic identifier for species of interactor A",
+          "examples": {
+            "BioGRID": 9606,
+            "IntAct": 9606,
+            "STRING": 9606
+          }
+        },
+        {
+          "name": "organism_B",
+          "type": "integer",
+          "cardinality": "1:1",
+          "description": "NCBI taxonomy ID for interactor B",
+          "sources": ["BioGRID", "IntAct", "STRING"],
+          "semantic_definition": "Taxonomic identifier for species of interactor B",
+          "examples": {
+            "BioGRID": 9606,
+            "IntAct": 9606,
+            "STRING": 9606
+          }
+        },
+        {
+          "name": "confidence_score",
+          "type": "float",
+          "cardinality": "1:1",
+          "description": "Confidence score for the interaction",
+          "sources": ["BioGRID", "IntAct", "STRING"],
+          "semantic_definition": "Numerical confidence measure (scale varies by source)",
+          "examples": {
+            "BioGRID": "N/A (some entries)",
+            "IntAct": 0.73,
+            "STRING": 0.999
+          }
+        }
+      ],
+      "source_specific_fields": {
+        "BioGRID": [
+          {
+            "name": "BioGRID_Interaction_ID",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "Unique BioGRID interaction identifier",
+            "example": 103
+          },
+          {
+            "name": "BioGRID_ID_A",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "BioGRID internal ID for interactor A",
+            "example": 112315
+          },
+          {
+            "name": "BioGRID_ID_B",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "BioGRID internal ID for interactor B",
+            "example": 107485
+          },
+          {
+            "name": "Systematic_Name_A",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Systematic gene name for A",
+            "example": "YDR420W"
+          },
+          {
+            "name": "Synonyms_A",
+            "type": "string",
+            "cardinality": "1:N",
+            "description": "Alias names (pipe-separated)",
+            "example": "p53|LFS1"
+          },
+          {
+            "name": "Experimental_System",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Specific experimental method",
+            "example": "Affinity Capture-MS"
+          },
+          {
+            "name": "Experimental_System_Type",
+            "type": "enum",
+            "cardinality": "1:1",
+            "description": "Broad interaction type",
+            "values": ["physical", "genetic"],
+            "example": "physical"
+          },
+          {
+            "name": "Throughput",
+            "type": "enum",
+            "cardinality": "1:1",
+            "description": "Experiment scale",
+            "values": ["high", "low"],
+            "example": "Low Throughput"
+          },
+          {
+            "name": "Modification",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Post-translational modification info",
+            "example": "Phosphorylation"
+          },
+          {
+            "name": "Ontology_Term_IDs",
+            "type": "string",
+            "cardinality": "1:N",
+            "description": "GO terms (pipe-separated, TAB 3.0)",
+            "example": "GO:0005515|GO:0005634"
+          },
+          {
+            "name": "SWISS-PROT_Accession_A",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "UniProt Swiss-Prot accession for A",
+            "example": "P04637"
+          }
+        ],
+        "IntAct": [
+          {
+            "name": "interactionAc",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "IntAct interaction accession",
+            "example": "EBI-77734"
+          },
+          {
+            "name": "intact-miscore",
+            "type": "float",
+            "cardinality": "1:1",
+            "description": "IntAct molecular interaction confidence score (0-1)",
+            "example": 0.73
+          },
+          {
+            "name": "expansion_method",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Complex expansion method",
+            "values": ["spoke", "matrix"],
+            "example": "psi-mi:\"MI:1060\"(spoke)"
+          },
+          {
+            "name": "biological_role_A",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Biological role of participant A",
+            "example": "psi-mi:\"MI:0499\"(unspecified role)"
+          },
+          {
+            "name": "experimental_role_A",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Experimental role of participant A",
+            "example": "psi-mi:\"MI:0496\"(bait)"
+          },
+          {
+            "name": "experimental_role_B",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Experimental role of participant B",
+            "example": "psi-mi:\"MI:0498\"(prey)"
+          },
+          {
+            "name": "interactor_type_A",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Molecule type of interactor A",
+            "values": ["protein", "dna", "rna", "small molecule", "complex", "gene"],
+            "example": "psi-mi:\"MI:0326\"(protein)"
+          },
+          {
+            "name": "feature_A",
+            "type": "string",
+            "cardinality": "1:N",
+            "description": "Binding regions or modifications",
+            "example": "binding region:23-56"
+          },
+          {
+            "name": "stoichiometry_A",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "Number of molecules of participant A",
+            "example": 2
+          },
+          {
+            "name": "negative",
+            "type": "boolean",
+            "cardinality": "1:1",
+            "description": "Flag for negative (non-)interaction",
+            "example": false
+          },
+          {
+            "name": "host_organism",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Experimental host organism",
+            "example": "taxid:9606(human)"
+          },
+          {
+            "name": "parameters_interaction",
+            "type": "string",
+            "cardinality": "1:N",
+            "description": "Kinetic parameters (Kd, Ki, etc.)",
+            "example": "kd:2.0e-9"
+          },
+          {
+            "name": "checksum_interaction",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "RIGID interaction checksum",
+            "example": "rigid:4hL..."
+          }
+        ],
+        "STRING": [
+          {
+            "name": "stringId_A",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "STRING protein identifier (taxid.ENSP)",
+            "example": "9606.ENSP00000269305"
+          },
+          {
+            "name": "stringId_B",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "STRING protein identifier (taxid.ENSP)",
+            "example": "9606.ENSP00000357274"
+          },
+          {
+            "name": "score",
+            "type": "float",
+            "cardinality": "1:1",
+            "description": "Combined confidence score (0-1)",
+            "example": 0.999
+          },
+          {
+            "name": "nscore",
+            "type": "float",
+            "cardinality": "1:1",
+            "description": "Neighborhood score (gene proximity)",
+            "example": 0.0
+          },
+          {
+            "name": "fscore",
+            "type": "float",
+            "cardinality": "1:1",
+            "description": "Fusion score (gene fusion events)",
+            "example": 0.0
+          },
+          {
+            "name": "pscore",
+            "type": "float",
+            "cardinality": "1:1",
+            "description": "Phylogenetic profile score (co-occurrence)",
+            "example": 0.0
+          },
+          {
+            "name": "ascore",
+            "type": "float",
+            "cardinality": "1:1",
+            "description": "Co-expression score",
+            "example": 0.076
+          },
+          {
+            "name": "escore",
+            "type": "float",
+            "cardinality": "1:1",
+            "description": "Experimental score (lab evidence)",
+            "example": 0.994
+          },
+          {
+            "name": "dscore",
+            "type": "float",
+            "cardinality": "1:1",
+            "description": "Database score (curated sources)",
+            "example": 0.900
+          },
+          {
+            "name": "tscore",
+            "type": "float",
+            "cardinality": "1:1",
+            "description": "Text-mining score (literature co-mentions)",
+            "example": 0.969
+          },
+          {
+            "name": "network_type",
+            "type": "enum",
+            "cardinality": "1:1",
+            "description": "Type of network",
+            "values": ["functional", "physical"],
+            "example": "functional"
+          }
+        ]
+      },
+      "psi_mi_detection_methods": [
+        {"mi_id": "MI:0006", "term": "anti bait coimmunoprecipitation", "description": "IP with antibody against bait"},
+        {"mi_id": "MI:0018", "term": "two hybrid", "description": "Yeast two-hybrid"},
+        {"mi_id": "MI:0019", "term": "coimmunoprecipitation", "description": "Co-IP"},
+        {"mi_id": "MI:0096", "term": "pull down", "description": "Pull-down assay"},
+        {"mi_id": "MI:0114", "term": "x-ray crystallography", "description": "Crystal structure"},
+        {"mi_id": "MI:0676", "term": "tandem affinity purification", "description": "TAP tag purification"},
+        {"mi_id": "MI:0004", "term": "affinity capture-MS", "description": "Mass spec pull-down"},
+        {"mi_id": "MI:1313", "term": "proximity label-MS", "description": "BioID, APEX"}
+      ],
+      "psi_mi_interaction_types": [
+        {"mi_id": "MI:0407", "term": "direct interaction", "description": "Direct physical contact"},
+        {"mi_id": "MI:0403", "term": "colocalization", "description": "Same cellular location"},
+        {"mi_id": "MI:0915", "term": "physical association", "description": "Physical contact"}
+      ]
+    },
+    {
+      "subcategory_id": "4.4",
+      "subcategory_name": "Drug-Target Interactions",
+      "data_sources": ["STITCH"],
+      "unified_fields": [
+        {
+          "name": "chemical_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "STITCH chemical identifier",
+          "sources": ["STITCH"],
+          "semantic_definition": "PubChem CID-based identifier with prefix (CIDm/CIDs)",
+          "examples": {"STITCH": "CIDm00002244"}
+        },
+        {
+          "name": "protein_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "STRING protein identifier",
+          "sources": ["STITCH"],
+          "semantic_definition": "Protein identifier in taxid.ENSP format",
+          "examples": {"STITCH": "9606.ENSP00000269305"}
+        },
+        {
+          "name": "chemical_name",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Preferred chemical name",
+          "sources": ["STITCH"],
+          "semantic_definition": "Common or IUPAC name of the compound",
+          "examples": {"STITCH": "aspirin"}
+        },
+        {
+          "name": "combined_score",
+          "type": "integer",
+          "cardinality": "1:1",
+          "description": "Probabilistic confidence score (0-1000)",
+          "sources": ["STITCH"],
+          "semantic_definition": "Integrated score from all evidence channels",
+          "examples": {"STITCH": 976}
+        }
+      ],
+      "source_specific_fields": {
+        "STITCH": [
+          {
+            "name": "experimental",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "Experimental evidence score (binding assays, structures)",
+            "example": 900
+          },
+          {
+            "name": "prediction",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "Computational prediction score",
+            "example": 0
+          },
+          {
+            "name": "database",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "Curated database annotation score",
+            "example": 700
+          },
+          {
+            "name": "textmining",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "Literature co-occurrence score",
+            "example": 650
+          },
+          {
+            "name": "experimental_direct",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "Direct experimental evidence",
+            "example": 900
+          },
+          {
+            "name": "experimental_transferred",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "Evidence transferred from homologs",
+            "example": 0
+          },
+          {
+            "name": "molecular_weight",
+            "type": "float",
+            "cardinality": "1:1",
+            "description": "Molecular weight in Daltons",
+            "example": 180.157
+          },
+          {
+            "name": "SMILES_string",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Canonical SMILES representation",
+            "example": "CC(=O)OC1=CC=CC=C1C(=O)O"
+          },
+          {
+            "name": "InChIKey",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "International Chemical Identifier key",
+            "example": "BSYNRYMUTXBXSQ-UHFFFAOYSA-N"
+          },
+          {
+            "name": "mode",
+            "type": "enum",
+            "cardinality": "1:1",
+            "description": "Action type/mechanism",
+            "values": ["activation", "inhibition", "binding", "catalysis", "reaction", "expression", "ptmod"],
+            "example": "inhibition"
+          },
+          {
+            "name": "action",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Specific action annotation",
+            "example": "inhibitor"
+          },
+          {
+            "name": "is_directional",
+            "type": "boolean",
+            "cardinality": "1:1",
+            "description": "Whether interaction has directionality",
+            "example": true
+          },
+          {
+            "name": "a_is_acting",
+            "type": "boolean",
+            "cardinality": "1:1",
+            "description": "Whether A (chemical) acts on B (protein)",
+            "example": true
+          }
+        ]
+      },
+      "chemical_id_formats": [
+        {"prefix": "CIDm", "meaning": "Merged stereo (stereo-agnostic)", "example": "CIDm00002244"},
+        {"prefix": "CIDs", "meaning": "Stereospecific", "example": "CIDs00002244"},
+        {"prefix": "CID0", "meaning": "PubChem exact", "example": "CID000002244"}
+      ],
+      "action_types": [
+        {"action": "activation", "description": "Chemical activates protein (agonist)"},
+        {"action": "inhibition", "description": "Chemical inhibits protein (antagonist, inhibitor)"},
+        {"action": "binding", "description": "Physical binding without clear functional effect"},
+        {"action": "catalysis", "description": "Enzyme-substrate relationship"},
+        {"action": "reaction", "description": "Metabolic reaction (product/substrate)"},
+        {"action": "expression", "description": "Affects protein expression (inducer/repressor)"},
+        {"action": "ptmod", "description": "Post-translational modification"}
+      ]
+    },
+    {
+      "subcategory_id": "4.5",
+      "subcategory_name": "Gene Function & Ontology",
+      "data_sources": ["Gene Ontology", "MSigDB"],
+      "unified_fields": [
+        {
+          "name": "term_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Primary identifier for the ontology term or gene set",
+          "sources": ["Gene Ontology", "MSigDB"],
+          "semantic_definition": "Unique identifier for functional annotation term",
+          "examples": {
+            "Gene Ontology": "GO:0008152",
+            "MSigDB": "M5930"
+          }
+        },
+        {
+          "name": "term_name",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Human-readable term name",
+          "sources": ["Gene Ontology", "MSigDB"],
+          "semantic_definition": "Display name for the ontology term or gene set",
+          "examples": {
+            "Gene Ontology": "metabolic process",
+            "MSigDB": "HALLMARK_APOPTOSIS"
+          }
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Definition or description of the term",
+          "sources": ["Gene Ontology", "MSigDB"],
+          "semantic_definition": "Detailed textual definition of the functional concept",
+          "examples": {
+            "Gene Ontology": "The chemical reactions and pathways, including anabolism and catabolism...",
+            "MSigDB": "Genes mediating programmed cell death (apoptosis) by activation of caspases."
+          }
+        },
+        {
+          "name": "genes",
+          "type": "array<string>",
+          "cardinality": "1:N",
+          "description": "Associated genes/gene products",
+          "sources": ["Gene Ontology", "MSigDB"],
+          "semantic_definition": "List of genes annotated to or members of the term",
+          "examples": {
+            "Gene Ontology": "via GAF annotations",
+            "MSigDB": ["CASP3", "CASP8", "BAX", "BCL2"]
+          }
+        }
+      ],
+      "source_specific_fields": {
+        "Gene Ontology": [
+          {
+            "name": "namespace",
+            "type": "enum",
+            "cardinality": "1:1",
+            "description": "GO ontology branch",
+            "values": ["molecular_function", "biological_process", "cellular_component"],
+            "example": "biological_process"
+          },
+          {
+            "name": "aspect",
+            "type": "enum",
+            "cardinality": "1:1",
+            "description": "Single-letter aspect code",
+            "values": ["F", "P", "C"],
+            "example": "P"
+          },
+          {
+            "name": "is_a",
+            "type": "array<string>",
+            "cardinality": "1:N",
+            "description": "Parent terms (subclass relationship)",
+            "example": ["GO:0008150"]
+          },
+          {
+            "name": "part_of",
+            "type": "array<string>",
+            "cardinality": "1:N",
+            "description": "Part-whole relationships",
+            "example": ["GO:0009987"]
+          },
+          {
+            "name": "regulates",
+            "type": "array<string>",
+            "cardinality": "1:N",
+            "description": "Terms this term regulates",
+            "example": ["GO:0006915"]
+          },
+          {
+            "name": "synonym",
+            "type": "array<string>",
+            "cardinality": "1:N",
+            "description": "Alternative names (EXACT, NARROW, BROAD)",
+            "example": ["metabolism"]
+          },
+          {
+            "name": "xref",
+            "type": "array<string>",
+            "cardinality": "1:N",
+            "description": "Cross-references to other databases",
+            "example": ["Wikipedia:Metabolism"]
+          },
+          {
+            "name": "subset",
+            "type": "array<string>",
+            "cardinality": "1:N",
+            "description": "GO slim membership",
+            "example": ["goslim_generic", "goslim_chembl"]
+          }
+        ],
+        "Gene Ontology_GAF": [
+          {
+            "name": "DB",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Database contributing the annotation",
+            "example": "UniProtKB"
+          },
+          {
+            "name": "DB_Object_ID",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Unique identifier in source database",
+            "example": "P04637"
+          },
+          {
+            "name": "DB_Object_Symbol",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Gene/protein symbol",
+            "example": "TP53"
+          },
+          {
+            "name": "Qualifier",
+            "type": "string",
+            "cardinality": "1:N",
+            "description": "Annotation qualifier",
+            "values": ["NOT", "contributes_to", "colocalizes_with", "enables", "involved_in", "located_in"],
+            "example": "enables"
+          },
+          {
+            "name": "GO_ID",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "GO term identifier",
+            "example": "GO:0003700"
+          },
+          {
+            "name": "DB_Reference",
+            "type": "string",
+            "cardinality": "1:N",
+            "description": "Reference for annotation (PMID, GO_REF)",
+            "example": "PMID:8657117"
+          },
+          {
+            "name": "Evidence_Code",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Evidence code from ECO",
+            "example": "IDA"
+          },
+          {
+            "name": "With_From",
+            "type": "string",
+            "cardinality": "1:N",
+            "description": "Additional supporting identifiers",
+            "example": "UniProtKB:P04637"
+          },
+          {
+            "name": "DB_Object_Type",
+            "type": "enum",
+            "cardinality": "1:1",
+            "description": "Type of annotated entity",
+            "values": ["gene", "protein", "transcript", "complex"],
+            "example": "protein"
+          },
+          {
+            "name": "Taxon",
+            "type": "string",
+            "cardinality": "1:2",
+            "description": "NCBI Taxonomy ID",
+            "example": "taxon:9606"
+          },
+          {
+            "name": "Date",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Annotation date (YYYYMMDD)",
+            "example": "20230415"
+          },
+          {
+            "name": "Assigned_By",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Group that made annotation",
+            "example": "UniProt"
+          }
+        ],
+        "Gene Ontology_GO-CAM": [
+          {
+            "name": "model_id",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "GO-CAM model identifier",
+            "example": "gomodel:5fce9b7300002411"
+          },
+          {
+            "name": "title",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Model title",
+            "example": "Insulin signaling pathway"
+          },
+          {
+            "name": "state",
+            "type": "enum",
+            "cardinality": "1:1",
+            "description": "Curation state",
+            "values": ["development", "review", "production"],
+            "example": "production"
+          },
+          {
+            "name": "activities",
+            "type": "array<activity>",
+            "cardinality": "1:N",
+            "description": "Molecular activities in the model",
+            "example": [{"gene_product": "UniProtKB:P06213", "molecular_function": "GO:0004716"}]
+          },
+          {
+            "name": "causal_relations",
+            "type": "array<relation>",
+            "cardinality": "1:N",
+            "description": "Causal relationships between activities",
+            "example": [{"predicate": "RO:0002413", "predicate_label": "directly_provides_input_for"}]
+          },
+          {
+            "name": "enabled_by",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Gene product enabling the activity",
+            "example": "UniProtKB:P06213"
+          }
+        ],
+        "MSigDB": [
+          {
+            "name": "geneSetName",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Standard gene set name",
+            "example": "HALLMARK_APOPTOSIS"
+          },
+          {
+            "name": "systematicName",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "MSigDB systematic identifier",
+            "example": "M5930"
+          },
+          {
+            "name": "geneSetCollection",
+            "type": "enum",
+            "cardinality": "1:1",
+            "description": "Collection identifier",
+            "values": ["H", "C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8"],
+            "example": "H"
+          },
+          {
+            "name": "geneSetSubcollection",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Subcollection within collection",
+            "example": "CP:REACTOME"
+          },
+          {
+            "name": "contributor",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Name of contributor",
+            "example": "Arthur Liberzon"
+          },
+          {
+            "name": "exactSource",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Original source URL",
+            "example": "http://www.broadinstitute.org/gsea/msigdb/"
+          },
+          {
+            "name": "pmid",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "PubMed ID for source publication",
+            "example": 26771021
+          },
+          {
+            "name": "geneSymbols",
+            "type": "array<string>",
+            "cardinality": "1:N",
+            "description": "Gene symbols in the set",
+            "example": ["CASP3", "CASP8", "BAX"]
+          },
+          {
+            "name": "numGenes",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "Number of genes in the set",
+            "example": 161
+          },
+          {
+            "name": "organisms",
+            "type": "array<string>",
+            "cardinality": "1:N",
+            "description": "Target organisms",
+            "example": ["Homo sapiens"]
+          }
+        ]
+      },
+      "evidence_codes": {
+        "experimental": [
+          {"code": "EXP", "name": "Inferred from Experiment", "weight": "High"},
+          {"code": "IDA", "name": "Inferred from Direct Assay", "weight": "High"},
+          {"code": "IPI", "name": "Inferred from Physical Interaction", "weight": "High"},
+          {"code": "IMP", "name": "Inferred from Mutant Phenotype", "weight": "High"},
+          {"code": "IGI", "name": "Inferred from Genetic Interaction", "weight": "High"},
+          {"code": "IEP", "name": "Inferred from Expression Pattern", "weight": "Medium"},
+          {"code": "HTP", "name": "High Throughput Experiment", "weight": "Medium"}
+        ],
+        "computational": [
+          {"code": "ISS", "name": "Inferred from Sequence Similarity", "weight": "Medium"},
+          {"code": "ISO", "name": "Inferred from Sequence Orthology", "weight": "Medium"},
+          {"code": "IBA", "name": "Inferred from Biological Ancestor", "weight": "Medium"},
+          {"code": "RCA", "name": "Reviewed Computational Analysis", "weight": "Medium"}
+        ],
+        "author": [
+          {"code": "TAS", "name": "Traceable Author Statement", "weight": "Medium"},
+          {"code": "NAS", "name": "Non-traceable Author Statement", "weight": "Low"},
+          {"code": "IC", "name": "Inferred by Curator", "weight": "Medium"}
+        ],
+        "electronic": [
+          {"code": "IEA", "name": "Inferred from Electronic Annotation", "weight": "Low"}
+        ]
+      },
+      "msigdb_collections": [
+        {"id": "H", "name": "Hallmark", "description": "Well-defined biological states", "count": 50},
+        {"id": "C1", "name": "Positional", "description": "Chromosome cytogenetic bands", "count": 299},
+        {"id": "C2", "name": "Curated", "description": "Curated pathway databases", "count": "6300+"},
+        {"id": "C3", "name": "Motif", "description": "TF and miRNA targets", "count": "3700+"},
+        {"id": "C4", "name": "Computational", "description": "Cancer-related signatures", "count": "850+"},
+        {"id": "C5", "name": "GO", "description": "Gene Ontology terms", "count": "15000+"},
+        {"id": "C6", "name": "Oncogenic", "description": "Oncogenic pathway signatures", "count": 189},
+        {"id": "C7", "name": "Immunologic", "description": "Immunologic signatures", "count": "5200+"},
+        {"id": "C8", "name": "Cell Type", "description": "Cell type markers", "count": "700+"}
+      ]
+    },
+    {
+      "subcategory_id": "4.6",
+      "subcategory_name": "Regulatory Networks",
+      "data_sources": ["JASPAR", "Roadmap Epigenomics"],
+      "unified_fields": [
+        {
+          "name": "element_id",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Primary identifier for regulatory element",
+          "sources": ["JASPAR", "Roadmap Epigenomics"],
+          "semantic_definition": "Unique identifier for TF binding motif or chromatin region",
+          "examples": {
+            "JASPAR": "MA0106.3",
+            "Roadmap Epigenomics": "E003"
+          }
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "cardinality": "1:1",
+          "description": "Name of the element or sample",
+          "sources": ["JASPAR", "Roadmap Epigenomics"],
+          "semantic_definition": "Human-readable identifier",
+          "examples": {
+            "JASPAR": "TP53",
+            "Roadmap Epigenomics": "H1 Cells"
+          }
+        },
+        {
+          "name": "species",
+          "type": "string",
+          "cardinality": "1:N",
+          "description": "Organism(s)",
+          "sources": ["JASPAR", "Roadmap Epigenomics"],
+          "semantic_definition": "Taxonomic species for the data",
+          "examples": {
+            "JASPAR": "Homo sapiens",
+            "Roadmap Epigenomics": "Homo sapiens"
+          }
+        }
+      ],
+      "source_specific_fields": {
+        "JASPAR": [
+          {
+            "name": "matrix_id",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "JASPAR matrix identifier with version",
+            "example": "MA0106.3"
+          },
+          {
+            "name": "version",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "Matrix version number",
+            "example": 3
+          },
+          {
+            "name": "collection",
+            "type": "enum",
+            "cardinality": "1:1",
+            "description": "JASPAR collection",
+            "values": ["CORE", "CNE", "PHYLOFACTS", "SPLICE", "POLII", "FAM"],
+            "example": "CORE"
+          },
+          {
+            "name": "tax_group",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Taxonomic group",
+            "example": "vertebrates"
+          },
+          {
+            "name": "class",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "TF structural class",
+            "example": "Zinc-coordinating"
+          },
+          {
+            "name": "family",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "TF family",
+            "example": "C2H2 zinc finger factors"
+          },
+          {
+            "name": "uniprot_ids",
+            "type": "array<string>",
+            "cardinality": "1:N",
+            "description": "UniProt accessions for the TF",
+            "example": ["P04637"]
+          },
+          {
+            "name": "data_type",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Experimental data source type",
+            "example": "ChIP-seq"
+          },
+          {
+            "name": "source",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Data source project",
+            "example": "ENCODE"
+          },
+          {
+            "name": "pfm",
+            "type": "object",
+            "cardinality": "1:1",
+            "description": "Position Frequency Matrix (nucleotide counts)",
+            "example": {"A": [286, 684], "C": [148, 58], "G": [283, 187], "T": [137, 37]}
+          },
+          {
+            "name": "pwm",
+            "type": "object",
+            "cardinality": "1:1",
+            "description": "Position Weight Matrix (log-odds scores)",
+            "example": {"A": [0.14, 0.85], "C": [-0.35, -0.95], "G": [0.12, -0.10], "T": [-0.50, -1.70]}
+          },
+          {
+            "name": "sequence_logo",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "URL to sequence logo image",
+            "example": "http://jaspar.genereg.net/static/logos/all/MA0106.3.png"
+          },
+          {
+            "name": "ic_values",
+            "type": "array<float>",
+            "cardinality": "1:N",
+            "description": "Information content per position (bits)",
+            "example": [0.15, 0.89, 0.82]
+          },
+          {
+            "name": "total_ic",
+            "type": "float",
+            "cardinality": "1:1",
+            "description": "Total information content",
+            "example": 9.74
+          }
+        ],
+        "Roadmap Epigenomics": [
+          {
+            "name": "eid",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Epigenome ID",
+            "example": "E003"
+          },
+          {
+            "name": "standardName",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Standard epigenome name",
+            "example": "H1 Cells"
+          },
+          {
+            "name": "group",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Epigenome group",
+            "example": "ES/iPS"
+          },
+          {
+            "name": "anatomy",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Anatomical source",
+            "example": "ESC"
+          },
+          {
+            "name": "type",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Sample type",
+            "example": "Cell Line"
+          },
+          {
+            "name": "chromatin_state",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Chromatin state annotation (15-state model)",
+            "example": "1_TssA"
+          },
+          {
+            "name": "histone_marks",
+            "type": "object",
+            "cardinality": "1:1",
+            "description": "Available histone modification tracks",
+            "example": {"H3K4me1": "available", "H3K4me3": "available", "H3K27ac": "available"}
+          },
+          {
+            "name": "dna_methylation",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "DNA methylation assay type",
+            "values": ["WGBS", "RRBS"],
+            "example": "WGBS"
+          },
+          {
+            "name": "chrom",
+            "type": "string",
+            "cardinality": "1:1",
+            "description": "Chromosome (BED format)",
+            "example": "chr1"
+          },
+          {
+            "name": "chromStart",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "Start position (0-based, BED format)",
+            "example": 10000
+          },
+          {
+            "name": "chromEnd",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "End position (BED format)",
+            "example": 10600
+          },
+          {
+            "name": "state",
+            "type": "enum",
+            "cardinality": "1:1",
+            "description": "15-state chromatin state",
+            "values": ["1_TssA", "2_TssAFlnk", "3_TxFlnk", "4_Tx", "5_TxWk", "6_EnhG", "7_Enh", "8_ZNF/Rpts", "9_Het", "10_TssBiv", "11_BivFlnk", "12_EnhBiv", "13_ReprPC", "14_ReprPCWk", "15_Quies"],
+            "example": "1_TssA"
+          },
+          {
+            "name": "signal_type",
+            "type": "enum",
+            "cardinality": "1:1",
+            "description": "Signal track type",
+            "values": ["pval", "fc", "tagAlign"],
+            "example": "pval"
+          },
+          {
+            "name": "methylation_fraction",
+            "type": "float",
+            "cardinality": "1:1",
+            "description": "DNA methylation level (0-1)",
+            "example": 0.83
+          },
+          {
+            "name": "peak_score",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "Peak score (0-1000, narrowPeak format)",
+            "example": 1000
+          },
+          {
+            "name": "signalValue",
+            "type": "float",
+            "cardinality": "1:1",
+            "description": "Enrichment signal value",
+            "example": 9.12
+          },
+          {
+            "name": "pValue",
+            "type": "float",
+            "cardinality": "1:1",
+            "description": "-log10(p-value) for peak",
+            "example": 16.23
+          },
+          {
+            "name": "qValue",
+            "type": "float",
+            "cardinality": "1:1",
+            "description": "-log10(q-value/FDR) for peak",
+            "example": 14.56
+          },
+          {
+            "name": "peak",
+            "type": "integer",
+            "cardinality": "1:1",
+            "description": "Summit position relative to start",
+            "example": 426
+          }
+        ]
+      },
+      "chromatin_states_15": [
+        {"state": "1_TssA", "name": "Active TSS", "color": "Red", "key_marks": "H3K4me3, H3K27ac"},
+        {"state": "2_TssAFlnk", "name": "Flanking Active TSS", "color": "Orange Red", "key_marks": "H3K4me3, H3K4me1"},
+        {"state": "3_TxFlnk", "name": "Transcription 5'/3'", "color": "Lime Green", "key_marks": "H3K4me1, H3K36me3"},
+        {"state": "4_Tx", "name": "Strong Transcription", "color": "Green", "key_marks": "H3K36me3"},
+        {"state": "5_TxWk", "name": "Weak Transcription", "color": "Dark Green", "key_marks": "Weak H3K36me3"},
+        {"state": "6_EnhG", "name": "Genic Enhancers", "color": "Green Yellow", "key_marks": "H3K4me1, H3K27ac, H3K36me3"},
+        {"state": "7_Enh", "name": "Enhancers", "color": "Yellow", "key_marks": "H3K4me1, H3K27ac"},
+        {"state": "8_ZNF/Rpts", "name": "ZNF genes & repeats", "color": "Medium Aquamarine", "key_marks": "H3K36me3, H3K9me3"},
+        {"state": "9_Het", "name": "Heterochromatin", "color": "Pale Turquoise", "key_marks": "H3K9me3"},
+        {"state": "10_TssBiv", "name": "Bivalent/Poised TSS", "color": "Indian Red", "key_marks": "H3K4me3, H3K27me3"},
+        {"state": "11_BivFlnk", "name": "Flanking Bivalent TSS/Enh", "color": "Dark Salmon", "key_marks": "H3K4me1, H3K27me3"},
+        {"state": "12_EnhBiv", "name": "Bivalent Enhancer", "color": "Dark Khaki", "key_marks": "H3K4me1, H3K27me3"},
+        {"state": "13_ReprPC", "name": "Repressed PolyComb", "color": "Silver", "key_marks": "H3K27me3"},
+        {"state": "14_ReprPCWk", "name": "Weak Repressed PolyComb", "color": "Gainsboro", "key_marks": "Weak H3K27me3"},
+        {"state": "15_Quies", "name": "Quiescent/Low", "color": "White", "key_marks": "No marks"}
+      ],
+      "jaspar_tf_classes": [
+        {"class": "Zinc-coordinating", "families": ["C2H2 zinc finger factors", "Nuclear receptors with C4 zinc fingers", "C4 zinc finger-type integrases"]},
+        {"class": "Helix-turn-helix", "families": ["Fork head/winged helix factors", "Homeodomain factors", "POU domain factors"]},
+        {"class": "Basic domains", "families": ["bHLH factors", "bZIP factors"]}
+      ]
+    }
+  ],
+  "cross_category_shared_identifiers": {
+    "gene_identifiers": {
+      "description": "Common gene/protein identifiers used across multiple sources",
+      "identifiers": [
+        {"type": "UniProt", "format": "[A-Z][0-9]{5} or [A-Z][0-9][A-Z0-9]{3}[0-9]", "sources": ["Reactome", "IntAct", "Gene Ontology", "JASPAR"]},
+        {"type": "Ensembl Gene", "format": "ENSG[0-9]{11}", "sources": ["STRING", "WikiPathways", "Gene Ontology"]},
+        {"type": "Ensembl Protein", "format": "ENSP[0-9]{11}", "sources": ["STRING", "STITCH", "Reactome"]},
+        {"type": "NCBI Gene ID", "format": "Integer", "sources": ["BioGRID", "WikiPathways", "Gene Ontology", "MSigDB"]},
+        {"type": "HGNC Symbol", "format": "Text", "sources": ["BioGRID", "IntAct", "STRING", "MSigDB"]}
+      ]
+    },
+    "pathway_identifiers": {
+      "description": "Cross-referenced pathway identifiers",
+      "identifiers": [
+        {"type": "KEGG Pathway", "format": "hsa[0-9]{5} or map[0-9]{5}", "sources": ["KEGG", "Reactome", "WikiPathways", "STRING"]},
+        {"type": "Reactome", "format": "R-[A-Z]{3}-[0-9]+", "sources": ["Reactome", "WikiPathways", "Pathway Commons", "STRING"]},
+        {"type": "WikiPathways", "format": "WP[0-9]+", "sources": ["WikiPathways", "Pathway Commons", "STRING"]}
+      ]
+    },
+    "ontology_terms": {
+      "description": "Shared ontology term references",
+      "identifiers": [
+        {"type": "GO Term", "format": "GO:[0-9]{7}", "sources": ["Gene Ontology", "Reactome", "BioGRID", "IntAct", "STRING"]},
+        {"type": "ChEBI", "format": "CHEBI:[0-9]+", "sources": ["Reactome", "WikiPathways", "STITCH"]},
+        {"type": "PSI-MI", "format": "MI:[0-9]{4}", "sources": ["IntAct", "BioGRID", "STRING"]}
+      ]
+    },
+    "taxonomy_identifiers": {
+      "description": "Species taxonomy identifiers",
+      "format": "NCBI Taxonomy ID (integer)",
+      "common_values": {
+        "9606": "Homo sapiens",
+        "10090": "Mus musculus",
+        "10116": "Rattus norvegicus",
+        "7227": "Drosophila melanogaster",
+        "6239": "Caenorhabditis elegans",
+        "4932": "Saccharomyces cerevisiae"
+      },
+      "sources": ["All sources in category 04"]
+    }
+  },
+  "data_format_summary": {
+    "4.1": ["XML (KGML, GPML)", "JSON", "BioPAX (OWL)", "SBML"],
+    "4.2": ["BioPAX Level 3 (OWL)", "SIF (TSV)", "JSON-LD", "SBGN-ML"],
+    "4.3": ["PSI-MITAB (TSV)", "PSI-MI XML", "JSON", "TSV"],
+    "4.4": ["TSV", "JSON"],
+    "4.5": ["OBO", "OWL", "GAF 2.2 (TSV)", "GMT", "JSON"],
+    "4.6": ["JASPAR/TRANSFAC/MEME (matrix)", "BED", "bigWig", "narrowPeak"]
+  }
+}

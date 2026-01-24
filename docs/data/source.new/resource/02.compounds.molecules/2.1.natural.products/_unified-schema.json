@@ -1,0 +1,308 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gene.example.org/schemas/2.1-natural-products.json",
+  "title": "Natural Products Unified Schema",
+  "description": "Unified schema for natural product data from COCONUT, Dr. Duke's, LOTUS, NPASS, and NPAtlas",
+  "type": "object",
+  "properties": {
+    "compound_id": {
+      "type": "string",
+      "description": "Primary identifier for natural product compound",
+      "sources": ["COCONUT", "NPASS", "NPAtlas"],
+      "examples": ["CNP0123456", "NPC12345", "NPA012345"]
+    },
+    "name": {
+      "type": "string",
+      "description": "Common or trivial name of the natural product",
+      "sources": ["COCONUT", "Dr. Duke's", "LOTUS", "NPASS", "NPAtlas"],
+      "examples": ["Artemisinin", "Curcumin", "Quercetin"]
+    },
+    "canonical_smiles": {
+      "type": ["string", "null"],
+      "description": "Simplified Molecular Input Line Entry System notation (no stereochemistry)",
+      "sources": ["COCONUT", "LOTUS", "NPASS", "NPAtlas"],
+      "examples": ["CC(C)CCCC(C)C", "CC(=O)Oc1ccccc1C(=O)O"]
+    },
+    "isomeric_smiles": {
+      "type": ["string", "null"],
+      "description": "SMILES with stereochemistry preserved",
+      "sources": ["COCONUT", "LOTUS"],
+      "examples": ["C[C@@H](O)c1ccccc1"]
+    },
+    "inchi": {
+      "type": ["string", "null"],
+      "description": "IUPAC International Chemical Identifier",
+      "sources": ["COCONUT", "LOTUS", "NPASS", "NPAtlas"],
+      "examples": ["InChI=1S/C6H12O6/c7-1-2-3(8)..."]
+    },
+    "inchi_key": {
+      "type": ["string", "null"],
+      "description": "27-character hashed InChI for fast lookups",
+      "sources": ["COCONUT", "LOTUS", "NPASS", "NPAtlas"],
+      "examples": ["BSYNRYMUTXBXSQ-UHFFFAOYSA-N"]
+    },
+    "molecular_formula": {
+      "type": ["string", "null"],
+      "description": "Chemical formula showing atom composition",
+      "sources": ["COCONUT", "Dr. Duke's", "LOTUS", "NPASS", "NPAtlas"],
+      "examples": ["C21H30O2", "C9H8O4"]
+    },
+    "molecular_weight": {
+      "type": ["number", "null"],
+      "description": "Molecular weight in Daltons",
+      "sources": ["COCONUT", "Dr. Duke's", "LOTUS", "NPASS", "NPAtlas"],
+      "examples": [282.35, 180.16]
+    },
+    "organism_sources": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {"type": "string"},
+          "ncbi_taxon_id": {"type": "integer"}
+        }
+      },
+      "description": "Biological organisms producing the natural product",
+      "sources": ["COCONUT", "Dr. Duke's", "LOTUS", "NPASS", "NPAtlas"],
+      "examples": [{"name": "Artemisia annua", "ncbi_taxon_id": 35608}]
+    },
+    "ncbi_taxon_id": {
+      "type": ["integer", "null"],
+      "description": "NCBI Taxonomy identifier for source organism",
+      "sources": ["COCONUT", "LOTUS", "NPASS", "NPAtlas"],
+      "examples": [35608, 3702]
+    },
+    "compound_classes": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Natural product classification",
+      "sources": ["COCONUT", "NPASS", "NPAtlas"],
+      "examples": ["Terpenoid", "Alkaloid", "Flavonoid", "Polyketide"]
+    },
+    "references": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "doi": {"type": "string"},
+          "pmid": {"type": "integer"}
+        }
+      },
+      "description": "Literature citations for compound isolation/characterization",
+      "sources": ["LOTUS", "NPASS", "NPAtlas"]
+    },
+    "coconut_id": {
+      "type": ["string", "null"],
+      "description": "COCONUT identifier (CNP prefix)",
+      "sources": ["COCONUT"]
+    },
+    "sugar_free_smiles": {
+      "type": ["string", "null"],
+      "description": "SMILES with glycosidic moieties removed",
+      "sources": ["COCONUT"]
+    },
+    "qed_drug_likeness": {
+      "type": ["number", "null"],
+      "description": "Quantitative Estimate of Drug-likeness (0-1)",
+      "sources": ["COCONUT"]
+    },
+    "lipinski_violations": {
+      "type": ["integer", "null"],
+      "description": "Number of Lipinski rule violations (0-4)",
+      "sources": ["COCONUT"]
+    },
+    "murko_framework": {
+      "type": ["string", "null"],
+      "description": "Core molecular scaffold structure",
+      "sources": ["COCONUT"]
+    },
+    "cas_number": {
+      "type": ["string", "null"],
+      "description": "CAS Registry Number",
+      "sources": ["Dr. Duke's"],
+      "examples": ["458-37-7"]
+    },
+    "biological_activities": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Documented biological activities (1,900+ types)",
+      "sources": ["Dr. Duke's"]
+    },
+    "ethnobotanical_uses": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "use": {"type": "string"},
+          "culture": {"type": "string"},
+          "region": {"type": "string"}
+        }
+      },
+      "description": "Traditional/ethnobotanical uses with culture and region",
+      "sources": ["Dr. Duke's"]
+    },
+    "plant_part": {
+      "type": ["string", "null"],
+      "description": "Part of plant containing compound",
+      "sources": ["Dr. Duke's"]
+    },
+    "concentration_range": {
+      "type": ["object", "null"],
+      "properties": {
+        "low": {"type": "number"},
+        "high": {"type": "number"},
+        "unit": {"type": "string"}
+      },
+      "description": "Concentration in plant (low/high values in ppm)",
+      "sources": ["Dr. Duke's"]
+    },
+    "wikidata_id": {
+      "type": ["string", "null"],
+      "description": "Wikidata Q-identifier",
+      "sources": ["LOTUS"],
+      "examples": ["Q312879"]
+    },
+    "npl_score": {
+      "type": ["number", "null"],
+      "description": "Natural product likeness score",
+      "sources": ["LOTUS"]
+    },
+    "deep_smiles": {
+      "type": ["string", "null"],
+      "description": "DeepSMILES representation",
+      "sources": ["LOTUS"]
+    },
+    "npc_id": {
+      "type": ["string", "null"],
+      "description": "NPASS compound ID (NPC prefix)",
+      "sources": ["NPASS"],
+      "examples": ["NPC12345"]
+    },
+    "activity_value": {
+      "type": ["number", "null"],
+      "description": "Quantitative bioactivity (IC50, Ki, etc.)",
+      "sources": ["NPASS"]
+    },
+    "activity_type": {
+      "type": ["string", "null"],
+      "description": "Type of bioactivity measurement",
+      "sources": ["NPASS"]
+    },
+    "target_protein": {
+      "type": ["object", "null"],
+      "properties": {
+        "name": {"type": "string"},
+        "uniprot_id": {"type": "string"}
+      },
+      "description": "Biological target with UniProt reference",
+      "sources": ["NPASS"]
+    },
+    "npa_id": {
+      "type": ["string", "null"],
+      "description": "NPAtlas identifier (NPA prefix)",
+      "sources": ["NPAtlas"],
+      "examples": ["NPA012345"]
+    },
+    "origin_type": {
+      "type": ["string", "null"],
+      "description": "Source organism type",
+      "sources": ["NPAtlas"],
+      "examples": ["bacterial", "fungal", "marine"]
+    },
+    "cluster_type": {
+      "type": ["string", "null"],
+      "description": "Biosynthetic gene cluster type",
+      "sources": ["NPAtlas"]
+    },
+    "isolation_source": {
+      "type": ["string", "null"],
+      "description": "Environment of isolation",
+      "sources": ["NPAtlas"],
+      "examples": ["marine", "soil", "endophytic"]
+    },
+    "_source": {
+      "type": "object",
+      "description": "Metadata about the data source",
+      "properties": {
+        "database": {"type": "string"},
+        "version": {"type": "string"},
+        "access_date": {"type": "string", "format": "date"},
+        "original_id": {"type": "string"}
+      }
+    }
+  },
+  "required": ["name"],
+  "field_mappings": {
+    "COCONUT": {
+      "coconut_id": "coconut_id",
+      "name": "name",
+      "canonical_smiles": "canonical_smiles",
+      "isomeric_smiles": "isomeric_smiles",
+      "inchi": "inchi",
+      "inchikey": "inchi_key",
+      "molecular_formula": "molecular_formula",
+      "molecular_weight": "molecular_weight",
+      "organism_source": "organism_sources",
+      "ncbi_taxon_id": "ncbi_taxon_id",
+      "compound_class": "compound_classes",
+      "sugar_free_smiles": "sugar_free_smiles",
+      "qed_drug_likeliness": "qed_drug_likeness",
+      "lipinski_rule_of_5": "lipinski_violations",
+      "murko_framework": "murko_framework"
+    },
+    "Dr_Dukes": {
+      "common_name": "name",
+      "cas_number": "cas_number",
+      "biological_activity": "biological_activities",
+      "ethnobotanical_use": "ethnobotanical_uses",
+      "plant_part": "plant_part",
+      "concentration_range": "concentration_range"
+    },
+    "LOTUS": {
+      "name": "name",
+      "canonical_smiles": "canonical_smiles",
+      "isomeric_smiles": "isomeric_smiles",
+      "inchi": "inchi",
+      "inchi_key": "inchi_key",
+      "molecular_formula": "molecular_formula",
+      "molecular_weight": "molecular_weight",
+      "organism_source": "organism_sources",
+      "ncbi_taxon_id": "ncbi_taxon_id",
+      "wikidataId": "wikidata_id",
+      "npl_score": "npl_score",
+      "deep_smiles": "deep_smiles"
+    },
+    "NPASS": {
+      "npc_id": "npc_id",
+      "name": "name",
+      "canonical_smiles": "canonical_smiles",
+      "inchi": "inchi",
+      "inchi_key": "inchi_key",
+      "molecular_formula": "molecular_formula",
+      "molecular_weight": "molecular_weight",
+      "organism_source": "organism_sources",
+      "ncbi_taxon_id": "ncbi_taxon_id",
+      "compound_class": "compound_classes",
+      "activity_value": "activity_value",
+      "activity_type": "activity_type",
+      "target_protein": "target_protein",
+      "references": "references"
+    },
+    "NPAtlas": {
+      "npa_id": "npa_id",
+      "name": "name",
+      "canonical_smiles": "canonical_smiles",
+      "inchi": "inchi",
+      "inchi_key": "inchi_key",
+      "molecular_formula": "molecular_formula",
+      "molecular_weight": "molecular_weight",
+      "organism_source": "organism_sources",
+      "ncbi_taxon_id": "ncbi_taxon_id",
+      "compound_class": "compound_classes",
+      "origin_type": "origin_type",
+      "cluster_type": "cluster_type",
+      "isolation_source": "isolation_source",
+      "references": "references"
+    }
+  }
+}

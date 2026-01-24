@@ -1,0 +1,572 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gene.example.org/schemas/1.6-cancer-genomics.json",
+  "title": "Cancer Genomics Unified Schema",
+  "description": "Unified schema for cancer genomics data from BRCA Exchange, Cancer Gene Census, cBioPortal, CIViC, COSMIC, and OncoKB",
+  "type": "object",
+  "properties": {
+    "gene": {
+      "type": "string",
+      "description": "HGNC gene symbol",
+      "sources": ["BRCA Exchange", "Cancer Gene Census", "cBioPortal", "CIViC", "COSMIC", "OncoKB"],
+      "examples": ["BRAF", "TP53", "BRCA1"]
+    },
+    "variant": {
+      "type": ["string", "null"],
+      "description": "Protein-level variant notation",
+      "sources": ["BRCA Exchange", "cBioPortal", "CIViC", "COSMIC", "OncoKB"],
+      "examples": ["V600E", "p.Glu23ValfsTer17", "c.1799T>A"]
+    },
+    "clinical_significance": {
+      "type": ["string", "null"],
+      "description": "Pathogenicity or oncogenicity classification",
+      "sources": ["BRCA Exchange", "CIViC", "OncoKB"],
+      "examples": ["Pathogenic", "Oncogenic", "Likely Oncogenic"]
+    },
+    "cancer_types": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Associated cancer type(s)",
+      "sources": ["Cancer Gene Census", "cBioPortal", "CIViC", "COSMIC", "OncoKB"],
+      "examples": ["Melanoma", "Colorectal", "Breast"]
+    },
+    "evidence_level": {
+      "type": ["string", "null"],
+      "description": "Tier classification for clinical evidence",
+      "sources": ["CIViC", "OncoKB"],
+      "examples": ["A", "B", "1", "2", "3A"]
+    },
+    "brca_genomic_coordinate": {
+      "type": ["string", "null"],
+      "description": "chr:pos:ref:alt format coordinate",
+      "sources": ["BRCA Exchange"]
+    },
+    "brca_hgvs_cdna": {
+      "type": ["string", "null"],
+      "description": "Coding DNA change",
+      "sources": ["BRCA Exchange"]
+    },
+    "brca_hgvs_protein": {
+      "type": ["string", "null"],
+      "description": "Protein change",
+      "sources": ["BRCA Exchange"]
+    },
+    "brca_reference_sequence": {
+      "type": ["string", "null"],
+      "description": "Transcript reference",
+      "sources": ["BRCA Exchange"]
+    },
+    "brca_pathogenicity_expert": {
+      "type": ["string", "null"],
+      "description": "ENIGMA classification",
+      "sources": ["BRCA Exchange"]
+    },
+    "brca_pathogenicity_aggregated": {
+      "type": ["string", "null"],
+      "description": "Aggregated classification",
+      "sources": ["BRCA Exchange"]
+    },
+    "brca_clinvar_significance": {
+      "type": ["string", "null"],
+      "description": "ClinVar classification",
+      "sources": ["BRCA Exchange"]
+    },
+    "brca_date_evaluated": {
+      "type": ["string", "null"],
+      "format": "date",
+      "description": "ENIGMA review date",
+      "sources": ["BRCA Exchange"]
+    },
+    "brca_source_databases": {
+      "type": ["string", "null"],
+      "description": "Contributing databases",
+      "sources": ["BRCA Exchange"]
+    },
+    "brca_clinvar_scv": {
+      "type": ["string", "null"],
+      "description": "ClinVar accession",
+      "sources": ["BRCA Exchange"]
+    },
+    "cgc_gene_name": {
+      "type": ["string", "null"],
+      "description": "Full gene name",
+      "sources": ["Cancer Gene Census"]
+    },
+    "entrez_gene_id": {
+      "type": ["integer", "null"],
+      "description": "NCBI gene ID",
+      "sources": ["Cancer Gene Census", "cBioPortal", "CIViC"]
+    },
+    "cgc_genome_location": {
+      "type": ["string", "null"],
+      "description": "Chromosomal location",
+      "sources": ["Cancer Gene Census"]
+    },
+    "cgc_tier": {
+      "type": ["integer", "null"],
+      "enum": [1, 2, null],
+      "description": "1 (strong) or 2 (emerging)",
+      "sources": ["Cancer Gene Census", "COSMIC"]
+    },
+    "cgc_hallmark": {
+      "type": ["string", "null"],
+      "description": "Cancer hallmarks",
+      "sources": ["Cancer Gene Census"]
+    },
+    "role_in_cancer": {
+      "type": ["string", "null"],
+      "description": "oncogene, TSG, fusion",
+      "sources": ["Cancer Gene Census", "COSMIC", "OncoKB"]
+    },
+    "mutation_types": {
+      "type": ["string", "null"],
+      "description": "Mutation type codes (Mis, N, F, S, D, T, A)",
+      "sources": ["Cancer Gene Census"]
+    },
+    "translocation_partners": {
+      "type": ["string", "null"],
+      "description": "Fusion partners",
+      "sources": ["Cancer Gene Census"]
+    },
+    "cgc_synonyms": {
+      "type": ["string", "null"],
+      "description": "Alternative names",
+      "sources": ["Cancer Gene Census"]
+    },
+    "cbio_study_id": {
+      "type": ["string", "null"],
+      "description": "Unique study identifier",
+      "sources": ["cBioPortal"]
+    },
+    "cbio_cancer_type_id": {
+      "type": ["string", "null"],
+      "description": "Cancer type classification",
+      "sources": ["cBioPortal"]
+    },
+    "cbio_molecular_profile_id": {
+      "type": ["string", "null"],
+      "description": "Molecular data profile ID",
+      "sources": ["cBioPortal"]
+    },
+    "cbio_alteration_type": {
+      "type": ["string", "null"],
+      "description": "MUTATION_EXTENDED, COPY_NUMBER_ALTERATION, etc.",
+      "sources": ["cBioPortal"]
+    },
+    "cbio_datatype": {
+      "type": ["string", "null"],
+      "description": "MAF, DISCRETE, LOG2-VALUE, etc.",
+      "sources": ["cBioPortal"]
+    },
+    "cbio_sample_count": {
+      "type": ["integer", "null"],
+      "description": "Total samples in study",
+      "sources": ["cBioPortal"]
+    },
+    "reference_genome": {
+      "type": ["string", "null"],
+      "description": "hg19 or hg38",
+      "sources": ["cBioPortal", "COSMIC"]
+    },
+    "chromosome": {
+      "type": ["string", "null"],
+      "description": "Chromosome number",
+      "sources": ["cBioPortal", "COSMIC"]
+    },
+    "start_position": {
+      "type": ["integer", "null"],
+      "description": "Start genomic coordinate",
+      "sources": ["cBioPortal"]
+    },
+    "end_position": {
+      "type": ["integer", "null"],
+      "description": "End genomic coordinate",
+      "sources": ["cBioPortal"]
+    },
+    "variant_classification": {
+      "type": ["string", "null"],
+      "description": "Mutation functional class",
+      "sources": ["cBioPortal"]
+    },
+    "variant_type": {
+      "type": ["string", "null"],
+      "description": "SNP/INS/DEL",
+      "sources": ["cBioPortal"]
+    },
+    "reference_allele": {
+      "type": ["string", "null"],
+      "description": "Reference nucleotide(s)",
+      "sources": ["cBioPortal"]
+    },
+    "tumor_allele": {
+      "type": ["string", "null"],
+      "description": "Tumor allele",
+      "sources": ["cBioPortal"]
+    },
+    "sample_barcode": {
+      "type": ["string", "null"],
+      "description": "Sample identifier",
+      "sources": ["cBioPortal"]
+    },
+    "civic_id": {
+      "type": ["integer", "null"],
+      "description": "CIViC entity ID",
+      "sources": ["CIViC"]
+    },
+    "civic_variant_name": {
+      "type": ["string", "null"],
+      "description": "Variant name in CIViC",
+      "sources": ["CIViC"]
+    },
+    "civic_variant_types": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Sequence Ontology terms",
+      "sources": ["CIViC"]
+    },
+    "civic_coordinates": {
+      "type": ["object", "null"],
+      "description": "Genomic coordinates",
+      "sources": ["CIViC"]
+    },
+    "civic_hgvs_expressions": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "HGVS nomenclature",
+      "sources": ["CIViC"]
+    },
+    "civic_evidence_type": {
+      "type": ["string", "null"],
+      "description": "Predictive/Diagnostic/Prognostic/Predisposing",
+      "sources": ["CIViC"]
+    },
+    "civic_evidence_direction": {
+      "type": ["string", "null"],
+      "description": "Supports/Does Not Support",
+      "sources": ["CIViC"]
+    },
+    "civic_clinical_significance": {
+      "type": ["string", "null"],
+      "description": "Sensitivity/Resistance/etc.",
+      "sources": ["CIViC"]
+    },
+    "civic_disease": {
+      "type": ["object", "null"],
+      "description": "Cancer type with DOID",
+      "sources": ["CIViC"]
+    },
+    "associated_drugs": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Associated therapies",
+      "sources": ["CIViC", "OncoKB"]
+    },
+    "civic_source": {
+      "type": ["object", "null"],
+      "description": "Publication reference",
+      "sources": ["CIViC"]
+    },
+    "amp_level": {
+      "type": ["string", "null"],
+      "description": "AMP/ASCO/CAP tier",
+      "sources": ["CIViC"]
+    },
+    "cosmic_cosv_id": {
+      "type": ["string", "null"],
+      "description": "Genomic mutation ID (COSV + integer)",
+      "sources": ["COSMIC"]
+    },
+    "cosmic_cosm_id": {
+      "type": ["string", "null"],
+      "description": "Legacy mutation ID (COSM + integer)",
+      "sources": ["COSMIC"]
+    },
+    "cosmic_transcript": {
+      "type": ["string", "null"],
+      "description": "Ensembl transcript ID",
+      "sources": ["COSMIC"]
+    },
+    "cosmic_cds_mutation": {
+      "type": ["string", "null"],
+      "description": "CDS-level HGVS",
+      "sources": ["COSMIC"]
+    },
+    "cosmic_aa_mutation": {
+      "type": ["string", "null"],
+      "description": "Protein-level HGVS",
+      "sources": ["COSMIC"]
+    },
+    "cosmic_mutation_type": {
+      "type": ["string", "null"],
+      "description": "Substitution, Insertion, etc.",
+      "sources": ["COSMIC"]
+    },
+    "cosmic_mutation_description": {
+      "type": ["string", "null"],
+      "description": "Functional consequence",
+      "sources": ["COSMIC"]
+    },
+    "cosmic_sample_id": {
+      "type": ["integer", "null"],
+      "description": "Internal sample ID",
+      "sources": ["COSMIC"]
+    },
+    "cosmic_sample_name": {
+      "type": ["string", "null"],
+      "description": "Sample identifier",
+      "sources": ["COSMIC"]
+    },
+    "primary_site": {
+      "type": ["string", "null"],
+      "description": "Anatomical site",
+      "sources": ["COSMIC"]
+    },
+    "primary_histology": {
+      "type": ["string", "null"],
+      "description": "Histological type",
+      "sources": ["COSMIC"]
+    },
+    "sample_type": {
+      "type": ["string", "null"],
+      "description": "cell line, tumour, etc.",
+      "sources": ["COSMIC"]
+    },
+    "patient_age": {
+      "type": ["integer", "null"],
+      "description": "Patient age",
+      "sources": ["COSMIC"]
+    },
+    "mutational_signature": {
+      "type": ["string", "null"],
+      "description": "Mutational signature (SBS/DBS/ID)",
+      "sources": ["COSMIC"]
+    },
+    "signature_type": {
+      "type": ["string", "null"],
+      "description": "SBS, DBS, or ID",
+      "sources": ["COSMIC"]
+    },
+    "signature_contribution": {
+      "type": ["number", "null"],
+      "description": "Signature proportion (0-1)",
+      "sources": ["COSMIC"]
+    },
+    "proposed_etiology": {
+      "type": ["string", "null"],
+      "description": "Mutagenic process",
+      "sources": ["COSMIC"]
+    },
+    "fusion_id": {
+      "type": ["integer", "null"],
+      "description": "Gene fusion record ID",
+      "sources": ["COSMIC"]
+    },
+    "fusion_gene_5prime": {
+      "type": ["string", "null"],
+      "description": "5' fusion partner",
+      "sources": ["COSMIC"]
+    },
+    "fusion_gene_3prime": {
+      "type": ["string", "null"],
+      "description": "3' fusion partner",
+      "sources": ["COSMIC"]
+    },
+    "oncokb_is_oncogene": {
+      "type": ["boolean", "null"],
+      "description": "Is oncogene",
+      "sources": ["OncoKB"]
+    },
+    "oncokb_is_tsg": {
+      "type": ["boolean", "null"],
+      "description": "Is tumor suppressor gene",
+      "sources": ["OncoKB"]
+    },
+    "oncokb_gene_aliases": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Alternative gene names",
+      "sources": ["OncoKB"]
+    },
+    "oncokb_background": {
+      "type": ["string", "null"],
+      "description": "Gene description",
+      "sources": ["OncoKB"]
+    },
+    "oncokb_alteration": {
+      "type": ["string", "null"],
+      "description": "Alteration name (V600E)",
+      "sources": ["OncoKB"]
+    },
+    "oncokb_alteration_type": {
+      "type": ["string", "null"],
+      "description": "Mutation/CNA/Fusion",
+      "sources": ["OncoKB"]
+    },
+    "oncokb_consequence": {
+      "type": ["string", "null"],
+      "description": "Protein consequence",
+      "sources": ["OncoKB"]
+    },
+    "oncokb_protein_start": {
+      "type": ["integer", "null"],
+      "description": "Protein position start",
+      "sources": ["OncoKB"]
+    },
+    "oncokb_protein_end": {
+      "type": ["integer", "null"],
+      "description": "Protein position end",
+      "sources": ["OncoKB"]
+    },
+    "oncokb_oncogenic": {
+      "type": ["string", "null"],
+      "description": "Oncogenic/Likely Oncogenic/etc.",
+      "sources": ["OncoKB"]
+    },
+    "oncokb_mutation_effect": {
+      "type": ["object", "null"],
+      "description": "Gain/Loss of function",
+      "sources": ["OncoKB"]
+    },
+    "oncokb_level": {
+      "type": ["string", "null"],
+      "description": "Evidence level (1, 2, 3A, 3B, 4, R1, R2)",
+      "sources": ["OncoKB"]
+    },
+    "oncokb_pmids": {
+      "type": ["array", "null"],
+      "items": {"type": "integer"},
+      "description": "Supporting PubMed IDs",
+      "sources": ["OncoKB"]
+    },
+    "oncokb_abstracts": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Conference abstracts",
+      "sources": ["OncoKB"]
+    },
+    "oncokb_description": {
+      "type": ["string", "null"],
+      "description": "Clinical context",
+      "sources": ["OncoKB"]
+    },
+    "_source": {
+      "type": "object",
+      "description": "Metadata about the data source",
+      "properties": {
+        "database": {"type": "string"},
+        "version": {"type": "string"},
+        "access_date": {"type": "string", "format": "date"}
+      }
+    }
+  },
+  "required": ["gene"],
+  "field_mappings": {
+    "BRCA_Exchange": {
+      "Gene_Symbol": "gene",
+      "Genomic_Coordinate_hg38": "brca_genomic_coordinate",
+      "HGVS_cDNA": "brca_hgvs_cdna",
+      "HGVS_Protein": "brca_hgvs_protein",
+      "Reference_Sequence": "brca_reference_sequence",
+      "Pathogenicity_expert": "brca_pathogenicity_expert",
+      "Pathogenicity_all": "brca_pathogenicity_aggregated",
+      "Clinical_significance_ENIGMA": "clinical_significance",
+      "Clinical_significance_ClinVar": "brca_clinvar_significance",
+      "Date_last_evaluated_ENIGMA": "brca_date_evaluated",
+      "Source": "brca_source_databases",
+      "SCV_ClinVar": "brca_clinvar_scv"
+    },
+    "Cancer_Gene_Census": {
+      "Gene Symbol": "gene",
+      "Name": "cgc_gene_name",
+      "Entrez GeneId": "entrez_gene_id",
+      "Genome Location": "cgc_genome_location",
+      "Tier": "cgc_tier",
+      "Hallmark": "cgc_hallmark",
+      "Role in Cancer": "role_in_cancer",
+      "Mutation Types": "mutation_types",
+      "Translocation Partner": "translocation_partners",
+      "Cancer Types": "cancer_types",
+      "Synonyms": "cgc_synonyms"
+    },
+    "cBioPortal": {
+      "studyId": "cbio_study_id",
+      "cancerTypeId": "cbio_cancer_type_id",
+      "molecularProfileId": "cbio_molecular_profile_id",
+      "molecularAlterationType": "cbio_alteration_type",
+      "datatype": "cbio_datatype",
+      "allSampleCount": "cbio_sample_count",
+      "referenceGenome": "reference_genome",
+      "Hugo_Symbol": "gene",
+      "Entrez_Gene_Id": "entrez_gene_id",
+      "Chromosome": "chromosome",
+      "Start_Position": "start_position",
+      "End_Position": "end_position",
+      "Variant_Classification": "variant_classification",
+      "Variant_Type": "variant_type",
+      "Reference_Allele": "reference_allele",
+      "Tumor_Seq_Allele2": "tumor_allele",
+      "Tumor_Sample_Barcode": "sample_barcode"
+    },
+    "CIViC": {
+      "id": "civic_id",
+      "name": "civic_variant_name",
+      "entrez_id": "entrez_gene_id",
+      "variant_types": "civic_variant_types",
+      "coordinates": "civic_coordinates",
+      "hgvs_expressions": "civic_hgvs_expressions",
+      "evidence_type": "civic_evidence_type",
+      "evidence_level": "evidence_level",
+      "evidence_direction": "civic_evidence_direction",
+      "clinical_significance": "civic_clinical_significance",
+      "disease": "civic_disease",
+      "drugs": "associated_drugs",
+      "source": "civic_source",
+      "amp_level": "amp_level"
+    },
+    "COSMIC": {
+      "COSV_ID": "cosmic_cosv_id",
+      "COSM_ID": "cosmic_cosm_id",
+      "Transcript": "cosmic_transcript",
+      "CDS_Mutation": "cosmic_cds_mutation",
+      "AA_Mutation": "cosmic_aa_mutation",
+      "Mutation_Type": "cosmic_mutation_type",
+      "Mutation_Description": "cosmic_mutation_description",
+      "GRCh38_Position": "chromosome",
+      "Sample_ID": "cosmic_sample_id",
+      "Sample_Name": "cosmic_sample_name",
+      "Primary_Site": "primary_site",
+      "Primary_Histology": "primary_histology",
+      "Sample_Type": "sample_type",
+      "Age": "patient_age",
+      "census_tier": "cgc_tier",
+      "Role_in_Cancer": "role_in_cancer",
+      "Signature": "mutational_signature",
+      "Signature_Type": "signature_type",
+      "Contribution": "signature_contribution",
+      "Proposed_Etiology": "proposed_etiology",
+      "Fusion_ID": "fusion_id",
+      "Gene_5prime": "fusion_gene_5prime",
+      "Gene_3prime": "fusion_gene_3prime"
+    },
+    "OncoKB": {
+      "hugoSymbol": "gene",
+      "oncogene": "oncokb_is_oncogene",
+      "tsg": "oncokb_is_tsg",
+      "geneAliases": "oncokb_gene_aliases",
+      "background": "oncokb_background",
+      "alteration": "oncokb_alteration",
+      "alterationType": "oncokb_alteration_type",
+      "consequence": "oncokb_consequence",
+      "proteinStart": "oncokb_protein_start",
+      "proteinEnd": "oncokb_protein_end",
+      "oncogenic": "oncokb_oncogenic",
+      "mutationEffect": "oncokb_mutation_effect",
+      "level": "oncokb_level",
+      "cancerTypes": "cancer_types",
+      "drugs": "associated_drugs",
+      "pmids": "oncokb_pmids",
+      "abstracts": "oncokb_abstracts",
+      "description": "oncokb_description"
+    }
+  }
+}

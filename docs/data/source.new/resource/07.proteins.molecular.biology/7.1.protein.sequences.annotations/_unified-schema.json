@@ -1,0 +1,287 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gene.taxonomy/schemas/7.1-protein-sequences-annotations",
+  "title": "Protein Sequences & Annotations Unified Schema",
+  "description": "Unified schema for protein sequence and annotation data integrating UniProt and RefSeq sources",
+  "type": "object",
+  "properties": {
+    "accession": {
+      "type": "string",
+      "description": "Primary stable identifier for the protein entry",
+      "sources": ["UniProt", "RefSeq"],
+      "example": "P04637"
+    },
+    "sequence": {
+      "type": "string",
+      "description": "Amino acid sequence of the protein using standard single-letter codes",
+      "sources": ["UniProt", "RefSeq"],
+      "example": "MEEPQSDPSVEPPLSQETFSDLWKLL..."
+    },
+    "length": {
+      "type": "integer",
+      "description": "Number of amino acids in the sequence",
+      "sources": ["UniProt", "RefSeq"],
+      "example": 393
+    },
+    "organism": {
+      "type": "string",
+      "description": "Scientific name of the source organism",
+      "sources": ["UniProt", "RefSeq"],
+      "example": "Homo sapiens"
+    },
+    "taxonomy": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Taxonomic lineage from kingdom to species",
+      "sources": ["UniProt", "RefSeq"],
+      "example": ["Eukaryota", "Metazoa", "Chordata", "Mammalia", "Primates", "Hominidae", "Homo"]
+    },
+    "gene": {
+      "type": ["string", "null"],
+      "description": "Gene symbol encoding the protein",
+      "sources": ["UniProt", "RefSeq"],
+      "example": "TP53"
+    },
+    "gene_id": {
+      "type": ["integer", "null"],
+      "description": "NCBI Gene ID",
+      "sources": ["UniProt", "RefSeq"],
+      "example": 7157
+    },
+    "features": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {"type": "string"},
+          "location": {
+            "type": "object",
+            "properties": {
+              "start": {"type": "integer"},
+              "end": {"type": "integer"}
+            }
+          },
+          "description": {"type": "string"},
+          "evidence": {"type": "string"}
+        }
+      },
+      "description": "Annotated sequence features (domains, sites, variants)",
+      "sources": ["UniProt", "RefSeq"],
+      "example": [{"type": "Domain", "location": {"start": 102, "end": 292}, "description": "p53 DNA-binding"}]
+    },
+    "dbxrefs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "database": {"type": "string"},
+          "id": {"type": "string"}
+        }
+      },
+      "description": "Cross-references to external databases",
+      "sources": ["UniProt", "RefSeq"],
+      "example": [{"database": "PDB", "id": "1TUP"}, {"database": "HGNC", "id": "11998"}]
+    },
+    "definition": {
+      "type": "string",
+      "description": "Protein description or full name",
+      "sources": ["UniProt", "RefSeq"],
+      "example": "Cellular tumor antigen p53 [Homo sapiens]"
+    },
+    "entry_name": {
+      "type": ["string", "null"],
+      "description": "Entry name (mnemonic identifier)",
+      "sources": ["UniProt (id)"],
+      "example": "P53_HUMAN"
+    },
+    "reviewed": {
+      "type": ["boolean", "null"],
+      "description": "Swiss-Prot (true) or TrEMBL (false) status",
+      "sources": ["UniProt"],
+      "example": true
+    },
+    "protein_existence": {
+      "type": ["string", "null"],
+      "description": "Protein existence evidence level (1-5)",
+      "sources": ["UniProt (proteinExistence)"],
+      "example": "1: Evidence at protein level"
+    },
+    "molecular_weight": {
+      "type": ["integer", "null"],
+      "description": "Molecular weight in Daltons",
+      "sources": ["UniProt (molWeight)"],
+      "example": 43653
+    },
+    "checksum_crc64": {
+      "type": ["string", "null"],
+      "description": "CRC64 checksum of sequence",
+      "sources": ["UniProt (crc64)"],
+      "example": "AD5C149FD8106131"
+    },
+    "checksum_md5": {
+      "type": ["string", "null"],
+      "description": "MD5 checksum of sequence",
+      "sources": ["UniProt (md5)"],
+      "example": "a1b2c3d4e5f6..."
+    },
+    "protein_description": {
+      "type": ["object", "null"],
+      "description": "Recommended and alternative protein names",
+      "sources": ["UniProt (proteinDescription)"],
+      "properties": {
+        "recommended_name": {"type": "string"},
+        "alternative_names": {"type": "array", "items": {"type": "string"}},
+        "submitted_names": {"type": "array", "items": {"type": "string"}}
+      },
+      "example": {"recommended_name": "Cellular tumor antigen p53"}
+    },
+    "genes": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "gene_name": {"type": "string"},
+          "synonyms": {"type": "array", "items": {"type": "string"}},
+          "ordered_locus_names": {"type": "array", "items": {"type": "string"}},
+          "orf_names": {"type": "array", "items": {"type": "string"}}
+        }
+      },
+      "description": "Gene names including primary and synonyms",
+      "sources": ["UniProt (genes)"],
+      "example": [{"gene_name": "TP53", "synonyms": ["P53"]}]
+    },
+    "comments": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "comment_type": {"type": "string"},
+          "text": {"type": "string"}
+        }
+      },
+      "description": "Functional annotation comments",
+      "sources": ["UniProt (comments)"],
+      "example": [{"comment_type": "FUNCTION", "text": "Acts as a tumor suppressor..."}]
+    },
+    "keywords": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "UniProt controlled vocabulary keywords",
+      "sources": ["UniProt (keywords)"],
+      "example": ["Tumor suppressor", "DNA-binding", "Nucleus"]
+    },
+    "references": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {"type": "string"},
+          "journal": {"type": "string"},
+          "pubmed_id": {"type": "string"}
+        }
+      },
+      "description": "Literature citations",
+      "sources": ["UniProt (references)"],
+      "example": [{"title": "...", "journal": "Nature"}]
+    },
+    "gi": {
+      "type": ["integer", "null"],
+      "description": "GenInfo Identifier (legacy, deprecated)",
+      "sources": ["RefSeq"],
+      "example": 4557757
+    },
+    "locus": {
+      "type": ["string", "null"],
+      "description": "Gene locus tag",
+      "sources": ["RefSeq"],
+      "example": "NP_000537"
+    },
+    "coded_by": {
+      "type": ["string", "null"],
+      "description": "Source transcript accession with CDS coordinates",
+      "sources": ["RefSeq"],
+      "example": "NM_000546.6:203..1384"
+    },
+    "chromosome": {
+      "type": ["string", "null"],
+      "description": "Chromosome location",
+      "sources": ["RefSeq"],
+      "example": "17"
+    },
+    "map_location": {
+      "type": ["string", "null"],
+      "description": "Cytogenetic location",
+      "sources": ["RefSeq"],
+      "example": "17p13.1"
+    },
+    "annotation_status": {
+      "type": ["string", "null"],
+      "description": "Curation/validation status",
+      "sources": ["RefSeq"],
+      "enum": ["VALIDATED", "REVIEWED", "PREDICTED", null],
+      "example": "VALIDATED"
+    },
+    "version": {
+      "type": ["integer", "null"],
+      "description": "Sequence version number",
+      "sources": ["RefSeq"],
+      "example": 3
+    },
+    "_source": {
+      "type": "object",
+      "description": "Metadata about the data source",
+      "properties": {
+        "primary_source": {"type": "string"},
+        "source_id": {"type": "string"},
+        "extraction_date": {"type": "string", "format": "date"},
+        "source_version": {"type": "string"}
+      }
+    }
+  },
+  "required": ["accession", "sequence", "length", "organism"],
+  "field_mappings": {
+    "UniProt": {
+      "accession": "accession",
+      "sequence.value": "sequence",
+      "sequence.length": "length",
+      "organism.scientificName": "organism",
+      "organism.lineage": "taxonomy",
+      "genes[0].geneName.value": "gene",
+      "dbReferences[database=GeneID].id": "gene_id",
+      "features": "features",
+      "dbReferences": "dbxrefs",
+      "proteinDescription.recommendedName.fullName": "definition",
+      "id": "entry_name",
+      "reviewed": "reviewed",
+      "proteinExistence": "protein_existence",
+      "sequence.molWeight": "molecular_weight",
+      "sequence.crc64": "checksum_crc64",
+      "sequence.md5": "checksum_md5",
+      "proteinDescription": "protein_description",
+      "genes": "genes",
+      "comments": "comments",
+      "keywords": "keywords",
+      "references": "references"
+    },
+    "RefSeq": {
+      "accession": "accession",
+      "sequence": "sequence",
+      "length": "length",
+      "organism": "organism",
+      "taxonomy": "taxonomy",
+      "gene": "gene",
+      "db_xref[GeneID]": "gene_id",
+      "features": "features",
+      "db_xref": "dbxrefs",
+      "definition": "definition",
+      "GBSeq_primary-accession": "accession",
+      "gi": "gi",
+      "locus": "locus",
+      "coded_by": "coded_by",
+      "chromosome": "chromosome",
+      "map": "map_location",
+      "status": "annotation_status",
+      "version": "version"
+    }
+  }
+}

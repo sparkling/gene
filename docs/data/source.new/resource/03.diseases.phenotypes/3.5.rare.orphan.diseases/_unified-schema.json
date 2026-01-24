@@ -1,0 +1,218 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gene.example.org/schemas/3.5-rare-orphan-diseases.json",
+  "title": "Rare/Orphan Diseases Unified Schema",
+  "description": "Unified schema for rare disease data from DECIPHER, Orphanet, and PanelApp",
+  "type": "object",
+  "properties": {
+    "disease_id": {
+      "type": "string",
+      "description": "Rare disease identifier",
+      "sources": ["DECIPHER", "Orphanet", "PanelApp"]
+    },
+    "disease_name": {
+      "type": "string",
+      "description": "Name of rare disease",
+      "sources": ["DECIPHER", "Orphanet", "PanelApp"]
+    },
+    "gene_symbols": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Associated HGNC gene symbols",
+      "sources": ["DECIPHER", "Orphanet", "PanelApp"]
+    },
+    "hpo_ids": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "HPO phenotype identifiers",
+      "sources": ["DECIPHER", "Orphanet"]
+    },
+    "inheritance_patterns": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Modes of inheritance",
+      "sources": ["Orphanet", "PanelApp"],
+      "examples": ["autosomal dominant", "autosomal recessive", "X-linked", "mitochondrial"]
+    },
+    "decipher_id": {
+      "type": ["integer", "null"],
+      "description": "DECIPHER patient/record identifier",
+      "sources": ["DECIPHER"]
+    },
+    "cnv_type": {
+      "type": ["string", "null"],
+      "description": "Copy number variant type (gain/loss)",
+      "sources": ["DECIPHER"]
+    },
+    "hi_score": {
+      "type": ["number", "null"],
+      "description": "Haploinsufficiency prediction score",
+      "sources": ["DECIPHER"]
+    },
+    "pli": {
+      "type": ["number", "null"],
+      "description": "Probability of loss-of-function intolerance",
+      "sources": ["DECIPHER"]
+    },
+    "loeuf": {
+      "type": ["number", "null"],
+      "description": "LoF observed/expected upper bound fraction",
+      "sources": ["DECIPHER"]
+    },
+    "pathogenicity": {
+      "type": ["string", "null"],
+      "description": "Variant classification",
+      "sources": ["DECIPHER"]
+    },
+    "ensembl_gene": {
+      "type": ["string", "null"],
+      "description": "Ensembl gene identifier",
+      "sources": ["DECIPHER"],
+      "pattern": "ENSG[0-9]{11}"
+    },
+    "orpha_code": {
+      "type": ["integer", "null"],
+      "description": "Orphanet disease code",
+      "sources": ["Orphanet"]
+    },
+    "disorder_type": {
+      "type": ["object", "null"],
+      "description": "Classification (disease, malformation, group)",
+      "sources": ["Orphanet"]
+    },
+    "average_age_of_onset": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Age categories for disease onset",
+      "sources": ["Orphanet"]
+    },
+    "prevalence": {
+      "type": ["string", "null"],
+      "description": "Disease prevalence estimate",
+      "sources": ["Orphanet"]
+    },
+    "prevalence_class": {
+      "type": ["string", "null"],
+      "description": "Categorical prevalence classification",
+      "sources": ["Orphanet"]
+    },
+    "prevalence_geographic": {
+      "type": ["string", "null"],
+      "description": "Geographic scope of prevalence",
+      "sources": ["Orphanet"]
+    },
+    "gene_association_type": {
+      "type": ["string", "null"],
+      "description": "Type of gene-disease relationship",
+      "sources": ["Orphanet"]
+    },
+    "gene_association_status": {
+      "type": ["string", "null"],
+      "enum": ["Assessed", "Not validated", null],
+      "description": "Curation status of gene link",
+      "sources": ["Orphanet"]
+    },
+    "hgnc_id": {
+      "type": ["string", "null"],
+      "description": "HGNC gene identifier",
+      "sources": ["Orphanet", "PanelApp"]
+    },
+    "gene_locus": {
+      "type": ["string", "null"],
+      "description": "Chromosomal location",
+      "sources": ["Orphanet"]
+    },
+    "external_references": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "source": {"type": "string"},
+          "id": {"type": "string"}
+        }
+      },
+      "description": "Cross-references to OMIM, ICD, UMLS, MeSH",
+      "sources": ["Orphanet"]
+    },
+    "panel_id": {
+      "type": ["integer", "null"],
+      "description": "Gene panel identifier",
+      "sources": ["PanelApp"]
+    },
+    "panel_name": {
+      "type": ["string", "null"],
+      "description": "Name of gene panel",
+      "sources": ["PanelApp"]
+    },
+    "evidence_level": {
+      "type": ["integer", "null"],
+      "minimum": 0,
+      "maximum": 3,
+      "description": "Gene evidence level (0-3)",
+      "sources": ["PanelApp"]
+    },
+    "confidence_color": {
+      "type": ["string", "null"],
+      "enum": ["Green", "Amber", "Red", "Gray", null],
+      "description": "Visual confidence indicator",
+      "sources": ["PanelApp"]
+    },
+    "expert_reviews": {
+      "type": ["integer", "null"],
+      "description": "Number of expert reviews",
+      "sources": ["PanelApp"]
+    },
+    "_source": {
+      "type": "object",
+      "description": "Metadata about the data source",
+      "properties": {
+        "database": {"type": "string"},
+        "version": {"type": "string"},
+        "access_date": {"type": "string", "format": "date"},
+        "original_id": {"type": "string"}
+      }
+    }
+  },
+  "required": ["disease_id", "disease_name"],
+  "field_mappings": {
+    "DECIPHER": {
+      "decipher_id": "decipher_id",
+      "syndrome_name": "disease_name",
+      "gene_symbol": "gene_symbols",
+      "hpo_id": "hpo_ids",
+      "cnv_type": "cnv_type",
+      "hi_score": "hi_score",
+      "pLI": "pli",
+      "LOEUF": "loeuf",
+      "pathogenicity": "pathogenicity",
+      "ensembl_gene": "ensembl_gene"
+    },
+    "Orphanet": {
+      "OrphaCode": "orpha_code",
+      "Name": "disease_name",
+      "Gene_Symbol": "gene_symbols",
+      "HPO_ID": "hpo_ids",
+      "Inheritance": "inheritance_patterns",
+      "DisorderType": "disorder_type",
+      "AverageAgeOfOnset": "average_age_of_onset",
+      "Prevalence": "prevalence",
+      "PrevalenceClass": "prevalence_class",
+      "PrevalenceGeographic": "prevalence_geographic",
+      "GeneAssociationType": "gene_association_type",
+      "GeneAssociationStatus": "gene_association_status",
+      "HGNC_ID": "hgnc_id",
+      "GeneType": "gene_locus",
+      "ExternalReference": "external_references"
+    },
+    "PanelApp": {
+      "panel_id": "panel_id",
+      "panel_name": "panel_name",
+      "gene_symbol": "gene_symbols",
+      "hgnc_id": "hgnc_id",
+      "evidence_level": "evidence_level",
+      "confidence_level": "confidence_color",
+      "mode_of_inheritance": "inheritance_patterns",
+      "expert_reviews": "expert_reviews"
+    }
+  }
+}

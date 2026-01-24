@@ -1,0 +1,322 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gene.taxonomy/schemas/9.2-body-site-microbiomes",
+  "title": "Body Site Microbiomes Unified Schema",
+  "description": "Unified schema for body site microbiome data integrating HMP, HOMD, and mBodyMap sources",
+  "type": "object",
+  "properties": {
+    "sample_id": {
+      "type": "string",
+      "description": "Unique sample identifier",
+      "sources": ["HMP", "mBodyMap"],
+      "example": "SRS011084"
+    },
+    "subject_id": {
+      "type": ["string", "null"],
+      "description": "Subject/participant identifier",
+      "sources": ["HMP", "mBodyMap"],
+      "example": "HMP_SUBJ_001"
+    },
+    "body_site": {
+      "type": "string",
+      "description": "Specific anatomical location for microbiome sampling",
+      "sources": ["HMP", "HOMD", "mBodyMap"],
+      "example": "Tongue dorsum"
+    },
+    "supersite": {
+      "type": ["string", "null"],
+      "description": "Major body region grouping multiple body sites",
+      "sources": ["HMP", "mBodyMap"],
+      "enum": ["Oral", "Gastrointestinal", "Skin", "Airways", "Urogenital", null],
+      "example": "Oral"
+    },
+    "site_code": {
+      "type": ["string", "null"],
+      "description": "Hierarchical site code for body location",
+      "sources": ["mBodyMap"],
+      "example": "ORAL_TONGUE_DORSUM"
+    },
+    "fma_body_site": {
+      "type": ["string", "null"],
+      "description": "Foundational Model of Anatomy ontology term for body site",
+      "sources": ["HMP"],
+      "example": "UBERON:0001988"
+    },
+    "taxon_id": {
+      "type": "integer",
+      "description": "NCBI Taxonomy identifier for microbial species",
+      "sources": ["HMP", "HOMD", "mBodyMap"],
+      "example": 1309
+    },
+    "taxon_name": {
+      "type": "string",
+      "description": "Scientific name of the microbial taxon",
+      "sources": ["HMP", "HOMD", "mBodyMap"],
+      "example": "Streptococcus mutans"
+    },
+    "homt_id": {
+      "type": ["string", "null"],
+      "description": "Human Oral Microbiome Taxon identifier",
+      "sources": ["HOMD"],
+      "example": "HMT-096"
+    },
+    "relative_abundance": {
+      "type": ["number", "null"],
+      "description": "Proportion of taxon in sample (0-1 scale)",
+      "sources": ["HMP", "mBodyMap"],
+      "minimum": 0,
+      "maximum": 1,
+      "example": 0.15
+    },
+    "absolute_count": {
+      "type": ["integer", "null"],
+      "description": "Absolute read count for taxon",
+      "sources": ["mBodyMap"],
+      "example": 5000
+    },
+    "diversity_metrics": {
+      "type": ["object", "null"],
+      "description": "Alpha diversity measurements",
+      "sources": ["mBodyMap"],
+      "properties": {
+        "shannon": {
+          "type": "number",
+          "description": "Shannon diversity index"
+        },
+        "simpson": {
+          "type": "number",
+          "description": "Simpson diversity index"
+        },
+        "chao1": {
+          "type": "number",
+          "description": "Chao1 richness estimate"
+        },
+        "observed_species": {
+          "type": "integer",
+          "description": "Number of species detected"
+        },
+        "evenness": {
+          "type": "number",
+          "description": "Pielou evenness index"
+        }
+      },
+      "example": {"shannon": 3.8, "simpson": 0.92, "observed_species": 185}
+    },
+    "health_status": {
+      "type": ["string", "null"],
+      "description": "Health or disease status of subject",
+      "sources": ["HMP", "mBodyMap"],
+      "example": "healthy"
+    },
+    "sequencing_method": {
+      "type": ["string", "null"],
+      "description": "Sequencing technology used",
+      "sources": ["HMP", "mBodyMap"],
+      "example": "16S_V4"
+    },
+    "taxonomy": {
+      "type": ["object", "null"],
+      "description": "Full taxonomic classification",
+      "sources": ["HOMD", "mBodyMap"],
+      "properties": {
+        "phylum": {"type": "string"},
+        "class": {"type": "string"},
+        "order": {"type": "string"},
+        "family": {"type": "string"},
+        "genus": {"type": "string"},
+        "species": {"type": "string"}
+      },
+      "example": {"phylum": "Firmicutes", "genus": "Streptococcus", "species": "mutans"}
+    },
+    "cultivation_status": {
+      "type": ["string", "null"],
+      "description": "Cultivation status of oral taxon",
+      "sources": ["HOMD"],
+      "enum": ["Named", "Unnamed", "Provisional", null],
+      "example": "Named"
+    },
+    "microbial_phenotype": {
+      "type": ["object", "null"],
+      "description": "Phenotypic characteristics of the microbe",
+      "sources": ["HOMD"],
+      "properties": {
+        "gram_stain": {
+          "type": "string",
+          "enum": ["positive", "negative", "variable"]
+        },
+        "oxygen_req": {
+          "type": "string",
+          "enum": ["aerobic", "anaerobic", "facultative"]
+        },
+        "cell_shape": {
+          "type": "string"
+        },
+        "motility": {
+          "type": "boolean"
+        },
+        "spore_forming": {
+          "type": "boolean"
+        },
+        "growth_temp": {
+          "type": "string"
+        }
+      },
+      "example": {"gram_stain": "positive", "oxygen_req": "facultative", "cell_shape": "coccus"}
+    },
+    "genome_info": {
+      "type": ["object", "null"],
+      "description": "Reference genome information",
+      "sources": ["HMP", "HOMD"],
+      "properties": {
+        "genome_id": {"type": "string"},
+        "genome_size": {"type": "integer"},
+        "gc_content": {"type": "number"},
+        "assembly_level": {"type": "string"},
+        "gene_count": {"type": "integer"},
+        "ncbi_assembly": {"type": "string"}
+      },
+      "example": {"genome_id": "HOMD_GEN_096_001", "genome_size": 2032807, "gc_content": 36.8}
+    },
+    "type_strain": {
+      "type": ["string", "null"],
+      "description": "Type strain designation for species definition",
+      "sources": ["HOMD"],
+      "example": "ATCC 25175"
+    },
+    "disease_associations": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Associated diseases or conditions",
+      "sources": ["HOMD"],
+      "example": ["dental caries", "endocarditis"]
+    },
+    "oral_sites": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Oral cavity locations where taxon is found",
+      "sources": ["HOMD"],
+      "example": ["teeth", "plaque", "saliva"]
+    },
+    "sequence_info": {
+      "type": ["object", "null"],
+      "description": "16S rRNA sequence information",
+      "sources": ["HOMD"],
+      "properties": {
+        "sequence_id": {"type": "string"},
+        "clone_id": {"type": "string"},
+        "genbank_acc": {"type": "string"}
+      }
+    },
+    "hmp_specific": {
+      "type": ["object", "null"],
+      "description": "HMP-specific metadata",
+      "sources": ["HMP"],
+      "properties": {
+        "rand_subject_id": {"type": "string"},
+        "variable_region": {"type": "string"},
+        "lib_layout": {"type": "string"},
+        "insert_size": {"type": "integer"},
+        "matrix_type": {"type": "string"}
+      }
+    },
+    "mbodymap_specific": {
+      "type": ["object", "null"],
+      "description": "mBodyMap-specific metadata",
+      "sources": ["mBodyMap"],
+      "properties": {
+        "site_category": {"type": "string"},
+        "anatomy_term": {"type": "string"},
+        "sample_count": {"type": "integer"},
+        "study_count": {"type": "integer"},
+        "study_id": {"type": "string"},
+        "dominant_phyla": {"type": "array", "items": {"type": "string"}},
+        "typical_shannon": {"type": "number"},
+        "typical_richness": {"type": "integer"}
+      }
+    },
+    "_source": {
+      "type": "object",
+      "description": "Metadata about the data source",
+      "properties": {
+        "primary_source": {"type": "string"},
+        "source_id": {"type": "string"},
+        "extraction_date": {"type": "string", "format": "date"},
+        "source_version": {"type": "string"}
+      }
+    }
+  },
+  "required": ["sample_id", "body_site", "taxon_id", "taxon_name"],
+  "field_mappings": {
+    "HMP": {
+      "sample_id": "sample_id",
+      "rand_subject_id": "subject_id",
+      "body_site": "body_site",
+      "body_supersite": "supersite",
+      "fma_body_site": "fma_body_site",
+      "taxon_id": "taxon_id",
+      "taxon_name": "taxon_name",
+      "relative_abundance": "relative_abundance",
+      "health_status": "health_status",
+      "sequencing_type": "sequencing_method",
+      "variable_region": "hmp_specific.variable_region",
+      "lib_layout": "hmp_specific.lib_layout",
+      "insert_size": "hmp_specific.insert_size",
+      "matrix_type": "hmp_specific.matrix_type",
+      "genome_id": "genome_info.genome_id",
+      "genome_size": "genome_info.genome_size",
+      "gc_content": "genome_info.gc_content",
+      "assembly_level": "genome_info.assembly_level",
+      "gene_count": "genome_info.gene_count"
+    },
+    "HOMD": {
+      "homt_id": "homt_id",
+      "taxon_id": "taxon_id",
+      "taxon_name": "taxon_name",
+      "cultivation_status": "cultivation_status",
+      "phylum": "taxonomy.phylum",
+      "gram_stain": "microbial_phenotype.gram_stain",
+      "oxygen_req": "microbial_phenotype.oxygen_req",
+      "cell_shape": "microbial_phenotype.cell_shape",
+      "motility": "microbial_phenotype.motility",
+      "spore_forming": "microbial_phenotype.spore_forming",
+      "growth_temp": "microbial_phenotype.growth_temp",
+      "type_strain": "type_strain",
+      "disease_association": "disease_associations",
+      "oral_sites": "oral_sites",
+      "sequence_id": "sequence_info.sequence_id",
+      "clone_id": "sequence_info.clone_id",
+      "genbank_acc": "sequence_info.genbank_acc",
+      "ncbi_assembly": "genome_info.ncbi_assembly",
+      "genome_size": "genome_info.genome_size",
+      "gc_content": "genome_info.gc_content",
+      "gene_count": "genome_info.gene_count"
+    },
+    "mBodyMap": {
+      "sample_id": "sample_id",
+      "subject_id": "subject_id",
+      "body_site": "body_site",
+      "supersite": "supersite",
+      "site_code": "site_code",
+      "taxon_id": "taxon_id",
+      "taxon_name": "taxon_name",
+      "relative_abundance": "relative_abundance",
+      "absolute_count": "absolute_count",
+      "shannon": "diversity_metrics.shannon",
+      "simpson": "diversity_metrics.simpson",
+      "chao1": "diversity_metrics.chao1",
+      "observed_species": "diversity_metrics.observed_species",
+      "evenness": "diversity_metrics.evenness",
+      "health_status": "health_status",
+      "sequencing_method": "sequencing_method",
+      "phylum": "taxonomy.phylum",
+      "site_category": "mbodymap_specific.site_category",
+      "anatomy_term": "mbodymap_specific.anatomy_term",
+      "sample_count": "mbodymap_specific.sample_count",
+      "study_count": "mbodymap_specific.study_count",
+      "study_id": "mbodymap_specific.study_id",
+      "dominant_phyla": "mbodymap_specific.dominant_phyla",
+      "typical_shannon": "mbodymap_specific.typical_shannon",
+      "typical_richness": "mbodymap_specific.typical_richness"
+    }
+  }
+}

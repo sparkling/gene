@@ -1,0 +1,331 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gene.taxonomy/schemas/8.2-knowledge-bases",
+  "title": "Knowledge Bases Unified Schema",
+  "description": "Unified schema for knowledge base data integrating Wikidata and Wikipedia sources",
+  "type": "object",
+  "properties": {
+    "entity_id": {
+      "type": "string",
+      "description": "Unique identifier for the knowledge base entity",
+      "sources": ["Wikidata:id (Q-ID)", "Wikipedia:pageid"],
+      "example": "Q123456"
+    },
+    "name": {
+      "type": "string",
+      "description": "Primary name or title of the entity",
+      "sources": ["Wikidata:label", "Wikipedia:title"],
+      "example": "TP53"
+    },
+    "description": {
+      "type": ["string", "null"],
+      "description": "Brief description of the entity",
+      "sources": ["Wikidata:description", "Wikipedia:extract"],
+      "example": "Human gene and protein"
+    },
+    "wikidata_qid": {
+      "type": ["string", "null"],
+      "description": "Wikidata item identifier (Q-number)",
+      "sources": ["Wikidata:id", "Wikipedia:wikibase_item"],
+      "example": "Q21173022"
+    },
+    "aliases": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Alternative names for the entity",
+      "sources": ["Wikidata:aliases"],
+      "example": ["p53", "Tumor protein p53"]
+    },
+    "external_urls": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "External links to other resources",
+      "sources": ["Wikidata:url properties", "Wikipedia:extlinks"],
+      "format": "uri",
+      "example": ["https://www.ncbi.nlm.nih.gov/gene/7157"]
+    },
+    "categories": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Categories or classes the entity belongs to",
+      "sources": ["Wikidata:instance_of (P31)", "Wikipedia:categories"],
+      "example": ["Tumor suppressor genes", "Genes on human chromosome 17"]
+    },
+    "last_modified": {
+      "type": ["string", "null"],
+      "description": "Timestamp of last modification",
+      "sources": ["Wikidata:modified", "Wikipedia:touched"],
+      "format": "date-time",
+      "example": "2024-01-15T10:30:00Z"
+    },
+    "biomedical_identifiers": {
+      "type": ["object", "null"],
+      "description": "Cross-references to biomedical databases",
+      "sources": ["Wikidata"],
+      "properties": {
+        "entrez_gene_id": {
+          "type": ["string", "null"],
+          "description": "NCBI Entrez Gene identifier (P351)",
+          "example": "7157"
+        },
+        "uniprot_id": {
+          "type": ["string", "null"],
+          "description": "UniProt protein accession (P352)",
+          "example": "P04637"
+        },
+        "hgnc_symbol": {
+          "type": ["string", "null"],
+          "description": "HGNC gene symbol (P353)",
+          "example": "TP53"
+        },
+        "hgnc_id": {
+          "type": ["string", "null"],
+          "description": "HGNC identifier with prefix (P354)",
+          "example": "HGNC:11998"
+        },
+        "ensembl_gene_id": {
+          "type": ["string", "null"],
+          "description": "Ensembl gene identifier (P594)",
+          "example": "ENSG00000141510"
+        },
+        "refseq_protein_id": {
+          "type": ["string", "null"],
+          "description": "NCBI RefSeq protein accession (P639)",
+          "example": "NP_000537.3"
+        },
+        "refseq_rna_id": {
+          "type": ["string", "null"],
+          "description": "NCBI RefSeq RNA accession (P637)",
+          "example": "NM_000546.6"
+        }
+      }
+    },
+    "disease_identifiers": {
+      "type": ["object", "null"],
+      "description": "Cross-references to disease databases",
+      "sources": ["Wikidata"],
+      "properties": {
+        "disease_ontology_id": {
+          "type": ["string", "null"],
+          "description": "Disease Ontology identifier (P699)",
+          "example": "DOID:9952"
+        },
+        "omim_id": {
+          "type": ["string", "null"],
+          "description": "OMIM identifier (P492)",
+          "example": "191170"
+        },
+        "orphanet_id": {
+          "type": ["string", "null"],
+          "description": "Orphanet rare disease identifier (P1395)",
+          "example": "1234"
+        },
+        "icd9": {
+          "type": ["string", "null"],
+          "description": "ICD-9-CM code (P493)"
+        },
+        "icd10": {
+          "type": ["string", "null"],
+          "description": "ICD-10 code (P494)"
+        },
+        "mondo_id": {
+          "type": ["string", "null"],
+          "description": "MONDO disease ontology identifier (P5270)"
+        },
+        "mesh_id": {
+          "type": ["string", "null"],
+          "description": "MeSH descriptor identifier (P486)"
+        },
+        "umls_cui": {
+          "type": ["string", "null"],
+          "description": "UMLS Concept Unique Identifier (P2892)"
+        }
+      }
+    },
+    "chemical_identifiers": {
+      "type": ["object", "null"],
+      "description": "Cross-references to chemical databases",
+      "sources": ["Wikidata"],
+      "properties": {
+        "cas_number": {
+          "type": ["string", "null"],
+          "description": "Chemical Abstracts Service registry number (P231)"
+        },
+        "pubchem_cid": {
+          "type": ["string", "null"],
+          "description": "PubChem Compound identifier (P662)"
+        },
+        "chembl_id": {
+          "type": ["string", "null"],
+          "description": "ChEMBL compound identifier (P592)"
+        },
+        "chebi_id": {
+          "type": ["string", "null"],
+          "description": "ChEBI ontology identifier (P652)"
+        },
+        "drugbank_id": {
+          "type": ["string", "null"],
+          "description": "DrugBank drug identifier (P715)"
+        },
+        "inchi": {
+          "type": ["string", "null"],
+          "description": "IUPAC InChI chemical identifier (P234)"
+        },
+        "inchikey": {
+          "type": ["string", "null"],
+          "description": "InChI hash key (P235)"
+        },
+        "smiles": {
+          "type": ["string", "null"],
+          "description": "SMILES chemical notation (P233)"
+        }
+      }
+    },
+    "biological_relationships": {
+      "type": ["object", "null"],
+      "description": "Biological relationship properties",
+      "sources": ["Wikidata"],
+      "properties": {
+        "found_in_taxon": {
+          "type": ["array", "null"],
+          "items": {"type": "string"},
+          "description": "Taxa where entity is found (P703)"
+        },
+        "genetic_association": {
+          "type": ["array", "null"],
+          "items": {"type": "string"},
+          "description": "Gene-disease associations (P2293)"
+        }
+      }
+    },
+    "wikipedia_metadata": {
+      "type": ["object", "null"],
+      "description": "Wikipedia-specific metadata",
+      "sources": ["Wikipedia"],
+      "properties": {
+        "page_id": {
+          "type": "integer",
+          "description": "Wikipedia page identifier"
+        },
+        "revision_id": {
+          "type": "integer",
+          "description": "Current revision identifier"
+        },
+        "namespace": {
+          "type": "integer",
+          "description": "Wikipedia namespace code"
+        },
+        "content_model": {
+          "type": "string",
+          "description": "Content type (wikitext)"
+        },
+        "page_length": {
+          "type": "integer",
+          "description": "Article length in bytes"
+        }
+      }
+    },
+    "infobox_data": {
+      "type": ["object", "null"],
+      "description": "Parsed infobox template data",
+      "sources": ["Wikipedia"],
+      "additionalProperties": true
+    },
+    "page_links": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Links to other Wikipedia articles",
+      "sources": ["Wikipedia"]
+    },
+    "section_titles": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Article section headings",
+      "sources": ["Wikipedia"]
+    },
+    "images": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {"type": "string"},
+          "url": {"type": "string"}
+        }
+      },
+      "description": "Images included in the article",
+      "sources": ["Wikipedia"]
+    },
+    "dbpedia_uri": {
+      "type": ["string", "null"],
+      "description": "DBpedia resource URI",
+      "sources": ["Wikipedia"],
+      "format": "uri",
+      "example": "http://dbpedia.org/resource/TP53"
+    },
+    "_source": {
+      "type": "object",
+      "description": "Metadata about the data source",
+      "properties": {
+        "primary_source": {"type": "string"},
+        "source_id": {"type": "string"},
+        "extraction_date": {"type": "string", "format": "date"},
+        "source_version": {"type": "string"}
+      }
+    }
+  },
+  "required": ["entity_id", "name"],
+  "field_mappings": {
+    "Wikidata": {
+      "id": "entity_id",
+      "label": "name",
+      "description": "description",
+      "aliases": "aliases",
+      "modified": "last_modified",
+      "P31": "categories",
+      "url_properties": "external_urls",
+      "P351": "biomedical_identifiers.entrez_gene_id",
+      "P352": "biomedical_identifiers.uniprot_id",
+      "P353": "biomedical_identifiers.hgnc_symbol",
+      "P354": "biomedical_identifiers.hgnc_id",
+      "P594": "biomedical_identifiers.ensembl_gene_id",
+      "P639": "biomedical_identifiers.refseq_protein_id",
+      "P637": "biomedical_identifiers.refseq_rna_id",
+      "P699": "disease_identifiers.disease_ontology_id",
+      "P492": "disease_identifiers.omim_id",
+      "P1395": "disease_identifiers.orphanet_id",
+      "P493": "disease_identifiers.icd9",
+      "P494": "disease_identifiers.icd10",
+      "P5270": "disease_identifiers.mondo_id",
+      "P486": "disease_identifiers.mesh_id",
+      "P2892": "disease_identifiers.umls_cui",
+      "P231": "chemical_identifiers.cas_number",
+      "P662": "chemical_identifiers.pubchem_cid",
+      "P592": "chemical_identifiers.chembl_id",
+      "P652": "chemical_identifiers.chebi_id",
+      "P715": "chemical_identifiers.drugbank_id",
+      "P234": "chemical_identifiers.inchi",
+      "P235": "chemical_identifiers.inchikey",
+      "P233": "chemical_identifiers.smiles",
+      "P703": "biological_relationships.found_in_taxon",
+      "P2293": "biological_relationships.genetic_association"
+    },
+    "Wikipedia": {
+      "pageid": "entity_id",
+      "title": "name",
+      "extract": "description",
+      "wikibase_item": "wikidata_qid",
+      "touched": "last_modified",
+      "categories": "categories",
+      "extlinks": "external_urls",
+      "revid": "wikipedia_metadata.revision_id",
+      "ns": "wikipedia_metadata.namespace",
+      "contentmodel": "wikipedia_metadata.content_model",
+      "length": "wikipedia_metadata.page_length",
+      "infobox": "infobox_data",
+      "links": "page_links",
+      "sections": "section_titles",
+      "images": "images",
+      "dbpedia_uri": "dbpedia_uri"
+    }
+  }
+}

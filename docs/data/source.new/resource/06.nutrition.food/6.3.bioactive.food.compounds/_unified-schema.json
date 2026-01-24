@@ -1,0 +1,239 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gene.taxonomy/schemas/6.3-bioactive-food-compounds",
+  "title": "Bioactive Food Compounds Unified Schema",
+  "description": "Unified schema for bioactive food compound data from eBASIS database",
+  "type": "object",
+  "properties": {
+    "component_id": {
+      "type": "integer",
+      "description": "Unique identifier for bioactive compound",
+      "sources": ["eBASIS (component_id)"],
+      "example": 1234
+    },
+    "component_name": {
+      "type": "string",
+      "description": "Name of the bioactive compound",
+      "sources": ["eBASIS (component_name)"],
+      "example": "Quercetin"
+    },
+    "component_group": {
+      "type": "string",
+      "description": "Major category of bioactive compounds",
+      "sources": ["eBASIS (component_group)"],
+      "example": "Flavonoids"
+    },
+    "component_subgroup": {
+      "type": ["string", "null"],
+      "description": "Subcategory within component group",
+      "sources": ["eBASIS (component_subgroup)"],
+      "example": "Flavonols"
+    },
+    "food_id": {
+      "type": "integer",
+      "description": "Unique identifier for the food source",
+      "sources": ["eBASIS (food_id)"],
+      "example": 101
+    },
+    "food_name": {
+      "type": "string",
+      "description": "Common name of the food",
+      "sources": ["eBASIS (food_name)"],
+      "example": "Apple, raw, with skin"
+    },
+    "scientific_name": {
+      "type": ["string", "null"],
+      "description": "Scientific name of the food source organism",
+      "sources": ["eBASIS (scientific_name)"],
+      "example": "Malus domestica"
+    },
+    "composition_value": {
+      "type": "number",
+      "description": "Concentration value of compound in food",
+      "sources": ["eBASIS (value)"],
+      "example": 4.01
+    },
+    "composition_unit": {
+      "type": "string",
+      "description": "Unit of measurement for concentration",
+      "sources": ["eBASIS (unit)"],
+      "example": "mg/100g"
+    },
+    "data_quality_score": {
+      "type": ["integer", "null"],
+      "description": "EuroFIR quality rating (1-5, 5=excellent)",
+      "sources": ["eBASIS (data_quality_score)"],
+      "minimum": 1,
+      "maximum": 5,
+      "example": 4
+    },
+    "cas_number": {
+      "type": ["string", "null"],
+      "description": "Chemical Abstracts Service registry number",
+      "sources": ["eBASIS"],
+      "example": "117-39-5"
+    },
+    "pubchem_cid": {
+      "type": ["integer", "null"],
+      "description": "PubChem compound identifier",
+      "sources": ["eBASIS"],
+      "example": 5280343
+    },
+    "molecular_formula": {
+      "type": ["string", "null"],
+      "description": "Chemical formula of the compound",
+      "sources": ["eBASIS"],
+      "example": "C15H10O7"
+    },
+    "molecular_weight": {
+      "type": ["number", "null"],
+      "description": "Molecular weight in g/mol",
+      "sources": ["eBASIS"],
+      "example": 302.236
+    },
+    "iupac_name": {
+      "type": ["string", "null"],
+      "description": "IUPAC systematic chemical name",
+      "sources": ["eBASIS"],
+      "example": "2-(3,4-dihydroxyphenyl)-3,5,7-trihydroxychromen-4-one"
+    },
+    "inchi": {
+      "type": ["string", "null"],
+      "description": "International Chemical Identifier string",
+      "sources": ["eBASIS"],
+      "example": "InChI=1S/C15H10O7/c16-7-4-10(19)..."
+    },
+    "inchikey": {
+      "type": ["string", "null"],
+      "description": "Hashed InChI identifier",
+      "sources": ["eBASIS"],
+      "example": "REFJWTPEDVJJIY-UHFFFAOYSA-N"
+    },
+    "synonyms": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Alternative names for the compound",
+      "sources": ["eBASIS"],
+      "example": ["Sophoretin", "Meletin", "Quercetine"]
+    },
+    "langual_codes": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "LanguaL food description thesaurus codes",
+      "sources": ["eBASIS"],
+      "example": ["A0148", "B1001"]
+    },
+    "eurofir_code": {
+      "type": ["string", "null"],
+      "description": "EuroFIR food code",
+      "sources": ["eBASIS"],
+      "example": "FR001234"
+    },
+    "edible_portion": {
+      "type": ["number", "null"],
+      "description": "Percentage of food that is consumable",
+      "sources": ["eBASIS"],
+      "example": 95.0
+    },
+    "value_type": {
+      "type": ["string", "null"],
+      "description": "Type of measurement value (mean, median, single)",
+      "sources": ["eBASIS"],
+      "enum": ["mean", "median", "single", null],
+      "example": "mean"
+    },
+    "min_value": {
+      "type": ["number", "null"],
+      "description": "Minimum observed concentration",
+      "sources": ["eBASIS"],
+      "example": 2.10
+    },
+    "max_value": {
+      "type": ["number", "null"],
+      "description": "Maximum observed concentration",
+      "sources": ["eBASIS"],
+      "example": 6.45
+    },
+    "n_samples": {
+      "type": ["integer", "null"],
+      "description": "Number of samples analyzed",
+      "sources": ["eBASIS"],
+      "example": 12
+    },
+    "std_dev": {
+      "type": ["number", "null"],
+      "description": "Standard deviation of measurements",
+      "sources": ["eBASIS"],
+      "example": 1.23
+    },
+    "analytical_method": {
+      "type": ["string", "null"],
+      "description": "Analytical technique used (HPLC, GC-MS, etc.)",
+      "sources": ["eBASIS"],
+      "example": "HPLC-DAD"
+    },
+    "reference_id": {
+      "type": ["integer", "null"],
+      "description": "Reference to source publication",
+      "sources": ["eBASIS"],
+      "example": 5678
+    },
+    "pubmed_id": {
+      "type": ["integer", "null"],
+      "description": "PubMed reference ID",
+      "sources": ["eBASIS"],
+      "example": 32145678
+    },
+    "doi": {
+      "type": ["string", "null"],
+      "description": "Digital Object Identifier for publication",
+      "sources": ["eBASIS"],
+      "example": "10.1016/j.jfca.2020.103567"
+    },
+    "_source": {
+      "type": "object",
+      "description": "Metadata about the data source",
+      "properties": {
+        "primary_source": {"type": "string", "const": "eBASIS"},
+        "source_id": {"type": "string"},
+        "extraction_date": {"type": "string", "format": "date"},
+        "source_version": {"type": "string"}
+      }
+    }
+  },
+  "required": ["component_id", "component_name", "food_id", "food_name", "composition_value", "composition_unit"],
+  "field_mappings": {
+    "eBASIS": {
+      "component_id": "component_id",
+      "component_name": "component_name",
+      "component_group": "component_group",
+      "component_subgroup": "component_subgroup",
+      "food_id": "food_id",
+      "food_name": "food_name",
+      "scientific_name": "scientific_name",
+      "value": "composition_value",
+      "unit": "composition_unit",
+      "data_quality_score": "data_quality_score",
+      "cas_number": "cas_number",
+      "pubchem_cid": "pubchem_cid",
+      "molecular_formula": "molecular_formula",
+      "molecular_weight": "molecular_weight",
+      "iupac_name": "iupac_name",
+      "inchi": "inchi",
+      "inchikey": "inchikey",
+      "synonyms": "synonyms",
+      "langual_code": "langual_codes",
+      "eurofir_code": "eurofir_code",
+      "edible_portion": "edible_portion",
+      "value_type": "value_type",
+      "min_value": "min_value",
+      "max_value": "max_value",
+      "n_samples": "n_samples",
+      "std_dev": "std_dev",
+      "analytical_method": "analytical_method",
+      "reference_id": "reference_id",
+      "pubmed_id": "pubmed_id",
+      "doi": "doi"
+    }
+  }
+}

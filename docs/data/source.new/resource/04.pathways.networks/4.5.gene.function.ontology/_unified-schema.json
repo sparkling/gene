@@ -1,0 +1,183 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gene.example.org/schemas/4.5-gene-function-ontology.json",
+  "title": "Gene Function and Ontology Unified Schema",
+  "description": "Unified schema for gene function and ontology data from Gene Ontology and MSigDB",
+  "type": "object",
+  "properties": {
+    "term_id": {
+      "type": "string",
+      "description": "Primary identifier for the ontology term or gene set",
+      "sources": ["Gene Ontology", "MSigDB"],
+      "examples": ["GO:0008152", "M5930"]
+    },
+    "term_name": {
+      "type": "string",
+      "description": "Human-readable term name",
+      "sources": ["Gene Ontology", "MSigDB"],
+      "examples": ["metabolic process", "HALLMARK_APOPTOSIS"]
+    },
+    "definition": {
+      "type": ["string", "null"],
+      "description": "Textual definition of the term",
+      "sources": ["Gene Ontology", "MSigDB"]
+    },
+    "namespace": {
+      "type": ["string", "null"],
+      "description": "Ontology namespace or collection",
+      "sources": ["Gene Ontology", "MSigDB"],
+      "examples": ["biological_process", "cellular_component", "molecular_function", "H"]
+    },
+    "genes": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Genes associated with the term",
+      "sources": ["Gene Ontology", "MSigDB"]
+    },
+    "go_id": {
+      "type": ["string", "null"],
+      "description": "Gene Ontology identifier",
+      "sources": ["Gene Ontology"],
+      "pattern": "GO:[0-9]{7}"
+    },
+    "go_namespace": {
+      "type": ["string", "null"],
+      "enum": ["biological_process", "cellular_component", "molecular_function", null],
+      "description": "GO namespace/aspect",
+      "sources": ["Gene Ontology"]
+    },
+    "is_a": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Parent terms in hierarchy",
+      "sources": ["Gene Ontology"]
+    },
+    "part_of": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Part-of relationships",
+      "sources": ["Gene Ontology"]
+    },
+    "regulates": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Regulatory relationships",
+      "sources": ["Gene Ontology"]
+    },
+    "synonyms": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Alternative names for the term",
+      "sources": ["Gene Ontology"]
+    },
+    "xrefs": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Cross-references to external databases",
+      "sources": ["Gene Ontology"]
+    },
+    "is_obsolete": {
+      "type": ["boolean", "null"],
+      "description": "Whether the term is obsolete",
+      "sources": ["Gene Ontology"]
+    },
+    "replaced_by": {
+      "type": ["string", "null"],
+      "description": "Replacement term for obsolete terms",
+      "sources": ["Gene Ontology"]
+    },
+    "msigdb_id": {
+      "type": ["string", "null"],
+      "description": "MSigDB gene set identifier",
+      "sources": ["MSigDB"]
+    },
+    "msigdb_collection": {
+      "type": ["string", "null"],
+      "description": "MSigDB collection category",
+      "sources": ["MSigDB"],
+      "examples": ["H", "C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8"]
+    },
+    "msigdb_subcollection": {
+      "type": ["string", "null"],
+      "description": "MSigDB subcollection",
+      "sources": ["MSigDB"],
+      "examples": ["CP:KEGG", "CP:REACTOME", "GO:BP", "GO:CC", "GO:MF"]
+    },
+    "standard_name": {
+      "type": ["string", "null"],
+      "description": "Standardized gene set name",
+      "sources": ["MSigDB"]
+    },
+    "systematic_name": {
+      "type": ["string", "null"],
+      "description": "Systematic identifier",
+      "sources": ["MSigDB"]
+    },
+    "brief_description": {
+      "type": ["string", "null"],
+      "description": "Short description of the gene set",
+      "sources": ["MSigDB"]
+    },
+    "full_description": {
+      "type": ["string", "null"],
+      "description": "Detailed description with references",
+      "sources": ["MSigDB"]
+    },
+    "external_links": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "URLs to external resources",
+      "sources": ["MSigDB"]
+    },
+    "pmid": {
+      "type": ["integer", "null"],
+      "description": "Associated PubMed ID",
+      "sources": ["MSigDB"]
+    },
+    "gene_count": {
+      "type": ["integer", "null"],
+      "description": "Number of genes in the set",
+      "sources": ["MSigDB"]
+    },
+    "_source": {
+      "type": "object",
+      "description": "Metadata about the data source",
+      "properties": {
+        "database": {"type": "string"},
+        "version": {"type": "string"},
+        "access_date": {"type": "string", "format": "date"},
+        "original_id": {"type": "string"}
+      }
+    }
+  },
+  "required": ["term_id", "term_name"],
+  "field_mappings": {
+    "Gene_Ontology": {
+      "id": "go_id",
+      "name": "term_name",
+      "namespace": "go_namespace",
+      "def": "definition",
+      "is_a": "is_a",
+      "part_of": "part_of",
+      "regulates": "regulates",
+      "synonym": "synonyms",
+      "xref": "xrefs",
+      "is_obsolete": "is_obsolete",
+      "replaced_by": "replaced_by"
+    },
+    "MSigDB": {
+      "GENESET_ID": "msigdb_id",
+      "STANDARD_NAME": "standard_name",
+      "SYSTEMATIC_NAME": "systematic_name",
+      "COLLECTION": "msigdb_collection",
+      "SUBCOLLECTION": "msigdb_subcollection",
+      "BRIEF_DESCRIPTION": "brief_description",
+      "FULL_DESCRIPTION": "full_description",
+      "EXTERNAL_LINKS": "external_links",
+      "PMID": "pmid",
+      "MEMBERS": "genes",
+      "MEMBERS_SYMBOLIZED": "genes",
+      "SIZE": "gene_count"
+    }
+  }
+}
