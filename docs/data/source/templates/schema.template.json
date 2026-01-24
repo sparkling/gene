@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "{source-id}-schema.json",
+  "title": "{Source Name} Record",
+  "description": "JSON Schema for {Source Name} data records. Replace placeholders with actual source details.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Primary identifier for the record. Use the source's native ID format.",
+      "pattern": "^[A-Z0-9]+$",
+      "examples": ["ABC123", "XYZ789"]
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable name or label for the record.",
+      "minLength": 1,
+      "maxLength": 500
+    },
+    "type": {
+      "type": "string",
+      "description": "Record type or category classification.",
+      "enum": ["type_a", "type_b", "type_c"]
+    },
+    "properties": {
+      "type": "object",
+      "description": "Additional source-specific properties. Define nested fields here.",
+      "properties": {
+        "value": {
+          "type": "number",
+          "description": "Numeric value associated with the record."
+        },
+        "unit": {
+          "type": "string",
+          "description": "Unit of measurement for the value."
+        },
+        "tags": {
+          "type": "array",
+          "description": "Classification tags for the record.",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Record metadata including timestamps and provenance.",
+      "properties": {
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp when the record was created."
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp of the last update."
+        },
+        "source_version": {
+          "type": "string",
+          "description": "Version of the source database this record came from."
+        }
+      }
+    }
+  },
+  "required": ["id", "name"],
+  "additionalProperties": false
+}
