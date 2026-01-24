@@ -1,8 +1,8 @@
 {
-  "model": "all-MiniLM-L6-v2",
+  "model": "all-mpnet-base-v2",
   "modelPath": "/home/claude/src/gene/.claude-flow/models",
-  "dimension": 384,
-  "cacheSize": 8192,
+  "dimension": 768,
+  "cacheSize": 256,
   "hyperbolic": {
     "enabled": true,
     "curvature": -1,
@@ -14,5 +14,5 @@
     "driftThreshold": 0.3,
     "decayRate": 0.01
   },
-  "initialized": "2026-01-20T01:43:09.406Z"
+  "initialized": "2026-01-23T14:25:21.951Z"
 }

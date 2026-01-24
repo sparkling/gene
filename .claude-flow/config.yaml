@@ -1,136 +1,28 @@
 # Claude Flow V3 Runtime Configuration
-# Generated: 2026-01-23T11:08:40.229Z
+# Generated: 2026-01-23T14:25:21.460Z
 
 version: "3.0.0"
 
-# =============================================================================
-# DUAL RUVECTOR DATABASES
-# =============================================================================
-
-# -----------------------------------------------------------------------------
-# OPERATIONAL DATABASE - Claude Flow internals (expendable, can rebuild)
-# -----------------------------------------------------------------------------
-operational:
-  backend: ruvector
-  storagePath: data/operational.db
-  dimensions: 384
-
-  hnsw:
-    M: 16
-    efConstruction: 200
-    efSearch: 100
-
-  quantization: none
-
-  persistence:
-    autoPersist: true
-    persistInterval: 30000    # 30 seconds
-    walMode: false
-
-  namespaces:
-    project-activity: "proj:"
-    learning-patterns: "learn:"
-    session-state: "sess:"
-    embeddings-cache: "emb:"
-    agent-routing: "route:"
-
-# -----------------------------------------------------------------------------
-# USER DATABASE - Your graph data (CRITICAL - cannot lose)
-# -----------------------------------------------------------------------------
-user:
-  backend: ruvector
-  storagePath: data/user.db
-  dimensions: 768
-
-  hnsw:
-    M: 48                     # High - best recall for user data
-    efConstruction: 400
-    efSearch: 200
-
-  quantization: scalar        # 4x compression, 98-99% accuracy
-
-  persistence:
-    autoPersist: true
-    persistInterval: 10000    # 10 seconds - critical data
-    walMode: true             # Crash-safe
-
-  namespaces:
-    documents: "doc:"         # Source documents
-    entities: "ent:"          # Graph entities/nodes
-    relationships: "rel:"     # Graph relationships/edges
-    annotations: "ann:"       # User annotations
-    queries: "qry:"           # Saved queries
-
-  # Scale settings (187GB RAM available)
-  cacheSize: 10000
-  maxEntries: 100000000       # 100M entries supported
-
-# =============================================================================
-# SWARM CONFIGURATION
-# =============================================================================
 swarm:
   topology: hierarchical-mesh
   maxAgents: 15
   autoScale: true
   coordinationStrategy: consensus
 
-# =============================================================================
-# NEURAL/LEARNING - Full stack enabled
-# =============================================================================
+memory:
+  backend: hybrid
+  enableHNSW: true
+  persistPath: .claude-flow/data
+  cacheSize: 100
+
 neural:
   enabled: true
   modelPath: .claude-flow/neural
 
-  sona:
-    enabled: true
-    hiddenDim: 768
-    microLoraRank: 2
-    baseLoraRank: 8
-    patternClusters: 100
-    trajectoryCapacity: 50000
-    ewcLambda: 1000.0
-
-  moe:
-    enabled: true
-    numExperts: 8
-    topK: 2
-
-  ewc:
-    enabled: true
-    autoConsolidate: true
-    consolidationInterval: 3600000
-
-  flashAttention:
-    enabled: true
-    blockSize: 256
-
-# =============================================================================
-# HOOKS - Auto-learning to OPERATIONAL database
-# =============================================================================
 hooks:
   enabled: true
   autoExecute: true
-  database: operational       # Hooks write to operational, not user
 
-  preTask:
-    storeContext: true
-    namespace: project-activity
-
-  postTask:
-    learnPatterns: true
-    storePattern: true
-    namespace: learning-patterns
-
-  postEdit:
-    learn: true
-    storePattern: true
-
-  postCommand:
-    learn: true
-
-# =============================================================================
-# MCP CONFIGURATION
-# =============================================================================
 mcp:
   autoStart: false
   port: 3000

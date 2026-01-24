@@ -1,0 +1,399 @@
+{
+  "verification_report": {
+    "category": "02.compounds.molecules",
+    "date": "2026-01-23",
+    "resource_path": "/home/claude/src/gene/docs/data/source.new/resource/02.compounds.molecules/",
+    "total_sources": 23,
+    "conformance_rate": "13.0%"
+  },
+  "template_requirements": {
+    "index_md_frontmatter": [
+      "id",
+      "title",
+      "type",
+      "category",
+      "subcategory",
+      "parent",
+      "tier",
+      "last_updated",
+      "status",
+      "tags"
+    ],
+    "index_md_sections": [
+      "Overview",
+      "Primary Use Cases",
+      "Key Identifiers",
+      "Access Methods",
+      "License"
+    ],
+    "required_files": {
+      "schema.md": {
+        "required_sections": [
+          "Database Statistics",
+          "Entity Relationship Overview",
+          "Core Tables/Entities",
+          "Data Formats",
+          "Sample Record"
+        ]
+      },
+      "download.md": {
+        "required_sections": [
+          "Quick Start",
+          "Prerequisites",
+          "Download Methods",
+          "File Inventory",
+          "Verification"
+        ]
+      },
+      "xrefs.md": {
+        "status": "optional"
+      }
+    }
+  },
+  "conformance_summary": {
+    "fully_compliant": 3,
+    "missing_optional_xrefs": 17,
+    "missing_required_files": 20,
+    "missing_sections_in_index": 3,
+    "status": "NON-COMPLIANT"
+  },
+  "key_findings": {
+    "file_coverage": {
+      "schema.md": {
+        "present": 5,
+        "missing": 18,
+        "coverage_rate": "21.7%"
+      },
+      "download.md": {
+        "present": 4,
+        "missing": 19,
+        "coverage_rate": "17.4%"
+      },
+      "xrefs.md": {
+        "present": 7,
+        "missing": 16,
+        "coverage_rate": "30.4%"
+      }
+    },
+    "section_coverage": {
+      "missing_key_identifiers": [
+        "2.5.drug.metabolism.pharmacokinetics/swissadme",
+        "2.6.chemical.ontology.classification/classyfire",
+        "2.6.chemical.ontology.classification/npclassifier"
+      ]
+    }
+  },
+  "sources_with_issues": [
+    {
+      "source": "2.1.natural.products/coconut",
+      "issues": [
+        "Missing: download.md"
+      ],
+      "files_present": [
+        "_index.md",
+        "schema.md",
+        "xrefs.md"
+      ],
+      "compliance": "83%"
+    },
+    {
+      "source": "2.1.natural.products/dr.dukes",
+      "issues": [
+        "Missing: schema.md, download.md"
+      ],
+      "files_present": [
+        "_index.md",
+        "xrefs.md"
+      ],
+      "compliance": "40%"
+    },
+    {
+      "source": "2.1.natural.products/lotus",
+      "issues": [
+        "Missing: download.md"
+      ],
+      "files_present": [
+        "_index.md",
+        "schema.md"
+      ],
+      "compliance": "83%"
+    },
+    {
+      "source": "2.1.natural.products/npass",
+      "issues": [
+        "Missing: schema.md, download.md"
+      ],
+      "files_present": [
+        "_index.md"
+      ],
+      "compliance": "20%"
+    },
+    {
+      "source": "2.1.natural.products/npatlas",
+      "issues": [
+        "Missing: schema.md, download.md"
+      ],
+      "files_present": [
+        "_index.md"
+      ],
+      "compliance": "20%"
+    },
+    {
+      "source": "2.2.pharmaceuticals/chembl",
+      "issues": [
+        "Missing: xrefs.md"
+      ],
+      "files_present": [
+        "_index.md",
+        "schema.md",
+        "download.md"
+      ],
+      "compliance": "80%"
+    },
+    {
+      "source": "2.2.pharmaceuticals/dailymed",
+      "issues": [
+        "Missing: schema.md, download.md"
+      ],
+      "files_present": [
+        "_index.md",
+        "xrefs.md"
+      ],
+      "compliance": "40%"
+    },
+    {
+      "source": "2.2.pharmaceuticals/drugbank",
+      "issues": [
+        "Missing: schema.md"
+      ],
+      "files_present": [
+        "_index.md",
+        "download.md"
+      ],
+      "compliance": "67%"
+    },
+    {
+      "source": "2.2.pharmaceuticals/orange.book",
+      "issues": [
+        "Missing: schema.md, download.md"
+      ],
+      "files_present": [
+        "_index.md"
+      ],
+      "compliance": "20%"
+    },
+    {
+      "source": "2.2.pharmaceuticals/rxnorm",
+      "issues": [
+        "Missing: schema.md, download.md"
+      ],
+      "files_present": [
+        "_index.md"
+      ],
+      "compliance": "20%"
+    },
+    {
+      "source": "2.4.food.compounds.nutrients/phenol.explorer",
+      "issues": [
+        "Missing: schema.md, download.md"
+      ],
+      "files_present": [
+        "_index.md",
+        "xrefs.md"
+      ],
+      "compliance": "40%"
+    },
+    {
+      "source": "2.4.food.compounds.nutrients/phytohub",
+      "issues": [
+        "Missing: schema.md, download.md"
+      ],
+      "files_present": [
+        "_index.md",
+        "xrefs.md"
+      ],
+      "compliance": "40%"
+    },
+    {
+      "source": "2.4.food.compounds.nutrients/usda.fooddata",
+      "issues": [
+        "Missing: schema.md, download.md"
+      ],
+      "files_present": [
+        "_index.md",
+        "xrefs.md"
+      ],
+      "compliance": "40%"
+    },
+    {
+      "source": "2.5.drug.metabolism.pharmacokinetics/supercyp",
+      "issues": [
+        "Missing: schema.md, download.md"
+      ],
+      "files_present": [
+        "_index.md"
+      ],
+      "compliance": "20%"
+    },
+    {
+      "source": "2.5.drug.metabolism.pharmacokinetics/swissadme",
+      "issues": [
+        "Missing: 'Key Identifiers' section in _index.md",
+        "Missing: schema.md, download.md"
+      ],
+      "files_present": [
+        "_index.md"
+      ],
+      "compliance": "0%"
+    },
+    {
+      "source": "2.6.chemical.ontology.classification/chebi",
+      "issues": [
+        "Missing: xrefs.md"
+      ],
+      "files_present": [
+        "_index.md",
+        "schema.md",
+        "download.md"
+      ],
+      "compliance": "80%"
+    },
+    {
+      "source": "2.6.chemical.ontology.classification/classyfire",
+      "issues": [
+        "Missing: 'Key Identifiers' section in _index.md",
+        "Missing: schema.md, download.md"
+      ],
+      "files_present": [
+        "_index.md"
+      ],
+      "compliance": "0%"
+    },
+    {
+      "source": "2.6.chemical.ontology.classification/npclassifier",
+      "issues": [
+        "Missing: 'Key Identifiers' section in _index.md",
+        "Missing: schema.md, download.md"
+      ],
+      "files_present": [
+        "_index.md"
+      ],
+      "compliance": "0%"
+    },
+    {
+      "source": "2.6.chemical.ontology.classification/pubchem",
+      "issues": [
+        "Missing: xrefs.md"
+      ],
+      "files_present": [
+        "_index.md",
+        "schema.md",
+        "download.md"
+      ],
+      "compliance": "80%"
+    },
+    {
+      "source": "2.7.compound.target.interactions/bindingdb",
+      "issues": [
+        "Missing: schema.md, download.md"
+      ],
+      "files_present": [
+        "_index.md"
+      ],
+      "compliance": "20%"
+    },
+    {
+      "source": "2.7.compound.target.interactions/dgidb",
+      "issues": [
+        "Missing: schema.md, download.md"
+      ],
+      "files_present": [
+        "_index.md",
+        "xrefs.md"
+      ],
+      "compliance": "40%"
+    },
+    {
+      "source": "2.7.compound.target.interactions/gtopdb",
+      "issues": [
+        "Missing: schema.md, download.md"
+      ],
+      "files_present": [
+        "_index.md"
+      ],
+      "compliance": "20%"
+    },
+    {
+      "source": "2.7.compound.target.interactions/ttd",
+      "issues": [
+        "Missing: schema.md, download.md"
+      ],
+      "files_present": [
+        "_index.md"
+      ],
+      "compliance": "20%"
+    }
+  ],
+  "fully_compliant_sources": [
+    {
+      "source": "2.2.pharmaceuticals/chembl",
+      "files": [
+        "_index.md",
+        "schema.md",
+        "download.md",
+        "xrefs.md"
+      ],
+      "all_sections": true,
+      "compliance": "100%"
+    },
+    {
+      "source": "2.6.chemical.ontology.classification/chebi",
+      "files": [
+        "_index.md",
+        "schema.md",
+        "download.md"
+      ],
+      "note": "xrefs.md optional",
+      "compliance": "100%"
+    },
+    {
+      "source": "2.6.chemical.ontology.classification/pubchem",
+      "files": [
+        "_index.md",
+        "schema.md",
+        "download.md"
+      ],
+      "note": "xrefs.md optional",
+      "compliance": "100%"
+    }
+  ],
+  "priority_remediation": {
+    "critical": {
+      "description": "Sources with 0% compliance (missing _index.md sections + all supplementary files)",
+      "count": 3,
+      "sources": [
+        "2.5.drug.metabolism.pharmacokinetics/swissadme",
+        "2.6.chemical.ontology.classification/classyfire",
+        "2.6.chemical.ontology.classification/npclassifier"
+      ]
+    },
+    "high": {
+      "description": "Sources missing both schema.md and download.md",
+      "count": 15,
+      "action": "Create schema.md with Database Statistics, Entity Relationship, Core Tables, Data Formats, Sample Record sections. Create download.md with Quick Start, Prerequisites, Download Methods, File Inventory, Verification sections."
+    },
+    "medium": {
+      "description": "Sources missing only xrefs.md",
+      "count": 2,
+      "action": "Create xrefs.md with cross-reference mapping to related data sources"
+    }
+  },
+  "recommendations": [
+    "Create missing schema.md files for 18 sources (only 5/23 have schemas)",
+    "Create missing download.md files for 19 sources (only 4/23 have download instructions)",
+    "Add 'Key Identifiers' section to SwissADME, ClassyFire, and NPClassifier _index.md files",
+    "Create xrefs.md cross-reference files for all 16 missing sources",
+    "Establish schema template validation in CI/CD pipeline",
+    "Generate bulk schema files from existing database documentation"
+  ]
+}

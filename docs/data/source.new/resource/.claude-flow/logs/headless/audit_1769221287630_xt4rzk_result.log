@@ -1,0 +1,13 @@
+[2026-01-24T02:26:27.746Z] RESULT
+============================================================
+{
+  "success": false,
+  "output": "",
+  "durationMs": 300116,
+  "model": "haiku",
+  "sandboxMode": "strict",
+  "workerType": "audit",
+  "timestamp": "2026-01-24T02:26:27.746Z",
+  "executionId": "audit_1769221287630_xt4rzk",
+  "error": "Execution timed out after 300000ms"
+}

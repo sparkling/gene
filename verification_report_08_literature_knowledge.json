@@ -1,0 +1,280 @@
+{
+  "verification_report": {
+    "category": "08.literature.knowledge - Literature and Knowledge Resources",
+    "verification_date": "2026-01-23",
+    "status": "ISSUES_FOUND",
+    
+    "overview": {
+      "total_index_files": 17,
+      "total_data_sources": 12,
+      "total_subcategories": 4,
+      "total_category_roots": 1,
+      "total_markdown_files": 25
+    },
+    
+    "file_inventory": {
+      "data_sources": {
+        "total": 12,
+        "fully_conformant": 2,
+        "partially_conformant": 10,
+        "list": [
+          {
+            "name": "europe.pmc",
+            "path": "8.1.scientific.literature/europe.pmc",
+            "files_present": ["_index.md"],
+            "files_missing": ["schema.md", "download.md"],
+            "conformance": "INCOMPLETE"
+          },
+          {
+            "name": "openalex",
+            "path": "8.1.scientific.literature/openalex",
+            "files_present": ["_index.md"],
+            "files_missing": ["schema.md", "download.md"],
+            "conformance": "INCOMPLETE"
+          },
+          {
+            "name": "pubmed",
+            "path": "8.1.scientific.literature/pubmed",
+            "files_present": ["_index.md", "download.md"],
+            "files_missing": ["schema.md"],
+            "conformance": "PARTIAL"
+          },
+          {
+            "name": "pubmed.central",
+            "path": "8.1.scientific.literature/pubmed.central",
+            "files_present": ["_index.md"],
+            "files_missing": ["schema.md", "download.md"],
+            "conformance": "INCOMPLETE"
+          },
+          {
+            "name": "semantic.scholar",
+            "path": "8.1.scientific.literature/semantic.scholar",
+            "files_present": ["_index.md"],
+            "files_missing": ["schema.md", "download.md"],
+            "conformance": "INCOMPLETE"
+          },
+          {
+            "name": "wikidata",
+            "path": "8.2.knowledge.bases/wikidata",
+            "files_present": ["_index.md", "download.md", "schema.md", "xrefs.md"],
+            "files_missing": [],
+            "conformance": "COMPLETE"
+          },
+          {
+            "name": "wikipedia",
+            "path": "8.2.knowledge.bases/wikipedia",
+            "files_present": ["_index.md"],
+            "files_missing": ["schema.md", "download.md"],
+            "conformance": "INCOMPLETE"
+          },
+          {
+            "name": "ncbi.elink",
+            "path": "8.3.identifier.mapping/ncbi.elink",
+            "files_present": ["_index.md"],
+            "files_missing": ["schema.md", "download.md"],
+            "conformance": "INCOMPLETE"
+          },
+          {
+            "name": "pmc.id.converter",
+            "path": "8.3.identifier.mapping/pmc.id.converter",
+            "files_present": ["_index.md"],
+            "files_missing": ["schema.md", "download.md"],
+            "conformance": "INCOMPLETE"
+          },
+          {
+            "name": "uniprot.id.mapping",
+            "path": "8.3.identifier.mapping/uniprot.id.mapping",
+            "files_present": ["_index.md", "schema.md"],
+            "files_missing": ["download.md"],
+            "conformance": "PARTIAL"
+          },
+          {
+            "name": "clinicaltrials.gov",
+            "path": "8.4.regulatory.legal/clinicaltrials.gov",
+            "files_present": ["_index.md", "download.md"],
+            "files_missing": ["schema.md"],
+            "conformance": "PARTIAL"
+          },
+          {
+            "name": "fda.openfda",
+            "path": "8.4.regulatory.legal/fda.openfda",
+            "files_present": ["_index.md", "download.md", "schema.md"],
+            "files_missing": [],
+            "conformance": "COMPLETE"
+          }
+        ]
+      },
+      
+      "subcategories": {
+        "total": 4,
+        "fully_conformant": 4,
+        "list": [
+          {
+            "name": "8.1.scientific.literature",
+            "path": "8.1.scientific.literature",
+            "files": ["_index.md"],
+            "conformance": "COMPLETE"
+          },
+          {
+            "name": "8.2.knowledge.bases",
+            "path": "8.2.knowledge.bases",
+            "files": ["_index.md"],
+            "conformance": "COMPLETE"
+          },
+          {
+            "name": "8.3.identifier.mapping",
+            "path": "8.3.identifier.mapping",
+            "files": ["_index.md"],
+            "conformance": "COMPLETE"
+          },
+          {
+            "name": "8.4.regulatory.legal",
+            "path": "8.4.regulatory.legal",
+            "files": ["_index.md"],
+            "conformance": "COMPLETE"
+          }
+        ]
+      }
+    },
+    
+    "conformance_analysis": {
+      "frontmatter_check": {
+        "status": "PASSED",
+        "notes": "All _index.md files have required frontmatter fields (id, title, type, status, tags, last_updated)"
+      },
+      
+      "section_completeness": {
+        "data_sources": {
+          "status": "PASSED",
+          "required_sections": [
+            "Overview",
+            "Key Statistics",
+            "Primary Use Cases",
+            "Key Identifiers",
+            "Access Methods",
+            "License",
+            "See Also"
+          ],
+          "all_present": true,
+          "notes": "All 12 data source _index.md files contain all required sections"
+        },
+        "subcategories": {
+          "status": "PASSED",
+          "required_sections": [
+            "Overview",
+            "Data Sources"
+          ],
+          "all_present": true,
+          "notes": "All 4 subcategory _index.md files contain required sections"
+        }
+      },
+      
+      "supporting_documentation": {
+        "status": "FAILED",
+        "summary": {
+          "schema_md_missing": 9,
+          "download_md_missing": 8,
+          "total_missing": 17
+        },
+        "critical_issues": [
+          "9 data sources missing schema.md documentation",
+          "8 data sources missing download.md documentation",
+          "Only 2 of 12 data sources (17%) have complete documentation set"
+        ],
+        "missing_by_source": {
+          "both_missing": [
+            "europe.pmc",
+            "openalex",
+            "pubmed.central",
+            "semantic.scholar",
+            "wikipedia",
+            "ncbi.elink",
+            "pmc.id.converter"
+          ],
+          "schema_missing": [
+            "pubmed",
+            "clinicaltrials.gov"
+          ],
+          "download_missing": [
+            "uniprot.id.mapping"
+          ]
+        }
+      }
+    },
+    
+    "quality_assessment": {
+      "overall_conformance_percentage": 16.7,
+      "breakdown": {
+        "complete_documentation": 2,
+        "partial_documentation": 3,
+        "incomplete_documentation": 7
+      },
+      "tier_1_sources_complete": 1,
+      "tier_1_sources_incomplete": 10,
+      "tier_2_sources_complete": 1,
+      "tier_2_sources_incomplete": 0
+    },
+    
+    "recommendations": {
+      "priority_high": [
+        "Create schema.md files for 9 data sources lacking schema documentation",
+        "Create download.md files for 8 data sources lacking download instructions",
+        "Focus on Tier 1 sources first (PubMed, PubMed Central, Europe PMC, ClinicalTrials.gov)"
+      ],
+      "priority_medium": [
+        "Verify all _index.md files have complete tables (all rows filled, no placeholders)",
+        "Check for dead links in 'See Also' sections",
+        "Validate all frontmatter tier values are correct (1 or 2)"
+      ],
+      "priority_low": [
+        "Add cross-references between related data sources",
+        "Expand examples in Access Methods tables",
+        "Consider adding 'Data Updates' or 'Rate Limits' sections"
+      ]
+    },
+    
+    "completeness_by_category": {
+      "8.1.scientific_literature": {
+        "sources": 5,
+        "complete": 0,
+        "incomplete": 5,
+        "completion_rate": "0%"
+      },
+      "8.2.knowledge_bases": {
+        "sources": 2,
+        "complete": 1,
+        "incomplete": 1,
+        "completion_rate": "50%"
+      },
+      "8.3.identifier_mapping": {
+        "sources": 3,
+        "complete": 0,
+        "incomplete": 3,
+        "completion_rate": "0%"
+      },
+      "8.4.regulatory_legal": {
+        "sources": 2,
+        "complete": 1,
+        "incomplete": 1,
+        "completion_rate": "50%"
+      }
+    },
+    
+    "next_steps": {
+      "immediate": [
+        "Create missing schema.md files for: europe.pmc, openalex, pubmed.central, semantic.scholar, wikipedia, ncbi.elink, pmc.id.converter, pubmed, clinicaltrials.gov",
+        "Create missing download.md files for: europe.pmc, openalex, pubmed.central, semantic.scholar, wikipedia, ncbi.elink, pmc.id.converter, uniprot.id.mapping"
+      ],
+      "validation": [
+        "Review all existing schema.md and download.md files for completeness",
+        "Ensure all tables have complete data (no empty cells or placeholders)",
+        "Test all provided URLs and code examples"
+      ],
+      "enhancement": [
+        "Add integration notes for how sources relate to each other",
+        "Include performance benchmarks or access statistics where available",
+        "Add example queries or code snippets in download.md files"
+      ]
+    }
+  }
+}

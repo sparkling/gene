@@ -1,0 +1,417 @@
+{
+  "category": "01.genetics.genomics",
+  "verification_date": "2026-01-23",
+  "report_type": "template_conformance_audit",
+  "summary": {
+    "total_resources": 35,
+    "data_sources": 25,
+    "subcategories": 9,
+    "total_with_complete_sections": 32,
+    "total_with_missing_sections": 3,
+    "supporting_files": {
+      "with_schema_md": 9,
+      "with_download_md": 9,
+      "with_xrefs_md": 9,
+      "missing_both_schema_and_download": 16
+    }
+  },
+  "template_requirements": {
+    "data_source_index_md": {
+      "required_frontmatter": [
+        "id", "title", "type", "category", "subcategory", "parent",
+        "tier", "last_updated", "status", "tags"
+      ],
+      "required_sections": [
+        "Overview (2-3 paragraphs)",
+        "Key Statistics (table)",
+        "Primary Use Cases (list)",
+        "Key Identifiers (table)",
+        "Access Methods (table)",
+        "License (table)",
+        "See Also (links)"
+      ]
+    },
+    "subcategory_index_md": {
+      "required_frontmatter": [
+        "id", "title", "type", "parent", "last_updated", "status", "tags"
+      ],
+      "required_sections": [
+        "Parent link",
+        "Overview (2-3 paragraphs)",
+        "Data Sources (table with sources, tier, description)"
+      ]
+    },
+    "schema_md": {
+      "required_sections": [
+        "Database Statistics",
+        "Entity Relationship Overview",
+        "Core Tables/Entities",
+        "Data Formats",
+        "Sample Record"
+      ]
+    },
+    "download_md": {
+      "required_sections": [
+        "Quick Start",
+        "Prerequisites",
+        "Download Methods",
+        "File Inventory",
+        "Verification"
+      ]
+    }
+  },
+  "conformance_issues": [
+    {
+      "severity": "medium",
+      "type": "incomplete_subcategory",
+      "path": "/1.1.variant.databases",
+      "file": "_index.md",
+      "issue": "Missing 'Data Sources' table",
+      "impact": "Users cannot see what variant databases are included",
+      "note": "This is an alternate organization folder with redirect note"
+    },
+    {
+      "severity": "medium",
+      "type": "incomplete_subcategory",
+      "path": "/1.2.gwas.qtl",
+      "file": "_index.md",
+      "issue": "Missing 'Data Sources' table",
+      "impact": "Users cannot see what GWAS/QTL sources are included",
+      "note": "This is an alternate organization folder with redirect note"
+    },
+    {
+      "severity": "medium",
+      "type": "incomplete_subcategory",
+      "path": "/1.3.functional.genomics",
+      "file": "_index.md",
+      "issue": "Missing 'Data Sources' table",
+      "impact": "Users cannot see what functional genomics sources are included",
+      "note": "This is an alternate organization folder with redirect note"
+    }
+  ],
+  "missing_supporting_files": {
+    "count": 16,
+    "affected_sources": [
+      {
+        "source": "alphamissense",
+        "path": "1.2.functional.prediction/alphamissense",
+        "missing": ["schema.md", "download.md"],
+        "has_index": true,
+        "tier": 1,
+        "priority": "high"
+      },
+      {
+        "source": "cadd",
+        "path": "1.2.functional.prediction/cadd",
+        "missing": ["schema.md", "download.md"],
+        "has_index": true,
+        "tier": 1,
+        "priority": "high"
+      },
+      {
+        "source": "dbnsfp",
+        "path": "1.2.functional.prediction/dbnsfp",
+        "missing": ["schema.md", "download.md"],
+        "has_index": true,
+        "tier": 1,
+        "priority": "high"
+      },
+      {
+        "source": "spliceai",
+        "path": "1.2.functional.prediction/spliceai",
+        "missing": ["schema.md", "download.md"],
+        "has_index": true,
+        "tier": 1,
+        "priority": "high"
+      },
+      {
+        "source": "1000.genomes",
+        "path": "1.3.population.genetics/1000.genomes",
+        "missing": ["schema.md", "download.md"],
+        "has_index": true,
+        "tier": 1,
+        "priority": "high"
+      },
+      {
+        "source": "topmed",
+        "path": "1.3.population.genetics/topmed",
+        "missing": ["schema.md", "download.md"],
+        "has_index": true,
+        "tier": 1,
+        "priority": "medium"
+      },
+      {
+        "source": "dbvar",
+        "path": "1.1.variant.repositories/dbvar",
+        "missing": ["schema.md", "download.md"],
+        "has_index": true,
+        "tier": 1,
+        "priority": "high"
+      },
+      {
+        "source": "cpic",
+        "path": "1.4.pharmacogenomics/cpic",
+        "missing": ["schema.md", "download.md"],
+        "has_index": true,
+        "tier": 1,
+        "priority": "high"
+      },
+      {
+        "source": "dpwg",
+        "path": "1.4.pharmacogenomics/dpwg",
+        "missing": ["schema.md", "download.md"],
+        "has_index": true,
+        "tier": 1,
+        "priority": "medium"
+      },
+      {
+        "source": "pharmvar",
+        "path": "1.4.pharmacogenomics/pharmvar",
+        "missing": ["schema.md", "download.md"],
+        "has_index": true,
+        "tier": 1,
+        "priority": "medium"
+      },
+      {
+        "source": "eqtlgen",
+        "path": "1.5.expression.regulation/eqtlgen",
+        "missing": ["schema.md", "download.md"],
+        "has_index": true,
+        "tier": 1,
+        "priority": "medium"
+      },
+      {
+        "source": "brca.exchange",
+        "path": "1.6.cancer.genomics/brca.exchange",
+        "missing": ["schema.md", "download.md"],
+        "has_index": true,
+        "tier": 1,
+        "priority": "high"
+      },
+      {
+        "source": "cancer.gene.census",
+        "path": "1.6.cancer.genomics/cancer.gene.census",
+        "missing": ["schema.md", "download.md"],
+        "has_index": true,
+        "tier": 1,
+        "priority": "high"
+      },
+      {
+        "source": "cbioportal",
+        "path": "1.6.cancer.genomics/cbioportal",
+        "missing": ["schema.md", "download.md"],
+        "has_index": true,
+        "tier": 1,
+        "priority": "high"
+      },
+      {
+        "source": "civic",
+        "path": "1.6.cancer.genomics/civic",
+        "missing": ["schema.md", "download.md"],
+        "has_index": true,
+        "tier": 1,
+        "priority": "high"
+      },
+      {
+        "source": "oncokb",
+        "path": "1.6.cancer.genomics/oncokb",
+        "missing": ["schema.md", "download.md"],
+        "has_index": true,
+        "tier": 1,
+        "priority": "high"
+      }
+    ]
+  },
+  "complete_sources": {
+    "count": 9,
+    "sources": [
+      {
+        "source": "clinvar",
+        "path": "1.1.variant.repositories/clinvar",
+        "tier": 1,
+        "has_index": true,
+        "has_schema": false,
+        "has_download": true,
+        "has_xrefs": true,
+        "sections_complete": true
+      },
+      {
+        "source": "dbsnp",
+        "path": "1.1.variant.repositories/dbsnp",
+        "tier": 1,
+        "has_index": true,
+        "has_schema": false,
+        "has_download": true,
+        "has_xrefs": false,
+        "sections_complete": true
+      },
+      {
+        "source": "gnomad",
+        "path": "1.3.population.genetics/gnomad",
+        "tier": 1,
+        "has_index": true,
+        "has_schema": false,
+        "has_download": true,
+        "has_xrefs": false,
+        "sections_complete": true
+      },
+      {
+        "source": "uk.biobank",
+        "path": "1.3.population.genetics/uk.biobank",
+        "tier": 2,
+        "has_index": true,
+        "has_schema": false,
+        "has_download": true,
+        "has_xrefs": false,
+        "sections_complete": true
+      },
+      {
+        "source": "pharmgkb",
+        "path": "1.4.pharmacogenomics/pharmgkb",
+        "tier": 1,
+        "has_index": true,
+        "has_schema": false,
+        "has_download": true,
+        "has_xrefs": true,
+        "sections_complete": true
+      },
+      {
+        "source": "encode",
+        "path": "1.5.expression.regulation/encode",
+        "tier": 1,
+        "has_index": true,
+        "has_schema": false,
+        "has_download": true,
+        "has_xrefs": true,
+        "sections_complete": true
+      },
+      {
+        "source": "gtex",
+        "path": "1.5.expression.regulation/gtex",
+        "tier": 1,
+        "has_index": true,
+        "has_schema": false,
+        "has_download": true,
+        "has_xrefs": true,
+        "sections_complete": true
+      },
+      {
+        "source": "gwas.catalog",
+        "path": "1.5.expression.regulation/gwas.catalog",
+        "tier": 1,
+        "has_index": true,
+        "has_schema": false,
+        "has_download": true,
+        "has_xrefs": true,
+        "sections_complete": true
+      },
+      {
+        "source": "cosmic",
+        "path": "1.6.cancer.genomics/cosmic",
+        "tier": 1,
+        "has_index": true,
+        "has_schema": false,
+        "has_download": true,
+        "has_xrefs": true,
+        "sections_complete": true
+      }
+    ]
+  },
+  "recommendations": [
+    {
+      "priority": "high",
+      "action": "Create schema.md files",
+      "affected_count": 16,
+      "reason": "Schema documentation is important for understanding data structure and integration",
+      "targets": [
+        "All Tier 1 functional prediction sources (AlphaMissense, CADD, dbNSFP, SpliceAI)",
+        "All Tier 1 cancer genomics sources (BRCA Exchange, Cancer Gene Census, cBioPortal, CIViC, OncoKB)",
+        "All Tier 1 population genetics sources without download (1000 Genomes, TOPMed)",
+        "Pharmacogenomics sources (CPIC, DPWG, PharmVar)",
+        "Expression regulation sources (eQTLGen)"
+      ]
+    },
+    {
+      "priority": "high",
+      "action": "Create download.md files",
+      "affected_count": 16,
+      "reason": "Download instructions are critical for users to access the data",
+      "targets": [
+        "Functional prediction: AlphaMissense, CADD, dbNSFP, SpliceAI",
+        "Population genetics: 1000 Genomes, TOPMed",
+        "Pharmacogenomics: CPIC, DPWG, PharmVar",
+        "Cancer genomics: BRCA Exchange, Cancer Gene Census, cBioPortal, CIViC, OncoKB",
+        "Expression: eQTLGen"
+      ]
+    },
+    {
+      "priority": "medium",
+      "action": "Update alternate organization subcategories",
+      "affected_count": 3,
+      "reason": "These redirect folders should clearly state that they're alternates with Data Sources table for reference",
+      "targets": [
+        "1.1.variant.databases/_index.md - add Data Sources table",
+        "1.2.gwas.qtl/_index.md - add Data Sources table",
+        "1.3.functional.genomics/_index.md - add Data Sources table"
+      ]
+    },
+    {
+      "priority": "low",
+      "action": "Add schema.md files to variant repositories",
+      "affected_count": 1,
+      "reason": "dbVar would benefit from detailed schema documentation",
+      "targets": ["1.1.variant.repositories/dbvar/schema.md"]
+    }
+  ],
+  "file_coverage_by_subcategory": {
+    "1.1.variant.repositories": {
+      "total_sources": 3,
+      "with_download": 2,
+      "with_schema": 0,
+      "with_xrefs": 1,
+      "coverage": "67% (2/3 have download)"
+    },
+    "1.2.functional.prediction": {
+      "total_sources": 4,
+      "with_download": 0,
+      "with_schema": 0,
+      "with_xrefs": 0,
+      "coverage": "0% - all missing"
+    },
+    "1.3.population.genetics": {
+      "total_sources": 4,
+      "with_download": 2,
+      "with_schema": 0,
+      "with_xrefs": 0,
+      "coverage": "50% (2/4 have download)"
+    },
+    "1.4.pharmacogenomics": {
+      "total_sources": 4,
+      "with_download": 1,
+      "with_schema": 0,
+      "with_xrefs": 1,
+      "coverage": "25% (1/4 have download)"
+    },
+    "1.5.expression.regulation": {
+      "total_sources": 4,
+      "with_download": 3,
+      "with_schema": 0,
+      "with_xrefs": 3,
+      "coverage": "75% (3/4 have download)"
+    },
+    "1.6.cancer.genomics": {
+      "total_sources": 6,
+      "with_download": 1,
+      "with_schema": 0,
+      "with_xrefs": 3,
+      "coverage": "17% (1/6 have download)"
+    }
+  },
+  "notes": [
+    "All 25 data sources have complete _index.md files with required frontmatter and sections",
+    "Note: schema.md files exist in the operations/schemas/ directory for many sources (9 confirmed), but not in individual source directories",
+    "Alternate organization folders (1.1.variant.databases, 1.2.gwas.qtl, 1.3.functional.genomics) appropriately note that they're alternate views and redirect to primary locations",
+    "Download.md coverage is strong (9/25 = 36%) but schema.md coverage in source directories is zero",
+    "xrefs.md coverage is 36% (9/25), present in some key sources for cross-reference information"
+  ]
+}

@@ -1,0 +1,245 @@
+---
+id: schema-semantic-scholar
+title: "Semantic Scholar Schema Documentation"
+type: schema
+parent: _index.md
+last_updated: 2026-01-24
+status: final
+tags: [schema, database, literature, ai-enhanced]
+---
+
+# Semantic Scholar - Schema Documentation
+
+## TL;DR
+
+Semantic Scholar provides AI-enhanced scholarly data including papers, authors, citations, and machine-generated insights like TLDRs and influential citations.
+
+## Paper Object
+
+```json
+{
+  "paperId": "649def34f8be52c8b66281af98ae884c09aef38b",
+  "corpusId": 123456789,
+  "externalIds": {
+    "DOI": "10.1038/s41586-019-1666-5",
+    "ArXiv": "1910.10683",
+    "DBLP": "journals/nature/DevlinCLT19",
+    "PubMed": "31534227",
+    "PubMedCentral": "PMC6868014",
+    "MAG": "2963403868"
+  },
+  "url": "https://www.semanticscholar.org/paper/649def34...",
+  "title": "Paper Title Here",
+  "abstract": "Full abstract text...",
+  "venue": "Nature",
+  "publicationVenue": {
+    "id": "6c24a0a0-b07d-4d7b-a19d-4e54f0f12345",
+    "name": "Nature",
+    "type": "journal",
+    "issn": "0028-0836",
+    "url": "https://www.nature.com/"
+  },
+  "year": 2019,
+  "referenceCount": 50,
+  "citationCount": 1234,
+  "influentialCitationCount": 156,
+  "isOpenAccess": true,
+  "openAccessPdf": {
+    "url": "https://arxiv.org/pdf/1910.10683.pdf",
+    "status": "GREEN"
+  },
+  "fieldsOfStudy": ["Computer Science", "Medicine"],
+  "s2FieldsOfStudy": [
+    {
+      "category": "Computer Science",
+      "source": "s2-fos-model"
+    },
+    {
+      "category": "Medicine",
+      "source": "external"
+    }
+  ],
+  "publicationTypes": ["JournalArticle"],
+  "publicationDate": "2019-10-30",
+  "journal": {
+    "name": "Nature",
+    "volume": "574",
+    "pages": "418-424"
+  },
+  "authors": [...],
+  "citations": [...],
+  "references": [...],
+  "tldr": {
+    "model": "tldr@v2.0.0",
+    "text": "One-sentence AI summary of the paper."
+  }
+}
+```
+
+## Author Object
+
+```json
+{
+  "authorId": "1741101",
+  "externalIds": {
+    "ORCID": "0000-0002-1825-0097",
+    "DBLP": ["d/JohnDoe"]
+  },
+  "url": "https://www.semanticscholar.org/author/1741101",
+  "name": "John Doe",
+  "aliases": ["J. Doe", "John A. Doe"],
+  "affiliations": ["Harvard University"],
+  "homepage": "https://example.com/~johndoe",
+  "paperCount": 156,
+  "citationCount": 12345,
+  "hIndex": 45
+}
+```
+
+## Authorship Object
+
+```json
+{
+  "authorId": "1741101",
+  "name": "John Doe"
+}
+```
+
+## Citation Object
+
+```json
+{
+  "paperId": "649def34f8be52c8b66281af98ae884c09aef38b",
+  "title": "Citing Paper Title",
+  "year": 2021,
+  "citationCount": 50,
+  "isInfluential": true,
+  "contexts": [
+    "The approach described in [1] demonstrated that...",
+    "Building on previous work [1], we propose..."
+  ],
+  "intents": ["methodology", "background"]
+}
+```
+
+### Citation Intents
+
+| Intent | Description |
+|--------|-------------|
+| methodology | Methods/approach used |
+| background | General background |
+| result | Comparison with results |
+
+### Influential Citations
+
+Citations are marked as "influential" when they:
+- Appear in key sections (introduction, methods)
+- Are cited multiple times in the paper
+- Play a central role in the citing paper's argument
+
+## Reference Object
+
+```json
+{
+  "paperId": "abc123def456...",
+  "title": "Referenced Paper Title",
+  "year": 2018,
+  "authors": [
+    {"authorId": "1234", "name": "Jane Smith"}
+  ],
+  "isInfluential": false
+}
+```
+
+## Publication Venue Object
+
+```json
+{
+  "id": "6c24a0a0-b07d-4d7b-a19d-4e54f0f12345",
+  "name": "Nature",
+  "type": "journal",
+  "alternate_names": ["Nature (London)"],
+  "issn": "0028-0836",
+  "url": "https://www.nature.com/"
+}
+```
+
+### Venue Types
+
+| Type | Description |
+|------|-------------|
+| journal | Academic journal |
+| conference | Conference proceedings |
+| repository | Preprint server |
+| book | Book or book series |
+
+## Fields of Study
+
+| Field | Description |
+|-------|-------------|
+| Computer Science | CS papers |
+| Medicine | Medical/clinical |
+| Biology | Biological sciences |
+| Chemistry | Chemical sciences |
+| Physics | Physical sciences |
+| Mathematics | Mathematical sciences |
+| Engineering | Engineering papers |
+| Environmental Science | Environmental |
+| Psychology | Psychology papers |
+| Economics | Economics papers |
+
+## Publication Types
+
+| Type | Description |
+|------|-------------|
+| JournalArticle | Peer-reviewed journal |
+| Conference | Conference paper |
+| Review | Review article |
+| Book | Book chapter |
+| Dataset | Data publication |
+| ClinicalTrial | Clinical trial report |
+
+## Open Access Status
+
+| Status | Description |
+|--------|-------------|
+| GREEN | Repository/preprint |
+| GOLD | OA journal |
+| HYBRID | OA in subscription journal |
+| BRONZE | Free but no license |
+
+## TLDR (AI Summary)
+
+```json
+{
+  "tldr": {
+    "model": "tldr@v2.0.0",
+    "text": "A one-sentence summary generated by AI that captures the key contribution of the paper."
+  }
+}
+```
+
+## Embedding Object
+
+```json
+{
+  "model": "specter@v0.1.1",
+  "vector": [0.123, -0.456, 0.789, ...]
+}
+```
+
+768-dimensional SPECTER embeddings for paper similarity.
+
+## Search Match Object
+
+```json
+{
+  "matchScore": 234.56,
+  "paper": {...}
+}
+```
+
+## See Also
+
+- [Download Documentation](./download.md)
+- [Semantic Scholar API](https://api.semanticscholar.org/)

@@ -1,24 +1,32 @@
 ---
+id: research
 title: "Research & Analysis"
+type: research
 parent: ../_index.md
-last_updated: 2026-01-22
-status: draft
+last_updated: 2026-01-23
+status: active
+tags: [research, priorities, schema-research, gaps]
 ---
 
 # Research & Analysis
 
-This directory contains research documents, literature reviews, and priority analyses that inform the Gene platform's evidence-based approach to genetic health optimization.
+**Parent:** [Data Sources](../_index.md)
 
-## Navigation
+Research documents, priority analyses, and schema research that inform the platform's evidence-based approach.
 
-- [← Back to Data Sources](../_index.md)
+## Available Documents
 
-## Available Research Documents
+| Document | Description |
+|----------|-------------|
+| [Interventions Priority](./interventions-priority.md) | Prioritized interventions by evidence strength and impact |
+| [Literature Priority](./literature-priority.md) | Key research papers organized by domain and evidence level |
+| [Schema Gaps](./schema-gaps.md) | Data sources needing schema documentation |
+| [Genetics Schema Research](./genetics-schema-research.md) | Schema research for genetics databases |
+| [World1 Schema Research](./world1-schema-research.md) | Schema research for World1 (genetics) domain |
 
-| Document | Description | Link |
-|----------|-------------|------|
-| Interventions Priority List | Prioritized interventions based on evidence strength, safety, accessibility, and impact across genetic variants | [interventions-priority.md](./interventions-priority.md) |
-| Literature Priority List | Key research papers, clinical studies, and systematic reviews organized by domain and evidence level | [literature-priority.md](./literature-priority.md) |
+## Related
+
+- [taxonomy/](../taxonomy/) - Classification system documentation
 
 ## Research Document Types
 

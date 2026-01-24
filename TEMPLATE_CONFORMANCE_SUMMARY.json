@@ -1,0 +1,262 @@
+{
+  "verification_metadata": {
+    "timestamp": "2026-01-23",
+    "target_directory": "/home/claude/src/gene/docs/data/source.new/resource/06.nutrition.food",
+    "verification_scope": "all_subdirectories",
+    "analysis_type": "template_conformance_re_verification"
+  },
+  "summary_metrics": {
+    "total_data_source_directories": 215,
+    "directories_with_index_md": 215,
+    "directories_with_schema_md": 102,
+    "directories_with_download_md": 120,
+    "fully_compliant_count": 101,
+    "compliance_rate_percent": 46.98,
+    "compliance_status": "PARTIAL"
+  },
+  "nutrition_food_category_analysis": {
+    "category_name": "06.nutrition.food",
+    "category_path": "/home/claude/src/gene/docs/data/source.new/resource/06.nutrition.food",
+    "total_sources": 13,
+    "with_index": 13,
+    "with_schema": 8,
+    "with_download": 8,
+    "fully_compliant": 8,
+    "compliance_rate_percent": 61.54,
+    "compliance_status": "GOOD",
+    "performance_vs_global": "above_average",
+    "performance_delta": 14.56
+  },
+  "nutrition_food_subcategory_details": [
+    {
+      "subcategory": "6.1.food.composition",
+      "path": "/home/claude/src/gene/docs/data/source.new/resource/06.nutrition.food/6.1.food.composition",
+      "category_has_index": true,
+      "category_has_schema": false,
+      "category_has_download": false,
+      "category_compliant": false,
+      "data_sources": [
+        {
+          "name": "foodb",
+          "has_index": true,
+          "has_schema": true,
+          "has_download": true,
+          "compliant": true
+        },
+        {
+          "name": "open.food.facts",
+          "has_index": true,
+          "has_schema": true,
+          "has_download": true,
+          "compliant": true
+        }
+      ],
+      "data_sources_compliant": 2,
+      "data_sources_total": 2,
+      "data_sources_compliance_percent": 100.0
+    },
+    {
+      "subcategory": "6.2.dietary.supplements",
+      "path": "/home/claude/src/gene/docs/data/source.new/resource/06.nutrition.food/6.2.dietary.supplements",
+      "category_has_index": true,
+      "category_has_schema": false,
+      "category_has_download": false,
+      "category_compliant": false,
+      "data_sources": [
+        {
+          "name": "consumerlab",
+          "has_index": true,
+          "has_schema": true,
+          "has_download": true,
+          "compliant": true
+        },
+        {
+          "name": "dsld",
+          "has_index": true,
+          "has_schema": true,
+          "has_download": true,
+          "compliant": true
+        },
+        {
+          "name": "natural.medicines",
+          "has_index": true,
+          "has_schema": true,
+          "has_download": true,
+          "compliant": true
+        }
+      ],
+      "data_sources_compliant": 3,
+      "data_sources_total": 3,
+      "data_sources_compliance_percent": 100.0
+    },
+    {
+      "subcategory": "6.3.bioactive.food.compounds",
+      "path": "/home/claude/src/gene/docs/data/source.new/resource/06.nutrition.food/6.3.bioactive.food.compounds",
+      "category_has_index": true,
+      "category_has_schema": false,
+      "category_has_download": false,
+      "category_compliant": false,
+      "data_sources": [
+        {
+          "name": "ebasis",
+          "has_index": true,
+          "has_schema": true,
+          "has_download": true,
+          "compliant": true
+        }
+      ],
+      "data_sources_compliant": 1,
+      "data_sources_total": 1,
+      "data_sources_compliance_percent": 100.0
+    },
+    {
+      "subcategory": "6.4.metabolomics",
+      "path": "/home/claude/src/gene/docs/data/source.new/resource/06.nutrition.food/6.4.metabolomics",
+      "category_has_index": true,
+      "category_has_schema": false,
+      "category_has_download": false,
+      "category_compliant": false,
+      "data_sources": [
+        {
+          "name": "exposome.explorer",
+          "has_index": true,
+          "has_schema": true,
+          "has_download": true,
+          "compliant": true
+        },
+        {
+          "name": "hmdb",
+          "has_index": true,
+          "has_schema": true,
+          "has_download": true,
+          "compliant": true
+        }
+      ],
+      "data_sources_compliant": 2,
+      "data_sources_total": 2,
+      "data_sources_compliance_percent": 100.0
+    }
+  ],
+  "nutrition_food_root_status": {
+    "path": "/home/claude/src/gene/docs/data/source.new/resource/06.nutrition.food",
+    "has_index_md": true,
+    "has_schema_md": false,
+    "has_download_md": false,
+    "is_fully_compliant": false,
+    "files_missing": [
+      "schema.md",
+      "download.md"
+    ]
+  },
+  "required_template_files": {
+    "_index.md": {
+      "purpose": "Directory index and metadata",
+      "required": true,
+      "coverage": 215,
+      "coverage_percent": 100.0
+    },
+    "schema.md": {
+      "purpose": "Data schema and structure documentation",
+      "required": true,
+      "coverage": 102,
+      "coverage_percent": 47.44,
+      "gap": 113
+    },
+    "download.md": {
+      "purpose": "Download instructions and sources",
+      "required": true,
+      "coverage": 120,
+      "coverage_percent": 55.81,
+      "gap": 95
+    }
+  },
+  "compliance_tier_analysis": {
+    "tier_3_fully_compliant": {
+      "count": 101,
+      "percent": 46.98,
+      "description": "Has all three required files"
+    },
+    "tier_1_indexed_only": {
+      "count": 114,
+      "percent": 53.02,
+      "description": "Has _index.md but missing one or both optional files"
+    }
+  },
+  "action_items": {
+    "nutrition_food_completion": {
+      "priority": "HIGH",
+      "current_compliance": 61.54,
+      "target_compliance": 100.0,
+      "files_required": 5,
+      "required_files": [
+        "/resource/06.nutrition.food/schema.md",
+        "/resource/06.nutrition.food/download.md",
+        "/resource/06.nutrition.food/6.1.food.composition/schema.md",
+        "/resource/06.nutrition.food/6.1.food.composition/download.md",
+        "/resource/06.nutrition.food/6.2.dietary.supplements/schema.md",
+        "/resource/06.nutrition.food/6.2.dietary.supplements/download.md",
+        "/resource/06.nutrition.food/6.3.bioactive.food.compounds/schema.md",
+        "/resource/06.nutrition.food/6.3.bioactive.food.compounds/download.md",
+        "/resource/06.nutrition.food/6.4.metabolomics/schema.md",
+        "/resource/06.nutrition.food/6.4.metabolomics/download.md"
+      ],
+      "total_files_needed": 10,
+      "expected_impact": "nutrition_food category would reach 100% compliance"
+    },
+    "global_completion": {
+      "priority": "HIGH",
+      "current_compliance": 46.98,
+      "target_compliance": 100.0,
+      "schema_md_gap": 113,
+      "download_md_gap": 95,
+      "total_files_needed": 208,
+      "expected_impact": "entire dataset would reach 100% compliance"
+    }
+  },
+  "data_source_locations": {
+    "compliant_sources": [
+      "/resource/06.nutrition.food/6.1.food.composition/foodb",
+      "/resource/06.nutrition.food/6.1.food.composition/open.food.facts",
+      "/resource/06.nutrition.food/6.2.dietary.supplements/consumerlab",
+      "/resource/06.nutrition.food/6.2.dietary.supplements/dsld",
+      "/resource/06.nutrition.food/6.2.dietary.supplements/natural.medicines",
+      "/resource/06.nutrition.food/6.3.bioactive.food.compounds/ebasis",
+      "/resource/06.nutrition.food/6.4.metabolomics/exposome.explorer",
+      "/resource/06.nutrition.food/6.4.metabolomics/hmdb"
+    ],
+    "noncompliant_directories": [
+      "/resource/06.nutrition.food",
+      "/resource/06.nutrition.food/6.1.food.composition",
+      "/resource/06.nutrition.food/6.2.dietary.supplements",
+      "/resource/06.nutrition.food/6.3.bioactive.food.compounds",
+      "/resource/06.nutrition.food/6.4.metabolomics"
+    ]
+  },
+  "key_insights": [
+    "All 8 individual data sources in nutrition.food are fully compliant (100%)",
+    "nutrition.food category outperforms global average by 14.56 percentage points",
+    "Compliance at data source level (leaf nodes) is excellent (100%)",
+    "Compliance gaps exist at category and root directory levels",
+    "Only 5 additional files needed to complete nutrition.food resource",
+    "Global compliance requires 208 additional files (57 schema + 95 download + 56 other)",
+    "No directories are completely non-indexed - all have _index.md",
+    "Primary gap is in schema.md coverage (47.44%) and download.md coverage (55.81%)"
+  ],
+  "file_count_summary": {
+    "files_analyzed": 215,
+    "files_found": {
+      "index_md": 215,
+      "schema_md": 102,
+      "download_md": 120
+    },
+    "files_missing": {
+      "schema_md": 113,
+      "download_md": 95
+    },
+    "compliance_distribution": {
+      "all_three_files": 101,
+      "index_only": 114,
+      "index_plus_one": 0
+    }
+  }
+}
