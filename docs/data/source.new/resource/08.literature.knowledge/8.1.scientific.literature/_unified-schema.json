@@ -1,0 +1,477 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gene.taxonomy/schemas/8.1-scientific-literature",
+  "title": "Scientific Literature Unified Schema",
+  "description": "Unified schema for scientific literature data integrating PubMed, PubMed Central, Europe PMC, OpenAlex, and Semantic Scholar sources",
+  "type": "object",
+  "properties": {
+    "article_id": {
+      "type": "string",
+      "description": "Unique identifier for the article/publication record",
+      "sources": ["PubMed:PMID", "PMC:PMCID", "Europe PMC:id", "OpenAlex:id", "Semantic Scholar:paperId"],
+      "example": "12345678"
+    },
+    "doi": {
+      "type": ["string", "null"],
+      "description": "Digital Object Identifier for the publication",
+      "sources": ["PubMed", "PMC", "Europe PMC", "OpenAlex", "Semantic Scholar"],
+      "example": "10.1038/s41586-019-1666-5"
+    },
+    "pmid": {
+      "type": ["integer", "null"],
+      "description": "PubMed identifier",
+      "sources": ["PubMed", "PMC", "Europe PMC", "Semantic Scholar"],
+      "example": 31534227
+    },
+    "pmcid": {
+      "type": ["string", "null"],
+      "description": "PubMed Central identifier",
+      "sources": ["PubMed", "PMC", "Europe PMC", "Semantic Scholar"],
+      "example": "PMC6868014"
+    },
+    "title": {
+      "type": "string",
+      "description": "Title of the article/publication",
+      "sources": ["PubMed", "PMC", "Europe PMC", "OpenAlex", "Semantic Scholar"],
+      "example": "Deep learning for genomic analysis"
+    },
+    "abstract": {
+      "type": ["string", "null"],
+      "description": "Abstract or summary of the article",
+      "sources": ["PubMed", "PMC", "Europe PMC", "OpenAlex", "Semantic Scholar"],
+      "example": "Full abstract text here..."
+    },
+    "authors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "last_name": {"type": "string"},
+          "first_name": {"type": "string"},
+          "full_name": {"type": "string"},
+          "orcid": {"type": ["string", "null"]},
+          "position": {"type": "string"},
+          "is_corresponding": {"type": "boolean"}
+        }
+      },
+      "description": "List of authors who contributed to the work",
+      "sources": ["PubMed", "PMC", "Europe PMC", "OpenAlex", "Semantic Scholar"],
+      "example": [{"last_name": "Smith", "first_name": "John A", "orcid": "0000-0002-1825-0097"}]
+    },
+    "affiliations": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {"type": "string"},
+          "ror_id": {"type": "string"},
+          "country": {"type": "string"}
+        }
+      },
+      "description": "Author institutional affiliations",
+      "sources": ["PubMed", "PMC", "Europe PMC", "OpenAlex", "Semantic Scholar"],
+      "example": [{"name": "Department of Biology, Harvard University", "country": "USA"}]
+    },
+    "publication_date": {
+      "type": ["string", "null"],
+      "description": "Date of publication",
+      "sources": ["PubMed", "PMC", "Europe PMC", "OpenAlex", "Semantic Scholar"],
+      "format": "date",
+      "example": "2024-01-15"
+    },
+    "publication_year": {
+      "type": ["integer", "null"],
+      "description": "Year of publication",
+      "sources": ["PubMed", "PMC", "Europe PMC", "OpenAlex", "Semantic Scholar"],
+      "example": 2024
+    },
+    "journal_title": {
+      "type": ["string", "null"],
+      "description": "Name of the journal or publication venue",
+      "sources": ["PubMed", "PMC", "Europe PMC", "OpenAlex", "Semantic Scholar"],
+      "example": "Nature"
+    },
+    "issn": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "International Standard Serial Number for the journal",
+      "sources": ["PubMed", "PMC", "OpenAlex", "Semantic Scholar"],
+      "example": ["0028-0836", "1476-4687"]
+    },
+    "volume": {
+      "type": ["string", "null"],
+      "description": "Journal volume number",
+      "sources": ["PubMed", "Semantic Scholar"],
+      "example": "615"
+    },
+    "issue": {
+      "type": ["string", "null"],
+      "description": "Journal issue number",
+      "sources": ["PubMed"],
+      "example": "7950"
+    },
+    "pages": {
+      "type": ["string", "null"],
+      "description": "Page range in the publication",
+      "sources": ["PubMed", "Semantic Scholar"],
+      "example": "100-110"
+    },
+    "language": {
+      "type": ["string", "null"],
+      "description": "Language of the publication (ISO code)",
+      "sources": ["PubMed", "Europe PMC"],
+      "example": "eng"
+    },
+    "publication_types": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Type or category of the publication",
+      "sources": ["PubMed", "PMC", "Europe PMC", "OpenAlex", "Semantic Scholar"],
+      "example": ["Journal Article", "Review"]
+    },
+    "mesh_terms": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "descriptor_name": {"type": "string"},
+          "descriptor_ui": {"type": "string"},
+          "qualifier_name": {"type": "string"},
+          "is_major_topic": {"type": "boolean"}
+        }
+      },
+      "description": "Medical Subject Headings (MeSH) indexing terms",
+      "sources": ["PubMed", "Europe PMC"],
+      "example": [{"descriptor_name": "Humans", "qualifier_name": "genetics", "is_major_topic": true}]
+    },
+    "keywords": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Author-supplied or controlled keywords",
+      "sources": ["PubMed", "PMC", "Europe PMC"],
+      "example": ["TP53", "cancer", "gene mutation"]
+    },
+    "citation_count": {
+      "type": ["integer", "null"],
+      "description": "Number of articles citing this work",
+      "sources": ["Europe PMC", "OpenAlex", "Semantic Scholar"],
+      "example": 42
+    },
+    "references": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "pmid": {"type": "string"},
+          "doi": {"type": "string"},
+          "citation": {"type": "string"}
+        }
+      },
+      "description": "Works cited by this article",
+      "sources": ["PubMed", "PMC", "OpenAlex", "Semantic Scholar"],
+      "example": [{"pmid": "32322060", "citation": "Nature. 2020;580(7803):360-366"}]
+    },
+    "is_open_access": {
+      "type": ["boolean", "null"],
+      "description": "Whether the article is openly accessible",
+      "sources": ["Europe PMC", "OpenAlex", "Semantic Scholar"],
+      "example": true
+    },
+    "open_access_status": {
+      "type": ["string", "null"],
+      "description": "Type of open access (gold, green, hybrid, bronze)",
+      "sources": ["OpenAlex", "Semantic Scholar"],
+      "example": "gold"
+    },
+    "full_text_url": {
+      "type": ["string", "null"],
+      "description": "URL to full text content",
+      "sources": ["OpenAlex", "Semantic Scholar"],
+      "format": "uri",
+      "example": "https://www.nature.com/articles/....pdf"
+    },
+    "license": {
+      "type": ["string", "null"],
+      "description": "Content license type",
+      "sources": ["PMC", "OpenAlex"],
+      "example": "cc-by"
+    },
+    "concepts": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string"},
+          "name": {"type": "string"},
+          "level": {"type": "integer"},
+          "score": {"type": "number"},
+          "wikidata_qid": {"type": "string"}
+        }
+      },
+      "description": "Topic concepts or fields of study",
+      "sources": ["OpenAlex", "Semantic Scholar"],
+      "example": [{"name": "Medicine", "level": 0, "score": 0.89}]
+    },
+    "grant_information": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "grant_id": {"type": "string"},
+          "agency": {"type": "string"},
+          "country": {"type": "string"}
+        }
+      },
+      "description": "Funding and grant details",
+      "sources": ["PubMed", "Europe PMC"],
+      "example": [{"grant_id": "R01 GM123456", "agency": "NIGMS NIH HHS"}]
+    },
+    "citation_status": {
+      "type": ["string", "null"],
+      "description": "MEDLINE indexing status",
+      "sources": ["PubMed"],
+      "example": "MEDLINE"
+    },
+    "structured_abstract": {
+      "type": ["object", "null"],
+      "description": "Abstract with labeled sections",
+      "sources": ["PubMed"],
+      "properties": {
+        "background": {"type": "string"},
+        "methods": {"type": "string"},
+        "results": {"type": "string"},
+        "conclusions": {"type": "string"}
+      }
+    },
+    "figures": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "label": {"type": "string"},
+          "caption": {"type": "string"},
+          "href": {"type": "string"}
+        }
+      },
+      "description": "Figure elements with labels and captions",
+      "sources": ["PMC"],
+      "example": [{"label": "Figure 1", "caption": "Protein structure"}]
+    },
+    "tables": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "label": {"type": "string"},
+          "caption": {"type": "string"},
+          "data": {"type": "array"}
+        }
+      },
+      "description": "Table elements with structured data",
+      "sources": ["PMC"]
+    },
+    "supplementary_materials": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {"type": "string"},
+          "url": {"type": "string"},
+          "type": {"type": "string"}
+        }
+      },
+      "description": "Supplementary files and data",
+      "sources": ["PMC"]
+    },
+    "annotations": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {"type": "string"},
+          "text": {"type": "string"},
+          "prefix": {"type": "string"},
+          "postfix": {"type": "string"},
+          "section": {"type": "string"}
+        }
+      },
+      "description": "SciLite annotations (genes, diseases, chemicals, etc.)",
+      "sources": ["Europe PMC"],
+      "example": [{"type": "Gene_Proteins", "text": "TP53"}]
+    },
+    "openalex_id": {
+      "type": ["string", "null"],
+      "description": "OpenAlex Work ID",
+      "sources": ["OpenAlex"],
+      "example": "https://openalex.org/W2741809807"
+    },
+    "is_retracted": {
+      "type": ["boolean", "null"],
+      "description": "Whether article has been retracted",
+      "sources": ["OpenAlex"],
+      "example": false
+    },
+    "related_works": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Similar/related work IDs",
+      "sources": ["OpenAlex"]
+    },
+    "corpus_id": {
+      "type": ["integer", "null"],
+      "description": "Semantic Scholar corpus identifier",
+      "sources": ["Semantic Scholar"],
+      "example": 123456789
+    },
+    "arxiv_id": {
+      "type": ["string", "null"],
+      "description": "ArXiv preprint identifier",
+      "sources": ["Semantic Scholar"],
+      "example": "2001.01234"
+    },
+    "influential_citation_count": {
+      "type": ["integer", "null"],
+      "description": "Count of influential citations",
+      "sources": ["Semantic Scholar"],
+      "example": 15
+    },
+    "tldr": {
+      "type": ["string", "null"],
+      "description": "AI-generated one-sentence summary",
+      "sources": ["Semantic Scholar"],
+      "example": "This paper presents..."
+    },
+    "embedding": {
+      "type": ["array", "null"],
+      "items": {"type": "number"},
+      "description": "768-dimensional SPECTER vector embedding",
+      "sources": ["Semantic Scholar"]
+    },
+    "_source": {
+      "type": "object",
+      "description": "Metadata about the data source",
+      "properties": {
+        "primary_source": {"type": "string"},
+        "source_id": {"type": "string"},
+        "extraction_date": {"type": "string", "format": "date"},
+        "source_version": {"type": "string"}
+      }
+    }
+  },
+  "required": ["article_id", "title"],
+  "field_mappings": {
+    "PubMed": {
+      "PMID": "article_id",
+      "ArticleId[@IdType='doi']": "doi",
+      "ArticleId[@IdType='pmc']": "pmcid",
+      "ArticleTitle": "title",
+      "AbstractText": "abstract",
+      "AuthorList/Author": "authors",
+      "AffiliationInfo/Affiliation": "affiliations",
+      "PubDate": "publication_date",
+      "PubDate/Year": "publication_year",
+      "Journal/Title": "journal_title",
+      "ISSN": "issn",
+      "JournalIssue/Volume": "volume",
+      "JournalIssue/Issue": "issue",
+      "MedlinePgn": "pages",
+      "Language": "language",
+      "PublicationType": "publication_types",
+      "MeshHeadingList": "mesh_terms",
+      "KeywordList": "keywords",
+      "ReferenceList": "references",
+      "GrantList": "grant_information",
+      "CitationStatus": "citation_status",
+      "AbstractText[@Label]": "structured_abstract"
+    },
+    "PubMed Central (PMC)": {
+      "article-id[@pub-id-type='pmc']": "article_id",
+      "article-id[@pub-id-type='doi']": "doi",
+      "article-id[@pub-id-type='pmid']": "pmid",
+      "article-title": "title",
+      "abstract": "abstract",
+      "contrib-group/contrib": "authors",
+      "aff": "affiliations",
+      "pub-date": "publication_date",
+      "pub-date/year": "publication_year",
+      "journal-title": "journal_title",
+      "article-type": "publication_types",
+      "kwd-group": "keywords",
+      "ref-list": "references",
+      "license": "license",
+      "fig": "figures",
+      "table-wrap": "tables",
+      "supplementary-material": "supplementary_materials"
+    },
+    "Europe PMC": {
+      "id": "article_id",
+      "doi": "doi",
+      "pmid": "pmid",
+      "pmcid": "pmcid",
+      "title": "title",
+      "abstractText": "abstract",
+      "authorList": "authors",
+      "affiliation": "affiliations",
+      "firstPublicationDate": "publication_date",
+      "pubYear": "publication_year",
+      "journalTitle": "journal_title",
+      "language": "language",
+      "pubTypeList": "publication_types",
+      "meshHeadingList": "mesh_terms",
+      "keywordList": "keywords",
+      "citedByCount": "citation_count",
+      "isOpenAccess": "is_open_access",
+      "grantsList": "grant_information",
+      "annotations": "annotations"
+    },
+    "OpenAlex": {
+      "id": "openalex_id",
+      "doi": "doi",
+      "title": "title",
+      "abstract_inverted_index": "abstract",
+      "authorships": "authors",
+      "authorships.institutions": "affiliations",
+      "publication_date": "publication_date",
+      "publication_year": "publication_year",
+      "primary_location.source.display_name": "journal_title",
+      "primary_location.source.issn": "issn",
+      "type": "publication_types",
+      "cited_by_count": "citation_count",
+      "referenced_works": "references",
+      "is_oa": "is_open_access",
+      "open_access.oa_status": "open_access_status",
+      "primary_location.pdf_url": "full_text_url",
+      "primary_location.license": "license",
+      "concepts": "concepts",
+      "is_retracted": "is_retracted",
+      "related_works": "related_works"
+    },
+    "Semantic Scholar": {
+      "paperId": "article_id",
+      "externalIds.DOI": "doi",
+      "externalIds.PubMed": "pmid",
+      "externalIds.PubMedCentral": "pmcid",
+      "externalIds.ArXiv": "arxiv_id",
+      "title": "title",
+      "abstract": "abstract",
+      "authors": "authors",
+      "publicationDate": "publication_date",
+      "year": "publication_year",
+      "venue": "journal_title",
+      "publicationVenue.issn": "issn",
+      "journal.volume": "volume",
+      "journal.pages": "pages",
+      "publicationTypes": "publication_types",
+      "citations": "citation_count",
+      "references": "references",
+      "isOpenAccess": "is_open_access",
+      "openAccessPdf.status": "open_access_status",
+      "openAccessPdf.url": "full_text_url",
+      "fieldsOfStudy": "concepts",
+      "corpusId": "corpus_id",
+      "influentialCitationCount": "influential_citation_count",
+      "tldr.text": "tldr",
+      "embedding.vector": "embedding"
+    }
+  }
+}

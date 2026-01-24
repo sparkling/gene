@@ -1,0 +1,443 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gene.example.org/schemas/1.5-expression-regulation.json",
+  "title": "Expression & Regulation Unified Schema",
+  "description": "Unified schema for expression and regulation data from ENCODE, eQTLGen, GTEx, and GWAS Catalog",
+  "type": "object",
+  "properties": {
+    "gene_id": {
+      "type": "string",
+      "description": "Ensembl gene ID or HGNC symbol",
+      "sources": ["ENCODE", "eQTLGen", "GTEx", "GWAS Catalog"],
+      "examples": ["ENSG00000012048", "BRCA1"]
+    },
+    "variant_id": {
+      "type": ["string", "null"],
+      "description": "SNP or variant identifier",
+      "sources": ["eQTLGen", "GTEx", "GWAS Catalog"],
+      "examples": ["rs12345", "chr17_43044295_A_G_b38"]
+    },
+    "p_value": {
+      "type": ["number", "null"],
+      "description": "Statistical significance of association",
+      "sources": ["eQTLGen", "GTEx", "GWAS Catalog"],
+      "examples": [1e-12, 7e-8]
+    },
+    "effect_size": {
+      "type": ["number", "null"],
+      "description": "Effect size (beta/slope/OR)",
+      "sources": ["eQTLGen", "GTEx", "GWAS Catalog"],
+      "examples": [0.45, -0.23]
+    },
+    "encode_accession": {
+      "type": ["string", "null"],
+      "description": "ENCODE accession (ENCSR, ENCFF, ENCBS)",
+      "sources": ["ENCODE"]
+    },
+    "encode_assay_title": {
+      "type": ["string", "null"],
+      "description": "Assay name (ChIP-seq, ATAC-seq, RNA-seq)",
+      "sources": ["ENCODE"]
+    },
+    "encode_target": {
+      "type": ["object", "null"],
+      "description": "Target protein/modification",
+      "sources": ["ENCODE"]
+    },
+    "biosample_ontology": {
+      "type": ["object", "null"],
+      "description": "Cell type/tissue information",
+      "sources": ["ENCODE"]
+    },
+    "file_format": {
+      "type": ["string", "null"],
+      "description": "File format (bam, fastq, bigWig, bed, bigBed)",
+      "sources": ["ENCODE"]
+    },
+    "output_type": {
+      "type": ["string", "null"],
+      "description": "Output type (peaks, signal, alignments)",
+      "sources": ["ENCODE"]
+    },
+    "assembly": {
+      "type": ["string", "null"],
+      "description": "Genome assembly (GRCh38, hg19, mm10)",
+      "sources": ["ENCODE"]
+    },
+    "ccre_accession": {
+      "type": ["string", "null"],
+      "description": "Candidate cis-regulatory element ID",
+      "sources": ["ENCODE"]
+    },
+    "ccre_classification": {
+      "type": ["string", "null"],
+      "description": "cCRE classification (PLS, pELS, dELS, DNase-H3K4me3, CTCF-only)",
+      "sources": ["ENCODE"]
+    },
+    "chromosome": {
+      "type": ["string", "null"],
+      "description": "Chromosome",
+      "sources": ["ENCODE", "eQTLGen", "GTEx", "GWAS Catalog"]
+    },
+    "start_position": {
+      "type": ["integer", "null"],
+      "description": "Start position",
+      "sources": ["ENCODE"]
+    },
+    "end_position": {
+      "type": ["integer", "null"],
+      "description": "End position",
+      "sources": ["ENCODE"]
+    },
+    "encode_score": {
+      "type": ["integer", "null"],
+      "description": "Normalized signal (0-1000)",
+      "sources": ["ENCODE"]
+    },
+    "eqtlgen_snp": {
+      "type": ["string", "null"],
+      "description": "RS ID for eQTL SNP",
+      "sources": ["eQTLGen"]
+    },
+    "eqtlgen_snp_chr": {
+      "type": ["integer", "null"],
+      "description": "SNP chromosome",
+      "sources": ["eQTLGen"]
+    },
+    "eqtlgen_snp_pos": {
+      "type": ["integer", "null"],
+      "description": "SNP position (hg19)",
+      "sources": ["eQTLGen"]
+    },
+    "assessed_allele": {
+      "type": ["string", "null"],
+      "description": "Effect allele",
+      "sources": ["eQTLGen"]
+    },
+    "other_allele": {
+      "type": ["string", "null"],
+      "description": "Non-effect allele",
+      "sources": ["eQTLGen"]
+    },
+    "z_score": {
+      "type": ["number", "null"],
+      "description": "Association Z-score",
+      "sources": ["eQTLGen"]
+    },
+    "gene_symbol": {
+      "type": ["string", "null"],
+      "description": "HGNC symbol",
+      "sources": ["eQTLGen", "GTEx"]
+    },
+    "gene_chr": {
+      "type": ["integer", "null"],
+      "description": "Gene chromosome",
+      "sources": ["eQTLGen"]
+    },
+    "gene_tss_position": {
+      "type": ["integer", "null"],
+      "description": "Gene TSS position",
+      "sources": ["eQTLGen"]
+    },
+    "number_cohorts": {
+      "type": ["integer", "null"],
+      "description": "Contributing cohorts",
+      "sources": ["eQTLGen"]
+    },
+    "sample_size": {
+      "type": ["integer", "null"],
+      "description": "Sample size",
+      "sources": ["eQTLGen", "GWAS Catalog"]
+    },
+    "fdr": {
+      "type": ["number", "null"],
+      "description": "False discovery rate",
+      "sources": ["eQTLGen"]
+    },
+    "gtex_subject_id": {
+      "type": ["string", "null"],
+      "description": "Subject identifier (GTEX-XXXXX)",
+      "sources": ["GTEx"]
+    },
+    "gtex_sex": {
+      "type": ["integer", "null"],
+      "description": "Sex (1=Male, 2=Female)",
+      "sources": ["GTEx"]
+    },
+    "gtex_age": {
+      "type": ["string", "null"],
+      "description": "Age bracket (20-29, 30-39, etc.)",
+      "sources": ["GTEx"]
+    },
+    "gtex_death_classification": {
+      "type": ["integer", "null"],
+      "description": "Hardy scale death classification (0-4)",
+      "sources": ["GTEx"]
+    },
+    "gtex_sample_id": {
+      "type": ["string", "null"],
+      "description": "Sample identifier",
+      "sources": ["GTEx"]
+    },
+    "tissue_type_general": {
+      "type": ["string", "null"],
+      "description": "Tissue type (general)",
+      "sources": ["GTEx"]
+    },
+    "tissue_type_detailed": {
+      "type": ["string", "null"],
+      "description": "Tissue type (detailed)",
+      "sources": ["GTEx"]
+    },
+    "rna_integrity_number": {
+      "type": ["number", "null"],
+      "description": "RNA Integrity Number",
+      "sources": ["GTEx"]
+    },
+    "analysis_freeze": {
+      "type": ["string", "null"],
+      "description": "Analysis freeze (RNASEQ, WGS)",
+      "sources": ["GTEx"]
+    },
+    "tpm": {
+      "type": ["number", "null"],
+      "description": "Transcripts Per Million",
+      "sources": ["GTEx"]
+    },
+    "read_counts": {
+      "type": ["integer", "null"],
+      "description": "Raw read counts",
+      "sources": ["GTEx"]
+    },
+    "tss_distance": {
+      "type": ["integer", "null"],
+      "description": "Distance to transcription start site",
+      "sources": ["GTEx"]
+    },
+    "minor_allele_samples": {
+      "type": ["integer", "null"],
+      "description": "Minor allele samples",
+      "sources": ["GTEx"]
+    },
+    "minor_allele_count": {
+      "type": ["integer", "null"],
+      "description": "Minor allele count",
+      "sources": ["GTEx"]
+    },
+    "minor_allele_frequency": {
+      "type": ["number", "null"],
+      "description": "Minor allele frequency",
+      "sources": ["GTEx"]
+    },
+    "nominal_pvalue": {
+      "type": ["number", "null"],
+      "description": "Nominal p-value",
+      "sources": ["GTEx"]
+    },
+    "slope": {
+      "type": ["number", "null"],
+      "description": "Effect size (beta)",
+      "sources": ["GTEx"]
+    },
+    "slope_se": {
+      "type": ["number", "null"],
+      "description": "Standard error of slope",
+      "sources": ["GTEx"]
+    },
+    "beta_adjusted_pvalue": {
+      "type": ["number", "null"],
+      "description": "Beta-adjusted p-value",
+      "sources": ["GTEx"]
+    },
+    "sqtl_phenotype_id": {
+      "type": ["string", "null"],
+      "description": "sQTL intron cluster ID",
+      "sources": ["GTEx"]
+    },
+    "gwas_study_accession": {
+      "type": ["string", "null"],
+      "description": "GCST study accession number",
+      "sources": ["GWAS Catalog"]
+    },
+    "disease_trait": {
+      "type": ["string", "null"],
+      "description": "Reported trait name",
+      "sources": ["GWAS Catalog"]
+    },
+    "initial_sample_description": {
+      "type": ["string", "null"],
+      "description": "Sample description text",
+      "sources": ["GWAS Catalog"]
+    },
+    "snp_count": {
+      "type": ["integer", "null"],
+      "description": "Number of SNPs analyzed",
+      "sources": ["GWAS Catalog"]
+    },
+    "is_imputed": {
+      "type": ["boolean", "null"],
+      "description": "Whether genotypes were imputed",
+      "sources": ["GWAS Catalog"]
+    },
+    "pubmed_id": {
+      "type": ["string", "null"],
+      "description": "PubMed ID",
+      "sources": ["GWAS Catalog"]
+    },
+    "publication_date": {
+      "type": ["string", "null"],
+      "description": "Publication date (ISO 8601)",
+      "sources": ["GWAS Catalog"]
+    },
+    "author_info": {
+      "type": ["object", "null"],
+      "description": "First author information",
+      "sources": ["GWAS Catalog"]
+    },
+    "pvalue_description": {
+      "type": ["string", "null"],
+      "description": "P-value context (e.g., progression)",
+      "sources": ["GWAS Catalog"]
+    },
+    "risk_allele_frequency": {
+      "type": ["number", "null"],
+      "description": "Risk allele frequency",
+      "sources": ["GWAS Catalog"]
+    },
+    "odds_ratio": {
+      "type": ["number", "null"],
+      "description": "Odds ratio per allele copy",
+      "sources": ["GWAS Catalog"]
+    },
+    "beta": {
+      "type": ["number", "null"],
+      "description": "Effect size for quantitative traits",
+      "sources": ["GWAS Catalog"]
+    },
+    "beta_unit": {
+      "type": ["string", "null"],
+      "description": "Unit of effect size",
+      "sources": ["GWAS Catalog"]
+    },
+    "confidence_interval": {
+      "type": ["string", "null"],
+      "description": "Confidence interval notation",
+      "sources": ["GWAS Catalog"]
+    },
+    "rsid": {
+      "type": ["string", "null"],
+      "description": "dbSNP RS identifier",
+      "sources": ["GWAS Catalog"]
+    },
+    "functional_class": {
+      "type": ["string", "null"],
+      "description": "Sequence Ontology annotation",
+      "sources": ["GWAS Catalog"]
+    },
+    "efo_trait": {
+      "type": ["string", "null"],
+      "description": "Experimental Factor Ontology trait",
+      "sources": ["GWAS Catalog"]
+    },
+    "efo_uri": {
+      "type": ["string", "null"],
+      "description": "EFO trait URI",
+      "sources": ["GWAS Catalog"]
+    },
+    "ancestral_groups": {
+      "type": ["array", "null"],
+      "items": {"type": "string"},
+      "description": "Population ancestry groups",
+      "sources": ["GWAS Catalog"]
+    },
+    "_source": {
+      "type": "object",
+      "description": "Metadata about the data source",
+      "properties": {
+        "database": {"type": "string"},
+        "version": {"type": "string"},
+        "access_date": {"type": "string", "format": "date"}
+      }
+    }
+  },
+  "required": ["gene_id"],
+  "field_mappings": {
+    "ENCODE": {
+      "accession": "encode_accession",
+      "assay_title": "encode_assay_title",
+      "target": "encode_target",
+      "biosample_ontology": "biosample_ontology",
+      "file_format": "file_format",
+      "output_type": "output_type",
+      "assembly": "assembly",
+      "cCRE_accession": "ccre_accession",
+      "cCRE_classification": "ccre_classification",
+      "chrom": "chromosome",
+      "chromStart": "start_position",
+      "chromEnd": "end_position",
+      "score": "encode_score"
+    },
+    "eQTLGen": {
+      "SNP": "eqtlgen_snp",
+      "SNPChr": "eqtlgen_snp_chr",
+      "SNPPos": "eqtlgen_snp_pos",
+      "AssessedAllele": "assessed_allele",
+      "OtherAllele": "other_allele",
+      "Zscore": "z_score",
+      "Gene": "gene_id",
+      "GeneSymbol": "gene_symbol",
+      "GeneChr": "gene_chr",
+      "GenePos": "gene_tss_position",
+      "NrCohorts": "number_cohorts",
+      "NrSamples": "sample_size",
+      "FDR": "fdr",
+      "Pvalue": "p_value"
+    },
+    "GTEx": {
+      "SUBJID": "gtex_subject_id",
+      "SEX": "gtex_sex",
+      "AGE": "gtex_age",
+      "DTHHRDY": "gtex_death_classification",
+      "SAMPID": "gtex_sample_id",
+      "SMTS": "tissue_type_general",
+      "SMTSD": "tissue_type_detailed",
+      "SMRIN": "rna_integrity_number",
+      "SMAFRZE": "analysis_freeze",
+      "TPM": "tpm",
+      "read_counts": "read_counts",
+      "tss_distance": "tss_distance",
+      "ma_samples": "minor_allele_samples",
+      "ma_count": "minor_allele_count",
+      "maf": "minor_allele_frequency",
+      "pval_nominal": "nominal_pvalue",
+      "slope": "slope",
+      "slope_se": "slope_se",
+      "pval_beta": "beta_adjusted_pvalue",
+      "phenotype_id": "sqtl_phenotype_id"
+    },
+    "GWAS_Catalog": {
+      "accessionId": "gwas_study_accession",
+      "diseaseTrait": "disease_trait",
+      "initialSampleSize": "initial_sample_description",
+      "snpCount": "snp_count",
+      "imputed": "is_imputed",
+      "pubmedId": "pubmed_id",
+      "publicationDate": "publication_date",
+      "author": "author_info",
+      "pvalue": "p_value",
+      "pvalueDescription": "pvalue_description",
+      "riskFrequency": "risk_allele_frequency",
+      "orPerCopyNum": "odds_ratio",
+      "betaNum": "beta",
+      "betaUnit": "beta_unit",
+      "range": "confidence_interval",
+      "rsId": "rsid",
+      "chromosomeName": "chromosome",
+      "chromosomePosition": "start_position",
+      "functionalClass": "functional_class",
+      "EFO_trait": "efo_trait",
+      "EFO_uri": "efo_uri",
+      "ancestralGroups": "ancestral_groups"
+    }
+  }
+}
