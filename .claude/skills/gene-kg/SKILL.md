@@ -1,12 +1,13 @@
 ---
 name: gene-kg
 description: |
-  Query biomedical data sources naturally. Find databases for genetics, drugs, diseases, proteins,
-  pathways, traditional medicine (TCM, Ayurveda), nutrition, microbiome, literature. Get APIs,
-  licenses, formats, dataset sizes. Compare sources. Discover connections. 145 curated sources.
+  Query biomedical data sources naturally. Find datasource information for genetics, drugs, diseases,
+  proteins, pathways, traditional medicine (TCM, Ayurveda), nutrition, microbiome, literature.
+  Get APIs, licenses, formats, dataset sizes. Compare sources. Discover connections. 145 curated
+  data source entries.
 
-  Examples: "10 largest databases" "Find TCM sources" "production-ready genetics databases"
-  "compare DrugBank and ChEMBL" "what connects to ClinVar" "databases with REST APIs"
+  Examples: "10 largest databases" "Find TCM data sources" "production-ready genetics datasources"
+  "compare DrugBank and ChEMBL" "what connects to ClinVar" "datasource with REST APIs"
 allowed-tools: Read, Bash
 ---
 
