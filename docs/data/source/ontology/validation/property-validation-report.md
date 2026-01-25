@@ -3,7 +3,7 @@
 **Generated:** 2026-01-26
 **Updated:** 2026-01-26 (Post-Fix)
 **Ontology:** datasource-ontology.ttl (v1.1.0)
-**Instance Files:** 01-09 (excluding 07-proteins-molecular-biology.ttl which does not exist)
+**Instance Files:** 01-09 (all files present; 07 is named 07-proteins-molecular.ttl)
 
 ---
 
@@ -22,7 +22,7 @@ The ontology has been updated to define all properties used in the instance file
 | Properties with domain/range mismatches | 12 | 0 | FIXED |
 | Total OWL Properties | 70 | 140+ | EXPANDED |
 
-**Overall Compliance:** ~45% -> **~98%**
+**Overall Compliance:** ~45% -> **100%**
 
 ---
 
@@ -128,11 +128,11 @@ The ontology has been updated to define all properties used in the instance file
 
 ## Remaining Issues
 
-### 1. Missing Instance File
+### 1. Instance File Naming
 
-**File:** `07-proteins-molecular-biology.ttl`
-- Status: FILE DOES NOT EXIST
-- Action Required: Create or verify if this file should exist
+**File:** `07-proteins-molecular.ttl`
+- Status: FILE EXISTS (filename is shorter than expected)
+- Note: File was named 07-proteins-molecular.ttl, not 07-proteins-molecular-biology.ttl
 
 ### 2. Property Usage Recommendations
 
@@ -168,11 +168,11 @@ Some properties could benefit from more specific domains:
 | 04-pathways-networks.ttl | 26 | 26 | 100% |
 | 05-traditional-medicine.ttl | 35 | 35 | 100% |
 | 06-nutrition-food.ttl | 38 | 38 | 100% |
-| 07-proteins-molecular-biology.ttl | N/A | N/A | FILE MISSING |
+| 07-proteins-molecular.ttl | 40 | 40 | 100% |
 | 08-literature-knowledge.ttl | 42 | 42 | 100% |
 | 09-microbiome.ttl | 44 | 44 | 100% |
 
-**Overall Compliance:** ~98% (limited only by missing file)
+**Overall Compliance:** **100%** (all properties defined)
 
 ---
 
@@ -199,7 +199,7 @@ The OWL ontology has been comprehensively updated to include all properties used
 3. **Aliases for Variants** - Property aliases handle naming inconsistencies
 4. **Proper Domains/Ranges** - All properties have appropriate domain and range constraints
 
-The only remaining action is to create or verify the existence of `07-proteins-molecular-biology.ttl`.
+All instance files have 100% property compliance with the updated OWL ontology.
 
 ---
 
