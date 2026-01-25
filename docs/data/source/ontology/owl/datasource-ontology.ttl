@@ -546,6 +546,30 @@ ds:citationText a owl:DatatypeProperty ;
     rdfs:domain ds:License ;
     rdfs:range xsd:string .
 
+ds:permission a owl:DatatypeProperty ;
+    rdfs:label "permission" ;
+    rdfs:comment "An action permitted by the license (e.g., 'Academic research', 'Data mining')." ;
+    rdfs:domain ds:License ;
+    rdfs:range xsd:string .
+
+ds:restriction a owl:DatatypeProperty ;
+    rdfs:label "restriction" ;
+    rdfs:comment "A restriction imposed by the license (e.g., 'No redistribution without permission')." ;
+    rdfs:domain ds:License ;
+    rdfs:range xsd:string .
+
+ds:contactEmail a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "contact email" ;
+    rdfs:comment "Contact email for license inquiries." ;
+    rdfs:domain ds:License ;
+    rdfs:range xsd:string .
+
+ds:contactUrl a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "contact URL" ;
+    rdfs:comment "Contact URL for license inquiries." ;
+    rdfs:domain ds:License ;
+    rdfs:range xsd:anyURI .
+
 # -----------------------------------------------------------------------------
 # Access Method Properties
 # -----------------------------------------------------------------------------
@@ -567,6 +591,18 @@ ds:apiKeyRequired a owl:DatatypeProperty, owl:FunctionalProperty ;
     rdfs:comment "Whether an API key is required." ;
     rdfs:domain ds:AccessMethod ;
     rdfs:range xsd:boolean .
+
+ds:releaseDay a owl:DatatypeProperty ;
+    rdfs:label "release day" ;
+    rdfs:comment "Day of the week for scheduled releases (e.g., 'Monday', 'First Monday of month')." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:string .
+
+ds:notificationUrl a owl:DatatypeProperty ;
+    rdfs:label "notification URL" ;
+    rdfs:comment "URL for subscribing to update notifications (RSS feed, mailing list)." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:anyURI .
 
 # -----------------------------------------------------------------------------
 # Schema/Field Properties
@@ -644,6 +680,12 @@ ds:mappingCount a owl:DatatypeProperty, owl:FunctionalProperty ;
     rdfs:comment "Number of identifier mappings available." ;
     rdfs:domain ds:CrossReference ;
     rdfs:range xsd:long .
+
+ds:integrationPartner a owl:ObjectProperty, owl:SymmetricProperty ;
+    rdfs:label "integration partner" ;
+    rdfs:comment "Bidirectional integration relationship between data sources." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range ds:DataSource .
 
 # -----------------------------------------------------------------------------
 # Timestamp Properties

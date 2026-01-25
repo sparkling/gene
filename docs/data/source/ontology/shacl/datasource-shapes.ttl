@@ -226,6 +226,36 @@ shapes:DataSourceShape a sh:NodeShape ;
         sh:class ds:Limitation ;
         sh:severity sh:Info ;
         sh:message "Consider documenting limitations."
+    ] ;
+
+    sh:property [
+        sh:path ds:releaseDay ;
+        sh:name "releaseDay" ;
+        rdfs:comment "Scheduled release day." ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:severity sh:Info ;
+        sh:message "Consider specifying scheduled release day."
+    ] ;
+
+    sh:property [
+        sh:path ds:notificationUrl ;
+        sh:name "notificationUrl" ;
+        rdfs:comment "URL for update notifications." ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:anyURI ;
+        sh:pattern "^https?://" ;
+        sh:severity sh:Info ;
+        sh:message "Consider providing notification URL for updates."
+    ] ;
+
+    sh:property [
+        sh:path ds:integrationPartner ;
+        sh:name "integrationPartner" ;
+        rdfs:comment "Bidirectional integration partners." ;
+        sh:class ds:DataSource ;
+        sh:severity sh:Info ;
+        sh:message "Consider documenting integration partners."
     ] .
 
 # -----------------------------------------------------------------------------
@@ -490,6 +520,48 @@ shapes:LicenseShape a sh:NodeShape ;
         sh:class skos:Concept ;
         sh:severity sh:Info ;
         sh:message "Consider classifying the license type."
+    ] ;
+
+    sh:property [
+        sh:path ds:permission ;
+        sh:name "permissions" ;
+        rdfs:comment "Actions permitted by the license." ;
+        sh:datatype xsd:string ;
+        sh:minLength 3 ;
+        sh:severity sh:Info ;
+        sh:message "Consider listing permitted actions."
+    ] ;
+
+    sh:property [
+        sh:path ds:restriction ;
+        sh:name "restrictions" ;
+        rdfs:comment "Restrictions imposed by the license." ;
+        sh:datatype xsd:string ;
+        sh:minLength 3 ;
+        sh:severity sh:Info ;
+        sh:message "Consider listing restrictions."
+    ] ;
+
+    sh:property [
+        sh:path ds:contactEmail ;
+        sh:name "contactEmail" ;
+        rdfs:comment "Contact email for license inquiries." ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:pattern "^[^@]+@[^@]+\\.[^@]+$" ;
+        sh:severity sh:Info ;
+        sh:message "Contact email should be valid email format."
+    ] ;
+
+    sh:property [
+        sh:path ds:contactUrl ;
+        sh:name "contactUrl" ;
+        rdfs:comment "Contact URL for license inquiries." ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:anyURI ;
+        sh:pattern "^https?://" ;
+        sh:severity sh:Info ;
+        sh:message "Contact URL should be valid HTTP(S) URL."
     ] .
 
 # -----------------------------------------------------------------------------
