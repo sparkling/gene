@@ -858,3 +858,692 @@ ds:DirectDownloadMethod a ds:AccessMethod ;
     ds:accessMethodType tax:DirectDownload ;
     rdfs:label "Direct Download Access" ;
     rdfs:comment "Direct HTTP file download." .
+
+# =============================================================================
+# ADDITIONAL CLASSES (Added for validation compliance)
+# =============================================================================
+
+ds:RecordCount a owl:Class ;
+    rdfs:label "Record Count" ;
+    rdfs:comment "A record count metric for a data source, describing the type and quantity of records." .
+
+ds:DataSourceStatistics a owl:Class ;
+    rdfs:label "Data Source Statistics" ;
+    rdfs:comment "Statistical metrics and counts for a data source." .
+
+ds:Metric a owl:Class ;
+    rdfs:label "Metric" ;
+    rdfs:comment "A generic metric with a name and value, used for domain-specific statistics." .
+
+# =============================================================================
+# ADDITIONAL OBJECT PROPERTIES (Added for validation compliance)
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Source Link Properties
+# -----------------------------------------------------------------------------
+
+ds:belongsToSource a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:label "belongs to source" ;
+    rdfs:comment "Links a child resource (License, Version, AccessMethod, Identifier, UseCase, Limitation, CrossReference, RecordCount) to its parent DataSource." ;
+    rdfs:domain [ owl:unionOf ( ds:License ds:Version ds:AccessMethod ds:Identifier ds:UseCase ds:Limitation ds:CrossReference ds:RecordCount ds:DataSourceStatistics ds:Metric ) ] ;
+    rdfs:range ds:DataSource .
+
+ds:forSource a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:label "for source" ;
+    rdfs:comment "Alias for ds:belongsToSource. Links a child resource to its parent DataSource." ;
+    owl:equivalentProperty ds:belongsToSource ;
+    rdfs:domain [ owl:unionOf ( ds:License ds:Version ds:AccessMethod ds:Identifier ds:UseCase ds:Limitation ds:CrossReference ds:RecordCount ) ] ;
+    rdfs:range ds:DataSource .
+
+# -----------------------------------------------------------------------------
+# Cross-Reference Link Properties
+# -----------------------------------------------------------------------------
+
+ds:targetSource a owl:ObjectProperty ;
+    rdfs:label "target source" ;
+    rdfs:comment "Links a cross-reference to the target data source (alias for referencesSource)." ;
+    owl:equivalentProperty ds:referencesSource ;
+    rdfs:domain ds:CrossReference ;
+    rdfs:range ds:DataSource .
+
+ds:targetDatabase a owl:ObjectProperty ;
+    rdfs:label "target database" ;
+    rdfs:comment "Links a cross-reference to the target database (alias for referencesSource)." ;
+    owl:equivalentProperty ds:referencesSource ;
+    rdfs:domain ds:CrossReference ;
+    rdfs:range ds:DataSource .
+
+ds:crossReferencesTo a owl:ObjectProperty ;
+    rdfs:label "cross-references to" ;
+    rdfs:comment "Links a data source directly to another data source it cross-references." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range ds:DataSource .
+
+# -----------------------------------------------------------------------------
+# Access Method Type Property
+# -----------------------------------------------------------------------------
+
+ds:methodType a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:label "method type" ;
+    rdfs:comment "Links an access method to its type classification (alias for accessMethodType)." ;
+    owl:equivalentProperty ds:accessMethodType ;
+    rdfs:domain ds:AccessMethod ;
+    rdfs:range skos:Concept .
+
+ds:accessType a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:label "access type" ;
+    rdfs:comment "Links an access method to its type classification (alias for accessMethodType)." ;
+    owl:equivalentProperty ds:accessMethodType ;
+    rdfs:domain ds:AccessMethod ;
+    rdfs:range skos:Concept .
+
+# -----------------------------------------------------------------------------
+# Impact Property
+# -----------------------------------------------------------------------------
+
+ds:impact a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:label "impact" ;
+    rdfs:comment "Links a limitation to its impact level classification." ;
+    rdfs:domain ds:Limitation ;
+    rdfs:range skos:Concept .
+
+ds:impactLevel a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:label "impact level" ;
+    rdfs:comment "Alias for ds:impact. Links a limitation to its impact level." ;
+    owl:equivalentProperty ds:impact ;
+    rdfs:domain ds:Limitation ;
+    rdfs:range skos:Concept .
+
+# =============================================================================
+# ADDITIONAL DATATYPE PROPERTIES (Added for validation compliance)
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# URL/Endpoint Aliases
+# -----------------------------------------------------------------------------
+
+ds:baseUrl a owl:DatatypeProperty ;
+    rdfs:label "base URL" ;
+    rdfs:comment "Base URL for API access (alias for apiEndpoint)." ;
+    owl:equivalentProperty ds:apiEndpoint ;
+    rdfs:domain ds:AccessMethod ;
+    rdfs:range xsd:anyURI .
+
+ds:baseURL a owl:DatatypeProperty ;
+    rdfs:label "base URL (uppercase)" ;
+    rdfs:comment "Base URL for API access (case variant alias for apiEndpoint)." ;
+    owl:equivalentProperty ds:apiEndpoint ;
+    rdfs:domain ds:AccessMethod ;
+    rdfs:range xsd:anyURI .
+
+ds:endpoint a owl:DatatypeProperty ;
+    rdfs:label "endpoint" ;
+    rdfs:comment "API endpoint URL (alias for apiEndpoint)." ;
+    owl:equivalentProperty ds:apiEndpoint ;
+    rdfs:domain ds:AccessMethod ;
+    rdfs:range xsd:anyURI .
+
+ds:url a owl:DatatypeProperty ;
+    rdfs:label "url" ;
+    rdfs:comment "Generic URL for access (alias for apiEndpoint or downloadUrl)." ;
+    rdfs:domain ds:AccessMethod ;
+    rdfs:range xsd:anyURI .
+
+ds:accessUrl a owl:DatatypeProperty ;
+    rdfs:label "access URL" ;
+    rdfs:comment "URL for accessing the resource (alias for apiEndpoint)." ;
+    owl:equivalentProperty ds:apiEndpoint ;
+    rdfs:domain ds:AccessMethod ;
+    rdfs:range xsd:anyURI .
+
+ds:registrationUrl a owl:DatatypeProperty ;
+    rdfs:label "registration URL" ;
+    rdfs:comment "URL for user registration to access the data source." ;
+    rdfs:domain ds:AccessMethod ;
+    rdfs:range xsd:anyURI .
+
+# -----------------------------------------------------------------------------
+# License URL Alias
+# -----------------------------------------------------------------------------
+
+ds:licenseURL a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "license URL (uppercase)" ;
+    rdfs:comment "URL to the full license text (case variant alias for licenseUrl)." ;
+    owl:equivalentProperty ds:licenseUrl ;
+    rdfs:domain ds:License ;
+    rdfs:range xsd:anyURI .
+
+# -----------------------------------------------------------------------------
+# SPDX Alias
+# -----------------------------------------------------------------------------
+
+ds:spdxId a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "SPDX ID" ;
+    rdfs:comment "SPDX license identifier (alias for spdxIdentifier)." ;
+    owl:equivalentProperty ds:spdxIdentifier ;
+    rdfs:domain ds:License ;
+    rdfs:range xsd:string .
+
+# -----------------------------------------------------------------------------
+# Format Properties
+# -----------------------------------------------------------------------------
+
+ds:format a owl:DatatypeProperty ;
+    rdfs:label "format" ;
+    rdfs:comment "Data format as a string (e.g., 'JSON', 'XML', 'CSV')." ;
+    rdfs:domain ds:AccessMethod ;
+    rdfs:range xsd:string .
+
+ds:formats a owl:DatatypeProperty ;
+    rdfs:label "formats" ;
+    rdfs:comment "Multiple data formats as a comma-separated string or multi-valued property." ;
+    rdfs:domain ds:AccessMethod ;
+    rdfs:range xsd:string .
+
+ds:responseFormat a owl:DatatypeProperty ;
+    rdfs:label "response format" ;
+    rdfs:comment "Format of API responses." ;
+    rdfs:domain ds:AccessMethod ;
+    rdfs:range xsd:string .
+
+ds:downloadFormat a owl:DatatypeProperty ;
+    rdfs:label "download format" ;
+    rdfs:comment "Format of downloadable files." ;
+    rdfs:domain ds:AccessMethod ;
+    rdfs:range xsd:string .
+
+# -----------------------------------------------------------------------------
+# Authentication Properties
+# -----------------------------------------------------------------------------
+
+ds:authRequired a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "auth required" ;
+    rdfs:comment "Whether authentication is required (alias for authenticationRequired)." ;
+    owl:equivalentProperty ds:authenticationRequired ;
+    rdfs:domain ds:AccessMethod ;
+    rdfs:range xsd:boolean .
+
+ds:authentication a owl:DatatypeProperty ;
+    rdfs:label "authentication" ;
+    rdfs:comment "Authentication method description or boolean flag." ;
+    rdfs:domain ds:AccessMethod ;
+    rdfs:range xsd:string .
+
+ds:registrationRequired a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "registration required" ;
+    rdfs:comment "Whether user registration is required." ;
+    rdfs:domain ds:AccessMethod ;
+    rdfs:range xsd:boolean .
+
+ds:subscriptionRequired a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "subscription required" ;
+    rdfs:comment "Whether a subscription is required for access." ;
+    rdfs:domain ds:AccessMethod ;
+    rdfs:range xsd:boolean .
+
+ds:subscriptionCost a owl:DatatypeProperty ;
+    rdfs:label "subscription cost" ;
+    rdfs:comment "Cost of subscription for access." ;
+    rdfs:domain ds:AccessMethod ;
+    rdfs:range xsd:string .
+
+ds:academicAccessFree a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "academic access free" ;
+    rdfs:comment "Whether academic access is free." ;
+    rdfs:domain ds:AccessMethod ;
+    rdfs:range xsd:boolean .
+
+ds:ehrIntegration a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "EHR integration" ;
+    rdfs:comment "Whether EHR (Electronic Health Record) integration is available." ;
+    rdfs:domain ds:AccessMethod ;
+    rdfs:range xsd:boolean .
+
+# -----------------------------------------------------------------------------
+# Rate Limit Properties
+# -----------------------------------------------------------------------------
+
+ds:rateLimitWithKey a owl:DatatypeProperty ;
+    rdfs:label "rate limit with key" ;
+    rdfs:comment "Rate limit when using an API key." ;
+    rdfs:domain ds:AccessMethod ;
+    rdfs:range xsd:string .
+
+ds:dailyLimit a owl:DatatypeProperty ;
+    rdfs:label "daily limit" ;
+    rdfs:comment "Daily request limit for API access." ;
+    rdfs:domain ds:AccessMethod ;
+    rdfs:range xsd:string .
+
+ds:batchSize a owl:DatatypeProperty ;
+    rdfs:label "batch size" ;
+    rdfs:comment "Maximum batch size for API requests." ;
+    rdfs:domain ds:AccessMethod ;
+    rdfs:range xsd:integer .
+
+# -----------------------------------------------------------------------------
+# Download Properties
+# -----------------------------------------------------------------------------
+
+ds:bulkDownload a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "bulk download" ;
+    rdfs:comment "Whether bulk download is available." ;
+    rdfs:domain ds:AccessMethod ;
+    rdfs:range xsd:boolean .
+
+ds:estimatedSize a owl:DatatypeProperty ;
+    rdfs:label "estimated size" ;
+    rdfs:comment "Estimated size of the download." ;
+    rdfs:domain [ owl:unionOf ( ds:AccessMethod ds:Version ) ] ;
+    rdfs:range xsd:string .
+
+ds:fileSize a owl:DatatypeProperty ;
+    rdfs:label "file size" ;
+    rdfs:comment "Size of a specific file (alias for size)." ;
+    owl:equivalentProperty ds:size ;
+    rdfs:domain ds:Version ;
+    rdfs:range xsd:string .
+
+ds:totalSize a owl:DatatypeProperty ;
+    rdfs:label "total size" ;
+    rdfs:comment "Total size of all data (alias for size)." ;
+    owl:equivalentProperty ds:size ;
+    rdfs:domain ds:Version ;
+    rdfs:range xsd:string .
+
+ds:downloadSize a owl:DatatypeProperty ;
+    rdfs:label "download size" ;
+    rdfs:comment "Size of the download (alias for size)." ;
+    owl:equivalentProperty ds:size ;
+    rdfs:domain ds:Version ;
+    rdfs:range xsd:string .
+
+# -----------------------------------------------------------------------------
+# Version Aliases
+# -----------------------------------------------------------------------------
+
+ds:versionName a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "version name" ;
+    rdfs:comment "Name or identifier for the version (alias for versionNumber)." ;
+    owl:equivalentProperty ds:versionNumber ;
+    rdfs:domain ds:Version ;
+    rdfs:range xsd:string .
+
+ds:version a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "version" ;
+    rdfs:comment "Version identifier (alias for versionNumber)." ;
+    owl:equivalentProperty ds:versionNumber ;
+    rdfs:domain ds:Version ;
+    rdfs:range xsd:string .
+
+ds:versionString a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "version string" ;
+    rdfs:comment "Version as a string (alias for versionNumber)." ;
+    owl:equivalentProperty ds:versionNumber ;
+    rdfs:domain ds:Version ;
+    rdfs:range xsd:string .
+
+ds:versionDate a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "version date" ;
+    rdfs:comment "Date of the version (alias for releaseDate)." ;
+    owl:equivalentProperty ds:releaseDate ;
+    rdfs:domain ds:Version ;
+    rdfs:range xsd:date .
+
+# -----------------------------------------------------------------------------
+# Record Count Properties
+# -----------------------------------------------------------------------------
+
+ds:countType a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "count type" ;
+    rdfs:comment "Type of record count (e.g., 'Citations', 'Entries', 'Samples')." ;
+    rdfs:domain ds:RecordCount ;
+    rdfs:range xsd:string .
+
+ds:count a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "count" ;
+    rdfs:comment "Numeric count value." ;
+    rdfs:domain ds:RecordCount ;
+    rdfs:range xsd:integer .
+
+ds:countLabel a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "count label" ;
+    rdfs:comment "Human-readable label for the count (e.g., '36M+')." ;
+    rdfs:domain ds:RecordCount ;
+    rdfs:range xsd:string .
+
+ds:variantRecords a owl:DatatypeProperty ;
+    rdfs:label "variant records" ;
+    rdfs:comment "Number of variant records in the data source." ;
+    rdfs:domain ds:Version ;
+    rdfs:range xsd:string .
+
+ds:submissionRecords a owl:DatatypeProperty ;
+    rdfs:label "submission records" ;
+    rdfs:comment "Number of submission records in the data source." ;
+    rdfs:domain ds:Version ;
+    rdfs:range xsd:string .
+
+ds:sampleCount a owl:DatatypeProperty ;
+    rdfs:label "sample count" ;
+    rdfs:comment "Number of samples in the data source." ;
+    rdfs:domain ds:Version ;
+    rdfs:range xsd:integer .
+
+ds:recordCountDescription a owl:DatatypeProperty ;
+    rdfs:label "record count description" ;
+    rdfs:comment "Textual description of record counts." ;
+    rdfs:domain ds:Version ;
+    rdfs:range xsd:string .
+
+# -----------------------------------------------------------------------------
+# Domain-Specific Count Properties
+# -----------------------------------------------------------------------------
+
+ds:herbCount a owl:DatatypeProperty ;
+    rdfs:label "herb count" ;
+    rdfs:comment "Number of herbs in the database." ;
+    rdfs:domain ds:DataSourceStatistics ;
+    rdfs:range xsd:integer .
+
+ds:compoundCount a owl:DatatypeProperty ;
+    rdfs:label "compound count" ;
+    rdfs:comment "Number of compounds in the database." ;
+    rdfs:domain ds:DataSourceStatistics ;
+    rdfs:range xsd:integer .
+
+ds:formulaCount a owl:DatatypeProperty ;
+    rdfs:label "formula count" ;
+    rdfs:comment "Number of formulas in the database." ;
+    rdfs:domain ds:DataSourceStatistics ;
+    rdfs:range xsd:integer .
+
+ds:foodCount a owl:DatatypeProperty ;
+    rdfs:label "food count" ;
+    rdfs:comment "Number of food items in the database." ;
+    rdfs:domain ds:DataSourceStatistics ;
+    rdfs:range xsd:integer .
+
+ds:productCount a owl:DatatypeProperty ;
+    rdfs:label "product count" ;
+    rdfs:comment "Number of products in the database." ;
+    rdfs:domain ds:DataSourceStatistics ;
+    rdfs:range xsd:integer .
+
+ds:knownTargetInteractions a owl:DatatypeProperty ;
+    rdfs:label "known target interactions" ;
+    rdfs:comment "Number of known target interactions." ;
+    rdfs:domain ds:DataSourceStatistics ;
+    rdfs:range xsd:integer .
+
+ds:predictedTargetInteractions a owl:DatatypeProperty ;
+    rdfs:label "predicted target interactions" ;
+    rdfs:comment "Number of predicted target interactions." ;
+    rdfs:domain ds:DataSourceStatistics ;
+    rdfs:range xsd:integer .
+
+ds:predictionROCAUC a owl:DatatypeProperty ;
+    rdfs:label "prediction ROC AUC" ;
+    rdfs:comment "ROC AUC score for predictions." ;
+    rdfs:domain ds:DataSourceStatistics ;
+    rdfs:range xsd:decimal .
+
+# -----------------------------------------------------------------------------
+# Generic Metric Properties
+# -----------------------------------------------------------------------------
+
+ds:metricName a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "metric name" ;
+    rdfs:comment "Name of a generic metric." ;
+    rdfs:domain ds:Metric ;
+    rdfs:range xsd:string .
+
+ds:metricValue a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "metric value" ;
+    rdfs:comment "Value of a generic metric." ;
+    rdfs:domain ds:Metric ;
+    rdfs:range xsd:integer .
+
+# -----------------------------------------------------------------------------
+# License Properties
+# -----------------------------------------------------------------------------
+
+ds:commercialUse a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "commercial use" ;
+    rdfs:comment "Whether commercial use is permitted (alias for commercialUseAllowed)." ;
+    owl:equivalentProperty ds:commercialUseAllowed ;
+    rdfs:domain ds:License ;
+    rdfs:range xsd:boolean .
+
+ds:redistribution a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "redistribution" ;
+    rdfs:comment "Whether redistribution is permitted (alias for redistributionAllowed)." ;
+    owl:equivalentProperty ds:redistributionAllowed ;
+    rdfs:domain ds:License ;
+    rdfs:range xsd:boolean .
+
+ds:modificationAllowed a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "modification allowed" ;
+    rdfs:comment "Whether modification of the data is permitted." ;
+    rdfs:domain ds:License ;
+    rdfs:range xsd:boolean .
+
+ds:shareAlike a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "share alike" ;
+    rdfs:comment "Whether share-alike terms apply." ;
+    rdfs:domain ds:License ;
+    rdfs:range xsd:boolean .
+
+ds:shareAlikeRequired a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "share alike required" ;
+    rdfs:comment "Whether share-alike is required (alias for shareAlike)." ;
+    owl:equivalentProperty ds:shareAlike ;
+    rdfs:domain ds:License ;
+    rdfs:range xsd:boolean .
+
+ds:publicDomain a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "public domain" ;
+    rdfs:comment "Whether the data is in the public domain." ;
+    rdfs:domain ds:License ;
+    rdfs:range xsd:boolean .
+
+ds:requiresAgreement a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "requires agreement" ;
+    rdfs:comment "Whether a license agreement must be signed." ;
+    rdfs:domain ds:License ;
+    rdfs:range xsd:boolean .
+
+ds:specialCondition a owl:DatatypeProperty ;
+    rdfs:label "special condition" ;
+    rdfs:comment "Special conditions or terms in the license." ;
+    rdfs:domain ds:License ;
+    rdfs:range xsd:string .
+
+ds:commercialLicenseContact a owl:DatatypeProperty ;
+    rdfs:label "commercial license contact" ;
+    rdfs:comment "Contact information for commercial licensing." ;
+    rdfs:domain ds:License ;
+    rdfs:range xsd:string .
+
+ds:softwareLicense a owl:DatatypeProperty ;
+    rdfs:label "software license" ;
+    rdfs:comment "License for associated software (separate from data license)." ;
+    rdfs:domain ds:License ;
+    rdfs:range xsd:string .
+
+ds:attribution a owl:DatatypeProperty ;
+    rdfs:label "attribution" ;
+    rdfs:comment "Attribution text (alias for attributionText)." ;
+    owl:equivalentProperty ds:attributionText ;
+    rdfs:domain ds:License ;
+    rdfs:range xsd:string .
+
+ds:citation a owl:DatatypeProperty ;
+    rdfs:label "citation" ;
+    rdfs:comment "Citation text (alias for citationText)." ;
+    owl:equivalentProperty ds:citationText ;
+    rdfs:domain ds:License ;
+    rdfs:range xsd:string .
+
+ds:citationDOI a owl:DatatypeProperty ;
+    rdfs:label "citation DOI" ;
+    rdfs:comment "DOI for citing the data source." ;
+    rdfs:domain ds:License ;
+    rdfs:range xsd:string .
+
+ds:permissions a owl:DatatypeProperty ;
+    rdfs:label "permissions" ;
+    rdfs:comment "Multiple permissions (multi-valued alias for permission)." ;
+    rdfs:domain ds:License ;
+    rdfs:range xsd:string .
+
+ds:restrictions a owl:DatatypeProperty ;
+    rdfs:label "restrictions" ;
+    rdfs:comment "Multiple restrictions (multi-valued alias for restriction)." ;
+    rdfs:domain ds:License ;
+    rdfs:range xsd:string .
+
+# -----------------------------------------------------------------------------
+# Identifier Properties
+# -----------------------------------------------------------------------------
+
+ds:identifierType a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "identifier type" ;
+    rdfs:comment "Type of identifier (alias for identifierName)." ;
+    owl:equivalentProperty ds:identifierName ;
+    rdfs:domain ds:Identifier ;
+    rdfs:range xsd:string .
+
+ds:identifierPattern a owl:DatatypeProperty ;
+    rdfs:label "identifier pattern" ;
+    rdfs:comment "Regular expression pattern for the identifier (alias for pattern)." ;
+    owl:equivalentProperty ds:pattern ;
+    rdfs:domain ds:Identifier ;
+    rdfs:range xsd:string .
+
+ds:identifierExample a owl:DatatypeProperty ;
+    rdfs:label "identifier example" ;
+    rdfs:comment "Example value for the identifier (alias for example)." ;
+    owl:equivalentProperty ds:example ;
+    rdfs:domain ds:Identifier ;
+    rdfs:range xsd:string .
+
+ds:isPrimary a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "is primary" ;
+    rdfs:comment "Whether this is the primary identifier for the data source." ;
+    rdfs:domain ds:Identifier ;
+    rdfs:range xsd:boolean .
+
+# -----------------------------------------------------------------------------
+# Cross-Reference Properties
+# -----------------------------------------------------------------------------
+
+ds:coverage a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "coverage" ;
+    rdfs:comment "Coverage level (alias for coverageLevel)." ;
+    owl:equivalentProperty ds:coverageLevel ;
+    rdfs:domain ds:CrossReference ;
+    rdfs:range xsd:string .
+
+ds:idField a owl:DatatypeProperty ;
+    rdfs:label "ID field" ;
+    rdfs:comment "Field name used for identifier mapping." ;
+    rdfs:domain ds:CrossReference ;
+    rdfs:range xsd:string .
+
+ds:linkType a owl:DatatypeProperty ;
+    rdfs:label "link type" ;
+    rdfs:comment "Type of cross-reference link." ;
+    rdfs:domain ds:CrossReference ;
+    rdfs:range xsd:string .
+
+ds:crossReferenceType a owl:DatatypeProperty ;
+    rdfs:label "cross-reference type" ;
+    rdfs:comment "Type of cross-reference relationship." ;
+    rdfs:domain ds:CrossReference ;
+    rdfs:range xsd:string .
+
+ds:relationship a owl:DatatypeProperty ;
+    rdfs:label "relationship" ;
+    rdfs:comment "Description of the relationship between sources." ;
+    rdfs:domain ds:CrossReference ;
+    rdfs:range xsd:string .
+
+ds:externalDatabase a owl:DatatypeProperty ;
+    rdfs:label "external database" ;
+    rdfs:comment "Name of the external database." ;
+    rdfs:domain ds:CrossReference ;
+    rdfs:range xsd:string .
+
+ds:externalIdField a owl:DatatypeProperty ;
+    rdfs:label "external ID field" ;
+    rdfs:comment "Field name for the external database identifier." ;
+    rdfs:domain ds:CrossReference ;
+    rdfs:range xsd:string .
+
+# -----------------------------------------------------------------------------
+# UseCase Properties
+# -----------------------------------------------------------------------------
+
+ds:useCaseName a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "use case name" ;
+    rdfs:comment "Name or title of the use case." ;
+    rdfs:domain ds:UseCase ;
+    rdfs:range xsd:string .
+
+ds:useCaseDescription a owl:DatatypeProperty ;
+    rdfs:label "use case description" ;
+    rdfs:comment "Description of the use case (alias for description on UseCase)." ;
+    rdfs:domain ds:UseCase ;
+    rdfs:range xsd:string .
+
+# -----------------------------------------------------------------------------
+# Limitation Properties
+# -----------------------------------------------------------------------------
+
+ds:limitationName a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "limitation name" ;
+    rdfs:comment "Name or title of the limitation." ;
+    rdfs:domain ds:Limitation ;
+    rdfs:range xsd:string .
+
+ds:limitationDescription a owl:DatatypeProperty ;
+    rdfs:label "limitation description" ;
+    rdfs:comment "Description of the limitation (alias for description on Limitation)." ;
+    rdfs:domain ds:Limitation ;
+    rdfs:range xsd:string .
+
+# -----------------------------------------------------------------------------
+# Access Method Name Property
+# -----------------------------------------------------------------------------
+
+ds:accessName a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "access name" ;
+    rdfs:comment "Human-readable name for the access method." ;
+    rdfs:domain ds:AccessMethod ;
+    rdfs:range xsd:string .
+
+# -----------------------------------------------------------------------------
+# Note Properties
+# -----------------------------------------------------------------------------
+
+ds:note a owl:DatatypeProperty ;
+    rdfs:label "note" ;
+    rdfs:comment "A note or comment about the resource." ;
+    rdfs:range xsd:string .
+
+ds:notes a owl:DatatypeProperty ;
+    rdfs:label "notes" ;
+    rdfs:comment "Multiple notes (multi-valued alias for note)." ;
+    rdfs:range xsd:string .
+
+# -----------------------------------------------------------------------------
+# Maintainer Contact Property
+# -----------------------------------------------------------------------------
+
+ds:maintainerEmail a owl:DatatypeProperty ;
+    rdfs:label "maintainer email" ;
+    rdfs:comment "Email contact for the maintainer." ;
+    rdfs:domain ds:Maintainer ;
+    rdfs:range xsd:string .
