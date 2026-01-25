@@ -636,7 +636,18 @@ tax:AccessMethodScheme a skos:ConceptScheme ;
         tax:FTP ,
         tax:WebInterface ,
         tax:GitHubRepository ,
-        tax:GraphQL .
+        tax:GraphQL ,
+        tax:CLI ,
+        tax:CloudStorage ,
+        tax:CytoscapeApp ,
+        tax:DockerImage ,
+        tax:JupyterNotebook ,
+        tax:RPackage ,
+        tax:PyPIPackage ,
+        tax:BioconductorPackage ,
+        tax:NPMPackage ,
+        tax:GitHubRelease ,
+        tax:CommandLine .
 
 tax:RestApi a skos:Concept ;
     skos:prefLabel "REST API" ;
@@ -754,6 +765,98 @@ tax:GraphQL a skos:Concept ;
     skos:topConceptOf tax:AccessMethodScheme ;
     skos:exactMatch tax:GraphqlApi .
 
+tax:CLI a skos:Concept ;
+    skos:prefLabel "CLI" ;
+    skos:altLabel "Command Line Interface" , "Terminal" ;
+    skos:notation "cli" ;
+    skos:definition "Command-line interface tool for data access and analysis, typically installed via package manager." ;
+    skos:inScheme tax:AccessMethodScheme ;
+    skos:topConceptOf tax:AccessMethodScheme .
+
+tax:CommandLine a skos:Concept ;
+    skos:prefLabel "Command Line" ;
+    skos:altLabel "Shell Command" , "Terminal Command" ;
+    skos:notation "command-line" ;
+    skos:definition "Direct command-line execution for data retrieval or processing, typically using curl, wget, or custom scripts." ;
+    skos:inScheme tax:AccessMethodScheme ;
+    skos:topConceptOf tax:AccessMethodScheme ;
+    skos:related tax:CLI .
+
+tax:CloudStorage a skos:Concept ;
+    skos:prefLabel "Cloud Storage" ;
+    skos:altLabel "Cloud Download" , "Object Storage" ;
+    skos:notation "cloud-storage" ;
+    skos:definition "Cloud-based object storage access including Google Cloud Storage, Azure Blob Storage, or other cloud providers." ;
+    skos:inScheme tax:AccessMethodScheme ;
+    skos:topConceptOf tax:AccessMethodScheme ;
+    skos:related tax:S3Download .
+
+tax:CytoscapeApp a skos:Concept ;
+    skos:prefLabel "Cytoscape App" ;
+    skos:altLabel "Cytoscape Plugin" ;
+    skos:notation "cytoscape-app" ;
+    skos:definition "Cytoscape application or plugin for network visualization and analysis, installable through Cytoscape App Store." ;
+    skos:inScheme tax:AccessMethodScheme ;
+    skos:topConceptOf tax:AccessMethodScheme .
+
+tax:DockerImage a skos:Concept ;
+    skos:prefLabel "Docker Image" ;
+    skos:altLabel "Container" , "Docker Container" ;
+    skos:notation "docker" ;
+    skos:definition "Docker container image providing pre-configured environment with data and/or analysis tools." ;
+    skos:inScheme tax:AccessMethodScheme ;
+    skos:topConceptOf tax:AccessMethodScheme .
+
+tax:JupyterNotebook a skos:Concept ;
+    skos:prefLabel "Jupyter Notebook" ;
+    skos:altLabel "IPython Notebook" , "Colab Notebook" ;
+    skos:notation "jupyter" ;
+    skos:definition "Jupyter notebook providing interactive data access, analysis workflows, and documentation." ;
+    skos:inScheme tax:AccessMethodScheme ;
+    skos:topConceptOf tax:AccessMethodScheme .
+
+tax:RPackage a skos:Concept ;
+    skos:prefLabel "R Package" ;
+    skos:altLabel "CRAN Package" , "R Library" ;
+    skos:notation "r-package" ;
+    skos:definition "R package available through CRAN or GitHub providing programmatic data access and analysis functions." ;
+    skos:inScheme tax:AccessMethodScheme ;
+    skos:topConceptOf tax:AccessMethodScheme .
+
+tax:PyPIPackage a skos:Concept ;
+    skos:prefLabel "PyPI Package" ;
+    skos:altLabel "Python Package" , "pip Package" ;
+    skos:notation "pypi" ;
+    skos:definition "Python package available through PyPI (Python Package Index), installable via pip." ;
+    skos:inScheme tax:AccessMethodScheme ;
+    skos:topConceptOf tax:AccessMethodScheme .
+
+tax:BioconductorPackage a skos:Concept ;
+    skos:prefLabel "Bioconductor Package" ;
+    skos:altLabel "Bioconductor" ;
+    skos:notation "bioconductor" ;
+    skos:definition "R/Bioconductor package for bioinformatics data access and analysis, following Bioconductor standards." ;
+    skos:inScheme tax:AccessMethodScheme ;
+    skos:topConceptOf tax:AccessMethodScheme ;
+    skos:related tax:RPackage .
+
+tax:NPMPackage a skos:Concept ;
+    skos:prefLabel "NPM Package" ;
+    skos:altLabel "Node Package" , "JavaScript Package" ;
+    skos:notation "npm" ;
+    skos:definition "JavaScript/Node.js package available through NPM (Node Package Manager)." ;
+    skos:inScheme tax:AccessMethodScheme ;
+    skos:topConceptOf tax:AccessMethodScheme .
+
+tax:GitHubRelease a skos:Concept ;
+    skos:prefLabel "GitHub Release" ;
+    skos:altLabel "GitHub Assets" , "Release Download" ;
+    skos:notation "github-release" ;
+    skos:definition "Data or software distributed as GitHub release assets, providing versioned downloads with release notes." ;
+    skos:inScheme tax:AccessMethodScheme ;
+    skos:topConceptOf tax:AccessMethodScheme ;
+    skos:related tax:GitHubRepository .
+
 # -----------------------------------------------------------------------------
 # Format Scheme
 # -----------------------------------------------------------------------------
@@ -787,7 +890,42 @@ tax:FormatScheme a skos:ConceptScheme ;
         tax:PDB ,
         tax:SBML ,
         tax:OWL ,
-        tax:RDF .
+        tax:RDF ,
+        # Bioinformatics formats
+        tax:BioPAX ,
+        tax:GPML ,
+        tax:mmCIF ,
+        tax:bigWig ,
+        tax:bigBed ,
+        tax:BCF ,
+        tax:CRAM ,
+        tax:OBO ,
+        # Data interchange formats
+        tax:RDF_XML ,
+        tax:SPARQLFormat ,
+        tax:GraphQLFormat ,
+        tax:Cypher ,
+        # Structural/3D formats
+        tax:MMTF ,
+        tax:MOL2 ,
+        tax:SMILES ,
+        tax:InChI ,
+        # Sequence formats
+        tax:GFF3 ,
+        tax:GTF ,
+        tax:BED12 ,
+        tax:GenBank ,
+        tax:EMBL ,
+        # Spectral formats
+        tax:mzML ,
+        tax:mzXML ,
+        tax:MGF ,
+        # Other formats
+        tax:YAML ,
+        tax:Parquet ,
+        tax:Arrow ,
+        tax:HDF5 ,
+        tax:NetCDF .
 
 tax:JsonFormat a skos:Concept ;
     skos:prefLabel "JSON" ;
@@ -1101,6 +1239,8 @@ tax:UpdateFrequencyScheme a skos:ConceptScheme ;
     rdfs:comment "How often data sources are updated." ;
     skos:hasTopConcept
         tax:Realtime ,
+        tax:Continuous ,
+        tax:OnDemand ,
         tax:Daily ,
         tax:Weekly ,
         tax:Monthly ,
@@ -1110,9 +1250,35 @@ tax:UpdateFrequencyScheme a skos:ConceptScheme ;
 
 tax:Realtime a skos:Concept ;
     skos:prefLabel "Real-time" ;
-    skos:altLabel "Continuous" ;
     skos:notation "realtime" ;
-    rdfs:comment "Continuously updated in real-time or near real-time." ;
+    skos:definition "Updated in real-time or near real-time as data becomes available, typically with sub-second to minute latency." ;
+    skos:inScheme tax:UpdateFrequencyScheme ;
+    skos:topConceptOf tax:UpdateFrequencyScheme ;
+    skos:closeMatch tax:Continuous .
+
+tax:RealTime a skos:Concept ;
+    skos:prefLabel "Real Time" ;
+    skos:altLabel "RealTime" ;
+    skos:notation "real-time" ;
+    skos:definition "Synonym for real-time updates with immediate data availability." ;
+    skos:inScheme tax:UpdateFrequencyScheme ;
+    skos:topConceptOf tax:UpdateFrequencyScheme ;
+    skos:exactMatch tax:Realtime .
+
+tax:Continuous a skos:Concept ;
+    skos:prefLabel "Continuous" ;
+    skos:altLabel "Streaming" , "Live" ;
+    skos:notation "continuous" ;
+    skos:definition "Continuously updated data stream without discrete update intervals, typically event-driven or streaming architecture." ;
+    skos:inScheme tax:UpdateFrequencyScheme ;
+    skos:topConceptOf tax:UpdateFrequencyScheme ;
+    skos:closeMatch tax:Realtime .
+
+tax:OnDemand a skos:Concept ;
+    skos:prefLabel "On Demand" ;
+    skos:altLabel "On-Demand" , "As Requested" ;
+    skos:notation "on-demand" ;
+    skos:definition "Data retrieved or computed on demand when requested, not pre-cached or periodically updated." ;
     skos:inScheme tax:UpdateFrequencyScheme ;
     skos:topConceptOf tax:UpdateFrequencyScheme .
 
@@ -1170,7 +1336,11 @@ tax:QualityIndicatorScheme a skos:ConceptScheme ;
     skos:hasTopConcept
         tax:pLDDT ,
         tax:QMEAN ,
-        tax:Coverage .
+        tax:Coverage ,
+        tax:Resolution ,
+        tax:HighConfidence ,
+        tax:MediumConfidence ,
+        tax:LowConfidence .
 
 tax:pLDDT a skos:Concept ;
     skos:prefLabel "pLDDT" ;
@@ -1193,5 +1363,133 @@ tax:Coverage a skos:Concept ;
     skos:altLabel "Sequence Coverage" , "Genome Coverage" ;
     skos:notation "coverage" ;
     rdfs:comment "Percentage or fraction of target sequence/genome that is represented or aligned in the data." ;
+    skos:inScheme tax:QualityIndicatorScheme ;
+    skos:topConceptOf tax:QualityIndicatorScheme .
+
+# -----------------------------------------------------------------------------
+# pLDDT Quality Level Concepts
+# -----------------------------------------------------------------------------
+
+tax:pLDDT_VeryHigh a skos:Concept ;
+    skos:prefLabel "pLDDT Very High" ;
+    skos:altLabel "pLDDT >90" ;
+    skos:notation "plddt-very-high" ;
+    skos:definition "AlphaFold pLDDT score greater than 90, indicating very high confidence in predicted local structure accuracy." ;
+    skos:inScheme tax:QualityIndicatorScheme ;
+    skos:broader tax:pLDDT .
+
+tax:pLDDT_High a skos:Concept ;
+    skos:prefLabel "pLDDT High" ;
+    skos:altLabel "pLDDT 70-90" ;
+    skos:notation "plddt-high" ;
+    skos:definition "AlphaFold pLDDT score between 70 and 90, indicating high confidence in predicted local structure accuracy." ;
+    skos:inScheme tax:QualityIndicatorScheme ;
+    skos:broader tax:pLDDT .
+
+tax:pLDDT_Medium a skos:Concept ;
+    skos:prefLabel "pLDDT Medium" ;
+    skos:altLabel "pLDDT 50-70" ;
+    skos:notation "plddt-medium" ;
+    skos:definition "AlphaFold pLDDT score between 50 and 70, indicating moderate confidence in predicted local structure accuracy." ;
+    skos:inScheme tax:QualityIndicatorScheme ;
+    skos:broader tax:pLDDT .
+
+tax:pLDDT_Low a skos:Concept ;
+    skos:prefLabel "pLDDT Low" ;
+    skos:altLabel "pLDDT <50" ;
+    skos:notation "plddt-low" ;
+    skos:definition "AlphaFold pLDDT score less than 50, indicating low confidence in predicted local structure accuracy. Structure may be disordered or poorly predicted." ;
+    skos:inScheme tax:QualityIndicatorScheme ;
+    skos:broader tax:pLDDT .
+
+# -----------------------------------------------------------------------------
+# QMEAN Quality Level Concepts
+# -----------------------------------------------------------------------------
+
+tax:QMEAN_Good a skos:Concept ;
+    skos:prefLabel "QMEAN Good" ;
+    skos:altLabel "QMEAN >0.7" ;
+    skos:notation "qmean-good" ;
+    skos:definition "QMEAN score greater than 0.7 (or Z-score near 0), indicating good model quality comparable to experimental structures." ;
+    skos:inScheme tax:QualityIndicatorScheme ;
+    skos:broader tax:QMEAN .
+
+tax:QMEAN_Medium a skos:Concept ;
+    skos:prefLabel "QMEAN Medium" ;
+    skos:altLabel "QMEAN 0.5-0.7" ;
+    skos:notation "qmean-medium" ;
+    skos:definition "QMEAN score between 0.5 and 0.7, indicating acceptable model quality suitable for many applications." ;
+    skos:inScheme tax:QualityIndicatorScheme ;
+    skos:broader tax:QMEAN .
+
+tax:QMEAN_Low a skos:Concept ;
+    skos:prefLabel "QMEAN Low" ;
+    skos:altLabel "QMEAN <0.5" ;
+    skos:notation "qmean-low" ;
+    skos:definition "QMEAN score less than 0.5, indicating low model quality. Use with caution for structural analysis." ;
+    skos:inScheme tax:QualityIndicatorScheme ;
+    skos:broader tax:QMEAN .
+
+# -----------------------------------------------------------------------------
+# Resolution Quality Level Concepts
+# -----------------------------------------------------------------------------
+
+tax:Resolution a skos:Concept ;
+    skos:prefLabel "Resolution" ;
+    skos:altLabel "Crystallographic Resolution" , "Structural Resolution" ;
+    skos:notation "resolution" ;
+    skos:definition "Crystallographic or cryo-EM resolution in Angstroms, indicating the level of structural detail visible in experimental structures." ;
+    skos:inScheme tax:QualityIndicatorScheme ;
+    skos:topConceptOf tax:QualityIndicatorScheme .
+
+tax:Resolution_High a skos:Concept ;
+    skos:prefLabel "Resolution High" ;
+    skos:altLabel "Resolution <2.0A" ;
+    skos:notation "resolution-high" ;
+    skos:definition "Structural resolution less than 2.0 Angstroms, providing atomic-level detail suitable for drug design and detailed mechanistic studies." ;
+    skos:inScheme tax:QualityIndicatorScheme ;
+    skos:broader tax:Resolution .
+
+tax:Resolution_Medium a skos:Concept ;
+    skos:prefLabel "Resolution Medium" ;
+    skos:altLabel "Resolution 2.0-3.0A" ;
+    skos:notation "resolution-medium" ;
+    skos:definition "Structural resolution between 2.0 and 3.0 Angstroms, sufficient for most structural biology applications." ;
+    skos:inScheme tax:QualityIndicatorScheme ;
+    skos:broader tax:Resolution .
+
+tax:Resolution_Low a skos:Concept ;
+    skos:prefLabel "Resolution Low" ;
+    skos:altLabel "Resolution >3.0A" ;
+    skos:notation "resolution-low" ;
+    skos:definition "Structural resolution greater than 3.0 Angstroms. Limited detail; suitable for overall fold and domain architecture." ;
+    skos:inScheme tax:QualityIndicatorScheme ;
+    skos:broader tax:Resolution .
+
+# -----------------------------------------------------------------------------
+# Confidence Level Concepts
+# -----------------------------------------------------------------------------
+
+tax:HighConfidence a skos:Concept ;
+    skos:prefLabel "High Confidence" ;
+    skos:altLabel "High Quality" , "Confident" ;
+    skos:notation "high-confidence" ;
+    skos:definition "Data or prediction with high confidence level, typically supported by multiple lines of evidence or validated experimentally." ;
+    skos:inScheme tax:QualityIndicatorScheme ;
+    skos:topConceptOf tax:QualityIndicatorScheme .
+
+tax:MediumConfidence a skos:Concept ;
+    skos:prefLabel "Medium Confidence" ;
+    skos:altLabel "Moderate Confidence" , "Probable" ;
+    skos:notation "medium-confidence" ;
+    skos:definition "Data or prediction with moderate confidence level, typically supported by computational evidence or limited experimental validation." ;
+    skos:inScheme tax:QualityIndicatorScheme ;
+    skos:topConceptOf tax:QualityIndicatorScheme .
+
+tax:LowConfidence a skos:Concept ;
+    skos:prefLabel "Low Confidence" ;
+    skos:altLabel "Uncertain" , "Predicted" ;
+    skos:notation "low-confidence" ;
+    skos:definition "Data or prediction with low confidence level, typically based on computational prediction alone or conflicting evidence." ;
     skos:inScheme tax:QualityIndicatorScheme ;
     skos:topConceptOf tax:QualityIndicatorScheme .
