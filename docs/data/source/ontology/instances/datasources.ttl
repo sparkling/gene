@@ -1,0 +1,1784 @@
+# =============================================================================
+# Gene Data Source Instance Data
+# =============================================================================
+# Generated: 2026-01-25
+# Sources: 92
+# Conforms to: datasource-ontology.ttl, datasource-shapes.ttl
+# =============================================================================
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ds: <https://gene.example.org/ontology/datasource#> .
+@prefix tax: <https://gene.example.org/taxonomy/> .
+@prefix data: <https://gene.example.org/data/source/> .
+@prefix cat: <https://gene.example.org/data/category/> .
+@prefix subcat: <https://gene.example.org/data/subcategory/> .
+
+# =============================================================================
+# CATEGORIES
+# =============================================================================
+
+cat:GeneticsGenomics a ds:Category ;
+    ds:id "genetics.genomics" ;
+    ds:title "GeneticsGenomics" ;
+    ds:categoryClassification tax:GeneticsGenomics ;
+    ds:status tax:Active .
+
+cat:CompoundsMolecules a ds:Category ;
+    ds:id "compounds.molecules" ;
+    ds:title "CompoundsMolecules" ;
+    ds:categoryClassification tax:CompoundsMolecules ;
+    ds:status tax:Active .
+
+cat:DiseasesPhenotypes a ds:Category ;
+    ds:id "diseases.phenotypes" ;
+    ds:title "DiseasesPhenotypes" ;
+    ds:categoryClassification tax:DiseasesPhenotypes ;
+    ds:status tax:Active .
+
+cat:PathwaysNetworks a ds:Category ;
+    ds:id "pathways.networks" ;
+    ds:title "PathwaysNetworks" ;
+    ds:categoryClassification tax:PathwaysNetworks ;
+    ds:status tax:Active .
+
+cat:TraditionalMedicine a ds:Category ;
+    ds:id "traditional.medicine" ;
+    ds:title "TraditionalMedicine" ;
+    ds:categoryClassification tax:TraditionalMedicine ;
+    ds:status tax:Active .
+
+cat:NutritionFood a ds:Category ;
+    ds:id "nutrition.food" ;
+    ds:title "NutritionFood" ;
+    ds:categoryClassification tax:NutritionFood ;
+    ds:status tax:Active .
+
+cat:ProteinsMolecularBiology a ds:Category ;
+    ds:id "proteins.molecular.biology" ;
+    ds:title "ProteinsMolecularBiology" ;
+    ds:categoryClassification tax:ProteinsMolecularBiology ;
+    ds:status tax:Active .
+
+cat:LiteratureKnowledge a ds:Category ;
+    ds:id "literature.knowledge" ;
+    ds:title "LiteratureKnowledge" ;
+    ds:categoryClassification tax:LiteratureKnowledge ;
+    ds:status tax:Active .
+
+cat:Microbiome a ds:Category ;
+    ds:id "microbiome" ;
+    ds:title "Microbiome" ;
+    ds:categoryClassification tax:Microbiome ;
+    ds:status tax:Active .
+
+subcat:VariantRepositories a ds:Subcategory ;
+    ds:id "variant.repositories" ;
+    ds:title "VariantRepositories" ;
+    ds:belongsToCategory cat:GeneticsGenomics ;
+    ds:subcategoryClassification tax:VariantRepositories ;
+    ds:status tax:Active .
+
+subcat:FunctionalPrediction a ds:Subcategory ;
+    ds:id "functional.prediction" ;
+    ds:title "FunctionalPrediction" ;
+    ds:belongsToCategory cat:GeneticsGenomics ;
+    ds:subcategoryClassification tax:FunctionalPrediction ;
+    ds:status tax:Active .
+
+subcat:PopulationGenetics a ds:Subcategory ;
+    ds:id "population.genetics" ;
+    ds:title "PopulationGenetics" ;
+    ds:belongsToCategory cat:GeneticsGenomics ;
+    ds:subcategoryClassification tax:PopulationGenetics ;
+    ds:status tax:Active .
+
+subcat:Pharmacogenomics a ds:Subcategory ;
+    ds:id "pharmacogenomics" ;
+    ds:title "Pharmacogenomics" ;
+    ds:belongsToCategory cat:GeneticsGenomics ;
+    ds:subcategoryClassification tax:Pharmacogenomics ;
+    ds:status tax:Active .
+
+subcat:ExpressionRegulation a ds:Subcategory ;
+    ds:id "expression.regulation" ;
+    ds:title "ExpressionRegulation" ;
+    ds:belongsToCategory cat:GeneticsGenomics ;
+    ds:subcategoryClassification tax:ExpressionRegulation ;
+    ds:status tax:Active .
+
+subcat:CancerGenomics a ds:Subcategory ;
+    ds:id "cancer.genomics" ;
+    ds:title "CancerGenomics" ;
+    ds:belongsToCategory cat:GeneticsGenomics ;
+    ds:subcategoryClassification tax:CancerGenomics ;
+    ds:status tax:Active .
+
+subcat:NaturalProducts a ds:Subcategory ;
+    ds:id "natural.products" ;
+    ds:title "NaturalProducts" ;
+    ds:belongsToCategory cat:CompoundsMolecules ;
+    ds:subcategoryClassification tax:NaturalProducts ;
+    ds:status tax:Active .
+
+subcat:Pharmaceuticals a ds:Subcategory ;
+    ds:id "pharmaceuticals" ;
+    ds:title "Pharmaceuticals" ;
+    ds:belongsToCategory cat:CompoundsMolecules ;
+    ds:subcategoryClassification tax:Pharmaceuticals ;
+    ds:status tax:Active .
+
+subcat:TraditionalMedicineCompounds a ds:Subcategory ;
+    ds:id "traditional.medicine.compounds" ;
+    ds:title "TraditionalMedicineCompounds" ;
+    ds:belongsToCategory cat:CompoundsMolecules ;
+    ds:subcategoryClassification tax:TraditionalMedicineCompounds ;
+    ds:status tax:Active .
+
+subcat:FoodCompoundsNutrients a ds:Subcategory ;
+    ds:id "food.compounds.nutrients" ;
+    ds:title "FoodCompoundsNutrients" ;
+    ds:belongsToCategory cat:CompoundsMolecules ;
+    ds:subcategoryClassification tax:FoodCompoundsNutrients ;
+    ds:status tax:Active .
+
+subcat:DrugMetabolism a ds:Subcategory ;
+    ds:id "drug.metabolism.pharmacokinetics" ;
+    ds:title "DrugMetabolism" ;
+    ds:belongsToCategory cat:CompoundsMolecules ;
+    ds:subcategoryClassification tax:DrugMetabolism ;
+    ds:status tax:Active .
+
+subcat:ChemicalOntology a ds:Subcategory ;
+    ds:id "chemical.ontology.classification" ;
+    ds:title "ChemicalOntology" ;
+    ds:belongsToCategory cat:CompoundsMolecules ;
+    ds:subcategoryClassification tax:ChemicalOntology ;
+    ds:status tax:Active .
+
+subcat:CompoundTargetInteractions a ds:Subcategory ;
+    ds:id "compound.target.interactions" ;
+    ds:title "CompoundTargetInteractions" ;
+    ds:belongsToCategory cat:CompoundsMolecules ;
+    ds:subcategoryClassification tax:CompoundTargetInteractions ;
+    ds:status tax:Active .
+
+subcat:DiseaseOntologies a ds:Subcategory ;
+    ds:id "disease.ontologies" ;
+    ds:title "DiseaseOntologies" ;
+    ds:belongsToCategory cat:DiseasesPhenotypes ;
+    ds:subcategoryClassification tax:DiseaseOntologies ;
+    ds:status tax:Active .
+
+subcat:PhenotypeDatabases a ds:Subcategory ;
+    ds:id "phenotype.databases" ;
+    ds:title "PhenotypeDatabases" ;
+    ds:belongsToCategory cat:DiseasesPhenotypes ;
+    ds:subcategoryClassification tax:PhenotypeDatabases ;
+    ds:status tax:Active .
+
+subcat:DiseaseGeneAssociations a ds:Subcategory ;
+    ds:id "disease.gene.associations" ;
+    ds:title "DiseaseGeneAssociations" ;
+    ds:belongsToCategory cat:DiseasesPhenotypes ;
+    ds:subcategoryClassification tax:DiseaseGeneAssociations ;
+    ds:status tax:Active .
+
+subcat:CancerOncology a ds:Subcategory ;
+    ds:id "cancer.oncology" ;
+    ds:title "CancerOncology" ;
+    ds:belongsToCategory cat:DiseasesPhenotypes ;
+    ds:subcategoryClassification tax:CancerOncology ;
+    ds:status tax:Active .
+
+subcat:RareOrphanDiseases a ds:Subcategory ;
+    ds:id "rare.orphan.diseases" ;
+    ds:title "RareOrphanDiseases" ;
+    ds:belongsToCategory cat:DiseasesPhenotypes ;
+    ds:subcategoryClassification tax:RareOrphanDiseases ;
+    ds:status tax:Active .
+
+subcat:AutoimmuneInflammatory a ds:Subcategory ;
+    ds:id "autoimmune.inflammatory" ;
+    ds:title "AutoimmuneInflammatory" ;
+    ds:belongsToCategory cat:DiseasesPhenotypes ;
+    ds:subcategoryClassification tax:AutoimmuneInflammatory ;
+    ds:status tax:Active .
+
+subcat:MentalHealthNeurological a ds:Subcategory ;
+    ds:id "mental.health.neurological" ;
+    ds:title "MentalHealthNeurological" ;
+    ds:belongsToCategory cat:DiseasesPhenotypes ;
+    ds:subcategoryClassification tax:MentalHealthNeurological ;
+    ds:status tax:Active .
+
+subcat:MetabolicPathways a ds:Subcategory ;
+    ds:id "metabolic.pathways" ;
+    ds:title "MetabolicPathways" ;
+    ds:belongsToCategory cat:PathwaysNetworks ;
+    ds:subcategoryClassification tax:MetabolicPathways ;
+    ds:status tax:Active .
+
+subcat:SignalingPathways a ds:Subcategory ;
+    ds:id "signaling.pathways" ;
+    ds:title "SignalingPathways" ;
+    ds:belongsToCategory cat:PathwaysNetworks ;
+    ds:subcategoryClassification tax:SignalingPathways ;
+    ds:status tax:Active .
+
+subcat:ProteinProteinInteractions a ds:Subcategory ;
+    ds:id "protein.protein.interactions" ;
+    ds:title "ProteinProteinInteractions" ;
+    ds:belongsToCategory cat:PathwaysNetworks ;
+    ds:subcategoryClassification tax:ProteinProteinInteractions ;
+    ds:status tax:Active .
+
+subcat:DrugTargetInteractions a ds:Subcategory ;
+    ds:id "drug.target.interactions" ;
+    ds:title "DrugTargetInteractions" ;
+    ds:belongsToCategory cat:PathwaysNetworks ;
+    ds:subcategoryClassification tax:DrugTargetInteractions ;
+    ds:status tax:Active .
+
+subcat:GeneFunctionOntology a ds:Subcategory ;
+    ds:id "gene.function.ontology" ;
+    ds:title "GeneFunctionOntology" ;
+    ds:belongsToCategory cat:PathwaysNetworks ;
+    ds:subcategoryClassification tax:GeneFunctionOntology ;
+    ds:status tax:Active .
+
+subcat:RegulatoryNetworks a ds:Subcategory ;
+    ds:id "regulatory.networks" ;
+    ds:title "RegulatoryNetworks" ;
+    ds:belongsToCategory cat:PathwaysNetworks ;
+    ds:subcategoryClassification tax:RegulatoryNetworks ;
+    ds:status tax:Active .
+
+subcat:TraditionalChineseMedicine a ds:Subcategory ;
+    ds:id "traditional.chinese.medicine" ;
+    ds:title "TraditionalChineseMedicine" ;
+    ds:belongsToCategory cat:TraditionalMedicine ;
+    ds:subcategoryClassification tax:TraditionalChineseMedicine ;
+    ds:status tax:Active .
+
+subcat:SouthEastAsianSystems a ds:Subcategory ;
+    ds:id "south.east.asian.systems" ;
+    ds:title "SouthEastAsianSystems" ;
+    ds:belongsToCategory cat:TraditionalMedicine ;
+    ds:subcategoryClassification tax:SouthEastAsianSystems ;
+    ds:status tax:Active .
+
+subcat:WesternGlobalHerbal a ds:Subcategory ;
+    ds:id "western.global.herbal" ;
+    ds:title "WesternGlobalHerbal" ;
+    ds:belongsToCategory cat:TraditionalMedicine ;
+    ds:subcategoryClassification tax:WesternGlobalHerbal ;
+    ds:status tax:Active .
+
+subcat:MultiSystemIntegration a ds:Subcategory ;
+    ds:id "multi.system.integration" ;
+    ds:title "MultiSystemIntegration" ;
+    ds:belongsToCategory cat:TraditionalMedicine ;
+    ds:subcategoryClassification tax:MultiSystemIntegration ;
+    ds:status tax:Active .
+
+subcat:FoodComposition a ds:Subcategory ;
+    ds:id "food.composition" ;
+    ds:title "FoodComposition" ;
+    ds:belongsToCategory cat:NutritionFood ;
+    ds:subcategoryClassification tax:FoodComposition ;
+    ds:status tax:Active .
+
+subcat:DietarySupplements a ds:Subcategory ;
+    ds:id "dietary.supplements" ;
+    ds:title "DietarySupplements" ;
+    ds:belongsToCategory cat:NutritionFood ;
+    ds:subcategoryClassification tax:DietarySupplements ;
+    ds:status tax:Active .
+
+subcat:BioactiveFoodCompounds a ds:Subcategory ;
+    ds:id "bioactive.food.compounds" ;
+    ds:title "BioactiveFoodCompounds" ;
+    ds:belongsToCategory cat:NutritionFood ;
+    ds:subcategoryClassification tax:BioactiveFoodCompounds ;
+    ds:status tax:Active .
+
+subcat:Metabolomics a ds:Subcategory ;
+    ds:id "metabolomics" ;
+    ds:title "Metabolomics" ;
+    ds:belongsToCategory cat:NutritionFood ;
+    ds:subcategoryClassification tax:Metabolomics ;
+    ds:status tax:Active .
+
+subcat:ProteinSequencesAnnotations a ds:Subcategory ;
+    ds:id "protein.sequences.annotations" ;
+    ds:title "ProteinSequencesAnnotations" ;
+    ds:belongsToCategory cat:ProteinsMolecularBiology ;
+    ds:subcategoryClassification tax:ProteinSequencesAnnotations ;
+    ds:status tax:Active .
+
+subcat:ProteinStructures a ds:Subcategory ;
+    ds:id "protein.structures" ;
+    ds:title "ProteinStructures" ;
+    ds:belongsToCategory cat:ProteinsMolecularBiology ;
+    ds:subcategoryClassification tax:ProteinStructures ;
+    ds:status tax:Active .
+
+subcat:MolecularInteractions a ds:Subcategory ;
+    ds:id "molecular.interactions" ;
+    ds:title "MolecularInteractions" ;
+    ds:belongsToCategory cat:ProteinsMolecularBiology ;
+    ds:subcategoryClassification tax:MolecularInteractions ;
+    ds:status tax:Active .
+
+subcat:ScientificLiterature a ds:Subcategory ;
+    ds:id "scientific.literature" ;
+    ds:title "ScientificLiterature" ;
+    ds:belongsToCategory cat:LiteratureKnowledge ;
+    ds:subcategoryClassification tax:ScientificLiterature ;
+    ds:status tax:Active .
+
+subcat:KnowledgeBases a ds:Subcategory ;
+    ds:id "knowledge.bases" ;
+    ds:title "KnowledgeBases" ;
+    ds:belongsToCategory cat:LiteratureKnowledge ;
+    ds:subcategoryClassification tax:KnowledgeBases ;
+    ds:status tax:Active .
+
+subcat:IdentifierMapping a ds:Subcategory ;
+    ds:id "identifier.mapping" ;
+    ds:title "IdentifierMapping" ;
+    ds:belongsToCategory cat:LiteratureKnowledge ;
+    ds:subcategoryClassification tax:IdentifierMapping ;
+    ds:status tax:Active .
+
+subcat:RegulatoryLegal a ds:Subcategory ;
+    ds:id "regulatory.legal" ;
+    ds:title "RegulatoryLegal" ;
+    ds:belongsToCategory cat:LiteratureKnowledge ;
+    ds:subcategoryClassification tax:RegulatoryLegal ;
+    ds:status tax:Active .
+
+subcat:GutMicrobiome a ds:Subcategory ;
+    ds:id "gut.microbiome" ;
+    ds:title "GutMicrobiome" ;
+    ds:belongsToCategory cat:Microbiome ;
+    ds:subcategoryClassification tax:GutMicrobiome ;
+    ds:status tax:Active .
+
+subcat:BodySiteMicrobiomes a ds:Subcategory ;
+    ds:id "body.site.microbiomes" ;
+    ds:title "BodySiteMicrobiomes" ;
+    ds:belongsToCategory cat:Microbiome ;
+    ds:subcategoryClassification tax:BodySiteMicrobiomes ;
+    ds:status tax:Active .
+
+subcat:MicrobeHostInteractions a ds:Subcategory ;
+    ds:id "microbe.host.interactions" ;
+    ds:title "MicrobeHostInteractions" ;
+    ds:belongsToCategory cat:Microbiome ;
+    ds:subcategoryClassification tax:MicrobeHostInteractions ;
+    ds:status tax:Active .
+
+
+# =============================================================================
+# DATA SOURCES
+# =============================================================================
+
+data:1000-genomes a ds:DataSource ;
+    ds:id "1000-genomes" ;
+    ds:title "1000 Genomes Project" ;
+    ds:belongsToCategory cat:GeneticsGenomics ;
+    ds:belongsToSubcategory subcat:PopulationGenetics ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "population" ;
+    ds:tag "frequency" ;
+    ds:tag "reference" ;
+    ds:tag "diversity" ;
+    ds:tag "global" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 01.genetics.genomics/1.3.population.genetics/1000.genomes" .
+
+data:allen-brain-atlas a ds:DataSource ;
+    ds:id "allen.brain.atlas" ;
+    ds:title "Allen Brain Atlas" ;
+    ds:belongsToCategory cat:DiseasesPhenotypes ;
+    ds:belongsToSubcategory subcat:MentalHealthNeurological ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "brain" ;
+    ds:tag "neuroanatomy" ;
+    ds:tag "gene-expression" ;
+    ds:tag "transcriptomics" ;
+    ds:tag "neuroscience" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 03.diseases.phenotypes/3.7.mental.health.neurological/allen.brain.atlas" .
+
+data:alphamissense a ds:DataSource ;
+    ds:id "alphamissense" ;
+    ds:title "AlphaMissense" ;
+    ds:belongsToCategory cat:GeneticsGenomics ;
+    ds:belongsToSubcategory subcat:FunctionalPrediction ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "pathogenicity" ;
+    ds:tag "missense" ;
+    ds:tag "deep-learning" ;
+    ds:tag "alphafold" ;
+    ds:tag "prediction" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 01.genetics.genomics/1.2.functional.prediction/alphamissense" .
+
+data:batman-tcm a ds:DataSource ;
+    ds:id "batman.tcm" ;
+    ds:title "BATMAN-TCM 2.0" ;
+    ds:belongsToCategory cat:TraditionalMedicine ;
+    ds:belongsToSubcategory subcat:TraditionalChineseMedicine ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "tcm" ;
+    ds:tag "traditional-chinese-medicine" ;
+    ds:tag "herb-target" ;
+    ds:tag "network-pharmacology" ;
+    ds:tag "api" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 05.traditional.medicine/5.1.traditional.chinese.medicine/batman.tcm" .
+
+data:bindingdb a ds:DataSource ;
+    ds:id "bindingdb" ;
+    ds:title "BindingDB - Binding Affinity Database" ;
+    ds:belongsToCategory cat:CompoundsMolecules ;
+    ds:belongsToSubcategory subcat:CompoundTargetInteractions ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "binding-affinity" ;
+    ds:tag "drug-target" ;
+    ds:tag "ic50" ;
+    ds:tag "ki" ;
+    ds:tag "pharmacology" ;
+    ds:tag "drug-discovery" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 02.compounds.molecules/2.7.compound.target.interactions/bindingdb" .
+
+data:biogrid a ds:DataSource ;
+    ds:id "biogrid" ;
+    ds:title "BioGRID - Biological General Repository for Interaction Datasets" ;
+    ds:belongsToCategory cat:PathwaysNetworks ;
+    ds:belongsToSubcategory subcat:ProteinProteinInteractions ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "ppi" ;
+    ds:tag "interactions" ;
+    ds:tag "genetic" ;
+    ds:tag "physical" ;
+    ds:tag "open-access" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 04.pathways.networks/4.3.protein.protein.interactions/biogrid" .
+
+data:brca-exchange a ds:DataSource ;
+    ds:id "brca-exchange" ;
+    ds:title "BRCA Exchange" ;
+    ds:belongsToCategory cat:GeneticsGenomics ;
+    ds:belongsToSubcategory subcat:CancerGenomics ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:tag "cancer" ;
+    ds:tag "brca1" ;
+    ds:tag "brca2" ;
+    ds:tag "hereditary" ;
+    ds:tag "variant" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 01.genetics.genomics/1.6.cancer.genomics/brca.exchange" .
+
+data:cadd a ds:DataSource ;
+    ds:id "cadd" ;
+    ds:title "CADD" ;
+    ds:belongsToCategory cat:GeneticsGenomics ;
+    ds:belongsToSubcategory subcat:FunctionalPrediction ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "pathogenicity" ;
+    ds:tag "deleteriousness" ;
+    ds:tag "annotation" ;
+    ds:tag "scoring" ;
+    ds:tag "prediction" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 01.genetics.genomics/1.2.functional.prediction/cadd" .
+
+data:cancer-gene-census a ds:DataSource ;
+    ds:id "cancer-gene-census" ;
+    ds:title "Cancer Gene Census" ;
+    ds:belongsToCategory cat:GeneticsGenomics ;
+    ds:belongsToSubcategory subcat:CancerGenomics ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "cancer" ;
+    ds:tag "driver" ;
+    ds:tag "oncogene" ;
+    ds:tag "tumor-suppressor" ;
+    ds:tag "census" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 01.genetics.genomics/1.6.cancer.genomics/cancer.gene.census" .
+
+data:cbioportal a ds:DataSource ;
+    ds:id "cbioportal" ;
+    ds:title "cBioPortal" ;
+    ds:belongsToCategory cat:GeneticsGenomics ;
+    ds:belongsToSubcategory subcat:CancerGenomics ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "cancer" ;
+    ds:tag "mutation" ;
+    ds:tag "genomics" ;
+    ds:tag "tcga" ;
+    ds:tag "clinical" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 01.genetics.genomics/1.6.cancer.genomics/cbioportal" .
+
+data:chebi a ds:DataSource ;
+    ds:id "chebi" ;
+    ds:title "ChEBI - Chemical Entities of Biological Interest" ;
+    ds:belongsToCategory cat:CompoundsMolecules ;
+    ds:belongsToSubcategory subcat:ChemicalOntology ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "ontology" ;
+    ds:tag "chemical-classification" ;
+    ds:tag "biological-roles" ;
+    ds:tag "molecular-entities" ;
+    ds:tag "obo" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 02.compounds.molecules/2.6.chemical.ontology.classification/chebi" .
+
+data:chembl a ds:DataSource ;
+    ds:id "chembl" ;
+    ds:title "ChEMBL - Bioactivity Database" ;
+    ds:belongsToCategory cat:CompoundsMolecules ;
+    ds:belongsToSubcategory subcat:Pharmaceuticals ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "bioactivity" ;
+    ds:tag "drug-discovery" ;
+    ds:tag "pharmacology" ;
+    ds:tag "targets" ;
+    ds:tag "assays" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 02.compounds.molecules/2.2.pharmaceuticals/chembl" .
+
+data:civic a ds:DataSource ;
+    ds:id "civic" ;
+    ds:title "CIViC" ;
+    ds:belongsToCategory cat:GeneticsGenomics ;
+    ds:belongsToSubcategory subcat:CancerGenomics ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "cancer" ;
+    ds:tag "clinical" ;
+    ds:tag "interpretation" ;
+    ds:tag "community" ;
+    ds:tag "evidence" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 01.genetics.genomics/1.6.cancer.genomics/civic" .
+
+data:classyfire a ds:DataSource ;
+    ds:id "classyfire" ;
+    ds:title "ClassyFire - Chemical Taxonomy" ;
+    ds:belongsToCategory cat:CompoundsMolecules ;
+    ds:belongsToSubcategory subcat:ChemicalOntology ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:tag "classification" ;
+    ds:tag "taxonomy" ;
+    ds:tag "chemical-structure" ;
+    ds:tag "ontology" ;
+    ds:tag "cheminformatics" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 02.compounds.molecules/2.6.chemical.ontology.classification/classyfire" .
+
+data:clinvar a ds:DataSource ;
+    ds:id "clinvar" ;
+    ds:title "ClinVar" ;
+    ds:belongsToCategory cat:GeneticsGenomics ;
+    ds:belongsToSubcategory subcat:VariantRepositories ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "variant" ;
+    ds:tag "clinical" ;
+    ds:tag "pathogenicity" ;
+    ds:tag "ncbi" ;
+    ds:tag "germline" ;
+    ds:tag "somatic" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 01.genetics.genomics/1.1.variant.repositories/clinvar" .
+
+data:coconut a ds:DataSource ;
+    ds:id "coconut" ;
+    ds:title "COCONUT - COlleCtion of Open Natural prodUcTs" ;
+    ds:belongsToCategory cat:CompoundsMolecules ;
+    ds:belongsToSubcategory subcat:NaturalProducts ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "natural-products" ;
+    ds:tag "compounds" ;
+    ds:tag "chemistry" ;
+    ds:tag "drug-discovery" ;
+    ds:tag "phytochemicals" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 02.compounds.molecules/2.1.natural.products/coconut" .
+
+data:cosmic a ds:DataSource ;
+    ds:id "cosmic" ;
+    ds:title "COSMIC" ;
+    ds:belongsToCategory cat:GeneticsGenomics ;
+    ds:belongsToSubcategory subcat:CancerGenomics ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "cancer" ;
+    ds:tag "somatic" ;
+    ds:tag "mutation" ;
+    ds:tag "signature" ;
+    ds:tag "census" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 01.genetics.genomics/1.6.cancer.genomics/cosmic" .
+
+data:cpic a ds:DataSource ;
+    ds:id "cpic" ;
+    ds:title "CPIC" ;
+    ds:belongsToCategory cat:GeneticsGenomics ;
+    ds:belongsToSubcategory subcat:Pharmacogenomics ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "pharmacogenomics" ;
+    ds:tag "guidelines" ;
+    ds:tag "clinical" ;
+    ds:tag "prescribing" ;
+    ds:tag "dosing" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 01.genetics.genomics/1.4.pharmacogenomics/cpic" .
+
+data:dailymed a ds:DataSource ;
+    ds:id "dailymed" ;
+    ds:title "DailyMed - FDA Drug Labeling" ;
+    ds:belongsToCategory cat:CompoundsMolecules ;
+    ds:belongsToSubcategory subcat:Pharmaceuticals ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:tag "fda" ;
+    ds:tag "drug-labels" ;
+    ds:tag "prescribing-information" ;
+    ds:tag "spl" ;
+    ds:tag "regulatory" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 02.compounds.molecules/2.2.pharmaceuticals/dailymed" .
+
+data:dbnsfp a ds:DataSource ;
+    ds:id "dbnsfp" ;
+    ds:title "dbNSFP" ;
+    ds:belongsToCategory cat:GeneticsGenomics ;
+    ds:belongsToSubcategory subcat:FunctionalPrediction ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:tag "pathogenicity" ;
+    ds:tag "prediction" ;
+    ds:tag "annotation" ;
+    ds:tag "ensemble" ;
+    ds:tag "conservation" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 01.genetics.genomics/1.2.functional.prediction/dbnsfp" .
+
+data:dbsnp a ds:DataSource ;
+    ds:id "dbsnp" ;
+    ds:title "dbSNP" ;
+    ds:belongsToCategory cat:GeneticsGenomics ;
+    ds:belongsToSubcategory subcat:VariantRepositories ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "variant" ;
+    ds:tag "snp" ;
+    ds:tag "polymorphism" ;
+    ds:tag "ncbi" ;
+    ds:tag "population" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 01.genetics.genomics/1.1.variant.repositories/dbsnp" .
+
+data:dbvar a ds:DataSource ;
+    ds:id "dbvar" ;
+    ds:title "dbVar" ;
+    ds:belongsToCategory cat:GeneticsGenomics ;
+    ds:belongsToSubcategory subcat:VariantRepositories ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "variant" ;
+    ds:tag "structural" ;
+    ds:tag "cnv" ;
+    ds:tag "ncbi" ;
+    ds:tag "deletion" ;
+    ds:tag "duplication" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 01.genetics.genomics/1.1.variant.repositories/dbvar" .
+
+data:decipher a ds:DataSource ;
+    ds:id "decipher" ;
+    ds:title "DECIPHER - Database of Chromosomal Imbalance and Phenotype in Humans using Ensembl Resources" ;
+    ds:belongsToCategory cat:DiseasesPhenotypes ;
+    ds:belongsToSubcategory subcat:RareOrphanDiseases ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:tag "rare-diseases" ;
+    ds:tag "cnv" ;
+    ds:tag "developmental-disorders" ;
+    ds:tag "clinical-genetics" ;
+    ds:tag "genomic-variants" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 03.diseases.phenotypes/3.5.rare.orphan.diseases/decipher" .
+
+data:dgidb a ds:DataSource ;
+    ds:id "dgidb" ;
+    ds:title "DGIdb - Drug Gene Interaction Database" ;
+    ds:belongsToCategory cat:CompoundsMolecules ;
+    ds:belongsToSubcategory subcat:CompoundTargetInteractions ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "drug-gene-interactions" ;
+    ds:tag "druggable-genome" ;
+    ds:tag "targets" ;
+    ds:tag "pharmacogenomics" ;
+    ds:tag "graphql" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 02.compounds.molecules/2.7.compound.target.interactions/dgidb" .
+
+data:disgenet a ds:DataSource ;
+    ds:id "disgenet" ;
+    ds:title "DisGeNET - Disease Gene Network" ;
+    ds:belongsToCategory cat:DiseasesPhenotypes ;
+    ds:belongsToSubcategory subcat:DiseaseGeneAssociations ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "gene-disease" ;
+    ds:tag "variant-disease" ;
+    ds:tag "associations" ;
+    ds:tag "scoring" ;
+    ds:tag "text-mining" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 03.diseases.phenotypes/3.3.disease.gene.associations/disgenet" .
+
+data:dpwg a ds:DataSource ;
+    ds:id "dpwg" ;
+    ds:title "DPWG" ;
+    ds:belongsToCategory cat:GeneticsGenomics ;
+    ds:belongsToSubcategory subcat:Pharmacogenomics ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:tag "pharmacogenomics" ;
+    ds:tag "guidelines" ;
+    ds:tag "dutch" ;
+    ds:tag "prescribing" ;
+    ds:tag "european" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 01.genetics.genomics/1.4.pharmacogenomics/dpwg" .
+
+data:dr-dukes a ds:DataSource ;
+    ds:id "dr.dukes" ;
+    ds:title "Dr. Duke's Phytochemical and Ethnobotanical Databases" ;
+    ds:belongsToCategory cat:CompoundsMolecules ;
+    ds:belongsToSubcategory subcat:NaturalProducts ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:tag "phytochemicals" ;
+    ds:tag "ethnobotany" ;
+    ds:tag "medicinal-plants" ;
+    ds:tag "traditional-medicine" ;
+    ds:tag "usda" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 02.compounds.molecules/2.1.natural.products/dr.dukes" .
+
+data:drugbank a ds:DataSource ;
+    ds:id "drugbank" ;
+    ds:title "DrugBank - Comprehensive Drug Database" ;
+    ds:belongsToCategory cat:CompoundsMolecules ;
+    ds:belongsToSubcategory subcat:Pharmaceuticals ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "drugs" ;
+    ds:tag "pharmacology" ;
+    ds:tag "targets" ;
+    ds:tag "interactions" ;
+    ds:tag "drug-discovery" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 02.compounds.molecules/2.2.pharmaceuticals/drugbank" .
+
+data:efo a ds:DataSource ;
+    ds:id "efo" ;
+    ds:title "Experimental Factor Ontology (EFO)" ;
+    ds:belongsToCategory cat:DiseasesPhenotypes ;
+    ds:belongsToSubcategory subcat:DiseaseOntologies ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:tag "ontology" ;
+    ds:tag "traits" ;
+    ds:tag "diseases" ;
+    ds:tag "experimental-factors" ;
+    ds:tag "gwas" ;
+    ds:tag "ebi" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 03.diseases.phenotypes/3.1.disease.ontologies/efo" .
+
+data:ema-herbal a ds:DataSource ;
+    ds:id "ema.herbal" ;
+    ds:title "EMA Herbal Medicines - European Medicines Agency" ;
+    ds:belongsToCategory cat:TraditionalMedicine ;
+    ds:belongsToSubcategory subcat:WesternGlobalHerbal ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "herbal-medicine" ;
+    ds:tag "european" ;
+    ds:tag "regulatory" ;
+    ds:tag "monographs" ;
+    ds:tag "traditional-use" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 05.traditional.medicine/5.3.western.global.herbal/ema.herbal" .
+
+data:encode a ds:DataSource ;
+    ds:id "encode" ;
+    ds:title "ENCODE" ;
+    ds:belongsToCategory cat:GeneticsGenomics ;
+    ds:belongsToSubcategory subcat:ExpressionRegulation ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "functional" ;
+    ds:tag "regulatory" ;
+    ds:tag "enhancer" ;
+    ds:tag "chromatin" ;
+    ds:tag "epigenomics" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 01.genetics.genomics/1.5.expression.regulation/encode" .
+
+data:eqtlgen a ds:DataSource ;
+    ds:id "eqtlgen" ;
+    ds:title "eQTLGen" ;
+    ds:belongsToCategory cat:GeneticsGenomics ;
+    ds:belongsToSubcategory subcat:ExpressionRegulation ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:tag "eqtl" ;
+    ds:tag "expression" ;
+    ds:tag "blood" ;
+    ds:tag "meta-analysis" ;
+    ds:tag "trans-eqtl" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 01.genetics.genomics/1.5.expression.regulation/eqtlgen" .
+
+data:etcm a ds:DataSource ;
+    ds:id "etcm" ;
+    ds:title "ETCM - Encyclopedia of Traditional Chinese Medicine" ;
+    ds:belongsToCategory cat:TraditionalMedicine ;
+    ds:belongsToSubcategory subcat:TraditionalChineseMedicine ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:tag "tcm" ;
+    ds:tag "traditional-chinese-medicine" ;
+    ds:tag "herb" ;
+    ds:tag "formula" ;
+    ds:tag "pharmacology" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 05.traditional.medicine/5.1.traditional.chinese.medicine/etcm" .
+
+data:foodb a ds:DataSource ;
+    ds:id "foodb" ;
+    ds:title "FooDB - The Food Database" ;
+    ds:belongsToCategory cat:CompoundsMolecules ;
+    ds:belongsToSubcategory subcat:FoodCompoundsNutrients ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "food" ;
+    ds:tag "compounds" ;
+    ds:tag "chemistry" ;
+    ds:tag "nutrients" ;
+    ds:tag "phytochemicals" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 06.nutrition.food/6.1.food.composition/foodb" .
+
+data:gdc-tcga a ds:DataSource ;
+    ds:id "gdc.tcga" ;
+    ds:title "GDC/TCGA - Genomic Data Commons and The Cancer Genome Atlas" ;
+    ds:belongsToCategory cat:DiseasesPhenotypes ;
+    ds:belongsToSubcategory subcat:CancerOncology ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "cancer" ;
+    ds:tag "genomics" ;
+    ds:tag "tcga" ;
+    ds:tag "nci" ;
+    ds:tag "multi-omics" ;
+    ds:tag "somatic-mutations" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 03.diseases.phenotypes/3.4.cancer.oncology/{gdc.tcga}" .
+
+data:gene-ontology a ds:DataSource ;
+    ds:id "gene-ontology" ;
+    ds:title "Gene Ontology (GO)" ;
+    ds:belongsToCategory cat:PathwaysNetworks ;
+    ds:belongsToSubcategory subcat:GeneFunctionOntology ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "ontology" ;
+    ds:tag "gene-function" ;
+    ds:tag "go-terms" ;
+    ds:tag "annotation" ;
+    ds:tag "open-access" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 04.pathways.networks/4.5.gene.function.ontology/gene.ontology" .
+
+data:gnomad a ds:DataSource ;
+    ds:id "gnomad" ;
+    ds:title "gnomAD" ;
+    ds:belongsToCategory cat:GeneticsGenomics ;
+    ds:belongsToSubcategory subcat:PopulationGenetics ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "population" ;
+    ds:tag "frequency" ;
+    ds:tag "exome" ;
+    ds:tag "genome" ;
+    ds:tag "constraint" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 01.genetics.genomics/1.3.population.genetics/gnomad" .
+
+data:gtex a ds:DataSource ;
+    ds:id "gtex" ;
+    ds:title "GTEx" ;
+    ds:belongsToCategory cat:GeneticsGenomics ;
+    ds:belongsToSubcategory subcat:ExpressionRegulation ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "expression" ;
+    ds:tag "eqtl" ;
+    ds:tag "tissue" ;
+    ds:tag "rna-seq" ;
+    ds:tag "splicing" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 01.genetics.genomics/1.5.expression.regulation/gtex" .
+
+data:gtopdb a ds:DataSource ;
+    ds:id "gtopdb" ;
+    ds:title "GtoPdb - Guide to Pharmacology" ;
+    ds:belongsToCategory cat:CompoundsMolecules ;
+    ds:belongsToSubcategory subcat:CompoundTargetInteractions ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "pharmacology" ;
+    ds:tag "iuphar" ;
+    ds:tag "receptors" ;
+    ds:tag "ion-channels" ;
+    ds:tag "drug-targets" ;
+    ds:tag "curated" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 02.compounds.molecules/2.7.compound.target.interactions/gtopdb" .
+
+data:gwas-catalog a ds:DataSource ;
+    ds:id "gwas-catalog" ;
+    ds:title "GWAS Catalog" ;
+    ds:belongsToCategory cat:GeneticsGenomics ;
+    ds:belongsToSubcategory subcat:ExpressionRegulation ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "gwas" ;
+    ds:tag "association" ;
+    ds:tag "trait" ;
+    ds:tag "snp" ;
+    ds:tag "phenotype" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 01.genetics.genomics/1.5.expression.regulation/gwas.catalog" .
+
+data:herb a ds:DataSource ;
+    ds:id "herb" ;
+    ds:title "HERB - High-throughput Experiment and Reference Database" ;
+    ds:belongsToCategory cat:TraditionalMedicine ;
+    ds:belongsToSubcategory subcat:TraditionalChineseMedicine ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "tcm" ;
+    ds:tag "traditional-chinese-medicine" ;
+    ds:tag "gene-expression" ;
+    ds:tag "transcriptomics" ;
+    ds:tag "herbs" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 05.traditional.medicine/5.1.traditional.chinese.medicine/herb" .
+
+data:hit-2-0 a ds:DataSource ;
+    ds:id "hit.2.0" ;
+    ds:title "HIT 2.0 - Herbal Ingredients' Targets" ;
+    ds:belongsToCategory cat:TraditionalMedicine ;
+    ds:belongsToSubcategory subcat:MultiSystemIntegration ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "herbal-medicine" ;
+    ds:tag "validated-targets" ;
+    ds:tag "multi-system" ;
+    ds:tag "experimental" ;
+    ds:tag "drug-targets" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 05.traditional.medicine/5.4.multi.system.integration/{hit.2.0}" .
+
+data:hpo a ds:DataSource ;
+    ds:id "hpo" ;
+    ds:title "Human Phenotype Ontology (HPO)" ;
+    ds:belongsToCategory cat:DiseasesPhenotypes ;
+    ds:belongsToSubcategory subcat:PhenotypeDatabases ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "ontology" ;
+    ds:tag "phenotypes" ;
+    ds:tag "rare-diseases" ;
+    ds:tag "clinical-features" ;
+    ds:tag "diagnosis" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 03.diseases.phenotypes/3.2.phenotype.databases/hpo" .
+
+data:icd a ds:DataSource ;
+    ds:id "icd" ;
+    ds:title "International Classification of Diseases (ICD)" ;
+    ds:belongsToCategory cat:DiseasesPhenotypes ;
+    ds:belongsToSubcategory subcat:DiseaseOntologies ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "ontology" ;
+    ds:tag "classification" ;
+    ds:tag "diseases" ;
+    ds:tag "who" ;
+    ds:tag "clinical-coding" ;
+    ds:tag "icd-10" ;
+    ds:tag "icd-11" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 03.diseases.phenotypes/3.1.disease.ontologies/icd" .
+
+data:immunobase a ds:DataSource ;
+    ds:id "immunobase" ;
+    ds:title "ImmunoBase - Autoimmune Disease Genetics Resource" ;
+    ds:belongsToCategory cat:DiseasesPhenotypes ;
+    ds:belongsToSubcategory subcat:AutoimmuneInflammatory ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:tag "autoimmune" ;
+    ds:tag "gwas" ;
+    ds:tag "genetic-associations" ;
+    ds:tag "immune-diseases" ;
+    ds:tag "snps" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 03.diseases.phenotypes/3.6.autoimmune.inflammatory/immunobase" .
+
+data:imppat a ds:DataSource ;
+    ds:id "imppat" ;
+    ds:title "IMPPAT 2.0 - Indian Medicinal Plants, Phytochemistry And Therapeutics" ;
+    ds:belongsToCategory cat:TraditionalMedicine ;
+    ds:belongsToSubcategory subcat:SouthEastAsianSystems ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "ayurveda" ;
+    ds:tag "indian-medicine" ;
+    ds:tag "phytochemistry" ;
+    ds:tag "drug-likeness" ;
+    ds:tag "admet" ;
+    ds:tag "natural-products" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 05.traditional.medicine/5.2.south.east.asian.systems/imppat" .
+
+data:intact a ds:DataSource ;
+    ds:id "intact" ;
+    ds:title "IntAct Molecular Interaction Database" ;
+    ds:belongsToCategory cat:PathwaysNetworks ;
+    ds:belongsToSubcategory subcat:ProteinProteinInteractions ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "ppi" ;
+    ds:tag "interactions" ;
+    ds:tag "imex" ;
+    ds:tag "psi-mi" ;
+    ds:tag "embl-ebi" ;
+    ds:tag "open-access" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 04.pathways.networks/4.3.protein.protein.interactions/intact" .
+
+data:ipd-imgt-hla a ds:DataSource ;
+    ds:id "ipd.imgt.hla" ;
+    ds:title "IPD-IMGT/HLA - Immuno Polymorphism Database" ;
+    ds:belongsToCategory cat:DiseasesPhenotypes ;
+    ds:belongsToSubcategory subcat:AutoimmuneInflammatory ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "hla" ;
+    ds:tag "immunogenetics" ;
+    ds:tag "transplantation" ;
+    ds:tag "alleles" ;
+    ds:tag "mhc" ;
+    ds:tag "histocompatibility" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 03.diseases.phenotypes/3.6.autoimmune.inflammatory/ipd.imgt.hla" .
+
+data:jaspar a ds:DataSource ;
+    ds:id "jaspar" ;
+    ds:title "JASPAR - Transcription Factor Binding Profiles" ;
+    ds:belongsToCategory cat:PathwaysNetworks ;
+    ds:belongsToSubcategory subcat:RegulatoryNetworks ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "transcription-factors" ;
+    ds:tag "binding-motifs" ;
+    ds:tag "pwm" ;
+    ds:tag "regulatory" ;
+    ds:tag "open-access" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 04.pathways.networks/4.6.regulatory.networks/jaspar" .
+
+data:kampodb a ds:DataSource ;
+    ds:id "kampodb" ;
+    ds:title "KampoDB - Kampo Medicine Database" ;
+    ds:belongsToCategory cat:TraditionalMedicine ;
+    ds:belongsToSubcategory subcat:SouthEastAsianSystems ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "kampo" ;
+    ds:tag "japanese-medicine" ;
+    ds:tag "rest-api" ;
+    ds:tag "docking" ;
+    ds:tag "network-pharmacology" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 05.traditional.medicine/5.2.south.east.asian.systems/kampodb" .
+
+data:kegg a ds:DataSource ;
+    ds:id "kegg" ;
+    ds:title "KEGG - Kyoto Encyclopedia of Genes and Genomes" ;
+    ds:belongsToCategory cat:PathwaysNetworks ;
+    ds:belongsToSubcategory subcat:MetabolicPathways ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "pathways" ;
+    ds:tag "metabolic" ;
+    ds:tag "kegg" ;
+    ds:tag "kgml" ;
+    ds:tag "licensed" ;
+    ds:tag "reference-genome" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 04.pathways.networks/4.1.metabolic.pathways/kegg" .
+
+data:lotus a ds:DataSource ;
+    ds:id "lotus" ;
+    ds:title "LOTUS - Linked Open Total Unified Structure-organism" ;
+    ds:belongsToCategory cat:CompoundsMolecules ;
+    ds:belongsToSubcategory subcat:NaturalProducts ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "natural-products" ;
+    ds:tag "wikidata" ;
+    ds:tag "sparql" ;
+    ds:tag "structure-organism" ;
+    ds:tag "linked-data" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 02.compounds.molecules/2.1.natural.products/lotus" .
+
+data:mesh a ds:DataSource ;
+    ds:id "mesh" ;
+    ds:title "Medical Subject Headings (MeSH)" ;
+    ds:belongsToCategory cat:DiseasesPhenotypes ;
+    ds:belongsToSubcategory subcat:DiseaseOntologies ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "vocabulary" ;
+    ds:tag "medical-terms" ;
+    ds:tag "nlm" ;
+    ds:tag "pubmed" ;
+    ds:tag "indexing" ;
+    ds:tag "diseases" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 03.diseases.phenotypes/3.1.disease.ontologies/mesh" .
+
+data:mondo a ds:DataSource ;
+    ds:id "mondo" ;
+    ds:title "MONDO Disease Ontology" ;
+    ds:belongsToCategory cat:DiseasesPhenotypes ;
+    ds:belongsToSubcategory subcat:DiseaseOntologies ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "ontology" ;
+    ds:tag "diseases" ;
+    ds:tag "rare-diseases" ;
+    ds:tag "cross-references" ;
+    ds:tag "monarch-initiative" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 03.diseases.phenotypes/3.1.disease.ontologies/mondo" .
+
+data:msigdb a ds:DataSource ;
+    ds:id "msigdb" ;
+    ds:title "MSigDB - Molecular Signatures Database" ;
+    ds:belongsToCategory cat:PathwaysNetworks ;
+    ds:belongsToSubcategory subcat:GeneFunctionOntology ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "gene-sets" ;
+    ds:tag "gsea" ;
+    ds:tag "enrichment" ;
+    ds:tag "signatures" ;
+    ds:tag "broad-institute" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 04.pathways.networks/4.5.gene.function.ontology/msigdb" .
+
+data:napralert a ds:DataSource ;
+    ds:id "napralert" ;
+    ds:title "NAPRALERT - Natural Products Alert" ;
+    ds:belongsToCategory cat:TraditionalMedicine ;
+    ds:belongsToSubcategory subcat:WesternGlobalHerbal ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "natural-products" ;
+    ds:tag "ethnobotany" ;
+    ds:tag "pharmacognosy" ;
+    ds:tag "literature" ;
+    ds:tag "bioactivity" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 05.traditional.medicine/5.3.western.global.herbal/napralert" .
+
+data:npact a ds:DataSource ;
+    ds:id "npact" ;
+    ds:title "NPACT - Naturally Occurring Plant-based Anti-cancer Compound-Activity-Target" ;
+    ds:belongsToCategory cat:TraditionalMedicine ;
+    ds:belongsToSubcategory subcat:SouthEastAsianSystems ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:tag "natural-products" ;
+    ds:tag "anti-cancer" ;
+    ds:tag "indian-plants" ;
+    ds:tag "bioactivity" ;
+    ds:tag "drug-discovery" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 05.traditional.medicine/5.2.south.east.asian.systems/npact" .
+
+data:npass a ds:DataSource ;
+    ds:id "npass" ;
+    ds:title "NPASS - Natural Product Activity and Species Source Database" ;
+    ds:belongsToCategory cat:CompoundsMolecules ;
+    ds:belongsToSubcategory subcat:NaturalProducts ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:tag "natural-products" ;
+    ds:tag "bioactivity" ;
+    ds:tag "species-source" ;
+    ds:tag "drug-discovery" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 02.compounds.molecules/2.1.natural.products/npass" .
+
+data:npatlas a ds:DataSource ;
+    ds:id "npatlas" ;
+    ds:title "NPAtlas - Natural Products Atlas" ;
+    ds:belongsToCategory cat:CompoundsMolecules ;
+    ds:belongsToSubcategory subcat:NaturalProducts ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:tag "natural-products" ;
+    ds:tag "microbial" ;
+    ds:tag "marine" ;
+    ds:tag "chemical-structures" ;
+    ds:tag "drug-discovery" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 02.compounds.molecules/2.1.natural.products/npatlas" .
+
+data:npclassifier a ds:DataSource ;
+    ds:id "npclassifier" ;
+    ds:title "NPClassifier - Natural Product Classification" ;
+    ds:belongsToCategory cat:CompoundsMolecules ;
+    ds:belongsToSubcategory subcat:ChemicalOntology ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:tag "natural-products" ;
+    ds:tag "classification" ;
+    ds:tag "biosynthesis" ;
+    ds:tag "pathway" ;
+    ds:tag "taxonomy" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 02.compounds.molecules/2.6.chemical.ontology.classification/npclassifier" .
+
+data:omim a ds:DataSource ;
+    ds:id "omim" ;
+    ds:title "Online Mendelian Inheritance in Man (OMIM)" ;
+    ds:belongsToCategory cat:DiseasesPhenotypes ;
+    ds:belongsToSubcategory subcat:PhenotypeDatabases ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "mendelian" ;
+    ds:tag "genetics" ;
+    ds:tag "rare-diseases" ;
+    ds:tag "gene-disease" ;
+    ds:tag "inheritance" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 03.diseases.phenotypes/3.2.phenotype.databases/omim" .
+
+data:oncokb a ds:DataSource ;
+    ds:id "oncokb" ;
+    ds:title "OncoKB" ;
+    ds:belongsToCategory cat:GeneticsGenomics ;
+    ds:belongsToSubcategory subcat:CancerGenomics ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "cancer" ;
+    ds:tag "precision-oncology" ;
+    ds:tag "actionable" ;
+    ds:tag "therapy" ;
+    ds:tag "clinical" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 01.genetics.genomics/1.6.cancer.genomics/oncokb" .
+
+data:open-targets a ds:DataSource ;
+    ds:id "open.targets" ;
+    ds:title "Open Targets Platform" ;
+    ds:belongsToCategory cat:DiseasesPhenotypes ;
+    ds:belongsToSubcategory subcat:DiseaseGeneAssociations ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "drug-targets" ;
+    ds:tag "evidence" ;
+    ds:tag "associations" ;
+    ds:tag "graphql" ;
+    ds:tag "target-validation" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 03.diseases.phenotypes/3.3.disease.gene.associations/open.targets" .
+
+data:orange-book a ds:DataSource ;
+    ds:id "orange.book" ;
+    ds:title "FDA Orange Book - Approved Drug Products" ;
+    ds:belongsToCategory cat:CompoundsMolecules ;
+    ds:belongsToSubcategory subcat:Pharmaceuticals ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:tag "fda" ;
+    ds:tag "approved-drugs" ;
+    ds:tag "therapeutic-equivalence" ;
+    ds:tag "patents" ;
+    ds:tag "exclusivity" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 02.compounds.molecules/2.2.pharmaceuticals/orange.book" .
+
+data:orphanet a ds:DataSource ;
+    ds:id "orphanet" ;
+    ds:title "Orphanet - The Portal for Rare Diseases and Orphan Drugs" ;
+    ds:belongsToCategory cat:DiseasesPhenotypes ;
+    ds:belongsToSubcategory subcat:RareOrphanDiseases ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "rare-diseases" ;
+    ds:tag "orphan-drugs" ;
+    ds:tag "clinical-resources" ;
+    ds:tag "gene-disease" ;
+    ds:tag "ordo" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 03.diseases.phenotypes/3.5.rare.orphan.diseases/orphanet" .
+
+data:orphanet-phenotypes a ds:DataSource ;
+    ds:id "orphanet.phenotypes" ;
+    ds:title "Orphanet Phenotype Annotations" ;
+    ds:belongsToCategory cat:DiseasesPhenotypes ;
+    ds:belongsToSubcategory subcat:PhenotypeDatabases ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "phenotypes" ;
+    ds:tag "rare-diseases" ;
+    ds:tag "hpo" ;
+    ds:tag "clinical-features" ;
+    ds:tag "orphanet" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 03.diseases.phenotypes/3.2.phenotype.databases/orphanet.phenotypes" .
+
+data:panelapp a ds:DataSource ;
+    ds:id "panelapp" ;
+    ds:title "PanelApp - Genomics England Gene Panels" ;
+    ds:belongsToCategory cat:DiseasesPhenotypes ;
+    ds:belongsToSubcategory subcat:RareOrphanDiseases ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:tag "gene-panels" ;
+    ds:tag "clinical-genomics" ;
+    ds:tag "diagnostic-genes" ;
+    ds:tag "rare-diseases" ;
+    ds:tag "nhs" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 03.diseases.phenotypes/3.5.rare.orphan.diseases/panelapp" .
+
+data:pathwaycommons a ds:DataSource ;
+    ds:id "pathwaycommons" ;
+    ds:title "Pathway Commons" ;
+    ds:belongsToCategory cat:PathwaysNetworks ;
+    ds:belongsToSubcategory subcat:SignalingPathways ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:tag "pathways" ;
+    ds:tag "signaling" ;
+    ds:tag "aggregation" ;
+    ds:tag "biopax" ;
+    ds:tag "sif" ;
+    ds:tag "open-access" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 04.pathways.networks/4.2.signaling.pathways/pathwaycommons" .
+
+data:pgc a ds:DataSource ;
+    ds:id "pgc" ;
+    ds:title "Psychiatric Genomics Consortium (PGC)" ;
+    ds:belongsToCategory cat:DiseasesPhenotypes ;
+    ds:belongsToSubcategory subcat:MentalHealthNeurological ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "psychiatric" ;
+    ds:tag "gwas" ;
+    ds:tag "schizophrenia" ;
+    ds:tag "depression" ;
+    ds:tag "bipolar" ;
+    ds:tag "genetics" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 03.diseases.phenotypes/3.7.mental.health.neurological/pgc" .
+
+data:pharmgkb a ds:DataSource ;
+    ds:id "pharmgkb" ;
+    ds:title "PharmGKB" ;
+    ds:belongsToCategory cat:GeneticsGenomics ;
+    ds:belongsToSubcategory subcat:Pharmacogenomics ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "pharmacogenomics" ;
+    ds:tag "drug-response" ;
+    ds:tag "clinical" ;
+    ds:tag "guidelines" ;
+    ds:tag "pgx" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 01.genetics.genomics/1.4.pharmacogenomics/pharmgkb" .
+
+data:pharmvar a ds:DataSource ;
+    ds:id "pharmvar" ;
+    ds:title "PharmVar" ;
+    ds:belongsToCategory cat:GeneticsGenomics ;
+    ds:belongsToSubcategory subcat:Pharmacogenomics ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:tag "pharmacogenomics" ;
+    ds:tag "haplotype" ;
+    ds:tag "star-allele" ;
+    ds:tag "nomenclature" ;
+    ds:tag "cyp" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 01.genetics.genomics/1.4.pharmacogenomics/pharmvar" .
+
+data:phenol-explorer a ds:DataSource ;
+    ds:id "phenol.explorer" ;
+    ds:title "Phenol-Explorer - Polyphenol Database" ;
+    ds:belongsToCategory cat:CompoundsMolecules ;
+    ds:belongsToSubcategory subcat:FoodCompoundsNutrients ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:tag "polyphenols" ;
+    ds:tag "flavonoids" ;
+    ds:tag "food-composition" ;
+    ds:tag "bioavailability" ;
+    ds:tag "metabolism" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 02.compounds.molecules/2.4.food.compounds.nutrients/phenol.explorer" .
+
+data:phytohub a ds:DataSource ;
+    ds:id "phytohub" ;
+    ds:title "PhytoHub - Dietary Phytochemical Metabolome" ;
+    ds:belongsToCategory cat:CompoundsMolecules ;
+    ds:belongsToSubcategory subcat:FoodCompoundsNutrients ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:tag "phytochemicals" ;
+    ds:tag "metabolites" ;
+    ds:tag "biomarkers" ;
+    ds:tag "dietary-exposure" ;
+    ds:tag "mass-spectrometry" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 02.compounds.molecules/2.4.food.compounds.nutrients/phytohub" .
+
+data:pubchem a ds:DataSource ;
+    ds:id "pubchem" ;
+    ds:title "PubChem - Chemical Information Repository" ;
+    ds:belongsToCategory cat:CompoundsMolecules ;
+    ds:belongsToSubcategory subcat:ChemicalOntology ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "chemical-database" ;
+    ds:tag "compound-repository" ;
+    ds:tag "bioassay" ;
+    ds:tag "structure" ;
+    ds:tag "ncbi" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 02.compounds.molecules/2.6.chemical.ontology.classification/pubchem" .
+
+data:reactome a ds:DataSource ;
+    ds:id "reactome" ;
+    ds:title "Reactome Pathway Database" ;
+    ds:belongsToCategory cat:PathwaysNetworks ;
+    ds:belongsToSubcategory subcat:MetabolicPathways ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "pathways" ;
+    ds:tag "metabolic" ;
+    ds:tag "reactome" ;
+    ds:tag "neo4j" ;
+    ds:tag "biopax" ;
+    ds:tag "open-access" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 04.pathways.networks/4.1.metabolic.pathways/reactome" .
+
+data:roadmap-epigenomics a ds:DataSource ;
+    ds:id "roadmap-epigenomics" ;
+    ds:title "Roadmap Epigenomics Project" ;
+    ds:belongsToCategory cat:PathwaysNetworks ;
+    ds:belongsToSubcategory subcat:RegulatoryNetworks ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "epigenomics" ;
+    ds:tag "chromatin" ;
+    ds:tag "histone-modifications" ;
+    ds:tag "dna-methylation" ;
+    ds:tag "regulatory" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 04.pathways.networks/4.6.regulatory.networks/roadmap.epigenomics" .
+
+data:rxnorm a ds:DataSource ;
+    ds:id "rxnorm" ;
+    ds:title "RxNorm - Normalized Drug Nomenclature" ;
+    ds:belongsToCategory cat:CompoundsMolecules ;
+    ds:belongsToSubcategory subcat:Pharmaceuticals ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "terminology" ;
+    ds:tag "drug-names" ;
+    ds:tag "normalization" ;
+    ds:tag "interoperability" ;
+    ds:tag "nlm" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 02.compounds.molecules/2.2.pharmaceuticals/rxnorm" .
+
+data:spliceai a ds:DataSource ;
+    ds:id "spliceai" ;
+    ds:title "SpliceAI" ;
+    ds:belongsToCategory cat:GeneticsGenomics ;
+    ds:belongsToSubcategory subcat:FunctionalPrediction ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "splicing" ;
+    ds:tag "prediction" ;
+    ds:tag "deep-learning" ;
+    ds:tag "variant" ;
+    ds:tag "rna" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 01.genetics.genomics/1.2.functional.prediction/spliceai" .
+
+data:stitch a ds:DataSource ;
+    ds:id "stitch" ;
+    ds:title "STITCH - Chemical-Protein Interaction Networks" ;
+    ds:belongsToCategory cat:PathwaysNetworks ;
+    ds:belongsToSubcategory subcat:DrugTargetInteractions ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:tag "drug-target" ;
+    ds:tag "chemical-protein" ;
+    ds:tag "interactions" ;
+    ds:tag "network" ;
+    ds:tag "open-access" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 04.pathways.networks/4.4.drug.target.interactions/stitch" .
+
+data:string a ds:DataSource ;
+    ds:id "string" ;
+    ds:title "STRING - Search Tool for Retrieval of Interacting Genes/Proteins" ;
+    ds:belongsToCategory cat:PathwaysNetworks ;
+    ds:belongsToSubcategory subcat:ProteinProteinInteractions ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "ppi" ;
+    ds:tag "interactions" ;
+    ds:tag "functional-associations" ;
+    ds:tag "network" ;
+    ds:tag "open-access" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 04.pathways.networks/4.3.protein.protein.interactions/string" .
+
+data:supercyp a ds:DataSource ;
+    ds:id "supercyp" ;
+    ds:title "SuperCYP - Cytochrome P450 Database" ;
+    ds:belongsToCategory cat:CompoundsMolecules ;
+    ds:belongsToSubcategory subcat:DrugMetabolism ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:tag "cytochrome-p450" ;
+    ds:tag "drug-metabolism" ;
+    ds:tag "cyp-enzymes" ;
+    ds:tag "drug-interactions" ;
+    ds:tag "pharmacokinetics" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 02.compounds.molecules/2.5.drug.metabolism.pharmacokinetics/supercyp" .
+
+data:swissadme a ds:DataSource ;
+    ds:id "swissadme" ;
+    ds:title "SwissADME - ADME Property Prediction" ;
+    ds:belongsToCategory cat:CompoundsMolecules ;
+    ds:belongsToSubcategory subcat:DrugMetabolism ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:tag "adme" ;
+    ds:tag "pharmacokinetics" ;
+    ds:tag "drug-likeness" ;
+    ds:tag "physicochemical" ;
+    ds:tag "prediction" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 02.compounds.molecules/2.5.drug.metabolism.pharmacokinetics/swissadme" .
+
+data:symmap a ds:DataSource ;
+    ds:id "symmap" ;
+    ds:title "SymMap 2.0" ;
+    ds:belongsToCategory cat:TraditionalMedicine ;
+    ds:belongsToSubcategory subcat:TraditionalChineseMedicine ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "tcm" ;
+    ds:tag "traditional-chinese-medicine" ;
+    ds:tag "symptom-mapping" ;
+    ds:tag "phenotype" ;
+    ds:tag "network-medicine" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 05.traditional.medicine/5.1.traditional.chinese.medicine/symmap" .
+
+data:syngo a ds:DataSource ;
+    ds:id "syngo" ;
+    ds:title "SynGO - Synaptic Gene Ontologies" ;
+    ds:belongsToCategory cat:DiseasesPhenotypes ;
+    ds:belongsToSubcategory subcat:MentalHealthNeurological ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:tag "synapse" ;
+    ds:tag "neuroscience" ;
+    ds:tag "gene-ontology" ;
+    ds:tag "synaptic-function" ;
+    ds:tag "brain-disorders" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 03.diseases.phenotypes/3.7.mental.health.neurological/syngo" .
+
+data:tcmbank a ds:DataSource ;
+    ds:id "tcmbank" ;
+    ds:title "TCMBank" ;
+    ds:belongsToCategory cat:TraditionalMedicine ;
+    ds:belongsToSubcategory subcat:TraditionalChineseMedicine ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:tag "tcm" ;
+    ds:tag "traditional-chinese-medicine" ;
+    ds:tag "compound-library" ;
+    ds:tag "drug-discovery" ;
+    ds:tag "database" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 05.traditional.medicine/5.1.traditional.chinese.medicine/tcmbank" .
+
+data:tcmsid a ds:DataSource ;
+    ds:id "tcmsid" ;
+    ds:title "TCMSID - TCM Systematic Pharmacology Database" ;
+    ds:belongsToCategory cat:TraditionalMedicine ;
+    ds:belongsToSubcategory subcat:TraditionalChineseMedicine ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:tag "tcm" ;
+    ds:tag "traditional-chinese-medicine" ;
+    ds:tag "adme" ;
+    ds:tag "pharmacokinetics" ;
+    ds:tag "systems-pharmacology" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 05.traditional.medicine/5.1.traditional.chinese.medicine/tcmsid" .
+
+data:tm-mc a ds:DataSource ;
+    ds:id "tm.mc" ;
+    ds:title "TM-MC - Traditional Medicine - Molecular Correlates" ;
+    ds:belongsToCategory cat:TraditionalMedicine ;
+    ds:belongsToSubcategory subcat:SouthEastAsianSystems ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:tag "traditional-medicine" ;
+    ds:tag "multi-system" ;
+    ds:tag "molecular-targets" ;
+    ds:tag "ayurveda" ;
+    ds:tag "tcm" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 05.traditional.medicine/5.2.south.east.asian.systems/tm.mc" .
+
+data:topmed a ds:DataSource ;
+    ds:id "topmed" ;
+    ds:title "TOPMed" ;
+    ds:belongsToCategory cat:GeneticsGenomics ;
+    ds:belongsToSubcategory subcat:PopulationGenetics ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:tag "population" ;
+    ds:tag "frequency" ;
+    ds:tag "deep-sequencing" ;
+    ds:tag "rare-variants" ;
+    ds:tag "nhlbi" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 01.genetics.genomics/1.3.population.genetics/topmed" .
+
+data:ttd a ds:DataSource ;
+    ds:id "ttd" ;
+    ds:title "TTD - Therapeutic Target Database" ;
+    ds:belongsToCategory cat:CompoundsMolecules ;
+    ds:belongsToSubcategory subcat:CompoundTargetInteractions ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "therapeutic-targets" ;
+    ds:tag "drug-targets" ;
+    ds:tag "druggability" ;
+    ds:tag "clinical-trials" ;
+    ds:tag "drug-development" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 02.compounds.molecules/2.7.compound.target.interactions/ttd" .
+
+data:uk-biobank a ds:DataSource ;
+    ds:id "uk-biobank" ;
+    ds:title "UK Biobank" ;
+    ds:belongsToCategory cat:GeneticsGenomics ;
+    ds:belongsToSubcategory subcat:PopulationGenetics ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:tag "population" ;
+    ds:tag "biobank" ;
+    ds:tag "phenotype" ;
+    ds:tag "gwas" ;
+    ds:tag "longitudinal" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 01.genetics.genomics/1.3.population.genetics/uk.biobank" .
+
+data:usda-fooddata a ds:DataSource ;
+    ds:id "usda.fooddata" ;
+    ds:title "USDA FoodData Central" ;
+    ds:belongsToCategory cat:CompoundsMolecules ;
+    ds:belongsToSubcategory subcat:FoodCompoundsNutrients ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "food-composition" ;
+    ds:tag "nutrients" ;
+    ds:tag "usda" ;
+    ds:tag "dietary-reference" ;
+    ds:tag "nutrition" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 02.compounds.molecules/2.4.food.compounds.nutrients/usda.fooddata" .
+
+data:wikipathways a ds:DataSource ;
+    ds:id "wikipathways" ;
+    ds:title "WikiPathways" ;
+    ds:belongsToCategory cat:PathwaysNetworks ;
+    ds:belongsToSubcategory subcat:MetabolicPathways ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:tag "pathways" ;
+    ds:tag "metabolic" ;
+    ds:tag "wikipathways" ;
+    ds:tag "gpml" ;
+    ds:tag "community" ;
+    ds:tag "open-access" ;
+    ds:tag "cc0" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 04.pathways.networks/4.1.metabolic.pathways/wikipathways" .
