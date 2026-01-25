@@ -63,7 +63,7 @@ cat:NutritionFood a ds:Category ;
     ds:status tax:Active .
 
 cat:ProteinsMolecularBiology a ds:Category ;
-    ds:id "proteins.molecular.biology" ;
+    ds:id "proteins.biology" ;
     ds:title "Proteins and Molecular Biology" ;
     ds:notation "07" ;
     ds:categoryClassification tax:ProteinsMolecularBiology ;
@@ -77,7 +77,7 @@ cat:LiteratureKnowledge a ds:Category ;
     ds:status tax:Active .
 
 cat:Microbiome a ds:Category ;
-    ds:id "microbiome" ;
+    ds:id "microbiome.analysis" ;
     ds:title "Microbiome" ;
     ds:notation "09" ;
     ds:categoryClassification tax:Microbiome ;
