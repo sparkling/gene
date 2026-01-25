@@ -1,6 +1,7 @@
 @prefix ds: <https://gene.ai/ontology/datasource#> .
 @prefix data: <https://gene.ai/data/source/> .
 @prefix tax: <https://gene.ai/taxonomy/> .
+@prefix cat: <https://gene.ai/ontology/datasource/category/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix dct: <http://purl.org/dc/terms/> .
@@ -21,16 +22,16 @@
 # === CLINVAR ===
 
 data:clinvar a ds:DataSource ;
-    rdfs:label "ClinVar" ;
-    dct:description "NCBI's public archive of interpretations of clinically relevant variants. Aggregates information about genomic variation and its relationship to human health from clinical laboratories, research groups, and expert panels worldwide." ;
+    ds:title "ClinVar" ;
+    ds:description "NCBI's public archive of interpretations of clinically relevant variants. Aggregates information about genomic variation and its relationship to human health from clinical laboratories, research groups, and expert panels worldwide." ;
     ds:maintainer "NCBI/NIH" ;
     ds:website <https://www.ncbi.nlm.nih.gov/clinvar/> ;
     ds:updateFrequency "Weekly (Mondays)" ;
     ds:recordCount "10000000+"^^xsd:string ;
-    ds:category tax:genetics.genomics ;
+    ds:belongsToCategory cat:GeneticsGenomics ;
     ds:subcategory tax:variant.repositories ;
-    ds:tier "1"^^xsd:integer ;
-    ds:status "active" .
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active .
 
 data:clinvar-license a ds:License ;
     ds:forSource data:clinvar ;
@@ -126,16 +127,16 @@ data:clinvar-limitation-2 a ds:Limitation ;
 # === DBSNP ===
 
 data:dbsnp a ds:DataSource ;
-    rdfs:label "dbSNP" ;
-    dct:description "NCBI's public archive for genetic variation data. Central repository for short genetic variations including SNVs, small indels, and microsatellites. Provides canonical RS identifier system." ;
+    ds:title "dbSNP" ;
+    ds:description "NCBI's public archive for genetic variation data. Central repository for short genetic variations including SNVs, small indels, and microsatellites. Provides canonical RS identifier system." ;
     ds:maintainer "NCBI/NIH" ;
     ds:website <https://www.ncbi.nlm.nih.gov/snp/> ;
     ds:updateFrequency "Continuous" ;
     ds:recordCount "1000000000+"^^xsd:string ;
-    ds:category tax:genetics.genomics ;
+    ds:belongsToCategory cat:GeneticsGenomics ;
     ds:subcategory tax:variant.repositories ;
-    ds:tier "1"^^xsd:integer ;
-    ds:status "active" .
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active .
 
 data:dbsnp-license a ds:License ;
     ds:forSource data:dbsnp ;
@@ -193,16 +194,16 @@ data:dbsnp-limitation-2 a ds:Limitation ;
 # === DBVAR ===
 
 data:dbvar a ds:DataSource ;
-    rdfs:label "dbVar" ;
-    dct:description "NCBI's public database of human genomic structural variation. Archives variants >50bp including deletions, duplications, insertions, inversions, translocations, and complex rearrangements." ;
+    ds:title "dbVar" ;
+    ds:description "NCBI's public database of human genomic structural variation. Archives variants >50bp including deletions, duplications, insertions, inversions, translocations, and complex rearrangements." ;
     ds:maintainer "NCBI/NIH" ;
     ds:website <https://www.ncbi.nlm.nih.gov/dbvar> ;
     ds:updateFrequency "Continuous" ;
     ds:recordCount "6000000+"^^xsd:string ;
-    ds:category tax:genetics.genomics ;
+    ds:belongsToCategory cat:GeneticsGenomics ;
     ds:subcategory tax:variant.repositories ;
-    ds:tier "1"^^xsd:integer ;
-    ds:status "active" .
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active .
 
 data:dbvar-license a ds:License ;
     ds:forSource data:dbvar ;
@@ -241,16 +242,16 @@ data:dbvar-usecase-2 a ds:UseCase ;
 # === ALPHAMISSENSE ===
 
 data:alphamissense a ds:DataSource ;
-    rdfs:label "AlphaMissense" ;
-    dct:description "Google DeepMind's AI-powered pathogenicity predictor for all possible human missense variants. Built on AlphaFold2 architecture with calibrated pathogenicity scores." ;
+    ds:title "AlphaMissense" ;
+    ds:description "Google DeepMind's AI-powered pathogenicity predictor for all possible human missense variants. Built on AlphaFold2 architecture with calibrated pathogenicity scores." ;
     ds:maintainer "Google DeepMind" ;
     ds:website <https://alphamissense.hegelab.org/> ;
     ds:updateFrequency "Static (model v1)" ;
     ds:recordCount "71000000+"^^xsd:string ;
-    ds:category tax:genetics.genomics ;
+    ds:belongsToCategory cat:GeneticsGenomics ;
     ds:subcategory tax:functional.prediction ;
-    ds:tier "1"^^xsd:integer ;
-    ds:status "active" .
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active .
 
 data:alphamissense-license a ds:License ;
     ds:forSource data:alphamissense ;
@@ -289,16 +290,16 @@ data:alphamissense-limitation-2 a ds:Limitation ;
 # === CADD ===
 
 data:cadd a ds:DataSource ;
-    rdfs:label "CADD" ;
-    dct:description "Combined Annotation Dependent Depletion - integrative annotation method that scores deleteriousness of SNVs and indels by combining 60+ genomic features." ;
+    ds:title "CADD" ;
+    ds:description "Combined Annotation Dependent Depletion - integrative annotation method that scores deleteriousness of SNVs and indels by combining 60+ genomic features." ;
     ds:maintainer "University of Washington / Berlin Institute of Health" ;
     ds:website <https://cadd.gs.washington.edu/> ;
     ds:updateFrequency "Periodic releases" ;
     ds:recordCount "9000000000"^^xsd:string ;
-    ds:category tax:genetics.genomics ;
+    ds:belongsToCategory cat:GeneticsGenomics ;
     ds:subcategory tax:functional.prediction ;
-    ds:tier "1"^^xsd:integer ;
-    ds:status "active" .
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active .
 
 data:cadd-license a ds:License ;
     ds:forSource data:cadd ;
@@ -341,16 +342,16 @@ data:cadd-usecase-2 a ds:UseCase ;
 # === DBNSFP ===
 
 data:dbnsfp a ds:DataSource ;
-    rdfs:label "dbNSFP" ;
-    dct:description "Database for Non-synonymous SNPs' Functional Predictions - comprehensive database integrating 36+ prediction algorithms for all possible non-synonymous SNVs." ;
+    ds:title "dbNSFP" ;
+    ds:description "Database for Non-synonymous SNPs' Functional Predictions - comprehensive database integrating 36+ prediction algorithms for all possible non-synonymous SNVs." ;
     ds:maintainer "Liu Lab (USF)" ;
     ds:website <https://www.dbnsfp.org/> ;
     ds:updateFrequency "Periodic releases" ;
     ds:recordCount "85000000+"^^xsd:string ;
-    ds:category tax:genetics.genomics ;
+    ds:belongsToCategory cat:GeneticsGenomics ;
     ds:subcategory tax:functional.prediction ;
-    ds:tier "2"^^xsd:integer ;
-    ds:status "active" .
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active .
 
 data:dbnsfp-license a ds:License ;
     ds:forSource data:dbnsfp ;
@@ -377,16 +378,16 @@ data:dbnsfp-s3 a ds:AccessMethod ;
 # === SPLICEAI ===
 
 data:spliceai a ds:DataSource ;
-    rdfs:label "SpliceAI" ;
-    dct:description "Illumina's deep learning tool that predicts splicing alterations caused by variants using a 32-layer neural network trained on 10,000+ human genes." ;
+    ds:title "SpliceAI" ;
+    ds:description "Illumina's deep learning tool that predicts splicing alterations caused by variants using a 32-layer neural network trained on 10,000+ human genes." ;
     ds:maintainer "Illumina" ;
     ds:website <https://spliceailookup.broadinstitute.org/> ;
     ds:updateFrequency "Static (pre-computed)" ;
     ds:recordCount "All SNVs in genes" ;
-    ds:category tax:genetics.genomics ;
+    ds:belongsToCategory cat:GeneticsGenomics ;
     ds:subcategory tax:functional.prediction ;
-    ds:tier "1"^^xsd:integer ;
-    ds:status "active" .
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active .
 
 data:spliceai-license a ds:License ;
     ds:forSource data:spliceai ;
@@ -425,16 +426,16 @@ data:spliceai-api a ds:AccessMethod ;
 # === GNOMAD ===
 
 data:gnomad a ds:DataSource ;
-    rdfs:label "gnomAD" ;
-    dct:description "Genome Aggregation Database - largest publicly available collection of human exome and genome sequencing data with allele frequencies across diverse populations and gene constraint metrics." ;
+    ds:title "gnomAD" ;
+    ds:description "Genome Aggregation Database - largest publicly available collection of human exome and genome sequencing data with allele frequencies across diverse populations and gene constraint metrics." ;
     ds:maintainer "Broad Institute" ;
     ds:website <https://gnomad.broadinstitute.org/> ;
     ds:updateFrequency "Major releases" ;
     ds:recordCount "786000000+"^^xsd:string ;
-    ds:category tax:genetics.genomics ;
+    ds:belongsToCategory cat:GeneticsGenomics ;
     ds:subcategory tax:population.genetics ;
-    ds:tier "1"^^xsd:integer ;
-    ds:status "active" .
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active .
 
 data:gnomad-license a ds:License ;
     ds:forSource data:gnomad ;
@@ -486,16 +487,16 @@ data:gnomad-limitation-2 a ds:Limitation ;
 # === 1000 GENOMES ===
 
 data:1000genomes a ds:DataSource ;
-    rdfs:label "1000 Genomes Project" ;
-    dct:description "First large-scale effort to catalogue human genetic variation from 2,504 individuals across 26 populations. Foundational imputation reference panel." ;
+    ds:title "1000 Genomes Project" ;
+    ds:description "First large-scale effort to catalogue human genetic variation from 2,504 individuals across 26 populations. Foundational imputation reference panel." ;
     ds:maintainer "IGSR (International Genome Sample Resource)" ;
     ds:website <https://www.internationalgenome.org/> ;
     ds:updateFrequency "Static (Phase 3 complete)" ;
     ds:recordCount "88000000+"^^xsd:string ;
-    ds:category tax:genetics.genomics ;
+    ds:belongsToCategory cat:GeneticsGenomics ;
     ds:subcategory tax:population.genetics ;
-    ds:tier "1"^^xsd:integer ;
-    ds:status "active" .
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active .
 
 data:1000genomes-license a ds:License ;
     ds:forSource data:1000genomes ;
@@ -522,16 +523,16 @@ data:1000genomes-ftp a ds:AccessMethod ;
 # === TOPMED ===
 
 data:topmed a ds:DataSource ;
-    rdfs:label "TOPMed" ;
-    dct:description "Trans-Omics for Precision Medicine - NHLBI program providing deep WGS (30x) of 180,000+ individuals for rare variant discovery in heart, lung, blood, and sleep disorders." ;
+    ds:title "TOPMed" ;
+    ds:description "Trans-Omics for Precision Medicine - NHLBI program providing deep WGS (30x) of 180,000+ individuals for rare variant discovery in heart, lung, blood, and sleep disorders." ;
     ds:maintainer "NHLBI / University of Michigan" ;
     ds:website <https://topmed.nhlbi.nih.gov/> ;
     ds:updateFrequency "Periodic freezes" ;
     ds:recordCount "400000000+"^^xsd:string ;
-    ds:category tax:genetics.genomics ;
+    ds:belongsToCategory cat:GeneticsGenomics ;
     ds:subcategory tax:population.genetics ;
-    ds:tier "2"^^xsd:integer ;
-    ds:status "active" .
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active .
 
 data:topmed-license a ds:License ;
     ds:forSource data:topmed ;
@@ -552,16 +553,16 @@ data:topmed-bravo a ds:AccessMethod ;
 # === UK BIOBANK ===
 
 data:ukbiobank a ds:DataSource ;
-    rdfs:label "UK Biobank" ;
-    dct:description "Large-scale biomedical database with genetic, physical, and health information from 500,000 UK participants aged 40-69. Comprehensive prospective cohort study." ;
+    ds:title "UK Biobank" ;
+    ds:description "Large-scale biomedical database with genetic, physical, and health information from 500,000 UK participants aged 40-69. Comprehensive prospective cohort study." ;
     ds:maintainer "UK Biobank Ltd" ;
     ds:website <https://www.ukbiobank.ac.uk/> ;
     ds:updateFrequency "Continuous data additions" ;
     ds:recordCount "500000 participants" ;
-    ds:category tax:genetics.genomics ;
+    ds:belongsToCategory cat:GeneticsGenomics ;
     ds:subcategory tax:population.genetics ;
-    ds:tier "2"^^xsd:integer ;
-    ds:status "active" .
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active .
 
 data:ukbiobank-license a ds:License ;
     ds:forSource data:ukbiobank ;
@@ -585,16 +586,16 @@ data:ukbiobank-rap a ds:AccessMethod ;
 # === CPIC ===
 
 data:cpic a ds:DataSource ;
-    rdfs:label "CPIC" ;
-    dct:description "Clinical Pharmacogenetics Implementation Consortium - creates peer-reviewed, evidence-based clinical practice guidelines for gene-drug pairs to help translate pharmacogenomic test results into prescribing decisions." ;
+    ds:title "CPIC" ;
+    ds:description "Clinical Pharmacogenetics Implementation Consortium - creates peer-reviewed, evidence-based clinical practice guidelines for gene-drug pairs to help translate pharmacogenomic test results into prescribing decisions." ;
     ds:maintainer "CPIC (hosted at cpicpgx.org)" ;
     ds:website <https://cpicpgx.org/> ;
     ds:updateFrequency "Continuous guideline updates" ;
     ds:recordCount "75+ gene-drug pairs" ;
-    ds:category tax:genetics.genomics ;
+    ds:belongsToCategory cat:GeneticsGenomics ;
     ds:subcategory tax:pharmacogenomics ;
-    ds:tier "1"^^xsd:integer ;
-    ds:status "active" .
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active .
 
 data:cpic-license a ds:License ;
     ds:forSource data:cpic ;
@@ -614,16 +615,16 @@ data:cpic-web a ds:AccessMethod ;
 # === PHARMGKB ===
 
 data:pharmgkb a ds:DataSource ;
-    rdfs:label "PharmGKB" ;
-    dct:description "Pharmacogenomics Knowledge Base - leading resource curating knowledge about genetic variation impact on drug response, aggregating clinical annotations, variant annotations, and drug pathway diagrams." ;
+    ds:title "PharmGKB" ;
+    ds:description "Pharmacogenomics Knowledge Base - leading resource curating knowledge about genetic variation impact on drug response, aggregating clinical annotations, variant annotations, and drug pathway diagrams." ;
     ds:maintainer "Stanford University" ;
     ds:website <https://www.pharmgkb.org/> ;
     ds:updateFrequency "Continuous" ;
     ds:recordCount "20000+ clinical annotations" ;
-    ds:category tax:genetics.genomics ;
+    ds:belongsToCategory cat:GeneticsGenomics ;
     ds:subcategory tax:pharmacogenomics ;
-    ds:tier "1"^^xsd:integer ;
-    ds:status "active" .
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active .
 
 data:pharmgkb-license a ds:License ;
     ds:forSource data:pharmgkb ;
@@ -644,16 +645,16 @@ data:pharmgkb-api a ds:AccessMethod ;
 # === PHARMVAR ===
 
 data:pharmvar a ds:DataSource ;
-    rdfs:label "PharmVar" ;
-    dct:description "Pharmacogene Variation Consortium - central repository for pharmacogene haplotype (star allele) definitions and nomenclature. Standardizes naming of pharmacogene alleles." ;
+    ds:title "PharmVar" ;
+    ds:description "Pharmacogene Variation Consortium - central repository for pharmacogene haplotype (star allele) definitions and nomenclature. Standardizes naming of pharmacogene alleles." ;
     ds:maintainer "PharmVar Consortium" ;
     ds:website <https://www.pharmvar.org/> ;
     ds:updateFrequency "Continuous" ;
     ds:recordCount "3000+ alleles" ;
-    ds:category tax:genetics.genomics ;
+    ds:belongsToCategory cat:GeneticsGenomics ;
     ds:subcategory tax:pharmacogenomics ;
-    ds:tier "2"^^xsd:integer ;
-    ds:status "active" .
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active .
 
 data:pharmvar-license a ds:License ;
     ds:forSource data:pharmvar ;
@@ -666,16 +667,16 @@ data:pharmvar-license a ds:License ;
 # === DPWG ===
 
 data:dpwg a ds:DataSource ;
-    rdfs:label "DPWG" ;
-    dct:description "Dutch Pharmacogenetics Working Group - develops pharmacogenetics-based therapeutic recommendations integrated into Dutch national drug database (G-Standaard)." ;
+    ds:title "DPWG" ;
+    ds:description "Dutch Pharmacogenetics Working Group - develops pharmacogenetics-based therapeutic recommendations integrated into Dutch national drug database (G-Standaard)." ;
     ds:maintainer "KNMP (Royal Dutch Pharmacists Association)" ;
     ds:website <https://www.pharmgkb.org/page/dpwg> ;
     ds:updateFrequency "Periodic updates" ;
     ds:recordCount "100+ gene-drug pairs" ;
-    ds:category tax:genetics.genomics ;
+    ds:belongsToCategory cat:GeneticsGenomics ;
     ds:subcategory tax:pharmacogenomics ;
-    ds:tier "2"^^xsd:integer ;
-    ds:status "active" .
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active .
 
 data:dpwg-license a ds:License ;
     ds:forSource data:dpwg ;
@@ -693,16 +694,16 @@ data:dpwg-license a ds:License ;
 # === GTEX ===
 
 data:gtex a ds:DataSource ;
-    rdfs:label "GTEx" ;
-    dct:description "Genotype-Tissue Expression project - comprehensive resource of gene expression and genetic regulation data from 54 non-diseased human tissues from nearly 1,000 individuals." ;
+    ds:title "GTEx" ;
+    ds:description "Genotype-Tissue Expression project - comprehensive resource of gene expression and genetic regulation data from 54 non-diseased human tissues from nearly 1,000 individuals." ;
     ds:maintainer "GTEx Consortium / Broad Institute" ;
     ds:website <https://gtexportal.org/> ;
     ds:updateFrequency "Major releases" ;
     ds:recordCount "3300000+ eQTLs" ;
-    ds:category tax:genetics.genomics ;
+    ds:belongsToCategory cat:GeneticsGenomics ;
     ds:subcategory tax:expression.regulation ;
-    ds:tier "1"^^xsd:integer ;
-    ds:status "active" .
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active .
 
 data:gtex-license a ds:License ;
     ds:forSource data:gtex ;
@@ -729,16 +730,16 @@ data:gtex-portal a ds:AccessMethod ;
 # === ENCODE ===
 
 data:encode a ds:DataSource ;
-    rdfs:label "ENCODE" ;
-    dct:description "Encyclopedia of DNA Elements - comprehensive project identifying all functional elements in human and mouse genomes including transcription factor binding, chromatin accessibility, and histone modifications." ;
+    ds:title "ENCODE" ;
+    ds:description "Encyclopedia of DNA Elements - comprehensive project identifying all functional elements in human and mouse genomes including transcription factor binding, chromatin accessibility, and histone modifications." ;
     ds:maintainer "ENCODE Consortium" ;
     ds:website <https://www.encodeproject.org/> ;
     ds:updateFrequency "Continuous" ;
     ds:recordCount "926535+ human cCREs" ;
-    ds:category tax:genetics.genomics ;
+    ds:belongsToCategory cat:GeneticsGenomics ;
     ds:subcategory tax:expression.regulation ;
-    ds:tier "1"^^xsd:integer ;
-    ds:status "active" .
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active .
 
 data:encode-license a ds:License ;
     ds:forSource data:encode ;
@@ -758,16 +759,16 @@ data:encode-portal a ds:AccessMethod ;
 # === GWAS CATALOG ===
 
 data:gwas-catalog a ds:DataSource ;
-    rdfs:label "GWAS Catalog" ;
-    dct:description "NHGRI-EBI comprehensive curated collection of published genome-wide association studies with standardized, quality-controlled SNP-trait associations using EFO trait mapping." ;
+    ds:title "GWAS Catalog" ;
+    ds:description "NHGRI-EBI comprehensive curated collection of published genome-wide association studies with standardized, quality-controlled SNP-trait associations using EFO trait mapping." ;
     ds:maintainer "NHGRI-EBI" ;
     ds:website <https://www.ebi.ac.uk/gwas/> ;
     ds:updateFrequency "Weekly" ;
     ds:recordCount "1058471+ associations" ;
-    ds:category tax:genetics.genomics ;
+    ds:belongsToCategory cat:GeneticsGenomics ;
     ds:subcategory tax:expression.regulation ;
-    ds:tier "1"^^xsd:integer ;
-    ds:status "active" .
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active .
 
 data:gwas-catalog-license a ds:License ;
     ds:forSource data:gwas-catalog ;
@@ -793,16 +794,16 @@ data:gwas-catalog-api a ds:AccessMethod ;
 # === EQTLGEN ===
 
 data:eqtlgen a ds:DataSource ;
-    rdfs:label "eQTLGen" ;
-    dct:description "Large-scale meta-analysis identifying blood eQTLs from 31,684 individuals. Most comprehensive catalog of blood cis-eQTLs and trans-eQTLs." ;
+    ds:title "eQTLGen" ;
+    ds:description "Large-scale meta-analysis identifying blood eQTLs from 31,684 individuals. Most comprehensive catalog of blood cis-eQTLs and trans-eQTLs." ;
     ds:maintainer "eQTLGen Consortium" ;
     ds:website <https://www.eqtlgen.org/> ;
     ds:updateFrequency "Phase releases" ;
     ds:recordCount "16000+ cis-eQTLs" ;
-    ds:category tax:genetics.genomics ;
+    ds:belongsToCategory cat:GeneticsGenomics ;
     ds:subcategory tax:expression.regulation ;
-    ds:tier "2"^^xsd:integer ;
-    ds:status "active" .
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active .
 
 data:eqtlgen-license a ds:License ;
     ds:forSource data:eqtlgen ;
@@ -819,16 +820,16 @@ data:eqtlgen-license a ds:License ;
 # === COSMIC ===
 
 data:cosmic a ds:DataSource ;
-    rdfs:label "COSMIC" ;
-    dct:description "Catalogue Of Somatic Mutations In Cancer - world's largest resource for exploring somatic mutations in human cancer including Cancer Gene Census and mutational signatures." ;
+    ds:title "COSMIC" ;
+    ds:description "Catalogue Of Somatic Mutations In Cancer - world's largest resource for exploring somatic mutations in human cancer including Cancer Gene Census and mutational signatures." ;
     ds:maintainer "Wellcome Sanger Institute" ;
     ds:website <https://cancer.sanger.ac.uk/cosmic> ;
     ds:updateFrequency "Quarterly releases" ;
     ds:recordCount "17000000+ mutations" ;
-    ds:category tax:genetics.genomics ;
+    ds:belongsToCategory cat:GeneticsGenomics ;
     ds:subcategory tax:cancer.genomics ;
-    ds:tier "1"^^xsd:integer ;
-    ds:status "active" .
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active .
 
 data:cosmic-license a ds:License ;
     ds:forSource data:cosmic ;
@@ -860,16 +861,16 @@ data:cosmic-download a ds:AccessMethod ;
 # === CIVIC ===
 
 data:civic a ds:DataSource ;
-    rdfs:label "CIViC" ;
-    dct:description "Clinical Interpretation of Variants in Cancer - open-source, community-driven knowledgebase providing crowdsourced curation of variant-level clinical evidence for cancer." ;
+    ds:title "CIViC" ;
+    ds:description "Clinical Interpretation of Variants in Cancer - open-source, community-driven knowledgebase providing crowdsourced curation of variant-level clinical evidence for cancer." ;
     ds:maintainer "Washington University School of Medicine" ;
     ds:website <https://civicdb.org/> ;
     ds:updateFrequency "Continuous community curation" ;
     ds:recordCount "8000+ evidence items" ;
-    ds:category tax:genetics.genomics ;
+    ds:belongsToCategory cat:GeneticsGenomics ;
     ds:subcategory tax:cancer.genomics ;
-    ds:tier "1"^^xsd:integer ;
-    ds:status "active" .
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active .
 
 data:civic-license a ds:License ;
     ds:forSource data:civic ;
@@ -889,16 +890,16 @@ data:civic-api a ds:AccessMethod ;
 # === ONCOKB ===
 
 data:oncokb a ds:DataSource ;
-    rdfs:label "OncoKB" ;
-    dct:description "Memorial Sloan Kettering precision oncology knowledge base providing expert-curated annotation of cancer variant biological and clinical effects with FDA-recognized evidence levels." ;
+    ds:title "OncoKB" ;
+    ds:description "Memorial Sloan Kettering precision oncology knowledge base providing expert-curated annotation of cancer variant biological and clinical effects with FDA-recognized evidence levels." ;
     ds:maintainer "Memorial Sloan Kettering Cancer Center" ;
     ds:website <https://www.oncokb.org/> ;
     ds:updateFrequency "Continuous" ;
     ds:recordCount "5000+ annotated variants" ;
-    ds:category tax:genetics.genomics ;
+    ds:belongsToCategory cat:GeneticsGenomics ;
     ds:subcategory tax:cancer.genomics ;
-    ds:tier "1"^^xsd:integer ;
-    ds:status "active" .
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active .
 
 data:oncokb-license a ds:License ;
     ds:forSource data:oncokb ;
@@ -919,16 +920,16 @@ data:oncokb-api a ds:AccessMethod ;
 # === CBIOPORTAL ===
 
 data:cbioportal a ds:DataSource ;
-    rdfs:label "cBioPortal" ;
-    dct:description "Open-source platform for visualization, analysis, and download of large-scale cancer genomics datasets from TCGA, AACR Project GENIE, and institutional studies." ;
+    ds:title "cBioPortal" ;
+    ds:description "Open-source platform for visualization, analysis, and download of large-scale cancer genomics datasets from TCGA, AACR Project GENIE, and institutional studies." ;
     ds:maintainer "Memorial Sloan Kettering Cancer Center / cBioPortal Team" ;
     ds:website <https://www.cbioportal.org/> ;
     ds:updateFrequency "Continuous study additions" ;
     ds:recordCount "220890+ samples" ;
-    ds:category tax:genetics.genomics ;
+    ds:belongsToCategory cat:GeneticsGenomics ;
     ds:subcategory tax:cancer.genomics ;
-    ds:tier "1"^^xsd:integer ;
-    ds:status "active" .
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active .
 
 data:cbioportal-license a ds:License ;
     ds:forSource data:cbioportal ;
@@ -949,16 +950,16 @@ data:cbioportal-api a ds:AccessMethod ;
 # === BRCA EXCHANGE ===
 
 data:brca-exchange a ds:DataSource ;
-    rdfs:label "BRCA Exchange" ;
-    dct:description "Comprehensive resource for BRCA1 and BRCA2 variant data aggregation and classification as part of GA4GH. Provides expert-reviewed classifications from ENIGMA consortium." ;
+    ds:title "BRCA Exchange" ;
+    ds:description "Comprehensive resource for BRCA1 and BRCA2 variant data aggregation and classification as part of GA4GH. Provides expert-reviewed classifications from ENIGMA consortium." ;
     ds:maintainer "BRCA Exchange / GA4GH" ;
     ds:website <https://brcaexchange.org/> ;
     ds:updateFrequency "Monthly" ;
     ds:recordCount "52000+ BRCA variants" ;
-    ds:category tax:genetics.genomics ;
+    ds:belongsToCategory cat:GeneticsGenomics ;
     ds:subcategory tax:cancer.genomics ;
-    ds:tier "2"^^xsd:integer ;
-    ds:status "active" .
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active .
 
 data:brca-exchange-license a ds:License ;
     ds:forSource data:brca-exchange ;
@@ -978,16 +979,16 @@ data:brca-exchange-api a ds:AccessMethod ;
 # === CANCER GENE CENSUS ===
 
 data:cancer-gene-census a ds:DataSource ;
-    rdfs:label "Cancer Gene Census" ;
-    dct:description "Catalogue of genes whose mutations are causally implicated in cancer. Distinguishes Tier 1 (documented) and Tier 2 (strong evidence) cancer genes." ;
+    ds:title "Cancer Gene Census" ;
+    ds:description "Catalogue of genes whose mutations are causally implicated in cancer. Distinguishes Tier 1 (documented) and Tier 2 (strong evidence) cancer genes." ;
     ds:maintainer "Wellcome Sanger Institute" ;
     ds:website <https://cancer.sanger.ac.uk/census> ;
     ds:updateFrequency "Periodic updates" ;
     ds:recordCount "736 genes" ;
-    ds:category tax:genetics.genomics ;
+    ds:belongsToCategory cat:GeneticsGenomics ;
     ds:subcategory tax:cancer.genomics ;
-    ds:tier "1"^^xsd:integer ;
-    ds:status "active" .
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active .
 
 data:cancer-gene-census-license a ds:License ;
     ds:forSource data:cancer-gene-census ;

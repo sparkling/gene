@@ -5,6 +5,7 @@
 @prefix ds: <https://gene.ai/ontology/datasource#> .
 @prefix data: <https://gene.ai/data/source/> .
 @prefix tax: <https://gene.ai/taxonomy/> .
+@prefix cat: <https://gene.ai/ontology/datasource/category/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
@@ -22,9 +23,9 @@ data:coconut a ds:DataSource ;
     ds:id "coconut" ;
     ds:title "COCONUT - COlleCtion of Open Natural prodUcTs"@en ;
     ds:description "One of the largest open databases of natural products, aggregating compound data from over 50 source databases with comprehensive structural, physicochemical, and biological information."@en ;
-    ds:tier 1 ;
-    ds:status tax:status-active ;
-    ds:category tax:category-compounds-molecules ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:belongsToCategory cat:CompoundsMolecules ;
     ds:subcategory tax:subcategory-natural-products ;
     ds:maintainer "Steinbeck Lab, Friedrich Schiller University Jena" ;
     ds:website <https://coconut.naturalproducts.net> ;
@@ -89,9 +90,9 @@ data:dr-dukes a ds:DataSource ;
     ds:id "dr.dukes" ;
     ds:title "Dr. Duke's Phytochemical and Ethnobotanical Databases"@en ;
     ds:description "Authoritative resources compiled by Dr. James A. Duke documenting the chemical constituents of plants and their traditional uses across cultures."@en ;
-    ds:tier 2 ;
-    ds:status tax:status-active ;
-    ds:category tax:category-compounds-molecules ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:belongsToCategory cat:CompoundsMolecules ;
     ds:subcategory tax:subcategory-natural-products ;
     ds:maintainer "USDA Agricultural Research Service" ;
     ds:website <https://phytochem.nal.usda.gov/> ;
@@ -149,9 +150,9 @@ data:lotus a ds:DataSource ;
     ds:id "lotus" ;
     ds:title "LOTUS - Linked Open Total Unified Structure-organism"@en ;
     ds:description "The largest publicly available database linking natural product chemical structures to their biological source organisms with literature evidence, fully integrated into Wikidata."@en ;
-    ds:tier 1 ;
-    ds:status tax:status-active ;
-    ds:category tax:category-compounds-molecules ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:belongsToCategory cat:CompoundsMolecules ;
     ds:subcategory tax:subcategory-natural-products ;
     ds:maintainer "LOTUS Initiative" ;
     ds:website <https://lotus.naturalproducts.net> ;
@@ -219,9 +220,9 @@ data:npass a ds:DataSource ;
     ds:id "npass" ;
     ds:title "NPASS - Natural Product Activity and Species Source Database"@en ;
     ds:description "Comprehensive resource integrating natural product structural data with quantitative bioactivity information and species source data."@en ;
-    ds:tier 2 ;
-    ds:status tax:status-active ;
-    ds:category tax:category-compounds-molecules ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:belongsToCategory cat:CompoundsMolecules ;
     ds:subcategory tax:subcategory-natural-products ;
     ds:maintainer "BIDD Group" ;
     ds:website <http://bidd.group/NPASS/> ;
@@ -276,9 +277,9 @@ data:npatlas a ds:DataSource ;
     ds:id "npatlas" ;
     ds:title "NPAtlas - Natural Products Atlas"@en ;
     ds:description "Curated database of microbial natural products with emphasis on compounds from bacteria, fungi, and marine microorganisms."@en ;
-    ds:tier 2 ;
-    ds:status tax:status-active ;
-    ds:category tax:category-compounds-molecules ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:belongsToCategory cat:CompoundsMolecules ;
     ds:subcategory tax:subcategory-natural-products ;
     ds:maintainer "Lininston Lab" ;
     ds:website <https://www.npatlas.org> ;
@@ -337,9 +338,9 @@ data:chembl a ds:DataSource ;
     ds:id "chembl" ;
     ds:title "ChEMBL - Bioactivity Database"@en ;
     ds:description "Manually curated database of bioactive molecules with drug-like properties maintained by EMBL-EBI, containing bioactivity data from scientific literature."@en ;
-    ds:tier 1 ;
-    ds:status tax:status-active ;
-    ds:category tax:category-compounds-molecules ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:belongsToCategory cat:CompoundsMolecules ;
     ds:subcategory tax:subcategory-pharmaceuticals ;
     ds:maintainer "EMBL-EBI" ;
     ds:website <https://www.ebi.ac.uk/chembl/> ;
@@ -402,9 +403,9 @@ data:dailymed a ds:DataSource ;
     ds:id "dailymed" ;
     ds:title "DailyMed - FDA Drug Labeling"@en ;
     ds:description "High-quality information about marketed drugs in the United States, including FDA-approved prescription and over-the-counter drug labeling."@en ;
-    ds:tier 2 ;
-    ds:status tax:status-active ;
-    ds:category tax:category-compounds-molecules ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:belongsToCategory cat:CompoundsMolecules ;
     ds:subcategory tax:subcategory-pharmaceuticals ;
     ds:maintainer "National Library of Medicine (NLM)" ;
     ds:website <https://dailymed.nlm.nih.gov> ;
@@ -464,9 +465,9 @@ data:drugbank a ds:DataSource ;
     ds:id "drugbank" ;
     ds:title "DrugBank - Comprehensive Drug Database"@en ;
     ds:description "Comprehensive online database containing detailed drug and drug target information, combining chemical, pharmacological, and pharmaceutical data with drug target information."@en ;
-    ds:tier 1 ;
-    ds:status tax:status-active ;
-    ds:category tax:category-compounds-molecules ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:belongsToCategory cat:CompoundsMolecules ;
     ds:subcategory tax:subcategory-pharmaceuticals ;
     ds:maintainer "DrugBank Online / University of Alberta" ;
     ds:website <https://go.drugbank.com> ;
@@ -526,9 +527,9 @@ data:orange-book a ds:DataSource ;
     ds:id "orange.book" ;
     ds:title "FDA Orange Book - Approved Drug Products"@en ;
     ds:description "Definitive list of drug products approved by FDA for safety and efficacy, providing therapeutic equivalence evaluations, patent information, and exclusivity data."@en ;
-    ds:tier 2 ;
-    ds:status tax:status-active ;
-    ds:category tax:category-compounds-molecules ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:belongsToCategory cat:CompoundsMolecules ;
     ds:subcategory tax:subcategory-pharmaceuticals ;
     ds:maintainer "U.S. Food and Drug Administration" ;
     ds:website <https://www.accessdata.fda.gov/scripts/cder/ob/> ;
@@ -583,9 +584,9 @@ data:rxnorm a ds:DataSource ;
     ds:id "rxnorm" ;
     ds:title "RxNorm - Normalized Drug Nomenclature"@en ;
     ds:description "Standardized nomenclature for clinical drugs produced by NLM, providing normalized names and linking drug names from various vocabularies to common identifiers."@en ;
-    ds:tier 1 ;
-    ds:status tax:status-active ;
-    ds:category tax:category-compounds-molecules ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:belongsToCategory cat:CompoundsMolecules ;
     ds:subcategory tax:subcategory-pharmaceuticals ;
     ds:maintainer "National Library of Medicine" ;
     ds:website <https://rxnav.nlm.nih.gov> ;
@@ -645,9 +646,9 @@ data:phenol-explorer a ds:DataSource ;
     ds:id "phenol.explorer" ;
     ds:title "Phenol-Explorer - Polyphenol Database"@en ;
     ds:description "Most comprehensive database on polyphenol content in foods and beverages, containing data on 500+ polyphenol compounds in 400+ foods with metabolism and pharmacokinetics data."@en ;
-    ds:tier 2 ;
-    ds:status tax:status-active ;
-    ds:category tax:category-compounds-molecules ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:belongsToCategory cat:CompoundsMolecules ;
     ds:subcategory tax:subcategory-food-compounds ;
     ds:maintainer "INRAE / Phenol-Explorer Team" ;
     ds:website <http://phenol-explorer.eu> ;
@@ -696,9 +697,9 @@ data:phytohub a ds:DataSource ;
     ds:id "phytohub" ;
     ds:title "PhytoHub - Dietary Phytochemical Metabolome"@en ;
     ds:description "Comprehensive database of dietary phytochemicals and their human and microbial metabolites, providing essential reference data for metabolomics studies."@en ;
-    ds:tier 2 ;
-    ds:status tax:status-active ;
-    ds:category tax:category-compounds-molecules ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:belongsToCategory cat:CompoundsMolecules ;
     ds:subcategory tax:subcategory-food-compounds ;
     ds:maintainer "INRAE" ;
     ds:website <http://phytohub.eu> ;
@@ -746,9 +747,9 @@ data:usda-fooddata a ds:DataSource ;
     ds:id "usda.fooddata" ;
     ds:title "USDA FoodData Central"@en ;
     ds:description "Authoritative source for food composition data in the United States, integrating data from multiple USDA data types including Foundation Foods and Branded Foods."@en ;
-    ds:tier 1 ;
-    ds:status tax:status-active ;
-    ds:category tax:category-compounds-molecules ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:belongsToCategory cat:CompoundsMolecules ;
     ds:subcategory tax:subcategory-food-compounds ;
     ds:maintainer "USDA Agricultural Research Service" ;
     ds:website <https://fdc.nal.usda.gov> ;
@@ -813,9 +814,9 @@ data:supercyp a ds:DataSource ;
     ds:id "supercyp" ;
     ds:title "SuperCYP - Cytochrome P450 Database"@en ;
     ds:description "Comprehensive database dedicated to cytochrome P450 (CYP) enzyme interactions with drugs and other xenobiotics."@en ;
-    ds:tier 2 ;
-    ds:status tax:status-active ;
-    ds:category tax:category-compounds-molecules ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:belongsToCategory cat:CompoundsMolecules ;
     ds:subcategory tax:subcategory-drug-metabolism ;
     ds:maintainer "Charite - Universitatsmedizin Berlin" ;
     ds:website <http://bioinformatics.charite.de/supercyp> ;
@@ -865,9 +866,9 @@ data:swissadme a ds:DataSource ;
     ds:id "swissadme" ;
     ds:title "SwissADME - ADME Property Prediction"@en ;
     ds:description "Free web tool for computing physicochemical descriptors and predicting ADME parameters, pharmacokinetics, drug-likeness, and medicinal chemistry friendliness."@en ;
-    ds:tier 2 ;
-    ds:status tax:status-active ;
-    ds:category tax:category-compounds-molecules ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:belongsToCategory cat:CompoundsMolecules ;
     ds:subcategory tax:subcategory-drug-metabolism ;
     ds:maintainer "Swiss Institute of Bioinformatics" ;
     ds:website <http://www.swissadme.ch> ;
@@ -919,9 +920,9 @@ data:chebi a ds:DataSource ;
     ds:id "chebi" ;
     ds:title "ChEBI - Chemical Entities of Biological Interest"@en ;
     ds:description "Freely available dictionary and ontology of molecular entities focused on small chemical compounds relevant to biological systems."@en ;
-    ds:tier 1 ;
-    ds:status tax:status-active ;
-    ds:category tax:category-compounds-molecules ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:belongsToCategory cat:CompoundsMolecules ;
     ds:subcategory tax:subcategory-chemical-ontology ;
     ds:maintainer "EMBL-EBI" ;
     ds:website <https://www.ebi.ac.uk/chebi/> ;
@@ -981,9 +982,9 @@ data:classyfire a ds:DataSource ;
     ds:id "classyfire" ;
     ds:title "ClassyFire - Chemical Taxonomy"@en ;
     ds:description "Web-based tool and hierarchical chemical taxonomy for automatic structural classification of chemical compounds."@en ;
-    ds:tier 2 ;
-    ds:status tax:status-active ;
-    ds:category tax:category-compounds-molecules ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:belongsToCategory cat:CompoundsMolecules ;
     ds:subcategory tax:subcategory-chemical-ontology ;
     ds:maintainer "Wishart Lab, University of Alberta" ;
     ds:website <http://classyfire.wishartlab.com> ;
@@ -1036,9 +1037,9 @@ data:npclassifier a ds:DataSource ;
     ds:id "npclassifier" ;
     ds:title "NPClassifier - Natural Product Classification"@en ;
     ds:description "Deep learning-based tool for automated structural classification of natural products based on their predicted biosynthetic pathways."@en ;
-    ds:tier 2 ;
-    ds:status tax:status-active ;
-    ds:category tax:category-compounds-molecules ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:belongsToCategory cat:CompoundsMolecules ;
     ds:subcategory tax:subcategory-chemical-ontology ;
     ds:maintainer "UCSD Dorrestein Lab" ;
     ds:website <https://npclassifier.ucsd.edu> ;
@@ -1085,9 +1086,9 @@ data:pubchem a ds:DataSource ;
     ds:id "pubchem" ;
     ds:title "PubChem - Chemical Information Repository"@en ;
     ds:description "World's largest collection of freely accessible chemical information, providing data on chemical structures, identifiers, properties, biological activities, and safety."@en ;
-    ds:tier 1 ;
-    ds:status tax:status-active ;
-    ds:category tax:category-compounds-molecules ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:belongsToCategory cat:CompoundsMolecules ;
     ds:subcategory tax:subcategory-chemical-ontology ;
     ds:maintainer "NCBI/NLM/NIH" ;
     ds:website <https://pubchem.ncbi.nlm.nih.gov> ;
@@ -1151,9 +1152,9 @@ data:bindingdb a ds:DataSource ;
     ds:id "bindingdb" ;
     ds:title "BindingDB - Binding Affinity Database"@en ;
     ds:description "Public database of measured binding affinities focusing on interactions of proteins considered drug targets with small, drug-like molecules."@en ;
-    ds:tier 1 ;
-    ds:status tax:status-active ;
-    ds:category tax:category-compounds-molecules ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:belongsToCategory cat:CompoundsMolecules ;
     ds:subcategory tax:subcategory-compound-target ;
     ds:maintainer "BindingDB" ;
     ds:website <https://www.bindingdb.org> ;
@@ -1213,9 +1214,9 @@ data:dgidb a ds:DataSource ;
     ds:id "dgidb" ;
     ds:title "DGIdb - Drug Gene Interaction Database"@en ;
     ds:description "Database aggregating drug-gene interaction data from multiple trusted sources into a unified, queryable resource."@en ;
-    ds:tier 1 ;
-    ds:status tax:status-active ;
-    ds:category tax:category-compounds-molecules ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:belongsToCategory cat:CompoundsMolecules ;
     ds:subcategory tax:subcategory-compound-target ;
     ds:maintainer "Washington University School of Medicine" ;
     ds:website <https://dgidb.org> ;
@@ -1275,9 +1276,9 @@ data:gtopdb a ds:DataSource ;
     ds:id "gtopdb" ;
     ds:title "GtoPdb - Guide to Pharmacology"@en ;
     ds:description "Expert-curated database of pharmacological targets and substances, providing authoritative peer-reviewed information from IUPHAR/BPS."@en ;
-    ds:tier 1 ;
-    ds:status tax:status-active ;
-    ds:category tax:category-compounds-molecules ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:belongsToCategory cat:CompoundsMolecules ;
     ds:subcategory tax:subcategory-compound-target ;
     ds:maintainer "IUPHAR/BPS" ;
     ds:website <https://www.guidetopharmacology.org> ;
@@ -1338,9 +1339,9 @@ data:ttd a ds:DataSource ;
     ds:id "ttd" ;
     ds:title "TTD - Therapeutic Target Database"@en ;
     ds:description "Comprehensive resource providing information about therapeutic protein and nucleic acid targets, targeted diseases, pathway information, and corresponding drugs."@en ;
-    ds:tier 1 ;
-    ds:status tax:status-active ;
-    ds:category tax:category-compounds-molecules ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:belongsToCategory cat:CompoundsMolecules ;
     ds:subcategory tax:subcategory-compound-target ;
     ds:maintainer "Zhejiang University / IDRBLab" ;
     ds:website <https://idrblab.net/ttd/> ;
@@ -1393,52 +1394,63 @@ data:ttd-limitation-1 a ds:Limitation ;
 # =============================================================================
 
 # Status taxonomy
-tax:status-active a skos:Concept ;
+tax:Active a skos:Concept ;
     skos:prefLabel "Active"@en ;
     skos:inScheme tax:status-scheme .
 
-tax:status-draft a skos:Concept ;
+tax:Draft a skos:Concept ;
     skos:prefLabel "Draft"@en ;
     skos:inScheme tax:status-scheme .
 
-tax:status-deprecated a skos:Concept ;
+tax:Deprecated a skos:Concept ;
     skos:prefLabel "Deprecated"@en ;
     skos:inScheme tax:status-scheme .
 
-# Category taxonomy
-tax:category-compounds-molecules a skos:Concept ;
-    skos:prefLabel "Compounds & Molecules"@en ;
-    skos:inScheme tax:category-scheme .
+# Tier taxonomy
+tax:Tier1 a skos:Concept ;
+    skos:prefLabel "Tier 1"@en ;
+    skos:definition "Primary data sources - highest quality, most comprehensive"@en ;
+    skos:inScheme tax:tier-scheme .
+
+tax:Tier2 a skos:Concept ;
+    skos:prefLabel "Tier 2"@en ;
+    skos:definition "Secondary data sources - specialized or supplementary"@en ;
+    skos:inScheme tax:tier-scheme .
+
+tax:Tier3 a skos:Concept ;
+    skos:prefLabel "Tier 3"@en ;
+    skos:definition "Tertiary data sources - legacy or limited scope"@en ;
+    skos:inScheme tax:tier-scheme .
 
 # Subcategory taxonomy
 tax:subcategory-natural-products a skos:Concept ;
     skos:prefLabel "Natural Products"@en ;
-    skos:broader tax:category-compounds-molecules ;
+    skos:broader cat:CompoundsMolecules ;
     skos:inScheme tax:subcategory-scheme .
 
 tax:subcategory-pharmaceuticals a skos:Concept ;
     skos:prefLabel "Pharmaceuticals"@en ;
-    skos:broader tax:category-compounds-molecules ;
+    skos:broader cat:CompoundsMolecules ;
     skos:inScheme tax:subcategory-scheme .
 
 tax:subcategory-food-compounds a skos:Concept ;
     skos:prefLabel "Food Compounds & Nutrients"@en ;
-    skos:broader tax:category-compounds-molecules ;
+    skos:broader cat:CompoundsMolecules ;
     skos:inScheme tax:subcategory-scheme .
 
 tax:subcategory-drug-metabolism a skos:Concept ;
     skos:prefLabel "Drug Metabolism & Pharmacokinetics"@en ;
-    skos:broader tax:category-compounds-molecules ;
+    skos:broader cat:CompoundsMolecules ;
     skos:inScheme tax:subcategory-scheme .
 
 tax:subcategory-chemical-ontology a skos:Concept ;
     skos:prefLabel "Chemical Ontology & Classification"@en ;
-    skos:broader tax:category-compounds-molecules ;
+    skos:broader cat:CompoundsMolecules ;
     skos:inScheme tax:subcategory-scheme .
 
 tax:subcategory-compound-target a skos:Concept ;
     skos:prefLabel "Compound-Target Interactions"@en ;
-    skos:broader tax:category-compounds-molecules ;
+    skos:broader cat:CompoundsMolecules ;
     skos:inScheme tax:subcategory-scheme .
 
 # Access method types
