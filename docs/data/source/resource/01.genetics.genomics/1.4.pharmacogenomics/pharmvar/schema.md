@@ -36,14 +36,27 @@ PharmVar provides the official nomenclature and definitions for pharmacogene sta
 
 ## Entity Relationship Overview
 
-```
-┌───────────────┐     ┌───────────────┐     ┌───────────────┐
-│    Gene       │────▶│    Allele     │────▶│   Variant     │
-├───────────────┤     ├───────────────┤     ├───────────────┤
-│ symbol        │     │ star_name     │     │ hgvs          │
-│ ref_seq       │     │ core_allele   │     │ rsid          │
-│ chr_location  │     │ function      │     │ position      │
-└───────────────┘     └───────────────┘     └───────────────┘
+```mermaid
+---
+config:
+  layout: elk
+---
+flowchart LR
+    accTitle: PharmVar Star Allele Data Model
+    accDescr: Shows relationships between genes, star alleles, and defining variants in PharmVar nomenclature database
+
+    %% Style definitions using Cagle palette
+    classDef gene fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
+    classDef allele fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,color:#0D47A1
+    classDef variant fill:#FFF8E1,stroke:#F57F17,stroke-width:2px,color:#E65100
+
+    %% Entities with fields
+    GENE["Gene<br/>────────────<br/>symbol<br/>ref_seq<br/>chr_location"]:::gene
+    ALLELE["Allele<br/>────────────<br/>star_name<br/>core_allele<br/>function"]:::allele
+    VAR["Variant<br/>────────────<br/>hgvs<br/>rsid<br/>position"]:::variant
+
+    %% Relationships
+    GENE --> ALLELE --> VAR
 ```
 
 ---

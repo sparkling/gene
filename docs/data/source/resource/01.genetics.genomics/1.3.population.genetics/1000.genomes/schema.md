@@ -36,13 +36,29 @@ The 1000 Genomes Project provides population-level allele frequencies for varian
 
 ## Entity Relationship Overview
 
-```
-┌────────────────────────────────────────────────────────┐
-│                      Variant                            │
-├────────────────────────────────────────────────────────┤
-│ Position → Global AF → Super-pop AF → Population AF    │
-│ (chr:pos)   (AF)        (AFR_AF, etc)   (YRI_AF, etc) │
-└────────────────────────────────────────────────────────┘
+```mermaid
+---
+config:
+  layout: elk
+---
+flowchart LR
+    accTitle: 1000 Genomes Variant Frequency Hierarchy
+    accDescr: Shows how variant position flows to global allele frequency, then to super-population frequencies, and finally to individual population frequencies
+
+    %% Style definitions using Cagle palette
+    classDef variant fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,color:#0D47A1
+    classDef global fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
+    classDef superpop fill:#FFF8E1,stroke:#F57F17,stroke-width:2px,color:#E65100
+    classDef pop fill:#F3E5F5,stroke:#7B1FA2,stroke-width:2px,color:#4A148C
+
+    %% Entities
+    POS["Position<br/>(chr:pos)"]:::variant
+    GAF["Global AF<br/>(AF)"]:::global
+    SPAF["Super-pop AF<br/>(AFR_AF, EUR_AF, etc.)"]:::superpop
+    PAF["Population AF<br/>(YRI_AF, GBR_AF, etc.)"]:::pop
+
+    %% Relationships
+    POS --> GAF --> SPAF --> PAF
 ```
 
 ---

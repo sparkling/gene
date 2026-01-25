@@ -36,22 +36,32 @@ CIViC provides crowdsourced clinical interpretations linking cancer variants to 
 
 ## Entity Relationship Overview
 
-```
-┌───────────────┐     ┌───────────────┐     ┌───────────────┐
-│    Gene       │────▶│   Variant     │────▶│  Evidence     │
-├───────────────┤     ├───────────────┤     ├───────────────┤
-│ civic_id      │     │ civic_id      │     │ civic_id      │
-│ name          │     │ name          │     │ evidence_type │
-│ description   │     │ types         │     │ level         │
-└───────────────┘     └───────────────┘     └───────────────┘
-        │                                           │
-        │                                           ▼
-        │                                   ┌───────────────┐
-        └──────────────────────────────────▶│  Assertion    │
-                                            ├───────────────┤
-                                            │ amp_level     │
-                                            │ significance  │
-                                            └───────────────┘
+```mermaid
+---
+config:
+  layout: elk
+---
+flowchart TD
+    accTitle: CIViC Clinical Interpretation Data Model
+    accDescr: Shows relationships between genes, variants, evidence items, and assertions in CIViC
+
+    %% Style definitions using Cagle palette
+    classDef gene fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
+    classDef variant fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,color:#0D47A1
+    classDef evidence fill:#FFF8E1,stroke:#F57F17,stroke-width:2px,color:#E65100
+    classDef assertion fill:#F3E5F5,stroke:#7B1FA2,stroke-width:2px,color:#4A148C
+
+    %% Entities with fields
+    GENE["Gene<br/>────────────<br/>civic_id<br/>name<br/>description"]:::gene
+    VAR["Variant<br/>────────────<br/>civic_id<br/>name<br/>types"]:::variant
+    EVI["Evidence<br/>────────────<br/>civic_id<br/>evidence_type<br/>level"]:::evidence
+    ASS["Assertion<br/>────────────<br/>amp_level<br/>significance"]:::assertion
+
+    %% Relationships
+    GENE --> VAR
+    VAR --> EVI
+    EVI --> ASS
+    GENE --> ASS
 ```
 
 ---

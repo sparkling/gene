@@ -38,23 +38,32 @@ COSMIC catalogs somatic mutations in cancer including coding variants, gene fusi
 
 ## Entity Relationship Overview
 
-```
-┌───────────────┐     ┌───────────────┐     ┌───────────────┐
-│    Sample     │────▶│   Mutation    │────▶│    Gene       │
-├───────────────┤     ├───────────────┤     ├───────────────┤
-│ sample_id     │     │ COSV_id       │     │ gene_symbol   │
-│ tumour_type   │     │ COSM_id       │     │ census_tier   │
-│ site          │     │ consequence   │     │ role          │
-└───────────────┘     └───────────────┘     └───────────────┘
-        │                     │
-        ▼                     │
-┌───────────────┐            │
-│   Signature   │◀───────────┘
-├───────────────┤
-│ SBS/DBS/ID    │
-│ contribution  │
-│ etiology      │
-└───────────────┘
+```mermaid
+---
+config:
+  layout: elk
+---
+flowchart TD
+    accTitle: COSMIC Cancer Somatic Mutation Data Model
+    accDescr: Shows relationships between samples, mutations, genes, and mutational signatures in COSMIC
+
+    %% Style definitions using Cagle palette
+    classDef sample fill:#F3E5F5,stroke:#7B1FA2,stroke-width:2px,color:#4A148C
+    classDef mutation fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,color:#0D47A1
+    classDef gene fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
+    classDef signature fill:#FFF8E1,stroke:#F57F17,stroke-width:2px,color:#E65100
+
+    %% Entities with fields
+    SAMP["Sample<br/>────────────<br/>sample_id<br/>tumour_type<br/>site"]:::sample
+    MUT["Mutation<br/>────────────<br/>COSV_id<br/>COSM_id<br/>consequence"]:::mutation
+    GENE["Gene<br/>────────────<br/>gene_symbol<br/>census_tier<br/>role"]:::gene
+    SIG["Signature<br/>────────────<br/>SBS/DBS/ID<br/>contribution<br/>etiology"]:::signature
+
+    %% Relationships
+    SAMP --> MUT
+    MUT --> GENE
+    SAMP --> SIG
+    MUT --> SIG
 ```
 
 ---

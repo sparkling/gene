@@ -38,23 +38,34 @@ PharmGKB provides curated pharmacogenomics knowledge linking genetic variants to
 
 ## Entity Relationship Overview
 
-```
-┌───────────────┐     ┌───────────────┐     ┌───────────────┐
-│    Gene       │────▶│  Relationship │────▶│    Drug       │
-├───────────────┤     ├───────────────┤     ├───────────────┤
-│ PA accession  │     │ evidence_level│     │ PA accession  │
-│ symbol        │     │ PK/PD         │     │ generic_name  │
-│ VIP status    │     │ variant_annot │     │ trade_names   │
-└───────────────┘     └───────────────┘     └───────────────┘
-        │                     │
-        ▼                     ▼
-┌───────────────┐     ┌───────────────┐
-│   Variant     │     │Clinical Annot │
-├───────────────┤     ├───────────────┤
-│ rs_id         │     │ annotation_id │
-│ haplotype     │     │ level         │
-│ function      │     │ phenotypes    │
-└───────────────┘     └───────────────┘
+```mermaid
+---
+config:
+  layout: elk
+---
+flowchart TD
+    accTitle: PharmGKB Entity Relationships
+    accDescr: Shows relationships between genes, drugs, variants, and clinical annotations in PharmGKB
+
+    %% Style definitions using Cagle palette
+    classDef gene fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
+    classDef relationship fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,color:#0D47A1
+    classDef drug fill:#FFF8E1,stroke:#F57F17,stroke-width:2px,color:#E65100
+    classDef variant fill:#F3E5F5,stroke:#7B1FA2,stroke-width:2px,color:#4A148C
+    classDef clinical fill:#E1F5FE,stroke:#0277BD,stroke-width:2px,color:#01579B
+
+    %% Entities with fields
+    GENE["Gene<br/>────────────<br/>PA accession<br/>symbol<br/>VIP status"]:::gene
+    REL["Relationship<br/>────────────<br/>evidence_level<br/>PK/PD<br/>variant_annot"]:::relationship
+    DRUG["Drug<br/>────────────<br/>PA accession<br/>generic_name<br/>trade_names"]:::drug
+    VAR["Variant<br/>────────────<br/>rs_id<br/>haplotype<br/>function"]:::variant
+    CLIN["Clinical Annot<br/>────────────<br/>annotation_id<br/>level<br/>phenotypes"]:::clinical
+
+    %% Relationships
+    GENE --> REL
+    REL --> DRUG
+    GENE --> VAR
+    REL --> CLIN
 ```
 
 ---

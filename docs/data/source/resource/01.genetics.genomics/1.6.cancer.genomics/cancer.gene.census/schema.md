@@ -36,13 +36,31 @@ The Cancer Gene Census (CGC) catalogs genes with documented cancer-causing mutat
 
 ## Entity Relationship Overview
 
-```
-┌───────────────────────────────────────────────────────┐
-│                     CGC Gene                           │
-├───────────────────────────────────────────────────────┤
-│ Gene Symbol → Role → Tier → Cancer Types → Mutations  │
-│   (TP53)      (TSG)   (1)    (multiple)    (missense) │
-└───────────────────────────────────────────────────────┘
+```mermaid
+---
+config:
+  layout: elk
+---
+flowchart LR
+    accTitle: Cancer Gene Census Data Model
+    accDescr: Shows the flow from gene symbol through role classification, tier, cancer types, and mutation types in CGC
+
+    %% Style definitions using Cagle palette
+    classDef gene fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
+    classDef role fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,color:#0D47A1
+    classDef tier fill:#FFF8E1,stroke:#F57F17,stroke-width:2px,color:#E65100
+    classDef cancer fill:#F3E5F5,stroke:#7B1FA2,stroke-width:2px,color:#4A148C
+    classDef mutation fill:#E1F5FE,stroke:#0277BD,stroke-width:2px,color:#01579B
+
+    %% Entities
+    GENE["Gene Symbol<br/>(TP53)"]:::gene
+    ROLE["Role<br/>(TSG)"]:::role
+    TIER["Tier<br/>(1)"]:::tier
+    CANCER["Cancer Types<br/>(multiple)"]:::cancer
+    MUT["Mutations<br/>(missense)"]:::mutation
+
+    %% Relationships
+    GENE --> ROLE --> TIER --> CANCER --> MUT
 ```
 
 ---

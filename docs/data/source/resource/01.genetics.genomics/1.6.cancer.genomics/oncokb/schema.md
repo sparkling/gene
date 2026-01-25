@@ -36,14 +36,27 @@ OncoKB provides expert-curated annotations linking cancer variants to oncogenic 
 
 ## Entity Relationship Overview
 
-```
-┌───────────────┐     ┌───────────────┐     ┌───────────────┐
-│    Gene       │────▶│   Alteration  │────▶│  Implication  │
-├───────────────┤     ├───────────────┤     ├───────────────┤
-│ hugo_symbol   │     │ alteration    │     │ level         │
-│ oncogene      │     │ oncogenic     │     │ cancer_type   │
-│ tsg           │     │ effect        │     │ drugs         │
-└───────────────┘     └───────────────┘     └───────────────┘
+```mermaid
+---
+config:
+  layout: elk
+---
+flowchart LR
+    accTitle: OncoKB Precision Oncology Data Model
+    accDescr: Shows relationships between genes, alterations, and therapeutic implications in OncoKB
+
+    %% Style definitions using Cagle palette
+    classDef gene fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
+    classDef alteration fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,color:#0D47A1
+    classDef implication fill:#FFF8E1,stroke:#F57F17,stroke-width:2px,color:#E65100
+
+    %% Entities with fields
+    GENE["Gene<br/>────────────<br/>hugo_symbol<br/>oncogene<br/>tsg"]:::gene
+    ALT["Alteration<br/>────────────<br/>alteration<br/>oncogenic<br/>effect"]:::alteration
+    IMP["Implication<br/>────────────<br/>level<br/>cancer_type<br/>drugs"]:::implication
+
+    %% Relationships
+    GENE --> ALT --> IMP
 ```
 
 ---

@@ -36,13 +36,27 @@ TOPMed provides allele frequencies from deep whole-genome sequencing of 180,000+
 
 ## Entity Relationship Overview
 
-```
-┌──────────────────────────────────────────────────┐
-│                Bravo Variant                      │
-├──────────────────────────────────────────────────┤
-│ Position → Allele Frequencies → Quality Metrics  │
-│ (chr:pos)   (AF, AC, AN)         (filters)      │
-└──────────────────────────────────────────────────┘
+```mermaid
+---
+config:
+  layout: elk
+---
+flowchart LR
+    accTitle: TOPMed Bravo Variant Data Structure
+    accDescr: Shows how variant position connects to allele frequencies and quality metrics in the Bravo browser
+
+    %% Style definitions using Cagle palette
+    classDef position fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,color:#0D47A1
+    classDef frequency fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
+    classDef quality fill:#FFF8E1,stroke:#F57F17,stroke-width:2px,color:#E65100
+
+    %% Entities
+    POS["Position<br/>(chr:pos)"]:::position
+    FREQ["Allele Frequencies<br/>(AF, AC, AN)"]:::frequency
+    QUAL["Quality Metrics<br/>(filters)"]:::quality
+
+    %% Relationships
+    POS --> FREQ --> QUAL
 ```
 
 ---

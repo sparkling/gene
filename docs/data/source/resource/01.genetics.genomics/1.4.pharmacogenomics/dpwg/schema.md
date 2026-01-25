@@ -36,14 +36,27 @@ DPWG provides Dutch pharmacogenetics guidelines integrated into the G-Standaard 
 
 ## Entity Relationship Overview
 
-```
-┌───────────────┐     ┌───────────────┐     ┌───────────────┐
-│    Gene       │────▶│   Guideline   │────▶│    Drug       │
-├───────────────┤     ├───────────────┤     ├───────────────┤
-│ symbol        │     │ dpwg_id       │     │ generic_name  │
-│ phenotypes    │     │ evidence      │     │ atc_code      │
-│ alleles       │     │ urgency       │     │ dose_adjust   │
-└───────────────┘     └───────────────┘     └───────────────┘
+```mermaid
+---
+config:
+  layout: elk
+---
+flowchart LR
+    accTitle: DPWG Pharmacogenomics Guideline Structure
+    accDescr: Shows relationships between genes, guidelines, and drugs in Dutch pharmacogenomics guidelines
+
+    %% Style definitions using Cagle palette
+    classDef gene fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
+    classDef guideline fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,color:#0D47A1
+    classDef drug fill:#FFF8E1,stroke:#F57F17,stroke-width:2px,color:#E65100
+
+    %% Entities with fields
+    GENE["Gene<br/>────────────<br/>symbol<br/>phenotypes<br/>alleles"]:::gene
+    GUIDE["Guideline<br/>────────────<br/>dpwg_id<br/>evidence<br/>urgency"]:::guideline
+    DRUG["Drug<br/>────────────<br/>generic_name<br/>atc_code<br/>dose_adjust"]:::drug
+
+    %% Relationships
+    GENE --> GUIDE --> DRUG
 ```
 
 ---

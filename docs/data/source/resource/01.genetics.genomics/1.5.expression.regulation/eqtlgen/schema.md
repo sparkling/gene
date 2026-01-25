@@ -36,14 +36,27 @@ eQTLGen provides cis- and trans-eQTL summary statistics from 31,684 blood sample
 
 ## Entity Relationship Overview
 
-```
-┌───────────────┐     ┌───────────────┐     ┌───────────────┐
-│     SNP       │────▶│    eQTL       │────▶│    Gene       │
-├───────────────┤     ├───────────────┤     ├───────────────┤
-│ rsid          │     │ p-value       │     │ ensembl_id    │
-│ chr:pos       │     │ z-score       │     │ symbol        │
-│ alleles       │     │ effect_size   │     │ distance      │
-└───────────────┘     └───────────────┘     └───────────────┘
+```mermaid
+---
+config:
+  layout: elk
+---
+flowchart LR
+    accTitle: eQTLGen Data Model
+    accDescr: Shows relationships between SNPs, eQTL associations, and target genes in eQTLGen blood expression dataset
+
+    %% Style definitions using Cagle palette
+    classDef snp fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,color:#0D47A1
+    classDef eqtl fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
+    classDef gene fill:#FFF8E1,stroke:#F57F17,stroke-width:2px,color:#E65100
+
+    %% Entities with fields
+    SNP["SNP<br/>────────────<br/>rsid<br/>chr:pos<br/>alleles"]:::snp
+    EQTL["eQTL<br/>────────────<br/>p-value<br/>z-score<br/>effect_size"]:::eqtl
+    GENE["Gene<br/>────────────<br/>ensembl_id<br/>symbol<br/>distance"]:::gene
+
+    %% Relationships
+    SNP --> EQTL --> GENE
 ```
 
 ---

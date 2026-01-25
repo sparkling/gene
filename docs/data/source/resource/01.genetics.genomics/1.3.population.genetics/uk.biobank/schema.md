@@ -38,23 +38,34 @@ UK Biobank provides linked genetic and phenotypic data from 500,000 UK participa
 
 ## Entity Relationship Overview
 
-```
-┌───────────────┐     ┌───────────────┐     ┌───────────────┐
-│  Participant  │────▶│   Phenotype   │────▶│    Field      │
-├───────────────┤     ├───────────────┤     ├───────────────┤
-│ eid           │     │ field_id      │     │ field_id      │
-│ withdrawn     │     │ instance      │     │ title         │
-│ sex           │     │ array_index   │     │ encoding      │
-└───────────────┘     └───────────────┘     └───────────────┘
-        │                                          │
-        ▼                                          ▼
-┌───────────────┐                          ┌───────────────┐
-│   Genetics    │                          │   Category    │
-├───────────────┤                          ├───────────────┤
-│ genotype      │                          │ category_id   │
-│ exome         │                          │ title         │
-│ wgs           │                          │ parent        │
-└───────────────┘                          └───────────────┘
+```mermaid
+---
+config:
+  layout: elk
+---
+flowchart TD
+    accTitle: UK Biobank Entity Relationships
+    accDescr: Shows relationships between participant, phenotype, field, genetics, and category entities in UK Biobank
+
+    %% Style definitions using Cagle palette
+    classDef participant fill:#F3E5F5,stroke:#7B1FA2,stroke-width:2px,color:#4A148C
+    classDef phenotype fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
+    classDef field fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,color:#0D47A1
+    classDef genetics fill:#FFF8E1,stroke:#F57F17,stroke-width:2px,color:#E65100
+    classDef category fill:#E1F5FE,stroke:#0277BD,stroke-width:2px,color:#01579B
+
+    %% Entities with fields
+    PART["Participant<br/>────────────<br/>eid<br/>withdrawn<br/>sex"]:::participant
+    PHENO["Phenotype<br/>────────────<br/>field_id<br/>instance<br/>array_index"]:::phenotype
+    FIELD["Field<br/>────────────<br/>field_id<br/>title<br/>encoding"]:::field
+    GEN["Genetics<br/>────────────<br/>genotype<br/>exome<br/>wgs"]:::genetics
+    CAT["Category<br/>────────────<br/>category_id<br/>title<br/>parent"]:::category
+
+    %% Relationships
+    PART --> PHENO
+    PHENO --> FIELD
+    PART --> GEN
+    FIELD --> CAT
 ```
 
 ---

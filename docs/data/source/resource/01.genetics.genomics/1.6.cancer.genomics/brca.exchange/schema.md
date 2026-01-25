@@ -36,14 +36,27 @@ BRCA Exchange aggregates BRCA1/BRCA2 variant classifications from multiple sourc
 
 ## Entity Relationship Overview
 
-```
-┌───────────────┐     ┌───────────────┐     ┌───────────────┐
-│   Variant     │────▶│ Classification│────▶│    Source     │
-├───────────────┤     ├───────────────┤     ├───────────────┤
-│ gene          │     │ significance  │     │ name          │
-│ hgvs_cdna     │     │ evidence      │     │ submitter     │
-│ hgvs_protein  │     │ date          │     │ date          │
-└───────────────┘     └───────────────┘     └───────────────┘
+```mermaid
+---
+config:
+  layout: elk
+---
+flowchart LR
+    accTitle: BRCA Exchange Data Model
+    accDescr: Shows relationships between variants, classifications, and data sources in BRCA Exchange
+
+    %% Style definitions using Cagle palette
+    classDef variant fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,color:#0D47A1
+    classDef classification fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
+    classDef source fill:#FFF8E1,stroke:#F57F17,stroke-width:2px,color:#E65100
+
+    %% Entities with fields
+    VAR["Variant<br/>────────────<br/>gene<br/>hgvs_cdna<br/>hgvs_protein"]:::variant
+    CLASS["Classification<br/>────────────<br/>significance<br/>evidence<br/>date"]:::classification
+    SRC["Source<br/>────────────<br/>name<br/>submitter<br/>date"]:::source
+
+    %% Relationships
+    VAR --> CLASS --> SRC
 ```
 
 ---

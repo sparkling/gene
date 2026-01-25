@@ -37,23 +37,31 @@ GTEx provides gene expression data and eQTL associations across 54 human tissues
 
 ## Entity Relationship Overview
 
-```
-┌───────────────┐     ┌───────────────┐     ┌───────────────┐
-│    Subject    │────▶│    Sample     │────▶│  Expression   │
-├───────────────┤     ├───────────────┤     ├───────────────┤
-│ SUBJID        │     │ SAMPID        │     │ gene_id       │
-│ SEX           │     │ SMTSD         │     │ TPM           │
-│ AGE           │     │ SMRIN         │     │ read_counts   │
-└───────────────┘     └───────────────┘     └───────────────┘
-                             │
-                             ▼
-                      ┌───────────────┐
-                      │     eQTL      │
-                      ├───────────────┤
-                      │ variant_id    │
-                      │ gene_id       │
-                      │ pval_nominal  │
-                      └───────────────┘
+```mermaid
+---
+config:
+  layout: elk
+---
+flowchart TD
+    accTitle: GTEx Data Model
+    accDescr: Shows relationships between subjects, samples, expression data, and eQTL associations in GTEx
+
+    %% Style definitions using Cagle palette
+    classDef subject fill:#F3E5F5,stroke:#7B1FA2,stroke-width:2px,color:#4A148C
+    classDef sample fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
+    classDef expression fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,color:#0D47A1
+    classDef eqtl fill:#FFF8E1,stroke:#F57F17,stroke-width:2px,color:#E65100
+
+    %% Entities with fields
+    SUBJ["Subject<br/>────────────<br/>SUBJID<br/>SEX<br/>AGE"]:::subject
+    SAMP["Sample<br/>────────────<br/>SAMPID<br/>SMTSD<br/>SMRIN"]:::sample
+    EXPR["Expression<br/>────────────<br/>gene_id<br/>TPM<br/>read_counts"]:::expression
+    EQTL["eQTL<br/>────────────<br/>variant_id<br/>gene_id<br/>pval_nominal"]:::eqtl
+
+    %% Relationships
+    SUBJ --> SAMP
+    SAMP --> EXPR
+    SAMP --> EQTL
 ```
 
 ---
