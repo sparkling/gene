@@ -630,7 +630,13 @@ tax:AccessMethodScheme a skos:ConceptScheme ;
         tax:S3Download ,
         tax:RsyncDownload ,
         tax:DirectDownload ,
-        tax:WebScraping .
+        tax:WebScraping ,
+        tax:RESTAPI ,
+        tax:SPARQL ,
+        tax:FTP ,
+        tax:WebInterface ,
+        tax:GitHubRepository ,
+        tax:GraphQL .
 
 tax:RestApi a skos:Concept ;
     skos:prefLabel "REST API" ;
@@ -696,6 +702,58 @@ tax:WebScraping a skos:Concept ;
     skos:inScheme tax:AccessMethodScheme ;
     skos:topConceptOf tax:AccessMethodScheme .
 
+tax:RESTAPI a skos:Concept ;
+    skos:prefLabel "REST API" ;
+    skos:altLabel "RESTful API" , "Web API" ;
+    skos:notation "rest-api" ;
+    rdfs:comment "RESTful web service interface for programmatic access." ;
+    skos:inScheme tax:AccessMethodScheme ;
+    skos:topConceptOf tax:AccessMethodScheme ;
+    skos:exactMatch tax:RestApi .
+
+tax:SPARQL a skos:Concept ;
+    skos:prefLabel "SPARQL Endpoint" ;
+    skos:altLabel "SPARQL" ;
+    skos:notation "sparql" ;
+    rdfs:comment "SPARQL query endpoint for RDF data access." ;
+    skos:inScheme tax:AccessMethodScheme ;
+    skos:topConceptOf tax:AccessMethodScheme ;
+    skos:exactMatch tax:SparqlEndpoint .
+
+tax:FTP a skos:Concept ;
+    skos:prefLabel "FTP Download" ;
+    skos:altLabel "FTP" , "Bulk FTP" ;
+    skos:notation "ftp" ;
+    rdfs:comment "File Transfer Protocol for bulk data download." ;
+    skos:inScheme tax:AccessMethodScheme ;
+    skos:topConceptOf tax:AccessMethodScheme ;
+    skos:exactMatch tax:FtpDownload .
+
+tax:WebInterface a skos:Concept ;
+    skos:prefLabel "Web Interface" ;
+    skos:altLabel "Web Portal" , "Browser Access" ;
+    skos:notation "web-interface" ;
+    rdfs:comment "Interactive web interface for browsing and querying data." ;
+    skos:inScheme tax:AccessMethodScheme ;
+    skos:topConceptOf tax:AccessMethodScheme .
+
+tax:GitHubRepository a skos:Concept ;
+    skos:prefLabel "GitHub Repository" ;
+    skos:altLabel "GitHub" , "Git Repository" ;
+    skos:notation "github" ;
+    rdfs:comment "GitHub or Git repository for version-controlled data access." ;
+    skos:inScheme tax:AccessMethodScheme ;
+    skos:topConceptOf tax:AccessMethodScheme .
+
+tax:GraphQL a skos:Concept ;
+    skos:prefLabel "GraphQL API" ;
+    skos:altLabel "GraphQL" ;
+    skos:notation "graphql" ;
+    rdfs:comment "GraphQL query interface for flexible data retrieval." ;
+    skos:inScheme tax:AccessMethodScheme ;
+    skos:topConceptOf tax:AccessMethodScheme ;
+    skos:exactMatch tax:GraphqlApi .
+
 # -----------------------------------------------------------------------------
 # Format Scheme
 # -----------------------------------------------------------------------------
@@ -711,7 +769,25 @@ tax:FormatScheme a skos:ConceptScheme ;
         tax:RdfFormat ,
         tax:VcfFormat ,
         tax:FastaFormat ,
-        tax:GffFormat .
+        tax:GffFormat ,
+        tax:BAM ,
+        tax:BED ,
+        tax:VCF ,
+        tax:FASTA ,
+        tax:FASTQ ,
+        tax:JSON ,
+        tax:XML ,
+        tax:TSV ,
+        tax:CSV ,
+        tax:Excel ,
+        tax:PDF ,
+        tax:HTML ,
+        tax:SDF ,
+        tax:MOL ,
+        tax:PDB ,
+        tax:SBML ,
+        tax:OWL ,
+        tax:RDF .
 
 tax:JsonFormat a skos:Concept ;
     skos:prefLabel "JSON" ;
@@ -775,6 +851,155 @@ tax:GffFormat a skos:Concept ;
     rdfs:comment "General Feature Format for genomic annotations." ;
     skos:inScheme tax:FormatScheme ;
     skos:topConceptOf tax:FormatScheme .
+
+tax:BAM a skos:Concept ;
+    skos:prefLabel "BAM" ;
+    skos:altLabel "Binary Alignment Map" ;
+    skos:notation "bam" ;
+    rdfs:comment "Binary Alignment Map format for storing aligned sequencing reads." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme .
+
+tax:BED a skos:Concept ;
+    skos:prefLabel "BED" ;
+    skos:altLabel "Browser Extensible Data" ;
+    skos:notation "bed" ;
+    rdfs:comment "Browser Extensible Data format for genomic interval data." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme .
+
+tax:VCF a skos:Concept ;
+    skos:prefLabel "VCF" ;
+    skos:altLabel "Variant Call Format" ;
+    skos:notation "vcf" ;
+    rdfs:comment "Variant Call Format for genetic variant data." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme ;
+    skos:exactMatch tax:VcfFormat .
+
+tax:FASTA a skos:Concept ;
+    skos:prefLabel "FASTA" ;
+    skos:notation "fasta" ;
+    rdfs:comment "FASTA format for nucleotide or protein sequences." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme ;
+    skos:exactMatch tax:FastaFormat .
+
+tax:FASTQ a skos:Concept ;
+    skos:prefLabel "FASTQ" ;
+    skos:notation "fastq" ;
+    rdfs:comment "FASTQ format for sequencing reads with quality scores." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme .
+
+tax:JSON a skos:Concept ;
+    skos:prefLabel "JSON" ;
+    skos:altLabel "JavaScript Object Notation" ;
+    skos:notation "json" ;
+    rdfs:comment "JavaScript Object Notation format for structured data." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme ;
+    skos:exactMatch tax:JsonFormat .
+
+tax:XML a skos:Concept ;
+    skos:prefLabel "XML" ;
+    skos:altLabel "Extensible Markup Language" ;
+    skos:notation "xml" ;
+    rdfs:comment "Extensible Markup Language format." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme ;
+    skos:exactMatch tax:XmlFormat .
+
+tax:TSV a skos:Concept ;
+    skos:prefLabel "TSV" ;
+    skos:altLabel "Tab-Separated Values" ;
+    skos:notation "tsv" ;
+    rdfs:comment "Tab-separated values tabular format." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme ;
+    skos:exactMatch tax:TsvFormat .
+
+tax:CSV a skos:Concept ;
+    skos:prefLabel "CSV" ;
+    skos:altLabel "Comma-Separated Values" ;
+    skos:notation "csv" ;
+    rdfs:comment "Comma-separated values tabular format." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme ;
+    skos:exactMatch tax:CsvFormat .
+
+tax:Excel a skos:Concept ;
+    skos:prefLabel "Excel" ;
+    skos:altLabel "XLSX" , "XLS" , "Microsoft Excel" ;
+    skos:notation "excel" ;
+    rdfs:comment "Microsoft Excel spreadsheet format." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme .
+
+tax:PDF a skos:Concept ;
+    skos:prefLabel "PDF" ;
+    skos:altLabel "Portable Document Format" ;
+    skos:notation "pdf" ;
+    rdfs:comment "Portable Document Format for fixed-layout documents." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme .
+
+tax:HTML a skos:Concept ;
+    skos:prefLabel "HTML" ;
+    skos:altLabel "HyperText Markup Language" ;
+    skos:notation "html" ;
+    rdfs:comment "HyperText Markup Language for web pages." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme .
+
+tax:SDF a skos:Concept ;
+    skos:prefLabel "SDF" ;
+    skos:altLabel "Structure-Data File" , "SD File" ;
+    skos:notation "sdf" ;
+    rdfs:comment "Structure-Data File format for chemical structures and associated data." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme .
+
+tax:MOL a skos:Concept ;
+    skos:prefLabel "MOL" ;
+    skos:altLabel "Molfile" , "MDL Molfile" ;
+    skos:notation "mol" ;
+    rdfs:comment "Molfile format for chemical molecular structure." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme .
+
+tax:PDB a skos:Concept ;
+    skos:prefLabel "PDB" ;
+    skos:altLabel "Protein Data Bank Format" ;
+    skos:notation "pdb" ;
+    rdfs:comment "Protein Data Bank format for 3D macromolecular structures." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme .
+
+tax:SBML a skos:Concept ;
+    skos:prefLabel "SBML" ;
+    skos:altLabel "Systems Biology Markup Language" ;
+    skos:notation "sbml" ;
+    rdfs:comment "Systems Biology Markup Language for computational models of biological systems." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme .
+
+tax:OWL a skos:Concept ;
+    skos:prefLabel "OWL" ;
+    skos:altLabel "Web Ontology Language" ;
+    skos:notation "owl" ;
+    rdfs:comment "Web Ontology Language for semantic web ontologies." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme .
+
+tax:RDF a skos:Concept ;
+    skos:prefLabel "RDF" ;
+    skos:altLabel "Resource Description Framework" , "Turtle" , "N-Triples" , "RDF/XML" ;
+    skos:notation "rdf" ;
+    rdfs:comment "RDF formats including Turtle, N-Triples, and RDF/XML." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme ;
+    skos:exactMatch tax:RdfFormat .
 
 # -----------------------------------------------------------------------------
 # License Type Scheme
@@ -934,3 +1159,39 @@ tax:Irregular a skos:Concept ;
     rdfs:comment "Updated irregularly or as needed without fixed schedule." ;
     skos:inScheme tax:UpdateFrequencyScheme ;
     skos:topConceptOf tax:UpdateFrequencyScheme .
+
+# -----------------------------------------------------------------------------
+# Quality Indicator Scheme
+# -----------------------------------------------------------------------------
+
+tax:QualityIndicatorScheme a skos:ConceptScheme ;
+    skos:prefLabel "Quality Indicators" ;
+    rdfs:comment "Quality metrics and confidence indicators used by data sources." ;
+    skos:hasTopConcept
+        tax:pLDDT ,
+        tax:QMEAN ,
+        tax:Coverage .
+
+tax:pLDDT a skos:Concept ;
+    skos:prefLabel "pLDDT" ;
+    skos:altLabel "predicted Local Distance Difference Test" ;
+    skos:notation "plddt" ;
+    rdfs:comment "AlphaFold confidence score (0-100) indicating predicted local structure accuracy. Score >90 indicates high confidence, 70-90 moderate, <70 low." ;
+    skos:inScheme tax:QualityIndicatorScheme ;
+    skos:topConceptOf tax:QualityIndicatorScheme .
+
+tax:QMEAN a skos:Concept ;
+    skos:prefLabel "QMEAN" ;
+    skos:altLabel "Qualitative Model Energy Analysis" ;
+    skos:notation "qmean" ;
+    rdfs:comment "Global and local quality estimates for protein structure models. Score range typically -4 to 0, where 0 is best." ;
+    skos:inScheme tax:QualityIndicatorScheme ;
+    skos:topConceptOf tax:QualityIndicatorScheme .
+
+tax:Coverage a skos:Concept ;
+    skos:prefLabel "Coverage" ;
+    skos:altLabel "Sequence Coverage" , "Genome Coverage" ;
+    skos:notation "coverage" ;
+    rdfs:comment "Percentage or fraction of target sequence/genome that is represented or aligned in the data." ;
+    skos:inScheme tax:QualityIndicatorScheme ;
+    skos:topConceptOf tax:QualityIndicatorScheme .
