@@ -20,6 +20,7 @@
 @prefix access: <https://gene.ai/access/> .
 @prefix xref: <https://gene.ai/xref/> .
 @prefix spdx: <http://spdx.org/licenses/> .
+@prefix maint: <https://gene.ai/ontology/datasource/maintainer/> .
 
 # =============================================================================
 # LICENSES
@@ -113,7 +114,7 @@ data:foodb a ds:DataSource ;
     ds:tag "nutrients" ;
     ds:tag "phytochemicals" ;
     ds:lastUpdated "2023-01-01"^^xsd:date ;
-    ds:maintainer "Wishart Research Group, University of Alberta" ;
+    ds:maintainedBy maint:WishartLab ;
     ds:website <https://foodb.ca> ;
     ds:hasLicense license:CC-BY-NC-4.0 ;
     ds:foodCount "~1000"^^xsd:string ;
@@ -238,7 +239,7 @@ data:open-food-facts a ds:DataSource ;
     ds:tag "crowdsourced" ;
     ds:tag "open-data" ;
     ds:lastUpdated "2026-01-25"^^xsd:date ;
-    ds:maintainer "Open Food Facts Contributors" ;
+    ds:maintainedBy maint:OpenFoodFacts ;
     ds:website <https://world.openfoodfacts.org> ;
     ds:hasLicense license:ODbL-1.0 ;
     ds:productCount ">3000000"^^xsd:string ;
@@ -323,7 +324,7 @@ data:dsld a ds:DataSource ;
     ds:tag "ods" ;
     ds:tag "ingredients" ;
     ds:lastUpdated "2026-01-25"^^xsd:date ;
-    ds:maintainer "NIH Office of Dietary Supplements (ODS)" ;
+    ds:maintainedBy maint:NIH_ODS ;
     ds:website <https://dsld.od.nih.gov> ;
     ds:hasLicense license:CC0-1.0 ;
     ds:productCount "150000+"^^xsd:string ;
@@ -403,7 +404,7 @@ data:consumerlab a ds:DataSource ;
     ds:tag "reviews" ;
     ds:tag "consumer" ;
     ds:lastUpdated "2026-01-25"^^xsd:date ;
-    ds:maintainer "ConsumerLab.com, LLC" ;
+    ds:maintainedBy maint:ConsumerLab ;
     ds:website <https://www.consumerlab.com> ;
     ds:hasLicense license:ConsumerLab-Proprietary ;
     ds:productsTested "6500+"^^xsd:string ;
@@ -470,7 +471,7 @@ data:natural-medicines a ds:DataSource ;
     ds:tag "safety" ;
     ds:tag "interactions" ;
     ds:lastUpdated "2026-01-25"^^xsd:date ;
-    ds:maintainer "TRC Healthcare" ;
+    ds:maintainedBy maint:TRCHealthcare ;
     ds:website <https://naturalmedicines.therapeuticresearch.com> ;
     ds:hasLicense license:NaturalMedicines-Proprietary ;
     ds:monographCount "1400+"^^xsd:string ;
@@ -550,7 +551,7 @@ data:ebasis a ds:DataSource ;
     ds:tag "europe" ;
     ds:tag "composition" ;
     ds:lastUpdated "2022-01-01"^^xsd:date ;
-    ds:maintainer "EuroFIR AISBL" ;
+    ds:maintainedBy maint:EuroFIR ;
     ds:website <https://ebasis.eurofir.org> ;
     ds:hasLicense license:EuroFIR-DUA ;
     ds:compoundCount "300+"^^xsd:string ;
@@ -643,7 +644,7 @@ data:hmdb a ds:DataSource ;
     ds:tag "biomarkers" ;
     ds:tag "spectroscopy" ;
     ds:lastUpdated "2024-01-01"^^xsd:date ;
-    ds:maintainer "Wishart Research Group, University of Alberta" ;
+    ds:maintainedBy maint:WishartLab ;
     ds:website <https://hmdb.ca> ;
     ds:hasLicense license:CC-BY-NC-4.0 ;
     ds:metaboliteCount "220000+"^^xsd:string ;
@@ -755,7 +756,7 @@ data:exposome-explorer a ds:DataSource ;
     ds:tag "environment" ;
     ds:tag "metabolomics" ;
     ds:lastUpdated "2023-01-01"^^xsd:date ;
-    ds:maintainer "International Agency for Research on Cancer (IARC/WHO)" ;
+    ds:maintainedBy maint:IARC ;
     ds:website <http://exposome-explorer.iarc.fr> ;
     ds:hasLicense license:CC-BY-4.0 ;
     ds:biomarkerCount "900+"^^xsd:string ;

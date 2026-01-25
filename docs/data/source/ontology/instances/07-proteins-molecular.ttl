@@ -22,6 +22,7 @@
 @prefix id: <https://gene.ai/data/identifier/> .
 @prefix usecase: <https://gene.ai/data/usecase/> .
 @prefix limitation: <https://gene.ai/data/limitation/> .
+@prefix maint: <https://gene.ai/ontology/datasource/maintainer/> .
 
 # =============================================================================
 # CATEGORY AND SUBCATEGORIES
@@ -67,7 +68,7 @@ data:refseq a ds:DataSource ;
     ds:belongsToSubcategory subcat:ProteinSequencesAnnotations ;
     ds:tier tax:Tier1 ;
     ds:status tax:Active ;
-    ds:maintainer "National Center for Biotechnology Information (NCBI)" ;
+    ds:maintainedBy maint:NCBI ;
     ds:website "https://www.ncbi.nlm.nih.gov/refseq" ;
     ds:updateFrequency "Bimonthly (6x/year)" ;
     ds:lastUpdated "2026-01-23"^^xsd:date ;
@@ -245,7 +246,7 @@ data:uniprot a ds:DataSource ;
     ds:belongsToSubcategory subcat:ProteinSequencesAnnotations ;
     ds:tier tax:Tier1 ;
     ds:status tax:Active ;
-    ds:maintainer "UniProt Consortium (EMBL-EBI, SIB, PIR)" ;
+    ds:maintainedBy maint:UniProtConsortium ;
     ds:website "https://www.uniprot.org" ;
     ds:updateFrequency "Monthly (every 4 weeks)" ;
     ds:lastUpdated "2026-01-23"^^xsd:date ;
@@ -501,7 +502,7 @@ data:alphafold-db a ds:DataSource ;
     ds:belongsToSubcategory subcat:ProteinStructures ;
     ds:tier tax:Tier1 ;
     ds:status tax:Active ;
-    ds:maintainer "EMBL-EBI and DeepMind" ;
+    ds:maintainedBy maint:AlphaFold ;
     ds:website "https://alphafold.ebi.ac.uk" ;
     ds:updateFrequency "Annually with quarterly organism additions" ;
     ds:lastUpdated "2023"^^xsd:gYear ;
@@ -659,7 +660,7 @@ data:pdb a ds:DataSource ;
     ds:belongsToSubcategory subcat:ProteinStructures ;
     ds:tier tax:Tier1 ;
     ds:status tax:Active ;
-    ds:maintainer "Worldwide Protein Data Bank (wwPDB)" ;
+    ds:maintainedBy maint:wwPDB ;
     ds:website "https://www.rcsb.org" ;
     ds:updateFrequency "Weekly (Wednesdays)" ;
     ds:lastUpdated "2026-01-23"^^xsd:date ;
@@ -840,7 +841,7 @@ data:swiss-model a ds:DataSource ;
     ds:belongsToSubcategory subcat:ProteinStructures ;
     ds:tier tax:Tier2 ;
     ds:status tax:Active ;
-    ds:maintainer "Swiss Institute of Bioinformatics (SIB)" ;
+    ds:maintainedBy maint:SIB ;
     ds:website "https://swissmodel.expasy.org" ;
     ds:updateFrequency "Continuous with monthly repository refresh" ;
     ds:lastUpdated "2026-01-23"^^xsd:date ;

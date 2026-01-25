@@ -23,6 +23,7 @@
 @prefix ident: <https://gene.ai/identifier/> .
 @prefix usecase: <https://gene.ai/usecase/> .
 @prefix limitation: <https://gene.ai/limitation/> .
+@prefix maint: <https://gene.ai/ontology/datasource/maintainer/> .
 
 # =============================================================================
 # LICENSES
@@ -76,7 +77,7 @@ data:gmrepo a ds:DataSource ;
     ds:lastUpdated "2023"^^xsd:gYear ;
     ds:tag "gut", "microbiome", "metagenomics", "curated", "phenotypes" ;
     ds:maintainerEmail "weihuachen@hust.edu.cn" ;
-    ds:maintainerInstitution "Huazhong University of Science and Technology" ;
+    ds:maintainedBy maint:HuazhongUniversity ;
     ds:website <https://gmrepo.humangut.info> ;
     ds:updateFrequency "quarterly" ;
     ds:hasLicense license:CC-BY-NC-3.0 ;
@@ -597,7 +598,7 @@ data:homd a ds:DataSource ;
     ds:status tax:Active ;
     ds:lastUpdated "ongoing"^^xsd:string ;
     ds:tag "oral", "microbiome", "dental", "taxonomy", "genomes" ;
-    ds:maintainerInstitution "Forsyth Institute" ;
+    ds:maintainedBy maint:ForsythInstitute ;
     ds:website <https://www.homd.org> ;
     ds:updateFrequency "quarterly (16S), continuous (genomes)" ;
     ds:hasLicense license:AcademicUse ;

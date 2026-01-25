@@ -1,0 +1,564 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ds: <https://gene.ai/ontology/datasource#> .
+@prefix maint: <https://gene.ai/ontology/datasource/maintainer/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+
+# =============================================================================
+# Maintainer Organizations Vocabulary
+# =============================================================================
+# This file defines all maintainer organizations as ds:Maintainer instances.
+# Each maintainer has an IRI-safe identifier, a full label, and a short name.
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# National Institutes / Government Agencies (US)
+# -----------------------------------------------------------------------------
+
+maint:NCBI a ds:Maintainer ;
+    rdfs:label "National Center for Biotechnology Information (NCBI)" ;
+    foaf:name "NCBI" .
+
+maint:NLM a ds:Maintainer ;
+    rdfs:label "National Library of Medicine (NLM)" ;
+    foaf:name "NLM" .
+
+maint:NCBI_NIH a ds:Maintainer ;
+    rdfs:label "NCBI/NIH" ;
+    foaf:name "NCBI/NIH" .
+
+maint:NCBI_NLM_NIH a ds:Maintainer ;
+    rdfs:label "NCBI/NLM/NIH" ;
+    foaf:name "NCBI/NLM/NIH" .
+
+maint:NIH_ODS a ds:Maintainer ;
+    rdfs:label "NIH Office of Dietary Supplements (ODS)" ;
+    foaf:name "NIH ODS" .
+
+maint:USDA_ARS a ds:Maintainer ;
+    rdfs:label "USDA Agricultural Research Service" ;
+    foaf:name "USDA ARS" .
+
+maint:FDA a ds:Maintainer ;
+    rdfs:label "U.S. Food and Drug Administration (FDA)" ;
+    foaf:name "FDA" .
+
+maint:NHGRI_EBI a ds:Maintainer ;
+    rdfs:label "NHGRI-EBI" ;
+    foaf:name "NHGRI-EBI" .
+
+maint:NHLBI_UMich a ds:Maintainer ;
+    rdfs:label "NHLBI / University of Michigan" ;
+    foaf:name "NHLBI/UMich" .
+
+maint:RoadmapEpigenomics a ds:Maintainer ;
+    rdfs:label "Roadmap Epigenomics Consortium (NIH)" ;
+    foaf:name "Roadmap Epigenomics" .
+
+# -----------------------------------------------------------------------------
+# EMBL / EBI and Affiliates
+# -----------------------------------------------------------------------------
+
+maint:EMBL a ds:Maintainer ;
+    rdfs:label "European Molecular Biology Laboratory (EMBL)" ;
+    foaf:name "EMBL" .
+
+maint:EMBL_EBI a ds:Maintainer ;
+    rdfs:label "EMBL-EBI" ;
+    foaf:name "EMBL-EBI" .
+
+maint:EMBL_EBI_DeepMind a ds:Maintainer ;
+    rdfs:label "EMBL-EBI and DeepMind" ;
+    foaf:name "EMBL-EBI/DeepMind" .
+
+maint:EMBL_EBI_Sanger_GSK a ds:Maintainer ;
+    rdfs:label "EMBL-EBI / Wellcome Sanger Institute / GSK" ;
+    foaf:name "EMBL-EBI/Sanger/GSK" .
+
+maint:EMBL_EBI_WHO a ds:Maintainer ;
+    rdfs:label "EMBL-EBI / WHO Nomenclature Committee" ;
+    foaf:name "EMBL-EBI/WHO" .
+
+maint:EMBL_SIB_KU a ds:Maintainer ;
+    rdfs:label "EMBL, SIB, KU" ;
+    foaf:name "EMBL/SIB/KU" .
+
+# -----------------------------------------------------------------------------
+# Swiss Institute of Bioinformatics
+# -----------------------------------------------------------------------------
+
+maint:SIB a ds:Maintainer ;
+    rdfs:label "Swiss Institute of Bioinformatics (SIB)" ;
+    foaf:name "SIB" .
+
+# -----------------------------------------------------------------------------
+# Wellcome Sanger Institute
+# -----------------------------------------------------------------------------
+
+maint:WellcomeSanger a ds:Maintainer ;
+    rdfs:label "Wellcome Sanger Institute" ;
+    foaf:name "Wellcome Sanger" .
+
+maint:WellcomeSanger_Cambridge a ds:Maintainer ;
+    rdfs:label "Wellcome Trust Sanger Institute / University of Cambridge" ;
+    foaf:name "Sanger/Cambridge" .
+
+# -----------------------------------------------------------------------------
+# UniProt Consortium
+# -----------------------------------------------------------------------------
+
+maint:UniProt a ds:Maintainer ;
+    rdfs:label "UniProt Consortium" ;
+    foaf:name "UniProt" .
+
+maint:UniProt_Full a ds:Maintainer ;
+    rdfs:label "UniProt Consortium (EMBL-EBI, SIB, PIR)" ;
+    foaf:name "UniProt Consortium" .
+
+# -----------------------------------------------------------------------------
+# Broad Institute and GTEx
+# -----------------------------------------------------------------------------
+
+maint:BroadInstitute a ds:Maintainer ;
+    rdfs:label "Broad Institute" ;
+    foaf:name "Broad Institute" .
+
+maint:GTEx a ds:Maintainer ;
+    rdfs:label "GTEx Consortium / Broad Institute" ;
+    foaf:name "GTEx" .
+
+# -----------------------------------------------------------------------------
+# Allen Institute
+# -----------------------------------------------------------------------------
+
+maint:AI2 a ds:Maintainer ;
+    rdfs:label "Allen Institute for AI (AI2)" ;
+    foaf:name "AI2" .
+
+maint:AllenBrainScience a ds:Maintainer ;
+    rdfs:label "Allen Institute for Brain Science" ;
+    foaf:name "Allen Brain Science" .
+
+# -----------------------------------------------------------------------------
+# Memorial Sloan Kettering Cancer Center
+# -----------------------------------------------------------------------------
+
+maint:MSKCC a ds:Maintainer ;
+    rdfs:label "Memorial Sloan Kettering Cancer Center" ;
+    foaf:name "MSKCC" .
+
+maint:MSKCC_cBioPortal a ds:Maintainer ;
+    rdfs:label "Memorial Sloan Kettering Cancer Center / cBioPortal Team" ;
+    foaf:name "cBioPortal" .
+
+# -----------------------------------------------------------------------------
+# Monarch Initiative
+# -----------------------------------------------------------------------------
+
+maint:MonarchInitiative a ds:Maintainer ;
+    rdfs:label "Monarch Initiative" ;
+    foaf:name "Monarch Initiative" .
+
+maint:MonarchInitiative_Jackson a ds:Maintainer ;
+    rdfs:label "Monarch Initiative / Jackson Laboratory" ;
+    foaf:name "Monarch/Jackson" .
+
+# -----------------------------------------------------------------------------
+# University of Alberta / Wishart Lab
+# -----------------------------------------------------------------------------
+
+maint:WishartLab a ds:Maintainer ;
+    rdfs:label "Wishart Lab, University of Alberta" ;
+    foaf:name "Wishart Lab" .
+
+maint:WishartResearchGroup a ds:Maintainer ;
+    rdfs:label "Wishart Research Group, University of Alberta" ;
+    foaf:name "Wishart Research Group" .
+
+maint:DrugBank a ds:Maintainer ;
+    rdfs:label "DrugBank Online / University of Alberta" ;
+    foaf:name "DrugBank" .
+
+maint:BioGRID a ds:Maintainer ;
+    rdfs:label "BioGRID Team (University of Alberta)" ;
+    foaf:name "BioGRID" .
+
+# -----------------------------------------------------------------------------
+# Orphanet / INSERM
+# -----------------------------------------------------------------------------
+
+maint:Orphanet a ds:Maintainer ;
+    rdfs:label "Orphanet / INSERM Consortium" ;
+    foaf:name "Orphanet" .
+
+# -----------------------------------------------------------------------------
+# Johns Hopkins University
+# -----------------------------------------------------------------------------
+
+maint:JohnsHopkins a ds:Maintainer ;
+    rdfs:label "Johns Hopkins University / McKusick-Nathans Institute" ;
+    foaf:name "Johns Hopkins" .
+
+# -----------------------------------------------------------------------------
+# Stanford University
+# -----------------------------------------------------------------------------
+
+maint:Stanford a ds:Maintainer ;
+    rdfs:label "Stanford University" ;
+    foaf:name "Stanford" .
+
+# -----------------------------------------------------------------------------
+# University of Toronto
+# -----------------------------------------------------------------------------
+
+maint:BaderLab a ds:Maintainer ;
+    rdfs:label "Bader Lab (University of Toronto)" ;
+    foaf:name "Bader Lab" .
+
+# -----------------------------------------------------------------------------
+# Charite Berlin
+# -----------------------------------------------------------------------------
+
+maint:Charite a ds:Maintainer ;
+    rdfs:label "Charite - Universitatsmedizin Berlin" ;
+    foaf:name "Charite Berlin" .
+
+# -----------------------------------------------------------------------------
+# University of Washington
+# -----------------------------------------------------------------------------
+
+maint:UWash_BIH a ds:Maintainer ;
+    rdfs:label "University of Washington / Berlin Institute of Health" ;
+    foaf:name "UWash/BIH" .
+
+maint:WashingtonUSoM a ds:Maintainer ;
+    rdfs:label "Washington University School of Medicine" ;
+    foaf:name "WashU Medicine" .
+
+# -----------------------------------------------------------------------------
+# University of Illinois at Chicago
+# -----------------------------------------------------------------------------
+
+maint:UIC a ds:Maintainer ;
+    rdfs:label "University of Illinois at Chicago" ;
+    foaf:name "UIC" .
+
+# -----------------------------------------------------------------------------
+# Chinese Universities
+# -----------------------------------------------------------------------------
+
+maint:HUST a ds:Maintainer ;
+    rdfs:label "Huazhong University of Science and Technology" ;
+    foaf:name "HUST" .
+
+maint:ZhejiangU_IDRBLab a ds:Maintainer ;
+    rdfs:label "Zhejiang University / IDRBLab" ;
+    foaf:name "IDRBLab" .
+
+maint:WeihuaChen a ds:Maintainer ;
+    rdfs:label "weihuachen@hust.edu.cn" ;
+    foaf:name "Weihua Chen" .
+
+# -----------------------------------------------------------------------------
+# Friedrich Schiller University Jena
+# -----------------------------------------------------------------------------
+
+maint:SteinbeckLab a ds:Maintainer ;
+    rdfs:label "Steinbeck Lab, Friedrich Schiller University Jena" ;
+    foaf:name "Steinbeck Lab" .
+
+# -----------------------------------------------------------------------------
+# Kanehisa Laboratories (KEGG)
+# -----------------------------------------------------------------------------
+
+maint:KanehisaLab a ds:Maintainer ;
+    rdfs:label "Kanehisa Laboratories" ;
+    foaf:name "Kanehisa Lab" .
+
+# -----------------------------------------------------------------------------
+# Reactome
+# -----------------------------------------------------------------------------
+
+maint:Reactome a ds:Maintainer ;
+    rdfs:label "Reactome Team (Ontario Institute for Cancer Research, EMBL-EBI)" ;
+    foaf:name "Reactome" .
+
+# -----------------------------------------------------------------------------
+# GO Consortium
+# -----------------------------------------------------------------------------
+
+maint:GOConsortium a ds:Maintainer ;
+    rdfs:label "GO Consortium" ;
+    foaf:name "GO Consortium" .
+
+# -----------------------------------------------------------------------------
+# WikiPathways
+# -----------------------------------------------------------------------------
+
+maint:WikiPathways a ds:Maintainer ;
+    rdfs:label "WikiPathways Team (Gladstone Institutes, Maastricht University)" ;
+    foaf:name "WikiPathways" .
+
+# -----------------------------------------------------------------------------
+# ENCODE Consortium
+# -----------------------------------------------------------------------------
+
+maint:ENCODE a ds:Maintainer ;
+    rdfs:label "ENCODE Consortium" ;
+    foaf:name "ENCODE" .
+
+# -----------------------------------------------------------------------------
+# IUPHAR/BPS
+# -----------------------------------------------------------------------------
+
+maint:IUPHAR_BPS a ds:Maintainer ;
+    rdfs:label "IUPHAR/BPS" ;
+    foaf:name "IUPHAR/BPS" .
+
+# -----------------------------------------------------------------------------
+# JASPAR
+# -----------------------------------------------------------------------------
+
+maint:JASPAR a ds:Maintainer ;
+    rdfs:label "JASPAR Team (University of Oslo, NCMM)" ;
+    foaf:name "JASPAR" .
+
+# -----------------------------------------------------------------------------
+# Pharmacogenomics Resources
+# -----------------------------------------------------------------------------
+
+maint:CPIC a ds:Maintainer ;
+    rdfs:label "CPIC (hosted at cpicpgx.org)" ;
+    foaf:name "CPIC" .
+
+maint:PharmVar a ds:Maintainer ;
+    rdfs:label "PharmVar Consortium" ;
+    foaf:name "PharmVar" .
+
+# -----------------------------------------------------------------------------
+# DisGeNET
+# -----------------------------------------------------------------------------
+
+maint:DisGeNET a ds:Maintainer ;
+    rdfs:label "DisGeNET / Pompeu Fabra University" ;
+    foaf:name "DisGeNET" .
+
+# -----------------------------------------------------------------------------
+# BindingDB
+# -----------------------------------------------------------------------------
+
+maint:BindingDB a ds:Maintainer ;
+    rdfs:label "BindingDB" ;
+    foaf:name "BindingDB" .
+
+# -----------------------------------------------------------------------------
+# BIDD Group
+# -----------------------------------------------------------------------------
+
+maint:BIDDGroup a ds:Maintainer ;
+    rdfs:label "BIDD Group" ;
+    foaf:name "BIDD Group" .
+
+# -----------------------------------------------------------------------------
+# BRCA Exchange
+# -----------------------------------------------------------------------------
+
+maint:BRCAExchange a ds:Maintainer ;
+    rdfs:label "BRCA Exchange / GA4GH" ;
+    foaf:name "BRCA Exchange" .
+
+# -----------------------------------------------------------------------------
+# Genomics England
+# -----------------------------------------------------------------------------
+
+maint:GenomicsEngland a ds:Maintainer ;
+    rdfs:label "Genomics England" ;
+    foaf:name "Genomics England" .
+
+# -----------------------------------------------------------------------------
+# IGSR
+# -----------------------------------------------------------------------------
+
+maint:IGSR a ds:Maintainer ;
+    rdfs:label "IGSR (International Genome Sample Resource)" ;
+    foaf:name "IGSR" .
+
+# -----------------------------------------------------------------------------
+# eQTLGen
+# -----------------------------------------------------------------------------
+
+maint:eQTLGen a ds:Maintainer ;
+    rdfs:label "eQTLGen Consortium" ;
+    foaf:name "eQTLGen" .
+
+# -----------------------------------------------------------------------------
+# SynGO
+# -----------------------------------------------------------------------------
+
+maint:SynGO a ds:Maintainer ;
+    rdfs:label "SynGO Consortium" ;
+    foaf:name "SynGO" .
+
+# -----------------------------------------------------------------------------
+# Psychiatric Genomics Consortium
+# -----------------------------------------------------------------------------
+
+maint:PGC a ds:Maintainer ;
+    rdfs:label "Psychiatric Genomics Consortium" ;
+    foaf:name "PGC" .
+
+# -----------------------------------------------------------------------------
+# UK Biobank
+# -----------------------------------------------------------------------------
+
+maint:UKBiobank a ds:Maintainer ;
+    rdfs:label "UK Biobank Ltd" ;
+    foaf:name "UK Biobank" .
+
+# -----------------------------------------------------------------------------
+# wwPDB
+# -----------------------------------------------------------------------------
+
+maint:wwPDB a ds:Maintainer ;
+    rdfs:label "Worldwide Protein Data Bank (wwPDB)" ;
+    foaf:name "wwPDB" .
+
+# -----------------------------------------------------------------------------
+# Google DeepMind
+# -----------------------------------------------------------------------------
+
+maint:GoogleDeepMind a ds:Maintainer ;
+    rdfs:label "Google DeepMind" ;
+    foaf:name "DeepMind" .
+
+# -----------------------------------------------------------------------------
+# Illumina
+# -----------------------------------------------------------------------------
+
+maint:Illumina a ds:Maintainer ;
+    rdfs:label "Illumina" ;
+    foaf:name "Illumina" .
+
+# -----------------------------------------------------------------------------
+# INRAE (French National Research Institute)
+# -----------------------------------------------------------------------------
+
+maint:INRAE a ds:Maintainer ;
+    rdfs:label "INRAE" ;
+    foaf:name "INRAE" .
+
+maint:INRAE_PhenolExplorer a ds:Maintainer ;
+    rdfs:label "INRAE / Phenol-Explorer Team" ;
+    foaf:name "Phenol-Explorer" .
+
+# -----------------------------------------------------------------------------
+# EuroFIR
+# -----------------------------------------------------------------------------
+
+maint:EuroFIR a ds:Maintainer ;
+    rdfs:label "EuroFIR AISBL" ;
+    foaf:name "EuroFIR" .
+
+# -----------------------------------------------------------------------------
+# European Medicines Agency
+# -----------------------------------------------------------------------------
+
+maint:EMA a ds:Maintainer ;
+    rdfs:label "European Medicines Agency (EMA)" ;
+    foaf:name "EMA" .
+
+# -----------------------------------------------------------------------------
+# Europe PMC
+# -----------------------------------------------------------------------------
+
+maint:EuropePMC a ds:Maintainer ;
+    rdfs:label "Europe PMC Funders' Group" ;
+    foaf:name "Europe PMC" .
+
+# -----------------------------------------------------------------------------
+# WHO / IARC
+# -----------------------------------------------------------------------------
+
+maint:WHO a ds:Maintainer ;
+    rdfs:label "World Health Organization (WHO)" ;
+    foaf:name "WHO" .
+
+maint:IARC a ds:Maintainer ;
+    rdfs:label "International Agency for Research on Cancer (IARC/WHO)" ;
+    foaf:name "IARC" .
+
+# -----------------------------------------------------------------------------
+# KNMP (Dutch Pharmacists)
+# -----------------------------------------------------------------------------
+
+maint:KNMP a ds:Maintainer ;
+    rdfs:label "KNMP (Royal Dutch Pharmacists Association)" ;
+    foaf:name "KNMP" .
+
+# -----------------------------------------------------------------------------
+# Other Research Labs
+# -----------------------------------------------------------------------------
+
+maint:LiuLab a ds:Maintainer ;
+    rdfs:label "Liu Lab (USF)" ;
+    foaf:name "Liu Lab" .
+
+maint:LininstonLab a ds:Maintainer ;
+    rdfs:label "Lininston Lab" ;
+    foaf:name "Lininston Lab" .
+
+maint:DorresteinLab a ds:Maintainer ;
+    rdfs:label "UCSD Dorrestein Lab" ;
+    foaf:name "Dorrestein Lab" .
+
+maint:ForsythInstitute a ds:Maintainer ;
+    rdfs:label "Forsyth Institute" ;
+    foaf:name "Forsyth Institute" .
+
+# -----------------------------------------------------------------------------
+# LOTUS Initiative
+# -----------------------------------------------------------------------------
+
+maint:LOTUS a ds:Maintainer ;
+    rdfs:label "LOTUS Initiative" ;
+    foaf:name "LOTUS" .
+
+# -----------------------------------------------------------------------------
+# OurResearch
+# -----------------------------------------------------------------------------
+
+maint:OurResearch a ds:Maintainer ;
+    rdfs:label "OurResearch" ;
+    foaf:name "OurResearch" .
+
+# -----------------------------------------------------------------------------
+# TRC Healthcare
+# -----------------------------------------------------------------------------
+
+maint:TRCHealthcare a ds:Maintainer ;
+    rdfs:label "TRC Healthcare" ;
+    foaf:name "TRC Healthcare" .
+
+# -----------------------------------------------------------------------------
+# ConsumerLab
+# -----------------------------------------------------------------------------
+
+maint:ConsumerLab a ds:Maintainer ;
+    rdfs:label "ConsumerLab.com, LLC" ;
+    foaf:name "ConsumerLab" .
+
+# -----------------------------------------------------------------------------
+# Open Food Facts
+# -----------------------------------------------------------------------------
+
+maint:OpenFoodFacts a ds:Maintainer ;
+    rdfs:label "Open Food Facts Contributors" ;
+    foaf:name "Open Food Facts" .
+
+# -----------------------------------------------------------------------------
+# Wikimedia Foundation
+# -----------------------------------------------------------------------------
+
+maint:Wikimedia a ds:Maintainer ;
+    rdfs:label "Wikimedia Foundation" ;
+    foaf:name "Wikimedia" .

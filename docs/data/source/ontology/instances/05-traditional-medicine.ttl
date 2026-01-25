@@ -23,6 +23,7 @@
 @prefix identifier: <https://gene.ai/data/identifier/> .
 @prefix usecase: <https://gene.ai/data/usecase/> .
 @prefix limitation: <https://gene.ai/data/limitation/> .
+@prefix maint: <https://gene.ai/ontology/datasource/maintainer/> .
 
 # =============================================================================
 # CATEGORY: Traditional Medicine
@@ -928,7 +929,7 @@ data:napralert a ds:DataSource ;
     ds:tag "literature" ;
     ds:tag "bioactivity" ;
     ds:website <https://napralert.pharmacy.uic.edu/> ;
-    ds:maintainer "University of Illinois at Chicago" ;
+    ds:maintainedBy maint:UniversityOfIllinoisChicago ;
     ds:updateFrequency "Continuous curation" ;
     ds:hasLicense license:SubscriptionBased ;
     ds:lastUpdated "2026-01-25"^^xsd:date ;
@@ -998,7 +999,7 @@ data:ema-herbal a ds:DataSource ;
     ds:tag "monographs" ;
     ds:tag "traditional-use" ;
     ds:website <https://www.ema.europa.eu/en/human-regulatory-overview/herbal-medicinal-products> ;
-    ds:maintainer "European Medicines Agency (EMA)" ;
+    ds:maintainedBy maint:EMA ;
     ds:updateFrequency "Regulatory review cycles" ;
     ds:hasLicense license:PublicDomain ;
     ds:lastUpdated "2026-01-25"^^xsd:date ;
