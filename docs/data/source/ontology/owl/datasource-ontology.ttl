@@ -494,6 +494,18 @@ ds:recordCount a owl:DatatypeProperty, owl:FunctionalProperty ;
     rdfs:domain ds:Version ;
     rdfs:range xsd:long .
 
+ds:approximateRecordCount a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "approximate record count" ;
+    rdfs:comment "Approximate total number of records in the data source (human-readable string with magnitude, e.g., '10M+', '500K')." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:string .
+
+ds:updateFrequencyLabel a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "update frequency label" ;
+    rdfs:comment "Human-readable description of update frequency (e.g., 'Weekly', 'Monthly', 'Quarterly')." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:string .
+
 # -----------------------------------------------------------------------------
 # License Properties
 # -----------------------------------------------------------------------------
