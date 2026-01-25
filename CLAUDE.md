@@ -747,6 +747,35 @@ EOF
 - Documents progress incrementally
 - Enables safe experimentation
 
+## 🔍 AUTO-TRIGGER SKILLS (CRITICAL)
+
+**BEFORE doing manual work, CHECK if a skill handles the query:**
+
+| User Keywords | Skill to Invoke | Command |
+|---------------|-----------------|---------|
+| "data source", "datasource", "database", "find sources", "which databases", "TCM sources", "genomics databases" | **datasource** | `/datasource` or `Skill("datasource")` |
+| "semantic search", "similar to", "find related", "embedding search" | **ruvector-search** | `/ruvector-search` |
+
+**MANDATORY**: When user asks about data sources, databases, or querying the knowledge graph:
+1. **IMMEDIATELY invoke the datasource skill** - do NOT start manual file reading
+2. The skill will load context and guide the query process
+3. Follow the skill's methodology, not ad-hoc approaches
+
+**Example - CORRECT behavior:**
+```
+User: "give me all data sources for TCM"
+Claude: [Invokes Skill("datasource", "give me all data sources for TCM")]
+        [Follows skill instructions to query and format results]
+```
+
+**Example - WRONG behavior:**
+```
+User: "give me all data sources for TCM"
+Claude: [Starts reading TTL files manually without invoking skill]  ❌
+```
+
+---
+
 ## 🚨 SWARM EXECUTION RULES (CRITICAL)
 1. **SPAWN IN BACKGROUND**: Use `run_in_background: true` for all agent Task calls
 2. **SPAWN ALL AT ONCE**: Put ALL agent Task calls in ONE message for parallel execution
