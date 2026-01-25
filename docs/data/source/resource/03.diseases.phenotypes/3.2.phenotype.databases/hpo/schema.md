@@ -36,30 +36,33 @@ HPO provides a hierarchical ontology of 13,000+ phenotypic terms with disease an
 
 ## Entity Relationship Overview
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                     HPO TERM (HP:XXXXXXX)                       │
-│  - id, name, definition, synonyms, xrefs                        │
-└─────────────────────────────────────────────────────────────────┘
-         │ is_a                    │ annotated_to
-         ▼                         ▼
-┌─────────────────┐    ┌─────────────────────────────────────────┐
-│   PARENT TERM   │    │          DISEASE ANNOTATION             │
-│  (HP:XXXXXXX)   │    │  - disease_id, hpo_id, evidence         │
-└─────────────────┘    │  - onset, frequency, modifier           │
-                       └─────────────────────────────────────────┘
-                                   │
-                                   ▼
-                       ┌─────────────────────────────────────────┐
-                       │              DISEASE                     │
-                       │  OMIM:XXXXXX | ORPHA:XXXX | MONDO:XXXX  │
-                       └─────────────────────────────────────────┘
-                                   │
-                                   ▼
-                       ┌─────────────────────────────────────────┐
-                       │               GENE                       │
-                       │  NCBI Gene ID, Gene Symbol               │
-                       └─────────────────────────────────────────┘
+```mermaid
+---
+config:
+  layout: elk
+---
+flowchart TD
+    accTitle: HPO Phenotype Database Entity Relationships
+    accDescr: Shows relationships between HPO terms, disease annotations, diseases, and genes
+
+    %% Style definitions using Cagle palette
+    classDef ontology fill:#E1BEE7,stroke:#6A1B9A,stroke-width:2px,color:#4A148C
+    classDef annotation fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
+    classDef disease fill:#FFCDD2,stroke:#C62828,stroke-width:2px,color:#B71C1C
+    classDef gene fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,color:#0D47A1
+
+    %% Entities
+    HPO["HPO TERM (HP:XXXXXXX)<br/>id, name, definition<br/>synonyms, xrefs"]:::ontology
+    Parent["PARENT TERM<br/>(HP:XXXXXXX)"]:::ontology
+    Annotation["DISEASE ANNOTATION<br/>disease_id, hpo_id, evidence<br/>onset, frequency, modifier"]:::annotation
+    Disease["DISEASE<br/>OMIM:XXXXXX | ORPHA:XXXX | MONDO:XXXX"]:::disease
+    Gene["GENE<br/>NCBI Gene ID, Gene Symbol"]:::gene
+
+    %% Relationships
+    HPO -->|"is_a"| Parent
+    HPO -->|"annotated_to"| Annotation
+    Annotation --> Disease
+    Disease --> Gene
 ```
 
 ---

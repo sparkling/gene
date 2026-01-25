@@ -218,31 +218,69 @@ Body: {"cid": [2244, 5352, 5362]}
 
 ## Data Relationships
 
-```
-Compound (CID)
-├── Properties
-│   ├── Physical Properties
-│   ├── Chemical Properties
-│   └── 3D Properties
-├── Identifiers
-│   ├── SMILES
-│   ├── InChI/InChIKey
-│   ├── Synonyms
-│   └── Cross-references
-├── Bioactivity
-│   ├── Assays (AIDs)
-│   ├── Targets
-│   └── Activity Values
-├── Literature
-│   └── PubMed References
-├── Patents
-├── Vendors
-├── Classification
-│   ├── Chemical Hierarchy
-│   └── Pharmacological Classes
-└── Safety/Toxicity
-    ├── GHS Hazards
-    └── LD50 Values
+```mermaid
+---
+config:
+  layout: elk
+---
+graph TD
+    accTitle: PubChem Compound Data Relationships
+    accDescr: Hierarchical view of PubChem compound data including properties, identifiers, bioactivity, literature, patents, vendors, classification, and safety information
+
+    %% Style definitions using Cagle palette
+    classDef compound fill:#E3F2FD,stroke:#1565C0,stroke-width:3px,color:#0D47A1
+    classDef category fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
+    classDef subcategory fill:#FFF8E1,stroke:#F57F17,stroke-width:1px,color:#E65100
+
+    %% Root
+    CID["Compound (CID)"]:::compound
+
+    %% Main categories
+    PROPS["Properties"]:::category
+    IDS["Identifiers"]:::category
+    BIO["Bioactivity"]:::category
+    LIT["Literature"]:::category
+    PAT["Patents"]:::category
+    VEND["Vendors"]:::category
+    CLASS["Classification"]:::category
+    SAFETY["Safety/Toxicity"]:::category
+
+    %% Properties subcategories
+    PHYS["Physical Properties"]:::subcategory
+    CHEM["Chemical Properties"]:::subcategory
+    PROP3D["3D Properties"]:::subcategory
+
+    %% Identifiers subcategories
+    SMILES["SMILES"]:::subcategory
+    INCHI["InChI/InChIKey"]:::subcategory
+    SYN["Synonyms"]:::subcategory
+    XREF["Cross-references"]:::subcategory
+
+    %% Bioactivity subcategories
+    ASSAY["Assays (AIDs)"]:::subcategory
+    TARGET["Targets"]:::subcategory
+    ACTIVITY["Activity Values"]:::subcategory
+
+    %% Literature
+    PUBMED["PubMed References"]:::subcategory
+
+    %% Classification subcategories
+    CHEMHIER["Chemical Hierarchy"]:::subcategory
+    PHARMCLASS["Pharmacological Classes"]:::subcategory
+
+    %% Safety subcategories
+    GHS["GHS Hazards"]:::subcategory
+    LD50["LD50 Values"]:::subcategory
+
+    %% Relationships
+    CID --> PROPS & IDS & BIO & LIT & PAT & VEND & CLASS & SAFETY
+
+    PROPS --> PHYS & CHEM & PROP3D
+    IDS --> SMILES & INCHI & SYN & XREF
+    BIO --> ASSAY & TARGET & ACTIVITY
+    LIT --> PUBMED
+    CLASS --> CHEMHIER & PHARMCLASS
+    SAFETY --> GHS & LD50
 ```
 
 ## Rate Limits

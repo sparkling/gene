@@ -37,41 +37,38 @@ Open Targets integrates 20+ data sources to provide 14M+ target-disease associat
 
 ## Entity Relationship Overview
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                          TARGET                                  │
-│  id (ENSG), approvedSymbol, approvedName, biotype               │
-│  tractability, safety, pathways, interactions                   │
-└─────────────────────────────────────────────────────────────────┘
-         │
-         │ Association (overall score + data type scores)
-         ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                      ASSOCIATION                                 │
-│  score, datatypeScores[], evidenceCount                         │
-└─────────────────────────────────────────────────────────────────┘
-         │
-         ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                        DISEASE                                   │
-│  id (EFO_XXXXXXX), name, description, therapeuticAreas          │
-│  synonyms, dbXRefs (MONDO, OMIM, Orphanet)                      │
-└─────────────────────────────────────────────────────────────────┘
-         │
-         │ Evidence (by data type)
-         ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                       EVIDENCE                                   │
-│  Genetic Association | Somatic Mutation | Known Drug            │
-│  Pathway | Expression | Literature | Animal Model               │
-└─────────────────────────────────────────────────────────────────┘
-         │
-         ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                         DRUG                                     │
-│  id (CHEMBL), name, drugType, mechanismOfAction                 │
-│  indications, approvalStatus, linkedTargets                     │
-└─────────────────────────────────────────────────────────────────┘
+```mermaid
+---
+config:
+  layout: elk
+---
+flowchart TD
+    accTitle: Open Targets Platform Entity Relationships
+    accDescr: Shows relationships between targets, associations, diseases, evidence types, and drugs
+
+    %% Style definitions using Cagle palette
+    classDef target fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
+    classDef assoc fill:#E1F5FE,stroke:#0277BD,stroke-width:2px,color:#01579B
+    classDef disease fill:#FFCDD2,stroke:#C62828,stroke-width:2px,color:#B71C1C
+    classDef evidence fill:#FFF8E1,stroke:#F57F17,stroke-width:2px,color:#E65100
+    classDef drug fill:#F3E5F5,stroke:#7B1FA2,stroke-width:2px,color:#4A148C
+
+    %% Entities
+    TARGET["TARGET<br/>id (ENSG), approvedSymbol, approvedName<br/>biotype, tractability, safety<br/>pathways, interactions"]:::target
+
+    ASSOC["ASSOCIATION<br/>score, datatypeScores[]<br/>evidenceCount"]:::assoc
+
+    DISEASE["DISEASE<br/>id (EFO_XXXXXXX), name, description<br/>therapeuticAreas, synonyms<br/>dbXRefs (MONDO, OMIM, Orphanet)"]:::disease
+
+    EVIDENCE["EVIDENCE<br/>Genetic Association | Somatic Mutation | Known Drug<br/>Pathway | Expression | Literature | Animal Model"]:::evidence
+
+    DRUG["DRUG<br/>id (CHEMBL), name, drugType<br/>mechanismOfAction, indications<br/>approvalStatus, linkedTargets"]:::drug
+
+    %% Relationships
+    TARGET -->|"Association<br/>(overall score + data type scores)"| ASSOC
+    ASSOC --> DISEASE
+    DISEASE -->|"Evidence<br/>(by data type)"| EVIDENCE
+    EVIDENCE --> DRUG
 ```
 
 ---

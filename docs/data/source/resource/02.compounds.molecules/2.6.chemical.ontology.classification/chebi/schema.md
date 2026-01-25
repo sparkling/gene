@@ -42,33 +42,67 @@ ChEBI (Chemical Entities of Biological Interest) is the reference ontology for s
 
 ChEBI organizes chemicals into a hierarchical ontology based on structural features:
 
-```
-chemical entity (CHEBI:24431)
-├── molecular entity (CHEBI:23367)
-│   ├── atom (CHEBI:33250)
-│   ├── molecular ion (CHEBI:25213)
-│   └── molecule (CHEBI:25367)
-│       ├── organic molecular entity (CHEBI:50860)
-│       │   ├── carbohydrate (CHEBI:16646)
-│       │   │   ├── monosaccharide (CHEBI:35381)
-│       │   │   │   ├── aldohexose (CHEBI:33917)
-│       │   │   │   │   └── D-glucose (CHEBI:17634)
-│       │   │   │   └── ketohexose (CHEBI:24978)
-│       │   │   │       └── D-fructose (CHEBI:15824)
-│       │   │   └── disaccharide (CHEBI:36233)
-│       │   ├── lipid (CHEBI:18059)
-│       │   │   ├── fatty acid (CHEBI:35366)
-│       │   │   └── steroid (CHEBI:35341)
-│       │   ├── amino acid (CHEBI:33709)
-│       │   │   └── proteinogenic amino acid (CHEBI:83813)
-│       │   └── nucleotide (CHEBI:36976)
-│       │       ├── purine nucleotide (CHEBI:26395)
-│       │       │   └── ATP (CHEBI:30616)
-│       │       └── pyrimidine nucleotide (CHEBI:26437)
-│       └── inorganic molecular entity (CHEBI:24835)
-│           ├── water (CHEBI:15377)
-│           └── metal ion (CHEBI:25213)
-└── chemical substance (CHEBI:59999)
+```mermaid
+---
+config:
+  layout: elk
+---
+graph TD
+    accTitle: ChEBI Chemical Ontology Hierarchy
+    accDescr: Hierarchical classification of chemical entities from root to specific compounds like D-glucose and ATP
+
+    %% Style definitions using Cagle palette
+    classDef root fill:#E3F2FD,stroke:#1565C0,stroke-width:3px,color:#0D47A1
+    classDef major fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
+    classDef category fill:#FFF8E1,stroke:#F57F17,stroke-width:2px,color:#E65100
+    classDef subcategory fill:#F3E5F5,stroke:#7B1FA2,stroke-width:1px,color:#4A148C
+    classDef compound fill:#E1F5FE,stroke:#0277BD,stroke-width:1px,color:#01579B
+
+    %% Root level
+    CE["chemical entity<br/>(CHEBI:24431)"]:::root
+
+    %% Major branches
+    ME["molecular entity<br/>(CHEBI:23367)"]:::major
+    CS["chemical substance<br/>(CHEBI:59999)"]:::major
+
+    %% Molecular entity children
+    ATOM["atom<br/>(CHEBI:33250)"]:::category
+    ION["molecular ion<br/>(CHEBI:25213)"]:::category
+    MOL["molecule<br/>(CHEBI:25367)"]:::category
+
+    %% Molecule children
+    ORG["organic molecular entity<br/>(CHEBI:50860)"]:::category
+    INORG["inorganic molecular entity<br/>(CHEBI:24835)"]:::category
+
+    %% Organic categories
+    CARB["carbohydrate<br/>(CHEBI:16646)"]:::subcategory
+    LIPID["lipid<br/>(CHEBI:18059)"]:::subcategory
+    AA["amino acid<br/>(CHEBI:33709)"]:::subcategory
+    NUC["nucleotide<br/>(CHEBI:36976)"]:::subcategory
+
+    %% Carbohydrate subcategories
+    MONO["monosaccharide<br/>(CHEBI:35381)"]:::subcategory
+    ALDO["aldohexose<br/>(CHEBI:33917)"]:::compound
+    GLUC["D-glucose<br/>(CHEBI:17634)"]:::compound
+
+    %% Nucleotide subcategories
+    PURINE["purine nucleotide<br/>(CHEBI:26395)"]:::subcategory
+    ATP["ATP<br/>(CHEBI:30616)"]:::compound
+
+    %% Inorganic
+    WATER["water<br/>(CHEBI:15377)"]:::compound
+
+    %% Relationships
+    CE --> ME & CS
+    ME --> ATOM & ION & MOL
+    MOL --> ORG & INORG
+    ORG --> CARB & LIPID & AA & NUC
+    CARB --> MONO
+    MONO --> ALDO
+    ALDO --> GLUC
+    NUC --> PURINE
+    PURINE --> ATP
+    INORG --> WATER
 ```
 
 ---
@@ -77,39 +111,73 @@ chemical entity (CHEBI:24431)
 
 ChEBI assigns biological and chemical roles that describe function rather than structure:
 
-```
-role (CHEBI:50906)
-├── biological role (CHEBI:24432)
-│   ├── biochemical role (CHEBI:52206)
-│   │   ├── cofactor (CHEBI:23357)
-│   │   │   ├── coenzyme (CHEBI:23354)
-│   │   │   │   ├── NAD (CHEBI:13389)
-│   │   │   │   └── FAD (CHEBI:16238)
-│   │   │   └── prosthetic group (CHEBI:26348)
-│   │   ├── enzyme inhibitor (CHEBI:23924)
-│   │   │   ├── EC 1.* inhibitor (CHEBI:23925)
-│   │   │   └── EC 2.* inhibitor (CHEBI:23926)
-│   │   ├── metabolite (CHEBI:25212)
-│   │   │   ├── human metabolite (CHEBI:77746)
-│   │   │   ├── plant metabolite (CHEBI:76924)
-│   │   │   ├── bacterial metabolite (CHEBI:76969)
-│   │   │   └── fungal metabolite (CHEBI:76946)
-│   │   └── substrate (CHEBI:35302)
-│   └── pharmacological role (CHEBI:52217)
-│       ├── drug (CHEBI:23888)
-│       ├── antibiotic (CHEBI:22582)
-│       ├── anti-inflammatory agent (CHEBI:67079)
-│       ├── antineoplastic agent (CHEBI:35610)
-│       └── analgesic (CHEBI:35480)
-├── chemical role (CHEBI:51086)
-│   ├── antioxidant (CHEBI:22586)
-│   ├── buffer (CHEBI:22695)
-│   ├── solvent (CHEBI:46787)
-│   └── reducing agent (CHEBI:63247)
-└── application (CHEBI:33232)
-    ├── food additive (CHEBI:64047)
-    ├── pharmaceutical (CHEBI:52217)
-    └── agrochemical (CHEBI:22323)
+```mermaid
+---
+config:
+  layout: elk
+---
+graph TD
+    accTitle: ChEBI Role Ontology Hierarchy
+    accDescr: Classification of biological roles, chemical roles, and applications for chemical entities
+
+    %% Style definitions using Cagle palette
+    classDef root fill:#E3F2FD,stroke:#1565C0,stroke-width:3px,color:#0D47A1
+    classDef branch fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
+    classDef category fill:#FFF8E1,stroke:#F57F17,stroke-width:2px,color:#E65100
+    classDef subcategory fill:#F3E5F5,stroke:#7B1FA2,stroke-width:1px,color:#4A148C
+    classDef leaf fill:#E1F5FE,stroke:#0277BD,stroke-width:1px,color:#01579B
+
+    %% Root
+    ROLE["role<br/>(CHEBI:50906)"]:::root
+
+    %% Main branches
+    BIO["biological role<br/>(CHEBI:24432)"]:::branch
+    CHEM["chemical role<br/>(CHEBI:51086)"]:::branch
+    APP["application<br/>(CHEBI:33232)"]:::branch
+
+    %% Biological role children
+    BIOCHEM["biochemical role<br/>(CHEBI:52206)"]:::category
+    PHARM["pharmacological role<br/>(CHEBI:52217)"]:::category
+
+    %% Biochemical role children
+    COFACT["cofactor<br/>(CHEBI:23357)"]:::subcategory
+    INHIB["enzyme inhibitor<br/>(CHEBI:23924)"]:::subcategory
+    METAB["metabolite<br/>(CHEBI:25212)"]:::subcategory
+
+    %% Cofactor children
+    COENZ["coenzyme<br/>(CHEBI:23354)"]:::leaf
+    NAD["NAD<br/>(CHEBI:13389)"]:::leaf
+    FAD["FAD<br/>(CHEBI:16238)"]:::leaf
+
+    %% Metabolite children
+    HUMAN["human metabolite<br/>(CHEBI:77746)"]:::leaf
+    PLANT["plant metabolite<br/>(CHEBI:76924)"]:::leaf
+
+    %% Pharmacological children
+    DRUG["drug<br/>(CHEBI:23888)"]:::leaf
+    ANTIBIOTIC["antibiotic<br/>(CHEBI:22582)"]:::leaf
+    ANTIINFLAM["anti-inflammatory<br/>(CHEBI:67079)"]:::leaf
+
+    %% Chemical role children
+    ANTIOX["antioxidant<br/>(CHEBI:22586)"]:::leaf
+    BUFFER["buffer<br/>(CHEBI:22695)"]:::leaf
+    SOLVENT["solvent<br/>(CHEBI:46787)"]:::leaf
+
+    %% Application children
+    FOOD["food additive<br/>(CHEBI:64047)"]:::leaf
+    PHARMA["pharmaceutical<br/>(CHEBI:52217)"]:::leaf
+    AGRO["agrochemical<br/>(CHEBI:22323)"]:::leaf
+
+    %% Relationships
+    ROLE --> BIO & CHEM & APP
+    BIO --> BIOCHEM & PHARM
+    BIOCHEM --> COFACT & INHIB & METAB
+    COFACT --> COENZ
+    COENZ --> NAD & FAD
+    METAB --> HUMAN & PLANT
+    PHARM --> DRUG & ANTIBIOTIC & ANTIINFLAM
+    CHEM --> ANTIOX & BUFFER & SOLVENT
+    APP --> FOOD & PHARMA & AGRO
 ```
 
 ---

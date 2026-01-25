@@ -36,32 +36,42 @@ SwissADME provides comprehensive ADME property predictions via web interface, re
 
 ## Entity Relationship Overview
 
-```
-                    ┌─────────────────────┐
-                    │   Input Molecule    │
-                    │   (SMILES/InChI)    │
-                    └──────────┬──────────┘
-                               │
-           ┌───────────────────┼───────────────────┐
-           │                   │                   │
-           ▼                   ▼                   ▼
-┌──────────────────┐ ┌──────────────────┐ ┌──────────────────┐
-│  Physicochemical │ │   Drug-likeness  │ │ Pharmacokinetics │
-│   Properties     │ │    Assessment    │ │   Predictions    │
-└────────┬─────────┘ └────────┬─────────┘ └────────┬─────────┘
-         │                    │                    │
-         │           ┌────────┴────────┐           │
-         │           ▼                 ▼           │
-         │  ┌─────────────┐   ┌─────────────┐      │
-         │  │  5 Rule     │   │  Bioavail-  │      │
-         │  │  Violations │   │  ability    │      │
-         │  └─────────────┘   └─────────────┘      │
-         │                                         │
-         ▼                                         ▼
-┌──────────────────┐                    ┌──────────────────┐
-│  Med. Chemistry  │                    │    BOILED-Egg    │
-│     Alerts       │                    │      Model       │
-└──────────────────┘                    └──────────────────┘
+```mermaid
+---
+config:
+  layout: elk
+---
+flowchart TD
+    accTitle: SwissADME ADME Prediction Pipeline
+    accDescr: Shows the prediction workflow from input molecule to physicochemical properties, drug-likeness assessment, and pharmacokinetics predictions
+
+    %% Style definitions using Cagle palette
+    classDef input fill:#F3E5F5,stroke:#7B1FA2,stroke-width:2px,color:#4A148C
+    classDef primary fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
+    classDef secondary fill:#FFF8E1,stroke:#F57F17,stroke-width:2px,color:#E65100
+    classDef output fill:#E1F5FE,stroke:#0277BD,stroke-width:2px,color:#01579B
+
+    %% Input
+    INPUT["Input Molecule<br/>(SMILES/InChI)"]:::input
+
+    %% Primary predictions
+    PHYSICO["Physicochemical<br/>Properties"]:::primary
+    DRUGLIKE["Drug-likeness<br/>Assessment"]:::primary
+    PHARMA["Pharmacokinetics<br/>Predictions"]:::primary
+
+    %% Drug-likeness outputs
+    RULES["5 Rule<br/>Violations"]:::secondary
+    BIOAVAIL["Bioavailability"]:::secondary
+
+    %% Final outputs
+    MEDCHEM["Med. Chemistry<br/>Alerts"]:::output
+    BOILED["BOILED-Egg<br/>Model"]:::output
+
+    %% Relationships
+    INPUT --> PHYSICO & DRUGLIKE & PHARMA
+    DRUGLIKE --> RULES & BIOAVAIL
+    PHYSICO --> MEDCHEM
+    PHARMA --> BOILED
 ```
 
 ---

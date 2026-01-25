@@ -37,38 +37,42 @@ NPClassifier provides deep learning-based natural product classification via RES
 
 ## Entity Relationship Overview
 
-```
-                    ┌─────────────────────┐
-                    │   Input Molecule    │
-                    │      (SMILES)       │
-                    └──────────┬──────────┘
-                               │
-                    ┌──────────▼──────────┐
-                    │   Deep Learning     │
-                    │      Model          │
-                    └──────────┬──────────┘
-                               │
-        ┌──────────────────────┼──────────────────────┐
-        │                      │                      │
-        ▼                      ▼                      ▼
-┌───────────────┐     ┌───────────────┐     ┌───────────────┐
-│   Pathway     │     │  Superclass   │     │   Glycoside   │
-│   (Level 1)   │     │  (Level 2)    │     │   Detection   │
-│   7 classes   │     │  35+ classes  │     │   (Yes/No)    │
-└───────┬───────┘     └───────┬───────┘     └───────────────┘
-        │                     │
-        │                     ▼
-        │             ┌───────────────┐
-        │             │    Class      │
-        │             │  (Level 3)    │
-        │             │  200+ classes │
-        │             └───────────────┘
-        │
-        ▼
-┌───────────────────────────────────────────────────────────┐
-│                  Confidence Scores                         │
-│  (Pathway conf, Superclass conf, Class conf)              │
-└───────────────────────────────────────────────────────────┘
+```mermaid
+---
+config:
+  layout: elk
+---
+flowchart TD
+    accTitle: NPClassifier Natural Product Classification Pipeline
+    accDescr: Shows the deep learning classification pipeline from input SMILES to pathway, superclass, class predictions with confidence scores and glycoside detection
+
+    %% Style definitions using Cagle palette
+    classDef input fill:#F3E5F5,stroke:#7B1FA2,stroke-width:2px,color:#4A148C
+    classDef process fill:#E1F5FE,stroke:#0277BD,stroke-width:2px,color:#01579B
+    classDef level fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
+    classDef detect fill:#FFF8E1,stroke:#F57F17,stroke-width:2px,color:#E65100
+    classDef score fill:#ECEFF1,stroke:#455A64,stroke-width:2px,color:#263238
+
+    %% Input and processing
+    INPUT["Input Molecule<br/>(SMILES)"]:::input
+    DL["Deep Learning<br/>Model"]:::process
+
+    %% Output branches
+    PATH["Pathway<br/>(Level 1)<br/>7 classes"]:::level
+    SUPER["Superclass<br/>(Level 2)<br/>35+ classes"]:::level
+    GLYCO["Glycoside<br/>Detection<br/>(Yes/No)"]:::detect
+
+    %% Deeper classification
+    CLASS["Class<br/>(Level 3)<br/>200+ classes"]:::level
+
+    %% Confidence scores
+    CONF["Confidence Scores<br/>(Pathway conf, Superclass conf, Class conf)"]:::score
+
+    %% Relationships
+    INPUT --> DL
+    DL --> PATH & SUPER & GLYCO
+    SUPER --> CLASS
+    PATH --> CONF
 ```
 
 ---

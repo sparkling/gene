@@ -44,32 +44,46 @@ ClinVar is NCBI's public archive of interpretations of clinically relevant varia
 
 ## Entity Relationship Overview
 
-```
-┌───────────────┐     ┌───────────────┐     ┌───────────────┐
-│   Submitter   │────>│      SCV      │────>│      VCV      │
-│   (Lab/Org)   │     │  (Submission) │     │  (Variation)  │
-└───────────────┘     └───────┬───────┘     └───────┬───────┘
-                              │                     │
-                              v                     │
-                       ┌──────────────┐             │
-                       │     RCV      │<────────────┘
-                       │   (Record)   │
-                       └──────┬───────┘
-                              │
-              ┌───────────────┼───────────────┐
-              v               v               v
-       ┌───────────┐   ┌───────────┐   ┌───────────┐
-       │   Gene    │   │ Condition │   │   HGVS    │
-       │  (GeneID) │   │ (MedGen)  │   │(Notation) │
-       └───────────┘   └───────────┘   └───────────┘
+```mermaid
+---
+config:
+  layout: elk
+---
+flowchart TD
+    accTitle: ClinVar Entity Relationship Model
+    accDescr: Shows relationships between submitters, submissions (SCV), variations (VCV), records (RCV), genes, conditions, and HGVS notation
 
-Relationships:
+    %% Style definitions using Cagle palette
+    classDef submitter fill:#F3E5F5,stroke:#7B1FA2,stroke-width:2px,color:#4A148C
+    classDef submission fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
+    classDef variation fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,color:#0D47A1
+    classDef record fill:#FFF8E1,stroke:#F57F17,stroke-width:2px,color:#E65100
+    classDef reference fill:#ECEFF1,stroke:#455A64,stroke-width:2px,color:#263238
+
+    %% Entities
+    Submitter["Submitter<br/>(Lab/Org)"]:::submitter
+    SCV["SCV<br/>(Submission)"]:::submission
+    VCV["VCV<br/>(Variation)"]:::variation
+    RCV["RCV<br/>(Record)"]:::record
+    Gene["Gene<br/>(GeneID)"]:::reference
+    Condition["Condition<br/>(MedGen)"]:::reference
+    HGVS["HGVS<br/>(Notation)"]:::reference
+
+    %% Relationships
+    Submitter --> SCV
+    SCV --> VCV
+    VCV --> RCV
+    RCV --> Gene
+    RCV --> Condition
+    RCV --> HGVS
+```
+
+**Relationships:**
 - Submitter (1) ----< (N) SCV: One submitter creates many submissions
 - SCV (N) >---- (1) VCV: Many submissions aggregate to one variation
 - VCV (1) ----< (N) RCV: One variation has many variant-condition records
 - RCV (N) >----< (M) Condition: Many-to-many via TraitSet
 - RCV (N) >---- (1) Gene: Many records reference one gene
-```
 
 ---
 

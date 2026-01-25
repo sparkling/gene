@@ -178,38 +178,49 @@ http://purl.obolibrary.org/obo/mondo.json
 
 ## Entity Relationship Overview
 
-```
-                    ┌─────────────────┐
-                    │   MONDO Term    │
-                    │  (Disease ID)   │
-                    └────────┬────────┘
-                             │ is_a (N:1)
-                             v
-                    ┌─────────────────┐
-                    │  Parent Term    │
-                    │   (Ancestor)    │
-                    └────────┬────────┘
-                             │
-         ┌───────────────────┼───────────────────┐
-         │ exactMatch        │ narrowMatch       │ broadMatch
-         v                   v                   v
-  ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
-  │    OMIM     │     │  Orphanet   │     │    DOID     │
-  │  (Disease)  │     │  (Rare Dx)  │     │  (Disease)  │
-  └─────────────┘     └─────────────┘     └─────────────┘
-         │                   │                   │
-         v                   v                   v
-  ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
-  │    NCIt     │     │    MeSH     │     │    EFO      │
-  │  (Cancer)   │     │  (Medical)  │     │  (Traits)   │
-  └─────────────┘     └─────────────┘     └─────────────┘
+```mermaid
+---
+config:
+  layout: elk
+---
+flowchart TD
+    accTitle: MONDO Disease Ontology Entity Relationships
+    accDescr: Shows hierarchical relationships between MONDO terms and cross-references to external disease databases
 
-Relationships:
+    %% Style definitions using Cagle palette
+    classDef ontology fill:#E1BEE7,stroke:#6A1B9A,stroke-width:2px,color:#4A148C
+    classDef external fill:#ECEFF1,stroke:#455A64,stroke-width:2px,color:#263238
+    classDef match fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
+
+    %% Main entities
+    MONDO["MONDO Term<br/>(Disease ID)"]:::ontology
+    Parent["Parent Term<br/>(Ancestor)"]:::ontology
+
+    %% Primary cross-references
+    OMIM["OMIM<br/>(Disease)"]:::external
+    Orphanet["Orphanet<br/>(Rare Dx)"]:::external
+    DOID["DOID<br/>(Disease)"]:::external
+
+    %% Secondary cross-references
+    NCIt["NCIt<br/>(Cancer)"]:::external
+    MeSH["MeSH<br/>(Medical)"]:::external
+    EFO["EFO<br/>(Traits)"]:::external
+
+    %% Relationships
+    MONDO -->|"is_a (N:1)"| Parent
+    Parent -->|"exactMatch"| OMIM
+    Parent -->|"narrowMatch"| Orphanet
+    Parent -->|"broadMatch"| DOID
+    OMIM --> NCIt
+    Orphanet --> MeSH
+    DOID --> EFO
+```
+
+**Relationships:**
 - MONDO Term (N) >---- (1) Parent: Hierarchical is_a relationship
 - MONDO Term (1) ---- (1) OMIM: Exact equivalence via exactMatch
 - MONDO Term (1) ---- (1) Orphanet: Exact equivalence via exactMatch
 - MONDO Term (N) >----< (M) Xrefs: Cross-references to external databases
-```
 
 ---
 

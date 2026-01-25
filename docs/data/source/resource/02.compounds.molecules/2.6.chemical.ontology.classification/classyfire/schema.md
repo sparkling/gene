@@ -38,48 +38,45 @@ ClassyFire provides hierarchical chemical taxonomy classification via web interf
 
 ## Entity Relationship Overview
 
-```
-                    ┌─────────────────────┐
-                    │   Input Molecule    │
-                    │  (SMILES/InChI/SDF) │
-                    └──────────┬──────────┘
-                               │
-                    ┌──────────▼──────────┐
-                    │   ClassyFire API    │
-                    │  Classification     │
-                    └──────────┬──────────┘
-                               │
-        ┌──────────────────────┼──────────────────────┐
-        │                      │                      │
-        ▼                      ▼                      ▼
-┌───────────────┐     ┌───────────────┐     ┌───────────────┐
-│    Kingdom    │     │  Alternative  │     │  Description  │
-│  (Level 1)    │     │   Parents     │     │   & Synonyms  │
-└───────┬───────┘     └───────────────┘     └───────────────┘
-        │
-        ▼
-┌───────────────┐
-│  Superclass   │
-│  (Level 2)    │
-└───────┬───────┘
-        │
-        ▼
-┌───────────────┐
-│    Class      │
-│  (Level 3)    │
-└───────┬───────┘
-        │
-        ▼
-┌───────────────┐
-│   Subclass    │
-│  (Level 4)    │
-└───────┬───────┘
-        │
-        ▼
-┌───────────────┐
-│ Direct Parent │
-│  (Deepest)    │
-└───────────────┘
+```mermaid
+---
+config:
+  layout: elk
+---
+flowchart TD
+    accTitle: ClassyFire Chemical Classification Data Flow
+    accDescr: Shows how input molecules are classified through the ClassyFire API into kingdom, superclass, class, subclass, and direct parent levels
+
+    %% Style definitions using Cagle palette
+    classDef input fill:#F3E5F5,stroke:#7B1FA2,stroke-width:2px,color:#4A148C
+    classDef process fill:#E1F5FE,stroke:#0277BD,stroke-width:2px,color:#01579B
+    classDef level fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
+    classDef output fill:#FFF8E1,stroke:#F57F17,stroke-width:2px,color:#E65100
+
+    %% Input
+    INPUT["Input Molecule<br/>(SMILES/InChI/SDF)"]:::input
+
+    %% Processing
+    API["ClassyFire API<br/>Classification"]:::process
+
+    %% Output branches
+    KINGDOM["Kingdom<br/>(Level 1)"]:::level
+    ALT["Alternative<br/>Parents"]:::output
+    DESC["Description<br/>& Synonyms"]:::output
+
+    %% Classification hierarchy
+    SUPER["Superclass<br/>(Level 2)"]:::level
+    CLASS["Class<br/>(Level 3)"]:::level
+    SUBCLASS["Subclass<br/>(Level 4)"]:::level
+    PARENT["Direct Parent<br/>(Deepest)"]:::level
+
+    %% Relationships
+    INPUT --> API
+    API --> KINGDOM & ALT & DESC
+    KINGDOM --> SUPER
+    SUPER --> CLASS
+    CLASS --> SUBCLASS
+    SUBCLASS --> PARENT
 ```
 
 ---

@@ -567,41 +567,91 @@ BindingDB MonomerID	Ligand SMILES	Ligand InChI Key	Ki (nM)	IC50 (nM)	Target Name
 
 #### Target Family Hierarchy
 
-```
-Target Families
-├── G protein-coupled receptors
-│   ├── Class A (Rhodopsin)
-│   ├── Class B (Secretin)
-│   ├── Class C (Glutamate)
-│   ├── Class F (Frizzled)
-│   └── Adhesion GPCRs
-├── Ion channels
-│   ├── Ligand-gated
-│   │   ├── Cys-loop receptors
-│   │   ├── Glutamate receptors
-│   │   └── P2X receptors
-│   ├── Voltage-gated
-│   │   ├── Sodium channels
-│   │   ├── Potassium channels
-│   │   └── Calcium channels
-│   └── Other channels
-├── Nuclear hormone receptors
-│   ├── Thyroid hormone receptors
-│   ├── Retinoid receptors
-│   ├── Steroid receptors
-│   └── Orphan receptors
-├── Catalytic receptors
-│   ├── Receptor tyrosine kinases
-│   ├── Receptor serine/threonine kinases
-│   └── Cytokine receptors
-├── Enzymes
-│   ├── Kinases
-│   ├── Phosphatases
-│   ├── Proteases
-│   └── Oxidoreductases
-└── Transporters
-    ├── SLC transporters
-    └── ABC transporters
+```mermaid
+---
+config:
+  layout: elk
+---
+graph TD
+    accTitle: GtoPdb Target Family Hierarchy
+    accDescr: Hierarchical classification of drug target families including GPCRs, ion channels, receptors, enzymes, and transporters
+
+    %% Style definitions using Cagle palette
+    classDef root fill:#E3F2FD,stroke:#1565C0,stroke-width:3px,color:#0D47A1
+    classDef family fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
+    classDef subfamily fill:#FFF8E1,stroke:#F57F17,stroke-width:2px,color:#E65100
+    classDef leaf fill:#F3E5F5,stroke:#7B1FA2,stroke-width:1px,color:#4A148C
+
+    %% Root
+    TF["Target Families"]:::root
+
+    %% Main families
+    GPCR["G protein-coupled receptors"]:::family
+    IC["Ion channels"]:::family
+    NHR["Nuclear hormone receptors"]:::family
+    CR["Catalytic receptors"]:::family
+    ENZ["Enzymes"]:::family
+    TRANS["Transporters"]:::family
+
+    %% GPCR subfamilies
+    GPCR_A["Class A (Rhodopsin)"]:::leaf
+    GPCR_B["Class B (Secretin)"]:::leaf
+    GPCR_C["Class C (Glutamate)"]:::leaf
+    GPCR_F["Class F (Frizzled)"]:::leaf
+    GPCR_ADH["Adhesion GPCRs"]:::leaf
+
+    %% Ion channel subfamilies
+    LGIC["Ligand-gated"]:::subfamily
+    VGIC["Voltage-gated"]:::subfamily
+    OtherIC["Other channels"]:::leaf
+
+    %% LGIC types
+    CysLoop["Cys-loop receptors"]:::leaf
+    GluR["Glutamate receptors"]:::leaf
+    P2X["P2X receptors"]:::leaf
+
+    %% VGIC types
+    NaC["Sodium channels"]:::leaf
+    KC["Potassium channels"]:::leaf
+    CaC["Calcium channels"]:::leaf
+
+    %% NHR subfamilies
+    THR["Thyroid hormone receptors"]:::leaf
+    RXR["Retinoid receptors"]:::leaf
+    SR["Steroid receptors"]:::leaf
+    OrphanR["Orphan receptors"]:::leaf
+
+    %% Catalytic receptor subfamilies
+    RTK["Receptor tyrosine kinases"]:::leaf
+    RSTK["Receptor serine/threonine kinases"]:::leaf
+    CytR["Cytokine receptors"]:::leaf
+
+    %% Enzyme subfamilies
+    Kinases["Kinases"]:::leaf
+    Phosphatases["Phosphatases"]:::leaf
+    Proteases["Proteases"]:::leaf
+    Oxidored["Oxidoreductases"]:::leaf
+
+    %% Transporter subfamilies
+    SLC["SLC transporters"]:::leaf
+    ABC["ABC transporters"]:::leaf
+
+    %% Relationships
+    TF --> GPCR & IC & NHR & CR & ENZ & TRANS
+
+    GPCR --> GPCR_A & GPCR_B & GPCR_C & GPCR_F & GPCR_ADH
+
+    IC --> LGIC & VGIC & OtherIC
+    LGIC --> CysLoop & GluR & P2X
+    VGIC --> NaC & KC & CaC
+
+    NHR --> THR & RXR & SR & OrphanR
+
+    CR --> RTK & RSTK & CytR
+
+    ENZ --> Kinases & Phosphatases & Proteases & Oxidored
+
+    TRANS --> SLC & ABC
 ```
 
 ### 3.3 Seven Ligand Types

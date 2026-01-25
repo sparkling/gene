@@ -37,43 +37,38 @@ GDC hosts 80K+ cancer cases including the landmark TCGA dataset (20K+ samples, 3
 
 ## Entity Relationship Overview
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                         PROJECT                                  │
-│  project_id (TCGA-BRCA), name, program, disease_type            │
-└─────────────────────────────────────────────────────────────────┘
-         │
-         │ 1:N
-         ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                          CASE                                    │
-│  case_id (UUID), submitter_id (TCGA-XX-XXXX)                    │
-│  demographics, diagnoses, exposures, family_histories           │
-└─────────────────────────────────────────────────────────────────┘
-         │
-         │ 1:N
-         ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                         SAMPLE                                   │
-│  sample_id (UUID), submitter_id (TCGA-XX-XXXX-01A)              │
-│  sample_type, tumor_descriptor, tissue_type                     │
-└─────────────────────────────────────────────────────────────────┘
-         │
-         │ 1:N
-         ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                        ALIQUOT                                   │
-│  aliquot_id (UUID), submitter_id (TCGA-XX-XXXX-01A-01D)        │
-│  analyte_type, concentration, amount                            │
-└─────────────────────────────────────────────────────────────────┘
-         │
-         │ 1:N
-         ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                         FILE                                     │
-│  file_id (UUID), file_name, data_type, data_category           │
-│  experimental_strategy, data_format, access (open/controlled)  │
-└─────────────────────────────────────────────────────────────────┘
+```mermaid
+---
+config:
+  layout: elk
+---
+flowchart TD
+    accTitle: GDC/TCGA Data Model Entity Relationships
+    accDescr: Shows hierarchical relationships from project to case to sample to aliquot to file in the cancer genomics data model
+
+    %% Style definitions using Cagle palette
+    classDef project fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,color:#0D47A1
+    classDef patient fill:#F3E5F5,stroke:#7B1FA2,stroke-width:2px,color:#4A148C
+    classDef sample fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
+    classDef aliquot fill:#FFF8E1,stroke:#F57F17,stroke-width:2px,color:#E65100
+    classDef file fill:#ECEFF1,stroke:#455A64,stroke-width:2px,color:#263238
+
+    %% Entities
+    PROJECT["PROJECT<br/>project_id (TCGA-BRCA)<br/>name, program, disease_type"]:::project
+
+    CASE["CASE<br/>case_id (UUID)<br/>submitter_id (TCGA-XX-XXXX)<br/>demographics, diagnoses<br/>exposures, family_histories"]:::patient
+
+    SAMPLE["SAMPLE<br/>sample_id (UUID)<br/>submitter_id (TCGA-XX-XXXX-01A)<br/>sample_type, tumor_descriptor<br/>tissue_type"]:::sample
+
+    ALIQUOT["ALIQUOT<br/>aliquot_id (UUID)<br/>submitter_id (TCGA-XX-XXXX-01A-01D)<br/>analyte_type, concentration, amount"]:::aliquot
+
+    FILE["FILE<br/>file_id (UUID), file_name<br/>data_type, data_category<br/>experimental_strategy, data_format<br/>access (open/controlled)"]:::file
+
+    %% Relationships
+    PROJECT -->|"1:N"| CASE
+    CASE -->|"1:N"| SAMPLE
+    SAMPLE -->|"1:N"| ALIQUOT
+    ALIQUOT -->|"1:N"| FILE
 ```
 
 ---

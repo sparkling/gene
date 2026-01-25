@@ -36,17 +36,19 @@ CADD provides deleteriousness scores for all possible SNVs and indels in the hum
 
 ## Entity Relationship Overview
 
-```
-┌──────────────────┐
-│   Variant        │
-├──────────────────┤
-│ chromosome       │
-│ position         │
-│ reference        │
-│ alternate        │
-│ raw_score        │
-│ phred_score      │
-└──────────────────┘
+```mermaid
+erDiagram
+    accTitle: CADD Variant Score Entity
+    accDescr: Shows the structure of a CADD variant score record with genomic coordinates and deleteriousness scores
+
+    VARIANT {
+        string chromosome "Chromosome identifier"
+        int position "1-based genomic position"
+        string reference "Reference allele"
+        string alternate "Alternate allele"
+        float raw_score "Untransformed SVM score"
+        float phred_score "PHRED-scaled deleteriousness score"
+    }
 ```
 
 ---

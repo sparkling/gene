@@ -37,27 +37,38 @@ Orphanet provides structured rare disease data with 6,500+ diseases, gene associ
 
 ## Entity Relationship Overview
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                      RARE DISEASE                                │
-│  ORPHAcode, Name, ORPHAgroup, SynonymList                       │
-│  Classification, DisorderType, AverageAgeOfOnset                │
-└─────────────────────────────────────────────────────────────────┘
-         │                    │                    │
-         │ Gene Assoc.       │ Phenotypes         │ Epidemiology
-         ▼                    ▼                    ▼
-┌──────────────────┐ ┌──────────────────┐ ┌──────────────────────┐
-│      GENE        │ │    HPO TERM      │ │   EPIDEMIOLOGY       │
-│  Symbol, HGNC    │ │  HP:XXXXXXX      │ │  Prevalence          │
-│  GeneLocus       │ │  Frequency       │ │  Incidence           │
-│  AssocType       │ │                  │ │  Geographic          │
-└──────────────────┘ └──────────────────┘ └──────────────────────┘
-         │
-         ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                    EXTERNAL REFERENCES                           │
-│  OMIM, ICD-10, ICD-11, UMLS, MeSH, MedDRA, SNOMED CT           │
-└─────────────────────────────────────────────────────────────────┘
+```mermaid
+---
+config:
+  layout: elk
+---
+flowchart TD
+    accTitle: Orphanet Rare Disease Data Model
+    accDescr: Shows relationships between rare diseases, genes, phenotypes, epidemiology, and external references
+
+    %% Style definitions using Cagle palette
+    classDef disease fill:#FFCDD2,stroke:#C62828,stroke-width:2px,color:#B71C1C
+    classDef gene fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
+    classDef phenotype fill:#E1BEE7,stroke:#6A1B9A,stroke-width:2px,color:#4A148C
+    classDef epi fill:#FFF8E1,stroke:#F57F17,stroke-width:2px,color:#E65100
+    classDef external fill:#ECEFF1,stroke:#455A64,stroke-width:2px,color:#263238
+
+    %% Main entity
+    RD["RARE DISEASE<br/>ORPHAcode, Name, ORPHAgroup<br/>Classification, DisorderType<br/>AverageAgeOfOnset"]:::disease
+
+    %% Associated entities
+    GENE["GENE<br/>Symbol, HGNC<br/>GeneLocus, AssocType"]:::gene
+    HPO["HPO TERM<br/>HP:XXXXXXX<br/>Frequency"]:::phenotype
+    EPI["EPIDEMIOLOGY<br/>Prevalence<br/>Incidence, Geographic"]:::epi
+
+    %% External references
+    XREF["EXTERNAL REFERENCES<br/>OMIM, ICD-10, ICD-11, UMLS<br/>MeSH, MedDRA, SNOMED CT"]:::external
+
+    %% Relationships
+    RD -->|"Gene Assoc."| GENE
+    RD -->|"Phenotypes"| HPO
+    RD -->|"Epidemiology"| EPI
+    GENE --> XREF
 ```
 
 ---
