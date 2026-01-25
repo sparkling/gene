@@ -36,24 +36,55 @@ VMH provides genome-scale metabolic reconstructions (GEMs) for human cells and 7
 
 ## Entity Relationship Overview
 
-```
-VMH Data
-  ├── Metabolic Reconstructions
-  │     ├── Human (Recon3D)
-  │     └── Microbes (AGORA2)
-  ├── Reactions
-  │     ├── Reaction ID
-  │     ├── Stoichiometry
-  │     ├── Gene associations
-  │     └── Subsystem
-  ├── Metabolites
-  │     ├── VMH ID
-  │     ├── Name
-  │     ├── Formula
-  │     └── Compartment
-  └── Phenotype Data
-        ├── Microbe-disease
-        └── Diet-microbiome
+```mermaid
+graph TD
+    accTitle: VMH Data Structure
+    accDescr: Organization of Virtual Metabolic Human data including reconstructions, reactions, and metabolites
+
+    VMH[VMH Data]:::infra
+
+    Reconstructions[Metabolic Reconstructions]:::data
+    Reactions[Reactions]:::process
+    Metabolites[Metabolites]:::data
+    PhenotypeData[Phenotype Data]:::service
+
+    VMH --> Reconstructions
+    VMH --> Reactions
+    VMH --> Metabolites
+    VMH --> PhenotypeData
+
+    Human[Human<br/>Recon3D]:::data
+    Microbes[Microbes<br/>AGORA2]:::data
+    Reconstructions --> Human
+    Reconstructions --> Microbes
+
+    RxnID[Reaction ID]:::process
+    Stoich[Stoichiometry]:::process
+    GeneAssoc[Gene associations]:::service
+    Subsystem[Subsystem]:::service
+    Reactions --> RxnID
+    Reactions --> Stoich
+    Reactions --> GeneAssoc
+    Reactions --> Subsystem
+
+    VMHID[VMH ID]:::data
+    Name[Name]:::data
+    Formula[Formula]:::data
+    Compartment[Compartment]:::data
+    Metabolites --> VMHID
+    Metabolites --> Name
+    Metabolites --> Formula
+    Metabolites --> Compartment
+
+    MicrobeDisease[Microbe-disease]:::service
+    DietMicrobiome[Diet-microbiome]:::service
+    PhenotypeData --> MicrobeDisease
+    PhenotypeData --> DietMicrobiome
+
+    classDef infra fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,color:#0D47A1
+    classDef data fill:#FFF8E1,stroke:#F57F17,stroke-width:2px,color:#E65100
+    classDef service fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
+    classDef process fill:#E1F5FE,stroke:#0277BD,stroke-width:2px,color:#01579B
 ```
 
 ---

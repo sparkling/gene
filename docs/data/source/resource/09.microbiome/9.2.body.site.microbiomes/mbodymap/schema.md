@@ -36,24 +36,55 @@ mBodyMap is a comprehensive atlas of human microbiome data organized by body sit
 
 ## Entity Relationship Overview
 
-```
-mBodyMap Data
-  ├── Body Site
-  │     ├── Site code (hierarchical)
-  │     ├── Anatomical location
-  │     └── Site category
-  ├── Sample
-  │     ├── Sample ID
-  │     ├── Study source
-  │     └── Metadata
-  ├── Taxonomic Profile
-  │     ├── Species abundances
-  │     ├── Alpha diversity
-  │     └── Beta diversity
-  └── Reference Data
-        ├── Site-specific taxa
-        ├── Core microbiome
-        └── Diversity benchmarks
+```mermaid
+graph TD
+    accTitle: mBodyMap Data Structure
+    accDescr: Organization of body site microbiome data including samples, profiles, and reference data
+
+    MBM[mBodyMap Data]:::infra
+
+    BodySite[Body Site]:::service
+    Sample[Sample]:::data
+    TaxProfile[Taxonomic Profile]:::data
+    RefData[Reference Data]:::external
+
+    MBM --> BodySite
+    MBM --> Sample
+    MBM --> TaxProfile
+    MBM --> RefData
+
+    SiteCode[Site code<br/>hierarchical]:::service
+    AnatLoc[Anatomical location]:::service
+    SiteCat[Site category]:::service
+    BodySite --> SiteCode
+    BodySite --> AnatLoc
+    BodySite --> SiteCat
+
+    SampleID[Sample ID]:::data
+    StudySource[Study source]:::data
+    Metadata[Metadata]:::service
+    Sample --> SampleID
+    Sample --> StudySource
+    Sample --> Metadata
+
+    SpeciesAbund[Species abundances]:::data
+    AlphaDiv[Alpha diversity]:::data
+    BetaDiv[Beta diversity]:::data
+    TaxProfile --> SpeciesAbund
+    TaxProfile --> AlphaDiv
+    TaxProfile --> BetaDiv
+
+    SiteTaxa[Site-specific taxa]:::external
+    CoreMicro[Core microbiome]:::external
+    DivBench[Diversity benchmarks]:::external
+    RefData --> SiteTaxa
+    RefData --> CoreMicro
+    RefData --> DivBench
+
+    classDef infra fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,color:#0D47A1
+    classDef data fill:#FFF8E1,stroke:#F57F17,stroke-width:2px,color:#E65100
+    classDef service fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
+    classDef external fill:#ECEFF1,stroke:#455A64,stroke-width:2px,color:#263238
 ```
 
 ---

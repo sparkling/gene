@@ -36,24 +36,55 @@ SWISS-MODEL Repository provides pre-computed homology models for UniProt sequenc
 
 ## Entity Relationship Overview
 
-```
-SWISS-MODEL Entry
-  ├── Target (UniProt sequence)
-  │     ├── Accession
-  │     ├── Sequence
-  │     └── Coverage range
-  ├── Model
-  │     ├── Coordinates
-  │     ├── QMEAN scores
-  │     └── Per-residue quality
-  ├── Template
-  │     ├── PDB ID + chain
-  │     ├── Sequence identity
-  │     └── Coverage
-  └── Alignment
-        ├── Target sequence
-        ├── Template sequence
-        └── Secondary structure
+```mermaid
+graph TD
+    accTitle: SWISS-MODEL Entry Structure
+    accDescr: Hierarchical structure showing SWISS-MODEL homology model components
+
+    Entry[SWISS-MODEL Entry]:::data
+
+    Target[Target]:::service
+    Model[Model]:::data
+    Template[Template]:::external
+    Alignment[Alignment]:::process
+
+    Entry --> Target
+    Entry --> Model
+    Entry --> Template
+    Entry --> Alignment
+
+    TargetAcc[Accession]:::service
+    TargetSeq[Sequence]:::service
+    TargetCov[Coverage range]:::service
+    Target --> TargetAcc
+    Target --> TargetSeq
+    Target --> TargetCov
+
+    ModelCoord[Coordinates]:::data
+    ModelQMEAN[QMEAN scores]:::data
+    ModelRes[Per-residue quality]:::data
+    Model --> ModelCoord
+    Model --> ModelQMEAN
+    Model --> ModelRes
+
+    TmplPDB[PDB ID + chain]:::external
+    TmplIdent[Sequence identity]:::external
+    TmplCov[Coverage]:::external
+    Template --> TmplPDB
+    Template --> TmplIdent
+    Template --> TmplCov
+
+    AlignTarget[Target sequence]:::process
+    AlignTmpl[Template sequence]:::process
+    AlignSS[Secondary structure]:::process
+    Alignment --> AlignTarget
+    Alignment --> AlignTmpl
+    Alignment --> AlignSS
+
+    classDef data fill:#FFF8E1,stroke:#F57F17,stroke-width:2px,color:#E65100
+    classDef service fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
+    classDef process fill:#E1F5FE,stroke:#0277BD,stroke-width:2px,color:#01579B
+    classDef external fill:#ECEFF1,stroke:#455A64,stroke-width:2px,color:#263238
 ```
 
 ---

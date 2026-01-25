@@ -37,24 +37,59 @@ The Human Microbiome Project (HMP) provides the definitive reference dataset for
 
 ## Entity Relationship Overview
 
-```
-HMP Data Model
-  ├── Project
-  │     └── Study (HMP1, IBDMDB, T2D, MOMS-PI)
-  │           └── Subject
-  │                 └── Visit (longitudinal)
-  │                       └── Sample
-  │                             ├── Body Site
-  │                             ├── 16S Data
-  │                             ├── WGS Data
-  │                             └── Multi-omics
-  ├── Body Site Hierarchy
-  │     ├── Supersite (5 major regions)
-  │     └── Specific site (18 locations)
-  └── Reference Data
-        ├── Reference genomes
-        ├── Taxonomic profiles
-        └── Functional profiles
+```mermaid
+graph TD
+    accTitle: HMP Data Model
+    accDescr: Hierarchical structure of HMP data from projects to multi-omics samples across body sites
+
+    HMPData[HMP Data Model]:::infra
+
+    Project[Project]:::infra
+    BodySiteHier[Body Site Hierarchy]:::service
+    RefData[Reference Data]:::external
+
+    HMPData --> Project
+    HMPData --> BodySiteHier
+    HMPData --> RefData
+
+    Study[Study<br/>HMP1, IBDMDB, T2D, MOMS-PI]:::infra
+    Subject[Subject]:::user
+    Visit[Visit<br/>longitudinal]:::process
+    Sample[Sample]:::data
+
+    Project --> Study
+    Study --> Subject
+    Subject --> Visit
+    Visit --> Sample
+
+    BodySite[Body Site]:::service
+    S16Data[16S Data]:::data
+    WGSData[WGS Data]:::data
+    MultiOmics[Multi-omics]:::data
+
+    Sample --> BodySite
+    Sample --> S16Data
+    Sample --> WGSData
+    Sample --> MultiOmics
+
+    Supersite[Supersite<br/>5 major regions]:::service
+    SpecificSite[Specific site<br/>18 locations]:::service
+    BodySiteHier --> Supersite
+    BodySiteHier --> SpecificSite
+
+    RefGenomes[Reference genomes]:::external
+    TaxProfiles[Taxonomic profiles]:::external
+    FuncProfiles[Functional profiles]:::external
+    RefData --> RefGenomes
+    RefData --> TaxProfiles
+    RefData --> FuncProfiles
+
+    classDef infra fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,color:#0D47A1
+    classDef user fill:#F3E5F5,stroke:#7B1FA2,stroke-width:2px,color:#4A148C
+    classDef process fill:#E1F5FE,stroke:#0277BD,stroke-width:2px,color:#01579B
+    classDef data fill:#FFF8E1,stroke:#F57F17,stroke-width:2px,color:#E65100
+    classDef service fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
+    classDef external fill:#ECEFF1,stroke:#455A64,stroke-width:2px,color:#263238
 ```
 
 ---

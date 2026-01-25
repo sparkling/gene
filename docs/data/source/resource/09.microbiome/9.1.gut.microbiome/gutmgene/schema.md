@@ -36,24 +36,55 @@ gutMGene catalogs experimentally validated associations between gut microbiota a
 
 ## Entity Relationship Overview
 
-```
-gutMGene Association
-  ├── Microbe
-  │     ├── NCBI Taxon ID
-  │     ├── Species name
-  │     └── Strain (if known)
-  ├── Host Gene
-  │     ├── Gene symbol
-  │     ├── Entrez Gene ID
-  │     └── Species (human, mouse)
-  ├── Effect
-  │     ├── Direction (up/down)
-  │     ├── Fold change
-  │     └── Tissue/condition
-  └── Evidence
-        ├── PMID
-        ├── Experiment type
-        └── Model system
+```mermaid
+graph TD
+    accTitle: gutMGene Association Structure
+    accDescr: Structure of microbe-gene associations showing microbe, host gene, effect, and evidence
+
+    Assoc[gutMGene Association]:::data
+
+    Microbe[Microbe]:::service
+    HostGene[Host Gene]:::service
+    Effect[Effect]:::process
+    Evidence[Evidence]:::external
+
+    Assoc --> Microbe
+    Assoc --> HostGene
+    Assoc --> Effect
+    Assoc --> Evidence
+
+    TaxID[NCBI Taxon ID]:::service
+    Species[Species name]:::service
+    Strain[Strain]:::service
+    Microbe --> TaxID
+    Microbe --> Species
+    Microbe --> Strain
+
+    Symbol[Gene symbol]:::service
+    EntrezID[Entrez Gene ID]:::service
+    HostSpecies[Species]:::service
+    HostGene --> Symbol
+    HostGene --> EntrezID
+    HostGene --> HostSpecies
+
+    Direction[Direction<br/>up/down]:::process
+    FoldChange[Fold change]:::process
+    Tissue[Tissue/condition]:::process
+    Effect --> Direction
+    Effect --> FoldChange
+    Effect --> Tissue
+
+    PMID[PMID]:::external
+    ExpType[Experiment type]:::external
+    Model[Model system]:::external
+    Evidence --> PMID
+    Evidence --> ExpType
+    Evidence --> Model
+
+    classDef data fill:#FFF8E1,stroke:#F57F17,stroke-width:2px,color:#E65100
+    classDef service fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
+    classDef process fill:#E1F5FE,stroke:#0277BD,stroke-width:2px,color:#01579B
+    classDef external fill:#ECEFF1,stroke:#455A64,stroke-width:2px,color:#263238
 ```
 
 ---

@@ -36,23 +36,53 @@ MASI catalogs molecular mechanisms by which gut microbiota influence host signal
 
 ## Entity Relationship Overview
 
-```
-MASI Interaction
-  ├── Microbial Source
-  │     ├── Microbe species
-  │     └── Metabolite produced
-  ├── Host Target
-  │     ├── Receptor/protein
-  │     ├── Target gene
-  │     └── Signaling pathway
-  ├── Interaction
-  │     ├── Effect (activate/inhibit)
-  │     ├── Mechanism
-  │     └── Affinity (if known)
-  └── Outcome
-        ├── Physiological effect
-        ├── Disease relevance
-        └── Tissue specificity
+```mermaid
+graph TD
+    accTitle: MASI Interaction Structure
+    accDescr: Structure of microbiome-associated signaling interactions linking metabolites to host targets
+
+    Interaction[MASI Interaction]:::data
+
+    MicrobialSource[Microbial Source]:::service
+    HostTarget[Host Target]:::service
+    InteractionData[Interaction]:::process
+    Outcome[Outcome]:::external
+
+    Interaction --> MicrobialSource
+    Interaction --> HostTarget
+    Interaction --> InteractionData
+    Interaction --> Outcome
+
+    MicrobeSpecies[Microbe species]:::service
+    Metabolite[Metabolite produced]:::data
+    MicrobialSource --> MicrobeSpecies
+    MicrobialSource --> Metabolite
+
+    Receptor[Receptor/protein]:::service
+    TargetGene[Target gene]:::service
+    SigPathway[Signaling pathway]:::process
+    HostTarget --> Receptor
+    HostTarget --> TargetGene
+    HostTarget --> SigPathway
+
+    Effect[Effect<br/>activate/inhibit]:::process
+    Mechanism[Mechanism]:::process
+    Affinity[Affinity]:::process
+    InteractionData --> Effect
+    InteractionData --> Mechanism
+    InteractionData --> Affinity
+
+    PhysioEffect[Physiological effect]:::external
+    DiseaseRel[Disease relevance]:::external
+    TissueSpec[Tissue specificity]:::external
+    Outcome --> PhysioEffect
+    Outcome --> DiseaseRel
+    Outcome --> TissueSpec
+
+    classDef data fill:#FFF8E1,stroke:#F57F17,stroke-width:2px,color:#E65100
+    classDef service fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
+    classDef process fill:#E1F5FE,stroke:#0277BD,stroke-width:2px,color:#01579B
+    classDef external fill:#ECEFF1,stroke:#455A64,stroke-width:2px,color:#263238
 ```
 
 ---

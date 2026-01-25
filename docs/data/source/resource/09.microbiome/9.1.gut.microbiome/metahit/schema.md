@@ -36,21 +36,47 @@ MetaHIT (Metagenomics of the Human Intestinal Tract) established foundational gu
 
 ## Entity Relationship Overview
 
-```
-MetaHIT Data
-  ├── Gene Catalog (IGC)
-  │     ├── Gene ID
-  │     ├── Sequence
-  │     ├── Taxonomy assignment
-  │     └── Functional annotation
-  ├── Sample Profiles
-  │     ├── Sample ID
-  │     ├── Gene abundances
-  │     └── Metadata
-  └── Phenotype Associations
-        ├── Enterotype
-        ├── BMI/Obesity
-        └── IBD status
+```mermaid
+graph TD
+    accTitle: MetaHIT Data Structure
+    accDescr: Hierarchical organization of MetaHIT gene catalog, samples, and phenotype data
+
+    MetaHIT[MetaHIT Data]:::infra
+
+    IGC[Gene Catalog<br/>IGC]:::data
+    Samples[Sample Profiles]:::data
+    Phenotypes[Phenotype Associations]:::service
+
+    MetaHIT --> IGC
+    MetaHIT --> Samples
+    MetaHIT --> Phenotypes
+
+    GeneID[Gene ID]:::data
+    GeneSeq[Sequence]:::data
+    GeneTax[Taxonomy assignment]:::service
+    GeneFunc[Functional annotation]:::service
+    IGC --> GeneID
+    IGC --> GeneSeq
+    IGC --> GeneTax
+    IGC --> GeneFunc
+
+    SampleID[Sample ID]:::data
+    Abundance[Gene abundances]:::data
+    Metadata[Metadata]:::service
+    Samples --> SampleID
+    Samples --> Abundance
+    Samples --> Metadata
+
+    Enterotype[Enterotype]:::service
+    BMI[BMI/Obesity]:::service
+    IBD[IBD status]:::service
+    Phenotypes --> Enterotype
+    Phenotypes --> BMI
+    Phenotypes --> IBD
+
+    classDef infra fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,color:#0D47A1
+    classDef data fill:#FFF8E1,stroke:#F57F17,stroke-width:2px,color:#E65100
+    classDef service fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
 ```
 
 ---

@@ -480,37 +480,71 @@ curl "https://gmrepo.humangut.info/api/getMarkerTaxa?phenotype=Type%202%20diabet
 
 ## Entity Relationship Overview
 
-```
-┌───────────────┐                    ┌───────────────┐
-│    Project    │───────────────────>│   Phenotype   │
-│  (PRJNA/EB)   │                    │   (Disease)   │
-└───────┬───────┘                    └───────┬───────┘
-        │ 1:N                                │
-        v                                    │ N:M
-┌───────────────┐                            │
-│   Run/Sample  │<───────────────────────────┘
-│  (SRR/ERR)    │
-└───────┬───────┘
-        │ 1:N
-        v
-┌───────────────┐         ┌───────────────┐
-│   Abundance   │────────>│     Taxon     │
-│  (per sample) │         │ (NCBI TaxID)  │
-└───────────────┘         └───────┬───────┘
-                                  │
-                                  v
-                          ┌───────────────┐
-                          │  Marker Taxa  │
-                          │ (disease assoc)│
-                          └───────────────┘
+```mermaid
+erDiagram
+    accTitle: GMrepo Entity Relationships
+    accDescr: Database schema showing relationships between projects, samples, phenotypes, and taxa
 
-Relationships:
+    PROJECT ||--o{ RUN_SAMPLE : contains
+    RUN_SAMPLE }o--o{ PHENOTYPE : linked_to
+    PROJECT }o--o{ PHENOTYPE : associated_with
+    RUN_SAMPLE ||--o{ ABUNDANCE : has
+    ABUNDANCE }o--|| TAXON : references
+    PHENOTYPE ||--o{ MARKER_TAXA : has
+    TAXON ||--o{ MARKER_TAXA : identified_as
+
+    PROJECT {
+        string project_id PK "PRJNA/PRJEB"
+        string project_name
+        string description
+        string sequencing_type
+        int sample_count
+    }
+
+    RUN_SAMPLE {
+        string run_id PK "SRR/ERR"
+        string project_id FK
+        string sample_id
+        string phenotype
+        int host_age
+        string host_sex
+    }
+
+    PHENOTYPE {
+        string mesh_id PK
+        string phenotype_name
+        string category
+        int sample_count
+    }
+
+    ABUNDANCE {
+        string run_id FK
+        int taxon_id FK
+        float relative_abundance
+        int read_count
+    }
+
+    TAXON {
+        int taxon_id PK "NCBI TaxID"
+        string taxon_name
+        string rank
+    }
+
+    MARKER_TAXA {
+        int taxon_id FK
+        string phenotype FK
+        string direction
+        float effect_size
+        float p_value
+    }
+```
+
+**Relationships:**
 - Project (1) ----< (N) Run/Sample: One project contains many samples
 - Run/Sample (N) >----< (M) Phenotype: Samples linked to phenotypes
 - Run/Sample (1) ----< (N) Abundance: One sample has many taxon abundances
 - Abundance (N) >---- (1) Taxon: Many abundance records reference one taxon
 - Phenotype (1) ----< (N) Marker Taxa: One phenotype has many marker taxa
-```
 
 ---
 

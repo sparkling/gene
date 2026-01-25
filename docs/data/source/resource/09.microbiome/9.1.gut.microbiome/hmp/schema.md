@@ -90,23 +90,55 @@ aws s3 sync s3://human-microbiome-project/HMASM/ ./HMASM/ --no-sign-request
 
 The HMP uses a hierarchical data model:
 
-```
-Project
-  └── Study
-        └── Subject
-              └── Visit
-                    └── Sample
-                          ├── 16S DNA Prep
-                          │     └── 16S Raw Seq Set
-                          │           └── 16S Trimmed Seq Set
-                          ├── WGS DNA Prep
-                          │     └── WGS Raw Seq Set
-                          │           └── WGS Assembled Seq Set
-                          ├── Host Transcriptomics Raw Seq Set
-                          ├── Proteome
-                          ├── Metabolome
-                          ├── Lipidome
-                          └── Abundance Matrix
+```mermaid
+graph TD
+    accTitle: HMP Schema Hierarchy
+    accDescr: Hierarchical data model from project to multi-omics data types
+
+    Project[Project]:::infra
+    Study[Study]:::infra
+    Subject[Subject]:::user
+    Visit[Visit]:::process
+    Sample[Sample]:::data
+
+    Project --> Study
+    Study --> Subject
+    Subject --> Visit
+    Visit --> Sample
+
+    S16DNA[16S DNA Prep]:::service
+    S16Raw[16S Raw Seq Set]:::data
+    S16Trim[16S Trimmed Seq Set]:::data
+
+    WGSDNA[WGS DNA Prep]:::service
+    WGSRaw[WGS Raw Seq Set]:::data
+    WGSAssem[WGS Assembled Seq Set]:::data
+
+    HostTrans[Host Transcriptomics<br/>Raw Seq Set]:::data
+    Proteome[Proteome]:::data
+    Metabolome[Metabolome]:::data
+    Lipidome[Lipidome]:::data
+    AbundMatrix[Abundance Matrix]:::data
+
+    Sample --> S16DNA
+    Sample --> WGSDNA
+    Sample --> HostTrans
+    Sample --> Proteome
+    Sample --> Metabolome
+    Sample --> Lipidome
+    Sample --> AbundMatrix
+
+    S16DNA --> S16Raw
+    S16Raw --> S16Trim
+
+    WGSDNA --> WGSRaw
+    WGSRaw --> WGSAssem
+
+    classDef infra fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,color:#0D47A1
+    classDef user fill:#F3E5F5,stroke:#7B1FA2,stroke-width:2px,color:#4A148C
+    classDef process fill:#E1F5FE,stroke:#0277BD,stroke-width:2px,color:#01579B
+    classDef data fill:#FFF8E1,stroke:#F57F17,stroke-width:2px,color:#E65100
+    classDef service fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
 ```
 
 ---

@@ -36,24 +36,49 @@ UniProt provides the most comprehensive protein sequence and annotation database
 
 ## Entity Relationship Overview
 
-```
-UniProtKB Entry
-  ├── Protein Names (recommended, alternative, submitted)
-  ├── Gene Names (primary, synonyms, ordered locus, ORF)
-  ├── Organism (taxonomy, lineage)
-  ├── Protein Existence (PE level 1-5)
-  ├── Sequence (canonical, isoforms)
-  │     ├── Features (domains, sites, variants)
-  │     └── Processing (signal, propeptide, chain)
-  ├── Function
-  │     ├── GO Terms (molecular function, biological process, cellular component)
-  │     ├── Catalytic Activity (EC numbers, Rhea reactions)
-  │     └── Pathways (Reactome, KEGG)
-  ├── Subcellular Location
-  ├── Disease Associations
-  ├── PTM/Processing
-  ├── Interaction Partners
-  └── Cross-References (180+ databases)
+```mermaid
+graph TD
+    accTitle: UniProtKB Entry Structure
+    accDescr: Hierarchical structure of a UniProtKB protein entry showing annotations and cross-references
+
+    Entry[UniProtKB Entry]:::data
+
+    Entry --> Names[Protein Names]:::service
+    Entry --> Genes[Gene Names]:::service
+    Entry --> Org[Organism]:::service
+    Entry --> PE[Protein Existence]:::service
+    Entry --> Seq[Sequence]:::data
+    Entry --> Func[Function]:::process
+    Entry --> SubLoc[Subcellular Location]:::service
+    Entry --> Disease[Disease Associations]:::service
+    Entry --> PTM[PTM/Processing]:::service
+    Entry --> Interact[Interaction Partners]:::service
+    Entry --> XRef[Cross-References]:::external
+
+    Names --> |recommended, alternative, submitted| NamesNote[ ]:::hidden
+    Genes --> |primary, synonyms, ORF| GenesNote[ ]:::hidden
+    Org --> |taxonomy, lineage| OrgNote[ ]:::hidden
+    PE --> |PE level 1-5| PENote[ ]:::hidden
+
+    Seq --> Features[Features]:::service
+    Seq --> Processing[Processing]:::service
+    Features --> |domains, sites, variants| FeatNote[ ]:::hidden
+    Processing --> |signal, propeptide, chain| ProcNote[ ]:::hidden
+
+    Func --> GO[GO Terms]:::service
+    Func --> CatAct[Catalytic Activity]:::service
+    Func --> Pathways[Pathways]:::service
+    GO --> |MF, BP, CC| GONote[ ]:::hidden
+    CatAct --> |EC, Rhea| CatNote[ ]:::hidden
+    Pathways --> |Reactome, KEGG| PathNote[ ]:::hidden
+
+    XRef --> |180+ databases| XRefNote[ ]:::hidden
+
+    classDef data fill:#FFF8E1,stroke:#F57F17,stroke-width:2px,color:#E65100
+    classDef service fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
+    classDef process fill:#E1F5FE,stroke:#0277BD,stroke-width:2px,color:#01579B
+    classDef external fill:#ECEFF1,stroke:#455A64,stroke-width:2px,color:#263238
+    classDef hidden fill:none,stroke:none
 ```
 
 ---

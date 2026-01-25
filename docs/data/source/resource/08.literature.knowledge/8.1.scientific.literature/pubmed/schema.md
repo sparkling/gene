@@ -12,34 +12,78 @@ tags: [schema, database, literature, biomedical]
 
 ## Entity Relationship Overview
 
-```
-┌───────────────┐              ┌───────────────┐
-│    Journal    │<─────────────│    Article    │
-│   (ISSN)      │              │    (PMID)     │
-└───────────────┘              └───────┬───────┘
-                                       │
-       ┌───────────────┬───────────────┼───────────────┬───────────────┐
-       │               │               │               │               │
-       v               v               v               v               v
-┌───────────┐   ┌───────────┐   ┌───────────┐   ┌───────────┐   ┌───────────┐
-│  Author   │   │  Abstract │   │   MeSH    │   │  Keyword  │   │ Reference │
-│ (ORCID)   │   │  (Text)   │   │  (Terms)  │   │  (Author) │   │  (PMID)   │
-└───────────┘   └───────────┘   └─────┬─────┘   └───────────┘   └───────────┘
-      │                               │
-      v                               v
-┌───────────┐                 ┌───────────────┐
-│Affiliation│                 │  Qualifier    │
-│  (Org)    │                 │ (Subheading)  │
-└───────────┘                 └───────────────┘
+```mermaid
+erDiagram
+    accTitle: PubMed Entity Relationships
+    accDescr: Database schema showing relationships between journals, articles, authors, and MeSH terms
 
-Relationships:
+    JOURNAL ||--o{ ARTICLE : contains
+    ARTICLE ||--o{ AUTHOR : has
+    ARTICLE ||--o{ MESH_HEADING : tagged_with
+    ARTICLE ||--o{ KEYWORD : has
+    ARTICLE ||--o{ REFERENCE : cites
+    ARTICLE ||--|| ABSTRACT : has
+    MESH_HEADING ||--o{ QUALIFIER : has
+    AUTHOR }o--o{ AFFILIATION : linked_to
+
+    JOURNAL {
+        string issn PK
+        string title
+        string iso_abbreviation
+    }
+
+    ARTICLE {
+        string pmid PK
+        string title
+        date pub_date
+        string doi
+    }
+
+    AUTHOR {
+        string orcid PK
+        string last_name
+        string fore_name
+    }
+
+    ABSTRACT {
+        string text
+        string label
+    }
+
+    MESH_HEADING {
+        string ui PK
+        string descriptor_name
+        boolean major_topic
+    }
+
+    QUALIFIER {
+        string ui PK
+        string name
+    }
+
+    KEYWORD {
+        string value
+        boolean major_topic
+    }
+
+    REFERENCE {
+        string pmid PK
+        string citation
+    }
+
+    AFFILIATION {
+        string org_name
+        string country
+    }
+```
+
+**Relationships:**
 - Journal (1) ----< (N) Article: One journal contains many articles
 - Article (1) ----< (N) Author: One article has many authors
 - Article (1) ----< (N) MeSH Heading: One article has many MeSH terms
 - Article (1) ----< (N) Reference: One article cites many references
 - MeSH Heading (1) ----< (N) Qualifier: One heading has many qualifiers
 - Author (N) >----< (M) Affiliation: Authors linked to institutions
-```
 
 ---
 

@@ -120,18 +120,40 @@ s3://openalex/data/
 
 ### Snapshot Structure
 
-```
-openalex/data/
-├── works/
-│   ├── manifest
-│   └── updated_date=YYYY-MM-DD/
-│       └── part_000.gz
-├── authors/
-├── sources/
-├── institutions/
-├── concepts/
-├── publishers/
-└── funders/
+```mermaid
+graph TD
+    accTitle: OpenAlex S3 Snapshot Structure
+    accDescr: Directory structure of the OpenAlex bulk data snapshot on AWS S3
+
+    Root[openalex/data/]:::infra
+
+    Works[works/]:::data
+    Authors[authors/]:::data
+    Sources[sources/]:::data
+    Institutions[institutions/]:::data
+    Concepts[concepts/]:::data
+    Publishers[publishers/]:::data
+    Funders[funders/]:::data
+
+    Root --> Works
+    Root --> Authors
+    Root --> Sources
+    Root --> Institutions
+    Root --> Concepts
+    Root --> Publishers
+    Root --> Funders
+
+    Manifest[manifest]:::service
+    Updated[updated_date=YYYY-MM-DD/]:::service
+    Part[part_000.gz]:::service
+
+    Works --> Manifest
+    Works --> Updated
+    Updated --> Part
+
+    classDef infra fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,color:#0D47A1
+    classDef data fill:#FFF8E1,stroke:#F57F17,stroke-width:2px,color:#E65100
+    classDef service fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
 ```
 
 ### Download Commands

@@ -36,27 +36,60 @@ HOMD (Human Oral Microbiome Database) provides comprehensive taxonomy, genome se
 
 ## Entity Relationship Overview
 
-```
-HOMD Taxon (HOMT ID)
-  ├── Taxonomy
-  │     ├── Phylum
-  │     ├── Class
-  │     ├── Order
-  │     ├── Family
-  │     ├── Genus
-  │     └── Species
-  ├── Sequences
-  │     ├── 16S rRNA reference
-  │     └── Genome sequences
-  ├── Phenotype
-  │     ├── Gram stain
-  │     ├── Morphology
-  │     ├── Oxygen requirements
-  │     └── Cultivation status
-  └── Metadata
-        ├── Isolation source
-        ├── Disease associations
-        └── Strain collection
+```mermaid
+graph TD
+    accTitle: HOMD Taxon Structure
+    accDescr: Hierarchical structure of oral microbiome taxa including taxonomy, sequences, and phenotype data
+
+    Taxon[HOMD Taxon<br/>HOMT ID]:::data
+
+    Taxonomy[Taxonomy]:::service
+    Sequences[Sequences]:::data
+    Phenotype[Phenotype]:::service
+    Metadata[Metadata]:::external
+
+    Taxon --> Taxonomy
+    Taxon --> Sequences
+    Taxon --> Phenotype
+    Taxon --> Metadata
+
+    Phylum[Phylum]:::service
+    Class[Class]:::service
+    Order[Order]:::service
+    Family[Family]:::service
+    Genus[Genus]:::service
+    Species[Species]:::service
+    Taxonomy --> Phylum
+    Taxonomy --> Class
+    Taxonomy --> Order
+    Taxonomy --> Family
+    Taxonomy --> Genus
+    Taxonomy --> Species
+
+    S16Ref[16S rRNA reference]:::data
+    Genomes[Genome sequences]:::data
+    Sequences --> S16Ref
+    Sequences --> Genomes
+
+    Gram[Gram stain]:::service
+    Morph[Morphology]:::service
+    Oxygen[Oxygen requirements]:::service
+    Cultivation[Cultivation status]:::service
+    Phenotype --> Gram
+    Phenotype --> Morph
+    Phenotype --> Oxygen
+    Phenotype --> Cultivation
+
+    Isolation[Isolation source]:::external
+    Disease[Disease associations]:::external
+    Strain[Strain collection]:::external
+    Metadata --> Isolation
+    Metadata --> Disease
+    Metadata --> Strain
+
+    classDef data fill:#FFF8E1,stroke:#F57F17,stroke-width:2px,color:#E65100
+    classDef service fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
+    classDef external fill:#ECEFF1,stroke:#455A64,stroke-width:2px,color:#263238
 ```
 
 ---

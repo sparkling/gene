@@ -36,15 +36,34 @@ NCBI RefSeq provides non-redundant, well-annotated reference sequences for genom
 
 ## Entity Relationship Overview
 
-```
-RefSeq Genome (NC_/NW_/NT_)
-  └── Gene (GeneID)
-        ├── Transcript (NM_/NR_/XM_/XR_)
-        │     └── CDS → Protein (NP_/XP_/YP_/WP_)
-        └── Gene Features
-              ├── Exons
-              ├── UTRs
-              └── Regulatory regions
+```mermaid
+graph TD
+    accTitle: RefSeq Entity Relationships
+    accDescr: Hierarchical structure showing RefSeq genome to protein relationships
+
+    Genome[RefSeq Genome<br/>NC_/NW_/NT_]:::infra
+    Gene[Gene<br/>GeneID]:::data
+    Transcript[Transcript<br/>NM_/NR_/XM_/XR_]:::service
+    CDS[CDS]:::process
+    Protein[Protein<br/>NP_/XP_/YP_/WP_]:::data
+    Features[Gene Features]:::service
+    Exons[Exons]:::service
+    UTRs[UTRs]:::service
+    Regulatory[Regulatory regions]:::service
+
+    Genome --> Gene
+    Gene --> Transcript
+    Gene --> Features
+    Transcript --> CDS
+    CDS --> Protein
+    Features --> Exons
+    Features --> UTRs
+    Features --> Regulatory
+
+    classDef infra fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,color:#0D47A1
+    classDef data fill:#FFF8E1,stroke:#F57F17,stroke-width:2px,color:#E65100
+    classDef service fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
+    classDef process fill:#E1F5FE,stroke:#0277BD,stroke-width:2px,color:#01579B
 ```
 
 ---

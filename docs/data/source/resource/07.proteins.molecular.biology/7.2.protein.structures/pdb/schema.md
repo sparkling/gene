@@ -37,25 +37,57 @@ The Protein Data Bank stores 220,000+ experimentally determined 3D structures of
 
 ## Entity Relationship Overview
 
-```
-PDB Entry (4-character ID)
-  ├── Entities (polymer/non-polymer)
-  │     ├── Polymer Entity (proteins, nucleic acids)
-  │     │     ├── Chains
-  │     │     └── Sequence
-  │     └── Non-Polymer Entity (ligands, ions)
-  ├── Assembly (biological unit)
-  ├── Experiment
-  │     ├── X-ray (resolution, R-factors)
-  │     ├── EM (resolution, reconstruction)
-  │     └── NMR (constraints, models)
-  ├── Coordinates (ATOM records)
-  │     ├── Model (NMR: multiple)
-  │     └── Atoms (x, y, z, B-factor, occupancy)
-  └── Validation
-        ├── Geometry
-        ├── Clashscore
-        └── Ramachandran
+```mermaid
+graph TD
+    accTitle: PDB Entry Structure
+    accDescr: Hierarchical structure of a PDB entry showing entities, experiments, and validation
+
+    Entry[PDB Entry<br/>4-character ID]:::data
+
+    Entities[Entities]:::service
+    Assembly[Assembly<br/>biological unit]:::service
+    Experiment[Experiment]:::process
+    Coords[Coordinates<br/>ATOM records]:::data
+    Validation[Validation]:::process
+
+    Entry --> Entities
+    Entry --> Assembly
+    Entry --> Experiment
+    Entry --> Coords
+    Entry --> Validation
+
+    Polymer[Polymer Entity<br/>proteins, nucleic acids]:::service
+    NonPolymer[Non-Polymer Entity<br/>ligands, ions]:::service
+    Entities --> Polymer
+    Entities --> NonPolymer
+
+    Chains[Chains]:::service
+    Sequence[Sequence]:::service
+    Polymer --> Chains
+    Polymer --> Sequence
+
+    Xray[X-ray<br/>resolution, R-factors]:::process
+    EM[EM<br/>resolution, reconstruction]:::process
+    NMR[NMR<br/>constraints, models]:::process
+    Experiment --> Xray
+    Experiment --> EM
+    Experiment --> NMR
+
+    Model[Model<br/>NMR: multiple]:::data
+    Atoms[Atoms<br/>x, y, z, B-factor, occupancy]:::data
+    Coords --> Model
+    Coords --> Atoms
+
+    Geometry[Geometry]:::process
+    Clashscore[Clashscore]:::process
+    Ramachandran[Ramachandran]:::process
+    Validation --> Geometry
+    Validation --> Clashscore
+    Validation --> Ramachandran
+
+    classDef data fill:#FFF8E1,stroke:#F57F17,stroke-width:2px,color:#E65100
+    classDef service fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
+    classDef process fill:#E1F5FE,stroke:#0277BD,stroke-width:2px,color:#01579B
 ```
 
 ---

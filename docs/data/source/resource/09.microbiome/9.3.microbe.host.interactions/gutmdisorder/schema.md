@@ -36,24 +36,56 @@ gutMDisorder is a manually curated database of gut microbiota-disease associatio
 
 ## Entity Relationship Overview
 
-```
-gutMDisorder Association
-  ├── Microbe
-  │     ├── NCBI Taxon ID
-  │     ├── Species name
-  │     └── Taxonomic rank
-  ├── Disease
-  │     ├── Disease name
-  │     ├── ICD-10 code
-  │     └── Disease category
-  ├── Association
-  │     ├── Direction (increased/decreased)
-  │     ├── Sample size
-  │     └── Statistical significance
-  └── Evidence
-        ├── PMID
-        ├── Study design
-        └── Detection method
+```mermaid
+graph TD
+    accTitle: gutMDisorder Association Structure
+    accDescr: Structure of gut microbiota-disease associations showing microbe, disease, and evidence data
+
+    Assoc[gutMDisorder Association]:::data
+
+    Microbe[Microbe]:::service
+    Disease[Disease]:::user
+    Association[Association]:::process
+    Evidence[Evidence]:::external
+
+    Assoc --> Microbe
+    Assoc --> Disease
+    Assoc --> Association
+    Assoc --> Evidence
+
+    TaxID[NCBI Taxon ID]:::service
+    SpeciesName[Species name]:::service
+    TaxRank[Taxonomic rank]:::service
+    Microbe --> TaxID
+    Microbe --> SpeciesName
+    Microbe --> TaxRank
+
+    DiseaseName[Disease name]:::user
+    ICD10[ICD-10 code]:::user
+    Category[Disease category]:::user
+    Disease --> DiseaseName
+    Disease --> ICD10
+    Disease --> Category
+
+    Direction[Direction<br/>increased/decreased]:::process
+    SampleSize[Sample size]:::process
+    StatSig[Statistical significance]:::process
+    Association --> Direction
+    Association --> SampleSize
+    Association --> StatSig
+
+    PMID[PMID]:::external
+    StudyDesign[Study design]:::external
+    DetectMethod[Detection method]:::external
+    Evidence --> PMID
+    Evidence --> StudyDesign
+    Evidence --> DetectMethod
+
+    classDef data fill:#FFF8E1,stroke:#F57F17,stroke-width:2px,color:#E65100
+    classDef service fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
+    classDef process fill:#E1F5FE,stroke:#0277BD,stroke-width:2px,color:#01579B
+    classDef user fill:#F3E5F5,stroke:#7B1FA2,stroke-width:2px,color:#4A148C
+    classDef external fill:#ECEFF1,stroke:#455A64,stroke-width:2px,color:#263238
 ```
 
 ---
