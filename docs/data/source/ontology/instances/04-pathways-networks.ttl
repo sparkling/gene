@@ -1,0 +1,1199 @@
+# =============================================================================
+# Pathways & Networks Data Source Instance Data
+# =============================================================================
+# Generated: 2026-01-25
+# Sources: 12
+# Category: 04.pathways.networks
+# Conforms to: datasource-ontology.ttl, datasource-shapes.ttl
+# =============================================================================
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ds: <https://gene.example.org/ontology/datasource#> .
+@prefix tax: <https://gene.example.org/taxonomy/> .
+@prefix data: <https://gene.example.org/data/source/> .
+@prefix cat: <https://gene.example.org/data/category/> .
+@prefix subcat: <https://gene.example.org/data/subcategory/> .
+
+# =============================================================================
+# SUBCATEGORIES
+# =============================================================================
+
+subcat:MetabolicPathways a ds:Subcategory ;
+    ds:id "metabolic.pathways" ;
+    ds:title "Metabolic Pathways" ;
+    ds:belongsToCategory cat:PathwaysNetworks ;
+    ds:subcategoryClassification tax:MetabolicPathways ;
+    ds:status tax:Active .
+
+subcat:SignalingPathways a ds:Subcategory ;
+    ds:id "signaling.pathways" ;
+    ds:title "Signaling Pathways" ;
+    ds:belongsToCategory cat:PathwaysNetworks ;
+    ds:subcategoryClassification tax:SignalingPathways ;
+    ds:status tax:Active .
+
+subcat:ProteinProteinInteractions a ds:Subcategory ;
+    ds:id "protein.protein.interactions" ;
+    ds:title "Protein-Protein Interactions" ;
+    ds:belongsToCategory cat:PathwaysNetworks ;
+    ds:subcategoryClassification tax:ProteinProteinInteractions ;
+    ds:status tax:Active .
+
+subcat:DrugTargetInteractions a ds:Subcategory ;
+    ds:id "drug.target.interactions" ;
+    ds:title "Drug-Target Interactions" ;
+    ds:belongsToCategory cat:PathwaysNetworks ;
+    ds:subcategoryClassification tax:DrugTargetInteractions ;
+    ds:status tax:Active .
+
+subcat:GeneFunctionOntology a ds:Subcategory ;
+    ds:id "gene.function.ontology" ;
+    ds:title "Gene Function & Ontology" ;
+    ds:belongsToCategory cat:PathwaysNetworks ;
+    ds:subcategoryClassification tax:GeneFunctionOntology ;
+    ds:status tax:Active .
+
+subcat:RegulatoryNetworks a ds:Subcategory ;
+    ds:id "regulatory.networks" ;
+    ds:title "Regulatory Networks" ;
+    ds:belongsToCategory cat:PathwaysNetworks ;
+    ds:subcategoryClassification tax:RegulatoryNetworks ;
+    ds:status tax:Active .
+
+# =============================================================================
+# DATA SOURCES - METABOLIC PATHWAYS (4.1)
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# KEGG - Kyoto Encyclopedia of Genes and Genomes
+# -----------------------------------------------------------------------------
+
+data:kegg a ds:DataSource ;
+    ds:id "kegg" ;
+    ds:title "KEGG - Kyoto Encyclopedia of Genes and Genomes" ;
+    ds:description "Comprehensive database resource for understanding high-level functions and utilities of biological systems from molecular-level information. Integrates genomic, chemical, and systemic functional information to provide pathway maps representing molecular interaction networks." ;
+    ds:belongsToSubcategory subcat:MetabolicPathways ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:website <https://www.kegg.jp/kegg/pathway.html> ;
+    ds:maintainer "Kanehisa Laboratories" ;
+    ds:updateFrequency "Monthly" ;
+    ds:hasLicense data:kegg-license ;
+    ds:hasVersion data:kegg-v109 ;
+    ds:hasAccessMethod data:kegg-api, data:kegg-ftp ;
+    ds:hasFormat tax:KGML, tax:TSV, tax:PNG, tax:SVG ;
+    ds:hasIdentifier data:kegg-pathway-id, data:kegg-gene-id, data:kegg-compound-id, data:kegg-ko-id ;
+    ds:hasUseCase data:kegg-usecase-1, data:kegg-usecase-2, data:kegg-usecase-3, data:kegg-usecase-4 ;
+    ds:hasLimitation data:kegg-limitation-1, data:kegg-limitation-2 ;
+    ds:hasCrossReference data:kegg-xref-uniprot, data:kegg-xref-chebi, data:kegg-xref-go, data:kegg-xref-reactome .
+
+data:kegg-license a ds:License ;
+    ds:licenseName "Custom Commercial License" ;
+    ds:spdxId "Custom" ;
+    ds:commercialUse false ;
+    ds:attributionRequired true ;
+    ds:redistribution false ;
+    ds:citation "Kanehisa M, Furumichi M, et al. KEGG for taxonomy-based analysis of pathways and genomes. Nucleic Acids Res. 2023;51(D1):D483-D489." .
+
+data:kegg-v109 a ds:Version ;
+    ds:version "109.0" ;
+    ds:releaseDate "2024-01-01"^^xsd:date ;
+    ds:recordCount "350"^^xsd:integer ;
+    ds:recordCountDescription "Human pathways" .
+
+data:kegg-api a ds:AccessMethod ;
+    ds:accessType tax:RESTAPI ;
+    ds:baseUrl <https://rest.kegg.jp> ;
+    ds:rateLimit "1 request/second recommended" ;
+    ds:authentication "None required" .
+
+data:kegg-ftp a ds:AccessMethod ;
+    ds:accessType tax:FTP ;
+    ds:baseUrl <ftp://ftp.kegg.jp> ;
+    ds:authentication "Subscription required" .
+
+data:kegg-pathway-id a ds:Identifier ;
+    ds:identifierType "Pathway ID" ;
+    ds:pattern "path:{org}{#####}" ;
+    ds:example "path:hsa00010" .
+
+data:kegg-gene-id a ds:Identifier ;
+    ds:identifierType "Gene ID" ;
+    ds:pattern "{org}:{id}" ;
+    ds:example "hsa:7157" .
+
+data:kegg-compound-id a ds:Identifier ;
+    ds:identifierType "Compound ID" ;
+    ds:pattern "C{#####}" ;
+    ds:example "C00001" .
+
+data:kegg-ko-id a ds:Identifier ;
+    ds:identifierType "KO Number" ;
+    ds:pattern "K{#####}" ;
+    ds:example "K00001" .
+
+data:kegg-usecase-1 a ds:UseCase ;
+    ds:description "Metabolic pathway mapping - Map genes/proteins to metabolic pathways" .
+
+data:kegg-usecase-2 a ds:UseCase ;
+    ds:description "Pathway enrichment analysis - Identify enriched pathways in gene sets" .
+
+data:kegg-usecase-3 a ds:UseCase ;
+    ds:description "Drug target identification - Link compounds to pathway targets" .
+
+data:kegg-usecase-4 a ds:UseCase ;
+    ds:description "Cross-species comparison - Compare pathways across organisms via KO" .
+
+data:kegg-limitation-1 a ds:Limitation ;
+    ds:description "Requires commercial license for commercial use and bulk downloads" ;
+    ds:impact "high" .
+
+data:kegg-limitation-2 a ds:Limitation ;
+    ds:description "API rate limits may restrict high-throughput queries" ;
+    ds:impact "medium" .
+
+data:kegg-xref-uniprot a ds:CrossReference ;
+    ds:targetDatabase "UniProt" ;
+    ds:relationship "Protein identifiers" ;
+    ds:coverage "High" .
+
+data:kegg-xref-chebi a ds:CrossReference ;
+    ds:targetDatabase "ChEBI" ;
+    ds:relationship "Compound cross-references" ;
+    ds:coverage "High" .
+
+data:kegg-xref-go a ds:CrossReference ;
+    ds:targetDatabase "GO" ;
+    ds:relationship "Biological process mapping" ;
+    ds:coverage "High" .
+
+data:kegg-xref-reactome a ds:CrossReference ;
+    ds:targetDatabase "Reactome" ;
+    ds:relationship "Pathway equivalents" ;
+    ds:coverage "Medium" .
+
+# -----------------------------------------------------------------------------
+# Reactome
+# -----------------------------------------------------------------------------
+
+data:reactome a ds:DataSource ;
+    ds:id "reactome" ;
+    ds:title "Reactome" ;
+    ds:description "Free, open-source, curated and peer-reviewed pathway database providing intuitive bioinformatics tools for the visualization, interpretation, and analysis of pathway knowledge. All data is freely available and licensed under CC BY 4.0." ;
+    ds:belongsToSubcategory subcat:MetabolicPathways ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:website <https://reactome.org> ;
+    ds:maintainer "Reactome Team (Ontario Institute for Cancer Research, EMBL-EBI)" ;
+    ds:updateFrequency "Quarterly" ;
+    ds:hasLicense data:reactome-license ;
+    ds:hasVersion data:reactome-v87 ;
+    ds:hasAccessMethod data:reactome-api, data:reactome-download, data:reactome-neo4j ;
+    ds:hasFormat tax:BioPAX, tax:SBGN, tax:SBML, tax:JSON, tax:TSV, tax:RDF ;
+    ds:hasIdentifier data:reactome-stable-id, data:reactome-db-id ;
+    ds:hasUseCase data:reactome-usecase-1, data:reactome-usecase-2, data:reactome-usecase-3 ;
+    ds:hasLimitation data:reactome-limitation-1 ;
+    ds:hasCrossReference data:reactome-xref-uniprot, data:reactome-xref-ensembl, data:reactome-xref-chebi, data:reactome-xref-go .
+
+data:reactome-license a ds:License ;
+    ds:licenseName "Creative Commons Attribution 4.0 International" ;
+    ds:spdxId "CC-BY-4.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistribution true ;
+    ds:citation "Jassal B, Matthews L, et al. The reactome pathway knowledgebase. Nucleic Acids Res. 2020;48(D1):D498-D503." .
+
+data:reactome-v87 a ds:Version ;
+    ds:version "87" ;
+    ds:releaseDate "2024-03-15"^^xsd:date ;
+    ds:totalSize "~2 GB" ;
+    ds:recordCount "2712"^^xsd:integer ;
+    ds:recordCountDescription "Human pathways" .
+
+data:reactome-api a ds:AccessMethod ;
+    ds:accessType tax:RESTAPI ;
+    ds:baseUrl <https://reactome.org/ContentService> ;
+    ds:rateLimit "No strict limit" ;
+    ds:authentication "None required" .
+
+data:reactome-download a ds:AccessMethod ;
+    ds:accessType tax:HTTPDownload ;
+    ds:baseUrl <https://reactome.org/download/current/> ;
+    ds:authentication "None required" .
+
+data:reactome-neo4j a ds:AccessMethod ;
+    ds:accessType tax:GraphDatabase ;
+    ds:baseUrl <bolt://reactome.org:7687> ;
+    ds:authentication "None required" .
+
+data:reactome-stable-id a ds:Identifier ;
+    ds:identifierType "Stable ID" ;
+    ds:pattern "R-{species}-{number}" ;
+    ds:example "R-HSA-109581" .
+
+data:reactome-db-id a ds:Identifier ;
+    ds:identifierType "Database ID" ;
+    ds:pattern "Numeric" ;
+    ds:example "109581" .
+
+data:reactome-usecase-1 a ds:UseCase ;
+    ds:description "Pathway enrichment analysis for gene lists" .
+
+data:reactome-usecase-2 a ds:UseCase ;
+    ds:description "Interactive pathway visualization and exploration" .
+
+data:reactome-usecase-3 a ds:UseCase ;
+    ds:description "Cross-species pathway comparison via orthology" .
+
+data:reactome-limitation-1 a ds:Limitation ;
+    ds:description "Human-centric with varying coverage for other organisms" ;
+    ds:impact "medium" .
+
+data:reactome-xref-uniprot a ds:CrossReference ;
+    ds:targetDatabase "UniProt" ;
+    ds:relationship "Primary protein identifiers" ;
+    ds:coverage "High" .
+
+data:reactome-xref-ensembl a ds:CrossReference ;
+    ds:targetDatabase "Ensembl" ;
+    ds:relationship "Gene identifiers" ;
+    ds:coverage "High" .
+
+data:reactome-xref-chebi a ds:CrossReference ;
+    ds:targetDatabase "ChEBI" ;
+    ds:relationship "Small molecule identifiers" ;
+    ds:coverage "High" .
+
+data:reactome-xref-go a ds:CrossReference ;
+    ds:targetDatabase "GO" ;
+    ds:relationship "Biological process annotations" ;
+    ds:coverage "High" .
+
+# -----------------------------------------------------------------------------
+# WikiPathways
+# -----------------------------------------------------------------------------
+
+data:wikipathways a ds:DataSource ;
+    ds:id "wikipathways" ;
+    ds:title "WikiPathways" ;
+    ds:description "Open, collaborative pathway database using wiki-style curation. Community-contributed pathway diagrams in GPML format covering human and model organisms. Completely open-source under CC0 license." ;
+    ds:belongsToSubcategory subcat:MetabolicPathways ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:website <https://www.wikipathways.org> ;
+    ds:maintainer "WikiPathways Team (Gladstone Institutes, Maastricht University)" ;
+    ds:updateFrequency "Monthly" ;
+    ds:hasLicense data:wikipathways-license ;
+    ds:hasVersion data:wikipathways-v20240110 ;
+    ds:hasAccessMethod data:wikipathways-api, data:wikipathways-sparql, data:wikipathways-download ;
+    ds:hasFormat tax:GPML, tax:RDF, tax:PNG, tax:SVG, tax:BioPAX ;
+    ds:hasIdentifier data:wikipathways-id ;
+    ds:hasUseCase data:wikipathways-usecase-1, data:wikipathways-usecase-2, data:wikipathways-usecase-3 ;
+    ds:hasLimitation data:wikipathways-limitation-1 ;
+    ds:hasCrossReference data:wikipathways-xref-ensembl, data:wikipathways-xref-uniprot, data:wikipathways-xref-chebi .
+
+data:wikipathways-license a ds:License ;
+    ds:licenseName "Creative Commons Zero v1.0 Universal" ;
+    ds:spdxId "CC0-1.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired false ;
+    ds:redistribution true ;
+    ds:citation "Martens M, Kutmon M, et al. WikiPathways: connecting communities. Nucleic Acids Res. 2021;49(D1):D613-D621." .
+
+data:wikipathways-v20240110 a ds:Version ;
+    ds:version "20240110" ;
+    ds:releaseDate "2024-01-10"^^xsd:date ;
+    ds:recordCount "3100"^^xsd:integer ;
+    ds:recordCountDescription "Total pathways across all organisms" .
+
+data:wikipathways-api a ds:AccessMethod ;
+    ds:accessType tax:RESTAPI ;
+    ds:baseUrl <https://webservice.wikipathways.org> ;
+    ds:rateLimit "No strict limit" ;
+    ds:authentication "None required" .
+
+data:wikipathways-sparql a ds:AccessMethod ;
+    ds:accessType tax:SPARQL ;
+    ds:baseUrl <https://sparql.wikipathways.org/sparql> ;
+    ds:authentication "None required" .
+
+data:wikipathways-download a ds:AccessMethod ;
+    ds:accessType tax:HTTPDownload ;
+    ds:baseUrl <https://data.wikipathways.org/current/> ;
+    ds:authentication "None required" .
+
+data:wikipathways-id a ds:Identifier ;
+    ds:identifierType "WikiPathways ID" ;
+    ds:pattern "WP{####}" ;
+    ds:example "WP4846" .
+
+data:wikipathways-usecase-1 a ds:UseCase ;
+    ds:description "Community-driven pathway curation and annotation" .
+
+data:wikipathways-usecase-2 a ds:UseCase ;
+    ds:description "Pathway enrichment analysis using open data" .
+
+data:wikipathways-usecase-3 a ds:UseCase ;
+    ds:description "SPARQL-based semantic pathway queries" .
+
+data:wikipathways-limitation-1 a ds:Limitation ;
+    ds:description "Quality varies across community-contributed pathways" ;
+    ds:impact "medium" .
+
+data:wikipathways-xref-ensembl a ds:CrossReference ;
+    ds:targetDatabase "Ensembl" ;
+    ds:relationship "Gene identifiers" ;
+    ds:coverage "High" .
+
+data:wikipathways-xref-uniprot a ds:CrossReference ;
+    ds:targetDatabase "UniProt" ;
+    ds:relationship "Protein identifiers" ;
+    ds:coverage "High" .
+
+data:wikipathways-xref-chebi a ds:CrossReference ;
+    ds:targetDatabase "ChEBI" ;
+    ds:relationship "Metabolite identifiers" ;
+    ds:coverage "High" .
+
+# =============================================================================
+# DATA SOURCES - SIGNALING PATHWAYS (4.2)
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Pathway Commons
+# -----------------------------------------------------------------------------
+
+data:pathwaycommons a ds:DataSource ;
+    ds:id "pathwaycommons" ;
+    ds:title "Pathway Commons" ;
+    ds:description "Aggregated pathway and interaction database integrating data from 22+ source databases. Provides unified access to biological pathway information in standardized BioPAX and SIF formats." ;
+    ds:belongsToSubcategory subcat:SignalingPathways ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:website <https://www.pathwaycommons.org> ;
+    ds:maintainer "Bader Lab (University of Toronto)" ;
+    ds:updateFrequency "Annual" ;
+    ds:hasLicense data:pathwaycommons-license ;
+    ds:hasVersion data:pathwaycommons-v12 ;
+    ds:hasAccessMethod data:pathwaycommons-api, data:pathwaycommons-download ;
+    ds:hasFormat tax:BioPAX, tax:SIF, tax:GSEA ;
+    ds:hasIdentifier data:pathwaycommons-uri ;
+    ds:hasUseCase data:pathwaycommons-usecase-1, data:pathwaycommons-usecase-2 ;
+    ds:hasLimitation data:pathwaycommons-limitation-1 ;
+    ds:hasCrossReference data:pathwaycommons-xref-reactome, data:pathwaycommons-xref-kegg, data:pathwaycommons-xref-wikipathways .
+
+data:pathwaycommons-license a ds:License ;
+    ds:licenseName "Varies by Source" ;
+    ds:spdxId "Multiple" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistribution true ;
+    ds:notes "License varies by source database (Reactome: CC-BY-4.0, WikiPathways: CC0, KEGG: Commercial)" .
+
+data:pathwaycommons-v12 a ds:Version ;
+    ds:version "12" ;
+    ds:releaseDate "2023-08-01"^^xsd:date ;
+    ds:totalSize "~5 GB" ;
+    ds:recordCount "2400000"^^xsd:integer ;
+    ds:recordCountDescription "Total interactions" .
+
+data:pathwaycommons-api a ds:AccessMethod ;
+    ds:accessType tax:RESTAPI ;
+    ds:baseUrl <https://www.pathwaycommons.org/pc2> ;
+    ds:rateLimit "No strict limit" ;
+    ds:authentication "None required" .
+
+data:pathwaycommons-download a ds:AccessMethod ;
+    ds:accessType tax:HTTPDownload ;
+    ds:baseUrl <https://www.pathwaycommons.org/archives/PC2/v12/> ;
+    ds:authentication "None required" .
+
+data:pathwaycommons-uri a ds:Identifier ;
+    ds:identifierType "Pathway Commons URI" ;
+    ds:pattern "http://pathwaycommons.org/pc12/{type}_{id}" ;
+    ds:example "http://pathwaycommons.org/pc12/Pathway_12345" .
+
+data:pathwaycommons-usecase-1 a ds:UseCase ;
+    ds:description "Unified access to multiple pathway databases" .
+
+data:pathwaycommons-usecase-2 a ds:UseCase ;
+    ds:description "Network analysis using SIF format" .
+
+data:pathwaycommons-limitation-1 a ds:Limitation ;
+    ds:description "License restrictions vary by source database" ;
+    ds:impact "medium" .
+
+data:pathwaycommons-xref-reactome a ds:CrossReference ;
+    ds:targetDatabase "Reactome" ;
+    ds:relationship "Source database" ;
+    ds:coverage "High" .
+
+data:pathwaycommons-xref-kegg a ds:CrossReference ;
+    ds:targetDatabase "KEGG" ;
+    ds:relationship "Source database" ;
+    ds:coverage "Medium" .
+
+data:pathwaycommons-xref-wikipathways a ds:CrossReference ;
+    ds:targetDatabase "WikiPathways" ;
+    ds:relationship "Source database" ;
+    ds:coverage "High" .
+
+# =============================================================================
+# DATA SOURCES - PROTEIN-PROTEIN INTERACTIONS (4.3)
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# BioGRID
+# -----------------------------------------------------------------------------
+
+data:biogrid a ds:DataSource ;
+    ds:id "biogrid" ;
+    ds:title "BioGRID - Biological General Repository for Interaction Datasets" ;
+    ds:description "Curated database of protein, genetic, and chemical interactions from primary literature. Covers physical and genetic interactions from over 70 organisms with detailed experimental evidence annotations." ;
+    ds:belongsToSubcategory subcat:ProteinProteinInteractions ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:website <https://thebiogrid.org> ;
+    ds:maintainer "BioGRID Team (University of Alberta)" ;
+    ds:updateFrequency "Monthly" ;
+    ds:hasLicense data:biogrid-license ;
+    ds:hasVersion data:biogrid-v44230 ;
+    ds:hasAccessMethod data:biogrid-api, data:biogrid-download ;
+    ds:hasFormat tax:TAB2, tax:TAB3, tax:PSIMITAB, tax:JSON ;
+    ds:hasIdentifier data:biogrid-interaction-id, data:biogrid-id ;
+    ds:hasUseCase data:biogrid-usecase-1, data:biogrid-usecase-2, data:biogrid-usecase-3 ;
+    ds:hasLimitation data:biogrid-limitation-1 ;
+    ds:hasCrossReference data:biogrid-xref-uniprot, data:biogrid-xref-entrez, data:biogrid-xref-pubmed .
+
+data:biogrid-license a ds:License ;
+    ds:licenseName "MIT License" ;
+    ds:spdxId "MIT" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistribution true ;
+    ds:citation "Oughtred R, Rust J, et al. The BioGRID database: A comprehensive biomedical resource of curated protein, genetic, and chemical interactions. Protein Sci. 2021;30(1):99-111." .
+
+data:biogrid-v44230 a ds:Version ;
+    ds:version "4.4.230" ;
+    ds:releaseDate "2024-01-15"^^xsd:date ;
+    ds:totalSize "~500 MB zipped" ;
+    ds:recordCount "2200000"^^xsd:integer ;
+    ds:recordCountDescription "Total interactions across all organisms" .
+
+data:biogrid-api a ds:AccessMethod ;
+    ds:accessType tax:RESTAPI ;
+    ds:baseUrl <https://webservice.thebiogrid.org> ;
+    ds:rateLimit "1 request/second recommended" ;
+    ds:authentication "API key required (free)" .
+
+data:biogrid-download a ds:AccessMethod ;
+    ds:accessType tax:HTTPDownload ;
+    ds:baseUrl <https://downloads.thebiogrid.org/> ;
+    ds:authentication "None required" .
+
+data:biogrid-interaction-id a ds:Identifier ;
+    ds:identifierType "Interaction ID" ;
+    ds:pattern "Numeric" ;
+    ds:example "103" .
+
+data:biogrid-id a ds:Identifier ;
+    ds:identifierType "BioGRID ID" ;
+    ds:pattern "Numeric" ;
+    ds:example "106639" .
+
+data:biogrid-usecase-1 a ds:UseCase ;
+    ds:description "Protein-protein interaction network construction" .
+
+data:biogrid-usecase-2 a ds:UseCase ;
+    ds:description "Genetic interaction analysis (synthetic lethality)" .
+
+data:biogrid-usecase-3 a ds:UseCase ;
+    ds:description "Literature-based interaction curation" .
+
+data:biogrid-limitation-1 a ds:Limitation ;
+    ds:description "API key required for API access" ;
+    ds:impact "low" .
+
+data:biogrid-xref-uniprot a ds:CrossReference ;
+    ds:targetDatabase "UniProt" ;
+    ds:relationship "Swiss-Prot accessions" ;
+    ds:coverage "High" .
+
+data:biogrid-xref-entrez a ds:CrossReference ;
+    ds:targetDatabase "Entrez Gene" ;
+    ds:relationship "Gene identifiers" ;
+    ds:coverage "High" .
+
+data:biogrid-xref-pubmed a ds:CrossReference ;
+    ds:targetDatabase "PubMed" ;
+    ds:relationship "Literature references" ;
+    ds:coverage "High" .
+
+# -----------------------------------------------------------------------------
+# IntAct
+# -----------------------------------------------------------------------------
+
+data:intact a ds:DataSource ;
+    ds:id "intact" ;
+    ds:title "IntAct Molecular Interaction Database" ;
+    ds:description "Freely available, open-source molecular interaction database maintained by EMBL-EBI. Founding member of the IMEx consortium providing standardized curation using PSI-MI controlled vocabularies and MI-score confidence measure." ;
+    ds:belongsToSubcategory subcat:ProteinProteinInteractions ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:website <https://www.ebi.ac.uk/intact/> ;
+    ds:maintainer "EMBL-EBI" ;
+    ds:updateFrequency "Monthly" ;
+    ds:hasLicense data:intact-license ;
+    ds:hasVersion data:intact-current ;
+    ds:hasAccessMethod data:intact-psicquic, data:intact-ftp, data:intact-complexportal ;
+    ds:hasFormat tax:PSIMITAB25, tax:PSIMITAB27, tax:PSIMIXML, tax:JSON ;
+    ds:hasIdentifier data:intact-interaction-id, data:intact-interactor-id, data:intact-imex-id ;
+    ds:hasUseCase data:intact-usecase-1, data:intact-usecase-2, data:intact-usecase-3 ;
+    ds:hasLimitation data:intact-limitation-1 ;
+    ds:hasCrossReference data:intact-xref-uniprot, data:intact-xref-chebi, data:intact-xref-pubmed, data:intact-xref-imex .
+
+data:intact-license a ds:License ;
+    ds:licenseName "Creative Commons Attribution 4.0 International" ;
+    ds:spdxId "CC-BY-4.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistribution true ;
+    ds:softwareLicense "Apache 2.0" ;
+    ds:citation "Orchard S, et al. The MIntAct project--IntAct as a common curation platform for 11 molecular interaction databases. Nucleic Acids Res. 2014;42(D1):D358-D363." .
+
+data:intact-current a ds:Version ;
+    ds:version "Current" ;
+    ds:releaseDate "2024-01-01"^^xsd:date ;
+    ds:recordCount "1233546"^^xsd:integer ;
+    ds:recordCountDescription "Binary interactions" .
+
+data:intact-psicquic a ds:AccessMethod ;
+    ds:accessType tax:RESTAPI ;
+    ds:baseUrl <https://www.ebi.ac.uk/Tools/webservices/psicquic/intact/query> ;
+    ds:rateLimit "No strict limit" ;
+    ds:authentication "None required" .
+
+data:intact-ftp a ds:AccessMethod ;
+    ds:accessType tax:FTP ;
+    ds:baseUrl <ftp://ftp.ebi.ac.uk/pub/databases/intact/current/> ;
+    ds:authentication "None required" .
+
+data:intact-complexportal a ds:AccessMethod ;
+    ds:accessType tax:WebInterface ;
+    ds:baseUrl <https://www.ebi.ac.uk/complexportal/> ;
+    ds:notes "Curated protein complexes" .
+
+data:intact-interaction-id a ds:Identifier ;
+    ds:identifierType "IntAct Interaction ID" ;
+    ds:pattern "EBI-{#######}" ;
+    ds:example "EBI-77734" .
+
+data:intact-interactor-id a ds:Identifier ;
+    ds:identifierType "IntAct Interactor ID" ;
+    ds:pattern "EBI-{#######}" ;
+    ds:example "EBI-366083" .
+
+data:intact-imex-id a ds:Identifier ;
+    ds:identifierType "IMEx ID" ;
+    ds:pattern "IM-{#####}" ;
+    ds:example "IM-12345" .
+
+data:intact-usecase-1 a ds:UseCase ;
+    ds:description "High-confidence PPI networks with MI-score filtering" .
+
+data:intact-usecase-2 a ds:UseCase ;
+    ds:description "IMEx federated queries via PSICQUIC" .
+
+data:intact-usecase-3 a ds:UseCase ;
+    ds:description "Protein complex composition analysis" .
+
+data:intact-limitation-1 a ds:Limitation ;
+    ds:description "PSI-MI format requires specialized parsing" ;
+    ds:impact "low" .
+
+data:intact-xref-uniprot a ds:CrossReference ;
+    ds:targetDatabase "UniProt" ;
+    ds:relationship "Primary protein IDs" ;
+    ds:coverage "High" .
+
+data:intact-xref-chebi a ds:CrossReference ;
+    ds:targetDatabase "ChEBI" ;
+    ds:relationship "Small molecule IDs" ;
+    ds:coverage "High" .
+
+data:intact-xref-pubmed a ds:CrossReference ;
+    ds:targetDatabase "PubMed" ;
+    ds:relationship "Literature citations" ;
+    ds:coverage "High" .
+
+data:intact-xref-imex a ds:CrossReference ;
+    ds:targetDatabase "IMEx Consortium" ;
+    ds:relationship "Federated data exchange" ;
+    ds:coverage "High" .
+
+# -----------------------------------------------------------------------------
+# STRING
+# -----------------------------------------------------------------------------
+
+data:string a ds:DataSource ;
+    ds:id "string" ;
+    ds:title "STRING - Search Tool for Retrieval of Interacting Genes/Proteins" ;
+    ds:description "Comprehensive database of known and predicted protein-protein interactions integrating experimental data, text mining, genomic context, and co-expression to compute functional association scores." ;
+    ds:belongsToSubcategory subcat:ProteinProteinInteractions ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:website <https://string-db.org> ;
+    ds:maintainer "EMBL, SIB, KU" ;
+    ds:updateFrequency "Every 1-2 years" ;
+    ds:hasLicense data:string-license ;
+    ds:hasVersion data:string-v12 ;
+    ds:hasAccessMethod data:string-api, data:string-download, data:string-cytoscape ;
+    ds:hasFormat tax:JSON, tax:TSV, tax:PSIMI, tax:PNG, tax:SVG ;
+    ds:hasIdentifier data:string-id, data:string-ensembl-id ;
+    ds:hasUseCase data:string-usecase-1, data:string-usecase-2, data:string-usecase-3 ;
+    ds:hasLimitation data:string-limitation-1 ;
+    ds:hasCrossReference data:string-xref-ensembl, data:string-xref-uniprot, data:string-xref-go, data:string-xref-kegg .
+
+data:string-license a ds:License ;
+    ds:licenseName "Creative Commons Attribution 4.0 International" ;
+    ds:spdxId "CC-BY-4.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistribution true ;
+    ds:citation "Szklarczyk D, Kirsch R, et al. The STRING database in 2023: protein-protein association networks and functional enrichment analyses for any sequenced genome of interest. Nucleic Acids Res. 2023;51(D1):D599-D606." .
+
+data:string-v12 a ds:Version ;
+    ds:version "12.0" ;
+    ds:releaseDate "2023-08-21"^^xsd:date ;
+    ds:totalSize "~50 GB (all species)" ;
+    ds:recordCount "12535845684"^^xsd:integer ;
+    ds:recordCountDescription "Total interactions across 14,094 organisms" .
+
+data:string-api a ds:AccessMethod ;
+    ds:accessType tax:RESTAPI ;
+    ds:baseUrl <https://string-db.org/api> ;
+    ds:rateLimit "1 request/second recommended" ;
+    ds:authentication "None required" .
+
+data:string-download a ds:AccessMethod ;
+    ds:accessType tax:HTTPDownload ;
+    ds:baseUrl <https://stringdb-downloads.org/download/> ;
+    ds:authentication "None required" .
+
+data:string-cytoscape a ds:AccessMethod ;
+    ds:accessType tax:CytoscapeApp ;
+    ds:notes "stringApp for Cytoscape" .
+
+data:string-id a ds:Identifier ;
+    ds:identifierType "STRING ID" ;
+    ds:pattern "{taxid}.{ENSP}" ;
+    ds:example "9606.ENSP00000269305" .
+
+data:string-ensembl-id a ds:Identifier ;
+    ds:identifierType "Ensembl Protein" ;
+    ds:pattern "ENSP{###########}" ;
+    ds:example "ENSP00000269305" .
+
+data:string-usecase-1 a ds:UseCase ;
+    ds:description "Functional association network analysis" .
+
+data:string-usecase-2 a ds:UseCase ;
+    ds:description "Pathway/GO enrichment analysis" .
+
+data:string-usecase-3 a ds:UseCase ;
+    ds:description "Homology-based interaction transfer across species" .
+
+data:string-limitation-1 a ds:Limitation ;
+    ds:description "Combined scores may overestimate confidence for text-mined interactions" ;
+    ds:impact "medium" .
+
+data:string-xref-ensembl a ds:CrossReference ;
+    ds:targetDatabase "Ensembl" ;
+    ds:relationship "Primary protein IDs" ;
+    ds:coverage "High" .
+
+data:string-xref-uniprot a ds:CrossReference ;
+    ds:targetDatabase "UniProt" ;
+    ds:relationship "Protein accessions" ;
+    ds:coverage "High" .
+
+data:string-xref-go a ds:CrossReference ;
+    ds:targetDatabase "GO" ;
+    ds:relationship "Enrichment annotations" ;
+    ds:coverage "High" .
+
+data:string-xref-kegg a ds:CrossReference ;
+    ds:targetDatabase "KEGG" ;
+    ds:relationship "Pathway enrichment" ;
+    ds:coverage "High" .
+
+# =============================================================================
+# DATA SOURCES - DRUG-TARGET INTERACTIONS (4.4)
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# STITCH
+# -----------------------------------------------------------------------------
+
+data:stitch a ds:DataSource ;
+    ds:id "stitch" ;
+    ds:title "STITCH - Chemical-Protein Interaction Networks" ;
+    ds:description "Database of known and predicted interactions between chemicals and proteins. Chemical-protein counterpart to STRING, using similar evidence integration methods to compute interaction confidence scores." ;
+    ds:belongsToSubcategory subcat:DrugTargetInteractions ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:website <http://stitch.embl.de> ;
+    ds:maintainer "EMBL" ;
+    ds:updateFrequency "Every 2-3 years" ;
+    ds:hasLicense data:stitch-license ;
+    ds:hasVersion data:stitch-v5 ;
+    ds:hasAccessMethod data:stitch-api, data:stitch-download, data:stitch-ftp ;
+    ds:hasFormat tax:JSON, tax:TSV, tax:PNG, tax:SVG ;
+    ds:hasIdentifier data:stitch-chemical-id, data:stitch-protein-id ;
+    ds:hasUseCase data:stitch-usecase-1, data:stitch-usecase-2, data:stitch-usecase-3 ;
+    ds:hasLimitation data:stitch-limitation-1 ;
+    ds:hasCrossReference data:stitch-xref-pubchem, data:stitch-xref-drugbank, data:stitch-xref-string, data:stitch-xref-chebi .
+
+data:stitch-license a ds:License ;
+    ds:licenseName "Creative Commons Attribution 4.0 International" ;
+    ds:spdxId "CC-BY-4.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistribution true ;
+    ds:citation "Szklarczyk D, Santos A, et al. STITCH 5: augmenting protein-chemical interaction networks with tissue and affinity data. Nucleic Acids Res. 2016;44(D1):D380-D384." .
+
+data:stitch-v5 a ds:Version ;
+    ds:version "5.0" ;
+    ds:releaseDate "2016-01-01"^^xsd:date ;
+    ds:totalSize "~100 GB (all species)" ;
+    ds:recordCount "1600000000"^^xsd:integer ;
+    ds:recordCountDescription "Chemical-protein interactions" .
+
+data:stitch-api a ds:AccessMethod ;
+    ds:accessType tax:RESTAPI ;
+    ds:baseUrl <http://stitch.embl.de/api> ;
+    ds:rateLimit "1 request/second recommended" ;
+    ds:authentication "None required" .
+
+data:stitch-download a ds:AccessMethod ;
+    ds:accessType tax:HTTPDownload ;
+    ds:baseUrl <http://stitch.embl.de/download/> ;
+    ds:authentication "None required" .
+
+data:stitch-ftp a ds:AccessMethod ;
+    ds:accessType tax:FTP ;
+    ds:baseUrl <ftp://stitch.embl.de/download/> ;
+    ds:authentication "Anonymous" .
+
+data:stitch-chemical-id a ds:Identifier ;
+    ds:identifierType "STITCH Chemical ID" ;
+    ds:pattern "CID{m/s}{#########}" ;
+    ds:example "CIDm00002244" .
+
+data:stitch-protein-id a ds:Identifier ;
+    ds:identifierType "STRING Protein ID" ;
+    ds:pattern "{taxid}.{ENSP}" ;
+    ds:example "9606.ENSP00000269305" .
+
+data:stitch-usecase-1 a ds:UseCase ;
+    ds:description "Drug target discovery and prediction" .
+
+data:stitch-usecase-2 a ds:UseCase ;
+    ds:description "Off-target and polypharmacology analysis" .
+
+data:stitch-usecase-3 a ds:UseCase ;
+    ds:description "Integration with STRING protein networks" .
+
+data:stitch-limitation-1 a ds:Limitation ;
+    ds:description "HTTP only (not HTTPS) may cause security issues" ;
+    ds:impact "medium" .
+
+data:stitch-xref-pubchem a ds:CrossReference ;
+    ds:targetDatabase "PubChem" ;
+    ds:relationship "Chemical identifiers" ;
+    ds:coverage "High" .
+
+data:stitch-xref-drugbank a ds:CrossReference ;
+    ds:targetDatabase "DrugBank" ;
+    ds:relationship "Drug information" ;
+    ds:coverage "High" .
+
+data:stitch-xref-string a ds:CrossReference ;
+    ds:targetDatabase "STRING" ;
+    ds:relationship "Protein IDs (compatible)" ;
+    ds:coverage "High" .
+
+data:stitch-xref-chebi a ds:CrossReference ;
+    ds:targetDatabase "ChEBI" ;
+    ds:relationship "Chemical ontology" ;
+    ds:coverage "High" .
+
+# =============================================================================
+# DATA SOURCES - GENE FUNCTION & ONTOLOGY (4.5)
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Gene Ontology
+# -----------------------------------------------------------------------------
+
+data:gene-ontology a ds:DataSource ;
+    ds:id "gene-ontology" ;
+    ds:title "Gene Ontology (GO)" ;
+    ds:description "Most widely used structured vocabulary for describing gene product functions across all species. Provides computational representation of current scientific knowledge about gene and protein function across three ontologies: Molecular Function, Biological Process, and Cellular Component." ;
+    ds:belongsToSubcategory subcat:GeneFunctionOntology ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:website <https://geneontology.org> ;
+    ds:maintainer "GO Consortium" ;
+    ds:updateFrequency "Monthly" ;
+    ds:hasLicense data:gene-ontology-license ;
+    ds:hasVersion data:gene-ontology-v20240117 ;
+    ds:hasAccessMethod data:gene-ontology-api, data:gene-ontology-sparql, data:gene-ontology-download ;
+    ds:hasFormat tax:OBO, tax:OWL, tax:GAF, tax:GPAD, tax:JSON ;
+    ds:hasIdentifier data:gene-ontology-term-id, data:gene-ontology-evidence-code ;
+    ds:hasUseCase data:gene-ontology-usecase-1, data:gene-ontology-usecase-2, data:gene-ontology-usecase-3 ;
+    ds:hasLimitation data:gene-ontology-limitation-1 ;
+    ds:hasCrossReference data:gene-ontology-xref-uniprot, data:gene-ontology-xref-ensembl, data:gene-ontology-xref-reactome .
+
+data:gene-ontology-license a ds:License ;
+    ds:licenseName "Creative Commons Attribution 4.0 International" ;
+    ds:spdxId "CC-BY-4.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistribution true ;
+    ds:citation "Gene Ontology Consortium. The Gene Ontology knowledgebase in 2023. Genetics. 2023;224(1):iyad031." .
+
+data:gene-ontology-v20240117 a ds:Version ;
+    ds:version "2024-01-17" ;
+    ds:releaseDate "2024-01-17"^^xsd:date ;
+    ds:recordCount "47000"^^xsd:integer ;
+    ds:recordCountDescription "Total GO terms" .
+
+data:gene-ontology-api a ds:AccessMethod ;
+    ds:accessType tax:RESTAPI ;
+    ds:baseUrl <https://api.geneontology.org/api> ;
+    ds:rateLimit "No strict limit" ;
+    ds:authentication "None required" .
+
+data:gene-ontology-sparql a ds:AccessMethod ;
+    ds:accessType tax:SPARQL ;
+    ds:baseUrl <http://rdf.geneontology.org/sparql> ;
+    ds:authentication "None required" .
+
+data:gene-ontology-download a ds:AccessMethod ;
+    ds:accessType tax:HTTPDownload ;
+    ds:baseUrl <https://current.geneontology.org/> ;
+    ds:authentication "None required" .
+
+data:gene-ontology-term-id a ds:Identifier ;
+    ds:identifierType "GO Term" ;
+    ds:pattern "GO:{#######}" ;
+    ds:example "GO:0008152" .
+
+data:gene-ontology-evidence-code a ds:Identifier ;
+    ds:identifierType "Evidence Code" ;
+    ds:pattern "2-3 letters" ;
+    ds:example "IDA" .
+
+data:gene-ontology-usecase-1 a ds:UseCase ;
+    ds:description "Functional enrichment analysis of gene lists" .
+
+data:gene-ontology-usecase-2 a ds:UseCase ;
+    ds:description "Cross-species functional comparison" .
+
+data:gene-ontology-usecase-3 a ds:UseCase ;
+    ds:description "Knowledge representation and semantic integration" .
+
+data:gene-ontology-limitation-1 a ds:Limitation ;
+    ds:description "Electronic annotations (IEA) are less reliable than experimental" ;
+    ds:impact "medium" .
+
+data:gene-ontology-xref-uniprot a ds:CrossReference ;
+    ds:targetDatabase "UniProt" ;
+    ds:relationship "Primary protein annotations" ;
+    ds:coverage "High" .
+
+data:gene-ontology-xref-ensembl a ds:CrossReference ;
+    ds:targetDatabase "Ensembl" ;
+    ds:relationship "Gene annotations" ;
+    ds:coverage "High" .
+
+data:gene-ontology-xref-reactome a ds:CrossReference ;
+    ds:targetDatabase "Reactome" ;
+    ds:relationship "Pathway cross-references" ;
+    ds:coverage "High" .
+
+# -----------------------------------------------------------------------------
+# MSigDB
+# -----------------------------------------------------------------------------
+
+data:msigdb a ds:DataSource ;
+    ds:id "msigdb" ;
+    ds:title "MSigDB - Molecular Signatures Database" ;
+    ds:description "Collection of annotated gene sets for use with GSEA and other enrichment methods. Contains over 33,000 gene sets organized into 9 major collections covering hallmarks, pathways, GO terms, and expression signatures." ;
+    ds:belongsToSubcategory subcat:GeneFunctionOntology ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:website <https://www.gsea-msigdb.org/gsea/msigdb/> ;
+    ds:maintainer "Broad Institute" ;
+    ds:updateFrequency "Semi-annual" ;
+    ds:hasLicense data:msigdb-license ;
+    ds:hasVersion data:msigdb-v20241 ;
+    ds:hasAccessMethod data:msigdb-api, data:msigdb-download ;
+    ds:hasFormat tax:GMT, tax:GMX, tax:GRP, tax:XML, tax:JSON ;
+    ds:hasIdentifier data:msigdb-geneset-name, data:msigdb-systematic-name ;
+    ds:hasUseCase data:msigdb-usecase-1, data:msigdb-usecase-2, data:msigdb-usecase-3 ;
+    ds:hasLimitation data:msigdb-limitation-1 ;
+    ds:hasCrossReference data:msigdb-xref-go, data:msigdb-xref-kegg, data:msigdb-xref-reactome, data:msigdb-xref-wikipathways .
+
+data:msigdb-license a ds:License ;
+    ds:licenseName "CC BY 4.0 (with exceptions)" ;
+    ds:spdxId "CC-BY-4.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistribution true ;
+    ds:notes "KEGG-derived gene sets (CP:KEGG prefix) require separate licensing for commercial use" ;
+    ds:citation "Liberzon A, Birger C, et al. The Molecular Signatures Database Hallmark Gene Set Collection. Cell Systems. 2015;1(6):417-425." .
+
+data:msigdb-v20241 a ds:Version ;
+    ds:version "2024.1.Hs" ;
+    ds:releaseDate "2024-03-01"^^xsd:date ;
+    ds:totalSize "~30 MB" ;
+    ds:recordCount "33000"^^xsd:integer ;
+    ds:recordCountDescription "Total gene sets" .
+
+data:msigdb-api a ds:AccessMethod ;
+    ds:accessType tax:RESTAPI ;
+    ds:baseUrl <https://www.gsea-msigdb.org/gsea/msigdb/api/v1> ;
+    ds:rateLimit "No strict limit" ;
+    ds:authentication "None required" .
+
+data:msigdb-download a ds:AccessMethod ;
+    ds:accessType tax:HTTPDownload ;
+    ds:baseUrl <https://www.gsea-msigdb.org/gsea/downloads.jsp> ;
+    ds:authentication "Free registration required" .
+
+data:msigdb-geneset-name a ds:Identifier ;
+    ds:identifierType "Gene Set Name" ;
+    ds:pattern "Collection_Name" ;
+    ds:example "HALLMARK_APOPTOSIS" .
+
+data:msigdb-systematic-name a ds:Identifier ;
+    ds:identifierType "Systematic Name" ;
+    ds:pattern "M{#####}" ;
+    ds:example "M5930" .
+
+data:msigdb-usecase-1 a ds:UseCase ;
+    ds:description "Gene Set Enrichment Analysis (GSEA)" .
+
+data:msigdb-usecase-2 a ds:UseCase ;
+    ds:description "Over-representation analysis (ORA)" .
+
+data:msigdb-usecase-3 a ds:UseCase ;
+    ds:description "Single-sample enrichment scoring" .
+
+data:msigdb-limitation-1 a ds:Limitation ;
+    ds:description "KEGG-derived gene sets have commercial restrictions" ;
+    ds:impact "medium" .
+
+data:msigdb-xref-go a ds:CrossReference ;
+    ds:targetDatabase "GO" ;
+    ds:relationship "Gene Ontology terms (C5 collection)" ;
+    ds:coverage "High" .
+
+data:msigdb-xref-kegg a ds:CrossReference ;
+    ds:targetDatabase "KEGG" ;
+    ds:relationship "KEGG pathways (CP:KEGG)" ;
+    ds:coverage "High" .
+
+data:msigdb-xref-reactome a ds:CrossReference ;
+    ds:targetDatabase "Reactome" ;
+    ds:relationship "Reactome pathways (CP:REACTOME)" ;
+    ds:coverage "High" .
+
+data:msigdb-xref-wikipathways a ds:CrossReference ;
+    ds:targetDatabase "WikiPathways" ;
+    ds:relationship "WikiPathways (CP:WIKIPATHWAYS)" ;
+    ds:coverage "High" .
+
+# =============================================================================
+# DATA SOURCES - REGULATORY NETWORKS (4.6)
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# JASPAR
+# -----------------------------------------------------------------------------
+
+data:jaspar a ds:DataSource ;
+    ds:id "jaspar" ;
+    ds:title "JASPAR - Transcription Factor Binding Profiles" ;
+    ds:description "Largest open-access database of curated, non-redundant transcription factor binding profiles. Provides position weight matrices (PWMs) and position frequency matrices (PFMs) derived from experimentally defined binding sites." ;
+    ds:belongsToSubcategory subcat:RegulatoryNetworks ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:website <https://jaspar.genereg.net> ;
+    ds:maintainer "JASPAR Team (University of Oslo, NCMM)" ;
+    ds:updateFrequency "Annual" ;
+    ds:hasLicense data:jaspar-license ;
+    ds:hasVersion data:jaspar-v2024 ;
+    ds:hasAccessMethod data:jaspar-api, data:jaspar-download ;
+    ds:hasFormat tax:PFM, tax:PWM, tax:MEME, tax:TRANSFAC, tax:JSON ;
+    ds:hasIdentifier data:jaspar-matrix-id ;
+    ds:hasUseCase data:jaspar-usecase-1, data:jaspar-usecase-2, data:jaspar-usecase-3 ;
+    ds:hasLimitation data:jaspar-limitation-1 ;
+    ds:hasCrossReference data:jaspar-xref-uniprot, data:jaspar-xref-ensembl, data:jaspar-xref-tfclass .
+
+data:jaspar-license a ds:License ;
+    ds:licenseName "Creative Commons Attribution 4.0 International" ;
+    ds:spdxId "CC-BY-4.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistribution true ;
+    ds:citation "Castro-Mondragon JA, Riudavets-Puig R, et al. JASPAR 2022: the 9th release of the open-access database of transcription factor binding profiles. Nucleic Acids Res. 2022;50(D1):D165-D173." .
+
+data:jaspar-v2024 a ds:Version ;
+    ds:version "JASPAR 2024" ;
+    ds:releaseDate "2024-01-01"^^xsd:date ;
+    ds:recordCount "3700"^^xsd:integer ;
+    ds:recordCountDescription "Total binding profiles" .
+
+data:jaspar-api a ds:AccessMethod ;
+    ds:accessType tax:RESTAPI ;
+    ds:baseUrl <https://jaspar.genereg.net/api/v1> ;
+    ds:rateLimit "10 requests/second recommended" ;
+    ds:authentication "None required" .
+
+data:jaspar-download a ds:AccessMethod ;
+    ds:accessType tax:HTTPDownload ;
+    ds:baseUrl <https://jaspar.genereg.net/download/> ;
+    ds:authentication "None required" .
+
+data:jaspar-matrix-id a ds:Identifier ;
+    ds:identifierType "JASPAR Matrix ID" ;
+    ds:pattern "MA{#####}.{#}" ;
+    ds:example "MA0106.3" .
+
+data:jaspar-usecase-1 a ds:UseCase ;
+    ds:description "Transcription factor binding site prediction" .
+
+data:jaspar-usecase-2 a ds:UseCase ;
+    ds:description "ChIP-seq motif enrichment analysis" .
+
+data:jaspar-usecase-3 a ds:UseCase ;
+    ds:description "Regulatory network inference" .
+
+data:jaspar-limitation-1 a ds:Limitation ;
+    ds:description "Motif scanning produces many false positive predictions" ;
+    ds:impact "medium" .
+
+data:jaspar-xref-uniprot a ds:CrossReference ;
+    ds:targetDatabase "UniProt" ;
+    ds:relationship "TF protein IDs" ;
+    ds:coverage "High" .
+
+data:jaspar-xref-ensembl a ds:CrossReference ;
+    ds:targetDatabase "Ensembl" ;
+    ds:relationship "Gene identifiers" ;
+    ds:coverage "High" .
+
+data:jaspar-xref-tfclass a ds:CrossReference ;
+    ds:targetDatabase "TFClass" ;
+    ds:relationship "TF classification" ;
+    ds:coverage "High" .
+
+# -----------------------------------------------------------------------------
+# Roadmap Epigenomics
+# -----------------------------------------------------------------------------
+
+data:roadmap-epigenomics a ds:DataSource ;
+    ds:id "roadmap-epigenomics" ;
+    ds:title "Roadmap Epigenomics Project" ;
+    ds:description "NIH Roadmap Epigenomics Mapping Consortium produced comprehensive epigenome reference maps for 127 primary human cells and tissues, including genome-wide maps of histone modifications, DNA methylation, chromatin accessibility, and RNA expression." ;
+    ds:belongsToSubcategory subcat:RegulatoryNetworks ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:website <https://egg2.wustl.edu/roadmap/> ;
+    ds:maintainer "Roadmap Epigenomics Consortium (NIH)" ;
+    ds:updateFrequency "Final release (2015)" ;
+    ds:hasLicense data:roadmap-license ;
+    ds:hasVersion data:roadmap-final ;
+    ds:hasAccessMethod data:roadmap-download, data:roadmap-ucsc, data:roadmap-aws ;
+    ds:hasFormat tax:BED, tax:bigWig, tax:BAM, tax:bedGraph, tax:WIG ;
+    ds:hasIdentifier data:roadmap-epigenome-id, data:roadmap-chromatin-state ;
+    ds:hasUseCase data:roadmap-usecase-1, data:roadmap-usecase-2, data:roadmap-usecase-3 ;
+    ds:hasLimitation data:roadmap-limitation-1 ;
+    ds:hasCrossReference data:roadmap-xref-geo, data:roadmap-xref-encode, data:roadmap-xref-ucsc .
+
+data:roadmap-license a ds:License ;
+    ds:licenseName "Open Access (NIH Public Data)" ;
+    ds:spdxId "Custom" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistribution true ;
+    ds:citation "Roadmap Epigenomics Consortium. Integrative analysis of 111 reference human epigenomes. Nature. 2015;518(7539):317-330." .
+
+data:roadmap-final a ds:Version ;
+    ds:version "Final Release" ;
+    ds:releaseDate "2015-02-18"^^xsd:date ;
+    ds:totalSize "~150 TB" ;
+    ds:recordCount "127"^^xsd:integer ;
+    ds:recordCountDescription "Reference epigenomes" .
+
+data:roadmap-download a ds:AccessMethod ;
+    ds:accessType tax:HTTPDownload ;
+    ds:baseUrl <https://egg2.wustl.edu/roadmap/data/> ;
+    ds:authentication "None required" .
+
+data:roadmap-ucsc a ds:AccessMethod ;
+    ds:accessType tax:GenomeBrowser ;
+    ds:baseUrl <https://genome.ucsc.edu> ;
+    ds:notes "Track hub available" .
+
+data:roadmap-aws a ds:AccessMethod ;
+    ds:accessType tax:S3 ;
+    ds:baseUrl <s3://encode-public/> ;
+    ds:authentication "AWS credentials may be required" .
+
+data:roadmap-epigenome-id a ds:Identifier ;
+    ds:identifierType "Epigenome ID" ;
+    ds:pattern "E{###}" ;
+    ds:example "E003" .
+
+data:roadmap-chromatin-state a ds:Identifier ;
+    ds:identifierType "Chromatin State" ;
+    ds:pattern "1-15" ;
+    ds:example "7_Enh" .
+
+data:roadmap-usecase-1 a ds:UseCase ;
+    ds:description "GWAS variant interpretation with tissue-specific states" .
+
+data:roadmap-usecase-2 a ds:UseCase ;
+    ds:description "Cell-type-specific enhancer identification" .
+
+data:roadmap-usecase-3 a ds:UseCase ;
+    ds:description "Disease mechanism investigation via regulatory elements" .
+
+data:roadmap-limitation-1 a ds:Limitation ;
+    ds:description "Bulk tissue data, not single-cell resolution" ;
+    ds:impact "medium" .
+
+data:roadmap-xref-geo a ds:CrossReference ;
+    ds:targetDatabase "GEO" ;
+    ds:relationship "Raw data deposition" ;
+    ds:coverage "High" .
+
+data:roadmap-xref-encode a ds:CrossReference ;
+    ds:targetDatabase "ENCODE" ;
+    ds:relationship "Complementary functional data" ;
+    ds:coverage "Medium" .
+
+data:roadmap-xref-ucsc a ds:CrossReference ;
+    ds:targetDatabase "UCSC Genome Browser" ;
+    ds:relationship "Track visualization" ;
+    ds:coverage "High" .
+
+# =============================================================================
+# END OF FILE
+# =============================================================================
