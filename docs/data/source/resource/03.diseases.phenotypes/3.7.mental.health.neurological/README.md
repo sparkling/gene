@@ -2,7 +2,7 @@
 id: mental.health.neurological
 title: "Mental Health and Neurological"
 type: subcategory
-parent: ../_index.md
+parent: ../README.md
 last_updated: 2026-01-23
 status: active
 tags: [mental-health, neurological, psychiatry, brain, neuroscience]
@@ -10,7 +10,7 @@ tags: [mental-health, neurological, psychiatry, brain, neuroscience]
 
 # Mental Health and Neurological
 
-**Parent:** [Diseases & Phenotypes](../_index.md)
+**Parent:** [Diseases & Phenotypes](../README.md)
 
 ## Overview
 
@@ -22,9 +22,9 @@ Key resources include Allen Brain Atlas (brain transcriptomics), PGC (psychiatri
 
 | Source | Tier | Description |
 |--------|------|-------------|
-| [Allen Brain Atlas](./allen.brain.atlas/_index.md) | 1 | Brain gene expression maps |
-| [PGC](./pgc/_index.md) | 1 | Psychiatric Genomics Consortium |
-| [SynGO](./syngo/_index.md) | 2 | Synaptic Gene Ontology |
+| [Allen Brain Atlas](./allen.brain.atlas/README.md) | 1 | Brain gene expression maps |
+| [PGC](./pgc/README.md) | 1 | Psychiatric Genomics Consortium |
+| [SynGO](./syngo/README.md) | 2 | Synaptic Gene Ontology |
 
 ## Integration Notes
 

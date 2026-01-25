@@ -2,13 +2,13 @@
 id: schemas-lotus-schema
 title: "LOTUS Natural Products Database Schema"
 category: schemas
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-22
 status: migrated
 tags: [schema, natural-products, wikidata, sparql, structure-organism, cc0]
 ---
 
-**Parent:** [Schema Documentation](./_index.md)
+**Parent:** [Schema Documentation](./README.md)
 
 # LOTUS Natural Products Database Schema
 

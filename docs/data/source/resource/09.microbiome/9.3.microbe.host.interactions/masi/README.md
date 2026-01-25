@@ -4,7 +4,7 @@ title: "MASI - Microbiome-Associated Signaling Interactions"
 type: data-source
 category: microbiome
 subcategory: microbe.host.interactions
-parent: ../_index.md
+parent: ../README.md
 tier: 2
 last_updated: 2026-01-23
 status: active
@@ -13,7 +13,7 @@ tags: [microbiome, signaling, pathways, mechanisms, metabolites]
 
 # MASI - Microbiome-Associated Signaling Interactions
 
-**Category:** [Microbiome](../../../_index.md) > [Microbe-Host Interactions](../_index.md)
+**Category:** [Microbiome](../../../README.md) > [Microbe-Host Interactions](../README.md)
 
 ## Overview
 
@@ -70,5 +70,5 @@ MASI is valuable for understanding the molecular basis of microbiome-host commun
 ## See Also
 
 - [Schema Documentation](./schema.md)
-- [VMH](../vmh/_index.md) - Metabolic models
-- [gutMGene](../../9.1.gut.microbiome/gutmgene/_index.md) - Gene expression
+- [VMH](../vmh/README.md) - Metabolic models
+- [gutMGene](../../9.1.gut.microbiome/gutmgene/README.md) - Gene expression

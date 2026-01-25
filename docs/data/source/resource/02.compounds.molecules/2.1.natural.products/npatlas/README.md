@@ -84,9 +84,9 @@ The database is particularly valuable for natural product dereplication, biosynt
 
 ## Related Resources
 
-- [COCONUT](../coconut/_index.md) - All natural products
-- [LOTUS](../lotus/_index.md) - Structure-organism pairs
-- [MIBiG](../../_index.md) - Biosynthetic gene clusters
+- [COCONUT](../coconut/README.md) - All natural products
+- [LOTUS](../lotus/README.md) - Structure-organism pairs
+- [MIBiG](../../README.md) - Biosynthetic gene clusters
 
 ## References
 

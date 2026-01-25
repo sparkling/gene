@@ -2,7 +2,7 @@
 id: schema-orphanet
 title: "Orphanet Schema Documentation"
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-24
 status: migrated
 tags: [schema, database, rare-diseases, orphan-drugs, ordo, clinical-resources]
@@ -336,7 +336,7 @@ ordo:Orphanet_558 a owl:Class ;
 
 ## See Also
 
-- [Orphanet Overview](./_index.md)
+- [Orphanet Overview](./README.md)
 - [Orphanet Download Instructions](./download.md)
-- [OMIM](../../3.2.phenotype.databases/omim/_index.md) - Mendelian inheritance database
-- [HPO](../../3.2.phenotype.databases/hpo/_index.md) - Phenotype ontology
+- [OMIM](../../3.2.phenotype.databases/omim/README.md) - Mendelian inheritance database
+- [HPO](../../3.2.phenotype.databases/hpo/README.md) - Phenotype ontology

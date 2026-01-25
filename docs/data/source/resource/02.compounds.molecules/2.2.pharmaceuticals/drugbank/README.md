@@ -87,9 +87,9 @@ DrugBank serves as a critical resource for drug discovery, clinical practice, an
 
 ## Related Resources
 
-- [ChEMBL](../chembl/_index.md) - Bioactivity data
-- [RxNorm](../rxnorm/_index.md) - Drug nomenclature
-- [DailyMed](../dailymed/_index.md) - Drug labeling
+- [ChEMBL](../chembl/README.md) - Bioactivity data
+- [RxNorm](../rxnorm/README.md) - Drug nomenclature
+- [DailyMed](../dailymed/README.md) - Drug labeling
 
 ## References
 

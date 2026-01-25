@@ -4,7 +4,7 @@ title: "VMH - Virtual Metabolic Human"
 type: data-source
 category: microbiome
 subcategory: microbe.host.interactions
-parent: ../_index.md
+parent: ../README.md
 tier: 1
 last_updated: 2026-01-23
 status: active
@@ -13,7 +13,7 @@ tags: [metabolism, microbiome, models, reconstruction, flux-balance]
 
 # VMH - Virtual Metabolic Human
 
-**Category:** [Microbiome](../../../_index.md) > [Microbe-Host Interactions](../_index.md)
+**Category:** [Microbiome](../../../README.md) > [Microbe-Host Interactions](../README.md)
 
 ## Overview
 
@@ -71,6 +71,6 @@ VMH is essential for systems biology approaches to microbiome research, metaboli
 ## See Also
 
 - [Schema Documentation](./schema.md)
-- [gutMDisorder](../gutmdisorder/_index.md) - Disease associations
-- [HMP](../../9.2.body.site.microbiomes/hmp/_index.md) - Reference microbiomes
+- [gutMDisorder](../gutmdisorder/README.md) - Disease associations
+- [HMP](../../9.2.body.site.microbiomes/hmp/README.md) - Reference microbiomes
 - [KEGG](../../../../04.pathways.networks/4.1.metabolic.pathways/kegg/) - Pathway data

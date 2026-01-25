@@ -2,7 +2,7 @@
 id: download-decipher
 title: "DECIPHER Download Instructions"
 type: download
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-23
 ---
 

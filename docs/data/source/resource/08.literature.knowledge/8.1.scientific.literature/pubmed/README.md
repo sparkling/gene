@@ -4,7 +4,7 @@ title: "PubMed"
 type: data-source
 category: literature
 subcategory: scientific.literature
-parent: ../_index.md
+parent: ../README.md
 tier: 1
 last_updated: 2026-01-23
 status: active
@@ -13,7 +13,7 @@ tags: [literature, ncbi, medline, biomedical, abstracts]
 
 # PubMed
 
-**Category:** [Literature](../../../_index.md) > [Scientific Literature](../_index.md)
+**Category:** [Literature](../../../README.md) > [Scientific Literature](../README.md)
 
 ## Overview
 
@@ -70,6 +70,6 @@ PubMed is the essential starting point for biomedical literature searches and is
 ## See Also
 
 - [Schema Documentation](./schema.md)
-- [PubMed Central](../pubmed.central/_index.md) - Full-text archive
-- [Europe PMC](../europe.pmc/_index.md) - European extension
-- [NCBI E-Link](../../8.3.identifier.mapping/ncbi.elink/_index.md) - Cross-linking
+- [PubMed Central](../pubmed.central/README.md) - Full-text archive
+- [Europe PMC](../europe.pmc/README.md) - European extension
+- [NCBI E-Link](../../8.3.identifier.mapping/ncbi.elink/README.md) - Cross-linking

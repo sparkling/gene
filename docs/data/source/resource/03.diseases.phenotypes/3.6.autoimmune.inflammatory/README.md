@@ -2,7 +2,7 @@
 id: autoimmune.inflammatory
 title: "Autoimmune and Inflammatory"
 type: subcategory
-parent: ../_index.md
+parent: ../README.md
 last_updated: 2026-01-23
 status: active
 tags: [autoimmune, inflammatory, immunology, hla, immune-mediated]
@@ -10,7 +10,7 @@ tags: [autoimmune, inflammatory, immunology, hla, immune-mediated]
 
 # Autoimmune and Inflammatory
 
-**Parent:** [Diseases & Phenotypes](../_index.md)
+**Parent:** [Diseases & Phenotypes](../README.md)
 
 ## Overview
 
@@ -22,8 +22,8 @@ Key resources include ImmunoBase (immune-mediated disease genetics) and IPD-IMGT
 
 | Source | Tier | Description |
 |--------|------|-------------|
-| [ImmunoBase](./immunobase/_index.md) | 2 | Immune disease genetics |
-| [IPD-IMGT/HLA](./ipd.imgt.hla/_index.md) | 1 | HLA allele database |
+| [ImmunoBase](./immunobase/README.md) | 2 | Immune disease genetics |
+| [IPD-IMGT/HLA](./ipd.imgt.hla/README.md) | 1 | HLA allele database |
 
 ## Integration Notes
 

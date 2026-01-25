@@ -83,9 +83,9 @@ NPASS serves as a bridge between natural product chemistry and pharmacology, ena
 
 ## Related Resources
 
-- [COCONUT](../coconut/_index.md) - Comprehensive natural products
-- [ChEMBL](../../2.2.pharmaceuticals/chembl/_index.md) - Bioactivity data
-- [BindingDB](../../2.7.compound.target.interactions/bindingdb/_index.md) - Binding affinities
+- [COCONUT](../coconut/README.md) - Comprehensive natural products
+- [ChEMBL](../../2.2.pharmaceuticals/chembl/README.md) - Bioactivity data
+- [BindingDB](../../2.7.compound.target.interactions/bindingdb/README.md) - Binding affinities
 
 ## References
 

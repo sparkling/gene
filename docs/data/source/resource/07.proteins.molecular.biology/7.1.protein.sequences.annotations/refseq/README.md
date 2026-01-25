@@ -4,7 +4,7 @@ title: "NCBI RefSeq - Reference Sequence Database"
 type: data-source
 category: proteins
 subcategory: protein.sequences.annotations
-parent: ../_index.md
+parent: ../README.md
 tier: 1
 last_updated: 2026-01-23
 status: active
@@ -13,7 +13,7 @@ tags: [sequences, ncbi, reference, proteins, transcripts, genomes]
 
 # NCBI RefSeq - Reference Sequence Database
 
-**Category:** [Proteins](../../../_index.md) > [Protein Sequences](../_index.md)
+**Category:** [Proteins](../../../README.md) > [Protein Sequences](../README.md)
 
 ## Overview
 

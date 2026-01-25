@@ -2,7 +2,7 @@
 id: pharmacogenomics
 title: "Pharmacogenomics"
 type: subcategory
-parent: ../_index.md
+parent: ../README.md
 last_updated: 2026-01-23
 status: active
 tags: [pharmacogenomics, pgx, drug-response, dosing, cpic, dpwg]
@@ -10,7 +10,7 @@ tags: [pharmacogenomics, pgx, drug-response, dosing, cpic, dpwg]
 
 # Pharmacogenomics
 
-**Parent:** [Genetics & Genomics](../_index.md)
+**Parent:** [Genetics & Genomics](../README.md)
 
 ## Overview
 
@@ -22,10 +22,10 @@ Key resources include PharmGKB (comprehensive PGx knowledge), CPIC (clinical dos
 
 | Source | Tier | Description |
 |--------|------|-------------|
-| [PharmGKB](./pharmgkb/_index.md) | 1 | Pharmacogenomics knowledge base |
-| [CPIC](./cpic/_index.md) | 1 | Clinical Pharmacogenetics Implementation |
-| [PharmVar](./pharmvar/_index.md) | 1 | Pharmacogene Variation Consortium |
-| [DPWG](./dpwg/_index.md) | 1 | Dutch Pharmacogenetics Working Group |
+| [PharmGKB](./pharmgkb/README.md) | 1 | Pharmacogenomics knowledge base |
+| [CPIC](./cpic/README.md) | 1 | Clinical Pharmacogenetics Implementation |
+| [PharmVar](./pharmvar/README.md) | 1 | Pharmacogene Variation Consortium |
+| [DPWG](./dpwg/README.md) | 1 | Dutch Pharmacogenetics Working Group |
 
 ## Integration Notes
 

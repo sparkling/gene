@@ -2,7 +2,7 @@
 id: pathways.networks
 title: "Pathways and Networks"
 type: category
-parent: ../_index.md
+parent: ../README.md
 last_updated: 2026-01-23
 status: active
 tags: [pathways, networks, interactions, protein-protein, signaling, metabolic, regulatory]
@@ -10,7 +10,7 @@ tags: [pathways, networks, interactions, protein-protein, signaling, metabolic, 
 
 # Pathways and Networks
 
-**Parent:** [Data Sources](../_index.md)
+**Parent:** [Data Sources](../README.md)
 
 ## Overview
 
@@ -24,12 +24,12 @@ The integration of pathway and network data with genetic variants, expression ch
 
 | Subcategory | Description | Sources |
 |-------------|-------------|---------|
-| [4.1 Metabolic Pathways](./4.1.metabolic.pathways/_index.md) | Metabolic and biochemical pathway databases | 3 |
-| [4.2 Signaling Pathways](./4.2.signaling.pathways/_index.md) | Cell signaling and signal transduction | 1 |
-| [4.3 Protein-Protein Interactions](./4.3.protein.protein.interactions/_index.md) | Physical and functional interaction networks | 3 |
-| [4.4 Drug-Target Interactions](./4.4.drug.target.interactions/_index.md) | Compound-protein interaction networks | 1 |
-| [4.5 Gene Function & Ontology](./4.5.gene.function.ontology/_index.md) | Functional annotations and gene sets | 2 |
-| [4.6 Regulatory Networks](./4.6.regulatory.networks/_index.md) | Transcriptional and epigenetic regulation | 2 |
+| [4.1 Metabolic Pathways](./4.1.metabolic.pathways/README.md) | Metabolic and biochemical pathway databases | 3 |
+| [4.2 Signaling Pathways](./4.2.signaling.pathways/README.md) | Cell signaling and signal transduction | 1 |
+| [4.3 Protein-Protein Interactions](./4.3.protein.protein.interactions/README.md) | Physical and functional interaction networks | 3 |
+| [4.4 Drug-Target Interactions](./4.4.drug.target.interactions/README.md) | Compound-protein interaction networks | 1 |
+| [4.5 Gene Function & Ontology](./4.5.gene.function.ontology/README.md) | Functional annotations and gene sets | 2 |
+| [4.6 Regulatory Networks](./4.6.regulatory.networks/README.md) | Transcriptional and epigenetic regulation | 2 |
 
 ## Key Statistics
 
@@ -58,6 +58,6 @@ The integration of pathway and network data with genetic variants, expression ch
 
 ## See Also
 
-- [Genetics & Genomics](../01.genetics.genomics/_index.md)
-- [Compounds & Molecules](../02.compounds.molecules/_index.md)
-- [Proteins & Molecular Biology](../07.proteins.molecular.biology/_index.md)
+- [Genetics & Genomics](../01.genetics.genomics/README.md)
+- [Compounds & Molecules](../02.compounds.molecules/README.md)
+- [Proteins & Molecular Biology](../07.proteins.molecular.biology/README.md)

@@ -4,13 +4,13 @@ title: Open Food Facts Schema Documentation
 category: schemas
 subcategory: nutrition
 tier: 2
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-22
 status: migrated
 tags: [schema, nutrition, food, crowdsourced, open-data]
 ---
 
-**Parent:** [Schema Documentation](./_index.md)
+**Parent:** [Schema Documentation](./README.md)
 
 # Open Food Facts - Schema Documentation
 

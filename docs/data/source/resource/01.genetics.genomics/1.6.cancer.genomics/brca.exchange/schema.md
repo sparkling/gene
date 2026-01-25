@@ -2,7 +2,7 @@
 id: schema-brca-exchange
 title: "BRCA Exchange Schema Documentation"
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-23
 status: draft
 tags: [schema, database, cancer, brca1, brca2, hereditary]

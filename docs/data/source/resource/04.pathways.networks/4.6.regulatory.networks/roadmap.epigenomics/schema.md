@@ -2,7 +2,7 @@
 id: schema-roadmap-epigenomics
 title: "Roadmap Epigenomics Schema Documentation"
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-24
 status: final
 tags: [schema, database, epigenomics, chromatin]

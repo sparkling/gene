@@ -17,7 +17,7 @@ tags:
 
 # TCMBank
 
-**Category:** [Traditional Medicine](../../_index.md) > [Traditional Chinese Medicine](../_index.md)
+**Category:** [Traditional Medicine](../../README.md) > [Traditional Chinese Medicine](../README.md)
 
 ## Overview
 
@@ -111,6 +111,6 @@ Targets (15,000+) -----> Diseases (8,000+)
 
 ## See Also
 
-- [BATMAN-TCM](../batman.tcm/_index.md)
-- [TCMSID](../tcmsid/_index.md)
-- [ETCM](../etcm/_index.md)
+- [BATMAN-TCM](../batman.tcm/README.md)
+- [TCMSID](../tcmsid/README.md)
+- [ETCM](../etcm/README.md)

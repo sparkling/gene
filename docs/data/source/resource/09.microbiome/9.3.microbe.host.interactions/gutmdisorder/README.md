@@ -4,7 +4,7 @@ title: "gutMDisorder"
 type: data-source
 category: microbiome
 subcategory: microbe.host.interactions
-parent: ../_index.md
+parent: ../README.md
 tier: 2
 last_updated: 2026-01-23
 status: active
@@ -13,7 +13,7 @@ tags: [microbiome, disease, dysbiosis, associations, curated]
 
 # gutMDisorder
 
-**Category:** [Microbiome](../../../_index.md) > [Microbe-Host Interactions](../_index.md)
+**Category:** [Microbiome](../../../README.md) > [Microbe-Host Interactions](../README.md)
 
 ## Overview
 
@@ -70,5 +70,5 @@ gutMDisorder is essential for understanding dysbiosis patterns across diseases a
 ## See Also
 
 - [Schema Documentation](./schema.md)
-- [GMrepo](../../9.1.gut.microbiome/gmrepo/_index.md) - Sample data
-- [VMH](../vmh/_index.md) - Metabolic models
+- [GMrepo](../../9.1.gut.microbiome/gmrepo/README.md) - Sample data
+- [VMH](../vmh/README.md) - Metabolic models

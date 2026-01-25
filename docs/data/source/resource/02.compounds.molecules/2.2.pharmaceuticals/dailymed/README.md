@@ -87,9 +87,9 @@ The database includes drug package inserts, patient information, and medication 
 
 ## Related Resources
 
-- [RxNorm](../rxnorm/_index.md) - Drug nomenclature
-- [DrugBank](../drugbank/_index.md) - Drug database
-- [Orange Book](../orange.book/_index.md) - FDA approval data
+- [RxNorm](../rxnorm/README.md) - Drug nomenclature
+- [DrugBank](../drugbank/README.md) - Drug database
+- [Orange Book](../orange.book/README.md) - FDA approval data
 
 ## References
 

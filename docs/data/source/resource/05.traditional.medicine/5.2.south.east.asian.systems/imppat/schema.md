@@ -2,13 +2,13 @@
 id: schemas-imppat-schema
 title: "IMPPAT 2.0 Database Schema"
 category: schemas
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-22
 status: migrated
 tags: [schema, phytochemistry, indian-medicinal-plants, natural-products, drug-likeness, admet]
 ---
 
-**Parent:** [Schema Documentation](./_index.md)
+**Parent:** [Schema Documentation](./README.md)
 
 # IMPPAT 2.0 Database Schema
 

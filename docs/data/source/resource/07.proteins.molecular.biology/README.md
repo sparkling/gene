@@ -2,7 +2,7 @@
 id: proteins.molecular.biology
 title: "Proteins and Molecular Biology"
 type: category
-parent: ../_index.md
+parent: ../README.md
 last_updated: 2026-01-23
 status: active
 tags: [proteins, sequences, structures, molecular-biology]
@@ -10,7 +10,7 @@ tags: [proteins, sequences, structures, molecular-biology]
 
 # Proteins and Molecular Biology
 
-**Parent:** [Data Sources](../_index.md)
+**Parent:** [Data Sources](../README.md)
 
 ## Overview
 
@@ -22,9 +22,9 @@ Protein databases provide comprehensive information from amino acid sequences to
 
 | Subcategory | Description | Sources |
 |-------------|-------------|---------|
-| [7.1 Protein Sequences & Annotations](./7.1.protein.sequences.annotations/_index.md) | Curated protein sequence databases | 2 |
-| [7.2 Protein Structures](./7.2.protein.structures/_index.md) | Experimental and predicted 3D structures | 3 |
-| [7.3 Molecular Interactions](./7.3.molecular.interactions/_index.md) | Protein-protein and protein-ligand interactions | (symlinks) |
+| [7.1 Protein Sequences & Annotations](./7.1.protein.sequences.annotations/README.md) | Curated protein sequence databases | 2 |
+| [7.2 Protein Structures](./7.2.protein.structures/README.md) | Experimental and predicted 3D structures | 3 |
+| [7.3 Molecular Interactions](./7.3.molecular.interactions/README.md) | Protein-protein and protein-ligand interactions | (symlinks) |
 
 ## Key Integration Points
 

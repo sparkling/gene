@@ -4,7 +4,7 @@ title: "ClinicalTrials.gov"
 type: data-source
 category: literature
 subcategory: regulatory.legal
-parent: ../_index.md
+parent: ../README.md
 tier: 1
 last_updated: 2026-01-23
 status: active
@@ -13,7 +13,7 @@ tags: [clinical-trials, regulatory, research, interventions, fda]
 
 # ClinicalTrials.gov
 
-**Category:** [Literature](../../../_index.md) > [Regulatory & Legal](../_index.md)
+**Category:** [Literature](../../../README.md) > [Regulatory & Legal](../README.md)
 
 ## Overview
 
@@ -70,5 +70,5 @@ ClinicalTrials.gov is essential for drug development research, competitive intel
 ## See Also
 
 - [Schema Documentation](./schema.md)
-- [FDA openFDA](../fda.openfda/_index.md) - Drug approvals
-- [PubMed](../../8.1.scientific.literature/pubmed/_index.md) - Trial publications
+- [FDA openFDA](../fda.openfda/README.md) - Drug approvals
+- [PubMed](../../8.1.scientific.literature/pubmed/README.md) - Trial publications

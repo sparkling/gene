@@ -2,7 +2,7 @@
 id: traditional.medicine.compounds
 title: "Traditional Medicine Compounds"
 type: subcategory
-parent: ../_index.md
+parent: ../README.md
 last_updated: 2026-01-23
 status: active
 tags: [traditional-medicine, herbal, tcm, ayurveda, compounds]
@@ -10,7 +10,7 @@ tags: [traditional-medicine, herbal, tcm, ayurveda, compounds]
 
 # Traditional Medicine Compounds
 
-**Parent:** [Compounds & Molecules](../_index.md)
+**Parent:** [Compounds & Molecules](../README.md)
 
 ## Overview
 
@@ -22,7 +22,7 @@ For comprehensive traditional medicine compound data, see the databases organize
 
 | Source | Tier | Description |
 |--------|------|-------------|
-| *See [Traditional Medicine](../../05.traditional.medicine/_index.md)* | - | TCM, Ayurveda, Kampo databases |
+| *See [Traditional Medicine](../../05.traditional.medicine/README.md)* | - | TCM, Ayurveda, Kampo databases |
 
 ## Integration Notes
 
@@ -30,6 +30,6 @@ Traditional medicine compound databases are organized under Category 5 (Traditio
 
 ## See Also
 
-- [5.1 Traditional Chinese Medicine](../../05.traditional.medicine/5.1.traditional.chinese.medicine/_index.md)
-- [5.2 South & East Asian Systems](../../05.traditional.medicine/5.2.south.east.asian.systems/_index.md)
-- [Natural Products](../2.1.natural.products/_index.md)
+- [5.1 Traditional Chinese Medicine](../../05.traditional.medicine/5.1.traditional.chinese.medicine/README.md)
+- [5.2 South & East Asian Systems](../../05.traditional.medicine/5.2.south.east.asian.systems/README.md)
+- [Natural Products](../2.1.natural.products/README.md)

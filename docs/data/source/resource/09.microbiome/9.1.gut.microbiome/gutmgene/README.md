@@ -4,7 +4,7 @@ title: "gutMGene"
 type: data-source
 category: microbiome
 subcategory: gut.microbiome
-parent: ../_index.md
+parent: ../README.md
 tier: 2
 last_updated: 2026-01-23
 status: active
@@ -13,7 +13,7 @@ tags: [gut, microbiome, gene-expression, host-microbe, regulation]
 
 # gutMGene
 
-**Category:** [Microbiome](../../../_index.md) > [Gut Microbiome](../_index.md)
+**Category:** [Microbiome](../../../README.md) > [Gut Microbiome](../README.md)
 
 ## Overview
 
@@ -69,5 +69,5 @@ gutMGene is valuable for understanding the molecular mechanisms of microbiota-ho
 ## See Also
 
 - [Schema Documentation](./schema.md)
-- [GMrepo](../gmrepo/_index.md) - Microbiome repository
-- [gutMDisorder](../../9.3.microbe.host.interactions/gutmdisorder/_index.md) - Disease links
+- [GMrepo](../gmrepo/README.md) - Microbiome repository
+- [gutMDisorder](../../9.3.microbe.host.interactions/gutmdisorder/README.md) - Disease links

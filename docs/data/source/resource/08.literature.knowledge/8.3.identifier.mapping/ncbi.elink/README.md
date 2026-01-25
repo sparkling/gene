@@ -4,7 +4,7 @@ title: "NCBI E-Link"
 type: data-source
 category: literature
 subcategory: identifier.mapping
-parent: ../_index.md
+parent: ../README.md
 tier: 1
 last_updated: 2026-01-23
 status: active
@@ -13,7 +13,7 @@ tags: [identifiers, mapping, ncbi, entrez, cross-reference]
 
 # NCBI E-Link
 
-**Category:** [Literature](../../../_index.md) > [Identifier Mapping](../_index.md)
+**Category:** [Literature](../../../README.md) > [Identifier Mapping](../README.md)
 
 ## Overview
 
@@ -69,5 +69,5 @@ ELink is essential for programmatic integration of NCBI databases and discoverin
 ## See Also
 
 - [Schema Documentation](./schema.md)
-- [PubMed](../../8.1.scientific.literature/pubmed/_index.md) - Literature database
-- [PMC ID Converter](../pmc.id.converter/_index.md) - Publication IDs
+- [PubMed](../../8.1.scientific.literature/pubmed/README.md) - Literature database
+- [PMC ID Converter](../pmc.id.converter/README.md) - Publication IDs

@@ -2,13 +2,13 @@
 id: schemas-uniprot-idmapping-schema
 title: "UniProt ID Mapping Schema"
 category: schemas
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-22
 status: migrated
 tags: [schema, uniprot, id-mapping, cross-reference, protein, integration]
 ---
 
-**Parent:** [Schema Documentation](./_index.md)
+**Parent:** [Schema Documentation](./README.md)
 
 # UniProt ID Mapping Schema
 

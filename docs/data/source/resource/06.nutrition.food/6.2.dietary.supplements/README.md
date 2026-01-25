@@ -2,7 +2,7 @@
 id: dietary.supplements
 title: "Dietary Supplement Databases"
 type: subcategory
-parent: ../_index.md
+parent: ../README.md
 last_updated: 2026-01-23
 status: active
 tags: [supplements, dietary, vitamins, herbs, safety]
@@ -10,7 +10,7 @@ tags: [supplements, dietary, vitamins, herbs, safety]
 
 # Dietary Supplement Databases
 
-**Parent:** [Nutrition and Food Sciences](../_index.md)
+**Parent:** [Nutrition and Food Sciences](../README.md)
 
 ## Overview
 
@@ -20,9 +20,9 @@ Dietary supplement databases provide information about supplement products, thei
 
 | Source | Tier | Description |
 |--------|------|-------------|
-| [ConsumerLab](./consumerlab/_index.md) | 3 | Independent supplement testing and reviews |
-| [DSLD](./dsld/_index.md) | 1 | NIH Dietary Supplement Label Database |
-| [Natural Medicines](./natural.medicines/_index.md) | 2 | Evidence-based natural products database |
+| [ConsumerLab](./consumerlab/README.md) | 3 | Independent supplement testing and reviews |
+| [DSLD](./dsld/README.md) | 1 | NIH Dietary Supplement Label Database |
+| [Natural Medicines](./natural.medicines/README.md) | 2 | Evidence-based natural products database |
 
 ## Integration Notes
 

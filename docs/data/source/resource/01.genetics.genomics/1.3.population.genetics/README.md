@@ -2,7 +2,7 @@
 id: population.genetics
 title: "Population Genetics"
 type: subcategory
-parent: ../_index.md
+parent: ../README.md
 last_updated: 2026-01-23
 status: active
 tags: [population, allele-frequency, gnomad, biobank, diversity]
@@ -10,7 +10,7 @@ tags: [population, allele-frequency, gnomad, biobank, diversity]
 
 # Population Genetics
 
-**Parent:** [Genetics & Genomics](../_index.md)
+**Parent:** [Genetics & Genomics](../README.md)
 
 ## Overview
 
@@ -22,10 +22,10 @@ Key resources include gnomAD (aggregated exome/genome data), UK Biobank (large-s
 
 | Source | Tier | Description |
 |--------|------|-------------|
-| [gnomAD](./gnomad/_index.md) | 1 | Genome Aggregation Database |
-| [1000 Genomes](./1000.genomes/_index.md) | 1 | International population reference |
-| [UK Biobank](./uk.biobank/_index.md) | 1 | Large-scale biobank genetics |
-| [TOPMed](./topmed/_index.md) | 1 | Trans-Omics for Precision Medicine |
+| [gnomAD](./gnomad/README.md) | 1 | Genome Aggregation Database |
+| [1000 Genomes](./1000.genomes/README.md) | 1 | International population reference |
+| [UK Biobank](./uk.biobank/README.md) | 1 | Large-scale biobank genetics |
+| [TOPMed](./topmed/README.md) | 1 | Trans-Omics for Precision Medicine |
 
 ## Integration Notes
 

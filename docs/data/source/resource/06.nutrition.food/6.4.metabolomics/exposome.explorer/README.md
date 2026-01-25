@@ -4,7 +4,7 @@ title: "Exposome-Explorer"
 type: data-source
 category: nutrition
 subcategory: metabolomics
-parent: ../_index.md
+parent: ../README.md
 tier: 2
 last_updated: 2026-01-23
 status: active
@@ -13,7 +13,7 @@ tags: [exposome, biomarkers, diet, environment, metabolomics]
 
 # Exposome-Explorer
 
-**Category:** [Nutrition](../../../_index.md) > [Metabolomics](../_index.md)
+**Category:** [Nutrition](../../../README.md) > [Metabolomics](../README.md)
 
 ## Overview
 

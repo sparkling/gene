@@ -2,7 +2,7 @@
 id: schema-allen-brain-atlas
 title: "Allen Brain Atlas Schema Documentation"
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-23
 status: draft
 tags: [schema, brain, neuroanatomy, gene-expression, transcriptomics, neuroscience]
@@ -64,4 +64,4 @@ The Allen Brain Atlas is a comprehensive collection of publicly available resour
 
 ## References
 
-See [Overview](./_index.md) for full details.
+See [Overview](./README.md) for full details.

@@ -17,7 +17,7 @@ tags:
 
 # EMA Herbal Medicines - European Medicines Agency
 
-**Category:** [Traditional Medicine](../../_index.md) > [Western & Global Herbal](../_index.md)
+**Category:** [Traditional Medicine](../../README.md) > [Western & Global Herbal](../README.md)
 
 ## Overview
 
@@ -135,5 +135,5 @@ Herbal Substance (Latin name + plant part)
 
 ## See Also
 
-- [NAPRALERT](../napralert/_index.md)
-- [Dr. Duke's Phytochemical Database](../../02.compounds.molecules/2.1.natural.products/dr.dukes/_index.md)
+- [NAPRALERT](../napralert/README.md)
+- [Dr. Duke's Phytochemical Database](../../02.compounds.molecules/2.1.natural.products/dr.dukes/README.md)

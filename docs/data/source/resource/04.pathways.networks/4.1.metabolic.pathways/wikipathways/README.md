@@ -19,7 +19,7 @@ tags:
 
 # WikiPathways
 
-**Category:** [Pathways & Networks](../../_index.md) > [Metabolic Pathways](../_index.md)
+**Category:** [Pathways & Networks](../../README.md) > [Metabolic Pathways](../README.md)
 
 ## Overview
 
@@ -146,5 +146,5 @@ curl "https://webservice.wikipathways.org/getPathwayInfo?pwId=WP254&format=json"
 ## See Also
 
 - [Schema Documentation](./schema.md)
-- [Reactome](../reactome/_index.md) - Expert-curated pathways
-- [KEGG](../kegg/_index.md) - Reference pathways (licensed)
+- [Reactome](../reactome/README.md) - Expert-curated pathways
+- [KEGG](../kegg/README.md) - Reference pathways (licensed)

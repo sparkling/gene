@@ -17,7 +17,7 @@ tags:
 
 # STRING - Search Tool for Retrieval of Interacting Genes/Proteins
 
-**Category:** [Pathways & Networks](../../_index.md) > [Protein-Protein Interactions](../_index.md)
+**Category:** [Pathways & Networks](../../README.md) > [Protein-Protein Interactions](../README.md)
 
 ## Overview
 
@@ -208,6 +208,6 @@ curl "https://string-db.org/api/json/homology?identifiers=TP53&species=9606&spec
 ## See Also
 
 - [Schema Documentation](./schema.md)
-- [IntAct](../intact/_index.md) - Experimental interactions
-- [BioGRID](../biogrid/_index.md) - Curated interactions
-- [STITCH](../../4.4.drug.target.interactions/{stitch}/_index.md) - Protein-chemical interactions
+- [IntAct](../intact/README.md) - Experimental interactions
+- [BioGRID](../biogrid/README.md) - Curated interactions
+- [STITCH](../../4.4.drug.target.interactions/{stitch}/README.md) - Protein-chemical interactions

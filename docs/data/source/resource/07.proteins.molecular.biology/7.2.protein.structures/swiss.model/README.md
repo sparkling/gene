@@ -4,7 +4,7 @@ title: "SWISS-MODEL Repository"
 type: data-source
 category: proteins
 subcategory: protein.structures
-parent: ../_index.md
+parent: ../README.md
 tier: 2
 last_updated: 2026-01-23
 status: active
@@ -13,7 +13,7 @@ tags: [modeling, homology, templates, 3d, prediction]
 
 # SWISS-MODEL Repository
 
-**Category:** [Proteins](../../../_index.md) > [Protein Structures](../_index.md)
+**Category:** [Proteins](../../../README.md) > [Protein Structures](../README.md)
 
 ## Overview
 

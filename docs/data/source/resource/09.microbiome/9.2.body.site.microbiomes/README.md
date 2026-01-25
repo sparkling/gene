@@ -2,7 +2,7 @@
 id: body.site.microbiomes
 title: "Body Site Microbiome Databases"
 type: subcategory
-parent: ../_index.md
+parent: ../README.md
 last_updated: 2026-01-23
 status: active
 tags: [oral, skin, microbiome, body-sites, hmp]
@@ -10,7 +10,7 @@ tags: [oral, skin, microbiome, body-sites, hmp]
 
 # Body Site Microbiome Databases
 
-**Parent:** [Microbiome Resources](../_index.md)
+**Parent:** [Microbiome Resources](../README.md)
 
 ## Overview
 
@@ -20,9 +20,9 @@ Body site microbiome databases catalog microbial communities from various anatom
 
 | Source | Tier | Description |
 |--------|------|-------------|
-| [HMP](./hmp/_index.md) | 1 | Human Microbiome Project |
-| [HOMD](./homd/_index.md) | 1 | Human Oral Microbiome Database |
-| [mBodyMap](./mbodymap/_index.md) | 2 | Body-wide microbiome atlas |
+| [HMP](./hmp/README.md) | 1 | Human Microbiome Project |
+| [HOMD](./homd/README.md) | 1 | Human Oral Microbiome Database |
+| [mBodyMap](./mbodymap/README.md) | 2 | Body-wide microbiome atlas |
 
 ## Integration Notes
 

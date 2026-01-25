@@ -2,7 +2,7 @@
 id: disease.ontologies
 title: "Disease Ontologies"
 type: subcategory
-parent: ../_index.md
+parent: ../README.md
 last_updated: 2026-01-23
 status: active
 tags: [ontology, classification, icd, mondo, mesh, terminology]
@@ -10,7 +10,7 @@ tags: [ontology, classification, icd, mondo, mesh, terminology]
 
 # Disease Ontologies
 
-**Parent:** [Diseases & Phenotypes](../_index.md)
+**Parent:** [Diseases & Phenotypes](../README.md)
 
 ## Overview
 
@@ -22,10 +22,10 @@ Key resources include MONDO (unified disease ontology), EFO (Experimental Factor
 
 | Source | Tier | Description |
 |--------|------|-------------|
-| [MONDO](./mondo/_index.md) | 1 | Unified disease ontology |
-| [EFO](./efo/_index.md) | 1 | Experimental Factor Ontology |
-| [ICD](./icd/_index.md) | 1 | International Classification of Diseases |
-| [MeSH](./mesh/_index.md) | 1 | Medical Subject Headings |
+| [MONDO](./mondo/README.md) | 1 | Unified disease ontology |
+| [EFO](./efo/README.md) | 1 | Experimental Factor Ontology |
+| [ICD](./icd/README.md) | 1 | International Classification of Diseases |
+| [MeSH](./mesh/README.md) | 1 | Medical Subject Headings |
 
 ## Integration Notes
 

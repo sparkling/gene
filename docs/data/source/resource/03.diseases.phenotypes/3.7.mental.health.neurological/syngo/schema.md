@@ -2,7 +2,7 @@
 id: schema-syngo
 title: "SynGO Schema Documentation"
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-23
 status: draft
 tags: [schema, synapse, neuroscience, gene-ontology, synaptic-function, brain-disorders]
@@ -75,4 +75,4 @@ SynGO is an expert-curated resource for synaptic function gene annotations, prov
 
 ## References
 
-See [Overview](./_index.md) for full details.
+See [Overview](./README.md) for full details.

@@ -4,7 +4,7 @@ title: "FDA openFDA"
 type: data-source
 category: literature
 subcategory: regulatory.legal
-parent: ../_index.md
+parent: ../README.md
 tier: 1
 last_updated: 2026-01-23
 status: active
@@ -13,7 +13,7 @@ tags: [fda, regulatory, drugs, devices, adverse-events, recalls]
 
 # FDA openFDA
 
-**Category:** [Literature](../../../_index.md) > [Regulatory & Legal](../_index.md)
+**Category:** [Literature](../../../README.md) > [Regulatory & Legal](../README.md)
 
 ## Overview
 
@@ -71,5 +71,5 @@ openFDA is essential for adverse event analysis, drug safety research, and regul
 ## See Also
 
 - [Schema Documentation](./schema.md)
-- [ClinicalTrials.gov](../clinicaltrials.gov/_index.md) - Trial data
+- [ClinicalTrials.gov](../clinicaltrials.gov/README.md) - Trial data
 - [DailyMed](../dailymed/) - Drug labeling (symlink)

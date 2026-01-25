@@ -86,9 +86,9 @@ The database is updated monthly and available in electronic format through the F
 
 ## Related Resources
 
-- [DailyMed](../dailymed/_index.md) - Drug labeling
-- [DrugBank](../drugbank/_index.md) - Drug information
-- [RxNorm](../rxnorm/_index.md) - Drug nomenclature
+- [DailyMed](../dailymed/README.md) - Drug labeling
+- [DrugBank](../drugbank/README.md) - Drug information
+- [RxNorm](../rxnorm/README.md) - Drug nomenclature
 
 ## References
 

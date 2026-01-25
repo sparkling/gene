@@ -2,7 +2,7 @@
 id: schema-rxnorm
 title: "RxNorm Schema Documentation"
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-23
 status: migrated
 tags: [schema, database, terminology, drug-names, normalization, umls]

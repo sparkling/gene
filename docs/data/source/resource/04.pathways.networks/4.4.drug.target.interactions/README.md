@@ -2,7 +2,7 @@
 id: drug.target.interactions
 title: "Drug-Target Interactions"
 type: subcategory
-parent: ../_index.md
+parent: ../README.md
 last_updated: 2026-01-23
 status: active
 tags: [drug-target, chemical-protein, stitch, pharmacology]
@@ -10,7 +10,7 @@ tags: [drug-target, chemical-protein, stitch, pharmacology]
 
 # Drug-Target Interactions
 
-**Parent:** [Pathways & Networks](../_index.md)
+**Parent:** [Pathways & Networks](../README.md)
 
 ## Overview
 
@@ -22,7 +22,7 @@ Key resources include STITCH (chemical-protein interaction network). For additio
 
 | Source | Tier | Description |
 |--------|------|-------------|
-| [STITCH](./\{stitch\}/_index.md) | 1 | Chemical-protein interaction network |
+| [STITCH](./\{stitch\}/README.md) | 1 | Chemical-protein interaction network |
 
 ## Integration Notes
 
@@ -30,5 +30,5 @@ STITCH extends STRING to include chemical-protein interactions. Interactions are
 
 ## See Also
 
-- [2.7 Compound-Target Interactions](../../02.compounds.molecules/2.7.compound.target.interactions/_index.md)
-- [4.3 Protein-Protein Interactions](../4.3.protein.protein.interactions/_index.md)
+- [2.7 Compound-Target Interactions](../../02.compounds.molecules/2.7.compound.target.interactions/README.md)
+- [4.3 Protein-Protein Interactions](../4.3.protein.protein.interactions/README.md)

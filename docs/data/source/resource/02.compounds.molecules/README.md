@@ -2,7 +2,7 @@
 id: compounds.molecules
 title: "Compounds and Molecules"
 type: category
-parent: ../_index.md
+parent: ../README.md
 last_updated: 2026-01-23
 status: active
 tags: [compounds, molecules, drugs, natural-products, pharmacology, chemistry]
@@ -10,7 +10,7 @@ tags: [compounds, molecules, drugs, natural-products, pharmacology, chemistry]
 
 # Compounds and Molecules
 
-**Parent:** [Data Sources](../_index.md)
+**Parent:** [Data Sources](../README.md)
 
 ## Overview
 
@@ -24,13 +24,13 @@ The integration of compound data with biological targets, pathways, and clinical
 
 | Subcategory | Description | Sources |
 |-------------|-------------|---------|
-| [2.1 Natural Products](./2.1.natural.products/_index.md) | Plant, microbial, and marine natural products | 5 |
-| [2.2 Pharmaceuticals](./2.2.pharmaceuticals/_index.md) | Drug databases and pharmaceutical information | 5 |
-| [2.3 Traditional Medicine Compounds](./2.3.traditional.medicine.compounds/_index.md) | Compounds from traditional medicine systems | 0 |
-| [2.4 Food Compounds & Nutrients](./2.4.food.compounds.nutrients/_index.md) | Dietary compounds and nutritional molecules | 3 |
-| [2.5 Drug Metabolism & Pharmacokinetics](./2.5.drug.metabolism.pharmacokinetics/_index.md) | ADMET and metabolism prediction | 2 |
-| [2.6 Chemical Ontology & Classification](./2.6.chemical.ontology.classification/_index.md) | Chemical classification and ontologies | 4 |
-| [2.7 Compound-Target Interactions](./2.7.compound.target.interactions/_index.md) | Binding affinity and interaction databases | 4 |
+| [2.1 Natural Products](./2.1.natural.products/README.md) | Plant, microbial, and marine natural products | 5 |
+| [2.2 Pharmaceuticals](./2.2.pharmaceuticals/README.md) | Drug databases and pharmaceutical information | 5 |
+| [2.3 Traditional Medicine Compounds](./2.3.traditional.medicine.compounds/README.md) | Compounds from traditional medicine systems | 0 |
+| [2.4 Food Compounds & Nutrients](./2.4.food.compounds.nutrients/README.md) | Dietary compounds and nutritional molecules | 3 |
+| [2.5 Drug Metabolism & Pharmacokinetics](./2.5.drug.metabolism.pharmacokinetics/README.md) | ADMET and metabolism prediction | 2 |
+| [2.6 Chemical Ontology & Classification](./2.6.chemical.ontology.classification/README.md) | Chemical classification and ontologies | 4 |
+| [2.7 Compound-Target Interactions](./2.7.compound.target.interactions/README.md) | Binding affinity and interaction databases | 4 |
 
 ## Key Statistics
 
@@ -59,6 +59,6 @@ The integration of compound data with biological targets, pathways, and clinical
 
 ## See Also
 
-- [Traditional Medicine](../05.traditional.medicine/_index.md)
-- [Nutrition & Food Sciences](../06.nutrition.food/_index.md)
-- [Pathways & Networks](../04.pathways.networks/_index.md)
+- [Traditional Medicine](../05.traditional.medicine/README.md)
+- [Nutrition & Food Sciences](../06.nutrition.food/README.md)
+- [Pathways & Networks](../04.pathways.networks/README.md)

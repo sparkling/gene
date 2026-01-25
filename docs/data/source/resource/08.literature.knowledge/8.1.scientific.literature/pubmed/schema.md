@@ -2,7 +2,7 @@
 id: schema-pubmed
 title: "PubMed Schema Documentation"
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-24
 status: final
 tags: [schema, database, literature, biomedical]

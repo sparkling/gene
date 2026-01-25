@@ -2,7 +2,7 @@
 id: traditional.chinese.medicine
 title: "Traditional Chinese Medicine"
 type: subcategory
-parent: ../_index.md
+parent: ../README.md
 last_updated: 2026-01-23
 status: active
 tags: [tcm, chinese-medicine, herbs, formulas, acupuncture]
@@ -10,7 +10,7 @@ tags: [tcm, chinese-medicine, herbs, formulas, acupuncture]
 
 # Traditional Chinese Medicine
 
-**Parent:** [Traditional Medicine](../_index.md)
+**Parent:** [Traditional Medicine](../README.md)
 
 ## Overview
 
@@ -22,12 +22,12 @@ Key resources include HERB (high-throughput experiment-based database), ETCM (En
 
 | Source | Tier | Description |
 |--------|------|-------------|
-| [HERB](./herb/_index.md) | 1 | High-throughput TCM database |
-| [ETCM](./etcm/_index.md) | 1 | Encyclopedia of TCM |
-| [TCMBANK](./tcmbank/_index.md) | 2 | TCM compound and target database |
-| [TCMSID](./tcmsid/_index.md) | 2 | TCM ingredient database |
-| [BATMAN-TCM](./batman.tcm/_index.md) | 2 | TCM target prediction |
-| [SymMap](./symmap/_index.md) | 2 | Symptom-herb-compound mapping |
+| [HERB](./herb/README.md) | 1 | High-throughput TCM database |
+| [ETCM](./etcm/README.md) | 1 | Encyclopedia of TCM |
+| [TCMBANK](./tcmbank/README.md) | 2 | TCM compound and target database |
+| [TCMSID](./tcmsid/README.md) | 2 | TCM ingredient database |
+| [BATMAN-TCM](./batman.tcm/README.md) | 2 | TCM target prediction |
+| [SymMap](./symmap/README.md) | 2 | Symptom-herb-compound mapping |
 
 ## Integration Notes
 

@@ -84,9 +84,9 @@ With over 100 million compounds and billions of bioactivity data points, PubChem
 
 ## Related Resources
 
-- [ChEBI](../chebi/_index.md) - Chemical ontology
-- [ChEMBL](../../2.2.pharmaceuticals/chembl/_index.md) - Curated bioactivity
-- [DrugBank](../../2.2.pharmaceuticals/drugbank/_index.md) - Drug information
+- [ChEBI](../chebi/README.md) - Chemical ontology
+- [ChEMBL](../../2.2.pharmaceuticals/chembl/README.md) - Curated bioactivity
+- [DrugBank](../../2.2.pharmaceuticals/drugbank/README.md) - Drug information
 
 ## See Also
 

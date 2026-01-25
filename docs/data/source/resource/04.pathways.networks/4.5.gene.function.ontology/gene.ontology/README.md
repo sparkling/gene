@@ -17,7 +17,7 @@ tags:
 
 # Gene Ontology (GO)
 
-**Category:** [Pathways & Networks](../../_index.md) > [Gene Function & Ontology](../_index.md)
+**Category:** [Pathways & Networks](../../README.md) > [Gene Function & Ontology](../README.md)
 
 ## Overview
 
@@ -208,5 +208,5 @@ LIMIT 100
 ## See Also
 
 - [Schema Documentation](./schema.md)
-- [MSigDB](../msigdb/_index.md) - Gene set collections using GO
-- [Reactome](../../4.1.metabolic.pathways/reactome/_index.md) - GO-annotated pathways
+- [MSigDB](../msigdb/README.md) - Gene set collections using GO
+- [Reactome](../../4.1.metabolic.pathways/reactome/README.md) - GO-annotated pathways

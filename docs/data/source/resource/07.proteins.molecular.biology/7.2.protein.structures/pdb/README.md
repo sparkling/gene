@@ -4,7 +4,7 @@ title: "PDB - Protein Data Bank"
 type: data-source
 category: proteins
 subcategory: protein.structures
-parent: ../_index.md
+parent: ../README.md
 tier: 1
 last_updated: 2026-01-23
 status: active
@@ -13,7 +13,7 @@ tags: [structures, crystallography, cryo-em, nmr, experimental, 3d]
 
 # PDB - Protein Data Bank
 
-**Category:** [Proteins](../../../_index.md) > [Protein Structures](../_index.md)
+**Category:** [Proteins](../../../README.md) > [Protein Structures](../README.md)
 
 ## Overview
 

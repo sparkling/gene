@@ -2,7 +2,7 @@
 id: schema-drugbank
 title: "DrugBank Schema Documentation"
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-23
 status: migrated
 tags: [schema, database, drugs, pharmacology, targets, interactions]

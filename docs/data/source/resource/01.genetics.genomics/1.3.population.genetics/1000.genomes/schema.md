@@ -2,7 +2,7 @@
 id: schema-1000-genomes
 title: "1000 Genomes Project Schema Documentation"
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-23
 status: draft
 tags: [schema, database, population, frequency, diversity]

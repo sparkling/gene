@@ -4,7 +4,7 @@ title: "ConsumerLab"
 type: data-source
 category: nutrition
 subcategory: dietary.supplements
-parent: ../_index.md
+parent: ../README.md
 tier: 3
 last_updated: 2026-01-23
 status: active
@@ -13,7 +13,7 @@ tags: [supplements, testing, quality, reviews, consumer]
 
 # ConsumerLab
 
-**Category:** [Nutrition](../../../_index.md) > [Dietary Supplements](../_index.md)
+**Category:** [Nutrition](../../../README.md) > [Dietary Supplements](../README.md)
 
 ## Overview
 

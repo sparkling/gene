@@ -2,7 +2,7 @@
 id: schema-supercyp
 title: "SuperCYP Schema Documentation"
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-23
 status: migrated
 tags: [schema, database, cytochrome-p450, drug-metabolism, cyp-enzymes, drug-interactions]

@@ -2,7 +2,7 @@
 id: identifier.mapping
 title: "Identifier Mapping Services"
 type: subcategory
-parent: ../_index.md
+parent: ../README.md
 last_updated: 2026-01-23
 status: active
 tags: [identifiers, mapping, cross-reference, conversion]
@@ -10,7 +10,7 @@ tags: [identifiers, mapping, cross-reference, conversion]
 
 # Identifier Mapping Services
 
-**Parent:** [Literature and Knowledge Resources](../_index.md)
+**Parent:** [Literature and Knowledge Resources](../README.md)
 
 ## Overview
 
@@ -20,9 +20,9 @@ Identifier mapping services enable conversion between different database identif
 
 | Source | Tier | Description |
 |--------|------|-------------|
-| [NCBI E-Link](./ncbi.elink/_index.md) | 1 | Cross-database linking within NCBI |
-| [PMC ID Converter](./pmc.id.converter/_index.md) | 1 | PubMed/PMC/DOI conversion service |
-| [UniProt ID Mapping](./uniprot.id.mapping/_index.md) | 1 | Protein identifier mapping service |
+| [NCBI E-Link](./ncbi.elink/README.md) | 1 | Cross-database linking within NCBI |
+| [PMC ID Converter](./pmc.id.converter/README.md) | 1 | PubMed/PMC/DOI conversion service |
+| [UniProt ID Mapping](./uniprot.id.mapping/README.md) | 1 | Protein identifier mapping service |
 | [UniProt](./uniprot/) | 1 | Full UniProt database (symlink) |
 
 ## Integration Notes

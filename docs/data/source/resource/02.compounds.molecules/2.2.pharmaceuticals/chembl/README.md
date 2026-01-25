@@ -83,9 +83,9 @@ ChEMBL provides extensive data on approved drugs, clinical candidates, and resea
 
 ## Related Resources
 
-- [DrugBank](../drugbank/_index.md) - Comprehensive drug data
-- [BindingDB](../../2.7.compound.target.interactions/bindingdb/_index.md) - Binding affinities
-- [PubChem](../../2.6.chemical.ontology.classification/pubchem/_index.md) - Chemical repository
+- [DrugBank](../drugbank/README.md) - Comprehensive drug data
+- [BindingDB](../../2.7.compound.target.interactions/bindingdb/README.md) - Binding affinities
+- [PubChem](../../2.6.chemical.ontology.classification/pubchem/README.md) - Chemical repository
 
 ## See Also
 

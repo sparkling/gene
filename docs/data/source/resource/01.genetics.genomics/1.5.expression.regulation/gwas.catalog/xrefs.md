@@ -2,7 +2,7 @@
 id: xrefs-gwas-catalog
 title: "GWAS Catalog Cross-References"
 type: xrefs
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-23
 ---
 

@@ -4,7 +4,7 @@ title: "Europe PMC"
 type: data-source
 category: literature
 subcategory: scientific.literature
-parent: ../_index.md
+parent: ../README.md
 tier: 1
 last_updated: 2026-01-23
 status: active
@@ -13,7 +13,7 @@ tags: [literature, publications, open-access, europe, full-text]
 
 # Europe PMC
 
-**Category:** [Literature](../../../_index.md) > [Scientific Literature](../_index.md)
+**Category:** [Literature](../../../README.md) > [Scientific Literature](../README.md)
 
 ## Overview
 
@@ -71,5 +71,5 @@ Europe PMC is particularly valuable for European researchers, open access advoca
 ## See Also
 
 - [Schema Documentation](./schema.md)
-- [PubMed](../pubmed/_index.md) - NCBI literature database
-- [PubMed Central](../pubmed.central/_index.md) - Full-text archive
+- [PubMed](../pubmed/README.md) - NCBI literature database
+- [PubMed Central](../pubmed.central/README.md) - Full-text archive

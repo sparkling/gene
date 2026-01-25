@@ -2,7 +2,7 @@
 id: schema-mesh
 title: "Medical Subject Headings (MeSH) Schema Documentation"
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-23
 status: draft
 tags: [schema, vocabulary, medical-terms, nlm, pubmed, indexing, diseases]
@@ -53,4 +53,4 @@ MeSH is the NLM controlled vocabulary thesaurus for indexing PubMed articles and
 
 ## References
 
-See [Overview](./_index.md) for full details.
+See [Overview](./README.md) for full details.

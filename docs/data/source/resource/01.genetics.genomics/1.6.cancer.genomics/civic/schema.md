@@ -2,7 +2,7 @@
 id: schema-civic
 title: "CIViC Schema Documentation"
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-23
 status: draft
 tags: [schema, database, cancer, clinical, interpretation, evidence]

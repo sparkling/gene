@@ -2,7 +2,7 @@
 id: schema-ipd-imgt-hla
 title: "IPD-IMGT/HLA Schema Documentation"
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-23
 status: draft
 tags: [schema, hla, immunogenetics, transplantation, alleles, mhc, histocompatibility]
@@ -65,4 +65,4 @@ IPD-IMGT/HLA is the international repository of HLA gene sequences, providing a 
 
 ## References
 
-See [Overview](./_index.md) for full details.
+See [Overview](./README.md) for full details.

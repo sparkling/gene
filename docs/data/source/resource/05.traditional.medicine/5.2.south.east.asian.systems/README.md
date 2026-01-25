@@ -2,7 +2,7 @@
 id: south.east.asian.systems
 title: "South and East Asian Systems"
 type: subcategory
-parent: ../_index.md
+parent: ../README.md
 last_updated: 2026-01-23
 status: active
 tags: [ayurveda, kampo, indian-medicine, japanese-medicine, asian]
@@ -10,7 +10,7 @@ tags: [ayurveda, kampo, indian-medicine, japanese-medicine, asian]
 
 # South and East Asian Systems
 
-**Parent:** [Traditional Medicine](../_index.md)
+**Parent:** [Traditional Medicine](../README.md)
 
 ## Overview
 
@@ -22,10 +22,10 @@ Key resources include IMPPAT (Indian medicinal plants), KampoDB (Kampo medicine)
 
 | Source | Tier | Description |
 |--------|------|-------------|
-| [IMPPAT](./imppat/_index.md) | 1 | Indian Medicinal Plants, Phytochemistry and Therapeutics |
-| [KampoDB](./kampodb/_index.md) | 2 | Kampo medicine database |
-| [NPACT](./npact/_index.md) | 2 | Natural Products for Cancer Therapy |
-| [TM-MC](./tm.mc/_index.md) | 2 | Thai Traditional Medicine |
+| [IMPPAT](./imppat/README.md) | 1 | Indian Medicinal Plants, Phytochemistry and Therapeutics |
+| [KampoDB](./kampodb/README.md) | 2 | Kampo medicine database |
+| [NPACT](./npact/README.md) | 2 | Natural Products for Cancer Therapy |
+| [TM-MC](./tm.mc/README.md) | 2 | Thai Traditional Medicine |
 
 ## Integration Notes
 

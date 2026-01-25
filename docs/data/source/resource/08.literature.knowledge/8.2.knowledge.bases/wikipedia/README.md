@@ -4,7 +4,7 @@ title: "Wikipedia"
 type: data-source
 category: literature
 subcategory: knowledge.bases
-parent: ../_index.md
+parent: ../README.md
 tier: 2
 last_updated: 2026-01-23
 status: active
@@ -13,7 +13,7 @@ tags: [encyclopedia, text, descriptions, multilingual, open-content]
 
 # Wikipedia
 
-**Category:** [Literature](../../../_index.md) > [Knowledge Bases](../_index.md)
+**Category:** [Literature](../../../README.md) > [Knowledge Bases](../README.md)
 
 ## Overview
 
@@ -71,4 +71,4 @@ Wikipedia is valuable for generating human-readable descriptions, training NLP m
 ## See Also
 
 - [Schema Documentation](./schema.md)
-- [Wikidata](../wikidata/_index.md) - Structured data
+- [Wikidata](../wikidata/README.md) - Structured data

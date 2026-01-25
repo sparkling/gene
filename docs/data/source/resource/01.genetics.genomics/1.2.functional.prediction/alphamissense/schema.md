@@ -2,13 +2,13 @@
 id: schema-alphamissense
 title: AlphaMissense Schema Documentation
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-22
 status: migrated
 tags: [schema, database, variant, pathogenicity]
 ---
 
-**Parent:** [Schema Documentation](./_index.md)
+**Parent:** [Schema Documentation](./README.md)
 
 # AlphaMissense Schema Documentation
 

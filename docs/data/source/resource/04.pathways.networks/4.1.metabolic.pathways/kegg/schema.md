@@ -2,13 +2,13 @@
 id: schemas-kgml-schema
 title: "KEGG KGML Schema Documentation"
 category: schemas
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-22
 status: migrated
 tags: [schema, kegg, kgml, pathway, xml, licensed]
 ---
 
-**Parent:** [Schema Documentation](./_index.md)
+**Parent:** [Schema Documentation](./README.md)
 
 # KEGG KGML Schema Documentation
 

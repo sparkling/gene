@@ -2,7 +2,7 @@
 id: rare.orphan.diseases
 title: "Rare and Orphan Diseases"
 type: subcategory
-parent: ../_index.md
+parent: ../README.md
 last_updated: 2026-01-23
 status: active
 tags: [rare-disease, orphan, genetic, diagnosis, panels]
@@ -10,7 +10,7 @@ tags: [rare-disease, orphan, genetic, diagnosis, panels]
 
 # Rare and Orphan Diseases
 
-**Parent:** [Diseases & Phenotypes](../_index.md)
+**Parent:** [Diseases & Phenotypes](../README.md)
 
 ## Overview
 
@@ -22,9 +22,9 @@ Key resources include Orphanet (European rare disease portal), DECIPHER (develop
 
 | Source | Tier | Description |
 |--------|------|-------------|
-| [Orphanet](./orphanet/_index.md) | 1 | Rare disease knowledge base |
-| [DECIPHER](./decipher/_index.md) | 1 | Developmental disorder database |
-| [PanelApp](./panelapp/_index.md) | 1 | Gene panel curation |
+| [Orphanet](./orphanet/README.md) | 1 | Rare disease knowledge base |
+| [DECIPHER](./decipher/README.md) | 1 | Developmental disorder database |
+| [PanelApp](./panelapp/README.md) | 1 | Gene panel curation |
 
 ## Integration Notes
 

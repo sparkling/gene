@@ -91,9 +91,9 @@ BindingDB integrates data from scientific publications, patents, and direct depo
 
 ## Related Resources
 
-- [ChEMBL](../../2.2.pharmaceuticals/chembl/_index.md) - Bioactivity data
-- [GtoPdb](../gtopdb/_index.md) - Pharmacology database
-- [TTD](../ttd/_index.md) - Therapeutic targets
+- [ChEMBL](../../2.2.pharmaceuticals/chembl/README.md) - Bioactivity data
+- [GtoPdb](../gtopdb/README.md) - Pharmacology database
+- [TTD](../ttd/README.md) - Therapeutic targets
 
 ## See Also
 

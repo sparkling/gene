@@ -2,13 +2,13 @@
 id: schemas-spliceai-schema
 title: "SpliceAI Schema Documentation"
 category: schemas
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-22
 status: migrated
 tags: [schema, spliceai, splice-prediction, deep-learning, variant-annotation, vcf]
 ---
 
-**Parent:** [Schema Documentation](./_index.md)
+**Parent:** [Schema Documentation](./README.md)
 
 # SpliceAI Schema Documentation
 

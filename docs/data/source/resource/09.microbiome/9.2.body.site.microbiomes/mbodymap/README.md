@@ -4,7 +4,7 @@ title: "mBodyMap"
 type: data-source
 category: microbiome
 subcategory: body.site.microbiomes
-parent: ../_index.md
+parent: ../README.md
 tier: 2
 last_updated: 2026-01-23
 status: active
@@ -13,7 +13,7 @@ tags: [microbiome, body-sites, atlas, comparative, visualization]
 
 # mBodyMap
 
-**Category:** [Microbiome](../../../_index.md) > [Body Site Microbiomes](../_index.md)
+**Category:** [Microbiome](../../../README.md) > [Body Site Microbiomes](../README.md)
 
 ## Overview
 
@@ -69,5 +69,5 @@ mBodyMap is valuable for body-site-specific microbiome research, comparative stu
 ## See Also
 
 - [Schema Documentation](./schema.md)
-- [HMP](../hmp/_index.md) - Original multi-site data
-- [HOMD](../homd/_index.md) - Oral focus
+- [HMP](../hmp/README.md) - Original multi-site data
+- [HOMD](../homd/README.md) - Oral focus

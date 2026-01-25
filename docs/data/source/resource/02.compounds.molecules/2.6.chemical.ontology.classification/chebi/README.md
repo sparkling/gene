@@ -91,9 +91,9 @@ ChEBI is a key component of the Open Biomedical Ontologies (OBO) Foundry and int
 
 ## Related Resources
 
-- [PubChem](../pubchem/_index.md) - Chemical repository
-- [ClassyFire](../classyfire/_index.md) - Chemical taxonomy
-- [ChEMBL](../../2.2.pharmaceuticals/chembl/_index.md) - Bioactivity
+- [PubChem](../pubchem/README.md) - Chemical repository
+- [ClassyFire](../classyfire/README.md) - Chemical taxonomy
+- [ChEMBL](../../2.2.pharmaceuticals/chembl/README.md) - Bioactivity
 
 ## See Also
 

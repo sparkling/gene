@@ -2,7 +2,7 @@
 id: schema-pathwaycommons
 title: "Pathway Commons Schema Documentation"
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-24
 status: final
 tags: [schema, biopax, pathways, network, sif, owl]

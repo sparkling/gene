@@ -86,9 +86,9 @@ PhytoHub supports the identification of unknown metabolites in metabolomics stud
 
 ## Related Resources
 
-- [Phenol-Explorer](../phenol.explorer/_index.md) - Polyphenol content
-- [HMDB](../../_index.md) - Human metabolome
-- [USDA FoodData](../usda.fooddata/_index.md) - Food composition
+- [Phenol-Explorer](../phenol.explorer/README.md) - Polyphenol content
+- [HMDB](../../README.md) - Human metabolome
+- [USDA FoodData](../usda.fooddata/README.md) - Food composition
 
 ## References
 

@@ -2,7 +2,7 @@
 id: schema-hmdb
 title: "HMDB - Schema Documentation"
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-23
 status: active
 tags: [schema, metabolome, metabolites, human, biomarkers]
@@ -405,5 +405,5 @@ HMDB Version 5.0. https://hmdb.ca/
 ## Related Documents
 
 - [Download Instructions](./download.md)
-- [Exposome-Explorer](../exposome.explorer/_index.md) - Exposure biomarkers
-- [FooDB](../../6.1.food.composition/foodb/_index.md) - Food compound database
+- [Exposome-Explorer](../exposome.explorer/README.md) - Exposure biomarkers
+- [FooDB](../../6.1.food.composition/foodb/README.md) - Food compound database

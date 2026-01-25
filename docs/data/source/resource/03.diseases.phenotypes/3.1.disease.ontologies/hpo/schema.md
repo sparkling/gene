@@ -2,7 +2,7 @@
 id: schema-hpo
 title: Human Phenotype Ontology (HPO) Schema
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-22
 status: migrated
 tags: [schema, database, ontology, phenotype, rare-disease]
@@ -14,7 +14,7 @@ tags: [schema, database, ontology, phenotype, rare-disease]
 **Status:** Final
 **Last Updated:** January 2026
 **Version:** 1.0
-**Parent:** [Schema Documentation](./_index.md)
+**Parent:** [Schema Documentation](./README.md)
 
 ---
 

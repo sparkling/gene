@@ -17,7 +17,7 @@ tags:
 
 # NPACT - Naturally Occurring Plant-based Anti-cancer Compound-Activity-Target
 
-**Category:** [Traditional Medicine](../../_index.md) > [South East Asian Systems](../_index.md)
+**Category:** [Traditional Medicine](../../README.md) > [South East Asian Systems](../README.md)
 
 ## Overview
 
@@ -125,6 +125,6 @@ Target Proteins (200+)
 
 ## See Also
 
-- [IMPPAT](../imppat/_index.md)
-- [TM-MC](../tm.mc/_index.md)
-- [CMAUP](../../5.4.multi.system.integration/{hit.2.0}/_index.md)
+- [IMPPAT](../imppat/README.md)
+- [TM-MC](../tm.mc/README.md)
+- [CMAUP](../../5.4.multi.system.integration/{hit.2.0}/README.md)

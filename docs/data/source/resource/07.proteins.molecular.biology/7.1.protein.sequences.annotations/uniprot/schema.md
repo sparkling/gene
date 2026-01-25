@@ -2,7 +2,7 @@
 id: schema-uniprot
 title: "UniProt Schema Documentation"
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-23
 status: final
 tags: [schema, database, proteins, sequences, annotations]

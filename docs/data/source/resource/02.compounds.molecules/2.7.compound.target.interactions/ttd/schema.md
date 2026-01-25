@@ -2,7 +2,7 @@
 id: schema-ttd
 title: "TTD Schema Documentation"
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-23
 status: migrated
 tags: [schema, database, therapeutic-targets, drug-targets, druggability, clinical-trials]

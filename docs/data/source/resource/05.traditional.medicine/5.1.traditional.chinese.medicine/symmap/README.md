@@ -17,7 +17,7 @@ tags:
 
 # SymMap 2.0
 
-**Category:** [Traditional Medicine](../../_index.md) > [Traditional Chinese Medicine](../_index.md)
+**Category:** [Traditional Medicine](../../README.md) > [Traditional Chinese Medicine](../README.md)
 
 ## Overview
 
@@ -115,6 +115,6 @@ SymMap is the only major database focusing on symptom-level integration:
 
 ## See Also
 
-- [BATMAN-TCM](../batman.tcm/_index.md)
-- [HERB Database](../herb/_index.md)
-- [ETCM](../etcm/_index.md)
+- [BATMAN-TCM](../batman.tcm/README.md)
+- [HERB Database](../herb/README.md)
+- [ETCM](../etcm/README.md)

@@ -2,7 +2,7 @@
 id: metabolic.pathways
 title: "Metabolic Pathways"
 type: subcategory
-parent: ../_index.md
+parent: ../README.md
 last_updated: 2026-01-23
 status: active
 tags: [metabolism, biochemistry, kegg, reactome, enzymes]
@@ -10,7 +10,7 @@ tags: [metabolism, biochemistry, kegg, reactome, enzymes]
 
 # Metabolic Pathways
 
-**Parent:** [Pathways & Networks](../_index.md)
+**Parent:** [Pathways & Networks](../README.md)
 
 ## Overview
 
@@ -22,9 +22,9 @@ Key resources include KEGG (comprehensive pathway database), Reactome (curated p
 
 | Source | Tier | Description |
 |--------|------|-------------|
-| [KEGG](./kegg/_index.md) | 1 | Kyoto Encyclopedia of Genes and Genomes |
-| [Reactome](./reactome/_index.md) | 1 | Curated pathway knowledgebase |
-| [WikiPathways](./wikipathways/_index.md) | 2 | Community pathway database |
+| [KEGG](./kegg/README.md) | 1 | Kyoto Encyclopedia of Genes and Genomes |
+| [Reactome](./reactome/README.md) | 1 | Curated pathway knowledgebase |
+| [WikiPathways](./wikipathways/README.md) | 2 | Community pathway database |
 
 ## Integration Notes
 

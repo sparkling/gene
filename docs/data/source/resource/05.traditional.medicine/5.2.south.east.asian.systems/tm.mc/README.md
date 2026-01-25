@@ -17,7 +17,7 @@ tags:
 
 # TM-MC - Traditional Medicine - Molecular Correlates
 
-**Category:** [Traditional Medicine](../../_index.md) > [South East Asian Systems](../_index.md)
+**Category:** [Traditional Medicine](../../README.md) > [South East Asian Systems](../README.md)
 
 ## Overview
 
@@ -131,6 +131,6 @@ TM-MC provides unique cross-cultural perspective:
 
 ## See Also
 
-- [IMPPAT](../imppat/_index.md)
-- [BATMAN-TCM](../../5.1.traditional.chinese.medicine/batman.tcm/_index.md)
-- [KampoDB](../kampodb/_index.md)
+- [IMPPAT](../imppat/README.md)
+- [BATMAN-TCM](../../5.1.traditional.chinese.medicine/batman.tcm/README.md)
+- [KampoDB](../kampodb/README.md)

@@ -4,7 +4,7 @@ title: "HOMD - Human Oral Microbiome Database"
 type: data-source
 category: microbiome
 subcategory: body.site.microbiomes
-parent: ../_index.md
+parent: ../README.md
 tier: 1
 last_updated: 2026-01-23
 status: active
@@ -13,7 +13,7 @@ tags: [oral, microbiome, dental, taxonomy, genomes]
 
 # HOMD - Human Oral Microbiome Database
 
-**Category:** [Microbiome](../../../_index.md) > [Body Site Microbiomes](../_index.md)
+**Category:** [Microbiome](../../../README.md) > [Body Site Microbiomes](../README.md)
 
 ## Overview
 
@@ -70,5 +70,5 @@ HOMD is the authoritative resource for oral microbiome research, dental microbio
 ## See Also
 
 - [Schema Documentation](./schema.md)
-- [HMP](../hmp/_index.md) - Multi-site reference
-- [mBodyMap](../mbodymap/_index.md) - Body-wide atlas
+- [HMP](../hmp/README.md) - Multi-site reference
+- [mBodyMap](../mbodymap/README.md) - Body-wide atlas

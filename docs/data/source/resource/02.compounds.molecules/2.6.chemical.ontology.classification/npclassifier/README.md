@@ -98,9 +98,9 @@ NPClassifier is particularly valuable for natural product dereplication, chemota
 
 ## Related Resources
 
-- [ClassyFire](../classyfire/_index.md) - General chemical taxonomy
-- [COCONUT](../../2.1.natural.products/coconut/_index.md) - Natural products
-- [ChEBI](../chebi/_index.md) - Chemical ontology
+- [ClassyFire](../classyfire/README.md) - General chemical taxonomy
+- [COCONUT](../../2.1.natural.products/coconut/README.md) - Natural products
+- [ChEBI](../chebi/README.md) - Chemical ontology
 
 ## References
 

@@ -4,7 +4,7 @@ title: "eBASIS - Bioactive Substances in Food Information System"
 type: data-source
 category: nutrition
 subcategory: bioactive.food.compounds
-parent: ../_index.md
+parent: ../README.md
 tier: 2
 last_updated: 2026-01-23
 status: active
@@ -13,7 +13,7 @@ tags: [bioactive, phytochemicals, food, europe, composition]
 
 # eBASIS - Bioactive Substances in Food Information System
 
-**Category:** [Nutrition](../../../_index.md) > [Bioactive Food Compounds](../_index.md)
+**Category:** [Nutrition](../../../README.md) > [Bioactive Food Compounds](../README.md)
 
 ## Overview
 

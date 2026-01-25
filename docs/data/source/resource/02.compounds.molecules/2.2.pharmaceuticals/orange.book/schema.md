@@ -2,7 +2,7 @@
 id: schema-orange.book
 title: "FDA Orange Book Schema Documentation"
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-23
 status: migrated
 tags: [schema, database, fda, approved-drugs, patents, therapeutic-equivalence]

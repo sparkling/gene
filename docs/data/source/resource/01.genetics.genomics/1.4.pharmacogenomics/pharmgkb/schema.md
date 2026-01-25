@@ -2,7 +2,7 @@
 id: schema-pharmgkb
 title: "PharmGKB Schema Documentation"
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-24
 status: migrated
 tags: [schema, database, pharmacogenomics, drug-response, clinical, pgx]

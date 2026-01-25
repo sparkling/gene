@@ -2,7 +2,7 @@
 id: protein.protein.interactions
 title: "Protein-Protein Interactions"
 type: subcategory
-parent: ../_index.md
+parent: ../README.md
 last_updated: 2026-01-23
 status: active
 tags: [ppi, interactions, networks, complexes, physical]
@@ -10,7 +10,7 @@ tags: [ppi, interactions, networks, complexes, physical]
 
 # Protein-Protein Interactions
 
-**Parent:** [Pathways & Networks](../_index.md)
+**Parent:** [Pathways & Networks](../README.md)
 
 ## Overview
 
@@ -22,9 +22,9 @@ Key resources include STRING (functional associations), IntAct (curated interact
 
 | Source | Tier | Description |
 |--------|------|-------------|
-| [STRING](./string/_index.md) | 1 | Functional protein associations |
-| [IntAct](./intact/_index.md) | 1 | Molecular interaction database |
-| [BioGRID](./biogrid/_index.md) | 1 | Biological General Repository for Interaction Datasets |
+| [STRING](./string/README.md) | 1 | Functional protein associations |
+| [IntAct](./intact/README.md) | 1 | Molecular interaction database |
+| [BioGRID](./biogrid/README.md) | 1 | Biological General Repository for Interaction Datasets |
 
 ## Integration Notes
 

@@ -2,7 +2,7 @@
 id: molecular.interactions
 title: "Molecular Interaction Databases"
 type: subcategory
-parent: ../_index.md
+parent: ../README.md
 last_updated: 2026-01-23
 status: active
 tags: [interactions, protein-protein, networks]
@@ -10,7 +10,7 @@ tags: [interactions, protein-protein, networks]
 
 # Molecular Interaction Databases
 
-**Parent:** [Proteins and Molecular Biology](../_index.md)
+**Parent:** [Proteins and Molecular Biology](../README.md)
 
 ## Overview
 
@@ -26,4 +26,4 @@ Molecular interaction databases catalog physical and functional associations bet
 
 ## Integration Notes
 
-Primary molecular interaction data is maintained in the Pathways category. This subcategory provides convenient cross-references for protein-centric workflows. See [04.pathways.networks](../../04.pathways.networks/_index.md) for full documentation.
+Primary molecular interaction data is maintained in the Pathways category. This subcategory provides convenient cross-references for protein-centric workflows. See [04.pathways.networks](../../04.pathways.networks/README.md) for full documentation.

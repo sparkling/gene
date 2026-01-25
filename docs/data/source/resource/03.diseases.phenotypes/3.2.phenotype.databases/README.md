@@ -2,7 +2,7 @@
 id: phenotype.databases
 title: "Phenotype Databases"
 type: subcategory
-parent: ../_index.md
+parent: ../README.md
 last_updated: 2026-01-23
 status: active
 tags: [phenotype, hpo, omim, symptoms, clinical-features]
@@ -10,7 +10,7 @@ tags: [phenotype, hpo, omim, symptoms, clinical-features]
 
 # Phenotype Databases
 
-**Parent:** [Diseases & Phenotypes](../_index.md)
+**Parent:** [Diseases & Phenotypes](../README.md)
 
 ## Overview
 
@@ -22,9 +22,9 @@ Key resources include HPO (Human Phenotype Ontology) for standardized phenotype 
 
 | Source | Tier | Description |
 |--------|------|-------------|
-| [HPO](./hpo/_index.md) | 1 | Human Phenotype Ontology |
-| [OMIM](./omim/_index.md) | 1 | Online Mendelian Inheritance in Man |
-| [Orphanet Phenotypes](./orphanet.phenotypes/_index.md) | 1 | Rare disease phenotype annotations |
+| [HPO](./hpo/README.md) | 1 | Human Phenotype Ontology |
+| [OMIM](./omim/README.md) | 1 | Online Mendelian Inheritance in Man |
+| [Orphanet Phenotypes](./orphanet.phenotypes/README.md) | 1 | Rare disease phenotype annotations |
 
 ## Integration Notes
 

@@ -2,7 +2,7 @@
 id: protein.sequences.annotations
 title: "Protein Sequence and Annotation Databases"
 type: subcategory
-parent: ../_index.md
+parent: ../README.md
 last_updated: 2026-01-23
 status: active
 tags: [proteins, sequences, annotations, curation]
@@ -10,7 +10,7 @@ tags: [proteins, sequences, annotations, curation]
 
 # Protein Sequence and Annotation Databases
 
-**Parent:** [Proteins and Molecular Biology](../_index.md)
+**Parent:** [Proteins and Molecular Biology](../README.md)
 
 ## Overview
 
@@ -20,8 +20,8 @@ Protein sequence databases provide curated collections of amino acid sequences w
 
 | Source | Tier | Description |
 |--------|------|-------------|
-| [RefSeq](./refseq/_index.md) | 1 | NCBI Reference Sequence Database |
-| [UniProt](./uniprot/_index.md) | 1 | Universal Protein Resource |
+| [RefSeq](./refseq/README.md) | 1 | NCBI Reference Sequence Database |
+| [UniProt](./uniprot/README.md) | 1 | Universal Protein Resource |
 
 ## Integration Notes
 

@@ -4,7 +4,7 @@ title: "HMDB - Human Metabolome Database"
 type: data-source
 category: nutrition
 subcategory: metabolomics
-parent: ../_index.md
+parent: ../README.md
 tier: 1
 last_updated: 2026-01-23
 status: active
@@ -13,7 +13,7 @@ tags: [metabolome, metabolites, human, biomarkers, spectroscopy]
 
 # HMDB - Human Metabolome Database
 
-**Category:** [Nutrition](../../../_index.md) > [Metabolomics](../_index.md)
+**Category:** [Nutrition](../../../README.md) > [Metabolomics](../README.md)
 
 ## Overview
 

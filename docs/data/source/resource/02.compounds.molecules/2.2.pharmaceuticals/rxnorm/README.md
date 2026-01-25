@@ -87,9 +87,9 @@ The terminology includes ingredients, drug forms, strengths, and branded/generic
 
 ## Related Resources
 
-- [DailyMed](../dailymed/_index.md) - Drug labeling
-- [DrugBank](../drugbank/_index.md) - Drug information
-- [ChEMBL](../chembl/_index.md) - Bioactivity data
+- [DailyMed](../dailymed/README.md) - Drug labeling
+- [DrugBank](../drugbank/README.md) - Drug information
+- [ChEMBL](../chembl/README.md) - Bioactivity data
 
 ## References
 

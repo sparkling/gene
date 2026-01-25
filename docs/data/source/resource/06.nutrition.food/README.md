@@ -2,7 +2,7 @@
 id: nutrition.food
 title: "Nutrition and Food Sciences"
 type: category
-parent: ../_index.md
+parent: ../README.md
 last_updated: 2026-01-23
 status: active
 tags: [nutrition, food, diet, supplements, metabolomics]
@@ -10,7 +10,7 @@ tags: [nutrition, food, diet, supplements, metabolomics]
 
 # Nutrition and Food Sciences
 
-**Parent:** [Data Sources](../_index.md)
+**Parent:** [Data Sources](../README.md)
 
 ## Overview
 
@@ -22,10 +22,10 @@ Food and nutrition databases provide comprehensive information about the chemica
 
 | Subcategory | Description | Sources |
 |-------------|-------------|---------|
-| [6.1 Food Composition](./6.1.food.composition/_index.md) | Chemical composition and nutritional content of foods | 2 |
-| [6.2 Dietary Supplements](./6.2.dietary.supplements/_index.md) | Supplement product data and efficacy information | 3 |
-| [6.3 Bioactive Food Compounds](./6.3.bioactive.food.compounds/_index.md) | Phytochemicals and bioactive molecules in foods | 1 |
-| [6.4 Metabolomics](./6.4.metabolomics/_index.md) | Human metabolome and exposome data | 2 |
+| [6.1 Food Composition](./6.1.food.composition/README.md) | Chemical composition and nutritional content of foods | 2 |
+| [6.2 Dietary Supplements](./6.2.dietary.supplements/README.md) | Supplement product data and efficacy information | 3 |
+| [6.3 Bioactive Food Compounds](./6.3.bioactive.food.compounds/README.md) | Phytochemicals and bioactive molecules in foods | 1 |
+| [6.4 Metabolomics](./6.4.metabolomics/README.md) | Human metabolome and exposome data | 2 |
 
 ## Key Integration Points
 

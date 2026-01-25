@@ -2,7 +2,7 @@
 id: download-gutmdisorder
 title: "gutMDisorder Download Instructions"
 type: download
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-23
 ---
 
@@ -269,6 +269,6 @@ print(f"Query GMrepo for {len(taxids)} taxa")
 
 ## Related Resources
 
-- [GMrepo](../../9.1.gut.microbiome/gmrepo/_index.md) - Sample-level data
-- [gutMGene](../../9.1.gut.microbiome/gutmgene/_index.md) - Gene expression effects
-- [VMH](../vmh/_index.md) - Metabolic models
+- [GMrepo](../../9.1.gut.microbiome/gmrepo/README.md) - Sample-level data
+- [gutMGene](../../9.1.gut.microbiome/gutmgene/README.md) - Gene expression effects
+- [VMH](../vmh/README.md) - Metabolic models

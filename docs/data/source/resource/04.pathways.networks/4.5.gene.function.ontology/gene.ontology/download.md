@@ -2,7 +2,7 @@
 id: download-gene-ontology
 title: "Gene Ontology Download Instructions"
 type: download
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-24
 ---
 

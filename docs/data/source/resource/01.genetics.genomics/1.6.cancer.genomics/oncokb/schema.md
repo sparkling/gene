@@ -2,7 +2,7 @@
 id: schema-oncokb
 title: "OncoKB Schema Documentation"
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-23
 status: draft
 tags: [schema, database, cancer, precision-oncology, actionable, therapy]

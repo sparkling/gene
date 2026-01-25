@@ -2,7 +2,7 @@
 id: schema-panelapp
 title: "PanelApp Schema Documentation"
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-23
 status: draft
 tags: [schema, gene-panels, clinical-genomics, diagnostic-genes, rare-diseases, nhs]
@@ -64,4 +64,4 @@ PanelApp is a crowdsourced knowledge base for gene-disease relationships develop
 
 ## References
 
-See [Overview](./_index.md) for full details.
+See [Overview](./README.md) for full details.

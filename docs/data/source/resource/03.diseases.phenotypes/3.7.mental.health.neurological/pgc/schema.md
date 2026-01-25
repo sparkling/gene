@@ -2,7 +2,7 @@
 id: schema-pgc
 title: "Psychiatric Genomics Consortium (PGC) Schema Documentation"
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-23
 status: draft
 tags: [schema, psychiatric, gwas, schizophrenia, depression, bipolar, genetics]
@@ -64,4 +64,4 @@ PGC is the largest international collaboration studying the genetic basis of psy
 
 ## References
 
-See [Overview](./_index.md) for full details.
+See [Overview](./README.md) for full details.

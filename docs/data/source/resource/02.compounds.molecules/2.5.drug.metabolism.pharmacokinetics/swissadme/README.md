@@ -95,9 +95,9 @@ SwissADME enables medicinal chemists and drug discovery scientists to quickly as
 
 ## Related Resources
 
-- [SuperCYP](../supercyp/_index.md) - CYP interactions
-- [ChEMBL](../../2.2.pharmaceuticals/chembl/_index.md) - Bioactivity data
-- [DrugBank](../../2.2.pharmaceuticals/drugbank/_index.md) - Drug properties
+- [SuperCYP](../supercyp/README.md) - CYP interactions
+- [ChEMBL](../../2.2.pharmaceuticals/chembl/README.md) - Bioactivity data
+- [DrugBank](../../2.2.pharmaceuticals/drugbank/README.md) - Drug properties
 
 ## References
 

@@ -2,7 +2,7 @@
 id: food.compounds.nutrients
 title: "Food Compounds and Nutrients"
 type: subcategory
-parent: ../_index.md
+parent: ../README.md
 last_updated: 2026-01-23
 status: active
 tags: [food, nutrients, phytochemicals, polyphenols, dietary]
@@ -10,7 +10,7 @@ tags: [food, nutrients, phytochemicals, polyphenols, dietary]
 
 # Food Compounds and Nutrients
 
-**Parent:** [Compounds & Molecules](../_index.md)
+**Parent:** [Compounds & Molecules](../README.md)
 
 ## Overview
 
@@ -22,9 +22,9 @@ Key resources include Phenol-Explorer (dietary polyphenols), PhytoHub (phytochem
 
 | Source | Tier | Description |
 |--------|------|-------------|
-| [Phenol-Explorer](./phenol.explorer/_index.md) | 1 | Dietary polyphenol database |
-| [PhytoHub](./phytohub/_index.md) | 2 | Phytochemical metabolome |
-| [USDA FoodData](./usda.fooddata/_index.md) | 1 | National nutrient database |
+| [Phenol-Explorer](./phenol.explorer/README.md) | 1 | Dietary polyphenol database |
+| [PhytoHub](./phytohub/README.md) | 2 | Phytochemical metabolome |
+| [USDA FoodData](./usda.fooddata/README.md) | 1 | National nutrient database |
 
 ## Integration Notes
 
@@ -32,5 +32,5 @@ Phenol-Explorer provides the most comprehensive polyphenol content data. PhytoHu
 
 ## See Also
 
-- [Nutrition & Food Sciences](../../06.nutrition.food/_index.md)
-- [Natural Products](../2.1.natural.products/_index.md)
+- [Nutrition & Food Sciences](../../06.nutrition.food/README.md)
+- [Natural Products](../2.1.natural.products/README.md)

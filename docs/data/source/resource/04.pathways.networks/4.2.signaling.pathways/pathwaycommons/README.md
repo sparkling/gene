@@ -18,7 +18,7 @@ tags:
 
 # Pathway Commons
 
-**Category:** [Pathways & Networks](../../_index.md) > [Signaling Pathways](../_index.md)
+**Category:** [Pathways & Networks](../../README.md) > [Signaling Pathways](../README.md)
 
 ## Overview
 
@@ -173,6 +173,6 @@ ATM	CONTROLS-PHOSPHORYLATION-OF	TP53
 
 - [Schema Documentation](./schema.md) - Technical schema and data formats
 - [Download Instructions](./download.md) - Bulk data acquisition guide
-- [Reactome](../../4.1.metabolic.pathways/reactome/_index.md) - Primary data source
-- [BioGRID](../../4.3.protein.protein.interactions/biogrid/_index.md) - Interaction source
-- [IntAct](../../4.3.protein.protein.interactions/intact/_index.md) - Interaction source
+- [Reactome](../../4.1.metabolic.pathways/reactome/README.md) - Primary data source
+- [BioGRID](../../4.3.protein.protein.interactions/biogrid/README.md) - Interaction source
+- [IntAct](../../4.3.protein.protein.interactions/intact/README.md) - Interaction source

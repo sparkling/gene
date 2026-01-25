@@ -2,7 +2,7 @@
 id: xrefs-open-targets
 title: "Open Targets Cross-References"
 type: xrefs
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-23
 ---
 

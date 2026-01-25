@@ -81,9 +81,9 @@ LOTUS follows a single-source-of-truth model with PostgreSQL as the canonical da
 
 ## Related Resources
 
-- [COCONUT](../coconut/_index.md) - Comprehensive natural products database
-- [ChEBI](../../2.6.chemical.ontology.classification/chebi/_index.md) - Chemical ontology
-- [PubChem](../../2.6.chemical.ontology.classification/pubchem/_index.md) - Chemical information
+- [COCONUT](../coconut/README.md) - Comprehensive natural products database
+- [ChEBI](../../2.6.chemical.ontology.classification/chebi/README.md) - Chemical ontology
+- [PubChem](../../2.6.chemical.ontology.classification/pubchem/README.md) - Chemical information
 
 ## See Also
 

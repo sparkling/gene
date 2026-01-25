@@ -2,7 +2,7 @@
 id: download-hmp
 title: "HMP Download Instructions"
 type: download
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-23
 ---
 
@@ -284,6 +284,6 @@ aws s3 sync s3://human-microbiome-project/HMASM/MOMSPI/ ./MOMSPI/ --no-sign-requ
 
 ## Related Resources
 
-- [GMrepo](../gmrepo/_index.md) - Curated gut microbiome data
-- [MetaHIT](../metahit/_index.md) - European reference
-- [HOMD](../../9.2.body.site.microbiomes/homd/_index.md) - Oral microbiome
+- [GMrepo](../gmrepo/README.md) - Curated gut microbiome data
+- [MetaHIT](../metahit/README.md) - European reference
+- [HOMD](../../9.2.body.site.microbiomes/homd/README.md) - Oral microbiome

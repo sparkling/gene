@@ -2,7 +2,7 @@
 id: download-uniprot
 title: "UniProt Download Instructions"
 type: download
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-23
 ---
 
@@ -230,6 +230,6 @@ curl -X POST "https://rest.uniprot.org/idmapping/run" \
 
 ## Related Resources
 
-- [RefSeq](../refseq/_index.md) - NCBI protein sequences
+- [RefSeq](../refseq/README.md) - NCBI protein sequences
 - [PDB](../../7.2.protein.structures/pdb/) - Protein structures
 - [InterPro](../../7.3.molecular.interactions/) - Protein families

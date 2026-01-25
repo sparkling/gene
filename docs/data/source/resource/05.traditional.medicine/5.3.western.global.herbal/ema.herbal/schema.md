@@ -2,7 +2,7 @@
 id: schema-ema.herbal
 title: "EMA Herbal Medicines Schema Documentation"
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-24
 status: final
 tags: [schema, herbal-medicine, european, regulatory, monographs, pharmacovigilance]

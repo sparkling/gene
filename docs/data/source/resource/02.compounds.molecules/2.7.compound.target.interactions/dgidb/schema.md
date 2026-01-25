@@ -2,7 +2,7 @@
 id: schema-dgidb
 title: "DGIdb Schema Documentation"
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-23
 status: migrated
 tags: [schema, database, drug-gene-interactions, druggable-genome, graphql]

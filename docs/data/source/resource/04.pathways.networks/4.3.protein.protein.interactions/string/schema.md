@@ -2,13 +2,13 @@
 id: schemas-string-schema
 title: "STRING Database Schema"
 category: schemas
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-22
 status: migrated
 tags: [schema, string, protein-interaction, ppi, network, functional-enrichment]
 ---
 
-**Parent:** [Schema Documentation](./_index.md)
+**Parent:** [Schema Documentation](./README.md)
 
 # STRING Database Schema
 

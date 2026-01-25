@@ -2,7 +2,7 @@
 id: schema-hpo-phenotypes
 title: "HPO Phenotype Database Schema"
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-24
 status: migrated
 tags: [schema, ontology, phenotypes, rare-diseases, clinical-features]
@@ -204,6 +204,6 @@ OMIM:154700	Marfan syndrome		HP:0001166	OMIM:154700	TAS	HP:0003577	HP:0040283		H
 
 ## See Also
 
-- [HPO Overview](./_index.md)
+- [HPO Overview](./README.md)
 - [HPO Download Instructions](./download.md)
 - [Full HPO Schema](../../3.1.disease.ontologies/hpo/schema.md) - Comprehensive schema documentation

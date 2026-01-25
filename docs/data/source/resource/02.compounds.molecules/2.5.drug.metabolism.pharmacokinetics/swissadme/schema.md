@@ -2,7 +2,7 @@
 id: schema-swissadme
 title: "SwissADME Schema Documentation"
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-24
 status: final
 tags: [schema, adme, pharmacokinetics, drug-likeness, prediction]
@@ -348,5 +348,5 @@ CN1C=NC2=C1C(=O)N(C(=O)N2C)C	Caffeine
 ## Related Documents
 
 - [SwissADME Download Instructions](./download.md)
-- [SuperCYP](../supercyp/_index.md) - CYP interaction database
-- [DrugBank](../../2.2.pharmaceuticals/drugbank/_index.md) - Drug properties
+- [SuperCYP](../supercyp/README.md) - CYP interaction database
+- [DrugBank](../../2.2.pharmaceuticals/drugbank/README.md) - Drug properties

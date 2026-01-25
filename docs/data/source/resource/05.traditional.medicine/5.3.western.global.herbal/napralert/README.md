@@ -17,7 +17,7 @@ tags:
 
 # NAPRALERT - Natural Products Alert
 
-**Category:** [Traditional Medicine](../../_index.md) > [Western & Global Herbal](../_index.md)
+**Category:** [Traditional Medicine](../../README.md) > [Western & Global Herbal](../README.md)
 
 ## Overview
 
@@ -145,6 +145,6 @@ Ethnobotany  Bioactivity  Chemistry
 
 ## See Also
 
-- [EMA Herbal](../ema.herbal/_index.md)
-- [Dr. Duke's](../../02.compounds.molecules/2.1.natural.products/dr.dukes/_index.md)
-- [IMPPAT](../../5.2.south.east.asian.systems/imppat/_index.md)
+- [EMA Herbal](../ema.herbal/README.md)
+- [Dr. Duke's](../../02.compounds.molecules/2.1.natural.products/dr.dukes/README.md)
+- [IMPPAT](../../5.2.south.east.asian.systems/imppat/README.md)

@@ -2,7 +2,7 @@
 id: schema-consumerlab
 title: "ConsumerLab - Schema Documentation"
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-23
 status: active
 tags: [schema, supplements, testing, quality]
@@ -440,5 +440,5 @@ Compare: Price, potency, purity across brands
 ## Related Documents
 
 - [Download Instructions](./download.md)
-- [DSLD](../dsld/_index.md) - NIH supplement label database
-- [Natural Medicines](../natural.medicines/_index.md) - Evidence database
+- [DSLD](../dsld/README.md) - NIH supplement label database
+- [Natural Medicines](../natural.medicines/README.md) - Evidence database

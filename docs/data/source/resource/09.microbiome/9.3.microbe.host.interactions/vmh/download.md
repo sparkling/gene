@@ -2,7 +2,7 @@
 id: download-vmh
 title: "VMH Download Instructions"
 type: download
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-23
 ---
 
@@ -331,7 +331,7 @@ print(f"Selected {len(personalized)} models for personalized analysis")
 
 ## Related Resources
 
-- [KEGG](../../../../04.pathways.networks/4.1.metabolic.pathways/kegg/_index.md) - Pathway data
-- [Reactome](../../../../04.pathways.networks/4.1.metabolic.pathways/reactome/_index.md) - Reaction database
-- [GMrepo](../../9.1.gut.microbiome/gmrepo/_index.md) - Microbiome abundances
-- [gutMDisorder](../gutmdisorder/_index.md) - Disease associations
+- [KEGG](../../../../04.pathways.networks/4.1.metabolic.pathways/kegg/README.md) - Pathway data
+- [Reactome](../../../../04.pathways.networks/4.1.metabolic.pathways/reactome/README.md) - Reaction database
+- [GMrepo](../../9.1.gut.microbiome/gmrepo/README.md) - Microbiome abundances
+- [gutMDisorder](../gutmdisorder/README.md) - Disease associations

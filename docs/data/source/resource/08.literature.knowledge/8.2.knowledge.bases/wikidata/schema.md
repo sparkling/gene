@@ -2,13 +2,13 @@
 id: schemas-wikidata-schema
 title: "Wikidata Biomedical Schema"
 category: schemas
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-22
 status: migrated
 tags: [schema, wikidata, sparql, knowledge-graph, genes, diseases, cc0]
 ---
 
-**Parent:** [Schema Documentation](./_index.md)
+**Parent:** [Schema Documentation](./README.md)
 
 # Wikidata Biomedical Schema
 

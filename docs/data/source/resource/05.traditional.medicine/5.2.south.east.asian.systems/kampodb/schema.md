@@ -2,13 +2,13 @@
 id: schemas-kampodb-schema
 title: "KampoDB Schema"
 category: schemas
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-22
 status: migrated
 tags: [schema, kampo, traditional-medicine, natural-products, docking, rest-api]
 ---
 
-**Parent:** [Schema Documentation](./_index.md)
+**Parent:** [Schema Documentation](./README.md)
 
 # KampoDB Schema
 

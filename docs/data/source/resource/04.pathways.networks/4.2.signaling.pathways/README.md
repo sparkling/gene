@@ -2,7 +2,7 @@
 id: signaling.pathways
 title: "Signaling Pathways"
 type: subcategory
-parent: ../_index.md
+parent: ../README.md
 last_updated: 2026-01-23
 status: active
 tags: [signaling, signal-transduction, cascades, receptors]
@@ -10,7 +10,7 @@ tags: [signaling, signal-transduction, cascades, receptors]
 
 # Signaling Pathways
 
-**Parent:** [Pathways & Networks](../_index.md)
+**Parent:** [Pathways & Networks](../README.md)
 
 ## Overview
 
@@ -22,7 +22,7 @@ Key resources include Pathway Commons (aggregated pathway data). Signaling pathw
 
 | Source | Tier | Description |
 |--------|------|-------------|
-| [Pathway Commons](./\{pathwaycommons\}/_index.md) | 1 | Integrated pathway database |
+| [Pathway Commons](./\{pathwaycommons\}/README.md) | 1 | Integrated pathway database |
 
 ## Integration Notes
 
@@ -30,5 +30,5 @@ Pathway Commons aggregates pathways from multiple sources in BioPAX format. For 
 
 ## See Also
 
-- [4.1 Metabolic Pathways](../4.1.metabolic.pathways/_index.md)
-- [4.3 Protein-Protein Interactions](../4.3.protein.protein.interactions/_index.md)
+- [4.1 Metabolic Pathways](../4.1.metabolic.pathways/README.md)
+- [4.3 Protein-Protein Interactions](../4.3.protein.protein.interactions/README.md)

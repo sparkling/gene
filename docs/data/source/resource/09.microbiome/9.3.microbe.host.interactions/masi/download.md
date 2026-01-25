@@ -2,7 +2,7 @@
 id: download-masi
 title: "MASI Download Instructions"
 type: download
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-23
 ---
 
@@ -272,7 +272,7 @@ print(f"Found {len(pmids)} relevant publications")
 
 ## Related Resources
 
-- [VMH](../vmh/_index.md) - Metabolic reconstructions
-- [HMDB](../../../../06.nutrition.food/6.4.metabolomics/hmdb/_index.md) - Metabolite database
-- [KEGG](../../../../04.pathways.networks/4.1.metabolic.pathways/kegg/_index.md) - Pathway data
-- [gutMGene](../../9.1.gut.microbiome/gutmgene/_index.md) - Gene expression
+- [VMH](../vmh/README.md) - Metabolic reconstructions
+- [HMDB](../../../../06.nutrition.food/6.4.metabolomics/hmdb/README.md) - Metabolite database
+- [KEGG](../../../../04.pathways.networks/4.1.metabolic.pathways/kegg/README.md) - Pathway data
+- [gutMGene](../../9.1.gut.microbiome/gutmgene/README.md) - Gene expression

@@ -4,7 +4,7 @@ title: "Semantic Scholar"
 type: data-source
 category: literature
 subcategory: scientific.literature
-parent: ../_index.md
+parent: ../README.md
 tier: 2
 last_updated: 2026-01-23
 status: active
@@ -13,7 +13,7 @@ tags: [literature, ai, citations, discovery, nlp, allen-institute]
 
 # Semantic Scholar
 
-**Category:** [Literature](../../../_index.md) > [Scientific Literature](../_index.md)
+**Category:** [Literature](../../../README.md) > [Scientific Literature](../README.md)
 
 ## Overview
 
@@ -71,5 +71,5 @@ Semantic Scholar is particularly valuable for research discovery, citation analy
 ## See Also
 
 - [Schema Documentation](./schema.md)
-- [OpenAlex](../openalex/_index.md) - Open scholarly graph
-- [PubMed](../pubmed/_index.md) - Biomedical literature
+- [OpenAlex](../openalex/README.md) - Open scholarly graph
+- [PubMed](../pubmed/README.md) - Biomedical literature

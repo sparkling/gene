@@ -2,7 +2,7 @@
 id: natural.products
 title: "Natural Products"
 type: subcategory
-parent: ../_index.md
+parent: ../README.md
 last_updated: 2026-01-23
 status: active
 tags: [natural-products, plants, microbial, marine, secondary-metabolites]
@@ -10,7 +10,7 @@ tags: [natural-products, plants, microbial, marine, secondary-metabolites]
 
 # Natural Products
 
-**Parent:** [Compounds & Molecules](../_index.md)
+**Parent:** [Compounds & Molecules](../README.md)
 
 ## Overview
 
@@ -22,11 +22,11 @@ Key resources include LOTUS (comprehensive open natural products), COCONUT (aggr
 
 | Source | Tier | Description |
 |--------|------|-------------|
-| [LOTUS](./lotus/_index.md) | 1 | Open natural products database |
-| [COCONUT](./coconut/_index.md) | 1 | Collection of Open Natural Products |
-| [Dr. Duke's](./dr.dukes/_index.md) | 2 | Phytochemical and ethnobotanical database |
-| [NPASS](./npass/_index.md) | 2 | Natural Product Activity & Species Source |
-| [NPAtlas](./npatlas/_index.md) | 2 | Atlas of microbial natural products |
+| [LOTUS](./lotus/README.md) | 1 | Open natural products database |
+| [COCONUT](./coconut/README.md) | 1 | Collection of Open Natural Products |
+| [Dr. Duke's](./dr.dukes/README.md) | 2 | Phytochemical and ethnobotanical database |
+| [NPASS](./npass/README.md) | 2 | Natural Product Activity & Species Source |
+| [NPAtlas](./npatlas/README.md) | 2 | Atlas of microbial natural products |
 
 ## Integration Notes
 

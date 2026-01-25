@@ -2,7 +2,7 @@
 id: schema-efo
 title: "Experimental Factor Ontology (EFO) Schema Documentation"
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-23
 status: draft
 tags: [schema, ontology, traits, diseases, experimental-factors, gwas, ebi]
@@ -53,4 +53,4 @@ EFO provides a systematic description of experimental variables for EBI database
 
 ## References
 
-See [Overview](./_index.md) for full details.
+See [Overview](./README.md) for full details.

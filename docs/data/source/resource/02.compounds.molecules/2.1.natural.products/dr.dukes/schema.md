@@ -2,13 +2,13 @@
 id: schema-dr-dukes
 title: "Dr. Duke's Phytochemical and Ethnobotanical Databases Schema"
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-22
 status: migrated
 tags: [schema, database]
 ---
 
-**Parent:** [Schema Documentation](./_index.md)
+**Parent:** [Schema Documentation](./README.md)
 
 # Dr. Duke's Phytochemical and Ethnobotanical Databases Schema
 

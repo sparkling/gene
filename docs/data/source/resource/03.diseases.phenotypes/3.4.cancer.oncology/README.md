@@ -2,7 +2,7 @@
 id: cancer.oncology
 title: "Cancer and Oncology"
 type: subcategory
-parent: ../_index.md
+parent: ../README.md
 last_updated: 2026-01-23
 status: active
 tags: [cancer, oncology, tcga, gdc, tumors, clinical]
@@ -10,7 +10,7 @@ tags: [cancer, oncology, tcga, gdc, tumors, clinical]
 
 # Cancer and Oncology
 
-**Parent:** [Diseases & Phenotypes](../_index.md)
+**Parent:** [Diseases & Phenotypes](../README.md)
 
 ## Overview
 
@@ -22,7 +22,7 @@ Key resources include GDC/TCGA (The Cancer Genome Atlas via Genomic Data Commons
 
 | Source | Tier | Description |
 |--------|------|-------------|
-| [GDC/TCGA](./\{gdc.tcga\}/_index.md) | 1 | Genomic Data Commons / TCGA |
+| [GDC/TCGA](./\{gdc.tcga\}/README.md) | 1 | Genomic Data Commons / TCGA |
 
 ## Integration Notes
 
@@ -30,4 +30,4 @@ GDC provides access to TCGA and other NCI cancer genomics projects with clinical
 
 ## See Also
 
-- [1.6 Cancer Genomics](../../01.genetics.genomics/1.6.cancer.genomics/_index.md)
+- [1.6 Cancer Genomics](../../01.genetics.genomics/1.6.cancer.genomics/README.md)

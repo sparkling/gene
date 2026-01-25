@@ -2,13 +2,13 @@
 id: schema-dbvar
 title: "dbVar Schema Documentation"
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-22
 status: migrated
 tags: [schema, database, structural-variation, ncbi]
 ---
 
-**Parent:** [Schema Documentation](./_index.md)
+**Parent:** [Schema Documentation](./README.md)
 
 # dbVar Schema Documentation
 

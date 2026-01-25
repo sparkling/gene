@@ -2,7 +2,7 @@
 id: expression.regulation
 title: "Expression and Regulation"
 type: subcategory
-parent: ../_index.md
+parent: ../README.md
 last_updated: 2026-01-23
 status: active
 tags: [expression, eqtl, regulation, gtex, encode, gwas]
@@ -10,7 +10,7 @@ tags: [expression, eqtl, regulation, gtex, encode, gwas]
 
 # Expression and Regulation
 
-**Parent:** [Genetics & Genomics](../_index.md)
+**Parent:** [Genetics & Genomics](../README.md)
 
 ## Overview
 
@@ -22,10 +22,10 @@ Key resources include GTEx (tissue-specific expression), ENCODE (regulatory elem
 
 | Source | Tier | Description |
 |--------|------|-------------|
-| [GTEx](./gtex/_index.md) | 1 | Genotype-Tissue Expression |
-| [ENCODE](./encode/_index.md) | 1 | Encyclopedia of DNA Elements |
-| [eQTLGen](./eqtlgen/_index.md) | 1 | Blood eQTL meta-analysis |
-| [GWAS Catalog](./gwas.catalog/_index.md) | 1 | NHGRI-EBI GWAS Catalog |
+| [GTEx](./gtex/README.md) | 1 | Genotype-Tissue Expression |
+| [ENCODE](./encode/README.md) | 1 | Encyclopedia of DNA Elements |
+| [eQTLGen](./eqtlgen/README.md) | 1 | Blood eQTL meta-analysis |
+| [GWAS Catalog](./gwas.catalog/README.md) | 1 | NHGRI-EBI GWAS Catalog |
 
 ## Integration Notes
 

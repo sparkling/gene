@@ -17,13 +17,13 @@ The compounds.molecules resource category shows **significant conformance gaps**
 | **schema.md Coverage** | 5/23 (21.7%) | Major Gap |
 | **download.md Coverage** | 4/23 (17.4%) | Major Gap |
 | **xrefs.md Coverage** | 7/23 (30.4%) | Moderate Gap |
-| **_index.md Section Gaps** | 3 sources | Minor Gap |
+| **README.md Section Gaps** | 3 sources | Minor Gap |
 
 ---
 
 ## Template Requirements
 
-### 1. _index.md (Data Source Files)
+### 1. README.md (Data Source Files)
 
 **Required Frontmatter:**
 - `id` - Unique identifier
@@ -74,73 +74,73 @@ Cross-reference mapping to related data sources and integration points.
 
 | Source | Files | Compliance | Issues |
 |--------|-------|-----------|--------|
-| LOTUS | _index.md, schema.md | 83% | Missing download.md |
-| COCONUT | _index.md, schema.md, xrefs.md | 83% | Missing download.md |
-| Dr. Duke's | _index.md, xrefs.md | 40% | Missing schema.md, download.md |
-| NPASS | _index.md | 20% | Missing schema.md, download.md, xrefs.md |
-| NPAtlas | _index.md | 20% | Missing schema.md, download.md, xrefs.md |
+| LOTUS | README.md, schema.md | 83% | Missing download.md |
+| COCONUT | README.md, schema.md, xrefs.md | 83% | Missing download.md |
+| Dr. Duke's | README.md, xrefs.md | 40% | Missing schema.md, download.md |
+| NPASS | README.md | 20% | Missing schema.md, download.md, xrefs.md |
+| NPAtlas | README.md | 20% | Missing schema.md, download.md, xrefs.md |
 
 ### Pharmaceuticals (2.2)
 
 | Source | Files | Compliance | Issues |
 |--------|-------|-----------|--------|
-| ChEMBL | _index.md, schema.md, download.md, xrefs.md | 100% | None |
-| DrugBank | _index.md, download.md | 67% | Missing schema.md |
-| RxNorm | _index.md | 20% | Missing schema.md, download.md, xrefs.md |
-| DailyMed | _index.md, xrefs.md | 40% | Missing schema.md, download.md |
-| Orange Book | _index.md | 20% | Missing schema.md, download.md, xrefs.md |
+| ChEMBL | README.md, schema.md, download.md, xrefs.md | 100% | None |
+| DrugBank | README.md, download.md | 67% | Missing schema.md |
+| RxNorm | README.md | 20% | Missing schema.md, download.md, xrefs.md |
+| DailyMed | README.md, xrefs.md | 40% | Missing schema.md, download.md |
+| Orange Book | README.md | 20% | Missing schema.md, download.md, xrefs.md |
 
 ### Food Compounds & Nutrients (2.4)
 
 | Source | Files | Compliance | Issues |
 |--------|-------|-----------|--------|
-| Phenol-Explorer | _index.md, xrefs.md | 40% | Missing schema.md, download.md |
-| PhytoHub | _index.md, xrefs.md | 40% | Missing schema.md, download.md |
-| USDA FoodData | _index.md, xrefs.md | 40% | Missing schema.md, download.md |
+| Phenol-Explorer | README.md, xrefs.md | 40% | Missing schema.md, download.md |
+| PhytoHub | README.md, xrefs.md | 40% | Missing schema.md, download.md |
+| USDA FoodData | README.md, xrefs.md | 40% | Missing schema.md, download.md |
 
 ### Drug Metabolism & Pharmacokinetics (2.5)
 
 | Source | Files | Compliance | Issues |
 |--------|-------|-----------|--------|
-| SuperCYP | _index.md | 20% | Missing schema.md, download.md, xrefs.md |
-| SwissADME | _index.md | 0% | Missing Key Identifiers section; Missing schema.md, download.md, xrefs.md |
+| SuperCYP | README.md | 20% | Missing schema.md, download.md, xrefs.md |
+| SwissADME | README.md | 0% | Missing Key Identifiers section; Missing schema.md, download.md, xrefs.md |
 
 ### Chemical Ontology & Classification (2.6)
 
 | Source | Files | Compliance | Issues |
 |--------|-------|-----------|--------|
-| ChEBI | _index.md, schema.md, download.md | 100% | xrefs.md optional |
-| PubChem | _index.md, schema.md, download.md | 100% | xrefs.md optional |
-| ClassyFire | _index.md | 0% | Missing Key Identifiers section; Missing schema.md, download.md, xrefs.md |
-| NPClassifier | _index.md | 0% | Missing Key Identifiers section; Missing schema.md, download.md, xrefs.md |
+| ChEBI | README.md, schema.md, download.md | 100% | xrefs.md optional |
+| PubChem | README.md, schema.md, download.md | 100% | xrefs.md optional |
+| ClassyFire | README.md | 0% | Missing Key Identifiers section; Missing schema.md, download.md, xrefs.md |
+| NPClassifier | README.md | 0% | Missing Key Identifiers section; Missing schema.md, download.md, xrefs.md |
 
 ### Compound-Target Interactions (2.7)
 
 | Source | Files | Compliance | Issues |
 |--------|-------|-----------|--------|
-| BindingDB | _index.md | 20% | Missing schema.md, download.md, xrefs.md |
-| DGIdb | _index.md, xrefs.md | 40% | Missing schema.md, download.md |
-| GtoPdb | _index.md | 20% | Missing schema.md, download.md, xrefs.md |
-| TTD | _index.md | 20% | Missing schema.md, download.md, xrefs.md |
+| BindingDB | README.md | 20% | Missing schema.md, download.md, xrefs.md |
+| DGIdb | README.md, xrefs.md | 40% | Missing schema.md, download.md |
+| GtoPdb | README.md | 20% | Missing schema.md, download.md, xrefs.md |
+| TTD | README.md | 20% | Missing schema.md, download.md, xrefs.md |
 
 ---
 
 ## Fully Compliant Sources (3)
 
 ### 1. ChEMBL (2.2.pharmaceuticals/chembl)
-- **Files:** _index.md, schema.md, download.md, xrefs.md
+- **Files:** README.md, schema.md, download.md, xrefs.md
 - **Status:** 100% Compliant
 - **All Sections:** Complete
 - **Notes:** Exemplary documentation template
 
 ### 2. ChEBI (2.6.chemical.ontology.classification/chebi)
-- **Files:** _index.md, schema.md, download.md
+- **Files:** README.md, schema.md, download.md
 - **Status:** 100% Compliant (xrefs.md optional)
 - **All Sections:** Complete
 - **Notes:** Schema documentation is thorough
 
 ### 3. PubChem (2.6.chemical.ontology.classification/pubchem)
-- **Files:** _index.md, schema.md, download.md
+- **Files:** README.md, schema.md, download.md
 - **Status:** 100% Compliant (xrefs.md optional)
 - **All Sections:** Complete
 - **Notes:** Well-structured download instructions
@@ -152,19 +152,19 @@ Cross-reference mapping to related data sources and integration points.
 ### 3 Sources with Zero Compliance
 
 1. **SwissADME** (2.5.drug.metabolism.pharmacokinetics/swissadme)
-   - Missing: Key Identifiers section in _index.md
+   - Missing: Key Identifiers section in README.md
    - Missing: schema.md, download.md, xrefs.md
-   - Action: Complete _index.md + create 3 supporting files
+   - Action: Complete README.md + create 3 supporting files
 
 2. **ClassyFire** (2.6.chemical.ontology.classification/classyfire)
-   - Missing: Key Identifiers section in _index.md
+   - Missing: Key Identifiers section in README.md
    - Missing: schema.md, download.md, xrefs.md
-   - Action: Complete _index.md + create 3 supporting files
+   - Action: Complete README.md + create 3 supporting files
 
 3. **NPClassifier** (2.6.chemical.ontology.classification/npclassifier)
-   - Missing: Key Identifiers section in _index.md
+   - Missing: Key Identifiers section in README.md
    - Missing: schema.md, download.md, xrefs.md
-   - Action: Complete _index.md + create 3 supporting files
+   - Action: Complete README.md + create 3 supporting files
 
 ---
 
@@ -214,7 +214,7 @@ These sources are otherwise compliant but lack cross-reference mapping:
 
 ### Immediate Actions (Priority 1)
 
-1. **Create missing _index.md sections (3 files)**
+1. **Create missing README.md sections (3 files)**
    - Add "Key Identifiers" section to:
      - SwissADME
      - ClassyFire

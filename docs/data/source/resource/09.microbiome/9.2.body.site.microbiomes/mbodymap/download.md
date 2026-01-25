@@ -2,7 +2,7 @@
 id: download-mbodymap
 title: "mBodyMap Download Instructions"
 type: download
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-23
 ---
 
@@ -286,6 +286,6 @@ def export_to_qiime(abundance_df, metadata_df, output_prefix):
 
 ## Related Resources
 
-- [HMP](../hmp/_index.md) - US reference microbiome data
-- [HOMD](../homd/_index.md) - Oral microbiome focus
-- [GMrepo](../../9.1.gut.microbiome/gmrepo/_index.md) - Gut microbiome repository
+- [HMP](../hmp/README.md) - US reference microbiome data
+- [HOMD](../homd/README.md) - Oral microbiome focus
+- [GMrepo](../../9.1.gut.microbiome/gmrepo/README.md) - Gut microbiome repository

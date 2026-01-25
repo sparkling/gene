@@ -17,7 +17,7 @@ tags:
 
 # JASPAR - Transcription Factor Binding Profiles
 
-**Category:** [Pathways & Networks](../../_index.md) > [Regulatory Networks](../_index.md)
+**Category:** [Pathways & Networks](../../README.md) > [Regulatory Networks](../README.md)
 
 ## Overview
 
@@ -214,6 +214,6 @@ curl "https://jaspar.genereg.net/api/v1/sites/MA0106.3/"
 
 ## See Also
 
-- [Roadmap Epigenomics](../roadmap.epigenomics/_index.md) - Chromatin states
-- [ENCODE](../../../01.genomic.references/1.4.functional.annotations/encode/_index.md) - TF ChIP-seq data
-- [Gene Ontology](../../4.5.gene.function.ontology/gene.ontology/_index.md) - TF annotations
+- [Roadmap Epigenomics](../roadmap.epigenomics/README.md) - Chromatin states
+- [ENCODE](../../../01.genomic.references/1.4.functional.annotations/encode/README.md) - TF ChIP-seq data
+- [Gene Ontology](../../4.5.gene.function.ontology/gene.ontology/README.md) - TF annotations

@@ -2,13 +2,13 @@
 id: schema-hmp
 title: Human Microbiome Project (HMP) Schema Documentation
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-22
 status: migrated
 tags: [schema, database, microbiome, genomics, hmp]
 ---
 
-**Parent:** [Schema Documentation](./_index.md)
+**Parent:** [Schema Documentation](./README.md)
 
 # Human Microbiome Project (HMP) - Schema Documentation
 

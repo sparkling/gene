@@ -2,7 +2,7 @@
 id: schema-natural-medicines
 title: "Natural Medicines - Schema Documentation"
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-23
 status: active
 tags: [schema, natural-products, evidence, efficacy, interactions]
@@ -501,5 +501,5 @@ https://naturalmedicines.therapeuticresearch.com/
 ## Related Documents
 
 - [Download Instructions](./download.md)
-- [DSLD](../dsld/_index.md) - NIH supplement label database
-- [ConsumerLab](../consumerlab/_index.md) - Product testing
+- [DSLD](../dsld/README.md) - NIH supplement label database
+- [ConsumerLab](../consumerlab/README.md) - Product testing

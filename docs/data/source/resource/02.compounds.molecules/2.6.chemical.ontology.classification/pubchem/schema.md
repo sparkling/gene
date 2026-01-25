@@ -2,13 +2,13 @@
 id: schema-pubchem
 title: "PubChem Compound Database Schema"
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-22
 status: migrated
 tags: [schema, database, compounds, chemistry, pubchem]
 ---
 
-**Parent:** [Schema Documentation](./_index.md)
+**Parent:** [Schema Documentation](./README.md)
 
 # PubChem Compound Database Schema
 

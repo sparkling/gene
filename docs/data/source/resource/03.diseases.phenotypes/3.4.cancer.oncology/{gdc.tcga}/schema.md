@@ -2,7 +2,7 @@
 id: schema-gdc.tcga
 title: "GDC/TCGA Schema Documentation"
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-24
 status: migrated
 tags: [schema, database, cancer, genomics, tcga, nci, somatic-mutations]
@@ -323,7 +323,7 @@ ENSG00000000003	TSPAN6	protein_coding	1245	623	622	12.45	15.67
 
 ## See Also
 
-- [GDC/TCGA Overview](./_index.md)
+- [GDC/TCGA Overview](./README.md)
 - [GDC/TCGA Download Instructions](./download.md)
-- [cBioPortal](../../cbioportal/_index.md) - Cancer genomics visualization
-- [COSMIC](../../../01.genetics.genomics/1.6.cancer.genomics/cosmic/_index.md) - Cancer mutation database
+- [cBioPortal](../../cbioportal/README.md) - Cancer genomics visualization
+- [COSMIC](../../../01.genetics.genomics/1.6.cancer.genomics/cosmic/README.md) - Cancer mutation database

@@ -2,13 +2,13 @@
 id: schema-chembl
 title: "ChEMBL Database Schema"
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-22
 status: migrated
 tags: [schema, database, bioactivity, drugs, compounds]
 ---
 
-**Parent:** [Schema Documentation](./_index.md)
+**Parent:** [Schema Documentation](./README.md)
 
 # ChEMBL Database Schema
 

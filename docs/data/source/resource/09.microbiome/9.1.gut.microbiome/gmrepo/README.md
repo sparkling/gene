@@ -4,7 +4,7 @@ title: "GMrepo - Gut Microbiota Repository"
 type: data-source
 category: microbiome
 subcategory: gut.microbiome
-parent: ../_index.md
+parent: ../README.md
 tier: 2
 last_updated: 2026-01-23
 status: active
@@ -13,7 +13,7 @@ tags: [gut, microbiome, metagenomics, curated, phenotypes]
 
 # GMrepo - Gut Microbiota Repository
 
-**Category:** [Microbiome](../../../_index.md) > [Gut Microbiome](../_index.md)
+**Category:** [Microbiome](../../../README.md) > [Gut Microbiome](../README.md)
 
 ## Overview
 
@@ -69,5 +69,5 @@ GMrepo is valuable for gut microbiome research, biomarker discovery, and underst
 ## See Also
 
 - [Schema Documentation](./schema.md)
-- [MetaHIT](../metahit/_index.md) - Reference metagenomes
-- [gutMGene](../gutmgene/_index.md) - Microbiota-gene links
+- [MetaHIT](../metahit/README.md) - Reference metagenomes
+- [gutMGene](../gutmgene/README.md) - Microbiota-gene links

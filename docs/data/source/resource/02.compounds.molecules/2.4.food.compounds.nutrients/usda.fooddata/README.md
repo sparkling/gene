@@ -87,9 +87,9 @@ The database provides extensive API access and bulk download options, making it 
 
 ## Related Resources
 
-- [Phenol-Explorer](../phenol.explorer/_index.md) - Polyphenols
-- [PhytoHub](../phytohub/_index.md) - Phytochemicals
-- [PubChem](../../2.6.chemical.ontology.classification/pubchem/_index.md) - Chemical data
+- [Phenol-Explorer](../phenol.explorer/README.md) - Polyphenols
+- [PhytoHub](../phytohub/README.md) - Phytochemicals
+- [PubChem](../../2.6.chemical.ontology.classification/pubchem/README.md) - Chemical data
 
 ## References
 

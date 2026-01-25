@@ -2,13 +2,13 @@
 id: schemas-intact-schema
 title: "IntAct Molecular Interaction Database Schema"
 category: schemas
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-22
 status: migrated
 tags: [schema, protein-interaction, molecular-interaction, psi-mi, imex, embl-ebi]
 ---
 
-**Parent:** [Schema Documentation](./_index.md)
+**Parent:** [Schema Documentation](./README.md)
 
 # IntAct Molecular Interaction Database Schema
 

@@ -17,7 +17,7 @@ tags:
 
 # HIT 2.0 - Herbal Ingredients' Targets
 
-**Category:** [Traditional Medicine](../../_index.md) > [Multi-System Integration](../_index.md)
+**Category:** [Traditional Medicine](../../README.md) > [Multi-System Integration](../README.md)
 
 ## Overview
 
@@ -148,7 +148,7 @@ HIT 2.0 serves as validation for other databases:
 
 ## See Also
 
-- [BATMAN-TCM](../../5.1.traditional.chinese.medicine/batman.tcm/_index.md)
-- [KampoDB](../../5.2.south.east.asian.systems/kampodb/_index.md)
-- [IMPPAT](../../5.2.south.east.asian.systems/imppat/_index.md)
-- [SymMap](../../5.1.traditional.chinese.medicine/symmap/_index.md)
+- [BATMAN-TCM](../../5.1.traditional.chinese.medicine/batman.tcm/README.md)
+- [KampoDB](../../5.2.south.east.asian.systems/kampodb/README.md)
+- [IMPPAT](../../5.2.south.east.asian.systems/imppat/README.md)
+- [SymMap](../../5.1.traditional.chinese.medicine/symmap/README.md)

@@ -4,7 +4,7 @@ title: "Natural Medicines Comprehensive Database"
 type: data-source
 category: nutrition
 subcategory: dietary.supplements
-parent: ../_index.md
+parent: ../README.md
 tier: 2
 last_updated: 2026-01-23
 status: active
@@ -13,7 +13,7 @@ tags: [natural-products, evidence, efficacy, safety, interactions]
 
 # Natural Medicines Comprehensive Database
 
-**Category:** [Nutrition](../../../_index.md) > [Dietary Supplements](../_index.md)
+**Category:** [Nutrition](../../../README.md) > [Dietary Supplements](../README.md)
 
 ## Overview
 

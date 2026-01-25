@@ -2,7 +2,7 @@
 id: compound.target.interactions
 title: "Compound-Target Interactions"
 type: subcategory
-parent: ../_index.md
+parent: ../README.md
 last_updated: 2026-01-23
 status: active
 tags: [binding, interactions, targets, affinity, druggability]
@@ -10,7 +10,7 @@ tags: [binding, interactions, targets, affinity, druggability]
 
 # Compound-Target Interactions
 
-**Parent:** [Compounds & Molecules](../_index.md)
+**Parent:** [Compounds & Molecules](../README.md)
 
 ## Overview
 
@@ -22,10 +22,10 @@ Key resources include BindingDB (binding measurements), DGIdb (drug-gene interac
 
 | Source | Tier | Description |
 |--------|------|-------------|
-| [BindingDB](./bindingdb/_index.md) | 1 | Binding affinity database |
-| [DGIdb](./dgidb/_index.md) | 1 | Drug-Gene Interaction Database |
-| [GtoPdb](./gtopdb/_index.md) | 1 | Guide to Pharmacology |
-| [TTD](./ttd/_index.md) | 2 | Therapeutic Target Database |
+| [BindingDB](./bindingdb/README.md) | 1 | Binding affinity database |
+| [DGIdb](./dgidb/README.md) | 1 | Drug-Gene Interaction Database |
+| [GtoPdb](./gtopdb/README.md) | 1 | Guide to Pharmacology |
+| [TTD](./ttd/README.md) | 2 | Therapeutic Target Database |
 
 ## Integration Notes
 
@@ -33,5 +33,5 @@ BindingDB provides quantitative binding data (Ki, Kd, IC50). DGIdb aggregates dr
 
 ## See Also
 
-- [Protein-Protein Interactions](../../04.pathways.networks/4.3.protein.protein.interactions/_index.md)
-- [Drug-Target Interactions](../../04.pathways.networks/4.4.drug.target.interactions/_index.md)
+- [Protein-Protein Interactions](../../04.pathways.networks/4.3.protein.protein.interactions/README.md)
+- [Drug-Target Interactions](../../04.pathways.networks/4.4.drug.target.interactions/README.md)

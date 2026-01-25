@@ -4,7 +4,7 @@ title: "Wikidata"
 type: data-source
 category: literature
 subcategory: knowledge.bases
-parent: ../_index.md
+parent: ../README.md
 tier: 1
 last_updated: 2026-01-23
 status: active
@@ -13,7 +13,7 @@ tags: [knowledge-graph, linked-data, semantic-web, identifiers, open-data]
 
 # Wikidata
 
-**Category:** [Literature](../../../_index.md) > [Knowledge Bases](../_index.md)
+**Category:** [Literature](../../../README.md) > [Knowledge Bases](../README.md)
 
 ## Overview
 
@@ -71,5 +71,5 @@ Wikidata is essential for entity resolution, knowledge graph construction, and l
 ## See Also
 
 - [Schema Documentation](./schema.md)
-- [Wikipedia](../wikipedia/_index.md) - Textual content
-- [UniProt ID Mapping](../../8.3.identifier.mapping/uniprot.id.mapping/_index.md) - Protein IDs
+- [Wikipedia](../wikipedia/README.md) - Textual content
+- [UniProt ID Mapping](../../8.3.identifier.mapping/uniprot.id.mapping/README.md) - Protein IDs

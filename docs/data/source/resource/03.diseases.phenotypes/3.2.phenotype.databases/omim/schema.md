@@ -2,7 +2,7 @@
 id: schema-omim
 title: "Online Mendelian Inheritance in Man (OMIM) Schema Documentation"
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-23
 status: draft
 tags: [schema, mendelian, genetics, rare-diseases, gene-disease, inheritance]
@@ -53,4 +53,4 @@ OMIM is the authoritative compendium of human genes and genetic phenotypes, prov
 
 ## References
 
-See [Overview](./_index.md) for full details.
+See [Overview](./README.md) for full details.

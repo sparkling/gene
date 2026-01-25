@@ -2,7 +2,7 @@
 id: functional.prediction
 title: "Functional Prediction"
 type: subcategory
-parent: ../_index.md
+parent: ../README.md
 last_updated: 2026-01-23
 status: active
 tags: [prediction, pathogenicity, splicing, missense, machine-learning]
@@ -10,7 +10,7 @@ tags: [prediction, pathogenicity, splicing, missense, machine-learning]
 
 # Functional Prediction
 
-**Parent:** [Genetics & Genomics](../_index.md)
+**Parent:** [Genetics & Genomics](../README.md)
 
 ## Overview
 
@@ -22,10 +22,10 @@ These scores are essential for prioritizing variants of uncertain significance a
 
 | Source | Tier | Description |
 |--------|------|-------------|
-| [CADD](./cadd/_index.md) | 1 | Combined annotation-dependent depletion scores |
-| [dbNSFP](./dbnsfp/_index.md) | 1 | Aggregated functional prediction database |
-| [SpliceAI](./spliceai/_index.md) | 1 | Deep learning splice variant predictions |
-| [AlphaMissense](./alphamissense/_index.md) | 1 | AlphaFold-based missense predictions |
+| [CADD](./cadd/README.md) | 1 | Combined annotation-dependent depletion scores |
+| [dbNSFP](./dbnsfp/README.md) | 1 | Aggregated functional prediction database |
+| [SpliceAI](./spliceai/README.md) | 1 | Deep learning splice variant predictions |
+| [AlphaMissense](./alphamissense/README.md) | 1 | AlphaFold-based missense predictions |
 
 ## Integration Notes
 

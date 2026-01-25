@@ -2,13 +2,13 @@
 id: schema-coconut
 title: "COCONUT Natural Products Database Schema"
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-22
 status: migrated
 tags: [schema, database, natural-products, compounds, chemistry]
 ---
 
-**Parent:** [Schema Documentation](./_index.md)
+**Parent:** [Schema Documentation](./README.md)
 
 # COCONUT - COlleCtion of Open Natural prodUcTs Database Schema
 

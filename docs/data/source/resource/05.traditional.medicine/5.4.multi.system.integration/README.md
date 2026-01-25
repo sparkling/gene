@@ -2,7 +2,7 @@
 id: multi.system.integration
 title: "Multi-System Integration"
 type: subcategory
-parent: ../_index.md
+parent: ../README.md
 last_updated: 2026-01-23
 status: active
 tags: [integration, cross-system, unified, comparative]
@@ -10,7 +10,7 @@ tags: [integration, cross-system, unified, comparative]
 
 # Multi-System Integration
 
-**Parent:** [Traditional Medicine](../_index.md)
+**Parent:** [Traditional Medicine](../README.md)
 
 ## Overview
 
@@ -22,7 +22,7 @@ Key resources include HIT 2.0 (Herbal Ingredients' Targets) which integrates her
 
 | Source | Tier | Description |
 |--------|------|-------------|
-| [HIT 2.0](./\{hit.2.0\}/_index.md) | 2 | Herbal Ingredients' Targets database |
+| [HIT 2.0](./\{hit.2.0\}/README.md) | 2 | Herbal Ingredients' Targets database |
 
 ## Integration Notes
 
@@ -30,6 +30,6 @@ HIT 2.0 provides cross-system herb-compound-target integration. Use for comparat
 
 ## See Also
 
-- [5.1 Traditional Chinese Medicine](../5.1.traditional.chinese.medicine/_index.md)
-- [5.2 South & East Asian Systems](../5.2.south.east.asian.systems/_index.md)
-- [5.3 Western & Global Herbal](../5.3.western.global.herbal/_index.md)
+- [5.1 Traditional Chinese Medicine](../5.1.traditional.chinese.medicine/README.md)
+- [5.2 South & East Asian Systems](../5.2.south.east.asian.systems/README.md)
+- [5.3 Western & Global Herbal](../5.3.western.global.herbal/README.md)

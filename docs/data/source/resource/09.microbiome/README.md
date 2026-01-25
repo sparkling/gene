@@ -2,7 +2,7 @@
 id: microbiome
 title: "Microbiome Resources"
 type: category
-parent: ../_index.md
+parent: ../README.md
 last_updated: 2026-01-23
 status: active
 tags: [microbiome, gut, oral, bacteria, metagenomics]
@@ -10,7 +10,7 @@ tags: [microbiome, gut, oral, bacteria, metagenomics]
 
 # Microbiome Resources
 
-**Parent:** [Data Sources](../_index.md)
+**Parent:** [Data Sources](../README.md)
 
 ## Overview
 
@@ -22,9 +22,9 @@ Microbiome databases integrate metagenomic sequencing data, taxonomic annotation
 
 | Subcategory | Description | Sources |
 |-------------|-------------|---------|
-| [9.1 Gut Microbiome](./9.1.gut.microbiome/_index.md) | Intestinal microbiota databases | 3 |
-| [9.2 Body Site Microbiomes](./9.2.body.site.microbiomes/_index.md) | Oral, skin, and other body site data | 3 |
-| [9.3 Microbe-Host Interactions](./9.3.microbe.host.interactions/_index.md) | Microbiome-disease and metabolic interactions | 3 |
+| [9.1 Gut Microbiome](./9.1.gut.microbiome/README.md) | Intestinal microbiota databases | 3 |
+| [9.2 Body Site Microbiomes](./9.2.body.site.microbiomes/README.md) | Oral, skin, and other body site data | 3 |
+| [9.3 Microbe-Host Interactions](./9.3.microbe.host.interactions/README.md) | Microbiome-disease and metabolic interactions | 3 |
 
 ## Key Integration Points
 

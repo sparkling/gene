@@ -2,7 +2,7 @@
 id: download-wikipedia
 title: "Wikipedia Download Instructions"
 type: download
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-24
 ---
 

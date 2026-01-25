@@ -2,7 +2,7 @@
 id: download-jaspar
 title: "JASPAR Download Instructions"
 type: download
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-24
 ---
 

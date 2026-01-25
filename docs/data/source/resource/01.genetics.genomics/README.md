@@ -2,7 +2,7 @@
 id: genetics.genomics
 title: "Genetics and Genomics"
 type: category
-parent: ../_index.md
+parent: ../README.md
 last_updated: 2026-01-23
 status: active
 tags: [genetics, genomics, variants, pharmacogenomics, population, cancer, expression]
@@ -10,7 +10,7 @@ tags: [genetics, genomics, variants, pharmacogenomics, population, cancer, expre
 
 # Genetics and Genomics
 
-**Parent:** [Data Sources](../_index.md)
+**Parent:** [Data Sources](../README.md)
 
 ## Overview
 
@@ -24,12 +24,12 @@ The resources in this category are essential for clinical variant classification
 
 | Subcategory | Description | Sources |
 |-------------|-------------|---------|
-| [1.1 Variant Repositories](./1.1.variant.repositories/_index.md) | Clinical and reference variant databases | 3 |
-| [1.2 Functional Prediction](./1.2.functional.prediction/_index.md) | Variant effect prediction tools and scores | 4 |
-| [1.3 Population Genetics](./1.3.population.genetics/_index.md) | Population-scale variant frequency data | 4 |
-| [1.4 Pharmacogenomics](./1.4.pharmacogenomics/_index.md) | Gene-drug interaction and dosing guidelines | 4 |
-| [1.5 Expression & Regulation](./1.5.expression.regulation/_index.md) | Gene expression and regulatory element data | 4 |
-| [1.6 Cancer Genomics](./1.6.cancer.genomics/_index.md) | Somatic mutations and cancer gene databases | 6 |
+| [1.1 Variant Repositories](./1.1.variant.repositories/README.md) | Clinical and reference variant databases | 3 |
+| [1.2 Functional Prediction](./1.2.functional.prediction/README.md) | Variant effect prediction tools and scores | 4 |
+| [1.3 Population Genetics](./1.3.population.genetics/README.md) | Population-scale variant frequency data | 4 |
+| [1.4 Pharmacogenomics](./1.4.pharmacogenomics/README.md) | Gene-drug interaction and dosing guidelines | 4 |
+| [1.5 Expression & Regulation](./1.5.expression.regulation/README.md) | Gene expression and regulatory element data | 4 |
+| [1.6 Cancer Genomics](./1.6.cancer.genomics/README.md) | Somatic mutations and cancer gene databases | 6 |
 
 ## Key Statistics
 
@@ -57,6 +57,6 @@ The resources in this category are essential for clinical variant classification
 
 ## See Also
 
-- [Diseases & Phenotypes](../03.diseases.phenotypes/_index.md)
-- [Pathways & Networks](../04.pathways.networks/_index.md)
-- [Proteins & Molecular Biology](../07.proteins.molecular.biology/_index.md)
+- [Diseases & Phenotypes](../03.diseases.phenotypes/README.md)
+- [Pathways & Networks](../04.pathways.networks/README.md)
+- [Proteins & Molecular Biology](../07.proteins.molecular.biology/README.md)

@@ -2,7 +2,7 @@
 id: download-pharmgkb
 title: "PharmGKB Download Instructions"
 type: download
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-23
 ---
 
@@ -313,6 +313,6 @@ bcftools annotate -a pharmgkb_variants.vcf.gz \
 
 ## Related Resources
 
-- [CPIC](../cpic/_index.md) - Clinical Pharmacogenetics Implementation
+- [CPIC](../cpic/README.md) - Clinical Pharmacogenetics Implementation
 - [FDA Labels](../../08.literature.knowledge/8.4.regulatory.legal/) - Regulatory information
 - [DrugBank](../../02.compounds.molecules/2.2.pharmaceuticals/drugbank/) - Drug data

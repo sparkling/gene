@@ -18,7 +18,7 @@ tags:
 
 # IntAct Molecular Interaction Database
 
-**Category:** [Pathways & Networks](../../_index.md) > [Protein-Protein Interactions](../_index.md)
+**Category:** [Pathways & Networks](../../README.md) > [Protein-Protein Interactions](../README.md)
 
 ## Overview
 
@@ -180,5 +180,5 @@ curl "https://www.ebi.ac.uk/Tools/webservices/psicquic/intact/query/pubid:153555
 ## See Also
 
 - [Schema Documentation](./schema.md)
-- [STRING](../string/_index.md) - Functional associations
-- [BioGRID](../biogrid/_index.md) - Genetic/physical interactions
+- [STRING](../string/README.md) - Functional associations
+- [BioGRID](../biogrid/README.md) - Genetic/physical interactions

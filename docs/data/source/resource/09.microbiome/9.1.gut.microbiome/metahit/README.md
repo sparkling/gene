@@ -4,7 +4,7 @@ title: "MetaHIT - Metagenomics of the Human Intestinal Tract"
 type: data-source
 category: microbiome
 subcategory: gut.microbiome
-parent: ../_index.md
+parent: ../README.md
 tier: 1
 last_updated: 2026-01-23
 status: active
@@ -13,7 +13,7 @@ tags: [metagenomics, gut, reference, gene-catalog, european]
 
 # MetaHIT - Metagenomics of the Human Intestinal Tract
 
-**Category:** [Microbiome](../../../_index.md) > [Gut Microbiome](../_index.md)
+**Category:** [Microbiome](../../../README.md) > [Gut Microbiome](../README.md)
 
 ## Overview
 
@@ -69,5 +69,5 @@ MetaHIT resources are essential for comparative metagenomics, understanding gut 
 ## See Also
 
 - [Schema Documentation](./schema.md)
-- [HMP](../../9.2.body.site.microbiomes/hmp/_index.md) - US Human Microbiome Project
-- [GMrepo](../gmrepo/_index.md) - Curated repository
+- [HMP](../../9.2.body.site.microbiomes/hmp/README.md) - US Human Microbiome Project
+- [GMrepo](../gmrepo/README.md) - Curated repository

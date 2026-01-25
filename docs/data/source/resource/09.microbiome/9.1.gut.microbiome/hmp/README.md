@@ -4,7 +4,7 @@ title: "HMP - Human Microbiome Project"
 type: data-source
 category: microbiome
 subcategory: gut.microbiome
-parent: ../_index.md
+parent: ../README.md
 tier: 1
 last_updated: 2026-01-23
 status: active
@@ -13,7 +13,7 @@ tags: [microbiome, metagenomics, reference, multi-omics, NIH]
 
 # HMP - Human Microbiome Project
 
-**Category:** [Microbiome](../../../_index.md) > [Gut Microbiome](../_index.md)
+**Category:** [Microbiome](../../../README.md) > [Gut Microbiome](../README.md)
 
 ## Overview
 
@@ -69,5 +69,5 @@ HMP data is essential for microbiome reference, disease association studies, and
 ## See Also
 
 - [Schema Documentation](./schema.md)
-- [GMrepo](../gmrepo/_index.md) - Curated gut microbiome data
-- [MetaHIT](../metahit/_index.md) - European reference metagenomes
+- [GMrepo](../gmrepo/README.md) - Curated gut microbiome data
+- [MetaHIT](../metahit/README.md) - European reference metagenomes

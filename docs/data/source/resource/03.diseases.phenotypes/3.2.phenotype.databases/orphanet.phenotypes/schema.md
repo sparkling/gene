@@ -2,7 +2,7 @@
 id: schema-orphanet-phenotypes
 title: "Orphanet Phenotype Annotations Schema Documentation"
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-23
 status: draft
 tags: [schema, phenotypes, rare-diseases, hpo, clinical-features, orphanet]
@@ -66,4 +66,4 @@ Orphanet Phenotype Annotations provides comprehensive mappings between rare dise
 
 ## References
 
-See [Overview](./_index.md) for full details.
+See [Overview](./README.md) for full details.

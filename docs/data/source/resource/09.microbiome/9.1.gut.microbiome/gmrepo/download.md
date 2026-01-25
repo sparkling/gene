@@ -2,7 +2,7 @@
 id: download-gmrepo
 title: "GMrepo Download Instructions"
 type: download
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-23
 ---
 
@@ -286,6 +286,6 @@ fasterq-dump SRR1234567
 
 ## Related Resources
 
-- [HMP](../../9.2.body.site.microbiomes/hmp/_index.md) - US reference microbiomes
-- [MetaHIT](../metahit/_index.md) - European metagenomes
-- [gutMGene](../gutmgene/_index.md) - Microbe-gene links
+- [HMP](../../9.2.body.site.microbiomes/hmp/README.md) - US reference microbiomes
+- [MetaHIT](../metahit/README.md) - European metagenomes
+- [gutMGene](../gutmgene/README.md) - Microbe-gene links

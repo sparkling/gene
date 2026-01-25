@@ -2,7 +2,7 @@
 id: metabolomics
 title: "Metabolomics Databases"
 type: subcategory
-parent: ../_index.md
+parent: ../README.md
 last_updated: 2026-01-23
 status: active
 tags: [metabolomics, metabolites, exposome, biomarkers]
@@ -10,7 +10,7 @@ tags: [metabolomics, metabolites, exposome, biomarkers]
 
 # Metabolomics Databases
 
-**Parent:** [Nutrition and Food Sciences](../_index.md)
+**Parent:** [Nutrition and Food Sciences](../README.md)
 
 ## Overview
 
@@ -20,8 +20,8 @@ Metabolomics databases catalog endogenous and exogenous metabolites found in hum
 
 | Source | Tier | Description |
 |--------|------|-------------|
-| [Exposome-Explorer](./exposome.explorer/_index.md) | 2 | Dietary and environmental biomarkers database |
-| [HMDB](./hmdb/_index.md) | 1 | Human Metabolome Database |
+| [Exposome-Explorer](./exposome.explorer/README.md) | 2 | Dietary and environmental biomarkers database |
+| [HMDB](./hmdb/README.md) | 1 | Human Metabolome Database |
 
 ## Integration Notes
 

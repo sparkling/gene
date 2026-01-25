@@ -2,7 +2,7 @@
 id: schema-tmmc
 title: "TM-MC Database Schema"
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-23
 status: active
 tags: [schema, traditional-medicine, multi-system, molecular-targets]

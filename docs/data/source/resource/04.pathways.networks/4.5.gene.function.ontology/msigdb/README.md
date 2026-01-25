@@ -17,7 +17,7 @@ tags:
 
 # MSigDB - Molecular Signatures Database
 
-**Category:** [Pathways & Networks](../../_index.md) > [Gene Function & Ontology](../_index.md)
+**Category:** [Pathways & Networks](../../README.md) > [Gene Function & Ontology](../README.md)
 
 ## Overview
 
@@ -197,6 +197,6 @@ HALLMARK_APOPTOSIS	http://www.gsea-msigdb.org/gsea/msigdb/cards/HALLMARK_APOPTOS
 
 ## See Also
 
-- [Gene Ontology](../gene.ontology/_index.md) - Source for GO gene sets
-- [Reactome](../../4.1.metabolic.pathways/reactome/_index.md) - Pathway source
-- [WikiPathways](../../4.1.metabolic.pathways/wikipathways/_index.md) - Pathway source
+- [Gene Ontology](../gene.ontology/README.md) - Source for GO gene sets
+- [Reactome](../../4.1.metabolic.pathways/reactome/README.md) - Pathway source
+- [WikiPathways](../../4.1.metabolic.pathways/wikipathways/README.md) - Pathway source

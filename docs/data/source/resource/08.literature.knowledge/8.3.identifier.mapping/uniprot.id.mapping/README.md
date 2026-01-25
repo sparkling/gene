@@ -4,7 +4,7 @@ title: "UniProt ID Mapping Service"
 type: data-source
 category: literature
 subcategory: identifier.mapping
-parent: ../_index.md
+parent: ../README.md
 tier: 1
 last_updated: 2026-01-23
 status: active
@@ -13,7 +13,7 @@ tags: [identifiers, proteins, genes, mapping, cross-reference]
 
 # UniProt ID Mapping Service
 
-**Category:** [Literature](../../../_index.md) > [Identifier Mapping](../_index.md)
+**Category:** [Literature](../../../README.md) > [Identifier Mapping](../README.md)
 
 ## Overview
 
@@ -70,5 +70,5 @@ UniProt ID Mapping is the primary tool for converting between protein and gene i
 ## See Also
 
 - [Schema Documentation](./schema.md)
-- [UniProt](../../../07.proteins.molecular.biology/7.1.protein.sequences.annotations/uniprot/_index.md) - Full database
-- [NCBI E-Link](../ncbi.elink/_index.md) - NCBI linking
+- [UniProt](../../../07.proteins.molecular.biology/7.1.protein.sequences.annotations/uniprot/README.md) - Full database
+- [NCBI E-Link](../ncbi.elink/README.md) - NCBI linking

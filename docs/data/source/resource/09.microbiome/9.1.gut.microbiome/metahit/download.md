@@ -2,7 +2,7 @@
 id: download-metahit
 title: "MetaHIT Download Instructions"
 type: download
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-23
 ---
 
@@ -263,6 +263,6 @@ diamond blastp -d uniprot -q IGC_proteins.fa -o igc_uniprot.tsv
 
 ## Related Resources
 
-- [HMP](../../9.2.body.site.microbiomes/hmp/_index.md) - US microbiome project
-- [GMrepo](../gmrepo/_index.md) - Curated repository
+- [HMP](../../9.2.body.site.microbiomes/hmp/README.md) - US microbiome project
+- [GMrepo](../gmrepo/README.md) - Curated repository
 - [KEGG](../../../../04.pathways.networks/4.1.metabolic.pathways/kegg/) - Pathway annotations

@@ -4,7 +4,7 @@ title: "OpenAlex"
 type: data-source
 category: literature
 subcategory: scientific.literature
-parent: ../_index.md
+parent: ../README.md
 tier: 2
 last_updated: 2026-01-23
 status: active
@@ -13,7 +13,7 @@ tags: [literature, open-data, knowledge-graph, citations, metadata]
 
 # OpenAlex
 
-**Category:** [Literature](../../../_index.md) > [Scientific Literature](../_index.md)
+**Category:** [Literature](../../../README.md) > [Scientific Literature](../README.md)
 
 ## Overview
 
@@ -71,5 +71,5 @@ OpenAlex is particularly valuable for bibliometric analysis, research assessment
 ## See Also
 
 - [Schema Documentation](./schema.md)
-- [Semantic Scholar](../semantic.scholar/_index.md) - AI-powered discovery
-- [PubMed](../pubmed/_index.md) - Biomedical focus
+- [Semantic Scholar](../semantic.scholar/README.md) - AI-powered discovery
+- [PubMed](../pubmed/README.md) - Biomedical focus

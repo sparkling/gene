@@ -2,7 +2,7 @@
 id: cancer.genomics
 title: "Cancer Genomics"
 type: subcategory
-parent: ../_index.md
+parent: ../README.md
 last_updated: 2026-01-23
 status: active
 tags: [cancer, somatic, driver, oncology, tumor, mutations]
@@ -10,7 +10,7 @@ tags: [cancer, somatic, driver, oncology, tumor, mutations]
 
 # Cancer Genomics
 
-**Parent:** [Genetics & Genomics](../_index.md)
+**Parent:** [Genetics & Genomics](../README.md)
 
 ## Overview
 
@@ -22,12 +22,12 @@ Key resources include COSMIC (comprehensive somatic mutations), OncoKB (clinical
 
 | Source | Tier | Description |
 |--------|------|-------------|
-| [COSMIC](./cosmic/_index.md) | 1 | Catalogue of Somatic Mutations in Cancer |
-| [OncoKB](./oncokb/_index.md) | 1 | Precision oncology knowledge base |
-| [CIViC](./civic/_index.md) | 1 | Clinical Interpretation of Variants in Cancer |
-| [cBioPortal](./cbioportal/_index.md) | 1 | Cancer genomics data portal |
-| [Cancer Gene Census](./cancer.gene.census/_index.md) | 1 | Cancer driver gene catalog |
-| [BRCA Exchange](./brca.exchange/_index.md) | 1 | BRCA1/2 variant database |
+| [COSMIC](./cosmic/README.md) | 1 | Catalogue of Somatic Mutations in Cancer |
+| [OncoKB](./oncokb/README.md) | 1 | Precision oncology knowledge base |
+| [CIViC](./civic/README.md) | 1 | Clinical Interpretation of Variants in Cancer |
+| [cBioPortal](./cbioportal/README.md) | 1 | Cancer genomics data portal |
+| [Cancer Gene Census](./cancer.gene.census/README.md) | 1 | Cancer driver gene catalog |
+| [BRCA Exchange](./brca.exchange/README.md) | 1 | BRCA1/2 variant database |
 
 ## Integration Notes
 

@@ -2,7 +2,7 @@
 id: schema-exposome-explorer
 title: "Exposome-Explorer - Schema Documentation"
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-23
 status: active
 tags: [schema, exposome, biomarkers, diet, environment, metabolomics]
@@ -366,5 +366,5 @@ http://exposome-explorer.iarc.fr/
 ## Related Documents
 
 - [Download Instructions](./download.md)
-- [HMDB](../hmdb/_index.md) - Human Metabolome Database
-- [FooDB](../../6.1.food.composition/foodb/_index.md) - Food compound database
+- [HMDB](../hmdb/README.md) - Human Metabolome Database
+- [FooDB](../../6.1.food.composition/foodb/README.md) - Food compound database

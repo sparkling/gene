@@ -2,7 +2,7 @@
 id: download-pubmed-central
 title: "PubMed Central (PMC) Download Instructions"
 type: download
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-24
 ---
 

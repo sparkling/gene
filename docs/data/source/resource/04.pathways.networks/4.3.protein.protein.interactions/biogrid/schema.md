@@ -2,7 +2,7 @@
 id: schema-biogrid
 title: "BioGRID Schema Documentation"
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-24
 status: final
 tags: [schema, database, protein-interactions, genetic-interactions]

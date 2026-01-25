@@ -17,7 +17,7 @@ tags:
 
 # ETCM - Encyclopedia of Traditional Chinese Medicine
 
-**Category:** [Traditional Medicine](../../_index.md) > [Traditional Chinese Medicine](../_index.md)
+**Category:** [Traditional Medicine](../../README.md) > [Traditional Chinese Medicine](../README.md)
 
 ## Overview
 
@@ -106,6 +106,6 @@ TCM Theory Properties
 
 ## See Also
 
-- [BATMAN-TCM](../batman.tcm/_index.md)
-- [TCMBank](../tcmbank/_index.md)
-- [HERB Database](../herb/_index.md)
+- [BATMAN-TCM](../batman.tcm/README.md)
+- [TCMBank](../tcmbank/README.md)
+- [HERB Database](../herb/README.md)

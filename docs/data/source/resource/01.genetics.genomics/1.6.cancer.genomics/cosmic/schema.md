@@ -2,7 +2,7 @@
 id: schema-cosmic
 title: "COSMIC Schema Documentation"
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-24
 status: migrated
 tags: [schema, database, cancer, somatic, mutation, signature]

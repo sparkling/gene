@@ -2,7 +2,7 @@
 id: schema-ebasis
 title: "eBASIS - Schema Documentation"
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-23
 status: active
 tags: [schema, bioactive, phytochemicals, food, composition]
@@ -568,5 +568,5 @@ Nutrition Bulletin, 35(2), 170-174.
 ## Related Documents
 
 - [Download Instructions](./download.md)
-- [FooDB](../../6.1.food.composition/foodb/_index.md) - Food compound database
+- [FooDB](../../6.1.food.composition/foodb/README.md) - Food compound database
 - [Phenol-Explorer](../phenol.explorer/) - Polyphenol database

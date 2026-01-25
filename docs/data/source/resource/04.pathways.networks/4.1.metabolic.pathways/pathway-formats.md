@@ -2,13 +2,13 @@
 id: schemas-pathway-formats
 title: "Pathway Database Formats - Detailed Technical Reference"
 category: schemas
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-22
 status: migrated
 tags: [schema, pathway, reactome, kegg, wikipathways, gpml, biopax, sbml, psi-mi]
 ---
 
-**Parent:** [Schema Documentation](./_index.md)
+**Parent:** [Schema Documentation](./README.md)
 
 # Pathway Database Formats - Detailed Technical Reference
 

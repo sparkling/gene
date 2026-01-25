@@ -2,7 +2,7 @@
 id: schema-npclassifier
 title: "NPClassifier Schema Documentation"
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-24
 status: final
 tags: [schema, natural-products, classification, biosynthesis, machine-learning]
@@ -354,6 +354,6 @@ NPClassifier can return multiple predictions when structure fits multiple catego
 ## Related Documents
 
 - [NPClassifier Download Instructions](./download.md)
-- [ClassyFire](../classyfire/_index.md) - General chemical taxonomy
-- [COCONUT](../../2.1.natural.products/coconut/_index.md) - Natural products database
-- [ChEBI](../chebi/_index.md) - Chemical ontology
+- [ClassyFire](../classyfire/README.md) - General chemical taxonomy
+- [COCONUT](../../2.1.natural.products/coconut/README.md) - Natural products database
+- [ChEBI](../chebi/README.md) - Chemical ontology

@@ -87,9 +87,9 @@ Phenol-Explorer also includes extensive data on polyphenol metabolites found in 
 
 ## Related Resources
 
-- [USDA FoodData](../usda.fooddata/_index.md) - Food composition
-- [PhytoHub](../phytohub/_index.md) - Phytochemical metabolites
-- [Dr. Duke's](../../2.1.natural.products/dr.dukes/_index.md) - Phytochemicals
+- [USDA FoodData](../usda.fooddata/README.md) - Food composition
+- [PhytoHub](../phytohub/README.md) - Phytochemical metabolites
+- [Dr. Duke's](../../2.1.natural.products/dr.dukes/README.md) - Phytochemicals
 
 ## References
 

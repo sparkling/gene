@@ -4,7 +4,7 @@ title: "PMC ID Converter"
 type: data-source
 category: literature
 subcategory: identifier.mapping
-parent: ../_index.md
+parent: ../README.md
 tier: 1
 last_updated: 2026-01-23
 status: active
@@ -13,7 +13,7 @@ tags: [identifiers, pmid, pmcid, doi, conversion]
 
 # PMC ID Converter
 
-**Category:** [Literature](../../../_index.md) > [Identifier Mapping](../_index.md)
+**Category:** [Literature](../../../README.md) > [Identifier Mapping](../README.md)
 
 ## Overview
 
@@ -69,5 +69,5 @@ PMC ID Converter is widely used in systematic reviews, bibliography management, 
 ## See Also
 
 - [Schema Documentation](./schema.md)
-- [PubMed](../../8.1.scientific.literature/pubmed/_index.md) - Abstract database
-- [PubMed Central](../../8.1.scientific.literature/pubmed.central/_index.md) - Full-text archive
+- [PubMed](../../8.1.scientific.literature/pubmed/README.md) - Abstract database
+- [PubMed Central](../../8.1.scientific.literature/pubmed.central/README.md) - Full-text archive

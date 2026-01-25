@@ -17,7 +17,7 @@ tags:
 
 # STITCH - Chemical-Protein Interaction Networks
 
-**Category:** [Pathways & Networks](../../_index.md) > [Drug-Target Interactions](../_index.md)
+**Category:** [Pathways & Networks](../../README.md) > [Drug-Target Interactions](../README.md)
 
 ## Overview
 
@@ -215,6 +215,6 @@ curl "http://stitch.embl.de/api/json/network?identifiers=aspirin%0dTP53%0dMDM2&s
 
 - [Schema Documentation](./schema.md) - Technical schema and data formats
 - [Download Instructions](./download.md) - Bulk data acquisition guide
-- [STRING](../../4.3.protein.protein.interactions/string/_index.md) - Protein-protein interactions
-- [ChEMBL](../../../03.bioactivity.drug.data/3.1.compound.bioactivity/chembl/_index.md) - Bioactivity data
-- [DrugBank](../../../03.bioactivity.drug.data/3.2.drug.databases/drugbank/_index.md) - Drug information
+- [STRING](../../4.3.protein.protein.interactions/string/README.md) - Protein-protein interactions
+- [ChEMBL](../../../03.bioactivity.drug.data/3.1.compound.bioactivity/chembl/README.md) - Bioactivity data
+- [DrugBank](../../../03.bioactivity.drug.data/3.2.drug.databases/drugbank/README.md) - Drug information

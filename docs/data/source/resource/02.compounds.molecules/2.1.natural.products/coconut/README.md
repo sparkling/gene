@@ -80,10 +80,10 @@ COCONUT integrates with major chemistry databases including PubChem, ChEMBL, ZIN
 
 ## Related Resources
 
-- [ChEMBL](../../2.2.pharmaceuticals/chembl/_index.md) - Bioactivity data
-- [PubChem](../../2.6.chemical.ontology.classification/pubchem/_index.md) - Chemical information
-- [LOTUS](../lotus/_index.md) - Structure-organism pairs
-- [ChEBI](../../2.6.chemical.ontology.classification/chebi/_index.md) - Chemical ontology
+- [ChEMBL](../../2.2.pharmaceuticals/chembl/README.md) - Bioactivity data
+- [PubChem](../../2.6.chemical.ontology.classification/pubchem/README.md) - Chemical information
+- [LOTUS](../lotus/README.md) - Structure-organism pairs
+- [ChEBI](../../2.6.chemical.ontology.classification/chebi/README.md) - Chemical ontology
 
 ## See Also
 

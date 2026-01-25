@@ -18,7 +18,7 @@ tags:
 
 # Reactome Pathway Database
 
-**Category:** [Pathways & Networks](../../_index.md) > [Metabolic Pathways](../_index.md)
+**Category:** [Pathways & Networks](../../README.md) > [Metabolic Pathways](../README.md)
 
 ## Overview
 
@@ -150,5 +150,5 @@ RETURN DISTINCT re.identifier AS UniProtID, re.geneName AS GeneName
 ## See Also
 
 - [Schema Documentation](./schema.md)
-- [WikiPathways](../wikipathways/_index.md) - Community-curated pathways
-- [KEGG](../kegg/_index.md) - Alternative (licensed)
+- [WikiPathways](../wikipathways/README.md) - Community-curated pathways
+- [KEGG](../kegg/README.md) - Alternative (licensed)

@@ -2,7 +2,7 @@
 id: schema-bindingdb
 title: "BindingDB Schema Documentation"
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-23
 status: migrated
 tags: [schema, database, binding-affinity, drug-target, ic50, ki, pharmacology]

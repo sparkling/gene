@@ -2,7 +2,7 @@
 id: download-homd
 title: "HOMD Download Instructions"
 type: download
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-23
 ---
 
@@ -260,6 +260,6 @@ EOF
 
 ## Related Resources
 
-- [HMP](../hmp/_index.md) - Multi-site microbiome data
-- [mBodyMap](../mbodymap/_index.md) - Body-wide atlas
-- [GMrepo](../../9.1.gut.microbiome/gmrepo/_index.md) - Gut microbiome data
+- [HMP](../hmp/README.md) - Multi-site microbiome data
+- [mBodyMap](../mbodymap/README.md) - Body-wide atlas
+- [GMrepo](../../9.1.gut.microbiome/gmrepo/README.md) - Gut microbiome data

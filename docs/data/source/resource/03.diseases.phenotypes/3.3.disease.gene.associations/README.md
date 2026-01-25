@@ -2,7 +2,7 @@
 id: disease.gene.associations
 title: "Disease-Gene Associations"
 type: subcategory
-parent: ../_index.md
+parent: ../README.md
 last_updated: 2026-01-23
 status: active
 tags: [disease-gene, associations, targets, genetics, druggable]
@@ -10,7 +10,7 @@ tags: [disease-gene, associations, targets, genetics, druggable]
 
 # Disease-Gene Associations
 
-**Parent:** [Diseases & Phenotypes](../_index.md)
+**Parent:** [Diseases & Phenotypes](../README.md)
 
 ## Overview
 
@@ -22,8 +22,8 @@ Key resources include DisGeNET (comprehensive gene-disease associations) and Ope
 
 | Source | Tier | Description |
 |--------|------|-------------|
-| [DisGeNET](./disgenet/_index.md) | 1 | Gene-disease association database |
-| [Open Targets](./open.targets/_index.md) | 1 | Target identification platform |
+| [DisGeNET](./disgenet/README.md) | 1 | Gene-disease association database |
+| [Open Targets](./open.targets/README.md) | 1 | Target identification platform |
 
 ## Integration Notes
 

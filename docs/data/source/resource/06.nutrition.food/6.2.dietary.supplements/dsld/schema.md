@@ -2,7 +2,7 @@
 id: schema-dsld
 title: "DSLD - Schema Documentation"
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-23
 status: active
 tags: [schema, supplements, nih, labels, ingredients]
@@ -345,5 +345,5 @@ products (1) ----< ingredients (N)
 ## Related Documents
 
 - [Download Instructions](./download.md)
-- [ConsumerLab](../consumerlab/_index.md) - Product testing
-- [Natural Medicines](../natural.medicines/_index.md) - Evidence database
+- [ConsumerLab](../consumerlab/README.md) - Product testing
+- [Natural Medicines](../natural.medicines/README.md) - Evidence database

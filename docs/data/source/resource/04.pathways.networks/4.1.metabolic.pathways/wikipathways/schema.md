@@ -2,13 +2,13 @@
 id: schemas-wikipathways-gpml-schema
 title: "WikiPathways GPML Schema Documentation"
 category: schemas
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-22
 status: migrated
 tags: [schema, wikipathways, gpml, pathway, xml, visualization, cc0]
 ---
 
-**Parent:** [Schema Documentation](./_index.md)
+**Parent:** [Schema Documentation](./README.md)
 
 # WikiPathways GPML Schema Documentation
 

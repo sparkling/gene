@@ -18,7 +18,7 @@ tags:
 
 # KEGG - Kyoto Encyclopedia of Genes and Genomes
 
-**Category:** [Pathways & Networks](../../_index.md) > [Metabolic Pathways](../_index.md)
+**Category:** [Pathways & Networks](../../README.md) > [Metabolic Pathways](../README.md)
 
 ## Overview
 
@@ -129,5 +129,5 @@ Due to licensing restrictions, consider these open alternatives:
 ## See Also
 
 - [Schema Documentation](./schema.md)
-- [Reactome](../reactome/_index.md) - Open alternative
-- [WikiPathways](../wikipathways/_index.md) - Community-curated alternative
+- [Reactome](../reactome/README.md) - Open alternative
+- [WikiPathways](../wikipathways/README.md) - Community-curated alternative

@@ -2,7 +2,7 @@
 id: traditional.medicine
 title: "Traditional Medicine"
 type: category
-parent: ../_index.md
+parent: ../README.md
 last_updated: 2026-01-23
 status: active
 tags: [traditional-medicine, tcm, ayurveda, kampo, herbal, ethnobotany]
@@ -10,7 +10,7 @@ tags: [traditional-medicine, tcm, ayurveda, kampo, herbal, ethnobotany]
 
 # Traditional Medicine
 
-**Parent:** [Data Sources](../_index.md)
+**Parent:** [Data Sources](../README.md)
 
 ## Overview
 
@@ -24,10 +24,10 @@ The integration of traditional medicine data with compound databases, target pre
 
 | Subcategory | Description | Sources |
 |-------------|-------------|---------|
-| [5.1 Traditional Chinese Medicine](./5.1.traditional.chinese.medicine/_index.md) | TCM herbs, formulas, and compound databases | 6 |
-| [5.2 South & East Asian Systems](./5.2.south.east.asian.systems/_index.md) | Ayurveda, Kampo, and other Asian traditions | 4 |
-| [5.3 Western & Global Herbal](./5.3.western.global.herbal/_index.md) | Western herbal medicine and global ethnobotany | 2 |
-| [5.4 Multi-System Integration](./5.4.multi.system.integration/_index.md) | Cross-system and integrative databases | 1 |
+| [5.1 Traditional Chinese Medicine](./5.1.traditional.chinese.medicine/README.md) | TCM herbs, formulas, and compound databases | 6 |
+| [5.2 South & East Asian Systems](./5.2.south.east.asian.systems/README.md) | Ayurveda, Kampo, and other Asian traditions | 4 |
+| [5.3 Western & Global Herbal](./5.3.western.global.herbal/README.md) | Western herbal medicine and global ethnobotany | 2 |
+| [5.4 Multi-System Integration](./5.4.multi.system.integration/README.md) | Cross-system and integrative databases | 1 |
 
 ## Key Statistics
 
@@ -56,6 +56,6 @@ The integration of traditional medicine data with compound databases, target pre
 
 ## See Also
 
-- [Compounds & Molecules](../02.compounds.molecules/_index.md)
-- [Nutrition & Food Sciences](../06.nutrition.food/_index.md)
-- [Pathways & Networks](../04.pathways.networks/_index.md)
+- [Compounds & Molecules](../02.compounds.molecules/README.md)
+- [Nutrition & Food Sciences](../06.nutrition.food/README.md)
+- [Pathways & Networks](../04.pathways.networks/README.md)

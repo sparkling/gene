@@ -2,7 +2,7 @@
 id: download-wikidata
 title: "Wikidata Download Instructions"
 type: download
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-23
 ---
 

@@ -2,13 +2,13 @@
 id: schema-reactome
 title: Reactome Neo4j Graph Database Schema
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-22
 status: migrated
 tags: [schema, database, pathways, neo4j]
 ---
 
-**Parent:** [Schema Documentation](./_index.md)
+**Parent:** [Schema Documentation](./README.md)
 
 # Reactome Neo4j Graph Database Schema
 

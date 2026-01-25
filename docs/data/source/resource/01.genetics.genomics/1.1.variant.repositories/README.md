@@ -2,7 +2,7 @@
 id: variant.repositories
 title: "Variant Repositories"
 type: subcategory
-parent: ../_index.md
+parent: ../README.md
 last_updated: 2026-01-23
 status: active
 tags: [variants, clinical, snp, structural, ncbi]
@@ -10,7 +10,7 @@ tags: [variants, clinical, snp, structural, ncbi]
 
 # Variant Repositories
 
-**Parent:** [Genetics & Genomics](../_index.md)
+**Parent:** [Genetics & Genomics](../README.md)
 
 ## Overview
 
@@ -22,9 +22,9 @@ The primary variant repositories include ClinVar for clinically-interpreted vari
 
 | Source | Tier | Description |
 |--------|------|-------------|
-| [ClinVar](./clinvar/_index.md) | 1 | Clinical variant interpretations |
-| [dbSNP](./dbsnp/_index.md) | 1 | Short nucleotide polymorphisms |
-| [dbVar](./dbvar/_index.md) | 1 | Structural variants |
+| [ClinVar](./clinvar/README.md) | 1 | Clinical variant interpretations |
+| [dbSNP](./dbsnp/README.md) | 1 | Short nucleotide polymorphisms |
+| [dbVar](./dbvar/README.md) | 1 | Structural variants |
 
 ## Integration Notes
 

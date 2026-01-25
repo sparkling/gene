@@ -98,9 +98,9 @@ ClassyFire is widely used for metabolomics data annotation, chemical database or
 
 ## Related Resources
 
-- [ChEBI](../chebi/_index.md) - Chemical ontology
-- [NPClassifier](../npclassifier/_index.md) - Natural product classification
-- [PubChem](../pubchem/_index.md) - Chemical repository
+- [ChEBI](../chebi/README.md) - Chemical ontology
+- [NPClassifier](../npclassifier/README.md) - Natural product classification
+- [PubChem](../pubchem/README.md) - Chemical repository
 
 ## References
 

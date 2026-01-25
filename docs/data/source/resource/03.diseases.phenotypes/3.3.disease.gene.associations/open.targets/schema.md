@@ -2,7 +2,7 @@
 id: schema-open.targets
 title: "Open Targets Platform Schema Documentation"
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-24
 status: migrated
 tags: [schema, database, drug-targets, evidence, graphql, target-validation]
@@ -342,7 +342,7 @@ curl -X POST https://api.platform.opentargets.org/api/v4/graphql \
 
 ## See Also
 
-- [Open Targets Overview](./_index.md)
+- [Open Targets Overview](./README.md)
 - [Open Targets Download Instructions](./download.md)
-- [DisGeNET](../disgenet/_index.md) - Complementary gene-disease resource
-- [ChEMBL](../../../04.drugs.compounds/4.1.drug.databases/chembl/_index.md) - Drug data source
+- [DisGeNET](../disgenet/README.md) - Complementary gene-disease resource
+- [ChEMBL](../../../04.drugs.compounds/4.1.drug.databases/chembl/README.md) - Drug data source

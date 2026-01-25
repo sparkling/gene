@@ -96,9 +96,9 @@ SuperCYP supports drug development by providing early assessment of metabolic li
 
 ## Related Resources
 
-- [SwissADME](../swissadme/_index.md) - ADMET prediction
-- [DrugBank](../../2.2.pharmaceuticals/drugbank/_index.md) - Drug information
-- [ChEMBL](../../2.2.pharmaceuticals/chembl/_index.md) - Bioactivity
+- [SwissADME](../swissadme/README.md) - ADMET prediction
+- [DrugBank](../../2.2.pharmaceuticals/drugbank/README.md) - Drug information
+- [ChEMBL](../../2.2.pharmaceuticals/chembl/README.md) - Bioactivity
 
 ## References
 

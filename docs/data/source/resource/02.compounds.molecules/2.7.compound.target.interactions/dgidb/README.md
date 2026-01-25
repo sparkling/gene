@@ -91,9 +91,9 @@ The database is particularly valuable for identifying existing drugs targeting g
 
 ## Related Resources
 
-- [Open Targets](../../_index.md) - Target-disease associations
-- [ChEMBL](../../2.2.pharmaceuticals/chembl/_index.md) - Bioactivity
-- [TTD](../ttd/_index.md) - Therapeutic targets
+- [Open Targets](../../README.md) - Target-disease associations
+- [ChEMBL](../../2.2.pharmaceuticals/chembl/README.md) - Bioactivity
+- [TTD](../ttd/README.md) - Therapeutic targets
 
 ## See Also
 

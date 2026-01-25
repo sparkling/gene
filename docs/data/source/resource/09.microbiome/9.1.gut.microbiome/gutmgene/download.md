@@ -2,7 +2,7 @@
 id: download-gutmgene
 title: "gutMGene Download Instructions"
 type: download
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-23
 ---
 
@@ -236,6 +236,6 @@ microbe_taxids = gutmgene["microbe_taxid"].unique()
 
 ## Related Resources
 
-- [GMrepo](../gmrepo/_index.md) - Sample-level microbiome data
-- [gutMDisorder](../../9.3.microbe.host.interactions/gutmdisorder/_index.md) - Disease associations
-- [VMH](../../9.3.microbe.host.interactions/vmh/_index.md) - Metabolic models
+- [GMrepo](../gmrepo/README.md) - Sample-level microbiome data
+- [gutMDisorder](../../9.3.microbe.host.interactions/gutmdisorder/README.md) - Disease associations
+- [VMH](../../9.3.microbe.host.interactions/vmh/README.md) - Metabolic models

@@ -4,7 +4,7 @@ title: "PubMed Central (PMC)"
 type: data-source
 category: literature
 subcategory: scientific.literature
-parent: ../_index.md
+parent: ../README.md
 tier: 1
 last_updated: 2026-01-23
 status: active
@@ -13,7 +13,7 @@ tags: [literature, full-text, open-access, ncbi, archive]
 
 # PubMed Central (PMC)
 
-**Category:** [Literature](../../../_index.md) > [Scientific Literature](../_index.md)
+**Category:** [Literature](../../../README.md) > [Scientific Literature](../README.md)
 
 ## Overview
 
@@ -71,5 +71,5 @@ PMC is essential for text mining research, systematic reviews requiring full tex
 ## See Also
 
 - [Schema Documentation](./schema.md)
-- [PubMed](../pubmed/_index.md) - Abstract database
-- [PMC ID Converter](../../8.3.identifier.mapping/pmc.id.converter/_index.md) - ID conversion
+- [PubMed](../pubmed/README.md) - Abstract database
+- [PMC ID Converter](../../8.3.identifier.mapping/pmc.id.converter/README.md) - ID conversion

@@ -17,7 +17,7 @@ tags:
 
 # Roadmap Epigenomics Project
 
-**Category:** [Pathways & Networks](../../_index.md) > [Regulatory Networks](../_index.md)
+**Category:** [Pathways & Networks](../../README.md) > [Regulatory Networks](../README.md)
 
 ## Overview
 
@@ -217,6 +217,6 @@ Roadmap Epigenomics Consortium. (2015). Integrative analysis of 111 reference hu
 
 ## See Also
 
-- [JASPAR](../jaspar/_index.md) - TF binding motifs
-- [ENCODE](../../../01.genomic.references/1.4.functional.annotations/encode/_index.md) - Related functional data
-- [Gene Ontology](../../4.5.gene.function.ontology/gene.ontology/_index.md) - Functional annotations
+- [JASPAR](../jaspar/README.md) - TF binding motifs
+- [ENCODE](../../../01.genomic.references/1.4.functional.annotations/encode/README.md) - Related functional data
+- [Gene Ontology](../../4.5.gene.function.ontology/gene.ontology/README.md) - Functional annotations

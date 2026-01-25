@@ -2,7 +2,7 @@
 id: schema-pdb
 title: "PDB (Protein Data Bank) Schema Documentation"
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-23
 status: final
 tags: [schema, database, structures, crystallography, cryo-em, nmr]

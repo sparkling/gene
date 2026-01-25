@@ -2,7 +2,7 @@
 id: drug.metabolism.pharmacokinetics
 title: "Drug Metabolism and Pharmacokinetics"
 type: subcategory
-parent: ../_index.md
+parent: ../README.md
 last_updated: 2026-01-23
 status: active
 tags: [admet, metabolism, pharmacokinetics, cyp450, drug-interactions]
@@ -10,7 +10,7 @@ tags: [admet, metabolism, pharmacokinetics, cyp450, drug-interactions]
 
 # Drug Metabolism and Pharmacokinetics
 
-**Parent:** [Compounds & Molecules](../_index.md)
+**Parent:** [Compounds & Molecules](../README.md)
 
 ## Overview
 
@@ -22,8 +22,8 @@ Key resources include SuperCYP (cytochrome P450 interactions) and SwissADME (ADM
 
 | Source | Tier | Description |
 |--------|------|-------------|
-| [SuperCYP](./supercyp/_index.md) | 2 | CYP450 drug metabolism database |
-| [SwissADME](./swissadme/_index.md) | 2 | ADMET property prediction tool |
+| [SuperCYP](./supercyp/README.md) | 2 | CYP450 drug metabolism database |
+| [SwissADME](./swissadme/README.md) | 2 | ADMET property prediction tool |
 
 ## Integration Notes
 
@@ -31,5 +31,5 @@ SuperCYP provides extensive CYP450 substrate, inhibitor, and inducer information
 
 ## See Also
 
-- [Pharmacogenomics](../../01.genetics.genomics/1.4.pharmacogenomics/_index.md)
-- [Pharmaceuticals](../2.2.pharmaceuticals/_index.md)
+- [Pharmacogenomics](../../01.genetics.genomics/1.4.pharmacogenomics/README.md)
+- [Pharmaceuticals](../2.2.pharmaceuticals/README.md)

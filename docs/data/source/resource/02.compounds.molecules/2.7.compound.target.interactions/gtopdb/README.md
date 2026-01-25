@@ -91,9 +91,9 @@ GtoPdb serves as the official database of the International Union of Basic and C
 
 ## Related Resources
 
-- [BindingDB](../bindingdb/_index.md) - Binding affinities
-- [ChEMBL](../../2.2.pharmaceuticals/chembl/_index.md) - Bioactivity
-- [DrugBank](../../2.2.pharmaceuticals/drugbank/_index.md) - Drug information
+- [BindingDB](../bindingdb/README.md) - Binding affinities
+- [ChEMBL](../../2.2.pharmaceuticals/chembl/README.md) - Bioactivity
+- [DrugBank](../../2.2.pharmaceuticals/drugbank/README.md) - Drug information
 
 ## See Also
 

@@ -17,7 +17,7 @@ tags:
 
 # BioGRID - Biological General Repository for Interaction Datasets
 
-**Category:** [Pathways & Networks](../../_index.md) > [Protein-Protein Interactions](../_index.md)
+**Category:** [Pathways & Networks](../../README.md) > [Protein-Protein Interactions](../README.md)
 
 ## Overview
 
@@ -182,6 +182,6 @@ curl "https://webservice.thebiogrid.org/interactions/?geneList=TP53|MDM2|BRCA1&t
 
 ## See Also
 
-- [IntAct](../intact/_index.md) - IMEx consortium member
-- [STRING](../string/_index.md) - Functional associations
-- [Pathway Commons](../../4.2.signaling.pathways/{pathwaycommons}/_index.md) - Pathway aggregator
+- [IntAct](../intact/README.md) - IMEx consortium member
+- [STRING](../string/README.md) - Functional associations
+- [Pathway Commons](../../4.2.signaling.pathways/{pathwaycommons}/README.md) - Pathway aggregator

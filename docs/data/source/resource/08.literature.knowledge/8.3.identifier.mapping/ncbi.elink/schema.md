@@ -2,7 +2,7 @@
 id: schema-ncbi-elink
 title: "NCBI E-Link Schema Documentation"
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-24
 status: final
 tags: [schema, database, identifier-mapping, ncbi]

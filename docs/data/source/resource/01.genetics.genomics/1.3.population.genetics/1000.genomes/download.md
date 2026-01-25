@@ -2,7 +2,7 @@
 id: download-1000-genomes
 title: "1000 Genomes Project Download Instructions"
 type: download
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-23
 ---
 

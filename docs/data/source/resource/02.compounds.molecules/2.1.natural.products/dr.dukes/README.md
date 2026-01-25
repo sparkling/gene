@@ -80,9 +80,9 @@ The data spans from 1992-2016 and represents one of the most comprehensive colle
 
 ## Related Resources
 
-- [COCONUT](../coconut/_index.md) - Natural products database
-- [PubChem](../../2.6.chemical.ontology.classification/pubchem/_index.md) - Chemical cross-references
-- [Phenol Explorer](../../2.4.food.compounds.nutrients/phenol.explorer/_index.md) - Plant polyphenols
+- [COCONUT](../coconut/README.md) - Natural products database
+- [PubChem](../../2.6.chemical.ontology.classification/pubchem/README.md) - Chemical cross-references
+- [Phenol Explorer](../../2.4.food.compounds.nutrients/phenol.explorer/README.md) - Plant polyphenols
 
 ## See Also
 

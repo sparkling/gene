@@ -2,7 +2,7 @@
 id: download-pmc-id-converter
 title: "PMC ID Converter Download Instructions"
 type: download
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-24
 ---
 
@@ -271,4 +271,4 @@ curl "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=${pmci
 ## See Also
 
 - [Schema Documentation](./schema.md)
-- [PubMed Central](../../8.1.scientific.literature/pubmed.central/_index.md)
+- [PubMed Central](../../8.1.scientific.literature/pubmed.central/README.md)

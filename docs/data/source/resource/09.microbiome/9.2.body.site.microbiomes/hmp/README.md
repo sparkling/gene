@@ -4,7 +4,7 @@ title: "HMP - Human Microbiome Project"
 type: data-source
 category: microbiome
 subcategory: body.site.microbiomes
-parent: ../_index.md
+parent: ../README.md
 tier: 1
 last_updated: 2026-01-23
 status: active
@@ -13,7 +13,7 @@ tags: [microbiome, multi-site, reference, nih, metagenomics]
 
 # HMP - Human Microbiome Project
 
-**Category:** [Microbiome](../../../_index.md) > [Body Site Microbiomes](../_index.md)
+**Category:** [Microbiome](../../../README.md) > [Body Site Microbiomes](../README.md)
 
 ## Overview
 
@@ -71,7 +71,7 @@ HMP provides the foundational reference dataset for human microbiome research ac
 
 - [Schema Documentation](./schema.md)
 - [Download Instructions](./download.md)
-- [HOMD](../homd/_index.md) - Oral microbiome detail
-- [mBodyMap](../mbodymap/_index.md) - Body site microbiome atlas
-- [HMP Gut Data](../../9.1.gut.microbiome/hmp/_index.md) - Stool-focused reference
-- [MetaHIT](../../9.1.gut.microbiome/metahit/_index.md) - European gut project
+- [HOMD](../homd/README.md) - Oral microbiome detail
+- [mBodyMap](../mbodymap/README.md) - Body site microbiome atlas
+- [HMP Gut Data](../../9.1.gut.microbiome/hmp/README.md) - Stool-focused reference
+- [MetaHIT](../../9.1.gut.microbiome/metahit/README.md) - European gut project

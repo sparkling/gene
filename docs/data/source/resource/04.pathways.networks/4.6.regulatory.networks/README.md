@@ -2,7 +2,7 @@
 id: regulatory.networks
 title: "Regulatory Networks"
 type: subcategory
-parent: ../_index.md
+parent: ../README.md
 last_updated: 2026-01-23
 status: active
 tags: [regulation, transcription-factors, epigenetics, enhancers, promoters]
@@ -10,7 +10,7 @@ tags: [regulation, transcription-factors, epigenetics, enhancers, promoters]
 
 # Regulatory Networks
 
-**Parent:** [Pathways & Networks](../_index.md)
+**Parent:** [Pathways & Networks](../README.md)
 
 ## Overview
 
@@ -22,8 +22,8 @@ Key resources include JASPAR (transcription factor binding motifs) and Roadmap E
 
 | Source | Tier | Description |
 |--------|------|-------------|
-| [JASPAR](./jaspar/_index.md) | 1 | Transcription factor binding profiles |
-| [Roadmap Epigenomics](./roadmap.epigenomics/_index.md) | 1 | Epigenome reference maps |
+| [JASPAR](./jaspar/README.md) | 1 | Transcription factor binding profiles |
+| [Roadmap Epigenomics](./roadmap.epigenomics/README.md) | 1 | Epigenome reference maps |
 
 ## Integration Notes
 
@@ -31,4 +31,4 @@ JASPAR provides position weight matrices for TF binding site prediction. Roadmap
 
 ## See Also
 
-- [1.5 Expression & Regulation](../../01.genetics.genomics/1.5.expression.regulation/_index.md)
+- [1.5 Expression & Regulation](../../01.genetics.genomics/1.5.expression.regulation/README.md)

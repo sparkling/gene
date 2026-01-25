@@ -2,7 +2,7 @@
 id: schema-icd
 title: "International Classification of Diseases (ICD) Schema Documentation"
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-23
 status: draft
 tags: [schema, ontology, classification, diseases, who, clinical-coding, icd-10, icd-11]
@@ -53,4 +53,4 @@ ICD is the WHO global standard for diagnostic health information, providing a co
 
 ## References
 
-See [Overview](./_index.md) for full details.
+See [Overview](./README.md) for full details.

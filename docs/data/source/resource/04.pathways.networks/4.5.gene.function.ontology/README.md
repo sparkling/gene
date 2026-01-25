@@ -2,7 +2,7 @@
 id: gene.function.ontology
 title: "Gene Function and Ontology"
 type: subcategory
-parent: ../_index.md
+parent: ../README.md
 last_updated: 2026-01-23
 status: active
 tags: [gene-ontology, go, function, annotations, gene-sets]
@@ -10,7 +10,7 @@ tags: [gene-ontology, go, function, annotations, gene-sets]
 
 # Gene Function and Ontology
 
-**Parent:** [Pathways & Networks](../_index.md)
+**Parent:** [Pathways & Networks](../README.md)
 
 ## Overview
 
@@ -22,8 +22,8 @@ Key resources include Gene Ontology (GO) for functional annotations and MSigDB (
 
 | Source | Tier | Description |
 |--------|------|-------------|
-| [Gene Ontology](./gene.ontology/_index.md) | 1 | Functional annotation ontology |
-| [MSigDB](./msigdb/_index.md) | 1 | Molecular Signatures Database |
+| [Gene Ontology](./gene.ontology/README.md) | 1 | Functional annotation ontology |
+| [MSigDB](./msigdb/README.md) | 1 | Molecular Signatures Database |
 
 ## Integration Notes
 

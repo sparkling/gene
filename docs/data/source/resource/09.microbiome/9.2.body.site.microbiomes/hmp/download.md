@@ -2,7 +2,7 @@
 id: download-hmp
 title: "HMP Download Instructions"
 type: download
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-24
 ---
 
@@ -347,6 +347,6 @@ HMP data available as workspace datasets for cloud-based analysis.
 - [HMP Portal](https://portal.hmpdacc.org) - Main data access
 - [AWS Open Data](https://registry.opendata.aws/human-microbiome-project/) - Cloud access
 - [NCBI BioProject](https://www.ncbi.nlm.nih.gov/bioproject/PRJNA28331) - Project metadata
-- [HOMD](../homd/_index.md) - Oral microbiome detail
-- [mBodyMap](../mbodymap/_index.md) - Body site atlas
-- [HMP in Gut Microbiome](../../9.1.gut.microbiome/hmp/_index.md) - Stool-focused data
+- [HOMD](../homd/README.md) - Oral microbiome detail
+- [mBodyMap](../mbodymap/README.md) - Body site atlas
+- [HMP in Gut Microbiome](../../9.1.gut.microbiome/hmp/README.md) - Stool-focused data

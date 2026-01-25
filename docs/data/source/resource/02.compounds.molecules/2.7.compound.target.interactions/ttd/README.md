@@ -91,9 +91,9 @@ The database integrates target information with disease associations (ICD-11 cod
 
 ## Related Resources
 
-- [BindingDB](../bindingdb/_index.md) - Binding affinities
-- [GtoPdb](../gtopdb/_index.md) - Pharmacology
-- [DrugBank](../../2.2.pharmaceuticals/drugbank/_index.md) - Drug information
+- [BindingDB](../bindingdb/README.md) - Binding affinities
+- [GtoPdb](../gtopdb/README.md) - Pharmacology
+- [DrugBank](../../2.2.pharmaceuticals/drugbank/README.md) - Drug information
 
 ## See Also
 

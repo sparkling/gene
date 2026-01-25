@@ -2,7 +2,7 @@
 id: schema-herb
 title: "HERB Database Schema"
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-23
 status: active
 tags: [schema, tcm, gene-expression, transcriptomics]

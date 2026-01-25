@@ -2,7 +2,7 @@
 id: schema-pmc-id-converter
 title: "PMC ID Converter Schema Documentation"
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-24
 status: final
 tags: [schema, database, identifier-mapping, literature]

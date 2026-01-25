@@ -2,7 +2,7 @@
 id: schema-gtex
 title: "GTEx Schema Documentation"
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-24
 status: migrated
 tags: [schema, database, expression, eqtl, tissue, rna-seq]

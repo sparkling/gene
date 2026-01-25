@@ -2,7 +2,7 @@
 id: schema-decipher
 title: "DECIPHER Schema Documentation"
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-23
 status: draft
 tags: [schema, rare-diseases, cnv, developmental-disorders, clinical-genetics, genomic-variants]
@@ -64,4 +64,4 @@ DECIPHER is an interactive database for clinical interpretation of rare CNVs and
 
 ## References
 
-See [Overview](./_index.md) for full details.
+See [Overview](./README.md) for full details.

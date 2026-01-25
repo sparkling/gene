@@ -2,7 +2,7 @@
 id: xrefs-disgenet
 title: "DisGeNET Cross-References"
 type: xrefs
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-23
 ---
 

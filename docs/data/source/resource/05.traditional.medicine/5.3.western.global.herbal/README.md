@@ -2,7 +2,7 @@
 id: western.global.herbal
 title: "Western and Global Herbal Medicine"
 type: subcategory
-parent: ../_index.md
+parent: ../README.md
 last_updated: 2026-01-23
 status: active
 tags: [herbal, western, ema, napralert, ethnobotany]
@@ -10,7 +10,7 @@ tags: [herbal, western, ema, napralert, ethnobotany]
 
 # Western and Global Herbal Medicine
 
-**Parent:** [Traditional Medicine](../_index.md)
+**Parent:** [Traditional Medicine](../README.md)
 
 ## Overview
 
@@ -22,8 +22,8 @@ Key resources include NAPRALERT (natural products alert) and EMA Herbal (Europea
 
 | Source | Tier | Description |
 |--------|------|-------------|
-| [NAPRALERT](./napralert/_index.md) | 1 | Natural Products Alert database |
-| [EMA Herbal](./ema.herbal/_index.md) | 1 | European herbal medicine assessments |
+| [NAPRALERT](./napralert/README.md) | 1 | Natural Products Alert database |
+| [EMA Herbal](./ema.herbal/README.md) | 1 | European herbal medicine assessments |
 
 ## Integration Notes
 
@@ -31,4 +31,4 @@ NAPRALERT provides extensive literature-curated ethnobotanical data with compoun
 
 ## See Also
 
-- [2.1 Natural Products](../../02.compounds.molecules/2.1.natural.products/_index.md)
+- [2.1 Natural Products](../../02.compounds.molecules/2.1.natural.products/README.md)

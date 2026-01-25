@@ -2,7 +2,7 @@
 id: schema-classyfire
 title: "ClassyFire Schema Documentation"
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-24
 status: final
 tags: [schema, classification, taxonomy, ontology, cheminformatics]
@@ -417,6 +417,6 @@ ClassyFire uses alternative_parents to handle compounds that fit multiple classi
 ## Related Documents
 
 - [ClassyFire Download Instructions](./download.md)
-- [ChEBI](../chebi/_index.md) - Chemical ontology
-- [NPClassifier](../npclassifier/_index.md) - Natural product classification
-- [PubChem](../pubchem/_index.md) - Chemical repository
+- [ChEBI](../chebi/README.md) - Chemical ontology
+- [NPClassifier](../npclassifier/README.md) - Natural product classification
+- [PubChem](../pubchem/README.md) - Chemical repository

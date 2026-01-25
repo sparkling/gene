@@ -4,7 +4,7 @@ title: "Open Food Facts"
 type: data-source
 category: nutrition
 subcategory: food.composition
-parent: ../_index.md
+parent: ../README.md
 tier: 2
 last_updated: 2026-01-23
 status: active
@@ -13,7 +13,7 @@ tags: [food, products, labels, nutrition, crowdsourced, open-data]
 
 # Open Food Facts
 
-**Category:** [Nutrition](../../../_index.md) > [Food Composition](../_index.md)
+**Category:** [Nutrition](../../../README.md) > [Food Composition](../README.md)
 
 ## Overview
 

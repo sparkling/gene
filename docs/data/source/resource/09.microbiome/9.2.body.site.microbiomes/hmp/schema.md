@@ -2,7 +2,7 @@
 id: schema-hmp
 title: "HMP (Human Microbiome Project) Schema Documentation"
 type: schema
-parent: _index.md
+parent: README.md
 last_updated: 2026-01-24
 status: final
 tags: [schema, database, microbiome, body-sites, reference, nih, multi-omics]

@@ -2,7 +2,7 @@
 id: pharmaceuticals
 title: "Pharmaceuticals"
 type: subcategory
-parent: ../_index.md
+parent: ../README.md
 last_updated: 2026-01-23
 status: active
 tags: [drugs, pharmaceuticals, approved, clinical, fda]
@@ -10,7 +10,7 @@ tags: [drugs, pharmaceuticals, approved, clinical, fda]
 
 # Pharmaceuticals
 
-**Parent:** [Compounds & Molecules](../_index.md)
+**Parent:** [Compounds & Molecules](../README.md)
 
 ## Overview
 
@@ -22,11 +22,11 @@ Key resources include DrugBank (comprehensive drug database), ChEMBL (bioactivit
 
 | Source | Tier | Description |
 |--------|------|-------------|
-| [DrugBank](./drugbank/_index.md) | 1 | Comprehensive drug database |
-| [ChEMBL](./chembl/_index.md) | 1 | Bioactivity database |
-| [RxNorm](./rxnorm/_index.md) | 1 | Clinical drug nomenclature |
-| [DailyMed](./dailymed/_index.md) | 2 | FDA drug labeling |
-| [Orange Book](./orange.book/_index.md) | 2 | FDA approved products |
+| [DrugBank](./drugbank/README.md) | 1 | Comprehensive drug database |
+| [ChEMBL](./chembl/README.md) | 1 | Bioactivity database |
+| [RxNorm](./rxnorm/README.md) | 1 | Clinical drug nomenclature |
+| [DailyMed](./dailymed/README.md) | 2 | FDA drug labeling |
+| [Orange Book](./orange.book/README.md) | 2 | FDA approved products |
 
 ## Integration Notes
 
