@@ -21,6 +21,14 @@ from .api import (
     get_stats,
     clean_output,
 )
+from .router import (
+    detect_intent,
+    route_to_function,
+    get_all_intents,
+    get_intent_description,
+    CATEGORY_MAP,
+    INTENT_FUNCTION_MAP,
+)
 
 __all__ = [
     # Services
@@ -36,4 +44,11 @@ __all__ = [
     'find_with_api',
     'get_stats',
     'clean_output',
+    # Router functions
+    'detect_intent',
+    'route_to_function',
+    'get_all_intents',
+    'get_intent_description',
+    'CATEGORY_MAP',
+    'INTENT_FUNCTION_MAP',
 ]
