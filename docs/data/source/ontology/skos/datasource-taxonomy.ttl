@@ -925,7 +925,33 @@ tax:FormatScheme a skos:ConceptScheme ;
         tax:Parquet ,
         tax:Arrow ,
         tax:HDF5 ,
-        tax:NetCDF .
+        tax:NetCDF ,
+        # Gene set and pathway formats
+        tax:bedGraph ,
+        tax:GAF ,
+        tax:GMT ,
+        tax:GMX ,
+        tax:GPAD ,
+        tax:GRP ,
+        tax:GSEA ,
+        tax:KGML ,
+        # Motif formats
+        tax:MEME ,
+        tax:PFM ,
+        tax:PWM ,
+        # Protein interaction formats
+        tax:PDBFormat ,
+        tax:PSIMI ,
+        tax:PSIMITAB ,
+        tax:PSIMITAB25 ,
+        tax:PSIMITAB27 ,
+        tax:PSIMIXML ,
+        # Systems biology formats
+        tax:SBGN ,
+        tax:SIF ,
+        # Image formats
+        tax:PNG ,
+        tax:SVG .
 
 tax:JsonFormat a skos:Concept ;
     skos:prefLabel "JSON" ;
@@ -1753,3 +1779,142 @@ tax:LowConfidence a skos:Concept ;
     skos:definition "Data or prediction with low confidence level, typically based on computational prediction alone or conflicting evidence." ;
     skos:inScheme tax:QualityIndicatorScheme ;
     skos:topConceptOf tax:QualityIndicatorScheme .
+
+# =============================================================================
+# CATEGORY FACET SCHEME
+# =============================================================================
+# Faceted classification concepts for categorizing data sources by domain,
+# access characteristics, and structural organization.
+# =============================================================================
+
+tax:CategoryFacetScheme a skos:ConceptScheme ;
+    skos:prefLabel "Category Facets" ;
+    rdfs:comment "Faceted classification concepts for organizing data sources by research domain, access type, and structural hierarchy. Used as classification tags." ;
+    dct:created "2026-01-26"^^xsd:date ;
+    skos:hasTopConcept
+        tax:access ,
+        tax:cancer ,
+        tax:expression ,
+        tax:format ,
+        tax:functional ,
+        tax:pharmacogenomics_facet ,
+        tax:population ,
+        tax:status ,
+        tax:subcategory .
+
+# -----------------------------------------------------------------------------
+# Access Category Facet
+# -----------------------------------------------------------------------------
+
+tax:access a skos:Concept ;
+    skos:prefLabel "Access" ;
+    skos:altLabel "Access Category" , "Access Type" ;
+    skos:notation "access" ;
+    skos:definition "Facet for categorizing data sources by their access characteristics and methods. Links to AccessMethodScheme for specific access types." ;
+    skos:inScheme tax:CategoryFacetScheme ;
+    skos:topConceptOf tax:CategoryFacetScheme ;
+    skos:related tax:AccessMethodScheme .
+
+# -----------------------------------------------------------------------------
+# Cancer Research Domain Facet
+# -----------------------------------------------------------------------------
+
+tax:cancer a skos:Concept ;
+    skos:prefLabel "Cancer" ;
+    skos:altLabel "Cancer Research" , "Oncology" , "Cancer Domain" ;
+    skos:notation "cancer" ;
+    skos:definition "Facet for categorizing data sources related to cancer research, including genomics, therapeutics, and oncology databases." ;
+    skos:inScheme tax:CategoryFacetScheme ;
+    skos:topConceptOf tax:CategoryFacetScheme ;
+    skos:related tax:CancerGenomics , tax:CancerOncology .
+
+# -----------------------------------------------------------------------------
+# Gene Expression Domain Facet
+# -----------------------------------------------------------------------------
+
+tax:expression a skos:Concept ;
+    skos:prefLabel "Expression" ;
+    skos:altLabel "Gene Expression" , "Expression Domain" , "Transcriptomics" ;
+    skos:notation "expression" ;
+    skos:definition "Facet for categorizing data sources related to gene expression, transcriptomics, eQTL studies, and regulatory elements." ;
+    skos:inScheme tax:CategoryFacetScheme ;
+    skos:topConceptOf tax:CategoryFacetScheme ;
+    skos:related tax:ExpressionRegulation .
+
+# -----------------------------------------------------------------------------
+# Format Category Facet
+# -----------------------------------------------------------------------------
+
+tax:format a skos:Concept ;
+    skos:prefLabel "Format" ;
+    skos:altLabel "Data Format" , "Format Category" ;
+    skos:notation "format" ;
+    skos:definition "Facet for categorizing data sources by their data formats and file types. Links to FormatScheme for specific format types." ;
+    skos:inScheme tax:CategoryFacetScheme ;
+    skos:topConceptOf tax:CategoryFacetScheme ;
+    skos:related tax:FormatScheme .
+
+# -----------------------------------------------------------------------------
+# Functional Genomics Domain Facet
+# -----------------------------------------------------------------------------
+
+tax:functional a skos:Concept ;
+    skos:prefLabel "Functional" ;
+    skos:altLabel "Functional Genomics" , "Functional Domain" , "Functional Annotation" ;
+    skos:notation "functional" ;
+    skos:definition "Facet for categorizing data sources related to functional genomics, including variant impact prediction, gene function, and functional annotations." ;
+    skos:inScheme tax:CategoryFacetScheme ;
+    skos:topConceptOf tax:CategoryFacetScheme ;
+    skos:related tax:FunctionalPrediction , tax:GeneFunctionOntology .
+
+# -----------------------------------------------------------------------------
+# Pharmacogenomics Domain Facet
+# -----------------------------------------------------------------------------
+
+tax:pharmacogenomics_facet a skos:Concept ;
+    skos:prefLabel "Pharmacogenomics" ;
+    skos:altLabel "Pharmacogenomics Domain" , "PGx" , "Drug-Gene" ;
+    skos:notation "pharmacogenomics" ;
+    skos:definition "Facet for categorizing data sources related to pharmacogenomics, gene-drug interactions, and personalized medicine." ;
+    skos:inScheme tax:CategoryFacetScheme ;
+    skos:topConceptOf tax:CategoryFacetScheme ;
+    skos:exactMatch tax:Pharmacogenomics .
+
+# -----------------------------------------------------------------------------
+# Population Genetics Domain Facet
+# -----------------------------------------------------------------------------
+
+tax:population a skos:Concept ;
+    skos:prefLabel "Population" ;
+    skos:altLabel "Population Genetics" , "Population Domain" , "Allele Frequency" ;
+    skos:notation "population" ;
+    skos:definition "Facet for categorizing data sources related to population genetics, allele frequencies, and ancestry information." ;
+    skos:inScheme tax:CategoryFacetScheme ;
+    skos:topConceptOf tax:CategoryFacetScheme ;
+    skos:related tax:PopulationGenetics .
+
+# -----------------------------------------------------------------------------
+# Status Category Facet
+# -----------------------------------------------------------------------------
+
+tax:status a skos:Concept ;
+    skos:prefLabel "Status" ;
+    skos:altLabel "Status Category" , "Lifecycle Status" ;
+    skos:notation "status" ;
+    skos:definition "Facet for categorizing data sources by their lifecycle status (draft, active, deprecated). Links to StatusScheme for specific status values." ;
+    skos:inScheme tax:CategoryFacetScheme ;
+    skos:topConceptOf tax:CategoryFacetScheme ;
+    skos:related tax:StatusScheme .
+
+# -----------------------------------------------------------------------------
+# Subcategory Structural Concept
+# -----------------------------------------------------------------------------
+
+tax:subcategory a skos:Concept ;
+    skos:prefLabel "Subcategory" ;
+    skos:altLabel "Subcategory Level" , "Level 2" ;
+    skos:notation "subcategory" ;
+    skos:definition "Structural concept indicating a subcategory level in the taxonomy hierarchy. Used to identify Level 2 concepts that are narrower than top-level categories." ;
+    skos:inScheme tax:CategoryFacetScheme ;
+    skos:topConceptOf tax:CategoryFacetScheme ;
+    skos:scopeNote "Applied to concepts that represent subcategories (Level 2) in the DataSourceTaxonomy, such as VariantRepositories, PopulationGenetics, etc." .
