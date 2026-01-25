@@ -1,0 +1,1163 @@
+# =============================================================================
+# Traditional Medicine Data Source Instance Data
+# =============================================================================
+# Generated: 2026-01-25
+# Category: 05.traditional.medicine
+# Sources: 14
+# Subcategories: 4
+# Conforms to: datasource-ontology.ttl, datasource-shapes.ttl
+# =============================================================================
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ds: <https://gene.example.org/ontology/datasource#> .
+@prefix tax: <https://gene.example.org/taxonomy/> .
+@prefix data: <https://gene.example.org/data/source/> .
+@prefix cat: <https://gene.example.org/data/category/> .
+@prefix subcat: <https://gene.example.org/data/subcategory/> .
+@prefix license: <https://gene.example.org/data/license/> .
+@prefix access: <https://gene.example.org/data/access/> .
+@prefix version: <https://gene.example.org/data/version/> .
+@prefix xref: <https://gene.example.org/data/xref/> .
+@prefix identifier: <https://gene.example.org/data/identifier/> .
+@prefix usecase: <https://gene.example.org/data/usecase/> .
+@prefix limitation: <https://gene.example.org/data/limitation/> .
+
+# =============================================================================
+# CATEGORY: Traditional Medicine
+# =============================================================================
+
+cat:TraditionalMedicine a ds:Category ;
+    ds:id "traditional.medicine" ;
+    ds:title "Traditional Medicine" ;
+    ds:categoryClassification tax:TraditionalMedicine ;
+    ds:status tax:Active .
+
+# =============================================================================
+# SUBCATEGORIES
+# =============================================================================
+
+subcat:TraditionalChineseMedicine a ds:Subcategory ;
+    ds:id "traditional.chinese.medicine" ;
+    ds:title "Traditional Chinese Medicine" ;
+    ds:belongsToCategory cat:TraditionalMedicine ;
+    ds:subcategoryClassification tax:TraditionalChineseMedicine ;
+    ds:status tax:Active .
+
+subcat:SouthEastAsianSystems a ds:Subcategory ;
+    ds:id "south.east.asian.systems" ;
+    ds:title "South East Asian Systems" ;
+    ds:belongsToCategory cat:TraditionalMedicine ;
+    ds:subcategoryClassification tax:SouthEastAsianSystems ;
+    ds:status tax:Active .
+
+subcat:WesternGlobalHerbal a ds:Subcategory ;
+    ds:id "western.global.herbal" ;
+    ds:title "Western and Global Herbal" ;
+    ds:belongsToCategory cat:TraditionalMedicine ;
+    ds:subcategoryClassification tax:WesternGlobalHerbal ;
+    ds:status tax:Active .
+
+subcat:MultiSystemIntegration a ds:Subcategory ;
+    ds:id "multi.system.integration" ;
+    ds:title "Multi-System Integration" ;
+    ds:belongsToCategory cat:TraditionalMedicine ;
+    ds:subcategoryClassification tax:MultiSystemIntegration ;
+    ds:status tax:Active .
+
+# =============================================================================
+# LICENSES
+# =============================================================================
+
+license:CCBYNC40 a ds:License ;
+    ds:licenseName "Creative Commons Attribution-NonCommercial 4.0" ;
+    ds:spdxIdentifier "CC-BY-NC-4.0" ;
+    ds:commercialUse false ;
+    ds:attributionRequired true ;
+    ds:redistribution true ;
+    rdfs:comment "Permits non-commercial use with attribution" .
+
+license:AcademicUseFree a ds:License ;
+    ds:licenseName "Academic Use Free" ;
+    ds:spdxIdentifier "Custom" ;
+    ds:commercialUse false ;
+    ds:attributionRequired true ;
+    ds:redistribution false ;
+    rdfs:comment "Free for academic research, commercial use requires contact" .
+
+license:CCBY40 a ds:License ;
+    ds:licenseName "Creative Commons Attribution 4.0" ;
+    ds:spdxIdentifier "CC-BY-4.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistribution true ;
+    rdfs:comment "Permits commercial use with attribution" .
+
+license:PublicDomain a ds:License ;
+    ds:licenseName "Public Domain (Regulatory Documents)" ;
+    ds:spdxIdentifier "Custom" ;
+    ds:commercialUse true ;
+    ds:attributionRequired false ;
+    ds:redistribution true ;
+    rdfs:comment "Official regulatory documents freely available" .
+
+license:SubscriptionBased a ds:License ;
+    ds:licenseName "Subscription-Based" ;
+    ds:spdxIdentifier "Custom" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistribution false ;
+    rdfs:comment "Requires institutional or commercial subscription for full access" .
+
+# =============================================================================
+# 5.1 TRADITIONAL CHINESE MEDICINE DATA SOURCES
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# BATMAN-TCM 2.0
+# -----------------------------------------------------------------------------
+
+data:batman-tcm a ds:DataSource ;
+    ds:id "batman.tcm" ;
+    ds:title "BATMAN-TCM 2.0" ;
+    ds:description "Bioinformatics Analysis Tool for Molecular mechANism of Traditional Chinese Medicine - the most comprehensive TCM database with programmatic API access for network pharmacology analysis" ;
+    ds:belongsToCategory cat:TraditionalMedicine ;
+    ds:belongsToSubcategory subcat:TraditionalChineseMedicine ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "tcm" ;
+    ds:tag "traditional-chinese-medicine" ;
+    ds:tag "herb-target" ;
+    ds:tag "network-pharmacology" ;
+    ds:tag "api" ;
+    ds:website <http://bionet.ncpsb.org.cn/batman-tcm/> ;
+    ds:updateFrequency "Major version releases" ;
+    ds:hasLicense license:CCBYNC40 ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 05.traditional.medicine/5.1.traditional.chinese.medicine/batman.tcm" .
+
+data:batman-tcm-stats a ds:DataSourceStatistics ;
+    ds:forDataSource data:batman-tcm ;
+    ds:recordCount "54832"^^xsd:integer ;
+    ds:recordType "TCM Formulas" ;
+    ds:herbCount "8404"^^xsd:integer ;
+    ds:compoundCount "39171"^^xsd:integer ;
+    ds:knownTargetInteractions "17068"^^xsd:integer ;
+    ds:predictedTargetInteractions "2319272"^^xsd:integer ;
+    ds:predictionROCAUC "0.9663"^^xsd:decimal .
+
+access:batman-tcm-api a ds:AccessMethod ;
+    ds:forDataSource data:batman-tcm ;
+    ds:accessType tax:RESTAPI ;
+    ds:baseURL "http://bionet.ncpsb.org.cn/batman-tcm/api" ;
+    ds:authentication false ;
+    ds:rateLimit "3+ seconds between requests" ;
+    ds:responseFormat "JSON" .
+
+access:batman-tcm-web a ds:AccessMethod ;
+    ds:forDataSource data:batman-tcm ;
+    ds:accessType tax:WebInterface ;
+    ds:baseURL "http://bionet.ncpsb.org.cn/batman-tcm/" ;
+    ds:bulkDownload true ;
+    ds:downloadFormat "TSV" .
+
+version:batman-tcm-v2 a ds:Version ;
+    ds:forDataSource data:batman-tcm ;
+    ds:versionNumber "2.0" ;
+    ds:releaseDate "2023-01-01"^^xsd:date ;
+    ds:totalSize "~500 MB" .
+
+identifier:batman-tcm-ingredient a ds:Identifier ;
+    ds:forDataSource data:batman-tcm ;
+    ds:identifierName "Ingredient ID" ;
+    ds:pattern "BATMAN-TCM-ING-####" ;
+    ds:example "BATMAN-TCM-ING-5679" .
+
+usecase:batman-tcm-network a ds:UseCase ;
+    ds:forDataSource data:batman-tcm ;
+    ds:useCaseDescription "Network pharmacology analysis of TCM formulas and herbs" .
+
+usecase:batman-tcm-reverse a ds:UseCase ;
+    ds:forDataSource data:batman-tcm ;
+    ds:useCaseDescription "Reverse drug discovery: finding herbs for disease gene signatures" .
+
+limitation:batman-tcm-connectivity a ds:Limitation ;
+    ds:forDataSource data:batman-tcm ;
+    ds:limitationDescription "Server may have connectivity issues; implement retry logic" ;
+    ds:impactLevel "medium" .
+
+# -----------------------------------------------------------------------------
+# TCMBank
+# -----------------------------------------------------------------------------
+
+data:tcmbank a ds:DataSource ;
+    ds:id "tcmbank" ;
+    ds:title "TCMBank" ;
+    ds:description "Comprehensive database for drug discovery from TCM with emphasis on compound structures, drug-likeness, and ADMET predictions" ;
+    ds:belongsToCategory cat:TraditionalMedicine ;
+    ds:belongsToSubcategory subcat:TraditionalChineseMedicine ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:tag "tcm" ;
+    ds:tag "traditional-chinese-medicine" ;
+    ds:tag "compound-library" ;
+    ds:tag "drug-discovery" ;
+    ds:tag "database" ;
+    ds:website <http://tcmbank.cn/> ;
+    ds:updateFrequency "Periodic" ;
+    ds:hasLicense license:AcademicUseFree ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 05.traditional.medicine/5.1.traditional.chinese.medicine/tcmbank" .
+
+data:tcmbank-stats a ds:DataSourceStatistics ;
+    ds:forDataSource data:tcmbank ;
+    ds:herbCount "9000"^^xsd:integer ;
+    ds:compoundCount "60000"^^xsd:integer ;
+    ds:formulaCount "75000"^^xsd:integer ;
+    ds:targetProteinCount "15000"^^xsd:integer ;
+    ds:diseaseCount "8000"^^xsd:integer ;
+    ds:compoundTargetPairs "250000"^^xsd:integer .
+
+access:tcmbank-web a ds:AccessMethod ;
+    ds:forDataSource data:tcmbank ;
+    ds:accessType tax:WebInterface ;
+    ds:baseURL "http://tcmbank.cn/" ;
+    ds:downloadFormat "SDF, MOL, SMILES" .
+
+version:tcmbank-v1 a ds:Version ;
+    ds:forDataSource data:tcmbank ;
+    ds:versionNumber "1.0" ;
+    ds:releaseDate "2022-01-01"^^xsd:date ;
+    ds:totalSize "~1 GB" .
+
+identifier:tcmbank-compound a ds:Identifier ;
+    ds:forDataSource data:tcmbank ;
+    ds:identifierName "Compound ID" ;
+    ds:pattern "TB_I######" ;
+    ds:example "TB_I000001" .
+
+identifier:tcmbank-herb a ds:Identifier ;
+    ds:forDataSource data:tcmbank ;
+    ds:identifierName "Herb ID" ;
+    ds:pattern "TB_H######" ;
+    ds:example "TB_H000001" .
+
+usecase:tcmbank-screening a ds:UseCase ;
+    ds:forDataSource data:tcmbank ;
+    ds:useCaseDescription "Virtual screening of TCM compound libraries" .
+
+usecase:tcmbank-druglike a ds:UseCase ;
+    ds:forDataSource data:tcmbank ;
+    ds:useCaseDescription "Identifying drug-like natural products from TCM" .
+
+limitation:tcmbank-coverage a ds:Limitation ;
+    ds:forDataSource data:tcmbank ;
+    ds:limitationDescription "Focus on Chinese publications may limit coverage" ;
+    ds:impactLevel "medium" .
+
+limitation:tcmbank-admet a ds:Limitation ;
+    ds:forDataSource data:tcmbank ;
+    ds:limitationDescription "ADMET predictions are computational" ;
+    ds:impactLevel "low" .
+
+# -----------------------------------------------------------------------------
+# TCMSID
+# -----------------------------------------------------------------------------
+
+data:tcmsid a ds:DataSource ;
+    ds:id "tcmsid" ;
+    ds:title "TCMSID - TCM Systematic Pharmacology Database" ;
+    ds:description "Database providing comprehensive ADME/T properties for TCM compounds with systems pharmacology approaches" ;
+    ds:belongsToCategory cat:TraditionalMedicine ;
+    ds:belongsToSubcategory subcat:TraditionalChineseMedicine ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:tag "tcm" ;
+    ds:tag "traditional-chinese-medicine" ;
+    ds:tag "adme" ;
+    ds:tag "pharmacokinetics" ;
+    ds:tag "systems-pharmacology" ;
+    ds:website <http://lsp.nwu.edu.cn/tcmsid.php> ;
+    ds:updateFrequency "Periodic" ;
+    ds:hasLicense license:AcademicUseFree ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 05.traditional.medicine/5.1.traditional.chinese.medicine/tcmsid" .
+
+data:tcmsid-stats a ds:DataSourceStatistics ;
+    ds:forDataSource data:tcmsid ;
+    ds:herbCount "499"^^xsd:integer ;
+    ds:compoundCount "29384"^^xsd:integer ;
+    ds:targetProteinCount "3311"^^xsd:integer ;
+    ds:diseaseCount "837"^^xsd:integer ;
+    ds:compoundTargetPairs "98215"^^xsd:integer .
+
+access:tcmsid-web a ds:AccessMethod ;
+    ds:forDataSource data:tcmsid ;
+    ds:accessType tax:WebInterface ;
+    ds:baseURL "http://lsp.nwu.edu.cn/tcmsid.php" ;
+    ds:bulkDownload true ;
+    ds:downloadFormat "CSV, Excel" .
+
+version:tcmsid-v1 a ds:Version ;
+    ds:forDataSource data:tcmsid ;
+    ds:versionNumber "1.0" ;
+    ds:releaseDate "2018-01-01"^^xsd:date ;
+    ds:totalSize "~150 MB" .
+
+identifier:tcmsid-compound a ds:Identifier ;
+    ds:forDataSource data:tcmsid ;
+    ds:identifierName "Compound ID" ;
+    ds:pattern "MOL######" ;
+    ds:example "MOL000001" .
+
+usecase:tcmsid-adme a ds:UseCase ;
+    ds:forDataSource data:tcmsid ;
+    ds:useCaseDescription "ADME property prediction for TCM compounds" .
+
+usecase:tcmsid-filtering a ds:UseCase ;
+    ds:forDataSource data:tcmsid ;
+    ds:useCaseDescription "Filtering compounds by oral bioavailability (OB >= 30%, DL >= 0.18)" .
+
+limitation:tcmsid-prediction a ds:Limitation ;
+    ds:forDataSource data:tcmsid ;
+    ds:limitationDescription "ADME predictions are computational models" ;
+    ds:impactLevel "low" .
+
+limitation:tcmsid-threshold a ds:Limitation ;
+    ds:forDataSource data:tcmsid ;
+    ds:limitationDescription "OB thresholds may exclude valid candidates" ;
+    ds:impactLevel "medium" .
+
+# -----------------------------------------------------------------------------
+# SymMap 2.0
+# -----------------------------------------------------------------------------
+
+data:symmap a ds:DataSource ;
+    ds:id "symmap" ;
+    ds:title "SymMap 2.0" ;
+    ds:description "Integrative database bridging TCM symptoms to modern medical phenotypes (HPO) and molecular mechanisms" ;
+    ds:belongsToCategory cat:TraditionalMedicine ;
+    ds:belongsToSubcategory subcat:TraditionalChineseMedicine ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "tcm" ;
+    ds:tag "traditional-chinese-medicine" ;
+    ds:tag "symptom-mapping" ;
+    ds:tag "phenotype" ;
+    ds:tag "network-medicine" ;
+    ds:website <http://www.symmap.org/> ;
+    ds:updateFrequency "Periodic" ;
+    ds:hasLicense license:AcademicUseFree ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 05.traditional.medicine/5.1.traditional.chinese.medicine/symmap" .
+
+data:symmap-stats a ds:DataSourceStatistics ;
+    ds:forDataSource data:symmap ;
+    ds:tcmSymptomCount "1717"^^xsd:integer ;
+    ds:modernPhenotypeCount "5000"^^xsd:integer ;
+    ds:herbCount "961"^^xsd:integer ;
+    ds:compoundCount "19595"^^xsd:integer ;
+    ds:targetGeneCount "4302"^^xsd:integer ;
+    ds:diseaseCount "5235"^^xsd:integer ;
+    ds:symptomHerbLinks "28212"^^xsd:integer ;
+    ds:symptomGeneLinks "322073"^^xsd:integer .
+
+access:symmap-web a ds:AccessMethod ;
+    ds:forDataSource data:symmap ;
+    ds:accessType tax:WebInterface ;
+    ds:baseURL "http://www.symmap.org/" ;
+    ds:bulkDownload true ;
+    ds:downloadFormat "TSV" .
+
+version:symmap-v2 a ds:Version ;
+    ds:forDataSource data:symmap ;
+    ds:versionNumber "2.0" ;
+    ds:releaseDate "2020-01-01"^^xsd:date ;
+    ds:totalSize "~200 MB" .
+
+identifier:symmap-symptom a ds:Identifier ;
+    ds:forDataSource data:symmap ;
+    ds:identifierName "Symptom ID" ;
+    ds:pattern "SMSY######" ;
+    ds:example "SMSY000001" .
+
+identifier:symmap-herb a ds:Identifier ;
+    ds:forDataSource data:symmap ;
+    ds:identifierName "Herb ID" ;
+    ds:pattern "SMHB######" ;
+    ds:example "SMHB000001" .
+
+usecase:symmap-mapping a ds:UseCase ;
+    ds:forDataSource data:symmap ;
+    ds:useCaseDescription "Mapping TCM symptoms to modern disease phenotypes (HPO)" .
+
+usecase:symmap-network a ds:UseCase ;
+    ds:forDataSource data:symmap ;
+    ds:useCaseDescription "Network analysis of symptom-gene-disease relationships" .
+
+limitation:symmap-mapping-approx a ds:Limitation ;
+    ds:forDataSource data:symmap ;
+    ds:limitationDescription "Symptom-phenotype mappings may be approximate" ;
+    ds:impactLevel "medium" .
+
+limitation:symmap-curation a ds:Limitation ;
+    ds:forDataSource data:symmap ;
+    ds:limitationDescription "Manual curation limits coverage expansion" ;
+    ds:impactLevel "medium" .
+
+xref:symmap-hpo a ds:CrossReference ;
+    ds:forDataSource data:symmap ;
+    ds:targetDatabase "Human Phenotype Ontology" ;
+    ds:coverageLevel "comprehensive" ;
+    ds:linkType "phenotype mapping" .
+
+# -----------------------------------------------------------------------------
+# ETCM
+# -----------------------------------------------------------------------------
+
+data:etcm a ds:DataSource ;
+    ds:id "etcm" ;
+    ds:title "ETCM - Encyclopedia of Traditional Chinese Medicine" ;
+    ds:description "Comprehensive database integrating TCM information including herbs, formulas, compounds with emphasis on traditional theory properties" ;
+    ds:belongsToCategory cat:TraditionalMedicine ;
+    ds:belongsToSubcategory subcat:TraditionalChineseMedicine ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:tag "tcm" ;
+    ds:tag "traditional-chinese-medicine" ;
+    ds:tag "herb" ;
+    ds:tag "formula" ;
+    ds:tag "pharmacology" ;
+    ds:website <http://www.tcmip.cn/ETCM/> ;
+    ds:updateFrequency "Periodic" ;
+    ds:hasLicense license:AcademicUseFree ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 05.traditional.medicine/5.1.traditional.chinese.medicine/etcm" .
+
+data:etcm-stats a ds:DataSourceStatistics ;
+    ds:forDataSource data:etcm ;
+    ds:herbCount "403"^^xsd:integer ;
+    ds:formulaCount "3677"^^xsd:integer ;
+    ds:compoundCount "7274"^^xsd:integer ;
+    ds:targetProteinCount "3000"^^xsd:integer ;
+    ds:diseaseCount "500"^^xsd:integer ;
+    ds:herbCompoundLinks "23000"^^xsd:integer .
+
+access:etcm-web a ds:AccessMethod ;
+    ds:forDataSource data:etcm ;
+    ds:accessType tax:WebInterface ;
+    ds:baseURL "http://www.tcmip.cn/ETCM/" ;
+    ds:downloadFormat "Excel, CSV" .
+
+version:etcm-v1 a ds:Version ;
+    ds:forDataSource data:etcm ;
+    ds:versionNumber "1.0" ;
+    ds:releaseDate "2018-01-01"^^xsd:date ;
+    ds:totalSize "~100 MB" .
+
+identifier:etcm-herb a ds:Identifier ;
+    ds:forDataSource data:etcm ;
+    ds:identifierName "Herb ID" ;
+    ds:pattern "ETCM_H#####" ;
+    ds:example "ETCM_H00001" .
+
+identifier:etcm-compound a ds:Identifier ;
+    ds:forDataSource data:etcm ;
+    ds:identifierName "Compound ID" ;
+    ds:pattern "ETCM_C#####" ;
+    ds:example "ETCM_C00001" .
+
+usecase:etcm-formula a ds:UseCase ;
+    ds:forDataSource data:etcm ;
+    ds:useCaseDescription "Understanding TCM formulas and their composition principles" .
+
+usecase:etcm-properties a ds:UseCase ;
+    ds:forDataSource data:etcm ;
+    ds:useCaseDescription "Exploring herb properties according to TCM theory (nature, flavor, meridian)" .
+
+limitation:etcm-api a ds:Limitation ;
+    ds:forDataSource data:etcm ;
+    ds:limitationDescription "No public REST API" ;
+    ds:impactLevel "medium" .
+
+limitation:etcm-download a ds:Limitation ;
+    ds:forDataSource data:etcm ;
+    ds:limitationDescription "Manual download required for bulk data" ;
+    ds:impactLevel "medium" .
+
+# -----------------------------------------------------------------------------
+# HERB Database
+# -----------------------------------------------------------------------------
+
+data:herb a ds:DataSource ;
+    ds:id "herb" ;
+    ds:title "HERB - High-throughput Experiment and Reference Database" ;
+    ds:description "Unique database integrating high-throughput gene expression data with TCM information for experimental validation" ;
+    ds:belongsToCategory cat:TraditionalMedicine ;
+    ds:belongsToSubcategory subcat:TraditionalChineseMedicine ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "tcm" ;
+    ds:tag "traditional-chinese-medicine" ;
+    ds:tag "gene-expression" ;
+    ds:tag "transcriptomics" ;
+    ds:tag "herbs" ;
+    ds:website <http://herb.ac.cn/> ;
+    ds:updateFrequency "Periodic with HERB versions" ;
+    ds:hasLicense license:CCBYNC40 ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 05.traditional.medicine/5.1.traditional.chinese.medicine/herb" .
+
+data:herb-stats a ds:DataSourceStatistics ;
+    ds:forDataSource data:herb ;
+    ds:herbCount "1037"^^xsd:integer ;
+    ds:ingredientCount "12933"^^xsd:integer ;
+    ds:targetCount "2064"^^xsd:integer ;
+    ds:expressionExperiments "2000"^^xsd:integer ;
+    ds:diseaseCount "866"^^xsd:integer ;
+    ds:herbIngredientLinks "49258"^^xsd:integer ;
+    ds:ingredientTargetLinks "28212"^^xsd:integer .
+
+access:herb-web a ds:AccessMethod ;
+    ds:forDataSource data:herb ;
+    ds:accessType tax:WebInterface ;
+    ds:baseURL "http://herb.ac.cn/" ;
+    ds:bulkDownload true ;
+    ds:downloadFormat "TSV, Excel" .
+
+version:herb-v2 a ds:Version ;
+    ds:forDataSource data:herb ;
+    ds:versionNumber "2.0" ;
+    ds:releaseDate "2021-01-01"^^xsd:date ;
+    ds:totalSize "~500 MB" .
+
+identifier:herb-herb a ds:Identifier ;
+    ds:forDataSource data:herb ;
+    ds:identifierName "Herb ID" ;
+    ds:pattern "HERB######" ;
+    ds:example "HERB001234" .
+
+identifier:herb-ingredient a ds:Identifier ;
+    ds:forDataSource data:herb ;
+    ds:identifierName "Ingredient ID" ;
+    ds:pattern "HBIN######" ;
+    ds:example "HBIN001234" .
+
+usecase:herb-expression a ds:UseCase ;
+    ds:forDataSource data:herb ;
+    ds:useCaseDescription "Finding gene expression signatures for TCM herbs and formulas" .
+
+usecase:herb-connectivity a ds:UseCase ;
+    ds:forDataSource data:herb ;
+    ds:useCaseDescription "Connectivity analysis between TCM treatments and disease signatures" .
+
+limitation:herb-bias a ds:Limitation ;
+    ds:forDataSource data:herb ;
+    ds:limitationDescription "Gene expression data biased toward commonly studied herbs" ;
+    ds:impactLevel "medium" .
+
+xref:herb-geo a ds:CrossReference ;
+    ds:forDataSource data:herb ;
+    ds:targetDatabase "GEO" ;
+    ds:coverageLevel "comprehensive" ;
+    ds:linkType "expression data source" .
+
+xref:herb-pubchem a ds:CrossReference ;
+    ds:forDataSource data:herb ;
+    ds:targetDatabase "PubChem" ;
+    ds:coverageLevel "high" ;
+    ds:linkType "compound structures" .
+
+# =============================================================================
+# 5.2 SOUTH EAST ASIAN SYSTEMS DATA SOURCES
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# IMPPAT 2.0
+# -----------------------------------------------------------------------------
+
+data:imppat a ds:DataSource ;
+    ds:id "imppat" ;
+    ds:title "IMPPAT 2.0 - Indian Medicinal Plants, Phytochemistry And Therapeutics" ;
+    ds:description "Largest digital database on phytochemicals of Indian medicinal plants with 1,875 molecular descriptors per compound and plant-part-level associations" ;
+    ds:belongsToCategory cat:TraditionalMedicine ;
+    ds:belongsToSubcategory subcat:SouthEastAsianSystems ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "ayurveda" ;
+    ds:tag "indian-medicine" ;
+    ds:tag "phytochemistry" ;
+    ds:tag "drug-likeness" ;
+    ds:tag "admet" ;
+    ds:tag "natural-products" ;
+    ds:website <https://cb.imsc.res.in/imppat/> ;
+    ds:updateFrequency "Periodic major updates" ;
+    ds:hasLicense license:CCBY40 ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 05.traditional.medicine/5.2.south.east.asian.systems/imppat" .
+
+data:imppat-stats a ds:DataSourceStatistics ;
+    ds:forDataSource data:imppat ;
+    ds:plantCount "4010"^^xsd:integer ;
+    ds:phytochemicalCount "17967"^^xsd:integer ;
+    ds:therapeuticUseCount "1095"^^xsd:integer ;
+    ds:plantPhytochemicalLinks "189386"^^xsd:integer ;
+    ds:plantTherapeuticLinks "89733"^^xsd:integer ;
+    ds:predictedTargetCount "5042"^^xsd:integer ;
+    ds:compoundTargetLinks "27365"^^xsd:integer ;
+    ds:molecularDescriptorsPerCompound "1875"^^xsd:integer ;
+    ds:drugLikeCompounds "1335"^^xsd:integer .
+
+access:imppat-web a ds:AccessMethod ;
+    ds:forDataSource data:imppat ;
+    ds:accessType tax:WebInterface ;
+    ds:baseURL "https://cb.imsc.res.in/imppat/" ;
+    ds:downloadFormat "TSV, SDF, MOL, MOL2, PDB, PDBQT" .
+
+access:imppat-github a ds:AccessMethod ;
+    ds:forDataSource data:imppat ;
+    ds:accessType tax:GitHubRepository ;
+    ds:baseURL "https://github.com/asamallab/IMPPAT2" ;
+    ds:bulkDownload false ;
+    rdfs:comment "Analysis scripts, not raw data" .
+
+version:imppat-v2 a ds:Version ;
+    ds:forDataSource data:imppat ;
+    ds:versionNumber "2.0" ;
+    ds:releaseDate "2022-06-01"^^xsd:date ;
+    ds:totalSize "~200 MB" .
+
+identifier:imppat-plant a ds:Identifier ;
+    ds:forDataSource data:imppat ;
+    ds:identifierName "Plant ID" ;
+    ds:pattern "IMPPAT_PLANT_#####" ;
+    ds:example "IMPPAT_PLANT_03985" .
+
+identifier:imppat-compound a ds:Identifier ;
+    ds:forDataSource data:imppat ;
+    ds:identifierName "Compound ID" ;
+    ds:pattern "IMPPAT_CHEM_#####" ;
+    ds:example "IMPPAT_CHEM_15234" .
+
+usecase:imppat-discovery a ds:UseCase ;
+    ds:forDataSource data:imppat ;
+    ds:useCaseDescription "Discovering active compounds from Ayurvedic plants" .
+
+usecase:imppat-admet a ds:UseCase ;
+    ds:forDataSource data:imppat ;
+    ds:useCaseDescription "ADMET property assessment for herbal compounds" .
+
+limitation:imppat-api a ds:Limitation ;
+    ds:forDataSource data:imppat ;
+    ds:limitationDescription "No public REST API (manual export required)" ;
+    ds:impactLevel "medium" .
+
+limitation:imppat-admet-missing a ds:Limitation ;
+    ds:forDataSource data:imppat ;
+    ds:limitationDescription "493 compounds lack ADMET due to SMILES length" ;
+    ds:impactLevel "low" .
+
+xref:imppat-stitch a ds:CrossReference ;
+    ds:forDataSource data:imppat ;
+    ds:targetDatabase "STITCH" ;
+    ds:coverageLevel "high" ;
+    ds:linkType "target predictions (score >= 700)" .
+
+xref:imppat-pubchem a ds:CrossReference ;
+    ds:forDataSource data:imppat ;
+    ds:targetDatabase "PubChem" ;
+    ds:coverageLevel "high" ;
+    ds:linkType "via UniChem" .
+
+# -----------------------------------------------------------------------------
+# NPACT
+# -----------------------------------------------------------------------------
+
+data:npact a ds:DataSource ;
+    ds:id "npact" ;
+    ds:title "NPACT - Naturally Occurring Plant-based Anti-cancer Compound-Activity-Target" ;
+    ds:description "Curated resource focusing on natural compounds with experimentally validated anti-cancer activity and IC50/EC50 data" ;
+    ds:belongsToCategory cat:TraditionalMedicine ;
+    ds:belongsToSubcategory subcat:SouthEastAsianSystems ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:tag "natural-products" ;
+    ds:tag "anti-cancer" ;
+    ds:tag "indian-plants" ;
+    ds:tag "bioactivity" ;
+    ds:tag "drug-discovery" ;
+    ds:website <http://crdd.osdd.net/raghava/npact/> ;
+    ds:updateFrequency "Periodic" ;
+    ds:hasLicense license:AcademicUseFree ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 05.traditional.medicine/5.2.south.east.asian.systems/npact" .
+
+data:npact-stats a ds:DataSourceStatistics ;
+    ds:forDataSource data:npact ;
+    ds:anticancerCompoundCount "1574"^^xsd:integer ;
+    ds:plantSourceCount "1000"^^xsd:integer ;
+    ds:cancerCellLineCount "150"^^xsd:integer ;
+    ds:targetProteinCount "200"^^xsd:integer ;
+    ds:literatureReferenceCount "3000"^^xsd:integer ;
+    ds:activityDataPointCount "5000"^^xsd:integer .
+
+access:npact-web a ds:AccessMethod ;
+    ds:forDataSource data:npact ;
+    ds:accessType tax:WebInterface ;
+    ds:baseURL "http://crdd.osdd.net/raghava/npact/" ;
+    ds:downloadFormat "Excel, CSV" .
+
+identifier:npact-compound a ds:Identifier ;
+    ds:forDataSource data:npact ;
+    ds:identifierName "Compound ID" ;
+    ds:pattern "NAP_CPD_######" ;
+    ds:example "NAP_CPD_001234" .
+
+identifier:npact-organism a ds:Identifier ;
+    ds:forDataSource data:npact ;
+    ds:identifierName "Organism ID" ;
+    ds:pattern "NAP_ORG_######" ;
+    ds:example "NAP_ORG_045678" .
+
+usecase:npact-validation a ds:UseCase ;
+    ds:forDataSource data:npact ;
+    ds:useCaseDescription "Identifying validated anti-cancer natural products" .
+
+usecase:npact-lead a ds:UseCase ;
+    ds:forDataSource data:npact ;
+    ds:useCaseDescription "Finding lead compounds for cancer drug discovery" .
+
+limitation:npact-scope a ds:Limitation ;
+    ds:forDataSource data:npact ;
+    ds:limitationDescription "Focus on anti-cancer limits scope" ;
+    ds:impactLevel "low" .
+
+limitation:npact-heterogeneous a ds:Limitation ;
+    ds:forDataSource data:npact ;
+    ds:limitationDescription "Activity data from diverse assays (heterogeneous)" ;
+    ds:impactLevel "medium" .
+
+# -----------------------------------------------------------------------------
+# KampoDB
+# -----------------------------------------------------------------------------
+
+data:kampodb a ds:DataSource ;
+    ds:id "kampodb" ;
+    ds:title "KampoDB - Kampo Medicine Database" ;
+    ds:description "Comprehensive REST API for Japanese Kampo medicine with 4-layer hierarchy and extensive molecular docking data (3M+ simulations)" ;
+    ds:belongsToCategory cat:TraditionalMedicine ;
+    ds:belongsToSubcategory subcat:SouthEastAsianSystems ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "kampo" ;
+    ds:tag "japanese-medicine" ;
+    ds:tag "rest-api" ;
+    ds:tag "docking" ;
+    ds:tag "network-pharmacology" ;
+    ds:website <https://wakanmoview.inm.u-toyama.ac.jp/kampo/> ;
+    ds:updateFrequency "Active" ;
+    ds:hasLicense license:AcademicUseFree ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 05.traditional.medicine/5.2.south.east.asian.systems/kampodb" .
+
+data:kampodb-stats a ds:DataSourceStatistics ;
+    ds:forDataSource data:kampodb ;
+    ds:kampoFormulaCount "298"^^xsd:integer ;
+    ds:crudeDrugCount "180"^^xsd:integer ;
+    ds:compoundCount "3002"^^xsd:integer ;
+    ds:proteinCount "62906"^^xsd:integer ;
+    ds:dockingSimulationCount "3063505"^^xsd:integer ;
+    ds:knownTargetCount "460"^^xsd:integer ;
+    ds:predictedTargetCount "1369"^^xsd:integer .
+
+access:kampodb-api a ds:AccessMethod ;
+    ds:forDataSource data:kampodb ;
+    ds:accessType tax:RESTAPI ;
+    ds:baseURL "https://wakanmoview.inm.u-toyama.ac.jp/kampo/api/" ;
+    ds:authentication false ;
+    ds:rateLimit "Use reasonable delays" ;
+    ds:responseFormat "JSON" .
+
+access:kampodb-web a ds:AccessMethod ;
+    ds:forDataSource data:kampodb ;
+    ds:accessType tax:WebInterface ;
+    ds:baseURL "https://wakanmoview.inm.u-toyama.ac.jp/kampo/" .
+
+version:kampodb-v1 a ds:Version ;
+    ds:forDataSource data:kampodb ;
+    ds:versionNumber "1.0" ;
+    ds:releaseDate "2018-01-01"^^xsd:date ;
+    ds:totalSize "~500 MB (via API)" .
+
+identifier:kampodb-formula a ds:Identifier ;
+    ds:forDataSource data:kampodb ;
+    ds:identifierName "Formula ID" ;
+    ds:pattern "String code" ;
+    ds:example "KT (Kakkonto)" .
+
+identifier:kampodb-crude-drug a ds:Identifier ;
+    ds:forDataSource data:kampodb ;
+    ds:identifierName "Crude Drug ID" ;
+    ds:pattern "Integer 0-179" ;
+    ds:example "40 (Cinnamon Bark)" .
+
+usecase:kampodb-composition a ds:UseCase ;
+    ds:forDataSource data:kampodb ;
+    ds:useCaseDescription "Exploring composition of Kampo formulas" .
+
+usecase:kampodb-docking a ds:UseCase ;
+    ds:forDataSource data:kampodb ;
+    ds:useCaseDescription "Target prediction with docking scores" .
+
+limitation:kampodb-bulk a ds:Limitation ;
+    ds:forDataSource data:kampodb ;
+    ds:limitationDescription "No bulk download endpoint (query individual entities)" ;
+    ds:impactLevel "medium" .
+
+limitation:kampodb-mapping a ds:Limitation ;
+    ds:forDataSource data:kampodb ;
+    ds:limitationDescription "Gene IDs require manual UniProt mapping" ;
+    ds:impactLevel "low" .
+
+xref:kampodb-pubchem a ds:CrossReference ;
+    ds:forDataSource data:kampodb ;
+    ds:targetDatabase "PubChem" ;
+    ds:coverageLevel "comprehensive" ;
+    ds:linkType "compound IDs are PubChem CIDs" .
+
+xref:kampodb-ncbi a ds:CrossReference ;
+    ds:forDataSource data:kampodb ;
+    ds:targetDatabase "NCBI Gene" ;
+    ds:coverageLevel "comprehensive" ;
+    ds:linkType "protein IDs are NCBI Gene IDs" .
+
+xref:kampodb-kegg a ds:CrossReference ;
+    ds:forDataSource data:kampodb ;
+    ds:targetDatabase "KEGG" ;
+    ds:coverageLevel "high" ;
+    ds:linkType "pathway annotations" .
+
+# -----------------------------------------------------------------------------
+# TM-MC
+# -----------------------------------------------------------------------------
+
+data:tm-mc a ds:DataSource ;
+    ds:id "tm.mc" ;
+    ds:title "TM-MC - Traditional Medicine - Molecular Correlates" ;
+    ds:description "Integrative database connecting traditional medicine knowledge from multiple Asian systems through shared compounds, targets, and therapeutic indications" ;
+    ds:belongsToCategory cat:TraditionalMedicine ;
+    ds:belongsToSubcategory subcat:SouthEastAsianSystems ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:tag "traditional-medicine" ;
+    ds:tag "multi-system" ;
+    ds:tag "molecular-targets" ;
+    ds:tag "ayurveda" ;
+    ds:tag "tcm" ;
+    ds:website <http://tm-mc.org/> ;
+    ds:updateFrequency "Periodic" ;
+    ds:hasLicense license:AcademicUseFree ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 05.traditional.medicine/5.2.south.east.asian.systems/tm.mc" .
+
+data:tm-mc-stats a ds:DataSourceStatistics ;
+    ds:forDataSource data:tm-mc ;
+    ds:plantCount "2500"^^xsd:integer ;
+    ds:traditionalSystemCount "5"^^xsd:integer ;
+    ds:compoundCount "8000"^^xsd:integer ;
+    ds:molecularTargetCount "1500"^^xsd:integer ;
+    ds:therapeuticIndicationCount "500"^^xsd:integer ;
+    ds:plantCompoundLinks "25000"^^xsd:integer .
+
+access:tm-mc-web a ds:AccessMethod ;
+    ds:forDataSource data:tm-mc ;
+    ds:accessType tax:WebInterface ;
+    ds:baseURL "http://tm-mc.org/" ;
+    ds:downloadFormat "CSV, Excel" .
+
+identifier:tm-mc-plant a ds:Identifier ;
+    ds:forDataSource data:tm-mc ;
+    ds:identifierName "Plant ID" ;
+    ds:pattern "TMMC_P_######" ;
+    ds:example "TMMC_P_001234" .
+
+identifier:tm-mc-compound a ds:Identifier ;
+    ds:forDataSource data:tm-mc ;
+    ds:identifierName "Compound ID" ;
+    ds:pattern "TMMC_C_######" ;
+    ds:example "TMMC_C_001234" .
+
+usecase:tm-mc-comparison a ds:UseCase ;
+    ds:forDataSource data:tm-mc ;
+    ds:useCaseDescription "Cross-system comparison of traditional medicine (Ayurveda vs TCM)" .
+
+usecase:tm-mc-convergence a ds:UseCase ;
+    ds:forDataSource data:tm-mc ;
+    ds:useCaseDescription "Discovering convergent ethnobotanical knowledge across cultures" .
+
+limitation:tm-mc-coverage a ds:Limitation ;
+    ds:forDataSource data:tm-mc ;
+    ds:limitationDescription "Coverage varies by traditional system" ;
+    ds:impactLevel "medium" .
+
+limitation:tm-mc-standardization a ds:Limitation ;
+    ds:forDataSource data:tm-mc ;
+    ds:limitationDescription "Therapeutic term standardization challenges" ;
+    ds:impactLevel "medium" .
+
+# =============================================================================
+# 5.3 WESTERN & GLOBAL HERBAL DATA SOURCES
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# NAPRALERT
+# -----------------------------------------------------------------------------
+
+data:napralert a ds:DataSource ;
+    ds:id "napralert" ;
+    ds:title "NAPRALERT - Natural Products Alert" ;
+    ds:description "World's largest relational database on natural products maintained since 1975, covering ethnobotanical uses, biological activities, and chemical constituents" ;
+    ds:belongsToCategory cat:TraditionalMedicine ;
+    ds:belongsToSubcategory subcat:WesternGlobalHerbal ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "natural-products" ;
+    ds:tag "ethnobotany" ;
+    ds:tag "pharmacognosy" ;
+    ds:tag "literature" ;
+    ds:tag "bioactivity" ;
+    ds:website <https://napralert.pharmacy.uic.edu/> ;
+    ds:maintainer "University of Illinois at Chicago" ;
+    ds:updateFrequency "Continuous curation" ;
+    ds:hasLicense license:SubscriptionBased ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 05.traditional.medicine/5.3.western.global.herbal/napralert" .
+
+data:napralert-stats a ds:DataSourceStatistics ;
+    ds:forDataSource data:napralert ;
+    ds:literatureRecordCount "200000"^^xsd:integer ;
+    ds:plantSpeciesCount "60000"^^xsd:integer ;
+    ds:naturalProductCount "180000"^^xsd:integer ;
+    ds:ethnobotanicalRecordCount "100000"^^xsd:integer ;
+    ds:pharmacologicalRecordCount "150000"^^xsd:integer ;
+    ds:yearsOfCoverage "1975-present" .
+
+access:napralert-web a ds:AccessMethod ;
+    ds:forDataSource data:napralert ;
+    ds:accessType tax:WebInterface ;
+    ds:baseURL "https://napralert.pharmacy.uic.edu/" ;
+    ds:authentication true ;
+    rdfs:comment "Subscription required for full access" .
+
+identifier:napralert-organism a ds:Identifier ;
+    ds:forDataSource data:napralert ;
+    ds:identifierName "Organism ID" ;
+    ds:pattern "NAP_ORG_######" ;
+    ds:example "NAP_ORG_001234" .
+
+identifier:napralert-compound a ds:Identifier ;
+    ds:forDataSource data:napralert ;
+    ds:identifierName "Compound ID" ;
+    ds:pattern "NAP_CPD_######" ;
+    ds:example "NAP_CPD_001234" .
+
+usecase:napralert-literature a ds:UseCase ;
+    ds:forDataSource data:napralert ;
+    ds:useCaseDescription "Literature review for natural product research" .
+
+usecase:napralert-prior-art a ds:UseCase ;
+    ds:forDataSource data:napralert ;
+    ds:useCaseDescription "Prior art searches for natural product patents" .
+
+limitation:napralert-subscription a ds:Limitation ;
+    ds:forDataSource data:napralert ;
+    ds:limitationDescription "Subscription required for full access" ;
+    ds:impactLevel "high" .
+
+limitation:napralert-interface a ds:Limitation ;
+    ds:forDataSource data:napralert ;
+    ds:limitationDescription "Interface may be dated" ;
+    ds:impactLevel "low" .
+
+# -----------------------------------------------------------------------------
+# EMA Herbal Medicines
+# -----------------------------------------------------------------------------
+
+data:ema-herbal a ds:DataSource ;
+    ds:id "ema.herbal" ;
+    ds:title "EMA Herbal Medicines - European Medicines Agency" ;
+    ds:description "Authoritative database of herbal monographs through HMPC providing evidence-based assessments for well-established and traditional use registrations in EU" ;
+    ds:belongsToCategory cat:TraditionalMedicine ;
+    ds:belongsToSubcategory subcat:WesternGlobalHerbal ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "herbal-medicine" ;
+    ds:tag "european" ;
+    ds:tag "regulatory" ;
+    ds:tag "monographs" ;
+    ds:tag "traditional-use" ;
+    ds:website <https://www.ema.europa.eu/en/human-regulatory-overview/herbal-medicinal-products> ;
+    ds:maintainer "European Medicines Agency (EMA)" ;
+    ds:updateFrequency "Regulatory review cycles" ;
+    ds:hasLicense license:PublicDomain ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 05.traditional.medicine/5.3.western.global.herbal/ema.herbal" .
+
+data:ema-herbal-stats a ds:DataSourceStatistics ;
+    ds:forDataSource data:ema-herbal ;
+    ds:herbalMonographCount "200"^^xsd:integer ;
+    ds:communityListCount "80"^^xsd:integer ;
+    ds:assessmentReportCount "200"^^xsd:integer ;
+    ds:herbalSubstanceCount "250"^^xsd:integer ;
+    ds:traditionalUseRegistrations "150"^^xsd:integer ;
+    ds:wellEstablishedUse "50"^^xsd:integer .
+
+access:ema-herbal-web a ds:AccessMethod ;
+    ds:forDataSource data:ema-herbal ;
+    ds:accessType tax:WebInterface ;
+    ds:baseURL "https://www.ema.europa.eu/en/human-regulatory-overview/herbal-medicinal-products" ;
+    ds:authentication false ;
+    ds:downloadFormat "PDF" .
+
+identifier:ema-monograph a ds:Identifier ;
+    ds:forDataSource data:ema-herbal ;
+    ds:identifierName "Monograph ID" ;
+    ds:pattern "EMA/HMPC/######/####" ;
+    ds:example "EMA/HMPC/150848/2017" .
+
+usecase:ema-regulatory a ds:UseCase ;
+    ds:forDataSource data:ema-herbal ;
+    ds:useCaseDescription "Regulatory documentation for herbal product registration" .
+
+usecase:ema-safety a ds:UseCase ;
+    ds:forDataSource data:ema-herbal ;
+    ds:useCaseDescription "Evidence-based safety and efficacy assessment" .
+
+limitation:ema-focus a ds:Limitation ;
+    ds:forDataSource data:ema-herbal ;
+    ds:limitationDescription "Focused on European market" ;
+    ds:impactLevel "medium" .
+
+limitation:ema-limited a ds:Limitation ;
+    ds:forDataSource data:ema-herbal ;
+    ds:limitationDescription "Limited to assessed substances" ;
+    ds:impactLevel "medium" .
+
+xref:ema-ep a ds:CrossReference ;
+    ds:forDataSource data:ema-herbal ;
+    ds:targetDatabase "European Pharmacopoeia" ;
+    ds:coverageLevel "comprehensive" ;
+    ds:linkType "quality standards" .
+
+# =============================================================================
+# 5.4 MULTI-SYSTEM INTEGRATION DATA SOURCES
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# HIT 2.0
+# -----------------------------------------------------------------------------
+
+data:hit2 a ds:DataSource ;
+    ds:id "hit.2.0" ;
+    ds:title "HIT 2.0 - Herbal Ingredients' Targets" ;
+    ds:description "Gold standard database of experimentally validated interactions between herbal ingredients and molecular targets from multiple traditional medicine systems" ;
+    ds:belongsToCategory cat:TraditionalMedicine ;
+    ds:belongsToSubcategory subcat:MultiSystemIntegration ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "herbal-medicine" ;
+    ds:tag "validated-targets" ;
+    ds:tag "multi-system" ;
+    ds:tag "experimental" ;
+    ds:tag "drug-targets" ;
+    ds:website <http://hit2.badd-cao.net/> ;
+    ds:updateFrequency "Periodic literature curation" ;
+    ds:hasLicense license:AcademicUseFree ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 05.traditional.medicine/5.4.multi.system.integration/{hit.2.0}" .
+
+data:hit2-stats a ds:DataSourceStatistics ;
+    ds:forDataSource data:hit2 ;
+    ds:herbalIngredientCount "10000"^^xsd:integer ;
+    ds:validatedTargetCount "5000"^^xsd:integer ;
+    ds:herbTargetInteractionCount "100000"^^xsd:integer ;
+    ds:literatureReferenceCount "50000"^^xsd:integer ;
+    ds:bindingAffinityDataCount "30000"^^xsd:integer .
+
+access:hit2-web a ds:AccessMethod ;
+    ds:forDataSource data:hit2 ;
+    ds:accessType tax:WebInterface ;
+    ds:baseURL "http://hit2.badd-cao.net/" ;
+    ds:bulkDownload true ;
+    ds:downloadFormat "TSV, Excel" .
+
+identifier:hit2-ingredient a ds:Identifier ;
+    ds:forDataSource data:hit2 ;
+    ds:identifierName "Ingredient ID" ;
+    ds:pattern "HIT######" ;
+    ds:example "HIT001234" .
+
+identifier:hit2-interaction a ds:Identifier ;
+    ds:forDataSource data:hit2 ;
+    ds:identifierName "Interaction ID" ;
+    ds:pattern "HIT_INT_######" ;
+    ds:example "HIT_INT_001234" .
+
+usecase:hit2-validation a ds:UseCase ;
+    ds:forDataSource data:hit2 ;
+    ds:useCaseDescription "Validating predicted compound-target interactions" .
+
+usecase:hit2-affinity a ds:UseCase ;
+    ds:forDataSource data:hit2 ;
+    ds:useCaseDescription "Identifying binding affinity data for natural products" .
+
+limitation:hit2-curation a ds:Limitation ;
+    ds:forDataSource data:hit2 ;
+    ds:limitationDescription "Literature curation lag" ;
+    ds:impactLevel "medium" .
+
+limitation:hit2-bias a ds:Limitation ;
+    ds:forDataSource data:hit2 ;
+    ds:limitationDescription "Coverage biased toward studied compounds" ;
+    ds:impactLevel "medium" .
+
+xref:hit2-batman a ds:CrossReference ;
+    ds:forDataSource data:hit2 ;
+    ds:targetDatabase "BATMAN-TCM" ;
+    ds:coverageLevel "validation" ;
+    ds:linkType "confirms predicted TTIs" .
+
+xref:hit2-kampodb a ds:CrossReference ;
+    ds:forDataSource data:hit2 ;
+    ds:targetDatabase "KampoDB" ;
+    ds:coverageLevel "validation" ;
+    ds:linkType "validates docking predictions" .
+
+xref:hit2-imppat a ds:CrossReference ;
+    ds:forDataSource data:hit2 ;
+    ds:targetDatabase "IMPPAT" ;
+    ds:coverageLevel "validation" ;
+    ds:linkType "cross-references STITCH predictions" .
+
+xref:hit2-chembl a ds:CrossReference ;
+    ds:forDataSource data:hit2 ;
+    ds:targetDatabase "ChEMBL" ;
+    ds:coverageLevel "high" ;
+    ds:linkType "activity data" .
+
+xref:hit2-uniprot a ds:CrossReference ;
+    ds:forDataSource data:hit2 ;
+    ds:targetDatabase "UniProt" ;
+    ds:coverageLevel "comprehensive" ;
+    ds:linkType "target protein accessions" .
+
+xref:hit2-pubchem a ds:CrossReference ;
+    ds:forDataSource data:hit2 ;
+    ds:targetDatabase "PubChem" ;
+    ds:coverageLevel "high" ;
+    ds:linkType "compound structures" .
+
+# =============================================================================
+# END OF TRADITIONAL MEDICINE INSTANCES
+# =============================================================================

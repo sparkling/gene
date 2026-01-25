@@ -1,0 +1,1296 @@
+# =============================================================================
+# Microbiome Data Source Instance Data
+# =============================================================================
+# Generated: 2026-01-25
+# Category: 09.microbiome
+# Sources: 10 (GMrepo, gutMGene, HMP-gut, MetaHIT, HMP-bodysite, HOMD, mBodyMap,
+#              gutMDisorder, MASI, VMH)
+# Conforms to: datasource-ontology.ttl, datasource-shapes.ttl
+# =============================================================================
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ds: <https://gene.example.org/ontology/datasource#> .
+@prefix tax: <https://gene.example.org/taxonomy/> .
+@prefix data: <https://gene.example.org/data/source/> .
+@prefix cat: <https://gene.example.org/data/category/> .
+@prefix subcat: <https://gene.example.org/data/subcategory/> .
+@prefix license: <https://gene.example.org/license/> .
+@prefix access: <https://gene.example.org/access/> .
+@prefix version: <https://gene.example.org/version/> .
+@prefix xref: <https://gene.example.org/xref/> .
+@prefix ident: <https://gene.example.org/identifier/> .
+@prefix usecase: <https://gene.example.org/usecase/> .
+@prefix limitation: <https://gene.example.org/limitation/> .
+
+# =============================================================================
+# LICENSES
+# =============================================================================
+
+license:CC-BY-NC-3.0 a ds:License ;
+    ds:licenseName "Creative Commons Attribution-NonCommercial 3.0" ;
+    ds:spdxId "CC-BY-NC-3.0" ;
+    ds:commercialUse false ;
+    ds:attributionRequired true ;
+    ds:redistribution true ;
+    rdfs:comment "Free for academic research with attribution. Commercial use requires permission." .
+
+license:CC-BY-4.0 a ds:License ;
+    ds:licenseName "Creative Commons Attribution 4.0" ;
+    ds:spdxId "CC-BY-4.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistribution true ;
+    rdfs:comment "Free to use for any purpose including commercial with attribution." .
+
+license:AcademicUse a ds:License ;
+    ds:licenseName "Academic Use Only" ;
+    ds:commercialUse false ;
+    ds:attributionRequired true ;
+    ds:redistribution false ;
+    rdfs:comment "Free for academic research. Commercial use and redistribution require permission." .
+
+license:PublicDomain a ds:License ;
+    ds:licenseName "Public Domain / Academic" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistribution true ;
+    rdfs:comment "Publicly available data with attribution requirement." .
+
+# =============================================================================
+# 9.1 GUT MICROBIOME DATA SOURCES
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# GMrepo - Gut Microbiota Repository
+# -----------------------------------------------------------------------------
+
+data:gmrepo a ds:DataSource ;
+    ds:id "gmrepo" ;
+    ds:title "GMrepo - Gut Microbiota Repository" ;
+    ds:belongsToCategory cat:Microbiome ;
+    ds:belongsToSubcategory subcat:GutMicrobiome ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:lastUpdated "2023"^^xsd:gYear ;
+    ds:tag "gut", "microbiome", "metagenomics", "curated", "phenotypes" ;
+    ds:maintainerEmail "weihuachen@hust.edu.cn" ;
+    ds:maintainerInstitution "Huazhong University of Science and Technology" ;
+    ds:website <https://gmrepo.humangut.info> ;
+    ds:updateFrequency "quarterly" ;
+    ds:hasLicense license:CC-BY-NC-3.0 ;
+    ds:hasAccessMethod access:gmrepo-api, access:gmrepo-web, access:gmrepo-download ;
+    ds:hasIdentifier ident:gmrepo-run-accession, ident:gmrepo-project-accession, ident:gmrepo-ncbi-taxon, ident:gmrepo-phenotype ;
+    ds:hasUseCase usecase:gmrepo-composition, usecase:gmrepo-phenotype-assoc, usecase:gmrepo-meta-analysis, usecase:gmrepo-reference, usecase:gmrepo-biomarker ;
+    ds:hasLimitation limitation:gmrepo-commercial ;
+    rdfs:comment "GMrepo is a manually curated database of human gut metagenomes. It integrates data from multiple sources with standardized phenotype metadata, taxonomic profiles, and quality metrics." ;
+    rdfs:comment "Source documentation: 09.microbiome/9.1.gut.microbiome/gmrepo" .
+
+data:gmrepo ds:recordCount [
+    ds:metricName "samples" ;
+    ds:metricValue "70000"^^xsd:integer
+] .
+
+data:gmrepo ds:recordCount [
+    ds:metricName "projects" ;
+    ds:metricValue "400"^^xsd:integer
+] .
+
+data:gmrepo ds:recordCount [
+    ds:metricName "species" ;
+    ds:metricValue "7000"^^xsd:integer
+] .
+
+data:gmrepo ds:recordCount [
+    ds:metricName "phenotypes" ;
+    ds:metricValue "100"^^xsd:integer
+] .
+
+access:gmrepo-api a ds:AccessMethod ;
+    ds:accessType "REST API" ;
+    ds:accessUrl <https://gmrepo.humangut.info/api> ;
+    ds:rateLimit "1 request per second" ;
+    ds:format "JSON" ;
+    rdfs:comment "Programmatic access to sample, project, and abundance data." .
+
+access:gmrepo-web a ds:AccessMethod ;
+    ds:accessType "Web Interface" ;
+    ds:accessUrl <https://gmrepo.humangut.info> ;
+    ds:format "HTML" ;
+    rdfs:comment "Search and browse interface with data export." .
+
+access:gmrepo-download a ds:AccessMethod ;
+    ds:accessType "Bulk Download" ;
+    ds:accessUrl <https://gmrepo.humangut.info/Downloads> ;
+    ds:format "TSV", "JSON" ;
+    rdfs:comment "Bulk data downloads including abundance tables." .
+
+ident:gmrepo-run-accession a ds:Identifier ;
+    ds:identifierName "Run Accession" ;
+    ds:identifierPattern "[SED]RR[0-9]+" ;
+    ds:identifierExample "SRR1234567" ;
+    rdfs:comment "SRA/ENA sequencing run accession." .
+
+ident:gmrepo-project-accession a ds:Identifier ;
+    ds:identifierName "Project Accession" ;
+    ds:identifierPattern "PRJNA[0-9]+" ;
+    ds:identifierExample "PRJNA123456" ;
+    rdfs:comment "NCBI BioProject accession." .
+
+ident:gmrepo-ncbi-taxon a ds:Identifier ;
+    ds:identifierName "NCBI Taxon ID" ;
+    ds:identifierPattern "[0-9]+" ;
+    ds:identifierExample "562" ;
+    rdfs:comment "NCBI Taxonomy identifier for species." .
+
+ident:gmrepo-phenotype a ds:Identifier ;
+    ds:identifierName "Phenotype" ;
+    ds:identifierPattern "Controlled vocabulary" ;
+    ds:identifierExample "Healthy, IBD, T2D" ;
+    rdfs:comment "Standardized health condition or phenotype." .
+
+usecase:gmrepo-composition a ds:UseCase ;
+    ds:useCaseName "Gut microbiome composition analysis" ;
+    rdfs:comment "Analyze species abundances and community structure." .
+
+usecase:gmrepo-phenotype-assoc a ds:UseCase ;
+    ds:useCaseName "Microbiome-phenotype associations" ;
+    rdfs:comment "Discover associations between microbiome and health conditions." .
+
+usecase:gmrepo-meta-analysis a ds:UseCase ;
+    ds:useCaseName "Cross-study meta-analysis" ;
+    rdfs:comment "Compare results across multiple studies with standardized metadata." .
+
+usecase:gmrepo-reference a ds:UseCase ;
+    ds:useCaseName "Reference taxonomic profiles" ;
+    rdfs:comment "Use as reference profiles for new microbiome samples." .
+
+usecase:gmrepo-biomarker a ds:UseCase ;
+    ds:useCaseName "Biomarker discovery" ;
+    rdfs:comment "Identify microbial biomarkers for diseases." .
+
+limitation:gmrepo-commercial a ds:Limitation ;
+    ds:limitationName "Commercial use restriction" ;
+    ds:limitationDescription "Commercial use requires permission from maintainers." ;
+    ds:impact "high" .
+
+# -----------------------------------------------------------------------------
+# gutMGene
+# -----------------------------------------------------------------------------
+
+data:gutmgene a ds:DataSource ;
+    ds:id "gutmgene" ;
+    ds:title "gutMGene" ;
+    ds:belongsToCategory cat:Microbiome ;
+    ds:belongsToSubcategory subcat:GutMicrobiome ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:lastUpdated "2023"^^xsd:gYear ;
+    ds:tag "gut", "microbiome", "gene-expression", "host-microbe", "regulation" ;
+    ds:website <http://bio-annotation.cn/gutmgene> ;
+    ds:updateFrequency "annually" ;
+    ds:hasLicense license:AcademicUse ;
+    ds:hasAccessMethod access:gutmgene-web, access:gutmgene-download ;
+    ds:hasIdentifier ident:gutmgene-ncbi-taxon, ident:gutmgene-gene-symbol, ident:gutmgene-entrez, ident:gutmgene-pmid ;
+    ds:hasUseCase usecase:gutmgene-associations, usecase:gutmgene-mechanism, usecase:gutmgene-targets, usecase:gutmgene-probiotic ;
+    ds:hasLimitation limitation:gutmgene-noapi, limitation:gutmgene-commercial ;
+    ds:citationDOI "10.1093/nar/gkab786" ;
+    rdfs:comment "gutMGene links gut microbiota to host gene expression changes. It catalogs experimentally validated associations between specific gut bacteria and changes in host gene expression across various tissues." ;
+    rdfs:comment "Source documentation: 09.microbiome/9.1.gut.microbiome/gutmgene" .
+
+data:gutmgene ds:recordCount [
+    ds:metricName "microbe-gene links" ;
+    ds:metricValue "50000"^^xsd:integer
+] .
+
+data:gutmgene ds:recordCount [
+    ds:metricName "microbe species" ;
+    ds:metricValue "500"^^xsd:integer
+] .
+
+data:gutmgene ds:recordCount [
+    ds:metricName "host genes" ;
+    ds:metricValue "10000"^^xsd:integer
+] .
+
+data:gutmgene ds:recordCount [
+    ds:metricName "tissues" ;
+    ds:metricValue "30"^^xsd:integer
+] .
+
+access:gutmgene-web a ds:AccessMethod ;
+    ds:accessType "Web Interface" ;
+    ds:accessUrl <http://bio-annotation.cn/gutmgene> ;
+    ds:format "HTML" ;
+    rdfs:comment "Search and browse interface." .
+
+access:gutmgene-download a ds:AccessMethod ;
+    ds:accessType "File Download" ;
+    ds:format "TSV", "Excel" ;
+    rdfs:comment "Download via web interface Download section." .
+
+ident:gutmgene-ncbi-taxon a ds:Identifier ;
+    ds:identifierName "NCBI Taxon ID" ;
+    ds:identifierPattern "[0-9]+" ;
+    ds:identifierExample "853" ;
+    rdfs:comment "NCBI Taxonomy ID for microbe species." .
+
+ident:gutmgene-gene-symbol a ds:Identifier ;
+    ds:identifierName "Gene Symbol" ;
+    ds:identifierPattern "[A-Z0-9]+" ;
+    ds:identifierExample "TNF, IL6" ;
+    rdfs:comment "Host gene symbol." .
+
+ident:gutmgene-entrez a ds:Identifier ;
+    ds:identifierName "Entrez Gene ID" ;
+    ds:identifierPattern "[0-9]+" ;
+    ds:identifierExample "7124" ;
+    rdfs:comment "NCBI Entrez Gene identifier." .
+
+ident:gutmgene-pmid a ds:Identifier ;
+    ds:identifierName "PubMed ID" ;
+    ds:identifierPattern "[0-9]+" ;
+    ds:identifierExample "12345678" ;
+    rdfs:comment "PubMed literature reference." .
+
+usecase:gutmgene-associations a ds:UseCase ;
+    ds:useCaseName "Microbe-host gene associations" ;
+    rdfs:comment "Find which microbes affect which host genes." .
+
+usecase:gutmgene-mechanism a ds:UseCase ;
+    ds:useCaseName "Mechanism of microbiome effects" ;
+    rdfs:comment "Understand molecular mechanisms of host-microbe crosstalk." .
+
+usecase:gutmgene-targets a ds:UseCase ;
+    ds:useCaseName "Therapeutic target identification" ;
+    rdfs:comment "Identify microbial targets for intervention." .
+
+usecase:gutmgene-probiotic a ds:UseCase ;
+    ds:useCaseName "Probiotic mechanism research" ;
+    rdfs:comment "Understand how probiotics affect host gene expression." .
+
+limitation:gutmgene-noapi a ds:Limitation ;
+    ds:limitationName "No public API" ;
+    ds:limitationDescription "Data access only through web interface and downloads." ;
+    ds:impact "medium" .
+
+limitation:gutmgene-commercial a ds:Limitation ;
+    ds:limitationName "Commercial use restriction" ;
+    ds:limitationDescription "Commercial use requires permission." ;
+    ds:impact "high" .
+
+# -----------------------------------------------------------------------------
+# HMP - Human Microbiome Project (Gut Microbiome focus)
+# -----------------------------------------------------------------------------
+
+data:hmp-gut a ds:DataSource ;
+    ds:id "hmp-gut" ;
+    ds:title "HMP - Human Microbiome Project (Gut)" ;
+    ds:belongsToCategory cat:Microbiome ;
+    ds:belongsToSubcategory subcat:GutMicrobiome ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:lastUpdated "2024"^^xsd:gYear ;
+    ds:tag "microbiome", "metagenomics", "reference", "multi-omics", "NIH" ;
+    ds:website <https://portal.hmpdacc.org> ;
+    ds:updateFrequency "project milestones" ;
+    ds:hasLicense license:CC-BY-4.0 ;
+    ds:hasAccessMethod access:hmp-portal, access:hmp-aws, access:hmp-aspera ;
+    ds:hasIdentifier ident:hmp-sample-id, ident:hmp-subject-id, ident:hmp-body-site, ident:hmp-visit ;
+    ds:hasUseCase usecase:hmp-reference, usecase:hmp-disease, usecase:hmp-multiomics, usecase:hmp-longitudinal, usecase:hmp-benchmark ;
+    rdfs:comment "The Human Microbiome Project (HMP) and iHMP characterize the human microbiome. This NIH initiative provides comprehensive multi-omic data from gut samples including 16S, WGS, transcriptomics, proteomics, and metabolomics." ;
+    rdfs:comment "Source documentation: 09.microbiome/9.1.gut.microbiome/hmp" .
+
+data:hmp-gut ds:recordCount [
+    ds:metricName "data volume" ;
+    ds:metricValue "48+ TB"
+] .
+
+data:hmp-gut ds:recordCount [
+    ds:metricName "major studies" ;
+    ds:metricValue "4"^^xsd:integer
+] .
+
+access:hmp-portal a ds:AccessMethod ;
+    ds:accessType "Web Portal" ;
+    ds:accessUrl <https://portal.hmpdacc.org> ;
+    ds:format "FASTQ", "BIOM", "TSV" ;
+    rdfs:comment "Main HMP data access portal with search and cart-based downloads." .
+
+access:hmp-aws a ds:AccessMethod ;
+    ds:accessType "Cloud Storage" ;
+    ds:accessUrl <s3://human-microbiome-project> ;
+    ds:format "FASTQ", "BIOM", "TSV" ;
+    rdfs:comment "AWS Open Data Registry - no authentication required." .
+
+access:hmp-aspera a ds:AccessMethod ;
+    ds:accessType "High-Speed Transfer" ;
+    ds:format "FASTQ", "BIOM", "TSV" ;
+    rdfs:comment "Aspera high-speed transfer for large datasets." .
+
+ident:hmp-sample-id a ds:Identifier ;
+    ds:identifierName "Sample ID" ;
+    ds:identifierPattern "HMP_[A-Z0-9]+" ;
+    ds:identifierExample "HMP_2012SN-1234" ;
+    rdfs:comment "HMP-specific sample identifier." .
+
+ident:hmp-subject-id a ds:Identifier ;
+    ds:identifierName "Subject ID" ;
+    ds:identifierPattern "[0-9]{3}-[0-9]{6}" ;
+    ds:identifierExample "159-494937" ;
+    rdfs:comment "HIPAA-compliant subject identifier." .
+
+ident:hmp-body-site a ds:Identifier ;
+    ds:identifierName "Body Site" ;
+    ds:identifierPattern "Controlled vocabulary" ;
+    ds:identifierExample "Stool, Anterior_nares" ;
+    rdfs:comment "Anatomical body site." .
+
+ident:hmp-visit a ds:Identifier ;
+    ds:identifierName "Visit Number" ;
+    ds:identifierPattern "[0-9]+" ;
+    ds:identifierExample "1, 2, 3" ;
+    rdfs:comment "Longitudinal visit sequence number." .
+
+usecase:hmp-reference a ds:UseCase ;
+    ds:useCaseName "Reference microbiome characterization" ;
+    rdfs:comment "Baseline healthy microbiome profiles." .
+
+usecase:hmp-disease a ds:UseCase ;
+    ds:useCaseName "Disease-microbiome associations" ;
+    rdfs:comment "IBD, T2D, and pregnancy studies from iHMP." .
+
+usecase:hmp-multiomics a ds:UseCase ;
+    ds:useCaseName "Multi-omic integration studies" ;
+    rdfs:comment "Combined metagenomics, metabolomics, proteomics analysis." .
+
+usecase:hmp-longitudinal a ds:UseCase ;
+    ds:useCaseName "Longitudinal microbiome analysis" ;
+    rdfs:comment "Time-series analysis of microbiome changes." .
+
+usecase:hmp-benchmark a ds:UseCase ;
+    ds:useCaseName "Method benchmarking" ;
+    rdfs:comment "Reference data for microbiome analysis methods." .
+
+# -----------------------------------------------------------------------------
+# MetaHIT - Metagenomics of the Human Intestinal Tract
+# -----------------------------------------------------------------------------
+
+data:metahit a ds:DataSource ;
+    ds:id "metahit" ;
+    ds:title "MetaHIT - Metagenomics of the Human Intestinal Tract" ;
+    ds:belongsToCategory cat:Microbiome ;
+    ds:belongsToSubcategory subcat:GutMicrobiome ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:lastUpdated "2014"^^xsd:gYear ;
+    ds:tag "metagenomics", "gut", "reference", "gene-catalog", "european" ;
+    ds:website <http://meta.genomics.cn> ;
+    ds:updateFrequency "legacy (project completed)" ;
+    ds:hasLicense license:PublicDomain ;
+    ds:hasAccessMethod access:metahit-catalog, access:metahit-ena ;
+    ds:hasIdentifier ident:metahit-gene-id, ident:metahit-sample-id, ident:metahit-sra, ident:metahit-ena-project ;
+    ds:hasUseCase usecase:metahit-catalog, usecase:metahit-mapping, usecase:metahit-comparative, usecase:metahit-enterotype, usecase:metahit-benchmark ;
+    ds:hasLimitation limitation:metahit-legacy ;
+    ds:citationDOI "10.1038/nature08821", "10.1038/nbt.2942" ;
+    rdfs:comment "MetaHIT was a major European project that established foundational resources for gut microbiome research. It generated the Integrated Gene Catalog (IGC) with 10M+ reference genes." ;
+    rdfs:comment "Source documentation: 09.microbiome/9.1.gut.microbiome/metahit" .
+
+data:metahit ds:recordCount [
+    ds:metricName "reference genes (IGC)" ;
+    ds:metricValue "10000000"^^xsd:integer
+] .
+
+data:metahit ds:recordCount [
+    ds:metricName "original samples" ;
+    ds:metricValue "1267"^^xsd:integer
+] .
+
+data:metahit ds:recordCount [
+    ds:metricName "countries" ;
+    ds:metricValue "8"^^xsd:integer
+] .
+
+data:metahit ds:recordCount [
+    ds:metricName "publications" ;
+    ds:metricValue "60"^^xsd:integer
+] .
+
+access:metahit-catalog a ds:AccessMethod ;
+    ds:accessType "File Download" ;
+    ds:accessUrl <http://meta.genomics.cn/meta/dataTools/download/IGC.fa.gz> ;
+    ds:format "FASTA", "TSV" ;
+    ds:size "4 GB compressed, 20 GB uncompressed" ;
+    rdfs:comment "IGC gene catalog download from BGI." .
+
+access:metahit-ena a ds:AccessMethod ;
+    ds:accessType "Archive" ;
+    ds:accessUrl <https://www.ebi.ac.uk/ena/browser/view/PRJEB1220> ;
+    ds:format "FASTQ" ;
+    rdfs:comment "Raw sequences in European Nucleotide Archive." .
+
+ident:metahit-gene-id a ds:Identifier ;
+    ds:identifierName "IGC Gene ID" ;
+    ds:identifierPattern "MH[0-9]{4}_GL[0-9]{7}" ;
+    ds:identifierExample "MH0001_GL0000001" ;
+    rdfs:comment "MetaHIT Integrated Gene Catalog gene identifier." .
+
+ident:metahit-sample-id a ds:Identifier ;
+    ds:identifierName "Sample ID" ;
+    ds:identifierPattern "MH[0-9]+" ;
+    ds:identifierExample "MH0001" ;
+    rdfs:comment "MetaHIT sample identifier." .
+
+ident:metahit-sra a ds:Identifier ;
+    ds:identifierName "NCBI SRA Accession" ;
+    ds:identifierPattern "[SED]RR[0-9]+" ;
+    ds:identifierExample "ERR123456" ;
+    rdfs:comment "Sequence Read Archive accession." .
+
+ident:metahit-ena-project a ds:Identifier ;
+    ds:identifierName "ENA Project" ;
+    ds:identifierPattern "PRJEB[0-9]+" ;
+    ds:identifierExample "PRJEB1220" ;
+    rdfs:comment "European Nucleotide Archive project accession." .
+
+usecase:metahit-catalog a ds:UseCase ;
+    ds:useCaseName "Reference gene catalog queries" ;
+    rdfs:comment "Search and annotate against IGC." .
+
+usecase:metahit-mapping a ds:UseCase ;
+    ds:useCaseName "Metagenomic read mapping" ;
+    rdfs:comment "Map new samples to reference genes." .
+
+usecase:metahit-comparative a ds:UseCase ;
+    ds:useCaseName "Comparative gut microbiome analysis" ;
+    rdfs:comment "Cross-population comparisons." .
+
+usecase:metahit-enterotype a ds:UseCase ;
+    ds:useCaseName "Enterotype classification" ;
+    rdfs:comment "Classify samples into enterotypes." .
+
+usecase:metahit-benchmark a ds:UseCase ;
+    ds:useCaseName "Method benchmarking" ;
+    rdfs:comment "Gold standard for metagenomics methods." .
+
+limitation:metahit-legacy a ds:Limitation ;
+    ds:limitationName "Legacy resource" ;
+    ds:limitationDescription "Project completed, no new updates. Consider HMP/GMrepo for current data." ;
+    ds:impact "medium" .
+
+# =============================================================================
+# 9.2 BODY SITE MICROBIOMES DATA SOURCES
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# HMP - Human Microbiome Project (Multi-body-site)
+# -----------------------------------------------------------------------------
+
+data:hmp-bodysite a ds:DataSource ;
+    ds:id "hmp-bodysite" ;
+    ds:title "HMP - Human Microbiome Project (Body Sites)" ;
+    ds:belongsToCategory cat:Microbiome ;
+    ds:belongsToSubcategory subcat:BodySiteMicrobiomes ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:lastUpdated "2024"^^xsd:gYear ;
+    ds:tag "microbiome", "multi-site", "reference", "nih", "metagenomics" ;
+    ds:website <https://hmpdacc.org> ;
+    ds:updateFrequency "project milestones" ;
+    ds:hasLicense license:CC-BY-4.0 ;
+    ds:hasAccessMethod access:hmp-bodysite-dacc, access:hmp-bodysite-aws, access:hmp-bodysite-ncbi ;
+    ds:hasIdentifier ident:hmp-bodysite-sample, ident:hmp-bodysite-site, ident:hmp-bodysite-bioproject, ident:hmp-bodysite-sra ;
+    ds:hasUseCase usecase:hmp-bodysite-reference, usecase:hmp-bodysite-comparison, usecase:hmp-bodysite-benchmark ;
+    rdfs:comment "The Human Microbiome Project characterized microbial communities from 18 body sites in 300 healthy individuals. It established reference data for oral, skin, nasal, gastrointestinal, and urogenital microbiomes." ;
+    rdfs:comment "Source documentation: 09.microbiome/9.2.body.site.microbiomes/hmp" .
+
+data:hmp-bodysite ds:recordCount [
+    ds:metricName "reference genomes" ;
+    ds:metricValue "3000"^^xsd:integer
+] .
+
+data:hmp-bodysite ds:recordCount [
+    ds:metricName "body sites" ;
+    ds:metricValue "18"^^xsd:integer
+] .
+
+data:hmp-bodysite ds:recordCount [
+    ds:metricName "subjects" ;
+    ds:metricValue "300"^^xsd:integer
+] .
+
+data:hmp-bodysite ds:recordCount [
+    ds:metricName "samples" ;
+    ds:metricValue "11000"^^xsd:integer
+] .
+
+data:hmp-bodysite ds:recordCount [
+    ds:metricName "sequence data" ;
+    ds:metricValue "5.2 Tbp"
+] .
+
+access:hmp-bodysite-dacc a ds:AccessMethod ;
+    ds:accessType "Data Coordination Center" ;
+    ds:accessUrl <https://hmpdacc.org> ;
+    ds:format "FASTQ", "BIOM", "TSV" ;
+    rdfs:comment "Main DACC portal for HMP data access." .
+
+access:hmp-bodysite-aws a ds:AccessMethod ;
+    ds:accessType "Cloud Storage" ;
+    ds:accessUrl <s3://human-microbiome-project> ;
+    ds:format "FASTQ", "BIOM", "TSV" ;
+    rdfs:comment "AWS Open Data Registry - no authentication required." .
+
+access:hmp-bodysite-ncbi a ds:AccessMethod ;
+    ds:accessType "Archive" ;
+    ds:accessUrl <https://www.ncbi.nlm.nih.gov/bioproject/PRJNA28331> ;
+    ds:format "FASTQ" ;
+    rdfs:comment "Raw sequences in NCBI SRA." .
+
+ident:hmp-bodysite-sample a ds:Identifier ;
+    ds:identifierName "Sample ID" ;
+    ds:identifierPattern "SRS[0-9]+" ;
+    ds:identifierExample "SRS011084" ;
+    rdfs:comment "NCBI SRA sample accession." .
+
+ident:hmp-bodysite-site a ds:Identifier ;
+    ds:identifierName "Body Site" ;
+    ds:identifierPattern "Controlled vocabulary" ;
+    ds:identifierExample "Tongue dorsum, Anterior nares" ;
+    rdfs:comment "Anatomical body site from UBERON ontology." .
+
+ident:hmp-bodysite-bioproject a ds:Identifier ;
+    ds:identifierName "NCBI BioProject" ;
+    ds:identifierPattern "PRJNA[0-9]+" ;
+    ds:identifierExample "PRJNA48479" ;
+    rdfs:comment "NCBI BioProject accession." .
+
+ident:hmp-bodysite-sra a ds:Identifier ;
+    ds:identifierName "SRA Accession" ;
+    ds:identifierPattern "[SED]RR[0-9]+" ;
+    ds:identifierExample "SRR346657" ;
+    rdfs:comment "Sequence Read Archive run accession." .
+
+usecase:hmp-bodysite-reference a ds:UseCase ;
+    ds:useCaseName "Reference microbiome characterization" ;
+    rdfs:comment "Baseline profiles for all major body sites." .
+
+usecase:hmp-bodysite-comparison a ds:UseCase ;
+    ds:useCaseName "Multi-body-site comparisons" ;
+    rdfs:comment "Compare microbiome composition across anatomical sites." .
+
+usecase:hmp-bodysite-benchmark a ds:UseCase ;
+    ds:useCaseName "Metagenomic assembly benchmarking" ;
+    rdfs:comment "Reference data for method development." .
+
+# -----------------------------------------------------------------------------
+# HOMD - Human Oral Microbiome Database
+# -----------------------------------------------------------------------------
+
+data:homd a ds:DataSource ;
+    ds:id "homd" ;
+    ds:title "HOMD - Human Oral Microbiome Database" ;
+    ds:belongsToCategory cat:Microbiome ;
+    ds:belongsToSubcategory subcat:BodySiteMicrobiomes ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:lastUpdated "ongoing"^^xsd:string ;
+    ds:tag "oral", "microbiome", "dental", "taxonomy", "genomes" ;
+    ds:maintainerInstitution "Forsyth Institute" ;
+    ds:website <https://www.homd.org> ;
+    ds:updateFrequency "quarterly (16S), continuous (genomes)" ;
+    ds:hasLicense license:AcademicUse ;
+    ds:hasAccessMethod access:homd-web, access:homd-blast, access:homd-download, access:homd-ftp ;
+    ds:hasIdentifier ident:homd-homt, ident:homd-strain, ident:homd-clone, ident:homd-ncbi-taxon ;
+    ds:hasUseCase usecase:homd-identification, usecase:homd-classification, usecase:homd-periodontal, usecase:homd-caries ;
+    ds:hasLimitation limitation:homd-commercial ;
+    ds:citationDOI "10.1093/database/baq013", "10.1128/mSystems.00187-18" ;
+    rdfs:comment "HOMD provides comprehensive resources for oral microbiome research including taxonomy, genomes, and 16S sequences. It features the HOMT (Human Oral Microbiome Taxon) system for standardized oral bacterial taxonomy." ;
+    rdfs:comment "Source documentation: 09.microbiome/9.2.body.site.microbiomes/homd" .
+
+data:homd ds:recordCount [
+    ds:metricName "oral taxa" ;
+    ds:metricValue "770"^^xsd:integer
+] .
+
+data:homd ds:recordCount [
+    ds:metricName "reference genomes" ;
+    ds:metricValue "1800"^^xsd:integer
+] .
+
+data:homd ds:recordCount [
+    ds:metricName "16S sequences" ;
+    ds:metricValue "4000"^^xsd:integer
+] .
+
+data:homd ds:recordCount [
+    ds:metricName "cultivated species" ;
+    ds:metricValue "500"^^xsd:integer
+] .
+
+access:homd-web a ds:AccessMethod ;
+    ds:accessType "Web Interface" ;
+    ds:accessUrl <https://www.homd.org> ;
+    ds:format "HTML" ;
+    rdfs:comment "Search and browse interface for taxa and genomes." .
+
+access:homd-blast a ds:AccessMethod ;
+    ds:accessType "Sequence Search" ;
+    ds:accessUrl <https://www.homd.org/blast> ;
+    ds:format "FASTA" ;
+    rdfs:comment "BLAST search against HOMD reference sequences." .
+
+access:homd-download a ds:AccessMethod ;
+    ds:accessType "File Download" ;
+    ds:accessUrl <https://www.homd.org/download> ;
+    ds:format "FASTA", "TSV", "GFF" ;
+    rdfs:comment "Download 16S reference database, genomes, and taxonomy." .
+
+access:homd-ftp a ds:AccessMethod ;
+    ds:accessType "FTP" ;
+    ds:accessUrl <ftp://ftp.homd.org/> ;
+    ds:format "FASTA", "TSV", "GFF" ;
+    rdfs:comment "Bulk FTP access to all data files." .
+
+ident:homd-homt a ds:Identifier ;
+    ds:identifierName "HOMT ID" ;
+    ds:identifierPattern "HMT-[0-9]{3}" ;
+    ds:identifierExample "HMT-096" ;
+    rdfs:comment "Human Oral Microbiome Taxon identifier." .
+
+ident:homd-strain a ds:Identifier ;
+    ds:identifierName "Strain ID" ;
+    ds:identifierPattern "Text" ;
+    ds:identifierExample "ATCC 25586" ;
+    rdfs:comment "Bacterial strain designation." .
+
+ident:homd-clone a ds:Identifier ;
+    ds:identifierName "16S Clone ID" ;
+    ds:identifierPattern "[A-Z]+[0-9]+" ;
+    ds:identifierExample "AY005451" ;
+    rdfs:comment "16S rRNA clone accession." .
+
+ident:homd-ncbi-taxon a ds:Identifier ;
+    ds:identifierName "NCBI Taxon ID" ;
+    ds:identifierPattern "[0-9]+" ;
+    ds:identifierExample "1598" ;
+    rdfs:comment "NCBI Taxonomy identifier." .
+
+usecase:homd-identification a ds:UseCase ;
+    ds:useCaseName "Oral taxon identification" ;
+    rdfs:comment "Identify oral bacteria from sequences." .
+
+usecase:homd-classification a ds:UseCase ;
+    ds:useCaseName "16S rRNA sequence classification" ;
+    rdfs:comment "Classify 16S sequences against oral reference." .
+
+usecase:homd-periodontal a ds:UseCase ;
+    ds:useCaseName "Periodontal research" ;
+    rdfs:comment "Study periodontal disease microbiome." .
+
+usecase:homd-caries a ds:UseCase ;
+    ds:useCaseName "Dental caries microbiome" ;
+    rdfs:comment "Research caries-associated bacteria." .
+
+limitation:homd-commercial a ds:Limitation ;
+    ds:limitationName "Commercial use restriction" ;
+    ds:limitationDescription "Commercial use requires permission from Forsyth Institute." ;
+    ds:impact "high" .
+
+# -----------------------------------------------------------------------------
+# mBodyMap
+# -----------------------------------------------------------------------------
+
+data:mbodymap a ds:DataSource ;
+    ds:id "mbodymap" ;
+    ds:title "mBodyMap" ;
+    ds:belongsToCategory cat:Microbiome ;
+    ds:belongsToSubcategory subcat:BodySiteMicrobiomes ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:lastUpdated "2023"^^xsd:gYear ;
+    ds:tag "microbiome", "body-sites", "atlas", "comparative", "visualization" ;
+    ds:website <https://mbodymap.microbiome.cloud> ;
+    ds:updateFrequency "semi-annually" ;
+    ds:hasLicense license:AcademicUse ;
+    ds:hasAccessMethod access:mbodymap-web, access:mbodymap-download ;
+    ds:hasIdentifier ident:mbodymap-site-code, ident:mbodymap-sample, ident:mbodymap-ncbi-taxon, ident:mbodymap-study ;
+    ds:hasUseCase usecase:mbodymap-comparison, usecase:mbodymap-distribution, usecase:mbodymap-atlas, usecase:mbodymap-classifier ;
+    ds:hasLimitation limitation:mbodymap-commercial ;
+    rdfs:comment "mBodyMap is a comprehensive atlas of human microbiome data organized by body site. It integrates data from 500+ studies across 50+ body sites enabling comparative analysis." ;
+    rdfs:comment "Source documentation: 09.microbiome/9.2.body.site.microbiomes/mbodymap" .
+
+data:mbodymap ds:recordCount [
+    ds:metricName "body sites" ;
+    ds:metricValue "50"^^xsd:integer
+] .
+
+data:mbodymap ds:recordCount [
+    ds:metricName "samples" ;
+    ds:metricValue "100000"^^xsd:integer
+] .
+
+data:mbodymap ds:recordCount [
+    ds:metricName "integrated studies" ;
+    ds:metricValue "500"^^xsd:integer
+] .
+
+data:mbodymap ds:recordCount [
+    ds:metricName "species" ;
+    ds:metricValue "5000"^^xsd:integer
+] .
+
+access:mbodymap-web a ds:AccessMethod ;
+    ds:accessType "Web Interface" ;
+    ds:accessUrl <https://mbodymap.microbiome.cloud> ;
+    ds:format "HTML" ;
+    rdfs:comment "Interactive atlas with visualization tools." .
+
+access:mbodymap-download a ds:AccessMethod ;
+    ds:accessType "File Download" ;
+    ds:format "TSV", "BIOM", "JSON", "CSV" ;
+    rdfs:comment "Download processed abundance matrices and metadata." .
+
+ident:mbodymap-site-code a ds:Identifier ;
+    ds:identifierName "Body Site Code" ;
+    ds:identifierPattern "{Region}_{Subregion}_{Site}" ;
+    ds:identifierExample "GI_LI_COLON" ;
+    rdfs:comment "Hierarchical body site code." .
+
+ident:mbodymap-sample a ds:Identifier ;
+    ds:identifierName "Sample ID" ;
+    ds:identifierPattern "Project-derived" ;
+    ds:identifierExample "SRS123456" ;
+    rdfs:comment "Sample identifier from source study." .
+
+ident:mbodymap-ncbi-taxon a ds:Identifier ;
+    ds:identifierName "NCBI Taxon ID" ;
+    ds:identifierPattern "[0-9]+" ;
+    ds:identifierExample "816" ;
+    rdfs:comment "NCBI Taxonomy identifier for species." .
+
+ident:mbodymap-study a ds:Identifier ;
+    ds:identifierName "Study ID" ;
+    ds:identifierPattern "Various" ;
+    ds:identifierExample "PRJNA123456" ;
+    rdfs:comment "Source study identifier." .
+
+usecase:mbodymap-comparison a ds:UseCase ;
+    ds:useCaseName "Cross-body-site microbiome comparison" ;
+    rdfs:comment "Compare microbiome composition across anatomical sites." .
+
+usecase:mbodymap-distribution a ds:UseCase ;
+    ds:useCaseName "Site-specific species distribution" ;
+    rdfs:comment "Understand which species are found at which body sites." .
+
+usecase:mbodymap-atlas a ds:UseCase ;
+    ds:useCaseName "Microbiome atlas visualization" ;
+    rdfs:comment "Visual exploration of body microbiome geography." .
+
+usecase:mbodymap-classifier a ds:UseCase ;
+    ds:useCaseName "Body-site classifier development" ;
+    rdfs:comment "Train classifiers to predict sample origin." .
+
+limitation:mbodymap-commercial a ds:Limitation ;
+    ds:limitationName "Commercial use restriction" ;
+    ds:limitationDescription "Commercial use and bulk redistribution require permission." ;
+    ds:impact "high" .
+
+# =============================================================================
+# 9.3 MICROBE-HOST INTERACTIONS DATA SOURCES
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# gutMDisorder
+# -----------------------------------------------------------------------------
+
+data:gutmdisorder a ds:DataSource ;
+    ds:id "gutmdisorder" ;
+    ds:title "gutMDisorder" ;
+    ds:belongsToCategory cat:Microbiome ;
+    ds:belongsToSubcategory subcat:MicrobeHostInteractions ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:lastUpdated "2023"^^xsd:gYear ;
+    ds:tag "microbiome", "disease", "dysbiosis", "associations", "curated" ;
+    ds:website <http://bio-annotation.cn/gutMDisorder> ;
+    ds:updateFrequency "annually (continuous curation)" ;
+    ds:hasLicense license:AcademicUse ;
+    ds:hasAccessMethod access:gutmdisorder-web, access:gutmdisorder-download ;
+    ds:hasIdentifier ident:gutmdisorder-disease, ident:gutmdisorder-icd, ident:gutmdisorder-ncbi-taxon, ident:gutmdisorder-pmid, ident:gutmdisorder-direction ;
+    ds:hasUseCase usecase:gutmdisorder-lookup, usecase:gutmdisorder-dysbiosis, usecase:gutmdisorder-biomarker, usecase:gutmdisorder-review, usecase:gutmdisorder-hypothesis ;
+    ds:hasLimitation limitation:gutmdisorder-noapi, limitation:gutmdisorder-commercial ;
+    ds:citationDOI "10.1093/nar/gkz843" ;
+    rdfs:comment "gutMDisorder is a manually curated database of gut microbiota-disease associations. It compiles evidence linking specific microbial taxa to 200+ human diseases with direction (increased/decreased) and evidence strength." ;
+    rdfs:comment "Source documentation: 09.microbiome/9.3.microbe.host.interactions/gutmdisorder" .
+
+data:gutmdisorder ds:recordCount [
+    ds:metricName "microbe-disease pairs" ;
+    ds:metricValue "10000"^^xsd:integer
+] .
+
+data:gutmdisorder ds:recordCount [
+    ds:metricName "diseases" ;
+    ds:metricValue "200"^^xsd:integer
+] .
+
+data:gutmdisorder ds:recordCount [
+    ds:metricName "microbial taxa" ;
+    ds:metricValue "2000"^^xsd:integer
+] .
+
+data:gutmdisorder ds:recordCount [
+    ds:metricName "publications" ;
+    ds:metricValue "2000"^^xsd:integer
+] .
+
+access:gutmdisorder-web a ds:AccessMethod ;
+    ds:accessType "Web Interface" ;
+    ds:accessUrl <http://bio-annotation.cn/gutMDisorder> ;
+    ds:format "HTML" ;
+    rdfs:comment "Search and browse by disease or microbe." .
+
+access:gutmdisorder-download a ds:AccessMethod ;
+    ds:accessType "File Download" ;
+    ds:format "TSV", "Excel" ;
+    rdfs:comment "Download association tables via web interface." .
+
+ident:gutmdisorder-disease a ds:Identifier ;
+    ds:identifierName "Disease Name" ;
+    ds:identifierPattern "Text" ;
+    ds:identifierExample "Type 2 Diabetes" ;
+    rdfs:comment "Disease or condition name." .
+
+ident:gutmdisorder-icd a ds:Identifier ;
+    ds:identifierName "ICD Code" ;
+    ds:identifierPattern "ICD-10" ;
+    ds:identifierExample "E11" ;
+    rdfs:comment "International Classification of Diseases code." .
+
+ident:gutmdisorder-ncbi-taxon a ds:Identifier ;
+    ds:identifierName "NCBI Taxon ID" ;
+    ds:identifierPattern "[0-9]+" ;
+    ds:identifierExample "816" ;
+    rdfs:comment "NCBI Taxonomy identifier for microbe." .
+
+ident:gutmdisorder-pmid a ds:Identifier ;
+    ds:identifierName "PubMed ID" ;
+    ds:identifierPattern "[0-9]+" ;
+    ds:identifierExample "12345678" ;
+    rdfs:comment "PubMed literature reference." .
+
+ident:gutmdisorder-direction a ds:Identifier ;
+    ds:identifierName "Association Direction" ;
+    ds:identifierPattern "increased|decreased|altered" ;
+    ds:identifierExample "Increased, Decreased" ;
+    rdfs:comment "Direction of abundance change in disease." .
+
+usecase:gutmdisorder-lookup a ds:UseCase ;
+    ds:useCaseName "Disease-microbiome association lookup" ;
+    rdfs:comment "Find which microbes are associated with specific diseases." .
+
+usecase:gutmdisorder-dysbiosis a ds:UseCase ;
+    ds:useCaseName "Dysbiosis pattern analysis" ;
+    rdfs:comment "Understand common dysbiosis patterns across diseases." .
+
+usecase:gutmdisorder-biomarker a ds:UseCase ;
+    ds:useCaseName "Microbial biomarker identification" ;
+    rdfs:comment "Identify potential diagnostic biomarkers." .
+
+usecase:gutmdisorder-review a ds:UseCase ;
+    ds:useCaseName "Systematic review support" ;
+    rdfs:comment "Compile evidence for systematic reviews." .
+
+usecase:gutmdisorder-hypothesis a ds:UseCase ;
+    ds:useCaseName "Research hypothesis generation" ;
+    rdfs:comment "Generate hypotheses about microbiome-disease relationships." .
+
+limitation:gutmdisorder-noapi a ds:Limitation ;
+    ds:limitationName "No public API" ;
+    ds:limitationDescription "Data access only through web interface and downloads." ;
+    ds:impact "medium" .
+
+limitation:gutmdisorder-commercial a ds:Limitation ;
+    ds:limitationName "Commercial use restriction" ;
+    ds:limitationDescription "Commercial use requires permission." ;
+    ds:impact "high" .
+
+# -----------------------------------------------------------------------------
+# MASI - Microbiome-Associated Signaling Interactions
+# -----------------------------------------------------------------------------
+
+data:masi a ds:DataSource ;
+    ds:id "masi" ;
+    ds:title "MASI - Microbiome-Associated Signaling Interactions" ;
+    ds:belongsToCategory cat:Microbiome ;
+    ds:belongsToSubcategory subcat:MicrobeHostInteractions ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:lastUpdated "2022"^^xsd:gYear ;
+    ds:tag "microbiome", "signaling", "pathways", "mechanisms", "metabolites" ;
+    ds:updateFrequency "check with maintainers" ;
+    ds:hasLicense license:AcademicUse ;
+    ds:hasAccessMethod access:masi-publication ;
+    ds:hasIdentifier ident:masi-metabolite, ident:masi-pubchem, ident:masi-receptor, ident:masi-kegg-pathway, ident:masi-pmid ;
+    ds:hasUseCase usecase:masi-mechanism, usecase:masi-metabolite-receptor, usecase:masi-pathway, usecase:masi-drug-target, usecase:masi-postbiotic ;
+    ds:hasLimitation limitation:masi-availability ;
+    rdfs:comment "MASI catalogs molecular mechanisms by which gut microbiota influence host signaling pathways. It includes microbial metabolite production, host receptor interactions, and downstream signaling effects." ;
+    rdfs:comment "Source documentation: 09.microbiome/9.3.microbe.host.interactions/masi" .
+
+data:masi ds:recordCount [
+    ds:metricName "signaling interactions" ;
+    ds:metricValue "5000"^^xsd:integer
+] .
+
+data:masi ds:recordCount [
+    ds:metricName "microbial metabolites" ;
+    ds:metricValue "500"^^xsd:integer
+] .
+
+data:masi ds:recordCount [
+    ds:metricName "host targets" ;
+    ds:metricValue "300"^^xsd:integer
+] .
+
+data:masi ds:recordCount [
+    ds:metricName "pathways" ;
+    ds:metricValue "100"^^xsd:integer
+] .
+
+access:masi-publication a ds:AccessMethod ;
+    ds:accessType "Publication Supplementary" ;
+    ds:format "TSV", "Excel" ;
+    rdfs:comment "Data available through publication supplementary materials. Contact maintainers for access." .
+
+ident:masi-metabolite a ds:Identifier ;
+    ds:identifierName "Metabolite Name" ;
+    ds:identifierPattern "Text" ;
+    ds:identifierExample "Butyrate" ;
+    rdfs:comment "Microbial metabolite name." .
+
+ident:masi-pubchem a ds:Identifier ;
+    ds:identifierName "PubChem CID" ;
+    ds:identifierPattern "[0-9]+" ;
+    ds:identifierExample "264" ;
+    rdfs:comment "PubChem compound identifier." .
+
+ident:masi-receptor a ds:Identifier ;
+    ds:identifierName "Receptor Symbol" ;
+    ds:identifierPattern "[A-Z0-9]+" ;
+    ds:identifierExample "GPR43" ;
+    rdfs:comment "Host receptor or target gene symbol." .
+
+ident:masi-kegg-pathway a ds:Identifier ;
+    ds:identifierName "KEGG Pathway" ;
+    ds:identifierPattern "hsa[0-9]+" ;
+    ds:identifierExample "hsa04917" ;
+    rdfs:comment "KEGG pathway identifier." .
+
+ident:masi-pmid a ds:Identifier ;
+    ds:identifierName "PubMed ID" ;
+    ds:identifierPattern "[0-9]+" ;
+    ds:identifierExample "12345678" ;
+    rdfs:comment "PubMed literature reference." .
+
+usecase:masi-mechanism a ds:UseCase ;
+    ds:useCaseName "Microbe-host signaling mechanism lookup" ;
+    rdfs:comment "Understand molecular mechanisms of microbiome effects." .
+
+usecase:masi-metabolite-receptor a ds:UseCase ;
+    ds:useCaseName "Metabolite-receptor interaction discovery" ;
+    rdfs:comment "Find which metabolites interact with which receptors." .
+
+usecase:masi-pathway a ds:UseCase ;
+    ds:useCaseName "Pathway analysis in microbiome context" ;
+    rdfs:comment "Analyze signaling pathways affected by microbiome." .
+
+usecase:masi-drug-target a ds:UseCase ;
+    ds:useCaseName "Drug target identification" ;
+    rdfs:comment "Identify potential drug targets in microbiome-host axis." .
+
+usecase:masi-postbiotic a ds:UseCase ;
+    ds:useCaseName "Postbiotic research support" ;
+    rdfs:comment "Support research on microbial metabolites as therapeutics." .
+
+limitation:masi-availability a ds:Limitation ;
+    ds:limitationName "Limited availability" ;
+    ds:limitationDescription "May require direct contact with maintainers or access via publication supplements. Consider HMDB/KEGG as alternatives." ;
+    ds:impact "high" .
+
+# -----------------------------------------------------------------------------
+# VMH - Virtual Metabolic Human
+# -----------------------------------------------------------------------------
+
+data:vmh a ds:DataSource ;
+    ds:id "vmh" ;
+    ds:title "VMH - Virtual Metabolic Human" ;
+    ds:belongsToCategory cat:Microbiome ;
+    ds:belongsToSubcategory subcat:MicrobeHostInteractions ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:lastUpdated "2024"^^xsd:gYear ;
+    ds:tag "metabolism", "microbiome", "models", "reconstruction", "flux-balance" ;
+    ds:website <https://www.vmh.life> ;
+    ds:updateFrequency "major versions" ;
+    ds:hasLicense license:CC-BY-4.0 ;
+    ds:hasAccessMethod access:vmh-web, access:vmh-download, access:vmh-api ;
+    ds:hasIdentifier ident:vmh-reaction, ident:vmh-metabolite, ident:vmh-microbe, ident:vmh-ncbi-taxon, ident:vmh-kegg-reaction ;
+    ds:hasUseCase usecase:vmh-modeling, usecase:vmh-hostmicrobe, usecase:vmh-nutrition, usecase:vmh-drug, usecase:vmh-engineering ;
+    ds:citationDOI "10.1093/nar/gky992", "10.1038/s41587-022-01628-0" ;
+    rdfs:comment "VMH connects human and gut microbial metabolism through genome-scale metabolic reconstructions (GEMs). It provides models for human cells (Recon3D) and 7,200+ gut microbes (AGORA2) for constraint-based modeling." ;
+    rdfs:comment "Source documentation: 09.microbiome/9.3.microbe.host.interactions/vmh" .
+
+data:vmh ds:recordCount [
+    ds:metricName "microbial GEMs" ;
+    ds:metricValue "7200"^^xsd:integer
+] .
+
+data:vmh ds:recordCount [
+    ds:metricName "reactions (human)" ;
+    ds:metricValue "6000"^^xsd:integer
+] .
+
+data:vmh ds:recordCount [
+    ds:metricName "metabolites" ;
+    ds:metricValue "4000"^^xsd:integer
+] .
+
+data:vmh ds:recordCount [
+    ds:metricName "microbe-disease links" ;
+    ds:metricValue "15000"^^xsd:integer
+] .
+
+access:vmh-web a ds:AccessMethod ;
+    ds:accessType "Web Interface" ;
+    ds:accessUrl <https://www.vmh.life> ;
+    ds:format "HTML" ;
+    rdfs:comment "Browse and search reactions, metabolites, and microbes." .
+
+access:vmh-download a ds:AccessMethod ;
+    ds:accessType "File Download" ;
+    ds:accessUrl <https://www.vmh.life/#download> ;
+    ds:format "SBML", "MAT", "JSON", "TSV" ;
+    ds:size "Recon3D ~50-100MB, AGORA2 ~5GB" ;
+    rdfs:comment "Download human model (Recon3D) and microbial models (AGORA2)." .
+
+access:vmh-api a ds:AccessMethod ;
+    ds:accessType "REST API" ;
+    ds:accessUrl <https://www.vmh.life/api> ;
+    ds:format "JSON" ;
+    rdfs:comment "Programmatic access to reactions, metabolites, and microbe information." .
+
+ident:vmh-reaction a ds:Identifier ;
+    ds:identifierName "VMH Reaction ID" ;
+    ds:identifierPattern "Text" ;
+    ds:identifierExample "EX_glc(e)" ;
+    rdfs:comment "VMH reaction identifier." .
+
+ident:vmh-metabolite a ds:Identifier ;
+    ds:identifierName "VMH Metabolite ID" ;
+    ds:identifierPattern "Text with compartment" ;
+    ds:identifierExample "glc_D[e]" ;
+    rdfs:comment "VMH metabolite identifier with compartment code." .
+
+ident:vmh-microbe a ds:Identifier ;
+    ds:identifierName "Microbe ID" ;
+    ds:identifierPattern "AGORA naming" ;
+    ds:identifierExample "Bacteroides_thetaiotaomicron" ;
+    rdfs:comment "AGORA model identifier." .
+
+ident:vmh-ncbi-taxon a ds:Identifier ;
+    ds:identifierName "NCBI Taxon ID" ;
+    ds:identifierPattern "[0-9]+" ;
+    ds:identifierExample "818" ;
+    rdfs:comment "NCBI Taxonomy identifier." .
+
+ident:vmh-kegg-reaction a ds:Identifier ;
+    ds:identifierName "KEGG Reaction" ;
+    ds:identifierPattern "R[0-9]+" ;
+    ds:identifierExample "R00200" ;
+    rdfs:comment "KEGG reaction identifier." .
+
+usecase:vmh-modeling a ds:UseCase ;
+    ds:useCaseName "Genome-scale metabolic modeling" ;
+    rdfs:comment "Flux balance analysis and constraint-based modeling." .
+
+usecase:vmh-hostmicrobe a ds:UseCase ;
+    ds:useCaseName "Microbiome-host metabolic analysis" ;
+    rdfs:comment "Model metabolic interactions between microbes and host." .
+
+usecase:vmh-nutrition a ds:UseCase ;
+    ds:useCaseName "Personalized nutrition modeling" ;
+    rdfs:comment "Predict diet effects on host-microbiome metabolism." .
+
+usecase:vmh-drug a ds:UseCase ;
+    ds:useCaseName "Drug-microbiome interactions" ;
+    rdfs:comment "Model how drugs affect microbiome metabolism." .
+
+usecase:vmh-engineering a ds:UseCase ;
+    ds:useCaseName "Metabolic engineering design" ;
+    rdfs:comment "Design interventions targeting microbiome metabolism." .
+
+# =============================================================================
+# CROSS-REFERENCES
+# =============================================================================
+
+# GMrepo cross-references
+data:gmrepo ds:crossReferencesTo [
+    ds:targetSource data:hmp-gut ;
+    ds:crossReferenceType "samples" ;
+    ds:coverage "partial" ;
+    rdfs:comment "Links to HMP samples via SRA accessions."
+] .
+
+data:gmrepo ds:crossReferencesTo [
+    ds:targetSource data:metahit ;
+    ds:crossReferenceType "samples" ;
+    ds:coverage "partial" ;
+    rdfs:comment "Links to MetaHIT samples via ENA accessions."
+] .
+
+# gutMGene cross-references
+data:gutmgene ds:crossReferencesTo [
+    ds:targetSource data:gmrepo ;
+    ds:crossReferenceType "microbes" ;
+    ds:coverage "partial" ;
+    rdfs:comment "Links to GMrepo via NCBI Taxon IDs."
+] .
+
+data:gutmgene ds:crossReferencesTo [
+    ds:targetSource data:gutmdisorder ;
+    ds:crossReferenceType "microbes" ;
+    ds:coverage "partial" ;
+    rdfs:comment "Links to disease associations via shared microbe taxa."
+] .
+
+# HMP cross-references
+data:hmp-gut ds:crossReferencesTo [
+    ds:targetSource data:hmp-bodysite ;
+    ds:crossReferenceType "samples" ;
+    ds:coverage "full" ;
+    rdfs:comment "Same project, different body site focus."
+] .
+
+data:hmp-bodysite ds:crossReferencesTo [
+    ds:targetSource data:homd ;
+    ds:crossReferenceType "reference" ;
+    ds:coverage "oral sites" ;
+    rdfs:comment "HOMD provides detailed taxonomy for oral samples."
+] .
+
+# HOMD cross-references
+data:homd ds:crossReferencesTo [
+    ds:targetSource data:hmp-bodysite ;
+    ds:crossReferenceType "samples" ;
+    ds:coverage "oral" ;
+    rdfs:comment "HMP provides oral microbiome sample data."
+] .
+
+# gutMDisorder cross-references
+data:gutmdisorder ds:crossReferencesTo [
+    ds:targetSource data:gmrepo ;
+    ds:crossReferenceType "samples" ;
+    ds:coverage "partial" ;
+    rdfs:comment "Links to sample data for microbes."
+] .
+
+data:gutmdisorder ds:crossReferencesTo [
+    ds:targetSource data:gutmgene ;
+    ds:crossReferenceType "mechanisms" ;
+    ds:coverage "partial" ;
+    rdfs:comment "Links to gene expression effects of microbes."
+] .
+
+data:gutmdisorder ds:crossReferencesTo [
+    ds:targetSource data:vmh ;
+    ds:crossReferenceType "metabolic models" ;
+    ds:coverage "partial" ;
+    rdfs:comment "Links to metabolic reconstructions via AGORA models."
+] .
+
+# VMH cross-references
+data:vmh ds:crossReferencesTo [
+    ds:targetSource data:gmrepo ;
+    ds:crossReferenceType "microbiome composition" ;
+    ds:coverage "partial" ;
+    rdfs:comment "Use GMrepo abundances to build personalized community models."
+] .
+
+data:vmh ds:crossReferencesTo [
+    ds:targetSource data:gutmdisorder ;
+    ds:crossReferenceType "disease associations" ;
+    ds:coverage "integrated" ;
+    rdfs:comment "VMH includes microbe-disease links."
+] .
+
+data:vmh ds:crossReferencesTo [
+    ds:targetSource data:masi ;
+    ds:crossReferenceType "signaling" ;
+    ds:coverage "partial" ;
+    rdfs:comment "Links to metabolite-receptor signaling data."
+] .
+
+# MASI cross-references
+data:masi ds:crossReferencesTo [
+    ds:targetSource data:vmh ;
+    ds:crossReferenceType "metabolites" ;
+    ds:coverage "partial" ;
+    rdfs:comment "Links to metabolic models for metabolite context."
+] .
+
+data:masi ds:crossReferencesTo [
+    ds:targetSource data:gutmgene ;
+    ds:crossReferenceType "gene expression" ;
+    ds:coverage "partial" ;
+    rdfs:comment "Links to downstream gene expression effects."
+] .
+
+# =============================================================================
+# VERSION INFORMATION
+# =============================================================================
+
+version:gmrepo-v3 a ds:Version ;
+    ds:versionName "GMrepo v3" ;
+    ds:versionDate "2023"^^xsd:gYear ;
+    ds:belongsToSource data:gmrepo ;
+    rdfs:comment "Current version with 118,965 samples." .
+
+version:hmp1 a ds:Version ;
+    ds:versionName "HMP Phase 1" ;
+    ds:belongsToSource data:hmp-gut, data:hmp-bodysite ;
+    rdfs:comment "Original healthy cohort characterization." .
+
+version:ihmp a ds:Version ;
+    ds:versionName "iHMP (Phase 2)" ;
+    ds:belongsToSource data:hmp-gut, data:hmp-bodysite ;
+    rdfs:comment "Integrative HMP with disease studies (IBDMDB, T2D, MOMS-PI)." .
+
+version:igc a ds:Version ;
+    ds:versionName "Integrated Gene Catalog" ;
+    ds:versionDate "2014"^^xsd:gYear ;
+    ds:belongsToSource data:metahit ;
+    ds:size "4 GB compressed, 20 GB uncompressed" ;
+    rdfs:comment "10M+ reference genes from gut metagenomes." .
+
+version:homd-v15 a ds:Version ;
+    ds:versionName "HOMD RefSeq V15.23" ;
+    ds:belongsToSource data:homd ;
+    rdfs:comment "Current 16S reference database version." .
+
+version:recon3d a ds:Version ;
+    ds:versionName "Recon3D" ;
+    ds:belongsToSource data:vmh ;
+    ds:size "50-100 MB" ;
+    rdfs:comment "Human genome-scale metabolic reconstruction." .
+
+version:agora2 a ds:Version ;
+    ds:versionName "AGORA2" ;
+    ds:versionDate "2023"^^xsd:gYear ;
+    ds:belongsToSource data:vmh ;
+    ds:size "5 GB (all models)" ;
+    rdfs:comment "7,206 gut microbe metabolic reconstructions." .
+
+# =============================================================================
+# END OF FILE
+# =============================================================================

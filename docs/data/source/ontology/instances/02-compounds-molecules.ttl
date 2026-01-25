@@ -1,0 +1,1512 @@
+# Compounds & Molecules Data Source Instances
+# Generated from documentation in /docs/data/source/resource/02.compounds.molecules/
+# Category: compounds.molecules
+
+@prefix ds: <https://gene.example.org/ontology/datasource#> .
+@prefix data: <https://gene.example.org/data/source/> .
+@prefix tax: <https://gene.example.org/taxonomy/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+
+# =============================================================================
+# SUBCATEGORY: 2.1 Natural Products
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# COCONUT - COlleCtion of Open Natural prodUcTs
+# -----------------------------------------------------------------------------
+
+data:coconut a ds:DataSource ;
+    ds:id "coconut" ;
+    ds:title "COCONUT - COlleCtion of Open Natural prodUcTs"@en ;
+    ds:description "One of the largest open databases of natural products, aggregating compound data from over 50 source databases with comprehensive structural, physicochemical, and biological information."@en ;
+    ds:tier 1 ;
+    ds:status tax:status-active ;
+    ds:category tax:category-compounds-molecules ;
+    ds:subcategory tax:subcategory-natural-products ;
+    ds:maintainer "Steinbeck Lab, Friedrich Schiller University Jena" ;
+    ds:website <https://coconut.naturalproducts.net> ;
+    ds:updateFrequency "quarterly" ;
+    ds:recordCount 450000 ;
+    ds:hasLicense data:coconut-license ;
+    ds:hasAccessMethod data:coconut-api, data:coconut-download ;
+    ds:hasIdentifier data:coconut-id-coconut, data:coconut-id-inchikey ;
+    ds:hasUseCase data:coconut-usecase-1, data:coconut-usecase-2, data:coconut-usecase-3, data:coconut-usecase-4, data:coconut-usecase-5 ;
+    ds:hasLimitation data:coconut-limitation-1 .
+
+data:coconut-license a ds:License ;
+    ds:licenseName "Creative Commons Attribution 4.0"@en ;
+    ds:spdxId "CC-BY-4.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistribution true .
+
+data:coconut-api a ds:AccessMethod ;
+    ds:methodType tax:access-rest-api ;
+    ds:url <https://coconut.naturalproducts.net/api> ;
+    ds:format tax:format-json .
+
+data:coconut-download a ds:AccessMethod ;
+    ds:methodType tax:access-bulk-download ;
+    ds:url <https://coconut.naturalproducts.net/download> ;
+    ds:format tax:format-sdf, tax:format-csv, tax:format-json .
+
+data:coconut-id-coconut a ds:Identifier ;
+    ds:identifierType "COCONUT ID" ;
+    ds:pattern "CNP + 7 digits" ;
+    ds:example "CNP0123456" .
+
+data:coconut-id-inchikey a ds:Identifier ;
+    ds:identifierType "InChI Key" ;
+    ds:pattern "27 characters" ;
+    ds:example "BSYNRYMUTXBXSQ-UHFFFAOYSA-N" .
+
+data:coconut-usecase-1 a ds:UseCase ;
+    ds:description "Natural Product Drug Discovery - Identify bioactive scaffolds and lead compounds from natural sources"@en .
+
+data:coconut-usecase-2 a ds:UseCase ;
+    ds:description "Structure-Activity Relationship Studies - Explore chemical diversity and scaffold analysis"@en .
+
+data:coconut-usecase-3 a ds:UseCase ;
+    ds:description "Compound Dereplication - Check novelty of isolated natural products against known compounds"@en .
+
+data:coconut-usecase-4 a ds:UseCase ;
+    ds:description "Organism-Compound Mapping - Link natural products to their biological source species"@en .
+
+data:coconut-usecase-5 a ds:UseCase ;
+    ds:description "Drug-Likeness Screening - Filter compounds by physicochemical properties"@en .
+
+data:coconut-limitation-1 a ds:Limitation ;
+    ds:description "Aggregated data quality varies across source databases; some entries may lack complete structural validation"@en .
+
+# -----------------------------------------------------------------------------
+# Dr. Duke's Phytochemical and Ethnobotanical Databases
+# -----------------------------------------------------------------------------
+
+data:dr-dukes a ds:DataSource ;
+    ds:id "dr.dukes" ;
+    ds:title "Dr. Duke's Phytochemical and Ethnobotanical Databases"@en ;
+    ds:description "Authoritative resources compiled by Dr. James A. Duke documenting the chemical constituents of plants and their traditional uses across cultures."@en ;
+    ds:tier 2 ;
+    ds:status tax:status-active ;
+    ds:category tax:category-compounds-molecules ;
+    ds:subcategory tax:subcategory-natural-products ;
+    ds:maintainer "USDA Agricultural Research Service" ;
+    ds:website <https://phytochem.nal.usda.gov/> ;
+    ds:updateFrequency "archived (2016)" ;
+    ds:recordCount 49788 ;
+    ds:hasLicense data:dr-dukes-license ;
+    ds:hasAccessMethod data:dr-dukes-web, data:dr-dukes-download ;
+    ds:hasIdentifier data:dr-dukes-id-plant, data:dr-dukes-id-cas ;
+    ds:hasUseCase data:dr-dukes-usecase-1, data:dr-dukes-usecase-2, data:dr-dukes-usecase-3 ;
+    ds:hasLimitation data:dr-dukes-limitation-1 .
+
+data:dr-dukes-license a ds:License ;
+    ds:licenseName "Public Domain (CC0)"@en ;
+    ds:spdxId "CC0-1.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired false ;
+    ds:redistribution true .
+
+data:dr-dukes-web a ds:AccessMethod ;
+    ds:methodType tax:access-web-interface ;
+    ds:url <https://phytochem.nal.usda.gov/> .
+
+data:dr-dukes-download a ds:AccessMethod ;
+    ds:methodType tax:access-bulk-download ;
+    ds:url <https://ndownloader.figshare.com/files/43363335> ;
+    ds:format tax:format-csv .
+
+data:dr-dukes-id-plant a ds:Identifier ;
+    ds:identifierType "Plant Name" ;
+    ds:pattern "Binomial" ;
+    ds:example "Curcuma longa" .
+
+data:dr-dukes-id-cas a ds:Identifier ;
+    ds:identifierType "CAS Number" ;
+    ds:pattern "Variable" ;
+    ds:example "458-37-7" .
+
+data:dr-dukes-usecase-1 a ds:UseCase ;
+    ds:description "Ethnopharmacological Research - Connect traditional plant uses to bioactive compounds"@en .
+
+data:dr-dukes-usecase-2 a ds:UseCase ;
+    ds:description "Phytochemical Analysis - Find chemical constituents and concentrations in plants"@en .
+
+data:dr-dukes-usecase-3 a ds:UseCase ;
+    ds:description "Drug Discovery - Identify bioactive compounds from traditionally used plants"@en .
+
+data:dr-dukes-limitation-1 a ds:Limitation ;
+    ds:description "Data spans 1992-2016 only (archived, no longer updated); historical compound names may not match modern nomenclature"@en .
+
+# -----------------------------------------------------------------------------
+# LOTUS - Linked Open Total Unified Structure-organism
+# -----------------------------------------------------------------------------
+
+data:lotus a ds:DataSource ;
+    ds:id "lotus" ;
+    ds:title "LOTUS - Linked Open Total Unified Structure-organism"@en ;
+    ds:description "The largest publicly available database linking natural product chemical structures to their biological source organisms with literature evidence, fully integrated into Wikidata."@en ;
+    ds:tier 1 ;
+    ds:status tax:status-active ;
+    ds:category tax:category-compounds-molecules ;
+    ds:subcategory tax:subcategory-natural-products ;
+    ds:maintainer "LOTUS Initiative" ;
+    ds:website <https://lotus.naturalproducts.net> ;
+    ds:updateFrequency "continuous (Wikidata)" ;
+    ds:recordCount 750000 ;
+    ds:hasLicense data:lotus-license ;
+    ds:hasAccessMethod data:lotus-sparql, data:lotus-web, data:lotus-zenodo ;
+    ds:hasIdentifier data:lotus-id-wikidata, data:lotus-id-inchikey, data:lotus-id-ncbi ;
+    ds:hasUseCase data:lotus-usecase-1, data:lotus-usecase-2, data:lotus-usecase-3 ;
+    ds:hasLimitation data:lotus-limitation-1 .
+
+data:lotus-license a ds:License ;
+    ds:licenseName "Public Domain (CC0)"@en ;
+    ds:spdxId "CC0-1.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired false ;
+    ds:redistribution true .
+
+data:lotus-sparql a ds:AccessMethod ;
+    ds:methodType tax:access-sparql ;
+    ds:url <https://query.wikidata.org> ;
+    ds:format tax:format-rdf .
+
+data:lotus-web a ds:AccessMethod ;
+    ds:methodType tax:access-web-interface ;
+    ds:url <https://lotus.naturalproducts.net> .
+
+data:lotus-zenodo a ds:AccessMethod ;
+    ds:methodType tax:access-bulk-download ;
+    ds:url <https://doi.org/10.5281/zenodo.5794106> ;
+    ds:format tax:format-tsv, tax:format-json .
+
+data:lotus-id-wikidata a ds:Identifier ;
+    ds:identifierType "Wikidata QID" ;
+    ds:pattern "Q + digits" ;
+    ds:example "Q312879" .
+
+data:lotus-id-inchikey a ds:Identifier ;
+    ds:identifierType "InChI Key" ;
+    ds:pattern "27 characters" ;
+    ds:example "KZJWDPNRJALLNS-VJSFXXLFSA-N" .
+
+data:lotus-id-ncbi a ds:Identifier ;
+    ds:identifierType "NCBI Taxon ID" ;
+    ds:pattern "Integer" ;
+    ds:example "3702" .
+
+data:lotus-usecase-1 a ds:UseCase ;
+    ds:description "Natural Product Origin Verification - Validate which organisms produce specific compounds"@en .
+
+data:lotus-usecase-2 a ds:UseCase ;
+    ds:description "Chemotaxonomy Research - Study chemical patterns across taxonomic groups"@en .
+
+data:lotus-usecase-3 a ds:UseCase ;
+    ds:description "Wikidata Integration - Federated queries combining LOTUS with other knowledge bases"@en .
+
+data:lotus-limitation-1 a ds:Limitation ;
+    ds:description "Data inherited from source databases may contain errors; Wikidata query interface has rate limits for large queries"@en .
+
+# -----------------------------------------------------------------------------
+# NPASS - Natural Product Activity and Species Source Database
+# -----------------------------------------------------------------------------
+
+data:npass a ds:DataSource ;
+    ds:id "npass" ;
+    ds:title "NPASS - Natural Product Activity and Species Source Database"@en ;
+    ds:description "Comprehensive resource integrating natural product structural data with quantitative bioactivity information and species source data."@en ;
+    ds:tier 2 ;
+    ds:status tax:status-active ;
+    ds:category tax:category-compounds-molecules ;
+    ds:subcategory tax:subcategory-natural-products ;
+    ds:maintainer "BIDD Group" ;
+    ds:website <http://bidd.group/NPASS/> ;
+    ds:updateFrequency "annual" ;
+    ds:recordCount 35000 ;
+    ds:hasLicense data:npass-license ;
+    ds:hasAccessMethod data:npass-web, data:npass-download ;
+    ds:hasIdentifier data:npass-id-npass, data:npass-id-inchikey ;
+    ds:hasUseCase data:npass-usecase-1, data:npass-usecase-2 ;
+    ds:hasLimitation data:npass-limitation-1 .
+
+data:npass-license a ds:License ;
+    ds:licenseName "Creative Commons Attribution-NonCommercial 4.0"@en ;
+    ds:spdxId "CC-BY-NC-4.0" ;
+    ds:commercialUse false ;
+    ds:attributionRequired true ;
+    ds:redistribution true ;
+    ds:commercialLicenseContact "journals.permissions@oup.com" .
+
+data:npass-web a ds:AccessMethod ;
+    ds:methodType tax:access-web-interface ;
+    ds:url <http://bidd.group/NPASS/> .
+
+data:npass-download a ds:AccessMethod ;
+    ds:methodType tax:access-bulk-download ;
+    ds:url <http://bidd.group/NPASS/download.html> ;
+    ds:format tax:format-sdf, tax:format-tsv .
+
+data:npass-id-npass a ds:Identifier ;
+    ds:identifierType "NPASS ID" ;
+    ds:pattern "NPC + digits" ;
+    ds:example "NPC12345" .
+
+data:npass-id-inchikey a ds:Identifier ;
+    ds:identifierType "InChI Key" ;
+    ds:pattern "27 characters" .
+
+data:npass-usecase-1 a ds:UseCase ;
+    ds:description "Bioactivity Mining - Find natural products with specific activity profiles"@en .
+
+data:npass-usecase-2 a ds:UseCase ;
+    ds:description "Species-Activity Correlation - Identify organisms producing bioactive compounds"@en .
+
+data:npass-limitation-1 a ds:Limitation ;
+    ds:description "Commercial use requires contact with database maintainers; limited API access compared to other databases"@en .
+
+# -----------------------------------------------------------------------------
+# NPAtlas - Natural Products Atlas
+# -----------------------------------------------------------------------------
+
+data:npatlas a ds:DataSource ;
+    ds:id "npatlas" ;
+    ds:title "NPAtlas - Natural Products Atlas"@en ;
+    ds:description "Curated database of microbial natural products with emphasis on compounds from bacteria, fungi, and marine microorganisms."@en ;
+    ds:tier 2 ;
+    ds:status tax:status-active ;
+    ds:category tax:category-compounds-molecules ;
+    ds:subcategory tax:subcategory-natural-products ;
+    ds:maintainer "Lininston Lab" ;
+    ds:website <https://www.npatlas.org> ;
+    ds:updateFrequency "annual" ;
+    ds:recordCount 33000 ;
+    ds:hasLicense data:npatlas-license ;
+    ds:hasAccessMethod data:npatlas-api, data:npatlas-download ;
+    ds:hasIdentifier data:npatlas-id-npatlas, data:npatlas-id-inchikey ;
+    ds:hasUseCase data:npatlas-usecase-1, data:npatlas-usecase-2 ;
+    ds:hasLimitation data:npatlas-limitation-1 .
+
+data:npatlas-license a ds:License ;
+    ds:licenseName "Creative Commons Attribution 4.0"@en ;
+    ds:spdxId "CC-BY-4.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistribution true .
+
+data:npatlas-api a ds:AccessMethod ;
+    ds:methodType tax:access-rest-api ;
+    ds:url <https://www.npatlas.org/api/v1> ;
+    ds:format tax:format-json .
+
+data:npatlas-download a ds:AccessMethod ;
+    ds:methodType tax:access-bulk-download ;
+    ds:url <https://www.npatlas.org/download> ;
+    ds:format tax:format-json, tax:format-sdf .
+
+data:npatlas-id-npatlas a ds:Identifier ;
+    ds:identifierType "NPAtlas ID" ;
+    ds:pattern "NPA + digits" ;
+    ds:example "NPA012345" .
+
+data:npatlas-id-inchikey a ds:Identifier ;
+    ds:identifierType "InChI Key" ;
+    ds:pattern "27 characters" .
+
+data:npatlas-usecase-1 a ds:UseCase ;
+    ds:description "Microbial Natural Product Research - Explore bacterial and fungal metabolites"@en .
+
+data:npatlas-usecase-2 a ds:UseCase ;
+    ds:description "Dereplication - Identify known compounds from mass spectrometry data"@en .
+
+data:npatlas-limitation-1 a ds:Limitation ;
+    ds:description "Focus on microbial sources; plant compounds less represented; bioactivity data not included for all compounds"@en .
+
+# =============================================================================
+# SUBCATEGORY: 2.2 Pharmaceuticals
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# ChEMBL - Bioactivity Database
+# -----------------------------------------------------------------------------
+
+data:chembl a ds:DataSource ;
+    ds:id "chembl" ;
+    ds:title "ChEMBL - Bioactivity Database"@en ;
+    ds:description "Manually curated database of bioactive molecules with drug-like properties maintained by EMBL-EBI, containing bioactivity data from scientific literature."@en ;
+    ds:tier 1 ;
+    ds:status tax:status-active ;
+    ds:category tax:category-compounds-molecules ;
+    ds:subcategory tax:subcategory-pharmaceuticals ;
+    ds:maintainer "EMBL-EBI" ;
+    ds:website <https://www.ebi.ac.uk/chembl/> ;
+    ds:updateFrequency "semi-annual" ;
+    ds:recordCount 2400000 ;
+    ds:hasLicense data:chembl-license ;
+    ds:hasAccessMethod data:chembl-api, data:chembl-ftp, data:chembl-web ;
+    ds:hasIdentifier data:chembl-id-chembl, data:chembl-id-inchikey ;
+    ds:hasUseCase data:chembl-usecase-1, data:chembl-usecase-2, data:chembl-usecase-3 ;
+    ds:hasLimitation data:chembl-limitation-1 .
+
+data:chembl-license a ds:License ;
+    ds:licenseName "Creative Commons Attribution-ShareAlike 3.0"@en ;
+    ds:spdxId "CC-BY-SA-3.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistribution true ;
+    ds:shareAlike true .
+
+data:chembl-api a ds:AccessMethod ;
+    ds:methodType tax:access-rest-api ;
+    ds:url <https://www.ebi.ac.uk/chembl/api/data> ;
+    ds:format tax:format-json, tax:format-xml .
+
+data:chembl-ftp a ds:AccessMethod ;
+    ds:methodType tax:access-ftp ;
+    ds:url <https://ftp.ebi.ac.uk/pub/databases/chembl/> ;
+    ds:format tax:format-sdf, tax:format-tsv .
+
+data:chembl-web a ds:AccessMethod ;
+    ds:methodType tax:access-web-interface ;
+    ds:url <https://www.ebi.ac.uk/chembl/> .
+
+data:chembl-id-chembl a ds:Identifier ;
+    ds:identifierType "ChEMBL ID" ;
+    ds:pattern "CHEMBL + digits" ;
+    ds:example "CHEMBL25" .
+
+data:chembl-id-inchikey a ds:Identifier ;
+    ds:identifierType "InChI Key" ;
+    ds:pattern "27 characters" .
+
+data:chembl-usecase-1 a ds:UseCase ;
+    ds:description "Drug Discovery - Identify active compounds against targets of interest"@en .
+
+data:chembl-usecase-2 a ds:UseCase ;
+    ds:description "SAR Analysis - Explore structure-activity relationships systematically"@en .
+
+data:chembl-usecase-3 a ds:UseCase ;
+    ds:description "ADMET Prediction - Train models on curated property data"@en .
+
+data:chembl-limitation-1 a ds:Limitation ;
+    ds:description "Activity values extracted from literature may have measurement variability; assay conditions vary across sources"@en .
+
+# -----------------------------------------------------------------------------
+# DailyMed - FDA Drug Labeling
+# -----------------------------------------------------------------------------
+
+data:dailymed a ds:DataSource ;
+    ds:id "dailymed" ;
+    ds:title "DailyMed - FDA Drug Labeling"@en ;
+    ds:description "High-quality information about marketed drugs in the United States, including FDA-approved prescription and over-the-counter drug labeling."@en ;
+    ds:tier 2 ;
+    ds:status tax:status-active ;
+    ds:category tax:category-compounds-molecules ;
+    ds:subcategory tax:subcategory-pharmaceuticals ;
+    ds:maintainer "National Library of Medicine (NLM)" ;
+    ds:website <https://dailymed.nlm.nih.gov> ;
+    ds:updateFrequency "daily" ;
+    ds:recordCount 140000 ;
+    ds:hasLicense data:dailymed-license ;
+    ds:hasAccessMethod data:dailymed-api, data:dailymed-ftp, data:dailymed-web ;
+    ds:hasIdentifier data:dailymed-id-setid, data:dailymed-id-ndc ;
+    ds:hasUseCase data:dailymed-usecase-1, data:dailymed-usecase-2 ;
+    ds:hasLimitation data:dailymed-limitation-1 .
+
+data:dailymed-license a ds:License ;
+    ds:licenseName "Public Domain (US Government Work)"@en ;
+    ds:spdxId "CC0-1.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired false ;
+    ds:redistribution true .
+
+data:dailymed-api a ds:AccessMethod ;
+    ds:methodType tax:access-rest-api ;
+    ds:url <https://dailymed.nlm.nih.gov/dailymed/services> ;
+    ds:format tax:format-xml .
+
+data:dailymed-ftp a ds:AccessMethod ;
+    ds:methodType tax:access-ftp ;
+    ds:url <https://dailymed.nlm.nih.gov/dailymed/spl-resources> ;
+    ds:format tax:format-xml .
+
+data:dailymed-web a ds:AccessMethod ;
+    ds:methodType tax:access-web-interface ;
+    ds:url <https://dailymed.nlm.nih.gov> .
+
+data:dailymed-id-setid a ds:Identifier ;
+    ds:identifierType "Set ID (SPL)" ;
+    ds:pattern "UUID" ;
+    ds:example "0000a193-4512-468c-93b2-5aae1c..." .
+
+data:dailymed-id-ndc a ds:Identifier ;
+    ds:identifierType "NDC" ;
+    ds:pattern "10-11 digits" ;
+    ds:example "0002-3228-30" .
+
+data:dailymed-usecase-1 a ds:UseCase ;
+    ds:description "Drug Label Lookup - Access official FDA-approved labeling"@en .
+
+data:dailymed-usecase-2 a ds:UseCase ;
+    ds:description "Data Integration - SPL-formatted data for health IT systems"@en .
+
+data:dailymed-limitation-1 a ds:Limitation ;
+    ds:description "US market drugs only; international products not included; SPL parsing can be complex"@en .
+
+# -----------------------------------------------------------------------------
+# DrugBank - Comprehensive Drug Database
+# -----------------------------------------------------------------------------
+
+data:drugbank a ds:DataSource ;
+    ds:id "drugbank" ;
+    ds:title "DrugBank - Comprehensive Drug Database"@en ;
+    ds:description "Comprehensive online database containing detailed drug and drug target information, combining chemical, pharmacological, and pharmaceutical data with drug target information."@en ;
+    ds:tier 1 ;
+    ds:status tax:status-active ;
+    ds:category tax:category-compounds-molecules ;
+    ds:subcategory tax:subcategory-pharmaceuticals ;
+    ds:maintainer "DrugBank Online / University of Alberta" ;
+    ds:website <https://go.drugbank.com> ;
+    ds:updateFrequency "quarterly" ;
+    ds:recordCount 16000 ;
+    ds:hasLicense data:drugbank-license ;
+    ds:hasAccessMethod data:drugbank-web, data:drugbank-download ;
+    ds:hasIdentifier data:drugbank-id-drugbank, data:drugbank-id-cas ;
+    ds:hasUseCase data:drugbank-usecase-1, data:drugbank-usecase-2, data:drugbank-usecase-3 ;
+    ds:hasLimitation data:drugbank-limitation-1 .
+
+data:drugbank-license a ds:License ;
+    ds:licenseName "Creative Commons Attribution-NonCommercial 4.0 (Academic)"@en ;
+    ds:spdxId "CC-BY-NC-4.0" ;
+    ds:commercialUse false ;
+    ds:attributionRequired true ;
+    ds:redistribution true ;
+    ds:commercialLicenseContact "https://go.drugbank.com/" .
+
+data:drugbank-web a ds:AccessMethod ;
+    ds:methodType tax:access-web-interface ;
+    ds:url <https://go.drugbank.com> .
+
+data:drugbank-download a ds:AccessMethod ;
+    ds:methodType tax:access-bulk-download ;
+    ds:url <https://go.drugbank.com/releases/latest> ;
+    ds:format tax:format-xml ;
+    ds:note "Free with academic registration" .
+
+data:drugbank-id-drugbank a ds:Identifier ;
+    ds:identifierType "DrugBank ID" ;
+    ds:pattern "DB + 5 digits" ;
+    ds:example "DB00945" .
+
+data:drugbank-id-cas a ds:Identifier ;
+    ds:identifierType "CAS Number" ;
+    ds:pattern "Variable" ;
+    ds:example "50-78-2" .
+
+data:drugbank-usecase-1 a ds:UseCase ;
+    ds:description "Drug Information Lookup - Access comprehensive drug profiles"@en .
+
+data:drugbank-usecase-2 a ds:UseCase ;
+    ds:description "Interaction Checking - Identify drug-drug and drug-food interactions"@en .
+
+data:drugbank-usecase-3 a ds:UseCase ;
+    ds:description "Target Identification - Find drug targets and mechanisms"@en .
+
+data:drugbank-limitation-1 a ds:Limitation ;
+    ds:description "Commercial use requires paid subscription; API access restricted without subscription"@en .
+
+# -----------------------------------------------------------------------------
+# FDA Orange Book - Approved Drug Products
+# -----------------------------------------------------------------------------
+
+data:orange-book a ds:DataSource ;
+    ds:id "orange.book" ;
+    ds:title "FDA Orange Book - Approved Drug Products"@en ;
+    ds:description "Definitive list of drug products approved by FDA for safety and efficacy, providing therapeutic equivalence evaluations, patent information, and exclusivity data."@en ;
+    ds:tier 2 ;
+    ds:status tax:status-active ;
+    ds:category tax:category-compounds-molecules ;
+    ds:subcategory tax:subcategory-pharmaceuticals ;
+    ds:maintainer "U.S. Food and Drug Administration" ;
+    ds:website <https://www.accessdata.fda.gov/scripts/cder/ob/> ;
+    ds:updateFrequency "monthly" ;
+    ds:recordCount 34000 ;
+    ds:hasLicense data:orange-book-license ;
+    ds:hasAccessMethod data:orange-book-web, data:orange-book-download ;
+    ds:hasIdentifier data:orange-book-id-nda, data:orange-book-id-te ;
+    ds:hasUseCase data:orange-book-usecase-1, data:orange-book-usecase-2 ;
+    ds:hasLimitation data:orange-book-limitation-1 .
+
+data:orange-book-license a ds:License ;
+    ds:licenseName "Public Domain (US Government Work)"@en ;
+    ds:spdxId "CC0-1.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired false ;
+    ds:redistribution true .
+
+data:orange-book-web a ds:AccessMethod ;
+    ds:methodType tax:access-web-interface ;
+    ds:url <https://www.accessdata.fda.gov/scripts/cder/ob/> .
+
+data:orange-book-download a ds:AccessMethod ;
+    ds:methodType tax:access-bulk-download ;
+    ds:url <https://www.fda.gov/drugs/drug-approvals-and-databases/orange-book-data-files> ;
+    ds:format tax:format-zip .
+
+data:orange-book-id-nda a ds:Identifier ;
+    ds:identifierType "Application Number" ;
+    ds:pattern "NDA/ANDA + digits" ;
+    ds:example "NDA020702" .
+
+data:orange-book-id-te a ds:Identifier ;
+    ds:identifierType "TE Code" ;
+    ds:pattern "Letter codes" ;
+    ds:example "AB" .
+
+data:orange-book-usecase-1 a ds:UseCase ;
+    ds:description "Generic Drug Development - Identify reference listed drugs for ANDAs"@en .
+
+data:orange-book-usecase-2 a ds:UseCase ;
+    ds:description "Patent Research - Assess patent landscape for market entry"@en .
+
+data:orange-book-limitation-1 a ds:Limitation ;
+    ds:description "US market only; patent listings may not be current between monthly updates"@en .
+
+# -----------------------------------------------------------------------------
+# RxNorm - Normalized Drug Nomenclature
+# -----------------------------------------------------------------------------
+
+data:rxnorm a ds:DataSource ;
+    ds:id "rxnorm" ;
+    ds:title "RxNorm - Normalized Drug Nomenclature"@en ;
+    ds:description "Standardized nomenclature for clinical drugs produced by NLM, providing normalized names and linking drug names from various vocabularies to common identifiers."@en ;
+    ds:tier 1 ;
+    ds:status tax:status-active ;
+    ds:category tax:category-compounds-molecules ;
+    ds:subcategory tax:subcategory-pharmaceuticals ;
+    ds:maintainer "National Library of Medicine" ;
+    ds:website <https://rxnav.nlm.nih.gov> ;
+    ds:updateFrequency "monthly" ;
+    ds:recordCount 300000 ;
+    ds:hasLicense data:rxnorm-license ;
+    ds:hasAccessMethod data:rxnorm-api, data:rxnorm-umls ;
+    ds:hasIdentifier data:rxnorm-id-rxcui, data:rxnorm-id-ndc ;
+    ds:hasUseCase data:rxnorm-usecase-1, data:rxnorm-usecase-2 ;
+    ds:hasLimitation data:rxnorm-limitation-1 .
+
+data:rxnorm-license a ds:License ;
+    ds:licenseName "UMLS License"@en ;
+    ds:spdxId "Custom" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistribution true ;
+    ds:note "Requires free UMLS registration" .
+
+data:rxnorm-api a ds:AccessMethod ;
+    ds:methodType tax:access-rest-api ;
+    ds:url <https://rxnav.nlm.nih.gov/REST> ;
+    ds:format tax:format-json, tax:format-xml .
+
+data:rxnorm-umls a ds:AccessMethod ;
+    ds:methodType tax:access-bulk-download ;
+    ds:url <https://www.nlm.nih.gov/research/umls/> ;
+    ds:note "Requires UMLS account" .
+
+data:rxnorm-id-rxcui a ds:Identifier ;
+    ds:identifierType "RXCUI" ;
+    ds:pattern "Integer" ;
+    ds:example "161" .
+
+data:rxnorm-id-ndc a ds:Identifier ;
+    ds:identifierType "NDC" ;
+    ds:pattern "10-11 digits" .
+
+data:rxnorm-usecase-1 a ds:UseCase ;
+    ds:description "Drug Name Normalization - Standardize drug names across systems"@en .
+
+data:rxnorm-usecase-2 a ds:UseCase ;
+    ds:description "EHR Integration - Consistent medication representation"@en .
+
+data:rxnorm-limitation-1 a ds:Limitation ;
+    ds:description "Primarily US drug products; UMLS license required for full download"@en .
+
+# =============================================================================
+# SUBCATEGORY: 2.4 Food Compounds & Nutrients
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Phenol-Explorer - Polyphenol Database
+# -----------------------------------------------------------------------------
+
+data:phenol-explorer a ds:DataSource ;
+    ds:id "phenol.explorer" ;
+    ds:title "Phenol-Explorer - Polyphenol Database"@en ;
+    ds:description "Most comprehensive database on polyphenol content in foods and beverages, containing data on 500+ polyphenol compounds in 400+ foods with metabolism and pharmacokinetics data."@en ;
+    ds:tier 2 ;
+    ds:status tax:status-active ;
+    ds:category tax:category-compounds-molecules ;
+    ds:subcategory tax:subcategory-food-compounds ;
+    ds:maintainer "INRAE / Phenol-Explorer Team" ;
+    ds:website <http://phenol-explorer.eu> ;
+    ds:recordCount 500 ;
+    ds:hasLicense data:phenol-explorer-license ;
+    ds:hasAccessMethod data:phenol-explorer-web ;
+    ds:hasIdentifier data:phenol-explorer-id-compound, data:phenol-explorer-id-pubchem ;
+    ds:hasUseCase data:phenol-explorer-usecase-1, data:phenol-explorer-usecase-2 ;
+    ds:hasLimitation data:phenol-explorer-limitation-1 .
+
+data:phenol-explorer-license a ds:License ;
+    ds:licenseName "Creative Commons Attribution-NonCommercial 3.0"@en ;
+    ds:spdxId "CC-BY-NC-3.0" ;
+    ds:commercialUse false ;
+    ds:attributionRequired true ;
+    ds:redistribution true ;
+    ds:note "Commercial use requires contacting database maintainers" .
+
+data:phenol-explorer-web a ds:AccessMethod ;
+    ds:methodType tax:access-web-interface ;
+    ds:url <http://phenol-explorer.eu> .
+
+data:phenol-explorer-id-compound a ds:Identifier ;
+    ds:identifierType "Compound ID" ;
+    ds:pattern "Integer" ;
+    ds:example "1 (Quercetin)" .
+
+data:phenol-explorer-id-pubchem a ds:Identifier ;
+    ds:identifierType "PubChem CID" ;
+    ds:pattern "Integer" .
+
+data:phenol-explorer-usecase-1 a ds:UseCase ;
+    ds:description "Dietary Assessment - Calculate polyphenol intake from food records"@en .
+
+data:phenol-explorer-usecase-2 a ds:UseCase ;
+    ds:description "Biomarker Research - Identify metabolites for exposure assessment"@en .
+
+data:phenol-explorer-limitation-1 a ds:Limitation ;
+    ds:description "Commercial use requires contacting database maintainers; food composition varies by cultivar, season, and processing"@en .
+
+# -----------------------------------------------------------------------------
+# PhytoHub - Dietary Phytochemical Metabolome
+# -----------------------------------------------------------------------------
+
+data:phytohub a ds:DataSource ;
+    ds:id "phytohub" ;
+    ds:title "PhytoHub - Dietary Phytochemical Metabolome"@en ;
+    ds:description "Comprehensive database of dietary phytochemicals and their human and microbial metabolites, providing essential reference data for metabolomics studies."@en ;
+    ds:tier 2 ;
+    ds:status tax:status-active ;
+    ds:category tax:category-compounds-molecules ;
+    ds:subcategory tax:subcategory-food-compounds ;
+    ds:maintainer "INRAE" ;
+    ds:website <http://phytohub.eu> ;
+    ds:recordCount 1800 ;
+    ds:hasLicense data:phytohub-license ;
+    ds:hasAccessMethod data:phytohub-web ;
+    ds:hasIdentifier data:phytohub-id-phytohub, data:phytohub-id-inchikey ;
+    ds:hasUseCase data:phytohub-usecase-1, data:phytohub-usecase-2 ;
+    ds:hasLimitation data:phytohub-limitation-1 .
+
+data:phytohub-license a ds:License ;
+    ds:licenseName "Free for academic use"@en ;
+    ds:spdxId "Custom" ;
+    ds:commercialUse false ;
+    ds:attributionRequired true ;
+    ds:note "Commercial use requires contacting INRAE" .
+
+data:phytohub-web a ds:AccessMethod ;
+    ds:methodType tax:access-web-interface ;
+    ds:url <http://phytohub.eu> .
+
+data:phytohub-id-phytohub a ds:Identifier ;
+    ds:identifierType "PhytoHub ID" ;
+    ds:pattern "PHUB + digits" ;
+    ds:example "PHUB000001" .
+
+data:phytohub-id-inchikey a ds:Identifier ;
+    ds:identifierType "InChI Key" ;
+    ds:pattern "27 characters" .
+
+data:phytohub-usecase-1 a ds:UseCase ;
+    ds:description "Metabolomics Analysis - Identify phytochemical metabolites in biofluids"@en .
+
+data:phytohub-usecase-2 a ds:UseCase ;
+    ds:description "Biomarker Discovery - Find biomarkers of dietary intake"@en .
+
+data:phytohub-limitation-1 a ds:Limitation ;
+    ds:description "Commercial use requires contacting database maintainers; MS/MS spectra coverage not complete for all compounds"@en .
+
+# -----------------------------------------------------------------------------
+# USDA FoodData Central
+# -----------------------------------------------------------------------------
+
+data:usda-fooddata a ds:DataSource ;
+    ds:id "usda.fooddata" ;
+    ds:title "USDA FoodData Central"@en ;
+    ds:description "Authoritative source for food composition data in the United States, integrating data from multiple USDA data types including Foundation Foods and Branded Foods."@en ;
+    ds:tier 1 ;
+    ds:status tax:status-active ;
+    ds:category tax:category-compounds-molecules ;
+    ds:subcategory tax:subcategory-food-compounds ;
+    ds:maintainer "USDA Agricultural Research Service" ;
+    ds:website <https://fdc.nal.usda.gov> ;
+    ds:updateFrequency "continuous" ;
+    ds:recordCount 380000 ;
+    ds:hasLicense data:usda-fooddata-license ;
+    ds:hasAccessMethod data:usda-fooddata-api, data:usda-fooddata-download, data:usda-fooddata-web ;
+    ds:hasIdentifier data:usda-fooddata-id-fdc, data:usda-fooddata-id-ndb ;
+    ds:hasUseCase data:usda-fooddata-usecase-1, data:usda-fooddata-usecase-2 ;
+    ds:hasLimitation data:usda-fooddata-limitation-1 .
+
+data:usda-fooddata-license a ds:License ;
+    ds:licenseName "Public Domain (US Government Work)"@en ;
+    ds:spdxId "CC0-1.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired false ;
+    ds:redistribution true .
+
+data:usda-fooddata-api a ds:AccessMethod ;
+    ds:methodType tax:access-rest-api ;
+    ds:url <https://api.nal.usda.gov/fdc> ;
+    ds:format tax:format-json ;
+    ds:note "Requires free API key" .
+
+data:usda-fooddata-download a ds:AccessMethod ;
+    ds:methodType tax:access-bulk-download ;
+    ds:url <https://fdc.nal.usda.gov/download-datasets.html> ;
+    ds:format tax:format-csv, tax:format-json .
+
+data:usda-fooddata-web a ds:AccessMethod ;
+    ds:methodType tax:access-web-interface ;
+    ds:url <https://fdc.nal.usda.gov> .
+
+data:usda-fooddata-id-fdc a ds:Identifier ;
+    ds:identifierType "FDC ID" ;
+    ds:pattern "Integer" ;
+    ds:example "167512" .
+
+data:usda-fooddata-id-ndb a ds:Identifier ;
+    ds:identifierType "NDB Number" ;
+    ds:pattern "5 digits" ;
+    ds:example "01001" .
+
+data:usda-fooddata-usecase-1 a ds:UseCase ;
+    ds:description "Dietary Assessment - Calculate nutrient intake from food records"@en .
+
+data:usda-fooddata-usecase-2 a ds:UseCase ;
+    ds:description "Food Labeling - Reference values for Nutrition Facts labels"@en .
+
+data:usda-fooddata-limitation-1 a ds:Limitation ;
+    ds:description "Branded food data quality depends on manufacturer submissions; nutrient values represent averages"@en .
+
+# =============================================================================
+# SUBCATEGORY: 2.5 Drug Metabolism & Pharmacokinetics
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# SuperCYP - Cytochrome P450 Database
+# -----------------------------------------------------------------------------
+
+data:supercyp a ds:DataSource ;
+    ds:id "supercyp" ;
+    ds:title "SuperCYP - Cytochrome P450 Database"@en ;
+    ds:description "Comprehensive database dedicated to cytochrome P450 (CYP) enzyme interactions with drugs and other xenobiotics."@en ;
+    ds:tier 2 ;
+    ds:status tax:status-active ;
+    ds:category tax:category-compounds-molecules ;
+    ds:subcategory tax:subcategory-drug-metabolism ;
+    ds:maintainer "Charite - Universitatsmedizin Berlin" ;
+    ds:website <http://bioinformatics.charite.de/supercyp> ;
+    ds:recordCount 6000 ;
+    ds:hasLicense data:supercyp-license ;
+    ds:hasAccessMethod data:supercyp-web ;
+    ds:hasIdentifier data:supercyp-id-drug, data:supercyp-id-cyp ;
+    ds:hasUseCase data:supercyp-usecase-1, data:supercyp-usecase-2 ;
+    ds:hasLimitation data:supercyp-limitation-1 .
+
+data:supercyp-license a ds:License ;
+    ds:licenseName "Creative Commons Attribution-NonCommercial-ShareAlike 3.0"@en ;
+    ds:spdxId "CC-BY-NC-SA-3.0" ;
+    ds:commercialUse false ;
+    ds:attributionRequired true ;
+    ds:redistribution true ;
+    ds:shareAlike true .
+
+data:supercyp-web a ds:AccessMethod ;
+    ds:methodType tax:access-web-interface ;
+    ds:url <http://bioinformatics.charite.de/supercyp> .
+
+data:supercyp-id-drug a ds:Identifier ;
+    ds:identifierType "Drug Name" ;
+    ds:pattern "Text" ;
+    ds:example "Ketoconazole" .
+
+data:supercyp-id-cyp a ds:Identifier ;
+    ds:identifierType "CYP Isoform" ;
+    ds:pattern "CYP + code" ;
+    ds:example "CYP3A4" .
+
+data:supercyp-usecase-1 a ds:UseCase ;
+    ds:description "Drug Interaction Prediction - Identify potential CYP-mediated interactions"@en .
+
+data:supercyp-usecase-2 a ds:UseCase ;
+    ds:description "Metabolic Profiling - Determine which CYPs metabolize compounds"@en .
+
+data:supercyp-limitation-1 a ds:Limitation ;
+    ds:description "Commercial use requires contacting database maintainers; in vitro CYP data may not predict in vivo interactions"@en .
+
+# -----------------------------------------------------------------------------
+# SwissADME - ADME Property Prediction
+# -----------------------------------------------------------------------------
+
+data:swissadme a ds:DataSource ;
+    ds:id "swissadme" ;
+    ds:title "SwissADME - ADME Property Prediction"@en ;
+    ds:description "Free web tool for computing physicochemical descriptors and predicting ADME parameters, pharmacokinetics, drug-likeness, and medicinal chemistry friendliness."@en ;
+    ds:tier 2 ;
+    ds:status tax:status-active ;
+    ds:category tax:category-compounds-molecules ;
+    ds:subcategory tax:subcategory-drug-metabolism ;
+    ds:maintainer "Swiss Institute of Bioinformatics" ;
+    ds:website <http://www.swissadme.ch> ;
+    ds:hasLicense data:swissadme-license ;
+    ds:hasAccessMethod data:swissadme-web ;
+    ds:hasIdentifier data:swissadme-id-smiles, data:swissadme-id-inchikey ;
+    ds:hasUseCase data:swissadme-usecase-1, data:swissadme-usecase-2 ;
+    ds:hasLimitation data:swissadme-limitation-1 .
+
+data:swissadme-license a ds:License ;
+    ds:licenseName "Creative Commons Attribution 4.0 (for results)"@en ;
+    ds:spdxId "CC-BY-4.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:note "Tool free for internal research; redistribution of tool requires consent" .
+
+data:swissadme-web a ds:AccessMethod ;
+    ds:methodType tax:access-web-interface ;
+    ds:url <http://www.swissadme.ch> ;
+    ds:note "Up to 100 compounds per query" .
+
+data:swissadme-id-smiles a ds:Identifier ;
+    ds:identifierType "SMILES" ;
+    ds:pattern "String" ;
+    ds:example "CC(=O)OC1=CC=CC=C1C(=O)O" .
+
+data:swissadme-id-inchikey a ds:Identifier ;
+    ds:identifierType "InChI Key" ;
+    ds:pattern "27 characters" .
+
+data:swissadme-usecase-1 a ds:UseCase ;
+    ds:description "Lead Prioritization - Rank compounds by drug-likeness"@en .
+
+data:swissadme-usecase-2 a ds:UseCase ;
+    ds:description "ADME Assessment - Predict absorption and metabolism properties"@en .
+
+data:swissadme-limitation-1 a ds:Limitation ;
+    ds:description "Predictions are computational estimates; batch processing limited to 100 compounds"@en .
+
+# =============================================================================
+# SUBCATEGORY: 2.6 Chemical Ontology & Classification
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# ChEBI - Chemical Entities of Biological Interest
+# -----------------------------------------------------------------------------
+
+data:chebi a ds:DataSource ;
+    ds:id "chebi" ;
+    ds:title "ChEBI - Chemical Entities of Biological Interest"@en ;
+    ds:description "Freely available dictionary and ontology of molecular entities focused on small chemical compounds relevant to biological systems."@en ;
+    ds:tier 1 ;
+    ds:status tax:status-active ;
+    ds:category tax:category-compounds-molecules ;
+    ds:subcategory tax:subcategory-chemical-ontology ;
+    ds:maintainer "EMBL-EBI" ;
+    ds:website <https://www.ebi.ac.uk/chebi/> ;
+    ds:updateFrequency "monthly" ;
+    ds:recordCount 150000 ;
+    ds:hasLicense data:chebi-license ;
+    ds:hasAccessMethod data:chebi-api, data:chebi-sparql, data:chebi-download ;
+    ds:hasIdentifier data:chebi-id-chebi, data:chebi-id-inchikey ;
+    ds:hasUseCase data:chebi-usecase-1, data:chebi-usecase-2 ;
+    ds:hasLimitation data:chebi-limitation-1 .
+
+data:chebi-license a ds:License ;
+    ds:licenseName "Creative Commons Attribution 4.0"@en ;
+    ds:spdxId "CC-BY-4.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistribution true .
+
+data:chebi-api a ds:AccessMethod ;
+    ds:methodType tax:access-rest-api ;
+    ds:url <https://www.ebi.ac.uk/webservices/chebi> ;
+    ds:format tax:format-xml .
+
+data:chebi-sparql a ds:AccessMethod ;
+    ds:methodType tax:access-sparql ;
+    ds:url <https://www.ebi.ac.uk/rdf/services/sparql> ;
+    ds:format tax:format-rdf .
+
+data:chebi-download a ds:AccessMethod ;
+    ds:methodType tax:access-bulk-download ;
+    ds:url <https://www.ebi.ac.uk/chebi/downloadsForward.do> ;
+    ds:format tax:format-owl, tax:format-obo .
+
+data:chebi-id-chebi a ds:Identifier ;
+    ds:identifierType "ChEBI ID" ;
+    ds:pattern "CHEBI: + digits" ;
+    ds:example "CHEBI:15377" .
+
+data:chebi-id-inchikey a ds:Identifier ;
+    ds:identifierType "InChI Key" ;
+    ds:pattern "27 characters" .
+
+data:chebi-usecase-1 a ds:UseCase ;
+    ds:description "Chemical Annotation - Standardize chemical entity references in databases"@en .
+
+data:chebi-usecase-2 a ds:UseCase ;
+    ds:description "Ontology Queries - Find chemicals by role, structure class, or relationship"@en .
+
+data:chebi-limitation-1 a ds:Limitation ;
+    ds:description "Manual curation means some compounds not yet covered; biological role annotations may not be exhaustive"@en .
+
+# -----------------------------------------------------------------------------
+# ClassyFire - Chemical Taxonomy
+# -----------------------------------------------------------------------------
+
+data:classyfire a ds:DataSource ;
+    ds:id "classyfire" ;
+    ds:title "ClassyFire - Chemical Taxonomy"@en ;
+    ds:description "Web-based tool and hierarchical chemical taxonomy for automatic structural classification of chemical compounds."@en ;
+    ds:tier 2 ;
+    ds:status tax:status-active ;
+    ds:category tax:category-compounds-molecules ;
+    ds:subcategory tax:subcategory-chemical-ontology ;
+    ds:maintainer "Wishart Lab, University of Alberta" ;
+    ds:website <http://classyfire.wishartlab.com> ;
+    ds:recordCount 4800 ;
+    ds:hasLicense data:classyfire-license ;
+    ds:hasAccessMethod data:classyfire-api, data:classyfire-web ;
+    ds:hasIdentifier data:classyfire-id-smiles, data:classyfire-id-chemontid ;
+    ds:hasUseCase data:classyfire-usecase-1, data:classyfire-usecase-2 ;
+    ds:hasLimitation data:classyfire-limitation-1 .
+
+data:classyfire-license a ds:License ;
+    ds:licenseName "Free for academic use"@en ;
+    ds:spdxId "Custom" ;
+    ds:commercialUse false ;
+    ds:attributionRequired true ;
+    ds:note "Commercial use may require contacting Wishart Lab" .
+
+data:classyfire-api a ds:AccessMethod ;
+    ds:methodType tax:access-rest-api ;
+    ds:url <http://classyfire.wishartlab.com/api> ;
+    ds:format tax:format-json .
+
+data:classyfire-web a ds:AccessMethod ;
+    ds:methodType tax:access-web-interface ;
+    ds:url <http://classyfire.wishartlab.com> .
+
+data:classyfire-id-smiles a ds:Identifier ;
+    ds:identifierType "SMILES" ;
+    ds:pattern "String" .
+
+data:classyfire-id-chemontid a ds:Identifier ;
+    ds:identifierType "ClassyFire ID" ;
+    ds:pattern "CHEMONTID:nnnnnnnn" ;
+    ds:example "CHEMONTID:0000311" .
+
+data:classyfire-usecase-1 a ds:UseCase ;
+    ds:description "Metabolomics Annotation - Classify unknown metabolites by structure"@en .
+
+data:classyfire-usecase-2 a ds:UseCase ;
+    ds:description "Database Organization - Standardize chemical categorization"@en .
+
+data:classyfire-limitation-1 a ds:Limitation ;
+    ds:description "Commercial use may require contacting database maintainers; classification is purely structural"@en .
+
+# -----------------------------------------------------------------------------
+# NPClassifier - Natural Product Classification
+# -----------------------------------------------------------------------------
+
+data:npclassifier a ds:DataSource ;
+    ds:id "npclassifier" ;
+    ds:title "NPClassifier - Natural Product Classification"@en ;
+    ds:description "Deep learning-based tool for automated structural classification of natural products based on their predicted biosynthetic pathways."@en ;
+    ds:tier 2 ;
+    ds:status tax:status-active ;
+    ds:category tax:category-compounds-molecules ;
+    ds:subcategory tax:subcategory-chemical-ontology ;
+    ds:maintainer "UCSD Dorrestein Lab" ;
+    ds:website <https://npclassifier.ucsd.edu> ;
+    ds:hasLicense data:npclassifier-license ;
+    ds:hasAccessMethod data:npclassifier-api, data:npclassifier-web ;
+    ds:hasIdentifier data:npclassifier-id-smiles ;
+    ds:hasUseCase data:npclassifier-usecase-1, data:npclassifier-usecase-2 ;
+    ds:hasLimitation data:npclassifier-limitation-1 .
+
+data:npclassifier-license a ds:License ;
+    ds:licenseName "MIT"@en ;
+    ds:spdxId "MIT" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistribution true .
+
+data:npclassifier-api a ds:AccessMethod ;
+    ds:methodType tax:access-rest-api ;
+    ds:url <https://npclassifier.ucsd.edu/classify> ;
+    ds:format tax:format-json .
+
+data:npclassifier-web a ds:AccessMethod ;
+    ds:methodType tax:access-web-interface ;
+    ds:url <https://npclassifier.ucsd.edu> .
+
+data:npclassifier-id-smiles a ds:Identifier ;
+    ds:identifierType "SMILES" ;
+    ds:pattern "String" .
+
+data:npclassifier-usecase-1 a ds:UseCase ;
+    ds:description "Natural Product Annotation - Classify NP structures by biosynthetic origin"@en .
+
+data:npclassifier-usecase-2 a ds:UseCase ;
+    ds:description "BGC Correlation - Link structures to biosynthetic gene clusters"@en .
+
+data:npclassifier-limitation-1 a ds:Limitation ;
+    ds:description "Deep learning model may misclassify unusual structures; synthetic compounds not designed for NP classification"@en .
+
+# -----------------------------------------------------------------------------
+# PubChem - Chemical Information Repository
+# -----------------------------------------------------------------------------
+
+data:pubchem a ds:DataSource ;
+    ds:id "pubchem" ;
+    ds:title "PubChem - Chemical Information Repository"@en ;
+    ds:description "World's largest collection of freely accessible chemical information, providing data on chemical structures, identifiers, properties, biological activities, and safety."@en ;
+    ds:tier 1 ;
+    ds:status tax:status-active ;
+    ds:category tax:category-compounds-molecules ;
+    ds:subcategory tax:subcategory-chemical-ontology ;
+    ds:maintainer "NCBI/NLM/NIH" ;
+    ds:website <https://pubchem.ncbi.nlm.nih.gov> ;
+    ds:updateFrequency "continuous" ;
+    ds:recordCount 115000000 ;
+    ds:hasLicense data:pubchem-license ;
+    ds:hasAccessMethod data:pubchem-api, data:pubchem-ftp, data:pubchem-web ;
+    ds:hasIdentifier data:pubchem-id-cid, data:pubchem-id-inchikey ;
+    ds:hasUseCase data:pubchem-usecase-1, data:pubchem-usecase-2 ;
+    ds:hasLimitation data:pubchem-limitation-1 .
+
+data:pubchem-license a ds:License ;
+    ds:licenseName "Public Domain (US Government Work)"@en ;
+    ds:spdxId "CC0-1.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired false ;
+    ds:redistribution true .
+
+data:pubchem-api a ds:AccessMethod ;
+    ds:methodType tax:access-rest-api ;
+    ds:url <https://pubchem.ncbi.nlm.nih.gov/rest/pug> ;
+    ds:format tax:format-json, tax:format-xml .
+
+data:pubchem-ftp a ds:AccessMethod ;
+    ds:methodType tax:access-ftp ;
+    ds:url <https://ftp.ncbi.nlm.nih.gov/pubchem/> ;
+    ds:format tax:format-sdf, tax:format-asn1 .
+
+data:pubchem-web a ds:AccessMethod ;
+    ds:methodType tax:access-web-interface ;
+    ds:url <https://pubchem.ncbi.nlm.nih.gov> .
+
+data:pubchem-id-cid a ds:Identifier ;
+    ds:identifierType "CID (Compound)" ;
+    ds:pattern "Integer" ;
+    ds:example "2244" .
+
+data:pubchem-id-inchikey a ds:Identifier ;
+    ds:identifierType "InChI Key" ;
+    ds:pattern "27 characters" ;
+    ds:example "BSYNRYMUTXBXSQ-UHFFFAOYSA-N" .
+
+data:pubchem-usecase-1 a ds:UseCase ;
+    ds:description "Compound Information - Look up chemical properties and identifiers"@en .
+
+data:pubchem-usecase-2 a ds:UseCase ;
+    ds:description "Cross-Reference Hub - Link chemical IDs across databases"@en .
+
+data:pubchem-limitation-1 a ds:Limitation ;
+    ds:description "Depositor-submitted data quality varies; bioassay results not standardized across depositors"@en .
+
+# =============================================================================
+# SUBCATEGORY: 2.7 Compound-Target Interactions
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# BindingDB - Binding Affinity Database
+# -----------------------------------------------------------------------------
+
+data:bindingdb a ds:DataSource ;
+    ds:id "bindingdb" ;
+    ds:title "BindingDB - Binding Affinity Database"@en ;
+    ds:description "Public database of measured binding affinities focusing on interactions of proteins considered drug targets with small, drug-like molecules."@en ;
+    ds:tier 1 ;
+    ds:status tax:status-active ;
+    ds:category tax:category-compounds-molecules ;
+    ds:subcategory tax:subcategory-compound-target ;
+    ds:maintainer "BindingDB" ;
+    ds:website <https://www.bindingdb.org> ;
+    ds:updateFrequency "weekly" ;
+    ds:recordCount 2900000 ;
+    ds:hasLicense data:bindingdb-license ;
+    ds:hasAccessMethod data:bindingdb-api, data:bindingdb-download, data:bindingdb-web ;
+    ds:hasIdentifier data:bindingdb-id-monomer, data:bindingdb-id-uniprot ;
+    ds:hasUseCase data:bindingdb-usecase-1, data:bindingdb-usecase-2 ;
+    ds:hasLimitation data:bindingdb-limitation-1 .
+
+data:bindingdb-license a ds:License ;
+    ds:licenseName "Creative Commons Attribution 3.0"@en ;
+    ds:spdxId "CC-BY-3.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistribution true .
+
+data:bindingdb-api a ds:AccessMethod ;
+    ds:methodType tax:access-rest-api ;
+    ds:url <https://bindingdb.org/rest/> ;
+    ds:format tax:format-json, tax:format-xml .
+
+data:bindingdb-download a ds:AccessMethod ;
+    ds:methodType tax:access-bulk-download ;
+    ds:url <https://www.bindingdb.org/download> ;
+    ds:format tax:format-tsv, tax:format-sdf .
+
+data:bindingdb-web a ds:AccessMethod ;
+    ds:methodType tax:access-web-interface ;
+    ds:url <https://www.bindingdb.org> .
+
+data:bindingdb-id-monomer a ds:Identifier ;
+    ds:identifierType "MonomerID" ;
+    ds:pattern "Integer" ;
+    ds:example "50000001" .
+
+data:bindingdb-id-uniprot a ds:Identifier ;
+    ds:identifierType "UniProt ID" ;
+    ds:pattern "Accession" ;
+    ds:example "P35354" .
+
+data:bindingdb-usecase-1 a ds:UseCase ;
+    ds:description "Lead Identification - Find active compounds for target of interest"@en .
+
+data:bindingdb-usecase-2 a ds:UseCase ;
+    ds:description "Model Training - Develop binding affinity prediction models"@en .
+
+data:bindingdb-limitation-1 a ds:Limitation ;
+    ds:description "Assay conditions vary across sources; values not always comparable"@en .
+
+# -----------------------------------------------------------------------------
+# DGIdb - Drug Gene Interaction Database
+# -----------------------------------------------------------------------------
+
+data:dgidb a ds:DataSource ;
+    ds:id "dgidb" ;
+    ds:title "DGIdb - Drug Gene Interaction Database"@en ;
+    ds:description "Database aggregating drug-gene interaction data from multiple trusted sources into a unified, queryable resource."@en ;
+    ds:tier 1 ;
+    ds:status tax:status-active ;
+    ds:category tax:category-compounds-molecules ;
+    ds:subcategory tax:subcategory-compound-target ;
+    ds:maintainer "Washington University School of Medicine" ;
+    ds:website <https://dgidb.org> ;
+    ds:updateFrequency "annual" ;
+    ds:recordCount 90000 ;
+    ds:hasLicense data:dgidb-license ;
+    ds:hasAccessMethod data:dgidb-graphql, data:dgidb-download, data:dgidb-web ;
+    ds:hasIdentifier data:dgidb-id-gene, data:dgidb-id-drug ;
+    ds:hasUseCase data:dgidb-usecase-1, data:dgidb-usecase-2 ;
+    ds:hasLimitation data:dgidb-limitation-1 .
+
+data:dgidb-license a ds:License ;
+    ds:licenseName "Creative Commons Attribution 4.0"@en ;
+    ds:spdxId "CC-BY-4.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistribution true .
+
+data:dgidb-graphql a ds:AccessMethod ;
+    ds:methodType tax:access-graphql ;
+    ds:url <https://dgidb.org/api/graphql> ;
+    ds:format tax:format-json .
+
+data:dgidb-download a ds:AccessMethod ;
+    ds:methodType tax:access-bulk-download ;
+    ds:url <https://dgidb.org/downloads> ;
+    ds:format tax:format-tsv .
+
+data:dgidb-web a ds:AccessMethod ;
+    ds:methodType tax:access-web-interface ;
+    ds:url <https://dgidb.org> .
+
+data:dgidb-id-gene a ds:Identifier ;
+    ds:identifierType "Gene Symbol" ;
+    ds:pattern "HGNC" ;
+    ds:example "EGFR" .
+
+data:dgidb-id-drug a ds:Identifier ;
+    ds:identifierType "Drug Name" ;
+    ds:pattern "Text" ;
+    ds:example "Gefitinib" .
+
+data:dgidb-usecase-1 a ds:UseCase ;
+    ds:description "Target Validation - Assess druggability of genes of interest"@en .
+
+data:dgidb-usecase-2 a ds:UseCase ;
+    ds:description "Drug Repurposing - Find existing drugs for new targets"@en .
+
+data:dgidb-limitation-1 a ds:Limitation ;
+    ds:description "Aggregated data may contain conflicting interaction types; druggability categories are predictions"@en .
+
+# -----------------------------------------------------------------------------
+# GtoPdb - Guide to Pharmacology
+# -----------------------------------------------------------------------------
+
+data:gtopdb a ds:DataSource ;
+    ds:id "gtopdb" ;
+    ds:title "GtoPdb - Guide to Pharmacology"@en ;
+    ds:description "Expert-curated database of pharmacological targets and substances, providing authoritative peer-reviewed information from IUPHAR/BPS."@en ;
+    ds:tier 1 ;
+    ds:status tax:status-active ;
+    ds:category tax:category-compounds-molecules ;
+    ds:subcategory tax:subcategory-compound-target ;
+    ds:maintainer "IUPHAR/BPS" ;
+    ds:website <https://www.guidetopharmacology.org> ;
+    ds:updateFrequency "quarterly" ;
+    ds:recordCount 170000 ;
+    ds:hasLicense data:gtopdb-license ;
+    ds:hasAccessMethod data:gtopdb-api, data:gtopdb-download, data:gtopdb-web ;
+    ds:hasIdentifier data:gtopdb-id-target, data:gtopdb-id-ligand ;
+    ds:hasUseCase data:gtopdb-usecase-1, data:gtopdb-usecase-2 ;
+    ds:hasLimitation data:gtopdb-limitation-1 .
+
+data:gtopdb-license a ds:License ;
+    ds:licenseName "Creative Commons Attribution-ShareAlike 4.0"@en ;
+    ds:spdxId "CC-BY-SA-4.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistribution true ;
+    ds:shareAlike true .
+
+data:gtopdb-api a ds:AccessMethod ;
+    ds:methodType tax:access-rest-api ;
+    ds:url <https://www.guidetopharmacology.org/services> ;
+    ds:format tax:format-json .
+
+data:gtopdb-download a ds:AccessMethod ;
+    ds:methodType tax:access-bulk-download ;
+    ds:url <https://www.guidetopharmacology.org/download.jsp> ;
+    ds:format tax:format-csv .
+
+data:gtopdb-web a ds:AccessMethod ;
+    ds:methodType tax:access-web-interface ;
+    ds:url <https://www.guidetopharmacology.org> .
+
+data:gtopdb-id-target a ds:Identifier ;
+    ds:identifierType "Target ID" ;
+    ds:pattern "Integer" ;
+    ds:example "290" .
+
+data:gtopdb-id-ligand a ds:Identifier ;
+    ds:identifierType "Ligand ID" ;
+    ds:pattern "Integer" ;
+    ds:example "5085" .
+
+data:gtopdb-usecase-1 a ds:UseCase ;
+    ds:description "Pharmacological Reference - Authoritative target and ligand information"@en .
+
+data:gtopdb-usecase-2 a ds:UseCase ;
+    ds:description "Tool Compound Selection - Find selective probe molecules"@en .
+
+data:gtopdb-limitation-1 a ds:Limitation ;
+    ds:description "Coverage prioritizes established drug targets; expert curation means smaller scale than aggregated databases"@en .
+
+# -----------------------------------------------------------------------------
+# TTD - Therapeutic Target Database
+# -----------------------------------------------------------------------------
+
+data:ttd a ds:DataSource ;
+    ds:id "ttd" ;
+    ds:title "TTD - Therapeutic Target Database"@en ;
+    ds:description "Comprehensive resource providing information about therapeutic protein and nucleic acid targets, targeted diseases, pathway information, and corresponding drugs."@en ;
+    ds:tier 1 ;
+    ds:status tax:status-active ;
+    ds:category tax:category-compounds-molecules ;
+    ds:subcategory tax:subcategory-compound-target ;
+    ds:maintainer "Zhejiang University / IDRBLab" ;
+    ds:website <https://idrblab.net/ttd/> ;
+    ds:updateFrequency "annual" ;
+    ds:recordCount 3131 ;
+    ds:hasLicense data:ttd-license ;
+    ds:hasAccessMethod data:ttd-download, data:ttd-web ;
+    ds:hasIdentifier data:ttd-id-target, data:ttd-id-drug ;
+    ds:hasUseCase data:ttd-usecase-1, data:ttd-usecase-2 ;
+    ds:hasLimitation data:ttd-limitation-1 .
+
+data:ttd-license a ds:License ;
+    ds:licenseName "Creative Commons Attribution-NonCommercial 4.0"@en ;
+    ds:spdxId "CC-BY-NC-4.0" ;
+    ds:commercialUse false ;
+    ds:attributionRequired true ;
+    ds:redistribution true ;
+    ds:commercialLicenseContact "journals.permissions@oup.com" .
+
+data:ttd-download a ds:AccessMethod ;
+    ds:methodType tax:access-bulk-download ;
+    ds:url <https://idrblab.net/ttd/full-data-download> ;
+    ds:format tax:format-txt .
+
+data:ttd-web a ds:AccessMethod ;
+    ds:methodType tax:access-web-interface ;
+    ds:url <https://idrblab.net/ttd/> .
+
+data:ttd-id-target a ds:Identifier ;
+    ds:identifierType "TTD Target ID" ;
+    ds:pattern "TTDT + 5 digits" ;
+    ds:example "TTDT00001" .
+
+data:ttd-id-drug a ds:Identifier ;
+    ds:identifierType "TTD Drug ID" ;
+    ds:pattern "6 characters" ;
+    ds:example "D0A9YA" .
+
+data:ttd-usecase-1 a ds:UseCase ;
+    ds:description "Target Assessment - Evaluate druggability of therapeutic targets"@en .
+
+data:ttd-usecase-2 a ds:UseCase ;
+    ds:description "Clinical Landscape - Track drug development status"@en .
+
+data:ttd-limitation-1 a ds:Limitation ;
+    ds:description "Commercial use has restrictions; clinical trial status may not be current"@en .
+
+# =============================================================================
+# TAXONOMY INSTANCES
+# =============================================================================
+
+# Status taxonomy
+tax:status-active a skos:Concept ;
+    skos:prefLabel "Active"@en ;
+    skos:inScheme tax:status-scheme .
+
+tax:status-draft a skos:Concept ;
+    skos:prefLabel "Draft"@en ;
+    skos:inScheme tax:status-scheme .
+
+tax:status-deprecated a skos:Concept ;
+    skos:prefLabel "Deprecated"@en ;
+    skos:inScheme tax:status-scheme .
+
+# Category taxonomy
+tax:category-compounds-molecules a skos:Concept ;
+    skos:prefLabel "Compounds & Molecules"@en ;
+    skos:inScheme tax:category-scheme .
+
+# Subcategory taxonomy
+tax:subcategory-natural-products a skos:Concept ;
+    skos:prefLabel "Natural Products"@en ;
+    skos:broader tax:category-compounds-molecules ;
+    skos:inScheme tax:subcategory-scheme .
+
+tax:subcategory-pharmaceuticals a skos:Concept ;
+    skos:prefLabel "Pharmaceuticals"@en ;
+    skos:broader tax:category-compounds-molecules ;
+    skos:inScheme tax:subcategory-scheme .
+
+tax:subcategory-food-compounds a skos:Concept ;
+    skos:prefLabel "Food Compounds & Nutrients"@en ;
+    skos:broader tax:category-compounds-molecules ;
+    skos:inScheme tax:subcategory-scheme .
+
+tax:subcategory-drug-metabolism a skos:Concept ;
+    skos:prefLabel "Drug Metabolism & Pharmacokinetics"@en ;
+    skos:broader tax:category-compounds-molecules ;
+    skos:inScheme tax:subcategory-scheme .
+
+tax:subcategory-chemical-ontology a skos:Concept ;
+    skos:prefLabel "Chemical Ontology & Classification"@en ;
+    skos:broader tax:category-compounds-molecules ;
+    skos:inScheme tax:subcategory-scheme .
+
+tax:subcategory-compound-target a skos:Concept ;
+    skos:prefLabel "Compound-Target Interactions"@en ;
+    skos:broader tax:category-compounds-molecules ;
+    skos:inScheme tax:subcategory-scheme .
+
+# Access method types
+tax:access-rest-api a skos:Concept ;
+    skos:prefLabel "REST API"@en ;
+    skos:inScheme tax:access-scheme .
+
+tax:access-graphql a skos:Concept ;
+    skos:prefLabel "GraphQL"@en ;
+    skos:inScheme tax:access-scheme .
+
+tax:access-sparql a skos:Concept ;
+    skos:prefLabel "SPARQL Endpoint"@en ;
+    skos:inScheme tax:access-scheme .
+
+tax:access-ftp a skos:Concept ;
+    skos:prefLabel "FTP"@en ;
+    skos:inScheme tax:access-scheme .
+
+tax:access-bulk-download a skos:Concept ;
+    skos:prefLabel "Bulk Download"@en ;
+    skos:inScheme tax:access-scheme .
+
+tax:access-web-interface a skos:Concept ;
+    skos:prefLabel "Web Interface"@en ;
+    skos:inScheme tax:access-scheme .
+
+# Format types
+tax:format-json a skos:Concept ;
+    skos:prefLabel "JSON"@en ;
+    skos:inScheme tax:format-scheme .
+
+tax:format-xml a skos:Concept ;
+    skos:prefLabel "XML"@en ;
+    skos:inScheme tax:format-scheme .
+
+tax:format-csv a skos:Concept ;
+    skos:prefLabel "CSV"@en ;
+    skos:inScheme tax:format-scheme .
+
+tax:format-tsv a skos:Concept ;
+    skos:prefLabel "TSV"@en ;
+    skos:inScheme tax:format-scheme .
+
+tax:format-sdf a skos:Concept ;
+    skos:prefLabel "SDF"@en ;
+    skos:inScheme tax:format-scheme .
+
+tax:format-rdf a skos:Concept ;
+    skos:prefLabel "RDF"@en ;
+    skos:inScheme tax:format-scheme .
+
+tax:format-owl a skos:Concept ;
+    skos:prefLabel "OWL"@en ;
+    skos:inScheme tax:format-scheme .
+
+tax:format-obo a skos:Concept ;
+    skos:prefLabel "OBO"@en ;
+    skos:inScheme tax:format-scheme .
+
+tax:format-txt a skos:Concept ;
+    skos:prefLabel "TXT"@en ;
+    skos:inScheme tax:format-scheme .
+
+tax:format-zip a skos:Concept ;
+    skos:prefLabel "ZIP"@en ;
+    skos:inScheme tax:format-scheme .
+
+tax:format-asn1 a skos:Concept ;
+    skos:prefLabel "ASN.1"@en ;
+    skos:inScheme tax:format-scheme .

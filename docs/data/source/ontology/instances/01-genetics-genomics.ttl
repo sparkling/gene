@@ -1,0 +1,1003 @@
+@prefix ds: <https://gene.example.org/ontology/datasource#> .
+@prefix data: <https://gene.example.org/data/source/> .
+@prefix tax: <https://gene.example.org/taxonomy/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix spdx: <http://spdx.org/rdf/terms#> .
+
+# =============================================================================
+# 01. GENETICS & GENOMICS - RDF INSTANCES
+# =============================================================================
+# This file contains RDF instance data for all data sources in the
+# genetics and genomics category, extracted from documentation files.
+# Generated: 2026-01-25
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# 1.1 VARIANT REPOSITORIES
+# -----------------------------------------------------------------------------
+
+# === CLINVAR ===
+
+data:clinvar a ds:DataSource ;
+    rdfs:label "ClinVar" ;
+    dct:description "NCBI's public archive of interpretations of clinically relevant variants. Aggregates information about genomic variation and its relationship to human health from clinical laboratories, research groups, and expert panels worldwide." ;
+    ds:maintainer "NCBI/NIH" ;
+    ds:website <https://www.ncbi.nlm.nih.gov/clinvar/> ;
+    ds:updateFrequency "Weekly (Mondays)" ;
+    ds:recordCount "10000000+"^^xsd:string ;
+    ds:category tax:genetics.genomics ;
+    ds:subcategory tax:variant.repositories ;
+    ds:tier "1"^^xsd:integer ;
+    ds:status "active" .
+
+data:clinvar-license a ds:License ;
+    ds:forSource data:clinvar ;
+    ds:licenseName "Public Domain" ;
+    ds:spdxIdentifier "CC0-1.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired false ;
+    ds:redistribution true ;
+    ds:permissions "Use for academic and commercial research without restriction" ,
+                   "Integrate into commercial products and services" ,
+                   "Redistribute in original or modified form" ,
+                   "Create derivative databases" ;
+    ds:restrictions "None - data is public domain" .
+
+data:clinvar-version-2026-01 a ds:Version ;
+    ds:forSource data:clinvar ;
+    ds:versionName "2026-01 (Weekly)" ;
+    ds:releaseDate "2026-01-20"^^xsd:date ;
+    ds:totalSize "2.5 GB (XML), 177 MB (VCF)" ;
+    ds:variantRecords "2500000+"^^xsd:string ;
+    ds:submissionRecords "4000000+"^^xsd:string .
+
+data:clinvar-ftp a ds:AccessMethod ;
+    ds:forSource data:clinvar ;
+    ds:methodType "FTP" ;
+    ds:baseUrl <https://ftp.ncbi.nlm.nih.gov/pub/clinvar/> ;
+    ds:formats "VCF" , "XML" , "TSV" ;
+    ds:authRequired false .
+
+data:clinvar-api a ds:AccessMethod ;
+    ds:forSource data:clinvar ;
+    ds:methodType "API" ;
+    ds:baseUrl <https://eutils.ncbi.nlm.nih.gov/entrez/eutils/> ;
+    ds:rateLimit "3 req/sec (10 with API key)" ;
+    ds:formats "XML" , "JSON" ;
+    ds:authRequired false .
+
+data:clinvar-id-vcv a ds:Identifier ;
+    ds:forSource data:clinvar ;
+    ds:identifierName "VCV" ;
+    ds:format "VCV + 9 digits + version" ;
+    ds:example "VCV000000123.4" ;
+    ds:description "Variation Archive accession" .
+
+data:clinvar-id-rcv a ds:Identifier ;
+    ds:forSource data:clinvar ;
+    ds:identifierName "RCV" ;
+    ds:format "RCV + 9 digits + version" ;
+    ds:example "RCV000012345.6" ;
+    ds:description "Record accession for variant-condition pairs" .
+
+data:clinvar-id-scv a ds:Identifier ;
+    ds:forSource data:clinvar ;
+    ds:identifierName "SCV" ;
+    ds:format "SCV + 9 digits + version" ;
+    ds:example "SCV000123456.7" ;
+    ds:description "Submitted record accession" .
+
+data:clinvar-xref-dbsnp a ds:CrossReference ;
+    ds:forSource data:clinvar ;
+    ds:targetDatabase data:dbsnp ;
+    ds:idField "rsid" ;
+    ds:coverage "High" .
+
+data:clinvar-xref-omim a ds:CrossReference ;
+    ds:forSource data:clinvar ;
+    ds:targetDatabase "OMIM" ;
+    ds:idField "omim" ;
+    ds:coverage "High" .
+
+data:clinvar-xref-medgen a ds:CrossReference ;
+    ds:forSource data:clinvar ;
+    ds:targetDatabase "MedGen" ;
+    ds:idField "medgen_cui" ;
+    ds:coverage "High" .
+
+data:clinvar-usecase-1 a ds:UseCase ;
+    ds:forSource data:clinvar ;
+    ds:description "Clinical variant interpretation and pathogenicity assessment" .
+
+data:clinvar-usecase-2 a ds:UseCase ;
+    ds:forSource data:clinvar ;
+    ds:description "Diagnostic laboratory variant classification lookup" .
+
+data:clinvar-limitation-1 a ds:Limitation ;
+    ds:forSource data:clinvar ;
+    ds:description "Submitter interpretations may conflict; review status indicates consensus level" .
+
+data:clinvar-limitation-2 a ds:Limitation ;
+    ds:forSource data:clinvar ;
+    ds:description "Classification criteria vary between submitters and over time" .
+
+# === DBSNP ===
+
+data:dbsnp a ds:DataSource ;
+    rdfs:label "dbSNP" ;
+    dct:description "NCBI's public archive for genetic variation data. Central repository for short genetic variations including SNVs, small indels, and microsatellites. Provides canonical RS identifier system." ;
+    ds:maintainer "NCBI/NIH" ;
+    ds:website <https://www.ncbi.nlm.nih.gov/snp/> ;
+    ds:updateFrequency "Continuous" ;
+    ds:recordCount "1000000000+"^^xsd:string ;
+    ds:category tax:genetics.genomics ;
+    ds:subcategory tax:variant.repositories ;
+    ds:tier "1"^^xsd:integer ;
+    ds:status "active" .
+
+data:dbsnp-license a ds:License ;
+    ds:forSource data:dbsnp ;
+    ds:licenseName "Public Domain" ;
+    ds:spdxIdentifier "CC0-1.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired false ;
+    ds:redistribution true .
+
+data:dbsnp-version-157 a ds:Version ;
+    ds:forSource data:dbsnp ;
+    ds:versionName "Build 157" ;
+    ds:releaseDate "2025-03-18"^^xsd:date ;
+    ds:totalSize "50 GB (GRCh38 VCF)" ;
+    ds:variantRecords "1200000000"^^xsd:string .
+
+data:dbsnp-ftp a ds:AccessMethod ;
+    ds:forSource data:dbsnp ;
+    ds:methodType "FTP" ;
+    ds:baseUrl <https://ftp.ncbi.nih.gov/snp/latest_release/> ;
+    ds:formats "VCF" , "JSON" ;
+    ds:authRequired false .
+
+data:dbsnp-api a ds:AccessMethod ;
+    ds:forSource data:dbsnp ;
+    ds:methodType "API" ;
+    ds:baseUrl <https://api.ncbi.nlm.nih.gov/variation/v0/> ;
+    ds:rateLimit "3 req/sec (10 with API key)" ;
+    ds:formats "JSON" ;
+    ds:authRequired false .
+
+data:dbsnp-id-rsid a ds:Identifier ;
+    ds:forSource data:dbsnp ;
+    ds:identifierName "RS ID" ;
+    ds:format "rs + integer" ;
+    ds:example "rs334" ;
+    ds:description "Reference SNP identifier" .
+
+data:dbsnp-usecase-1 a ds:UseCase ;
+    ds:forSource data:dbsnp ;
+    ds:description "Variant identification and RS number lookup" .
+
+data:dbsnp-usecase-2 a ds:UseCase ;
+    ds:forSource data:dbsnp ;
+    ds:description "Population allele frequency queries via ALFA" .
+
+data:dbsnp-limitation-1 a ds:Limitation ;
+    ds:forSource data:dbsnp ;
+    ds:description "Limited clinical interpretation (use ClinVar for pathogenicity)" .
+
+data:dbsnp-limitation-2 a ds:Limitation ;
+    ds:forSource data:dbsnp ;
+    ds:description "Some legacy RS IDs have been merged or withdrawn" .
+
+# === DBVAR ===
+
+data:dbvar a ds:DataSource ;
+    rdfs:label "dbVar" ;
+    dct:description "NCBI's public database of human genomic structural variation. Archives variants >50bp including deletions, duplications, insertions, inversions, translocations, and complex rearrangements." ;
+    ds:maintainer "NCBI/NIH" ;
+    ds:website <https://www.ncbi.nlm.nih.gov/dbvar> ;
+    ds:updateFrequency "Continuous" ;
+    ds:recordCount "6000000+"^^xsd:string ;
+    ds:category tax:genetics.genomics ;
+    ds:subcategory tax:variant.repositories ;
+    ds:tier "1"^^xsd:integer ;
+    ds:status "active" .
+
+data:dbvar-license a ds:License ;
+    ds:forSource data:dbvar ;
+    ds:licenseName "Public Domain (U.S. Government)" ;
+    ds:spdxIdentifier "CC0-1.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired false ;
+    ds:redistribution true .
+
+data:dbvar-ftp a ds:AccessMethod ;
+    ds:forSource data:dbvar ;
+    ds:methodType "FTP" ;
+    ds:baseUrl <ftp://ftp.ncbi.nlm.nih.gov/pub/dbVar/> ;
+    ds:formats "VCF" , "BED" ;
+    ds:authRequired false .
+
+data:dbvar-id-nsv a ds:Identifier ;
+    ds:forSource data:dbvar ;
+    ds:identifierName "Variant Region" ;
+    ds:format "nsv/esv/dsv + integer" ;
+    ds:example "nsv1234567" ;
+    ds:description "Variant region accession" .
+
+data:dbvar-usecase-1 a ds:UseCase ;
+    ds:forSource data:dbvar ;
+    ds:description "Structural variant annotation and lookup" .
+
+data:dbvar-usecase-2 a ds:UseCase ;
+    ds:forSource data:dbvar ;
+    ds:description "Copy number variation analysis" .
+
+# -----------------------------------------------------------------------------
+# 1.2 FUNCTIONAL PREDICTION
+# -----------------------------------------------------------------------------
+
+# === ALPHAMISSENSE ===
+
+data:alphamissense a ds:DataSource ;
+    rdfs:label "AlphaMissense" ;
+    dct:description "Google DeepMind's AI-powered pathogenicity predictor for all possible human missense variants. Built on AlphaFold2 architecture with calibrated pathogenicity scores." ;
+    ds:maintainer "Google DeepMind" ;
+    ds:website <https://alphamissense.hegelab.org/> ;
+    ds:updateFrequency "Static (model v1)" ;
+    ds:recordCount "71000000+"^^xsd:string ;
+    ds:category tax:genetics.genomics ;
+    ds:subcategory tax:functional.prediction ;
+    ds:tier "1"^^xsd:integer ;
+    ds:status "active" .
+
+data:alphamissense-license a ds:License ;
+    ds:forSource data:alphamissense ;
+    ds:licenseName "Creative Commons Attribution 4.0 International" ;
+    ds:spdxIdentifier "CC-BY-4.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistribution true .
+
+data:alphamissense-version-1 a ds:Version ;
+    ds:forSource data:alphamissense ;
+    ds:versionName "1.0.0" ;
+    ds:releaseDate "2023-09-22"^^xsd:date ;
+    ds:totalSize "7.5 GB (all files)" ;
+    ds:variantRecords "71000000"^^xsd:string .
+
+data:alphamissense-gcs a ds:AccessMethod ;
+    ds:forSource data:alphamissense ;
+    ds:methodType "Google Cloud Storage" ;
+    ds:baseUrl <gs://dm_alphamissense/> ;
+    ds:formats "TSV" ;
+    ds:authRequired false .
+
+data:alphamissense-usecase-1 a ds:UseCase ;
+    ds:forSource data:alphamissense ;
+    ds:description "Missense variant pathogenicity prediction" .
+
+data:alphamissense-limitation-1 a ds:Limitation ;
+    ds:forSource data:alphamissense ;
+    ds:description "Limited to missense variants only (no indels, nonsense, splice)" .
+
+data:alphamissense-limitation-2 a ds:Limitation ;
+    ds:forSource data:alphamissense ;
+    ds:description "Model weights not publicly released (pre-computed scores only)" .
+
+# === CADD ===
+
+data:cadd a ds:DataSource ;
+    rdfs:label "CADD" ;
+    dct:description "Combined Annotation Dependent Depletion - integrative annotation method that scores deleteriousness of SNVs and indels by combining 60+ genomic features." ;
+    ds:maintainer "University of Washington / Berlin Institute of Health" ;
+    ds:website <https://cadd.gs.washington.edu/> ;
+    ds:updateFrequency "Periodic releases" ;
+    ds:recordCount "9000000000"^^xsd:string ;
+    ds:category tax:genetics.genomics ;
+    ds:subcategory tax:functional.prediction ;
+    ds:tier "1"^^xsd:integer ;
+    ds:status "active" .
+
+data:cadd-license a ds:License ;
+    ds:forSource data:cadd ;
+    ds:licenseName "Academic Free; Commercial License Required" ;
+    ds:spdxIdentifier "Custom" ;
+    ds:commercialUse false ;
+    ds:attributionRequired true ;
+    ds:redistribution false ;
+    ds:restrictions "Commercial use requires license from University of Washington" .
+
+data:cadd-version-17 a ds:Version ;
+    ds:forSource data:cadd ;
+    ds:versionName "v1.7" ;
+    ds:releaseDate "2024-01-01"^^xsd:date ;
+    ds:totalSize "85 GB (GRCh38 SNVs)" .
+
+data:cadd-download a ds:AccessMethod ;
+    ds:forSource data:cadd ;
+    ds:methodType "HTTP Download" ;
+    ds:baseUrl <https://krishna.gs.washington.edu/download/CADD/> ;
+    ds:formats "TSV" ;
+    ds:authRequired false .
+
+data:cadd-api a ds:AccessMethod ;
+    ds:forSource data:cadd ;
+    ds:methodType "Web Scoring" ;
+    ds:baseUrl <https://cadd.gs.washington.edu/score> ;
+    ds:rateLimit "1000 variants/request" ;
+    ds:formats "TSV" ;
+    ds:authRequired false .
+
+data:cadd-usecase-1 a ds:UseCase ;
+    ds:forSource data:cadd ;
+    ds:description "Variant deleteriousness scoring" .
+
+data:cadd-usecase-2 a ds:UseCase ;
+    ds:forSource data:cadd ;
+    ds:description "Non-coding variant assessment" .
+
+# === DBNSFP ===
+
+data:dbnsfp a ds:DataSource ;
+    rdfs:label "dbNSFP" ;
+    dct:description "Database for Non-synonymous SNPs' Functional Predictions - comprehensive database integrating 36+ prediction algorithms for all possible non-synonymous SNVs." ;
+    ds:maintainer "Liu Lab (USF)" ;
+    ds:website <https://www.dbnsfp.org/> ;
+    ds:updateFrequency "Periodic releases" ;
+    ds:recordCount "85000000+"^^xsd:string ;
+    ds:category tax:genetics.genomics ;
+    ds:subcategory tax:functional.prediction ;
+    ds:tier "2"^^xsd:integer ;
+    ds:status "active" .
+
+data:dbnsfp-license a ds:License ;
+    ds:forSource data:dbnsfp ;
+    ds:licenseName "Academic Free; Commercial Contact Required" ;
+    ds:spdxIdentifier "Custom" ;
+    ds:commercialUse false ;
+    ds:attributionRequired true ;
+    ds:redistribution false ;
+    ds:restrictions "Some integrated scores (CADD, REVEL, SpliceAI) have separate commercial restrictions" .
+
+data:dbnsfp-version-53 a ds:Version ;
+    ds:forSource data:dbnsfp ;
+    ds:versionName "5.3.1a" ;
+    ds:releaseDate "2025-10-01"^^xsd:date ;
+    ds:totalSize "40 GB (zipped)" .
+
+data:dbnsfp-s3 a ds:AccessMethod ;
+    ds:forSource data:dbnsfp ;
+    ds:methodType "Amazon S3" ;
+    ds:baseUrl <https://dbnsfp.s3.amazonaws.com/> ;
+    ds:formats "TSV" ;
+    ds:authRequired false .
+
+# === SPLICEAI ===
+
+data:spliceai a ds:DataSource ;
+    rdfs:label "SpliceAI" ;
+    dct:description "Illumina's deep learning tool that predicts splicing alterations caused by variants using a 32-layer neural network trained on 10,000+ human genes." ;
+    ds:maintainer "Illumina" ;
+    ds:website <https://spliceailookup.broadinstitute.org/> ;
+    ds:updateFrequency "Static (pre-computed)" ;
+    ds:recordCount "All SNVs in genes" ;
+    ds:category tax:genetics.genomics ;
+    ds:subcategory tax:functional.prediction ;
+    ds:tier "1"^^xsd:integer ;
+    ds:status "active" .
+
+data:spliceai-license a ds:License ;
+    ds:forSource data:spliceai ;
+    ds:licenseName "GPLv3 (software); Custom (pre-computed data)" ;
+    ds:spdxIdentifier "GPL-3.0-only" ;
+    ds:commercialUse false ;
+    ds:attributionRequired true ;
+    ds:redistribution true ;
+    ds:restrictions "Commercial use of pre-computed scores requires Illumina license" .
+
+data:spliceai-version-13 a ds:Version ;
+    ds:forSource data:spliceai ;
+    ds:versionName "1.3.1" ;
+    ds:releaseDate "2024-12-01"^^xsd:date ;
+    ds:totalSize "35 GB (all pre-computed)" .
+
+data:spliceai-basespace a ds:AccessMethod ;
+    ds:forSource data:spliceai ;
+    ds:methodType "Illumina BaseSpace" ;
+    ds:baseUrl <https://basespace.illumina.com/s/otSPW8hnhaZR> ;
+    ds:formats "VCF" ;
+    ds:authRequired false .
+
+data:spliceai-api a ds:AccessMethod ;
+    ds:forSource data:spliceai ;
+    ds:methodType "API" ;
+    ds:baseUrl <https://spliceailookup-api.broadinstitute.org/> ;
+    ds:rateLimit "1 req/sec recommended" ;
+    ds:formats "JSON" ;
+    ds:authRequired false .
+
+# -----------------------------------------------------------------------------
+# 1.3 POPULATION GENETICS
+# -----------------------------------------------------------------------------
+
+# === GNOMAD ===
+
+data:gnomad a ds:DataSource ;
+    rdfs:label "gnomAD" ;
+    dct:description "Genome Aggregation Database - largest publicly available collection of human exome and genome sequencing data with allele frequencies across diverse populations and gene constraint metrics." ;
+    ds:maintainer "Broad Institute" ;
+    ds:website <https://gnomad.broadinstitute.org/> ;
+    ds:updateFrequency "Major releases" ;
+    ds:recordCount "786000000+"^^xsd:string ;
+    ds:category tax:genetics.genomics ;
+    ds:subcategory tax:population.genetics ;
+    ds:tier "1"^^xsd:integer ;
+    ds:status "active" .
+
+data:gnomad-license a ds:License ;
+    ds:forSource data:gnomad ;
+    ds:licenseName "Open Data Commons Open Database License (ODbL) 1.0" ;
+    ds:spdxIdentifier "ODbL-1.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistribution true ;
+    ds:restrictions "Share-alike required for derivative databases" .
+
+data:gnomad-version-41 a ds:Version ;
+    ds:forSource data:gnomad ;
+    ds:versionName "v4.1" ;
+    ds:releaseDate "2024-04-01"^^xsd:date ;
+    ds:totalSize "1.5 TB (VCF), 650 GB (HT)" ;
+    ds:sampleCount "807162"^^xsd:integer .
+
+data:gnomad-gcs a ds:AccessMethod ;
+    ds:forSource data:gnomad ;
+    ds:methodType "Google Cloud Storage" ;
+    ds:baseUrl <gs://gcp-public-data--gnomad/release/> ;
+    ds:formats "VCF" , "Hail Table" ;
+    ds:authRequired false .
+
+data:gnomad-api a ds:AccessMethod ;
+    ds:forSource data:gnomad ;
+    ds:methodType "GraphQL API" ;
+    ds:baseUrl <https://gnomad.broadinstitute.org/api> ;
+    ds:rateLimit "1 req/sec recommended" ;
+    ds:formats "JSON" ;
+    ds:authRequired false .
+
+data:gnomad-usecase-1 a ds:UseCase ;
+    ds:forSource data:gnomad ;
+    ds:description "Population allele frequency filtering" .
+
+data:gnomad-usecase-2 a ds:UseCase ;
+    ds:forSource data:gnomad ;
+    ds:description "Gene constraint assessment (pLI, LOEUF)" .
+
+data:gnomad-limitation-1 a ds:Limitation ;
+    ds:forSource data:gnomad ;
+    ds:description "Excludes individuals with severe pediatric disease (selection bias)" .
+
+data:gnomad-limitation-2 a ds:Limitation ;
+    ds:forSource data:gnomad ;
+    ds:description "Ancestry groups historically unbalanced (European-heavy)" .
+
+# === 1000 GENOMES ===
+
+data:1000genomes a ds:DataSource ;
+    rdfs:label "1000 Genomes Project" ;
+    dct:description "First large-scale effort to catalogue human genetic variation from 2,504 individuals across 26 populations. Foundational imputation reference panel." ;
+    ds:maintainer "IGSR (International Genome Sample Resource)" ;
+    ds:website <https://www.internationalgenome.org/> ;
+    ds:updateFrequency "Static (Phase 3 complete)" ;
+    ds:recordCount "88000000+"^^xsd:string ;
+    ds:category tax:genetics.genomics ;
+    ds:subcategory tax:population.genetics ;
+    ds:tier "1"^^xsd:integer ;
+    ds:status "active" .
+
+data:1000genomes-license a ds:License ;
+    ds:forSource data:1000genomes ;
+    ds:licenseName "Fort Lauderdale Agreement / Open Access" ;
+    ds:spdxIdentifier "Custom" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistribution true .
+
+data:1000genomes-version-phase3-30x a ds:Version ;
+    ds:forSource data:1000genomes ;
+    ds:versionName "Phase 3 (30x)" ;
+    ds:releaseDate "2022-04-22"^^xsd:date ;
+    ds:totalSize "500 GB (all VCFs)" ;
+    ds:sampleCount "3202"^^xsd:integer .
+
+data:1000genomes-ftp a ds:AccessMethod ;
+    ds:forSource data:1000genomes ;
+    ds:methodType "FTP" ;
+    ds:baseUrl <ftp://ftp.1000genomes.ebi.ac.uk/> ;
+    ds:formats "VCF" , "CRAM" , "BAM" ;
+    ds:authRequired false .
+
+# === TOPMED ===
+
+data:topmed a ds:DataSource ;
+    rdfs:label "TOPMed" ;
+    dct:description "Trans-Omics for Precision Medicine - NHLBI program providing deep WGS (30x) of 180,000+ individuals for rare variant discovery in heart, lung, blood, and sleep disorders." ;
+    ds:maintainer "NHLBI / University of Michigan" ;
+    ds:website <https://topmed.nhlbi.nih.gov/> ;
+    ds:updateFrequency "Periodic freezes" ;
+    ds:recordCount "400000000+"^^xsd:string ;
+    ds:category tax:genetics.genomics ;
+    ds:subcategory tax:population.genetics ;
+    ds:tier "2"^^xsd:integer ;
+    ds:status "active" .
+
+data:topmed-license a ds:License ;
+    ds:forSource data:topmed ;
+    ds:licenseName "dbGaP Data Use Agreement (individual); Open Access (aggregate)" ;
+    ds:spdxIdentifier "Custom" ;
+    ds:commercialUse false ;
+    ds:attributionRequired true ;
+    ds:redistribution false ;
+    ds:restrictions "Individual-level data requires dbGaP authorization" .
+
+data:topmed-bravo a ds:AccessMethod ;
+    ds:forSource data:topmed ;
+    ds:methodType "Web Browser" ;
+    ds:baseUrl <https://bravo.sph.umich.edu/> ;
+    ds:formats "Web" ;
+    ds:authRequired false .
+
+# === UK BIOBANK ===
+
+data:ukbiobank a ds:DataSource ;
+    rdfs:label "UK Biobank" ;
+    dct:description "Large-scale biomedical database with genetic, physical, and health information from 500,000 UK participants aged 40-69. Comprehensive prospective cohort study." ;
+    ds:maintainer "UK Biobank Ltd" ;
+    ds:website <https://www.ukbiobank.ac.uk/> ;
+    ds:updateFrequency "Continuous data additions" ;
+    ds:recordCount "500000 participants" ;
+    ds:category tax:genetics.genomics ;
+    ds:subcategory tax:population.genetics ;
+    ds:tier "2"^^xsd:integer ;
+    ds:status "active" .
+
+data:ukbiobank-license a ds:License ;
+    ds:forSource data:ukbiobank ;
+    ds:licenseName "UK Biobank Access Agreement" ;
+    ds:spdxIdentifier "Custom" ;
+    ds:commercialUse false ;
+    ds:attributionRequired true ;
+    ds:redistribution false ;
+    ds:restrictions "Access requires approved research application; commercial use requires explicit approval" .
+
+data:ukbiobank-rap a ds:AccessMethod ;
+    ds:forSource data:ukbiobank ;
+    ds:methodType "Research Analysis Platform" ;
+    ds:baseUrl <https://www.ukbiobank.ac.uk/> ;
+    ds:authRequired true .
+
+# -----------------------------------------------------------------------------
+# 1.4 PHARMACOGENOMICS
+# -----------------------------------------------------------------------------
+
+# === CPIC ===
+
+data:cpic a ds:DataSource ;
+    rdfs:label "CPIC" ;
+    dct:description "Clinical Pharmacogenetics Implementation Consortium - creates peer-reviewed, evidence-based clinical practice guidelines for gene-drug pairs to help translate pharmacogenomic test results into prescribing decisions." ;
+    ds:maintainer "CPIC (hosted at cpicpgx.org)" ;
+    ds:website <https://cpicpgx.org/> ;
+    ds:updateFrequency "Continuous guideline updates" ;
+    ds:recordCount "75+ gene-drug pairs" ;
+    ds:category tax:genetics.genomics ;
+    ds:subcategory tax:pharmacogenomics ;
+    ds:tier "1"^^xsd:integer ;
+    ds:status "active" .
+
+data:cpic-license a ds:License ;
+    ds:forSource data:cpic ;
+    ds:licenseName "Open Access" ;
+    ds:spdxIdentifier "Custom" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistribution true .
+
+data:cpic-web a ds:AccessMethod ;
+    ds:forSource data:cpic ;
+    ds:methodType "Web" ;
+    ds:baseUrl <https://cpicpgx.org/guidelines/> ;
+    ds:formats "PDF" , "Web" ;
+    ds:authRequired false .
+
+# === PHARMGKB ===
+
+data:pharmgkb a ds:DataSource ;
+    rdfs:label "PharmGKB" ;
+    dct:description "Pharmacogenomics Knowledge Base - leading resource curating knowledge about genetic variation impact on drug response, aggregating clinical annotations, variant annotations, and drug pathway diagrams." ;
+    ds:maintainer "Stanford University" ;
+    ds:website <https://www.pharmgkb.org/> ;
+    ds:updateFrequency "Continuous" ;
+    ds:recordCount "20000+ clinical annotations" ;
+    ds:category tax:genetics.genomics ;
+    ds:subcategory tax:pharmacogenomics ;
+    ds:tier "1"^^xsd:integer ;
+    ds:status "active" .
+
+data:pharmgkb-license a ds:License ;
+    ds:forSource data:pharmgkb ;
+    ds:licenseName "Creative Commons Attribution-ShareAlike 4.0 International" ;
+    ds:spdxIdentifier "CC-BY-SA-4.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistribution true ;
+    ds:restrictions "Share-alike required; registration required for bulk downloads" .
+
+data:pharmgkb-api a ds:AccessMethod ;
+    ds:forSource data:pharmgkb ;
+    ds:methodType "REST API" ;
+    ds:baseUrl <https://api.pharmgkb.org/> ;
+    ds:formats "JSON" ;
+    ds:authRequired true .
+
+# === PHARMVAR ===
+
+data:pharmvar a ds:DataSource ;
+    rdfs:label "PharmVar" ;
+    dct:description "Pharmacogene Variation Consortium - central repository for pharmacogene haplotype (star allele) definitions and nomenclature. Standardizes naming of pharmacogene alleles." ;
+    ds:maintainer "PharmVar Consortium" ;
+    ds:website <https://www.pharmvar.org/> ;
+    ds:updateFrequency "Continuous" ;
+    ds:recordCount "3000+ alleles" ;
+    ds:category tax:genetics.genomics ;
+    ds:subcategory tax:pharmacogenomics ;
+    ds:tier "2"^^xsd:integer ;
+    ds:status "active" .
+
+data:pharmvar-license a ds:License ;
+    ds:forSource data:pharmvar ;
+    ds:licenseName "Open Access" ;
+    ds:spdxIdentifier "Custom" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistribution true .
+
+# === DPWG ===
+
+data:dpwg a ds:DataSource ;
+    rdfs:label "DPWG" ;
+    dct:description "Dutch Pharmacogenetics Working Group - develops pharmacogenetics-based therapeutic recommendations integrated into Dutch national drug database (G-Standaard)." ;
+    ds:maintainer "KNMP (Royal Dutch Pharmacists Association)" ;
+    ds:website <https://www.pharmgkb.org/page/dpwg> ;
+    ds:updateFrequency "Periodic updates" ;
+    ds:recordCount "100+ gene-drug pairs" ;
+    ds:category tax:genetics.genomics ;
+    ds:subcategory tax:pharmacogenomics ;
+    ds:tier "2"^^xsd:integer ;
+    ds:status "active" .
+
+data:dpwg-license a ds:License ;
+    ds:forSource data:dpwg ;
+    ds:licenseName "CC BY-SA 4.0 (via PharmGKB)" ;
+    ds:spdxIdentifier "CC-BY-SA-4.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistribution true ;
+    ds:restrictions "G-Standaard integration requires KNMP license" .
+
+# -----------------------------------------------------------------------------
+# 1.5 EXPRESSION & REGULATION
+# -----------------------------------------------------------------------------
+
+# === GTEX ===
+
+data:gtex a ds:DataSource ;
+    rdfs:label "GTEx" ;
+    dct:description "Genotype-Tissue Expression project - comprehensive resource of gene expression and genetic regulation data from 54 non-diseased human tissues from nearly 1,000 individuals." ;
+    ds:maintainer "GTEx Consortium / Broad Institute" ;
+    ds:website <https://gtexportal.org/> ;
+    ds:updateFrequency "Major releases" ;
+    ds:recordCount "3300000+ eQTLs" ;
+    ds:category tax:genetics.genomics ;
+    ds:subcategory tax:expression.regulation ;
+    ds:tier "1"^^xsd:integer ;
+    ds:status "active" .
+
+data:gtex-license a ds:License ;
+    ds:forSource data:gtex ;
+    ds:licenseName "Open Access (aggregate); dbGaP Agreement (individual)" ;
+    ds:spdxIdentifier "Custom" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistribution true ;
+    ds:restrictions "Individual-level data requires dbGaP authorization" .
+
+data:gtex-version-8 a ds:Version ;
+    ds:forSource data:gtex ;
+    ds:versionName "V8" ;
+    ds:releaseDate "2019-08-01"^^xsd:date ;
+    ds:sampleCount "17382"^^xsd:integer .
+
+data:gtex-portal a ds:AccessMethod ;
+    ds:forSource data:gtex ;
+    ds:methodType "Web Portal" ;
+    ds:baseUrl <https://gtexportal.org/> ;
+    ds:formats "TSV" , "BED" ;
+    ds:authRequired false .
+
+# === ENCODE ===
+
+data:encode a ds:DataSource ;
+    rdfs:label "ENCODE" ;
+    dct:description "Encyclopedia of DNA Elements - comprehensive project identifying all functional elements in human and mouse genomes including transcription factor binding, chromatin accessibility, and histone modifications." ;
+    ds:maintainer "ENCODE Consortium" ;
+    ds:website <https://www.encodeproject.org/> ;
+    ds:updateFrequency "Continuous" ;
+    ds:recordCount "926535+ human cCREs" ;
+    ds:category tax:genetics.genomics ;
+    ds:subcategory tax:expression.regulation ;
+    ds:tier "1"^^xsd:integer ;
+    ds:status "active" .
+
+data:encode-license a ds:License ;
+    ds:forSource data:encode ;
+    ds:licenseName "Open Access (ENCODE Data Use Policy)" ;
+    ds:spdxIdentifier "Custom" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistribution true .
+
+data:encode-portal a ds:AccessMethod ;
+    ds:forSource data:encode ;
+    ds:methodType "Web Portal" ;
+    ds:baseUrl <https://www.encodeproject.org/> ;
+    ds:formats "BED" , "bigWig" , "BAM" ;
+    ds:authRequired false .
+
+# === GWAS CATALOG ===
+
+data:gwas-catalog a ds:DataSource ;
+    rdfs:label "GWAS Catalog" ;
+    dct:description "NHGRI-EBI comprehensive curated collection of published genome-wide association studies with standardized, quality-controlled SNP-trait associations using EFO trait mapping." ;
+    ds:maintainer "NHGRI-EBI" ;
+    ds:website <https://www.ebi.ac.uk/gwas/> ;
+    ds:updateFrequency "Weekly" ;
+    ds:recordCount "1058471+ associations" ;
+    ds:category tax:genetics.genomics ;
+    ds:subcategory tax:expression.regulation ;
+    ds:tier "1"^^xsd:integer ;
+    ds:status "active" .
+
+data:gwas-catalog-license a ds:License ;
+    ds:forSource data:gwas-catalog ;
+    ds:licenseName "Creative Commons Attribution 4.0 International" ;
+    ds:spdxIdentifier "CC-BY-4.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistribution true .
+
+data:gwas-catalog-id-study a ds:Identifier ;
+    ds:forSource data:gwas-catalog ;
+    ds:identifierName "Study" ;
+    ds:format "GCST + 6 digits" ;
+    ds:example "GCST000854" .
+
+data:gwas-catalog-api a ds:AccessMethod ;
+    ds:forSource data:gwas-catalog ;
+    ds:methodType "REST API" ;
+    ds:baseUrl <https://www.ebi.ac.uk/gwas/rest/> ;
+    ds:formats "JSON" ;
+    ds:authRequired false .
+
+# === EQTLGEN ===
+
+data:eqtlgen a ds:DataSource ;
+    rdfs:label "eQTLGen" ;
+    dct:description "Large-scale meta-analysis identifying blood eQTLs from 31,684 individuals. Most comprehensive catalog of blood cis-eQTLs and trans-eQTLs." ;
+    ds:maintainer "eQTLGen Consortium" ;
+    ds:website <https://www.eqtlgen.org/> ;
+    ds:updateFrequency "Phase releases" ;
+    ds:recordCount "16000+ cis-eQTLs" ;
+    ds:category tax:genetics.genomics ;
+    ds:subcategory tax:expression.regulation ;
+    ds:tier "2"^^xsd:integer ;
+    ds:status "active" .
+
+data:eqtlgen-license a ds:License ;
+    ds:forSource data:eqtlgen ;
+    ds:licenseName "Open Access" ;
+    ds:spdxIdentifier "Custom" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistribution true .
+
+# -----------------------------------------------------------------------------
+# 1.6 CANCER GENOMICS
+# -----------------------------------------------------------------------------
+
+# === COSMIC ===
+
+data:cosmic a ds:DataSource ;
+    rdfs:label "COSMIC" ;
+    dct:description "Catalogue Of Somatic Mutations In Cancer - world's largest resource for exploring somatic mutations in human cancer including Cancer Gene Census and mutational signatures." ;
+    ds:maintainer "Wellcome Sanger Institute" ;
+    ds:website <https://cancer.sanger.ac.uk/cosmic> ;
+    ds:updateFrequency "Quarterly releases" ;
+    ds:recordCount "17000000+ mutations" ;
+    ds:category tax:genetics.genomics ;
+    ds:subcategory tax:cancer.genomics ;
+    ds:tier "1"^^xsd:integer ;
+    ds:status "active" .
+
+data:cosmic-license a ds:License ;
+    ds:forSource data:cosmic ;
+    ds:licenseName "Free for academic; Commercial license required" ;
+    ds:spdxIdentifier "Custom" ;
+    ds:commercialUse false ;
+    ds:attributionRequired true ;
+    ds:redistribution false ;
+    ds:restrictions "Registration required; commercial use requires paid license" .
+
+data:cosmic-version-99 a ds:Version ;
+    ds:forSource data:cosmic ;
+    ds:versionName "v99" ;
+    ds:sampleCount "1500000+"^^xsd:string .
+
+data:cosmic-id-cosm a ds:Identifier ;
+    ds:forSource data:cosmic ;
+    ds:identifierName "COSMIC ID" ;
+    ds:format "COSM/COSV + integer" ;
+    ds:example "COSM476" .
+
+data:cosmic-download a ds:AccessMethod ;
+    ds:forSource data:cosmic ;
+    ds:methodType "Download Portal" ;
+    ds:baseUrl <https://cancer.sanger.ac.uk/cosmic/download> ;
+    ds:formats "TSV" , "VCF" ;
+    ds:authRequired true .
+
+# === CIVIC ===
+
+data:civic a ds:DataSource ;
+    rdfs:label "CIViC" ;
+    dct:description "Clinical Interpretation of Variants in Cancer - open-source, community-driven knowledgebase providing crowdsourced curation of variant-level clinical evidence for cancer." ;
+    ds:maintainer "Washington University School of Medicine" ;
+    ds:website <https://civicdb.org/> ;
+    ds:updateFrequency "Continuous community curation" ;
+    ds:recordCount "8000+ evidence items" ;
+    ds:category tax:genetics.genomics ;
+    ds:subcategory tax:cancer.genomics ;
+    ds:tier "1"^^xsd:integer ;
+    ds:status "active" .
+
+data:civic-license a ds:License ;
+    ds:forSource data:civic ;
+    ds:licenseName "Creative Commons Zero (CC0 1.0) - Public Domain" ;
+    ds:spdxIdentifier "CC0-1.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired false ;
+    ds:redistribution true .
+
+data:civic-api a ds:AccessMethod ;
+    ds:forSource data:civic ;
+    ds:methodType "GraphQL API" ;
+    ds:baseUrl <https://civicdb.org/api/graphql> ;
+    ds:formats "JSON" ;
+    ds:authRequired false .
+
+# === ONCOKB ===
+
+data:oncokb a ds:DataSource ;
+    rdfs:label "OncoKB" ;
+    dct:description "Memorial Sloan Kettering precision oncology knowledge base providing expert-curated annotation of cancer variant biological and clinical effects with FDA-recognized evidence levels." ;
+    ds:maintainer "Memorial Sloan Kettering Cancer Center" ;
+    ds:website <https://www.oncokb.org/> ;
+    ds:updateFrequency "Continuous" ;
+    ds:recordCount "5000+ annotated variants" ;
+    ds:category tax:genetics.genomics ;
+    ds:subcategory tax:cancer.genomics ;
+    ds:tier "1"^^xsd:integer ;
+    ds:status "active" .
+
+data:oncokb-license a ds:License ;
+    ds:forSource data:oncokb ;
+    ds:licenseName "Free for academic; Commercial license required" ;
+    ds:spdxIdentifier "Custom" ;
+    ds:commercialUse false ;
+    ds:attributionRequired true ;
+    ds:redistribution false ;
+    ds:restrictions "API requires registration; commercial use requires MSKCC license" .
+
+data:oncokb-api a ds:AccessMethod ;
+    ds:forSource data:oncokb ;
+    ds:methodType "REST API" ;
+    ds:baseUrl <https://www.oncokb.org/api/v1/> ;
+    ds:formats "JSON" ;
+    ds:authRequired true .
+
+# === CBIOPORTAL ===
+
+data:cbioportal a ds:DataSource ;
+    rdfs:label "cBioPortal" ;
+    dct:description "Open-source platform for visualization, analysis, and download of large-scale cancer genomics datasets from TCGA, AACR Project GENIE, and institutional studies." ;
+    ds:maintainer "Memorial Sloan Kettering Cancer Center / cBioPortal Team" ;
+    ds:website <https://www.cbioportal.org/> ;
+    ds:updateFrequency "Continuous study additions" ;
+    ds:recordCount "220890+ samples" ;
+    ds:category tax:genetics.genomics ;
+    ds:subcategory tax:cancer.genomics ;
+    ds:tier "1"^^xsd:integer ;
+    ds:status "active" .
+
+data:cbioportal-license a ds:License ;
+    ds:forSource data:cbioportal ;
+    ds:licenseName "Open Data Commons Open Database License (ODbL) 1.0" ;
+    ds:spdxIdentifier "ODbL-1.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistribution true ;
+    ds:restrictions "Share-alike required; some studies may have additional terms" .
+
+data:cbioportal-api a ds:AccessMethod ;
+    ds:forSource data:cbioportal ;
+    ds:methodType "REST API" ;
+    ds:baseUrl <https://www.cbioportal.org/api/> ;
+    ds:formats "JSON" ;
+    ds:authRequired false .
+
+# === BRCA EXCHANGE ===
+
+data:brca-exchange a ds:DataSource ;
+    rdfs:label "BRCA Exchange" ;
+    dct:description "Comprehensive resource for BRCA1 and BRCA2 variant data aggregation and classification as part of GA4GH. Provides expert-reviewed classifications from ENIGMA consortium." ;
+    ds:maintainer "BRCA Exchange / GA4GH" ;
+    ds:website <https://brcaexchange.org/> ;
+    ds:updateFrequency "Monthly" ;
+    ds:recordCount "52000+ BRCA variants" ;
+    ds:category tax:genetics.genomics ;
+    ds:subcategory tax:cancer.genomics ;
+    ds:tier "2"^^xsd:integer ;
+    ds:status "active" .
+
+data:brca-exchange-license a ds:License ;
+    ds:forSource data:brca-exchange ;
+    ds:licenseName "Open Access" ;
+    ds:spdxIdentifier "Custom" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistribution true .
+
+data:brca-exchange-api a ds:AccessMethod ;
+    ds:forSource data:brca-exchange ;
+    ds:methodType "REST API" ;
+    ds:baseUrl <https://brcaexchange.org/api/> ;
+    ds:formats "JSON" ;
+    ds:authRequired false .
+
+# === CANCER GENE CENSUS ===
+
+data:cancer-gene-census a ds:DataSource ;
+    rdfs:label "Cancer Gene Census" ;
+    dct:description "Catalogue of genes whose mutations are causally implicated in cancer. Distinguishes Tier 1 (documented) and Tier 2 (strong evidence) cancer genes." ;
+    ds:maintainer "Wellcome Sanger Institute" ;
+    ds:website <https://cancer.sanger.ac.uk/census> ;
+    ds:updateFrequency "Periodic updates" ;
+    ds:recordCount "736 genes" ;
+    ds:category tax:genetics.genomics ;
+    ds:subcategory tax:cancer.genomics ;
+    ds:tier "1"^^xsd:integer ;
+    ds:status "active" .
+
+data:cancer-gene-census-license a ds:License ;
+    ds:forSource data:cancer-gene-census ;
+    ds:licenseName "COSMIC License Terms" ;
+    ds:spdxIdentifier "Custom" ;
+    ds:commercialUse false ;
+    ds:attributionRequired true ;
+    ds:redistribution false ;
+    ds:restrictions "Registration required; commercial use requires COSMIC commercial license" .
+
+# =============================================================================
+# END OF FILE
+# =============================================================================

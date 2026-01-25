@@ -1,0 +1,1276 @@
+# =============================================================================
+# Gene Data Source Instance Data - Category 03: Diseases & Phenotypes
+# =============================================================================
+# Generated: 2026-01-25
+# Category: diseases.phenotypes
+# Sources: 17
+# Conforms to: datasource-ontology.ttl, datasource-shapes.ttl
+# =============================================================================
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ds: <https://gene.example.org/ontology/datasource#> .
+@prefix tax: <https://gene.example.org/taxonomy/> .
+@prefix data: <https://gene.example.org/data/source/> .
+@prefix cat: <https://gene.example.org/data/category/> .
+@prefix subcat: <https://gene.example.org/data/subcategory/> .
+@prefix spdx: <http://spdx.org/licenses/> .
+
+# =============================================================================
+# CATEGORY
+# =============================================================================
+
+cat:DiseasesPhenotypes a ds:Category ;
+    ds:id "diseases.phenotypes" ;
+    ds:title "Diseases & Phenotypes" ;
+    ds:categoryClassification tax:DiseasesPhenotypes ;
+    ds:status tax:Active .
+
+# =============================================================================
+# SUBCATEGORIES
+# =============================================================================
+
+subcat:DiseaseOntologies a ds:Subcategory ;
+    ds:id "disease.ontologies" ;
+    ds:title "Disease Ontologies" ;
+    ds:belongsToCategory cat:DiseasesPhenotypes ;
+    ds:subcategoryClassification tax:DiseaseOntologies ;
+    ds:status tax:Active .
+
+subcat:PhenotypeDatabases a ds:Subcategory ;
+    ds:id "phenotype.databases" ;
+    ds:title "Phenotype Databases" ;
+    ds:belongsToCategory cat:DiseasesPhenotypes ;
+    ds:subcategoryClassification tax:PhenotypeDatabases ;
+    ds:status tax:Active .
+
+subcat:DiseaseGeneAssociations a ds:Subcategory ;
+    ds:id "disease.gene.associations" ;
+    ds:title "Disease-Gene Associations" ;
+    ds:belongsToCategory cat:DiseasesPhenotypes ;
+    ds:subcategoryClassification tax:DiseaseGeneAssociations ;
+    ds:status tax:Active .
+
+subcat:CancerOncology a ds:Subcategory ;
+    ds:id "cancer.oncology" ;
+    ds:title "Cancer & Oncology" ;
+    ds:belongsToCategory cat:DiseasesPhenotypes ;
+    ds:subcategoryClassification tax:CancerOncology ;
+    ds:status tax:Active .
+
+subcat:RareOrphanDiseases a ds:Subcategory ;
+    ds:id "rare.orphan.diseases" ;
+    ds:title "Rare & Orphan Diseases" ;
+    ds:belongsToCategory cat:DiseasesPhenotypes ;
+    ds:subcategoryClassification tax:RareOrphanDiseases ;
+    ds:status tax:Active .
+
+subcat:AutoimmuneInflammatory a ds:Subcategory ;
+    ds:id "autoimmune.inflammatory" ;
+    ds:title "Autoimmune & Inflammatory Diseases" ;
+    ds:belongsToCategory cat:DiseasesPhenotypes ;
+    ds:subcategoryClassification tax:AutoimmuneInflammatory ;
+    ds:status tax:Active .
+
+subcat:MentalHealthNeurological a ds:Subcategory ;
+    ds:id "mental.health.neurological" ;
+    ds:title "Mental Health & Neurological" ;
+    ds:belongsToCategory cat:DiseasesPhenotypes ;
+    ds:subcategoryClassification tax:MentalHealthNeurological ;
+    ds:status tax:Active .
+
+# =============================================================================
+# DATA SOURCES - 3.1 Disease Ontologies
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# ICD - International Classification of Diseases
+# -----------------------------------------------------------------------------
+
+data:ICD a ds:DataSource ;
+    ds:id "icd" ;
+    ds:title "ICD - International Classification of Diseases" ;
+    ds:description "WHO-maintained international standard for diagnostic classification of diseases and health problems, used globally for health statistics and billing." ;
+    ds:belongsToSubcategory subcat:DiseaseOntologies ;
+    ds:tier "1"^^xsd:integer ;
+    ds:status tax:Active ;
+    ds:maintainer "World Health Organization (WHO)" ;
+    ds:website <https://www.who.int/standards/classifications/classification-of-diseases> ;
+    ds:updateFrequency tax:Annual ;
+    ds:hasLicense data:ICD_License ;
+    ds:hasAccessMethod data:ICD_WebAccess, data:ICD_APIAccess ;
+    ds:hasIdentifier data:ICD_ID_ICD10, data:ICD_ID_ICD11 ;
+    ds:hasUseCase data:ICD_UseCase_1, data:ICD_UseCase_2 ;
+    ds:hasLimitation data:ICD_Limitation_1 .
+
+data:ICD_License a ds:License ;
+    ds:licenseName "WHO License" ;
+    ds:spdxIdentifier "Custom" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistributionAllowed true ;
+    ds:licenseURL <https://www.who.int/about/policies/publishing/copyright> .
+
+data:ICD_WebAccess a ds:AccessMethod ;
+    ds:accessType tax:WebInterface ;
+    ds:endpoint <https://icd.who.int/> .
+
+data:ICD_APIAccess a ds:AccessMethod ;
+    ds:accessType tax:RESTAPI ;
+    ds:endpoint <https://id.who.int/icd/> ;
+    ds:authRequired true .
+
+data:ICD_ID_ICD10 a ds:Identifier ;
+    ds:pattern "[A-Z][0-9]{2}(\\.[0-9]{1,2})?" ;
+    ds:example "E11.9" ;
+    ds:description "ICD-10 diagnosis code" .
+
+data:ICD_ID_ICD11 a ds:Identifier ;
+    ds:pattern "[0-9A-Z]{4,6}" ;
+    ds:example "5A11" ;
+    ds:description "ICD-11 diagnosis code" .
+
+data:ICD_UseCase_1 a ds:UseCase ;
+    ds:description "Clinical coding for healthcare billing and statistics" .
+
+data:ICD_UseCase_2 a ds:UseCase ;
+    ds:description "Epidemiological surveillance and health reporting" .
+
+data:ICD_Limitation_1 a ds:Limitation ;
+    ds:description "Granularity insufficient for detailed clinical phenotyping" ;
+    ds:impact tax:Medium .
+
+# -----------------------------------------------------------------------------
+# MeSH - Medical Subject Headings
+# -----------------------------------------------------------------------------
+
+data:MeSH a ds:DataSource ;
+    ds:id "mesh" ;
+    ds:title "MeSH - Medical Subject Headings" ;
+    ds:description "NLM's controlled vocabulary thesaurus for indexing articles in PubMed and cataloging books, used extensively in biomedical literature indexing." ;
+    ds:belongsToSubcategory subcat:DiseaseOntologies ;
+    ds:tier "1"^^xsd:integer ;
+    ds:status tax:Active ;
+    ds:maintainer "National Library of Medicine (NLM)" ;
+    ds:website <https://www.nlm.nih.gov/mesh/> ;
+    ds:updateFrequency tax:Annual ;
+    ds:recordCount "30000"^^xsd:integer ;
+    ds:hasLicense data:MeSH_License ;
+    ds:hasAccessMethod data:MeSH_FTPAccess, data:MeSH_APIAccess ;
+    ds:hasIdentifier data:MeSH_ID_MeshID, data:MeSH_ID_TreeNumber ;
+    ds:hasUseCase data:MeSH_UseCase_1, data:MeSH_UseCase_2 .
+
+data:MeSH_License a ds:License ;
+    ds:licenseName "Public Domain" ;
+    ds:spdxIdentifier "CC0-1.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired false ;
+    ds:redistributionAllowed true ;
+    ds:licenseURL <https://www.nlm.nih.gov/databases/download/terms_and_conditions.html> .
+
+data:MeSH_FTPAccess a ds:AccessMethod ;
+    ds:accessType tax:FTP ;
+    ds:endpoint <https://nlmpubs.nlm.nih.gov/projects/mesh/> ;
+    ds:format "XML", "RDF" .
+
+data:MeSH_APIAccess a ds:AccessMethod ;
+    ds:accessType tax:RESTAPI ;
+    ds:endpoint <https://id.nlm.nih.gov/mesh/> .
+
+data:MeSH_ID_MeshID a ds:Identifier ;
+    ds:pattern "D[0-9]{6}" ;
+    ds:example "D003920" ;
+    ds:description "MeSH descriptor ID" .
+
+data:MeSH_ID_TreeNumber a ds:Identifier ;
+    ds:pattern "[A-Z][0-9]{2}(\\.[0-9]+)+" ;
+    ds:example "C18.452.394" ;
+    ds:description "MeSH tree number for hierarchical location" .
+
+data:MeSH_UseCase_1 a ds:UseCase ;
+    ds:description "PubMed literature search and indexing" .
+
+data:MeSH_UseCase_2 a ds:UseCase ;
+    ds:description "Disease terminology standardization" .
+
+# -----------------------------------------------------------------------------
+# MONDO - Monarch Disease Ontology
+# -----------------------------------------------------------------------------
+
+data:MONDO a ds:DataSource ;
+    ds:id "mondo" ;
+    ds:title "MONDO - Monarch Disease Ontology" ;
+    ds:description "Integrated disease ontology that merges and harmonizes definitions from OMIM, Orphanet, EFO, DOID, and other sources for unified disease classification." ;
+    ds:belongsToSubcategory subcat:DiseaseOntologies ;
+    ds:tier "1"^^xsd:integer ;
+    ds:status tax:Active ;
+    ds:maintainer "Monarch Initiative" ;
+    ds:website <https://mondo.monarchinitiative.org/> ;
+    ds:updateFrequency tax:Monthly ;
+    ds:recordCount "25000"^^xsd:integer ;
+    ds:hasLicense data:MONDO_License ;
+    ds:hasAccessMethod data:MONDO_OBOAccess, data:MONDO_OLSAccess ;
+    ds:hasVersion data:MONDO_Version_Current ;
+    ds:hasIdentifier data:MONDO_ID_MONDOID ;
+    ds:hasCrossReference data:MONDO_Xref_OMIM, data:MONDO_Xref_Orphanet, data:MONDO_Xref_DOID ;
+    ds:hasUseCase data:MONDO_UseCase_1, data:MONDO_UseCase_2 .
+
+data:MONDO_License a ds:License ;
+    ds:licenseName "CC BY 4.0" ;
+    ds:spdxIdentifier "CC-BY-4.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistributionAllowed true ;
+    ds:licenseURL <https://creativecommons.org/licenses/by/4.0/> .
+
+data:MONDO_OBOAccess a ds:AccessMethod ;
+    ds:accessType tax:Download ;
+    ds:endpoint <http://purl.obolibrary.org/obo/mondo.owl> ;
+    ds:format "OWL", "OBO" .
+
+data:MONDO_OLSAccess a ds:AccessMethod ;
+    ds:accessType tax:RESTAPI ;
+    ds:endpoint <https://www.ebi.ac.uk/ols4/ontologies/mondo> .
+
+data:MONDO_Version_Current a ds:Version ;
+    ds:versionNumber "2026-01" ;
+    ds:releaseDate "2026-01-01"^^xsd:date .
+
+data:MONDO_ID_MONDOID a ds:Identifier ;
+    ds:pattern "MONDO:[0-9]{7}" ;
+    ds:example "MONDO:0007947" ;
+    ds:description "MONDO disease identifier" .
+
+data:MONDO_Xref_OMIM a ds:CrossReference ;
+    ds:targetDatabase data:OMIM ;
+    ds:coverageLevel tax:High ;
+    ds:description "Cross-reference to OMIM Mendelian diseases" .
+
+data:MONDO_Xref_Orphanet a ds:CrossReference ;
+    ds:targetDatabase data:Orphanet ;
+    ds:coverageLevel tax:High ;
+    ds:description "Cross-reference to Orphanet rare diseases" .
+
+data:MONDO_Xref_DOID a ds:CrossReference ;
+    ds:targetDatabase data:DOID ;
+    ds:coverageLevel tax:High ;
+    ds:description "Cross-reference to Disease Ontology" .
+
+data:MONDO_UseCase_1 a ds:UseCase ;
+    ds:description "Unified disease classification across data sources" .
+
+data:MONDO_UseCase_2 a ds:UseCase ;
+    ds:description "Knowledge graph disease integration" .
+
+# =============================================================================
+# DATA SOURCES - 3.2 Phenotype Databases
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# HPO - Human Phenotype Ontology
+# -----------------------------------------------------------------------------
+
+data:HPO a ds:DataSource ;
+    ds:id "hpo" ;
+    ds:title "HPO - Human Phenotype Ontology" ;
+    ds:description "Standardized vocabulary of phenotypic abnormalities in human disease, with 18,000+ terms organized hierarchically for clinical phenotyping and computational analysis." ;
+    ds:belongsToSubcategory subcat:PhenotypeDatabases ;
+    ds:tier "1"^^xsd:integer ;
+    ds:status tax:Active ;
+    ds:maintainer "Monarch Initiative / Jackson Laboratory" ;
+    ds:website <https://hpo.jax.org/> ;
+    ds:updateFrequency tax:Monthly ;
+    ds:recordCount "18000"^^xsd:integer ;
+    ds:hasLicense data:HPO_License ;
+    ds:hasAccessMethod data:HPO_OBOAccess, data:HPO_APIAccess ;
+    ds:hasIdentifier data:HPO_ID_HPID ;
+    ds:hasCrossReference data:HPO_Xref_OMIM, data:HPO_Xref_Orphanet ;
+    ds:hasUseCase data:HPO_UseCase_1, data:HPO_UseCase_2, data:HPO_UseCase_3 ;
+    ds:hasLimitation data:HPO_Limitation_1 .
+
+data:HPO_License a ds:License ;
+    ds:licenseName "HPO License" ;
+    ds:spdxIdentifier "Custom" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistributionAllowed true ;
+    ds:licenseURL <https://hpo.jax.org/data/license> .
+
+data:HPO_OBOAccess a ds:AccessMethod ;
+    ds:accessType tax:Download ;
+    ds:endpoint <http://purl.obolibrary.org/obo/hp.obo> ;
+    ds:format "OBO", "OWL" .
+
+data:HPO_APIAccess a ds:AccessMethod ;
+    ds:accessType tax:RESTAPI ;
+    ds:endpoint <https://ontology.jax.org/api/hp/> .
+
+data:HPO_ID_HPID a ds:Identifier ;
+    ds:pattern "HP:[0-9]{7}" ;
+    ds:example "HP:0001166" ;
+    ds:description "Human Phenotype Ontology term ID" .
+
+data:HPO_Xref_OMIM a ds:CrossReference ;
+    ds:targetDatabase data:OMIM ;
+    ds:coverageLevel tax:High ;
+    ds:description "Disease-phenotype annotations for OMIM diseases" .
+
+data:HPO_Xref_Orphanet a ds:CrossReference ;
+    ds:targetDatabase data:Orphanet ;
+    ds:coverageLevel tax:High ;
+    ds:description "Disease-phenotype annotations for Orphanet diseases" .
+
+data:HPO_UseCase_1 a ds:UseCase ;
+    ds:description "Clinical phenotyping and patient characterization" .
+
+data:HPO_UseCase_2 a ds:UseCase ;
+    ds:description "Phenotype-driven differential diagnosis" .
+
+data:HPO_UseCase_3 a ds:UseCase ;
+    ds:description "Variant interpretation with phenotype matching" .
+
+data:HPO_Limitation_1 a ds:Limitation ;
+    ds:description "Requires clinical expertise for accurate phenotype assignment" ;
+    ds:impact tax:Medium .
+
+# -----------------------------------------------------------------------------
+# OMIM - Online Mendelian Inheritance in Man
+# -----------------------------------------------------------------------------
+
+data:OMIM a ds:DataSource ;
+    ds:id "omim" ;
+    ds:title "OMIM - Online Mendelian Inheritance in Man" ;
+    ds:description "Authoritative compendium of human genes and genetic disorders, with expert-authored entries covering 16,000+ genes and 9,000+ phenotypes including allelic variants and gene-phenotype relationships." ;
+    ds:belongsToSubcategory subcat:PhenotypeDatabases ;
+    ds:tier "1"^^xsd:integer ;
+    ds:status tax:Active ;
+    ds:maintainer "Johns Hopkins University / McKusick-Nathans Institute" ;
+    ds:website <https://omim.org/> ;
+    ds:updateFrequency tax:Daily ;
+    ds:recordCount "27000"^^xsd:integer ;
+    ds:hasLicense data:OMIM_License ;
+    ds:hasAccessMethod data:OMIM_WebAccess, data:OMIM_APIAccess ;
+    ds:hasIdentifier data:OMIM_ID_MIMNumber, data:OMIM_ID_AllelicVariant ;
+    ds:hasCrossReference data:OMIM_Xref_HGNC, data:OMIM_Xref_Ensembl, data:OMIM_Xref_HPO ;
+    ds:hasUseCase data:OMIM_UseCase_1, data:OMIM_UseCase_2, data:OMIM_UseCase_3 ;
+    ds:hasLimitation data:OMIM_Limitation_1, data:OMIM_Limitation_2 .
+
+data:OMIM_License a ds:License ;
+    ds:licenseName "OMIM License" ;
+    ds:spdxIdentifier "Custom" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistributionAllowed false ;
+    ds:specialCondition "API access requires registration; commercial redistribution requires license" ;
+    ds:licenseURL <https://omim.org/help/agreement> .
+
+data:OMIM_WebAccess a ds:AccessMethod ;
+    ds:accessType tax:WebInterface ;
+    ds:endpoint <https://omim.org/> .
+
+data:OMIM_APIAccess a ds:AccessMethod ;
+    ds:accessType tax:RESTAPI ;
+    ds:endpoint <https://api.omim.org/api/> ;
+    ds:authRequired true ;
+    ds:rateLimit "4 requests/second" .
+
+data:OMIM_ID_MIMNumber a ds:Identifier ;
+    ds:pattern "[0-9]{6}" ;
+    ds:example "154700" ;
+    ds:description "OMIM MIM number for gene or phenotype entry" .
+
+data:OMIM_ID_AllelicVariant a ds:Identifier ;
+    ds:pattern "[0-9]{6}\\.[0-9]{4}" ;
+    ds:example "134797.0001" ;
+    ds:description "OMIM allelic variant identifier" .
+
+data:OMIM_Xref_HGNC a ds:CrossReference ;
+    ds:targetDatabase data:HGNC ;
+    ds:coverageLevel tax:High ;
+    ds:description "Gene nomenclature cross-reference" .
+
+data:OMIM_Xref_Ensembl a ds:CrossReference ;
+    ds:targetDatabase data:Ensembl ;
+    ds:coverageLevel tax:High ;
+    ds:description "Gene annotation cross-reference" .
+
+data:OMIM_Xref_HPO a ds:CrossReference ;
+    ds:targetDatabase data:HPO ;
+    ds:coverageLevel tax:High ;
+    ds:description "Phenotype term cross-reference" .
+
+data:OMIM_UseCase_1 a ds:UseCase ;
+    ds:description "Mendelian disease gene identification" .
+
+data:OMIM_UseCase_2 a ds:UseCase ;
+    ds:description "Clinical genetics variant interpretation" .
+
+data:OMIM_UseCase_3 a ds:UseCase ;
+    ds:description "Gene-phenotype relationship research" .
+
+data:OMIM_Limitation_1 a ds:Limitation ;
+    ds:description "API access requires registration" ;
+    ds:impact tax:Low .
+
+data:OMIM_Limitation_2 a ds:Limitation ;
+    ds:description "Bulk download restricted; commercial redistribution requires license" ;
+    ds:impact tax:Medium .
+
+# -----------------------------------------------------------------------------
+# Orphanet Phenotypes - Orphanet Phenotype Annotations
+# -----------------------------------------------------------------------------
+
+data:OrphanetPhenotypes a ds:DataSource ;
+    ds:id "orphanet.phenotypes" ;
+    ds:title "Orphanet Phenotype Annotations" ;
+    ds:description "Comprehensive disease-phenotype mappings for 4,337+ rare diseases using HPO terms, with frequency annotations (obligate to excluded) curated by 41-country expert network." ;
+    ds:belongsToSubcategory subcat:PhenotypeDatabases ;
+    ds:tier "1"^^xsd:integer ;
+    ds:status tax:Active ;
+    ds:maintainer "Orphanet / INSERM" ;
+    ds:website <https://www.orphadata.com/> ;
+    ds:updateFrequency tax:Monthly ;
+    ds:recordCount "100000"^^xsd:integer ;
+    ds:hasLicense data:OrphanetPhenotypes_License ;
+    ds:hasAccessMethod data:OrphanetPhenotypes_XMLAccess, data:OrphanetPhenotypes_APIAccess ;
+    ds:hasVersion data:OrphanetPhenotypes_Version_Current ;
+    ds:hasIdentifier data:OrphanetPhenotypes_ID_ORPHAcode, data:OrphanetPhenotypes_ID_HPO ;
+    ds:hasCrossReference data:OrphanetPhenotypes_Xref_HPO, data:OrphanetPhenotypes_Xref_OMIM ;
+    ds:hasUseCase data:OrphanetPhenotypes_UseCase_1, data:OrphanetPhenotypes_UseCase_2 ;
+    ds:hasLimitation data:OrphanetPhenotypes_Limitation_1 .
+
+data:OrphanetPhenotypes_License a ds:License ;
+    ds:licenseName "CC BY 4.0" ;
+    ds:spdxIdentifier "CC-BY-4.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistributionAllowed true ;
+    ds:attribution "Orphanet phenotype data (https://www.orphadata.com/). License: CC BY 4.0. Attribution: Orphanet." ;
+    ds:licenseURL <https://creativecommons.org/licenses/by/4.0/> .
+
+data:OrphanetPhenotypes_XMLAccess a ds:AccessMethod ;
+    ds:accessType tax:Download ;
+    ds:endpoint <https://www.orphadata.com/data/xml/en_product4.xml> ;
+    ds:format "XML" ;
+    ds:size "15 MB" .
+
+data:OrphanetPhenotypes_APIAccess a ds:AccessMethod ;
+    ds:accessType tax:RESTAPI ;
+    ds:endpoint <https://api.orphanet.org/rd-api> .
+
+data:OrphanetPhenotypes_Version_Current a ds:Version ;
+    ds:versionNumber "2026-01" ;
+    ds:releaseDate "2026-01-01"^^xsd:date ;
+    ds:size "50 MB" .
+
+data:OrphanetPhenotypes_ID_ORPHAcode a ds:Identifier ;
+    ds:pattern "[0-9]+" ;
+    ds:example "558" ;
+    ds:description "Orphanet disease code" .
+
+data:OrphanetPhenotypes_ID_HPO a ds:Identifier ;
+    ds:pattern "HP:[0-9]{7}" ;
+    ds:example "HP:0001166" ;
+    ds:description "HPO phenotype term" .
+
+data:OrphanetPhenotypes_Xref_HPO a ds:CrossReference ;
+    ds:targetDatabase data:HPO ;
+    ds:coverageLevel tax:Complete ;
+    ds:description "All phenotype annotations use HPO terms" .
+
+data:OrphanetPhenotypes_Xref_OMIM a ds:CrossReference ;
+    ds:targetDatabase data:OMIM ;
+    ds:coverageLevel tax:High ;
+    ds:description "Disease cross-reference to OMIM" .
+
+data:OrphanetPhenotypes_UseCase_1 a ds:UseCase ;
+    ds:description "Rare disease differential diagnosis based on phenotype matching" .
+
+data:OrphanetPhenotypes_UseCase_2 a ds:UseCase ;
+    ds:description "Clinical decision support for genetic testing" .
+
+data:OrphanetPhenotypes_Limitation_1 a ds:Limitation ;
+    ds:description "Rare diseases only; common conditions not covered" ;
+    ds:impact tax:Medium .
+
+# =============================================================================
+# DATA SOURCES - 3.3 Disease-Gene Associations
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# DisGeNET - Disease Gene Network
+# -----------------------------------------------------------------------------
+
+data:DisGeNET a ds:DataSource ;
+    ds:id "disgenet" ;
+    ds:title "DisGeNET - Disease Gene Network" ;
+    ds:description "Largest publicly available collection of 628,000+ gene-disease associations and 210,000+ variant-disease associations integrating data from expert-curated repositories, GWAS catalogues, animal models, and text mining." ;
+    ds:belongsToSubcategory subcat:DiseaseGeneAssociations ;
+    ds:tier "1"^^xsd:integer ;
+    ds:status tax:Active ;
+    ds:maintainer "DisGeNET / Pompeu Fabra University" ;
+    ds:website <https://www.disgenet.org/> ;
+    ds:updateFrequency tax:Quarterly ;
+    ds:recordCount "628685"^^xsd:integer ;
+    ds:hasLicense data:DisGeNET_License ;
+    ds:hasAccessMethod data:DisGeNET_WebAccess, data:DisGeNET_APIAccess ;
+    ds:hasVersion data:DisGeNET_Version_Current ;
+    ds:hasIdentifier data:DisGeNET_ID_UMLSCUI, data:DisGeNET_ID_NCBIGene, data:DisGeNET_ID_dbSNP ;
+    ds:hasCrossReference data:DisGeNET_Xref_GWAS, data:DisGeNET_Xref_ClinVar ;
+    ds:hasUseCase data:DisGeNET_UseCase_1, data:DisGeNET_UseCase_2, data:DisGeNET_UseCase_3 ;
+    ds:hasLimitation data:DisGeNET_Limitation_1, data:DisGeNET_Limitation_2 .
+
+data:DisGeNET_License a ds:License ;
+    ds:licenseName "CC BY-NC-SA 4.0" ;
+    ds:spdxIdentifier "CC-BY-NC-SA-4.0" ;
+    ds:commercialUse false ;
+    ds:attributionRequired true ;
+    ds:redistributionAllowed true ;
+    ds:specialCondition "Commercial use requires separate license from DisGeNET" ;
+    ds:licenseURL <https://creativecommons.org/licenses/by-nc-sa/4.0/> .
+
+data:DisGeNET_WebAccess a ds:AccessMethod ;
+    ds:accessType tax:WebInterface ;
+    ds:endpoint <https://www.disgenet.org/> .
+
+data:DisGeNET_APIAccess a ds:AccessMethod ;
+    ds:accessType tax:RESTAPI ;
+    ds:endpoint <https://www.disgenet.org/api> ;
+    ds:authRequired true ;
+    ds:format "JSON", "TSV" .
+
+data:DisGeNET_Version_Current a ds:Version ;
+    ds:versionNumber "7.0" ;
+    ds:releaseDate "2020-05-01"^^xsd:date ;
+    ds:size "1.5 GB" .
+
+data:DisGeNET_ID_UMLSCUI a ds:Identifier ;
+    ds:pattern "C[0-9]{7}" ;
+    ds:example "C0020443" ;
+    ds:description "UMLS Concept Unique Identifier for disease" .
+
+data:DisGeNET_ID_NCBIGene a ds:Identifier ;
+    ds:pattern "[0-9]+" ;
+    ds:example "3157" ;
+    ds:description "NCBI Gene ID" .
+
+data:DisGeNET_ID_dbSNP a ds:Identifier ;
+    ds:pattern "rs[0-9]+" ;
+    ds:example "rs2066843" ;
+    ds:description "dbSNP variant ID" .
+
+data:DisGeNET_Xref_GWAS a ds:CrossReference ;
+    ds:targetDatabase data:GWASCatalog ;
+    ds:coverageLevel tax:High ;
+    ds:description "GWAS associations integrated" .
+
+data:DisGeNET_Xref_ClinVar a ds:CrossReference ;
+    ds:targetDatabase data:ClinVar ;
+    ds:coverageLevel tax:High ;
+    ds:description "Clinical variant associations" .
+
+data:DisGeNET_UseCase_1 a ds:UseCase ;
+    ds:description "Gene prioritization for disease research" .
+
+data:DisGeNET_UseCase_2 a ds:UseCase ;
+    ds:description "Variant interpretation in clinical genomics" .
+
+data:DisGeNET_UseCase_3 a ds:UseCase ;
+    ds:description "Drug target identification and validation" .
+
+data:DisGeNET_Limitation_1 a ds:Limitation ;
+    ds:description "Commercial use requires separate license agreement" ;
+    ds:impact tax:Medium .
+
+data:DisGeNET_Limitation_2 a ds:Limitation ;
+    ds:description "Text-mined associations may include false positives" ;
+    ds:impact tax:Medium .
+
+# -----------------------------------------------------------------------------
+# Open Targets Platform
+# -----------------------------------------------------------------------------
+
+data:OpenTargets a ds:DataSource ;
+    ds:id "open.targets" ;
+    ds:title "Open Targets Platform" ;
+    ds:description "Comprehensive resource for systematic drug target identification integrating genetics, genomics, transcriptomics, drugs, and literature evidence for 14M+ target-disease associations." ;
+    ds:belongsToSubcategory subcat:DiseaseGeneAssociations ;
+    ds:tier "1"^^xsd:integer ;
+    ds:status tax:Active ;
+    ds:maintainer "EMBL-EBI / Wellcome Sanger Institute / GSK" ;
+    ds:website <https://platform.opentargets.org/> ;
+    ds:updateFrequency tax:Quarterly ;
+    ds:recordCount "14000000"^^xsd:integer ;
+    ds:hasLicense data:OpenTargets_License ;
+    ds:hasAccessMethod data:OpenTargets_GraphQLAccess, data:OpenTargets_FTPAccess, data:OpenTargets_BigQueryAccess ;
+    ds:hasVersion data:OpenTargets_Version_Current ;
+    ds:hasIdentifier data:OpenTargets_ID_Ensembl, data:OpenTargets_ID_EFO, data:OpenTargets_ID_ChEMBL ;
+    ds:hasCrossReference data:OpenTargets_Xref_ChEMBL, data:OpenTargets_Xref_GWASCatalog ;
+    ds:hasUseCase data:OpenTargets_UseCase_1, data:OpenTargets_UseCase_2 ;
+    ds:hasLimitation data:OpenTargets_Limitation_1 .
+
+data:OpenTargets_License a ds:License ;
+    ds:licenseName "CC BY 4.0" ;
+    ds:spdxIdentifier "CC-BY-4.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistributionAllowed true ;
+    ds:licenseURL <https://creativecommons.org/licenses/by/4.0/> .
+
+data:OpenTargets_GraphQLAccess a ds:AccessMethod ;
+    ds:accessType tax:GraphQL ;
+    ds:endpoint <https://api.platform.opentargets.org/api/v4/graphql> .
+
+data:OpenTargets_FTPAccess a ds:AccessMethod ;
+    ds:accessType tax:FTP ;
+    ds:endpoint <https://ftp.ebi.ac.uk/pub/databases/opentargets/platform/latest/> ;
+    ds:format "Parquet", "JSON" .
+
+data:OpenTargets_BigQueryAccess a ds:AccessMethod ;
+    ds:accessType tax:CloudDatabase ;
+    ds:endpoint <https://console.cloud.google.com/bigquery?project=open-targets-prod> ;
+    ds:description "Google BigQuery access for cloud analysis" .
+
+data:OpenTargets_Version_Current a ds:Version ;
+    ds:versionNumber "25.01" ;
+    ds:releaseDate "2025-01-01"^^xsd:date ;
+    ds:size "150 GB" .
+
+data:OpenTargets_ID_Ensembl a ds:Identifier ;
+    ds:pattern "ENSG[0-9]{11}" ;
+    ds:example "ENSG00000146648" ;
+    ds:description "Ensembl gene ID (target identifier)" .
+
+data:OpenTargets_ID_EFO a ds:Identifier ;
+    ds:pattern "EFO_[0-9]{7}" ;
+    ds:example "EFO_0000311" ;
+    ds:description "EFO disease ID" .
+
+data:OpenTargets_ID_ChEMBL a ds:Identifier ;
+    ds:pattern "CHEMBL[0-9]+" ;
+    ds:example "CHEMBL941" ;
+    ds:description "ChEMBL drug ID" .
+
+data:OpenTargets_Xref_ChEMBL a ds:CrossReference ;
+    ds:targetDatabase data:ChEMBL ;
+    ds:coverageLevel tax:Complete ;
+    ds:description "Known drugs evidence from ChEMBL" .
+
+data:OpenTargets_Xref_GWASCatalog a ds:CrossReference ;
+    ds:targetDatabase data:GWASCatalog ;
+    ds:coverageLevel tax:High ;
+    ds:description "Genetic associations from GWAS Catalog" .
+
+data:OpenTargets_UseCase_1 a ds:UseCase ;
+    ds:description "Drug target identification and prioritization" .
+
+data:OpenTargets_UseCase_2 a ds:UseCase ;
+    ds:description "Evidence integration for target validation" .
+
+data:OpenTargets_Limitation_1 a ds:Limitation ;
+    ds:description "EFO disease ontology may not map to all clinical terminologies" ;
+    ds:impact tax:Low .
+
+# =============================================================================
+# DATA SOURCES - 3.5 Rare & Orphan Diseases
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Orphanet - Rare Diseases Portal
+# -----------------------------------------------------------------------------
+
+data:Orphanet a ds:DataSource ;
+    ds:id "orphanet" ;
+    ds:title "Orphanet - The Portal for Rare Diseases and Orphan Drugs" ;
+    ds:description "Reference portal for 6,528 rare diseases with expert-validated clinical descriptions, epidemiology, gene-disease associations, diagnostic tests, and expert centers coordinated by 41 countries." ;
+    ds:belongsToSubcategory subcat:RareOrphanDiseases ;
+    ds:tier "1"^^xsd:integer ;
+    ds:status tax:Active ;
+    ds:maintainer "INSERM / Orphanet Consortium" ;
+    ds:website <https://www.orpha.net/> ;
+    ds:updateFrequency tax:Monthly ;
+    ds:recordCount "6528"^^xsd:integer ;
+    ds:hasLicense data:Orphanet_License ;
+    ds:hasAccessMethod data:Orphanet_XMLAccess, data:Orphanet_APIAccess, data:Orphanet_OWLAccess ;
+    ds:hasVersion data:Orphanet_Version_Current ;
+    ds:hasIdentifier data:Orphanet_ID_ORPHAcode, data:Orphanet_ID_ORDO ;
+    ds:hasCrossReference data:Orphanet_Xref_OMIM, data:Orphanet_Xref_ICD10, data:Orphanet_Xref_UMLS ;
+    ds:hasUseCase data:Orphanet_UseCase_1, data:Orphanet_UseCase_2, data:Orphanet_UseCase_3 ;
+    ds:hasLimitation data:Orphanet_Limitation_1 .
+
+data:Orphanet_License a ds:License ;
+    ds:licenseName "CC BY 4.0" ;
+    ds:spdxIdentifier "CC-BY-4.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistributionAllowed true ;
+    ds:attribution "Orphanet: an online database of rare diseases and orphan drugs. Copyright INSERM 1997. Available at https://www.orpha.net/" ;
+    ds:licenseURL <https://creativecommons.org/licenses/by/4.0/> .
+
+data:Orphanet_XMLAccess a ds:AccessMethod ;
+    ds:accessType tax:Download ;
+    ds:endpoint <https://www.orphadata.com/data/xml/en_product1.xml> ;
+    ds:format "XML" .
+
+data:Orphanet_APIAccess a ds:AccessMethod ;
+    ds:accessType tax:RESTAPI ;
+    ds:endpoint <https://api.orphanet.org/rd-api> .
+
+data:Orphanet_OWLAccess a ds:AccessMethod ;
+    ds:accessType tax:Download ;
+    ds:endpoint <https://www.ebi.ac.uk/ols4/ontologies/ordo> ;
+    ds:format "OWL" ;
+    ds:description "ORDO (Orphanet Rare Disease Ontology)" .
+
+data:Orphanet_Version_Current a ds:Version ;
+    ds:versionNumber "2026-01" ;
+    ds:releaseDate "2026-01-01"^^xsd:date ;
+    ds:size "100 MB" .
+
+data:Orphanet_ID_ORPHAcode a ds:Identifier ;
+    ds:pattern "Orphanet:[0-9]+" ;
+    ds:example "Orphanet:558" ;
+    ds:description "Orphanet disease CURIE" .
+
+data:Orphanet_ID_ORDO a ds:Identifier ;
+    ds:pattern "ORDO:[0-9]+" ;
+    ds:example "ORDO:558" ;
+    ds:description "ORDO ontology ID" .
+
+data:Orphanet_Xref_OMIM a ds:CrossReference ;
+    ds:targetDatabase data:OMIM ;
+    ds:coverageLevel tax:High ;
+    ds:description "Cross-reference to OMIM" .
+
+data:Orphanet_Xref_ICD10 a ds:CrossReference ;
+    ds:targetDatabase data:ICD ;
+    ds:coverageLevel tax:Medium ;
+    ds:description "Cross-reference to ICD-10 codes" .
+
+data:Orphanet_Xref_UMLS a ds:CrossReference ;
+    ds:targetDatabase data:UMLS ;
+    ds:coverageLevel tax:High ;
+    ds:description "Cross-reference to UMLS concepts" .
+
+data:Orphanet_UseCase_1 a ds:UseCase ;
+    ds:description "Rare disease diagnosis and clinical guidance" .
+
+data:Orphanet_UseCase_2 a ds:UseCase ;
+    ds:description "Gene-disease association research" .
+
+data:Orphanet_UseCase_3 a ds:UseCase ;
+    ds:description "Expert center and patient organization lookup" .
+
+data:Orphanet_Limitation_1 a ds:Limitation ;
+    ds:description "Rare diseases only (prevalence < 1 in 2000); common conditions not covered" ;
+    ds:impact tax:Medium .
+
+# -----------------------------------------------------------------------------
+# DECIPHER
+# -----------------------------------------------------------------------------
+
+data:DECIPHER a ds:DataSource ;
+    ds:id "decipher" ;
+    ds:title "DECIPHER - Database of Chromosomal Imbalance and Phenotype in Humans using Ensembl Resources" ;
+    ds:description "Clinical database of 50,000+ patients with CNVs and sequence variants, enabling identification of disease genes through variant-phenotype correlation across 300+ clinical genetics centers in 35 countries." ;
+    ds:belongsToSubcategory subcat:RareOrphanDiseases ;
+    ds:tier "2"^^xsd:integer ;
+    ds:status tax:Active ;
+    ds:maintainer "Wellcome Sanger Institute" ;
+    ds:website <https://www.deciphergenomics.org/> ;
+    ds:updateFrequency tax:Continuous ;
+    ds:recordCount "50000"^^xsd:integer ;
+    ds:hasLicense data:DECIPHER_License ;
+    ds:hasAccessMethod data:DECIPHER_WebAccess, data:DECIPHER_APIAccess ;
+    ds:hasIdentifier data:DECIPHER_ID_PatientID, data:DECIPHER_ID_HPO ;
+    ds:hasCrossReference data:DECIPHER_Xref_HPO, data:DECIPHER_Xref_OMIM ;
+    ds:hasUseCase data:DECIPHER_UseCase_1, data:DECIPHER_UseCase_2 ;
+    ds:hasLimitation data:DECIPHER_Limitation_1 .
+
+data:DECIPHER_License a ds:License ;
+    ds:licenseName "DECIPHER Data Sharing Agreement" ;
+    ds:spdxIdentifier "Custom" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistributionAllowed false ;
+    ds:specialCondition "Tiered access: open summary data, registered for variants, controlled for patient-level data" ;
+    ds:licenseURL <https://www.deciphergenomics.org/about/data-sharing> .
+
+data:DECIPHER_WebAccess a ds:AccessMethod ;
+    ds:accessType tax:WebInterface ;
+    ds:endpoint <https://www.deciphergenomics.org/> .
+
+data:DECIPHER_APIAccess a ds:AccessMethod ;
+    ds:accessType tax:RESTAPI ;
+    ds:endpoint <https://www.deciphergenomics.org/api/v1> ;
+    ds:authRequired true .
+
+data:DECIPHER_ID_PatientID a ds:Identifier ;
+    ds:pattern "DECIPHER:[0-9]+" ;
+    ds:example "DECIPHER:250001" ;
+    ds:description "DECIPHER patient identifier" .
+
+data:DECIPHER_ID_HPO a ds:Identifier ;
+    ds:pattern "HP:[0-9]{7}" ;
+    ds:example "HP:0001249" ;
+    ds:description "HPO phenotype term" .
+
+data:DECIPHER_Xref_HPO a ds:CrossReference ;
+    ds:targetDatabase data:HPO ;
+    ds:coverageLevel tax:High ;
+    ds:description "Phenotype annotation with HPO terms" .
+
+data:DECIPHER_Xref_OMIM a ds:CrossReference ;
+    ds:targetDatabase data:OMIM ;
+    ds:coverageLevel tax:High ;
+    ds:description "Disease association with OMIM" .
+
+data:DECIPHER_UseCase_1 a ds:UseCase ;
+    ds:description "CNV interpretation in clinical genetics" .
+
+data:DECIPHER_UseCase_2 a ds:UseCase ;
+    ds:description "Novel gene-disease relationship discovery" .
+
+data:DECIPHER_Limitation_1 a ds:Limitation ;
+    ds:description "Patient-level data requires data sharing agreement" ;
+    ds:impact tax:Medium .
+
+# -----------------------------------------------------------------------------
+# PanelApp
+# -----------------------------------------------------------------------------
+
+data:PanelApp a ds:DataSource ;
+    ds:id "panelapp" ;
+    ds:title "PanelApp - Genomics England Gene Panels" ;
+    ds:description "Crowdsourced knowledge base for gene-disease relationships with 350+ curated panels for clinical diagnostic use, featuring Green/Amber/Red evidence ratings and used in NHS Genomic Medicine Service." ;
+    ds:belongsToSubcategory subcat:RareOrphanDiseases ;
+    ds:tier "2"^^xsd:integer ;
+    ds:status tax:Active ;
+    ds:maintainer "Genomics England" ;
+    ds:website <https://panelapp.genomicsengland.co.uk/> ;
+    ds:updateFrequency tax:Continuous ;
+    ds:recordCount "4500"^^xsd:integer ;
+    ds:hasLicense data:PanelApp_License ;
+    ds:hasAccessMethod data:PanelApp_WebAccess, data:PanelApp_APIAccess ;
+    ds:hasIdentifier data:PanelApp_ID_PanelID, data:PanelApp_ID_HGNC ;
+    ds:hasCrossReference data:PanelApp_Xref_OMIM, data:PanelApp_Xref_HPO ;
+    ds:hasUseCase data:PanelApp_UseCase_1, data:PanelApp_UseCase_2 ;
+    ds:hasLimitation data:PanelApp_Limitation_1 .
+
+data:PanelApp_License a ds:License ;
+    ds:licenseName "Open Access" ;
+    ds:spdxIdentifier "Custom" ;
+    ds:commercialUse true ;
+    ds:attributionRequired false ;
+    ds:redistributionAllowed true ;
+    ds:licenseURL <https://panelapp.genomicsengland.co.uk/> .
+
+data:PanelApp_WebAccess a ds:AccessMethod ;
+    ds:accessType tax:WebInterface ;
+    ds:endpoint <https://panelapp.genomicsengland.co.uk/> .
+
+data:PanelApp_APIAccess a ds:AccessMethod ;
+    ds:accessType tax:RESTAPI ;
+    ds:endpoint <https://panelapp.genomicsengland.co.uk/api/v1> ;
+    ds:format "JSON", "TSV" .
+
+data:PanelApp_ID_PanelID a ds:Identifier ;
+    ds:pattern "[0-9]+" ;
+    ds:example "245" ;
+    ds:description "Panel identifier" .
+
+data:PanelApp_ID_HGNC a ds:Identifier ;
+    ds:pattern "HGNC:[0-9]+" ;
+    ds:example "HGNC:6990" ;
+    ds:description "HGNC gene identifier" .
+
+data:PanelApp_Xref_OMIM a ds:CrossReference ;
+    ds:targetDatabase data:OMIM ;
+    ds:coverageLevel tax:High ;
+    ds:description "Gene-disease associations to OMIM" .
+
+data:PanelApp_Xref_HPO a ds:CrossReference ;
+    ds:targetDatabase data:HPO ;
+    ds:coverageLevel tax:Medium ;
+    ds:description "Phenotype associations" .
+
+data:PanelApp_UseCase_1 a ds:UseCase ;
+    ds:description "Clinical gene panel design for diagnostics" .
+
+data:PanelApp_UseCase_2 a ds:UseCase ;
+    ds:description "Variant interpretation for rare diseases" .
+
+data:PanelApp_Limitation_1 a ds:Limitation ;
+    ds:description "Panels reflect UK clinical practice; may differ internationally" ;
+    ds:impact tax:Low .
+
+# =============================================================================
+# DATA SOURCES - 3.6 Autoimmune & Inflammatory
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# ImmunoBase
+# -----------------------------------------------------------------------------
+
+data:ImmunoBase a ds:DataSource ;
+    ds:id "immunobase" ;
+    ds:title "ImmunoBase - Autoimmune Disease Genetics Resource" ;
+    ds:description "Curated database of 1,000+ genetic associations for 12 immune-mediated diseases including T1D, RA, MS, and IBD, with fine-mapping credible sets and cross-disease analysis." ;
+    ds:belongsToSubcategory subcat:AutoimmuneInflammatory ;
+    ds:tier "2"^^xsd:integer ;
+    ds:status tax:Active ;
+    ds:maintainer "Wellcome Trust Sanger Institute / University of Cambridge" ;
+    ds:website <https://www.immunobase.org/> ;
+    ds:updateFrequency tax:AsPublished ;
+    ds:recordCount "1000"^^xsd:integer ;
+    ds:hasLicense data:ImmunoBase_License ;
+    ds:hasAccessMethod data:ImmunoBase_WebAccess, data:ImmunoBase_DownloadAccess ;
+    ds:hasIdentifier data:ImmunoBase_ID_dbSNP, data:ImmunoBase_ID_RegionID ;
+    ds:hasCrossReference data:ImmunoBase_Xref_GWASCatalog ;
+    ds:hasUseCase data:ImmunoBase_UseCase_1, data:ImmunoBase_UseCase_2 ;
+    ds:hasLimitation data:ImmunoBase_Limitation_1 .
+
+data:ImmunoBase_License a ds:License ;
+    ds:licenseName "Open Access" ;
+    ds:spdxIdentifier "Custom" ;
+    ds:commercialUse true ;
+    ds:attributionRequired false ;
+    ds:redistributionAllowed true ;
+    ds:licenseURL <https://www.immunobase.org/> .
+
+data:ImmunoBase_WebAccess a ds:AccessMethod ;
+    ds:accessType tax:WebInterface ;
+    ds:endpoint <https://www.immunobase.org/> .
+
+data:ImmunoBase_DownloadAccess a ds:AccessMethod ;
+    ds:accessType tax:Download ;
+    ds:endpoint <https://www.immunobase.org/downloads/> ;
+    ds:format "TSV" .
+
+data:ImmunoBase_ID_dbSNP a ds:Identifier ;
+    ds:pattern "rs[0-9]+" ;
+    ds:example "rs2476601" ;
+    ds:description "dbSNP variant ID" .
+
+data:ImmunoBase_ID_RegionID a ds:Identifier ;
+    ds:pattern "[0-9]+[pq][0-9.]+" ;
+    ds:example "1p13.2" ;
+    ds:description "Cytogenetic region ID" .
+
+data:ImmunoBase_Xref_GWASCatalog a ds:CrossReference ;
+    ds:targetDatabase data:GWASCatalog ;
+    ds:coverageLevel tax:High ;
+    ds:description "GWAS studies in GWAS Catalog" .
+
+data:ImmunoBase_UseCase_1 a ds:UseCase ;
+    ds:description "Autoimmune disease genetic risk exploration" .
+
+data:ImmunoBase_UseCase_2 a ds:UseCase ;
+    ds:description "Cross-disease association analysis" .
+
+data:ImmunoBase_Limitation_1 a ds:Limitation ;
+    ds:description "Limited to 12 autoimmune diseases; European ancestry overrepresented" ;
+    ds:impact tax:Medium .
+
+# -----------------------------------------------------------------------------
+# IPD-IMGT/HLA
+# -----------------------------------------------------------------------------
+
+data:IPD_IMGT_HLA a ds:DataSource ;
+    ds:id "ipd.imgt.hla" ;
+    ds:title "IPD-IMGT/HLA - Immuno Polymorphism Database" ;
+    ds:description "International repository of 30,000+ HLA gene sequences providing reference for human MHC allele nomenclature, critical for transplantation matching and pharmacogenomics." ;
+    ds:belongsToSubcategory subcat:AutoimmuneInflammatory ;
+    ds:tier "1"^^xsd:integer ;
+    ds:status tax:Active ;
+    ds:maintainer "EMBL-EBI / WHO Nomenclature Committee" ;
+    ds:website <https://www.ebi.ac.uk/ipd/imgt/hla/> ;
+    ds:updateFrequency tax:Quarterly ;
+    ds:recordCount "30000"^^xsd:integer ;
+    ds:hasLicense data:IPD_IMGT_HLA_License ;
+    ds:hasAccessMethod data:IPD_IMGT_HLA_WebAccess, data:IPD_IMGT_HLA_FTPAccess ;
+    ds:hasIdentifier data:IPD_IMGT_HLA_ID_Allele ;
+    ds:hasUseCase data:IPD_IMGT_HLA_UseCase_1, data:IPD_IMGT_HLA_UseCase_2 ;
+    ds:hasLimitation data:IPD_IMGT_HLA_Limitation_1 .
+
+data:IPD_IMGT_HLA_License a ds:License ;
+    ds:licenseName "CC BY-ND 4.0" ;
+    ds:spdxIdentifier "CC-BY-ND-4.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistributionAllowed true ;
+    ds:specialCondition "No derivative works of sequence data; commercial users asked to consider funding" ;
+    ds:licenseURL <https://creativecommons.org/licenses/by-nd/4.0/> .
+
+data:IPD_IMGT_HLA_WebAccess a ds:AccessMethod ;
+    ds:accessType tax:WebInterface ;
+    ds:endpoint <https://www.ebi.ac.uk/ipd/imgt/hla/> .
+
+data:IPD_IMGT_HLA_FTPAccess a ds:AccessMethod ;
+    ds:accessType tax:FTP ;
+    ds:endpoint <https://ftp.ebi.ac.uk/pub/databases/ipd/imgt/hla/> ;
+    ds:format "FASTA", "XML", "DAT" .
+
+data:IPD_IMGT_HLA_ID_Allele a ds:Identifier ;
+    ds:pattern "HLA-[A-Z]+[0-9]*\\*[0-9:]+" ;
+    ds:example "HLA-A*02:01:01:01" ;
+    ds:description "HLA allele name (WHO nomenclature)" .
+
+data:IPD_IMGT_HLA_UseCase_1 a ds:UseCase ;
+    ds:description "Transplant donor-recipient matching" .
+
+data:IPD_IMGT_HLA_UseCase_2 a ds:UseCase ;
+    ds:description "Drug hypersensitivity pharmacogenomics" .
+
+data:IPD_IMGT_HLA_Limitation_1 a ds:Limitation ;
+    ds:description "HLA naming nomenclature complex for non-specialists" ;
+    ds:impact tax:Medium .
+
+# =============================================================================
+# DATA SOURCES - 3.7 Mental Health & Neurological
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Allen Brain Atlas
+# -----------------------------------------------------------------------------
+
+data:AllenBrainAtlas a ds:DataSource ;
+    ds:id "allen.brain.atlas" ;
+    ds:title "Allen Brain Atlas" ;
+    ds:description "Comprehensive gene expression and neuroanatomical data across 900+ brain structures from 6 human donors, including BrainSpan developmental atlas and 1M+ single-cell profiles." ;
+    ds:belongsToSubcategory subcat:MentalHealthNeurological ;
+    ds:tier "1"^^xsd:integer ;
+    ds:status tax:Active ;
+    ds:maintainer "Allen Institute for Brain Science" ;
+    ds:website <https://portal.brain-map.org/> ;
+    ds:updateFrequency tax:Irregular ;
+    ds:recordCount "900"^^xsd:integer ;
+    ds:hasLicense data:AllenBrainAtlas_License ;
+    ds:hasAccessMethod data:AllenBrainAtlas_WebAccess, data:AllenBrainAtlas_APIAccess ;
+    ds:hasIdentifier data:AllenBrainAtlas_ID_StructureID ;
+    ds:hasUseCase data:AllenBrainAtlas_UseCase_1, data:AllenBrainAtlas_UseCase_2 ;
+    ds:hasLimitation data:AllenBrainAtlas_Limitation_1 .
+
+data:AllenBrainAtlas_License a ds:License ;
+    ds:licenseName "Allen Institute Terms of Use" ;
+    ds:spdxIdentifier "Custom" ;
+    ds:commercialUse false ;
+    ds:attributionRequired true ;
+    ds:redistributionAllowed false ;
+    ds:specialCondition "Commercial use requires written permission from Allen Institute" ;
+    ds:licenseURL <https://alleninstitute.org/terms-of-use/> .
+
+data:AllenBrainAtlas_WebAccess a ds:AccessMethod ;
+    ds:accessType tax:WebInterface ;
+    ds:endpoint <https://portal.brain-map.org/> .
+
+data:AllenBrainAtlas_APIAccess a ds:AccessMethod ;
+    ds:accessType tax:RESTAPI ;
+    ds:endpoint <https://api.brain-map.org/> ;
+    ds:format "JSON", "CSV" .
+
+data:AllenBrainAtlas_ID_StructureID a ds:Identifier ;
+    ds:pattern "[0-9]+" ;
+    ds:example "4020" ;
+    ds:description "Brain structure ID (e.g., hippocampus)" .
+
+data:AllenBrainAtlas_UseCase_1 a ds:UseCase ;
+    ds:description "Neurological disease gene expression mapping" .
+
+data:AllenBrainAtlas_UseCase_2 a ds:UseCase ;
+    ds:description "Cell type-specific gene expression analysis" .
+
+data:AllenBrainAtlas_Limitation_1 a ds:Limitation ;
+    ds:description "Human brain data from limited number of donors (6)" ;
+    ds:impact tax:Medium .
+
+# -----------------------------------------------------------------------------
+# PGC - Psychiatric Genomics Consortium
+# -----------------------------------------------------------------------------
+
+data:PGC a ds:DataSource ;
+    ds:id "pgc" ;
+    ds:title "PGC - Psychiatric Genomics Consortium" ;
+    ds:description "Largest international collaboration studying psychiatric disorder genetics with 4M+ samples, 800+ research groups, and 1,000+ identified genetic loci for schizophrenia, depression, bipolar, and other conditions." ;
+    ds:belongsToSubcategory subcat:MentalHealthNeurological ;
+    ds:tier "1"^^xsd:integer ;
+    ds:status tax:Active ;
+    ds:maintainer "Psychiatric Genomics Consortium" ;
+    ds:website <https://pgc.unc.edu/> ;
+    ds:updateFrequency tax:AsPublished ;
+    ds:recordCount "4000000"^^xsd:integer ;
+    ds:hasLicense data:PGC_License ;
+    ds:hasAccessMethod data:PGC_DownloadAccess ;
+    ds:hasIdentifier data:PGC_ID_dbSNP, data:PGC_ID_StudyID ;
+    ds:hasCrossReference data:PGC_Xref_GWASCatalog ;
+    ds:hasUseCase data:PGC_UseCase_1, data:PGC_UseCase_2 ;
+    ds:hasLimitation data:PGC_Limitation_1 .
+
+data:PGC_License a ds:License ;
+    ds:licenseName "PGC Data Use Agreement" ;
+    ds:spdxIdentifier "Custom" ;
+    ds:commercialUse false ;
+    ds:attributionRequired true ;
+    ds:redistributionAllowed false ;
+    ds:specialCondition "Summary statistics open for academic use; individual data requires dbGaP access" ;
+    ds:licenseURL <https://pgc.unc.edu/for-researchers/data-access-committee/> .
+
+data:PGC_DownloadAccess a ds:AccessMethod ;
+    ds:accessType tax:Download ;
+    ds:endpoint <https://pgc.unc.edu/for-researchers/download-results/> ;
+    ds:format "TSV" ;
+    ds:description "GWAS summary statistics" .
+
+data:PGC_ID_dbSNP a ds:Identifier ;
+    ds:pattern "rs[0-9]+" ;
+    ds:example "rs1006737" ;
+    ds:description "dbSNP variant ID" .
+
+data:PGC_ID_StudyID a ds:Identifier ;
+    ds:pattern "PGC_[A-Z0-9]+" ;
+    ds:example "PGC_SCZ3" ;
+    ds:description "PGC GWAS study identifier" .
+
+data:PGC_Xref_GWASCatalog a ds:CrossReference ;
+    ds:targetDatabase data:GWASCatalog ;
+    ds:coverageLevel tax:High ;
+    ds:description "PGC studies deposited in GWAS Catalog" .
+
+data:PGC_UseCase_1 a ds:UseCase ;
+    ds:description "Psychiatric disorder genetic risk discovery" .
+
+data:PGC_UseCase_2 a ds:UseCase ;
+    ds:description "Polygenic risk score development" .
+
+data:PGC_Limitation_1 a ds:Limitation ;
+    ds:description "Individual-level data requires dbGaP controlled access; European ancestry overrepresented" ;
+    ds:impact tax:Medium .
+
+# -----------------------------------------------------------------------------
+# SynGO - Synaptic Gene Ontologies
+# -----------------------------------------------------------------------------
+
+data:SynGO a ds:DataSource ;
+    ds:id "syngo" ;
+    ds:title "SynGO - Synaptic Gene Ontologies" ;
+    ds:description "Expert-curated resource for synaptic function annotations with 1,200+ genes and 5,800+ annotations using structured ontology for pre-synaptic and post-synaptic localization and function." ;
+    ds:belongsToSubcategory subcat:MentalHealthNeurological ;
+    ds:tier "2"^^xsd:integer ;
+    ds:status tax:Active ;
+    ds:maintainer "SynGO Consortium" ;
+    ds:website <https://syngoportal.org/> ;
+    ds:updateFrequency tax:Irregular ;
+    ds:recordCount "1200"^^xsd:integer ;
+    ds:hasLicense data:SynGO_License ;
+    ds:hasAccessMethod data:SynGO_WebAccess, data:SynGO_DownloadAccess ;
+    ds:hasIdentifier data:SynGO_ID_SynGOTerm, data:SynGO_ID_UniProt ;
+    ds:hasCrossReference data:SynGO_Xref_GO ;
+    ds:hasUseCase data:SynGO_UseCase_1, data:SynGO_UseCase_2 ;
+    ds:hasLimitation data:SynGO_Limitation_1 .
+
+data:SynGO_License a ds:License ;
+    ds:licenseName "CC BY 4.0" ;
+    ds:spdxIdentifier "CC-BY-4.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistributionAllowed true ;
+    ds:licenseURL <https://creativecommons.org/licenses/by/4.0/> .
+
+data:SynGO_WebAccess a ds:AccessMethod ;
+    ds:accessType tax:WebInterface ;
+    ds:endpoint <https://syngoportal.org/> .
+
+data:SynGO_DownloadAccess a ds:AccessMethod ;
+    ds:accessType tax:Download ;
+    ds:endpoint <https://syngoportal.org/download> ;
+    ds:format "OBO", "GAF", "TSV" .
+
+data:SynGO_ID_SynGOTerm a ds:Identifier ;
+    ds:pattern "SYNGO:[0-9]+" ;
+    ds:example "SYNGO:synapse" ;
+    ds:description "SynGO ontology term" .
+
+data:SynGO_ID_UniProt a ds:Identifier ;
+    ds:pattern "[A-Z0-9]{6,10}" ;
+    ds:example "P17600" ;
+    ds:description "UniProt protein ID" .
+
+data:SynGO_Xref_GO a ds:CrossReference ;
+    ds:targetDatabase data:GO ;
+    ds:coverageLevel tax:High ;
+    ds:description "Extends Gene Ontology for synapse" .
+
+data:SynGO_UseCase_1 a ds:UseCase ;
+    ds:description "Gene set enrichment analysis for synaptic genes" .
+
+data:SynGO_UseCase_2 a ds:UseCase ;
+    ds:description "Neurological disease gene interpretation" .
+
+data:SynGO_Limitation_1 a ds:Limitation ;
+    ds:description "Focused on synapse biology; non-synaptic brain genes not covered" ;
+    ds:impact tax:Medium .
+
+# =============================================================================
+# TAXONOMY TERMS
+# =============================================================================
+
+tax:Active a ds:Status ;
+    rdfs:label "Active" .
+
+tax:Tier1 a ds:Tier ;
+    rdfs:label "Tier 1 - Primary" .
+
+tax:Tier2 a ds:Tier ;
+    rdfs:label "Tier 2 - Secondary" .
+
+tax:Annual a ds:UpdateFrequency ;
+    rdfs:label "Annual" .
+
+tax:Monthly a ds:UpdateFrequency ;
+    rdfs:label "Monthly" .
+
+tax:Quarterly a ds:UpdateFrequency ;
+    rdfs:label "Quarterly" .
+
+tax:Daily a ds:UpdateFrequency ;
+    rdfs:label "Daily" .
+
+tax:Continuous a ds:UpdateFrequency ;
+    rdfs:label "Continuous" .
+
+tax:AsPublished a ds:UpdateFrequency ;
+    rdfs:label "As Published" .
+
+tax:Irregular a ds:UpdateFrequency ;
+    rdfs:label "Irregular" .
+
+tax:High a ds:CoverageLevel ;
+    rdfs:label "High" .
+
+tax:Medium a ds:CoverageLevel ;
+    rdfs:label "Medium" .
+
+tax:Low a ds:CoverageLevel ;
+    rdfs:label "Low" .
+
+tax:Complete a ds:CoverageLevel ;
+    rdfs:label "Complete" .
+
+tax:WebInterface a ds:AccessType ;
+    rdfs:label "Web Interface" .
+
+tax:RESTAPI a ds:AccessType ;
+    rdfs:label "REST API" .
+
+tax:GraphQL a ds:AccessType ;
+    rdfs:label "GraphQL API" .
+
+tax:FTP a ds:AccessType ;
+    rdfs:label "FTP Download" .
+
+tax:Download a ds:AccessType ;
+    rdfs:label "Direct Download" .
+
+tax:CloudDatabase a ds:AccessType ;
+    rdfs:label "Cloud Database" .

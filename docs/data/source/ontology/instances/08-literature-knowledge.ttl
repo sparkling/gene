@@ -1,0 +1,1392 @@
+# =============================================================================
+# Literature & Knowledge Data Sources - RDF Instance Data
+# =============================================================================
+# Generated: 2026-01-25
+# Category: 08.literature.knowledge
+# Sources: 12 data sources
+# Conforms to: datasource-ontology.ttl, datasource-shapes.ttl
+# =============================================================================
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix ds: <https://gene.example.org/ontology/datasource#> .
+@prefix tax: <https://gene.example.org/taxonomy/> .
+@prefix data: <https://gene.example.org/data/source/> .
+@prefix cat: <https://gene.example.org/data/category/> .
+@prefix subcat: <https://gene.example.org/data/subcategory/> .
+@prefix license: <https://gene.example.org/data/license/> .
+@prefix version: <https://gene.example.org/data/version/> .
+@prefix access: <https://gene.example.org/data/access/> .
+@prefix xref: <https://gene.example.org/data/xref/> .
+@prefix ident: <https://gene.example.org/data/identifier/> .
+@prefix usecase: <https://gene.example.org/data/usecase/> .
+@prefix limit: <https://gene.example.org/data/limitation/> .
+
+# =============================================================================
+# LICENSE INSTANCES
+# =============================================================================
+
+license:CC0-1.0 a ds:License ;
+    ds:spdxId "CC0-1.0" ;
+    ds:licenseName "Creative Commons Zero v1.0 Universal" ;
+    ds:commercialUse true ;
+    ds:attributionRequired false ;
+    ds:redistributionAllowed true ;
+    ds:modificationAllowed true ;
+    foaf:homepage <https://creativecommons.org/publicdomain/zero/1.0/> .
+
+license:CC-BY-4.0 a ds:License ;
+    ds:spdxId "CC-BY-4.0" ;
+    ds:licenseName "Creative Commons Attribution 4.0 International" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistributionAllowed true ;
+    ds:modificationAllowed true ;
+    foaf:homepage <https://creativecommons.org/licenses/by/4.0/> .
+
+license:CC-BY-SA-4.0 a ds:License ;
+    ds:spdxId "CC-BY-SA-4.0" ;
+    ds:licenseName "Creative Commons Attribution-ShareAlike 4.0 International" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistributionAllowed true ;
+    ds:modificationAllowed true ;
+    ds:shareAlikeRequired true ;
+    foaf:homepage <https://creativecommons.org/licenses/by-sa/4.0/> .
+
+license:ODbL-1.0 a ds:License ;
+    ds:spdxId "ODbL-1.0" ;
+    ds:licenseName "Open Database License v1.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistributionAllowed true ;
+    ds:modificationAllowed true ;
+    foaf:homepage <https://opendatacommons.org/licenses/odbl/1.0/> .
+
+license:PublicDomain a ds:License ;
+    ds:spdxId "CC0-1.0" ;
+    ds:licenseName "Public Domain (US Government Work)" ;
+    ds:commercialUse true ;
+    ds:attributionRequired false ;
+    ds:redistributionAllowed true ;
+    ds:modificationAllowed true .
+
+license:Mixed a ds:License ;
+    ds:licenseName "Mixed (Varies by Article)" ;
+    ds:commercialUse "Depends on article license" ;
+    ds:attributionRequired true ;
+    ds:redistributionAllowed "Depends on article license" .
+
+# =============================================================================
+# SUBCATEGORY INSTANCES
+# =============================================================================
+
+subcat:ScientificLiterature a ds:Subcategory ;
+    ds:id "scientific.literature" ;
+    ds:title "Scientific Literature" ;
+    ds:belongsToCategory cat:LiteratureKnowledge ;
+    ds:subcategoryClassification tax:ScientificLiterature ;
+    ds:status tax:Active .
+
+subcat:KnowledgeBases a ds:Subcategory ;
+    ds:id "knowledge.bases" ;
+    ds:title "Knowledge Bases" ;
+    ds:belongsToCategory cat:LiteratureKnowledge ;
+    ds:subcategoryClassification tax:KnowledgeBases ;
+    ds:status tax:Active .
+
+subcat:IdentifierMapping a ds:Subcategory ;
+    ds:id "identifier.mapping" ;
+    ds:title "Identifier Mapping" ;
+    ds:belongsToCategory cat:LiteratureKnowledge ;
+    ds:subcategoryClassification tax:IdentifierMapping ;
+    ds:status tax:Active .
+
+subcat:RegulatoryLegal a ds:Subcategory ;
+    ds:id "regulatory.legal" ;
+    ds:title "Regulatory & Legal" ;
+    ds:belongsToCategory cat:LiteratureKnowledge ;
+    ds:subcategoryClassification tax:RegulatoryLegal ;
+    ds:status tax:Active .
+
+# =============================================================================
+# 8.1 SCIENTIFIC LITERATURE DATA SOURCES
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# PubMed
+# -----------------------------------------------------------------------------
+
+data:pubmed a ds:DataSource ;
+    ds:id "pubmed" ;
+    ds:title "PubMed" ;
+    ds:belongsToCategory cat:LiteratureKnowledge ;
+    ds:belongsToSubcategory subcat:ScientificLiterature ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "literature", "ncbi", "medline", "biomedical", "abstracts" ;
+    ds:lastUpdated "2026-01-23"^^xsd:date ;
+    ds:maintainer "National Center for Biotechnology Information (NCBI)" ;
+    ds:maintainerOrg "National Library of Medicine (NLM)" ;
+    foaf:homepage <https://pubmed.ncbi.nlm.nih.gov> ;
+    ds:updateFrequency "Daily" ;
+    ds:hasLicense license:PublicDomain ;
+    rdfs:comment "PubMed is the premier biomedical literature database comprising more than 36 million citations for biomedical literature from MEDLINE, life science journals, and online books." .
+
+data:pubmed-records a ds:RecordCount ;
+    ds:belongsToSource data:pubmed ;
+    ds:countType "Citations" ;
+    ds:count "36000000"^^xsd:integer ;
+    ds:countLabel "36M+" .
+
+data:pubmed-journals a ds:RecordCount ;
+    ds:belongsToSource data:pubmed ;
+    ds:countType "Journals Indexed" ;
+    ds:count "30000"^^xsd:integer ;
+    ds:countLabel "30,000+" .
+
+data:pubmed-api-access a ds:AccessMethod ;
+    ds:belongsToSource data:pubmed ;
+    ds:accessType "API" ;
+    ds:accessName "E-utilities API" ;
+    ds:endpoint <https://eutils.ncbi.nlm.nih.gov> ;
+    ds:format "XML", "JSON" ;
+    ds:rateLimit "3 requests/second without API key" ;
+    ds:rateLimitWithKey "10 requests/second with API key" .
+
+data:pubmed-ftp-access a ds:AccessMethod ;
+    ds:belongsToSource data:pubmed ;
+    ds:accessType "FTP" ;
+    ds:accessName "PubMed Baseline and Updates" ;
+    ds:endpoint <https://ftp.ncbi.nlm.nih.gov/pubmed> ;
+    ds:format "XML" ;
+    ds:bulkDownload true .
+
+data:pubmed-edirect a ds:AccessMethod ;
+    ds:belongsToSource data:pubmed ;
+    ds:accessType "CLI" ;
+    ds:accessName "EDirect" ;
+    ds:format "XML", "Text" .
+
+data:pubmed-version-baseline a ds:Version ;
+    ds:belongsToSource data:pubmed ;
+    ds:versionId "pubmed24" ;
+    ds:releaseDate "2024-12-01"^^xsd:date ;
+    ds:fileSize "350 GB (compressed)" ;
+    ds:updateFrequency "Annual" .
+
+data:pubmed-ident-pmid a ds:Identifier ;
+    ds:belongsToSource data:pubmed ;
+    ds:identifierType "PMID" ;
+    ds:pattern "[0-9]+" ;
+    ds:example "12345678" ;
+    ds:isPrimary true .
+
+data:pubmed-ident-doi a ds:Identifier ;
+    ds:belongsToSource data:pubmed ;
+    ds:identifierType "DOI" ;
+    ds:pattern "10\\.[0-9]+/.+" ;
+    ds:example "10.1000/xyz123" .
+
+data:pubmed-ident-mesh a ds:Identifier ;
+    ds:belongsToSource data:pubmed ;
+    ds:identifierType "MeSH Terms" ;
+    ds:pattern "Controlled vocabulary" ;
+    ds:example "Neoplasms" .
+
+data:pubmed-usecase-1 a ds:UseCase ;
+    ds:belongsToSource data:pubmed ;
+    ds:useCaseDescription "Biomedical literature search" .
+
+data:pubmed-usecase-2 a ds:UseCase ;
+    ds:belongsToSource data:pubmed ;
+    ds:useCaseDescription "Evidence-based medicine" .
+
+data:pubmed-usecase-3 a ds:UseCase ;
+    ds:belongsToSource data:pubmed ;
+    ds:useCaseDescription "Systematic review preparation" .
+
+data:pubmed-usecase-4 a ds:UseCase ;
+    ds:belongsToSource data:pubmed ;
+    ds:useCaseDescription "Research trend analysis" .
+
+data:pubmed-usecase-5 a ds:UseCase ;
+    ds:belongsToSource data:pubmed ;
+    ds:useCaseDescription "Author publication tracking" .
+
+data:pubmed-limit-1 a ds:Limitation ;
+    ds:belongsToSource data:pubmed ;
+    ds:limitationDescription "Publisher abstracts may have separate copyright" .
+
+data:pubmed-limit-2 a ds:Limitation ;
+    ds:belongsToSource data:pubmed ;
+    ds:limitationDescription "Rate limits apply to API access" .
+
+data:pubmed-xref-pmc a ds:CrossReference ;
+    ds:belongsToSource data:pubmed ;
+    ds:targetDatabase "PubMed Central" ;
+    ds:linkType "PMCID" ;
+    ds:coverage "Partial" .
+
+data:pubmed-xref-doi a ds:CrossReference ;
+    ds:belongsToSource data:pubmed ;
+    ds:targetDatabase "DOI Registry" ;
+    ds:linkType "DOI" ;
+    ds:coverage "High" .
+
+data:pubmed-xref-mesh a ds:CrossReference ;
+    ds:belongsToSource data:pubmed ;
+    ds:targetDatabase "MeSH" ;
+    ds:linkType "Descriptor UI" ;
+    ds:coverage "High (MEDLINE indexed)" .
+
+# -----------------------------------------------------------------------------
+# PubMed Central (PMC)
+# -----------------------------------------------------------------------------
+
+data:pubmed-central a ds:DataSource ;
+    ds:id "pubmed.central" ;
+    ds:title "PubMed Central (PMC)" ;
+    ds:belongsToCategory cat:LiteratureKnowledge ;
+    ds:belongsToSubcategory subcat:ScientificLiterature ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "literature", "full-text", "open-access", "ncbi", "archive" ;
+    ds:lastUpdated "2026-01-23"^^xsd:date ;
+    ds:maintainer "National Center for Biotechnology Information (NCBI)" ;
+    ds:maintainerOrg "National Library of Medicine (NLM)" ;
+    foaf:homepage <https://www.ncbi.nlm.nih.gov/pmc> ;
+    ds:updateFrequency "Daily" ;
+    ds:hasLicense license:Mixed ;
+    rdfs:comment "PubMed Central is a free full-text archive of biomedical and life sciences journal literature at the NIH/NLM. Essential for text mining and systematic reviews requiring full text." .
+
+data:pmc-records a ds:RecordCount ;
+    ds:belongsToSource data:pubmed-central ;
+    ds:countType "Full-Text Articles" ;
+    ds:count "9000000"^^xsd:integer ;
+    ds:countLabel "9M+" .
+
+data:pmc-journals a ds:RecordCount ;
+    ds:belongsToSource data:pubmed-central ;
+    ds:countType "Journals" ;
+    ds:count "3000"^^xsd:integer ;
+    ds:countLabel "3,000+" .
+
+data:pmc-manuscripts a ds:RecordCount ;
+    ds:belongsToSource data:pubmed-central ;
+    ds:countType "Author Manuscripts" ;
+    ds:count "1000000"^^xsd:integer ;
+    ds:countLabel "1M+" .
+
+data:pmc-api-access a ds:AccessMethod ;
+    ds:belongsToSource data:pubmed-central ;
+    ds:accessType "API" ;
+    ds:accessName "E-utilities API" ;
+    ds:endpoint <https://eutils.ncbi.nlm.nih.gov> ;
+    ds:format "XML" ;
+    ds:rateLimit "3 requests/second without API key" .
+
+data:pmc-ftp-access a ds:AccessMethod ;
+    ds:belongsToSource data:pubmed-central ;
+    ds:accessType "FTP" ;
+    ds:accessName "Open Access Subset" ;
+    ds:endpoint <ftp://ftp.ncbi.nlm.nih.gov/pub/pmc> ;
+    ds:format "XML", "PDF" ;
+    ds:bulkDownload true ;
+    ds:estimatedSize "500 GB compressed" .
+
+data:pmc-oai-access a ds:AccessMethod ;
+    ds:belongsToSource data:pubmed-central ;
+    ds:accessType "OAI-PMH" ;
+    ds:accessName "OAI-PMH Harvesting" ;
+    ds:endpoint <https://www.ncbi.nlm.nih.gov/pmc/oai/oai.cgi> ;
+    ds:format "XML" .
+
+data:pmc-ident-pmcid a ds:Identifier ;
+    ds:belongsToSource data:pubmed-central ;
+    ds:identifierType "PMCID" ;
+    ds:pattern "PMC[0-9]+" ;
+    ds:example "PMC1234567" ;
+    ds:isPrimary true .
+
+data:pmc-ident-pmid a ds:Identifier ;
+    ds:belongsToSource data:pubmed-central ;
+    ds:identifierType "PMID" ;
+    ds:pattern "[0-9]+" ;
+    ds:example "12345678" .
+
+data:pmc-ident-nihms a ds:Identifier ;
+    ds:belongsToSource data:pubmed-central ;
+    ds:identifierType "Manuscript ID" ;
+    ds:pattern "NIHMS[0-9]+" ;
+    ds:example "NIHMS123456" .
+
+data:pmc-usecase-1 a ds:UseCase ;
+    ds:belongsToSource data:pubmed-central ;
+    ds:useCaseDescription "Full-text literature mining" .
+
+data:pmc-usecase-2 a ds:UseCase ;
+    ds:belongsToSource data:pubmed-central ;
+    ds:useCaseDescription "Systematic review data extraction" .
+
+data:pmc-usecase-3 a ds:UseCase ;
+    ds:belongsToSource data:pubmed-central ;
+    ds:useCaseDescription "Figure and table extraction" .
+
+data:pmc-usecase-4 a ds:UseCase ;
+    ds:belongsToSource data:pubmed-central ;
+    ds:useCaseDescription "Supplementary data access" .
+
+data:pmc-xref-pubmed a ds:CrossReference ;
+    ds:belongsToSource data:pubmed-central ;
+    ds:targetDatabase "PubMed" ;
+    ds:linkType "PMID" ;
+    ds:coverage "High" .
+
+data:pmc-xref-doi a ds:CrossReference ;
+    ds:belongsToSource data:pubmed-central ;
+    ds:targetDatabase "DOI Registry" ;
+    ds:linkType "DOI" ;
+    ds:coverage "High" .
+
+# -----------------------------------------------------------------------------
+# Europe PMC
+# -----------------------------------------------------------------------------
+
+data:europe-pmc a ds:DataSource ;
+    ds:id "europe.pmc" ;
+    ds:title "Europe PMC" ;
+    ds:belongsToCategory cat:LiteratureKnowledge ;
+    ds:belongsToSubcategory subcat:ScientificLiterature ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "literature", "publications", "open-access", "europe", "full-text" ;
+    ds:lastUpdated "2026-01-23"^^xsd:date ;
+    ds:maintainer "EMBL-EBI" ;
+    ds:maintainerOrg "Europe PMC Funders' Group" ;
+    foaf:homepage <https://europepmc.org> ;
+    ds:updateFrequency "Daily" ;
+    ds:hasLicense license:CC0-1.0 ;
+    rdfs:comment "Europe PMC extends beyond PubMed to include patents, clinical guidelines, preprints, and research grant abstracts from major European funders. Features SciLite text-mined annotations and citation networks." .
+
+data:epmc-articles a ds:RecordCount ;
+    ds:belongsToSource data:europe-pmc ;
+    ds:countType "Articles" ;
+    ds:count "44000000"^^xsd:integer ;
+    ds:countLabel "44M+" .
+
+data:epmc-fulltext a ds:RecordCount ;
+    ds:belongsToSource data:europe-pmc ;
+    ds:countType "Full-Text Articles" ;
+    ds:count "9000000"^^xsd:integer ;
+    ds:countLabel "9M+" .
+
+data:epmc-preprints a ds:RecordCount ;
+    ds:belongsToSource data:europe-pmc ;
+    ds:countType "Preprints" ;
+    ds:count "750000"^^xsd:integer ;
+    ds:countLabel "750,000+" .
+
+data:epmc-patents a ds:RecordCount ;
+    ds:belongsToSource data:europe-pmc ;
+    ds:countType "Patents" ;
+    ds:count "4000000"^^xsd:integer ;
+    ds:countLabel "4M+" .
+
+data:epmc-api-access a ds:AccessMethod ;
+    ds:belongsToSource data:europe-pmc ;
+    ds:accessType "API" ;
+    ds:accessName "REST API" ;
+    ds:endpoint <https://www.ebi.ac.uk/europepmc/webservices/rest> ;
+    ds:format "JSON", "XML" ;
+    ds:rateLimit "10 requests/second" ;
+    ds:rateLimitWithKey "50 requests/second" .
+
+data:epmc-annotations-api a ds:AccessMethod ;
+    ds:belongsToSource data:europe-pmc ;
+    ds:accessType "API" ;
+    ds:accessName "Annotations API" ;
+    ds:endpoint <https://www.ebi.ac.uk/europepmc/annotations_api> ;
+    ds:format "JSON" .
+
+data:epmc-oai-access a ds:AccessMethod ;
+    ds:belongsToSource data:europe-pmc ;
+    ds:accessType "OAI-PMH" ;
+    ds:accessName "OAI-PMH Harvesting" ;
+    ds:endpoint <https://www.ebi.ac.uk/europepmc/oai.cgi> ;
+    ds:format "XML" .
+
+data:epmc-ftp-access a ds:AccessMethod ;
+    ds:belongsToSource data:europe-pmc ;
+    ds:accessType "FTP" ;
+    ds:accessName "Bulk Downloads" ;
+    ds:endpoint <https://europepmc.org/ftp/> ;
+    ds:format "XML" ;
+    ds:updateFrequency "Weekly" .
+
+data:epmc-ident-pmid a ds:Identifier ;
+    ds:belongsToSource data:europe-pmc ;
+    ds:identifierType "PMID" ;
+    ds:pattern "[0-9]+" ;
+    ds:example "12345678" .
+
+data:epmc-ident-pmcid a ds:Identifier ;
+    ds:belongsToSource data:europe-pmc ;
+    ds:identifierType "PMCID" ;
+    ds:pattern "PMC[0-9]+" ;
+    ds:example "PMC1234567" .
+
+data:epmc-ident-ppr a ds:Identifier ;
+    ds:belongsToSource data:europe-pmc ;
+    ds:identifierType "Preprint ID" ;
+    ds:pattern "PPR[0-9]+" ;
+    ds:example "PPR123456" .
+
+data:epmc-usecase-1 a ds:UseCase ;
+    ds:belongsToSource data:europe-pmc ;
+    ds:useCaseDescription "Literature search and discovery" .
+
+data:epmc-usecase-2 a ds:UseCase ;
+    ds:belongsToSource data:europe-pmc ;
+    ds:useCaseDescription "Text mining and NLP research" .
+
+data:epmc-usecase-3 a ds:UseCase ;
+    ds:belongsToSource data:europe-pmc ;
+    ds:useCaseDescription "Citation network analysis" .
+
+data:epmc-usecase-4 a ds:UseCase ;
+    ds:belongsToSource data:europe-pmc ;
+    ds:useCaseDescription "Open access compliance tracking" .
+
+data:epmc-usecase-5 a ds:UseCase ;
+    ds:belongsToSource data:europe-pmc ;
+    ds:useCaseDescription "Grant-publication linking" .
+
+data:epmc-xref-pubmed a ds:CrossReference ;
+    ds:belongsToSource data:europe-pmc ;
+    ds:targetDatabase "PubMed" ;
+    ds:linkType "PMID" ;
+    ds:coverage "High" .
+
+data:epmc-xref-uniprot a ds:CrossReference ;
+    ds:belongsToSource data:europe-pmc ;
+    ds:targetDatabase "UniProt" ;
+    ds:linkType "Accession" ;
+    ds:coverage "Via annotations" .
+
+# -----------------------------------------------------------------------------
+# Semantic Scholar
+# -----------------------------------------------------------------------------
+
+data:semantic-scholar a ds:DataSource ;
+    ds:id "semantic.scholar" ;
+    ds:title "Semantic Scholar" ;
+    ds:belongsToCategory cat:LiteratureKnowledge ;
+    ds:belongsToSubcategory subcat:ScientificLiterature ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:tag "literature", "ai", "citations", "discovery", "nlp", "allen-institute" ;
+    ds:lastUpdated "2026-01-23"^^xsd:date ;
+    ds:maintainer "Allen Institute for AI (AI2)" ;
+    foaf:homepage <https://www.semanticscholar.org> ;
+    ds:updateFrequency "Weekly" ;
+    ds:hasLicense license:ODbL-1.0 ;
+    rdfs:comment "AI-powered research discovery tool using machine learning and NLP to analyze papers, extract key information, and surface relevant research through TLDR summaries and influential citation identification." .
+
+data:s2-papers a ds:RecordCount ;
+    ds:belongsToSource data:semantic-scholar ;
+    ds:countType "Papers" ;
+    ds:count "215000000"^^xsd:integer ;
+    ds:countLabel "215M+" .
+
+data:s2-authors a ds:RecordCount ;
+    ds:belongsToSource data:semantic-scholar ;
+    ds:countType "Authors" ;
+    ds:count "80000000"^^xsd:integer ;
+    ds:countLabel "80M+" .
+
+data:s2-citations a ds:RecordCount ;
+    ds:belongsToSource data:semantic-scholar ;
+    ds:countType "Citations" ;
+    ds:count "2500000000"^^xsd:integer ;
+    ds:countLabel "2.5B+" .
+
+data:s2-api-access a ds:AccessMethod ;
+    ds:belongsToSource data:semantic-scholar ;
+    ds:accessType "API" ;
+    ds:accessName "Graph API" ;
+    ds:endpoint <https://api.semanticscholar.org/graph/v1> ;
+    ds:format "JSON" ;
+    ds:rateLimit "100 requests/5 minutes anonymous" ;
+    ds:rateLimitWithKey "1 request/second" .
+
+data:s2-dataset-access a ds:AccessMethod ;
+    ds:belongsToSource data:semantic-scholar ;
+    ds:accessType "Bulk" ;
+    ds:accessName "Dataset Downloads" ;
+    ds:endpoint <https://api.semanticscholar.org/datasets> ;
+    ds:format "JSONL" ;
+    ds:estimatedSize "Papers ~100 GB, Embeddings ~200 GB" .
+
+data:s2-ident-paperid a ds:Identifier ;
+    ds:belongsToSource data:semantic-scholar ;
+    ds:identifierType "S2 Paper ID" ;
+    ds:pattern "[a-f0-9]{40}" ;
+    ds:example "649def34f8be52c8b66281af98ae884c09aef38b" ;
+    ds:isPrimary true .
+
+data:s2-ident-corpusid a ds:Identifier ;
+    ds:belongsToSource data:semantic-scholar ;
+    ds:identifierType "CorpusId" ;
+    ds:pattern "[0-9]+" ;
+    ds:example "123456789" .
+
+data:s2-ident-authorid a ds:Identifier ;
+    ds:belongsToSource data:semantic-scholar ;
+    ds:identifierType "S2 Author ID" ;
+    ds:pattern "[0-9]+" ;
+    ds:example "1741101" .
+
+data:s2-usecase-1 a ds:UseCase ;
+    ds:belongsToSource data:semantic-scholar ;
+    ds:useCaseDescription "AI-assisted literature discovery" .
+
+data:s2-usecase-2 a ds:UseCase ;
+    ds:belongsToSource data:semantic-scholar ;
+    ds:useCaseDescription "Citation context analysis" .
+
+data:s2-usecase-3 a ds:UseCase ;
+    ds:belongsToSource data:semantic-scholar ;
+    ds:useCaseDescription "Research trend identification" .
+
+data:s2-usecase-4 a ds:UseCase ;
+    ds:belongsToSource data:semantic-scholar ;
+    ds:useCaseDescription "Paper recommendation systems" .
+
+data:s2-xref-pubmed a ds:CrossReference ;
+    ds:belongsToSource data:semantic-scholar ;
+    ds:targetDatabase "PubMed" ;
+    ds:linkType "PMID" ;
+    ds:coverage "Via externalIds" .
+
+data:s2-xref-arxiv a ds:CrossReference ;
+    ds:belongsToSource data:semantic-scholar ;
+    ds:targetDatabase "arXiv" ;
+    ds:linkType "arXiv ID" ;
+    ds:coverage "Via externalIds" .
+
+data:s2-xref-dblp a ds:CrossReference ;
+    ds:belongsToSource data:semantic-scholar ;
+    ds:targetDatabase "DBLP" ;
+    ds:linkType "DBLP Key" ;
+    ds:coverage "CS papers" .
+
+# -----------------------------------------------------------------------------
+# OpenAlex
+# -----------------------------------------------------------------------------
+
+data:openalex a ds:DataSource ;
+    ds:id "openalex" ;
+    ds:title "OpenAlex" ;
+    ds:belongsToCategory cat:LiteratureKnowledge ;
+    ds:belongsToSubcategory subcat:ScientificLiterature ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:tag "literature", "open-data", "knowledge-graph", "citations", "metadata" ;
+    ds:lastUpdated "2026-01-23"^^xsd:date ;
+    ds:maintainer "OurResearch" ;
+    foaf:homepage <https://openalex.org> ;
+    ds:updateFrequency "Daily" ;
+    ds:hasLicense license:CC0-1.0 ;
+    rdfs:comment "Fully open catalog of the global research system created as successor to Microsoft Academic Graph. Indexes works, authors, institutions, venues, concepts, and their relationships under CC0." .
+
+data:openalex-works a ds:RecordCount ;
+    ds:belongsToSource data:openalex ;
+    ds:countType "Works" ;
+    ds:count "250000000"^^xsd:integer ;
+    ds:countLabel "250M+" .
+
+data:openalex-authors a ds:RecordCount ;
+    ds:belongsToSource data:openalex ;
+    ds:countType "Authors" ;
+    ds:count "90000000"^^xsd:integer ;
+    ds:countLabel "90M+" .
+
+data:openalex-institutions a ds:RecordCount ;
+    ds:belongsToSource data:openalex ;
+    ds:countType "Institutions" ;
+    ds:count "110000"^^xsd:integer ;
+    ds:countLabel "110,000+" .
+
+data:openalex-concepts a ds:RecordCount ;
+    ds:belongsToSource data:openalex ;
+    ds:countType "Concepts" ;
+    ds:count "65000"^^xsd:integer ;
+    ds:countLabel "65,000+" .
+
+data:openalex-api-access a ds:AccessMethod ;
+    ds:belongsToSource data:openalex ;
+    ds:accessType "API" ;
+    ds:accessName "REST API" ;
+    ds:endpoint <https://api.openalex.org> ;
+    ds:format "JSON" ;
+    ds:rateLimit "10 requests/second" .
+
+data:openalex-s3-access a ds:AccessMethod ;
+    ds:belongsToSource data:openalex ;
+    ds:accessType "Bulk" ;
+    ds:accessName "AWS S3 Snapshot" ;
+    ds:endpoint <s3://openalex/data/> ;
+    ds:format "JSONL (gzip)" ;
+    ds:estimatedSize "Works ~500 GB compressed" ;
+    ds:updateFrequency "Monthly" .
+
+data:openalex-ident-work a ds:Identifier ;
+    ds:belongsToSource data:openalex ;
+    ds:identifierType "Work ID" ;
+    ds:pattern "W[0-9]+" ;
+    ds:example "W2741809807" ;
+    ds:isPrimary true .
+
+data:openalex-ident-author a ds:Identifier ;
+    ds:belongsToSource data:openalex ;
+    ds:identifierType "Author ID" ;
+    ds:pattern "A[0-9]+" ;
+    ds:example "A5023888391" .
+
+data:openalex-ident-institution a ds:Identifier ;
+    ds:belongsToSource data:openalex ;
+    ds:identifierType "Institution ID" ;
+    ds:pattern "I[0-9]+" ;
+    ds:example "I136199984" .
+
+data:openalex-usecase-1 a ds:UseCase ;
+    ds:belongsToSource data:openalex ;
+    ds:useCaseDescription "Bibliometric analysis" .
+
+data:openalex-usecase-2 a ds:UseCase ;
+    ds:belongsToSource data:openalex ;
+    ds:useCaseDescription "Research impact assessment" .
+
+data:openalex-usecase-3 a ds:UseCase ;
+    ds:belongsToSource data:openalex ;
+    ds:useCaseDescription "Author disambiguation" .
+
+data:openalex-usecase-4 a ds:UseCase ;
+    ds:belongsToSource data:openalex ;
+    ds:useCaseDescription "Institution analytics" .
+
+data:openalex-usecase-5 a ds:UseCase ;
+    ds:belongsToSource data:openalex ;
+    ds:useCaseDescription "Open scholarly infrastructure development" .
+
+data:openalex-xref-doi a ds:CrossReference ;
+    ds:belongsToSource data:openalex ;
+    ds:targetDatabase "DOI Registry" ;
+    ds:linkType "DOI" ;
+    ds:coverage "High" .
+
+data:openalex-xref-orcid a ds:CrossReference ;
+    ds:belongsToSource data:openalex ;
+    ds:targetDatabase "ORCID" ;
+    ds:linkType "ORCID" ;
+    ds:coverage "Author identifiers" .
+
+# =============================================================================
+# 8.2 KNOWLEDGE BASES DATA SOURCES
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Wikidata
+# -----------------------------------------------------------------------------
+
+data:wikidata a ds:DataSource ;
+    ds:id "wikidata" ;
+    ds:title "Wikidata" ;
+    ds:belongsToCategory cat:LiteratureKnowledge ;
+    ds:belongsToSubcategory subcat:KnowledgeBases ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "knowledge-graph", "linked-data", "semantic-web", "identifiers", "open-data" ;
+    ds:lastUpdated "2026-01-23"^^xsd:date ;
+    ds:maintainer "Wikimedia Foundation" ;
+    foaf:homepage <https://www.wikidata.org> ;
+    ds:updateFrequency "Continuous" ;
+    ds:hasLicense license:CC0-1.0 ;
+    rdfs:comment "Free collaborative multilingual knowledge base serving as central storage for structured data. Essential for entity resolution, knowledge graph construction, and cross-database identifier mapping." .
+
+data:wikidata-items a ds:RecordCount ;
+    ds:belongsToSource data:wikidata ;
+    ds:countType "Items" ;
+    ds:count "110000000"^^xsd:integer ;
+    ds:countLabel "110M+" .
+
+data:wikidata-statements a ds:RecordCount ;
+    ds:belongsToSource data:wikidata ;
+    ds:countType "Statements" ;
+    ds:count "1700000000"^^xsd:integer ;
+    ds:countLabel "1.7B+" .
+
+data:wikidata-properties a ds:RecordCount ;
+    ds:belongsToSource data:wikidata ;
+    ds:countType "Properties" ;
+    ds:count "12000"^^xsd:integer ;
+    ds:countLabel "12,000+" .
+
+data:wikidata-languages a ds:RecordCount ;
+    ds:belongsToSource data:wikidata ;
+    ds:countType "Languages" ;
+    ds:count "300"^^xsd:integer ;
+    ds:countLabel "300+" .
+
+data:wikidata-sparql-access a ds:AccessMethod ;
+    ds:belongsToSource data:wikidata ;
+    ds:accessType "SPARQL" ;
+    ds:accessName "Wikidata Query Service" ;
+    ds:endpoint <https://query.wikidata.org/sparql> ;
+    ds:format "JSON", "CSV", "TSV", "XML" .
+
+data:wikidata-api-access a ds:AccessMethod ;
+    ds:belongsToSource data:wikidata ;
+    ds:accessType "API" ;
+    ds:accessName "MediaWiki API" ;
+    ds:endpoint <https://www.wikidata.org/w/api.php> ;
+    ds:format "JSON" .
+
+data:wikidata-ld-access a ds:AccessMethod ;
+    ds:belongsToSource data:wikidata ;
+    ds:accessType "LinkedData" ;
+    ds:accessName "Content Negotiation" ;
+    ds:format "RDF", "JSON-LD", "TTL" .
+
+data:wikidata-dumps-access a ds:AccessMethod ;
+    ds:belongsToSource data:wikidata ;
+    ds:accessType "Bulk" ;
+    ds:accessName "Weekly Dumps" ;
+    ds:endpoint <https://dumps.wikimedia.org/wikidatawiki> ;
+    ds:format "JSON", "N-Triples" ;
+    ds:estimatedSize "~90 GB compressed" ;
+    ds:updateFrequency "Weekly" .
+
+data:wikidata-ident-qid a ds:Identifier ;
+    ds:belongsToSource data:wikidata ;
+    ds:identifierType "QID (Item)" ;
+    ds:pattern "Q[0-9]+" ;
+    ds:example "Q21173022" ;
+    ds:isPrimary true .
+
+data:wikidata-ident-pid a ds:Identifier ;
+    ds:belongsToSource data:wikidata ;
+    ds:identifierType "PID (Property)" ;
+    ds:pattern "P[0-9]+" ;
+    ds:example "P352" .
+
+data:wikidata-usecase-1 a ds:UseCase ;
+    ds:belongsToSource data:wikidata ;
+    ds:useCaseDescription "Entity resolution and linking" .
+
+data:wikidata-usecase-2 a ds:UseCase ;
+    ds:belongsToSource data:wikidata ;
+    ds:useCaseDescription "Knowledge graph construction" .
+
+data:wikidata-usecase-3 a ds:UseCase ;
+    ds:belongsToSource data:wikidata ;
+    ds:useCaseDescription "Cross-database identifier mapping" .
+
+data:wikidata-usecase-4 a ds:UseCase ;
+    ds:belongsToSource data:wikidata ;
+    ds:useCaseDescription "Multilingual label retrieval" .
+
+data:wikidata-usecase-5 a ds:UseCase ;
+    ds:belongsToSource data:wikidata ;
+    ds:useCaseDescription "Semantic web applications" .
+
+data:wikidata-xref-ncbigene a ds:CrossReference ;
+    ds:belongsToSource data:wikidata ;
+    ds:targetDatabase "NCBI Gene" ;
+    ds:linkType "P351 (Entrez Gene ID)" ;
+    ds:coverage "High" .
+
+data:wikidata-xref-uniprot a ds:CrossReference ;
+    ds:belongsToSource data:wikidata ;
+    ds:targetDatabase "UniProt" ;
+    ds:linkType "P352 (UniProt ID)" ;
+    ds:coverage "High" .
+
+data:wikidata-xref-omim a ds:CrossReference ;
+    ds:belongsToSource data:wikidata ;
+    ds:targetDatabase "OMIM" ;
+    ds:linkType "P492 (OMIM ID)" ;
+    ds:coverage "Diseases and genes" .
+
+data:wikidata-xref-pubmed a ds:CrossReference ;
+    ds:belongsToSource data:wikidata ;
+    ds:targetDatabase "PubMed" ;
+    ds:linkType "P698 (PubMed ID)" ;
+    ds:coverage "Citations" .
+
+# -----------------------------------------------------------------------------
+# Wikipedia
+# -----------------------------------------------------------------------------
+
+data:wikipedia a ds:DataSource ;
+    ds:id "wikipedia" ;
+    ds:title "Wikipedia" ;
+    ds:belongsToCategory cat:LiteratureKnowledge ;
+    ds:belongsToSubcategory subcat:KnowledgeBases ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:tag "encyclopedia", "text", "descriptions", "multilingual", "open-content" ;
+    ds:lastUpdated "2026-01-23"^^xsd:date ;
+    ds:maintainer "Wikimedia Foundation" ;
+    foaf:homepage <https://www.wikipedia.org> ;
+    ds:updateFrequency "Continuous" ;
+    ds:hasLicense license:CC-BY-SA-4.0 ;
+    rdfs:comment "Free encyclopedia providing accessible descriptions of genes, proteins, diseases, drugs, and biological concepts. Valuable for generating human-readable descriptions and training NLP models." .
+
+data:wikipedia-en-articles a ds:RecordCount ;
+    ds:belongsToSource data:wikipedia ;
+    ds:countType "English Articles" ;
+    ds:count "6800000"^^xsd:integer ;
+    ds:countLabel "6.8M+" .
+
+data:wikipedia-total-articles a ds:RecordCount ;
+    ds:belongsToSource data:wikipedia ;
+    ds:countType "Total Articles (all languages)" ;
+    ds:count "63000000"^^xsd:integer ;
+    ds:countLabel "63M+" .
+
+data:wikipedia-languages a ds:RecordCount ;
+    ds:belongsToSource data:wikipedia ;
+    ds:countType "Languages" ;
+    ds:count "300"^^xsd:integer ;
+    ds:countLabel "300+" .
+
+data:wikipedia-editors a ds:RecordCount ;
+    ds:belongsToSource data:wikipedia ;
+    ds:countType "Active Editors" ;
+    ds:count "125000"^^xsd:integer ;
+    ds:countLabel "125,000+" .
+
+data:wikipedia-rest-api a ds:AccessMethod ;
+    ds:belongsToSource data:wikipedia ;
+    ds:accessType "API" ;
+    ds:accessName "REST API" ;
+    ds:endpoint <https://en.wikipedia.org/api/rest_v1> ;
+    ds:format "JSON", "HTML" .
+
+data:wikipedia-mw-api a ds:AccessMethod ;
+    ds:belongsToSource data:wikipedia ;
+    ds:accessType "API" ;
+    ds:accessName "MediaWiki API" ;
+    ds:endpoint <https://en.wikipedia.org/w/api.php> ;
+    ds:format "JSON", "XML" .
+
+data:wikipedia-dumps-access a ds:AccessMethod ;
+    ds:belongsToSource data:wikipedia ;
+    ds:accessType "Bulk" ;
+    ds:accessName "Database Dumps" ;
+    ds:endpoint <https://dumps.wikimedia.org> ;
+    ds:format "XML" ;
+    ds:estimatedSize "~20 GB compressed (articles only)" .
+
+data:wikipedia-dbpedia a ds:AccessMethod ;
+    ds:belongsToSource data:wikipedia ;
+    ds:accessType "SPARQL" ;
+    ds:accessName "DBpedia" ;
+    ds:endpoint <https://dbpedia.org/sparql> ;
+    ds:format "RDF", "JSON" .
+
+data:wikipedia-ident-pageid a ds:Identifier ;
+    ds:belongsToSource data:wikipedia ;
+    ds:identifierType "Page ID" ;
+    ds:pattern "[0-9]+" ;
+    ds:example "1234567" .
+
+data:wikipedia-ident-title a ds:Identifier ;
+    ds:belongsToSource data:wikipedia ;
+    ds:identifierType "Page Title" ;
+    ds:pattern "URL-encoded string" ;
+    ds:example "TP53" ;
+    ds:isPrimary true .
+
+data:wikipedia-usecase-1 a ds:UseCase ;
+    ds:belongsToSource data:wikipedia ;
+    ds:useCaseDescription "Entity description retrieval" .
+
+data:wikipedia-usecase-2 a ds:UseCase ;
+    ds:belongsToSource data:wikipedia ;
+    ds:useCaseDescription "NLP training data" .
+
+data:wikipedia-usecase-3 a ds:UseCase ;
+    ds:belongsToSource data:wikipedia ;
+    ds:useCaseDescription "Definition lookup" .
+
+data:wikipedia-usecase-4 a ds:UseCase ;
+    ds:belongsToSource data:wikipedia ;
+    ds:useCaseDescription "Cross-language content" .
+
+data:wikipedia-xref-wikidata a ds:CrossReference ;
+    ds:belongsToSource data:wikipedia ;
+    ds:targetDatabase "Wikidata" ;
+    ds:linkType "Q-ID" ;
+    ds:coverage "High" .
+
+# =============================================================================
+# 8.3 IDENTIFIER MAPPING DATA SOURCES
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# NCBI E-Link
+# -----------------------------------------------------------------------------
+
+data:ncbi-elink a ds:DataSource ;
+    ds:id "ncbi.elink" ;
+    ds:title "NCBI E-Link" ;
+    ds:belongsToCategory cat:LiteratureKnowledge ;
+    ds:belongsToSubcategory subcat:IdentifierMapping ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "identifiers", "mapping", "ncbi", "entrez", "cross-reference" ;
+    ds:lastUpdated "2026-01-23"^^xsd:date ;
+    ds:maintainer "National Center for Biotechnology Information (NCBI)" ;
+    foaf:homepage <https://eutils.ncbi.nlm.nih.gov> ;
+    ds:updateFrequency "Real-time" ;
+    ds:hasLicense license:PublicDomain ;
+    rdfs:comment "Part of Entrez E-utilities suite that discovers links between records across 40+ NCBI databases including genes, proteins, literature, and structures." .
+
+data:elink-databases a ds:RecordCount ;
+    ds:belongsToSource data:ncbi-elink ;
+    ds:countType "Linked Databases" ;
+    ds:count "40"^^xsd:integer ;
+    ds:countLabel "40+ NCBI databases" .
+
+data:elink-api-access a ds:AccessMethod ;
+    ds:belongsToSource data:ncbi-elink ;
+    ds:accessType "API" ;
+    ds:accessName "E-Link API" ;
+    ds:endpoint <https://eutils.ncbi.nlm.nih.gov/entrez/eutils/elink.fcgi> ;
+    ds:format "XML", "JSON" ;
+    ds:rateLimit "3 requests/second" ;
+    ds:rateLimitWithKey "10 requests/second" .
+
+data:elink-edirect a ds:AccessMethod ;
+    ds:belongsToSource data:ncbi-elink ;
+    ds:accessType "CLI" ;
+    ds:accessName "EDirect elink command" ;
+    ds:format "XML" .
+
+data:elink-usecase-1 a ds:UseCase ;
+    ds:belongsToSource data:ncbi-elink ;
+    ds:useCaseDescription "Cross-database record linking" .
+
+data:elink-usecase-2 a ds:UseCase ;
+    ds:belongsToSource data:ncbi-elink ;
+    ds:useCaseDescription "Finding related records" .
+
+data:elink-usecase-3 a ds:UseCase ;
+    ds:belongsToSource data:ncbi-elink ;
+    ds:useCaseDescription "Literature-gene associations" .
+
+data:elink-usecase-4 a ds:UseCase ;
+    ds:belongsToSource data:ncbi-elink ;
+    ds:useCaseDescription "Protein-structure connections" .
+
+data:elink-xref-pubmed a ds:CrossReference ;
+    ds:belongsToSource data:ncbi-elink ;
+    ds:targetDatabase "PubMed" ;
+    ds:linkType "pubmed_gene, pubmed_protein, etc." ;
+    ds:coverage "Full NCBI ecosystem" .
+
+# -----------------------------------------------------------------------------
+# PMC ID Converter
+# -----------------------------------------------------------------------------
+
+data:pmc-id-converter a ds:DataSource ;
+    ds:id "pmc.id.converter" ;
+    ds:title "PMC ID Converter" ;
+    ds:belongsToCategory cat:LiteratureKnowledge ;
+    ds:belongsToSubcategory subcat:IdentifierMapping ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "identifiers", "pmid", "pmcid", "doi", "conversion" ;
+    ds:lastUpdated "2026-01-23"^^xsd:date ;
+    ds:maintainer "National Center for Biotechnology Information (NCBI)" ;
+    foaf:homepage <https://www.ncbi.nlm.nih.gov/pmc/utils/idconv/v1.0> ;
+    ds:updateFrequency "Real-time" ;
+    ds:hasLicense license:PublicDomain ;
+    rdfs:comment "Web service converting between PMID, PMCID, and DOI identifiers. Supports batch conversion of up to 200 IDs per request." .
+
+data:pmc-idconv-api-access a ds:AccessMethod ;
+    ds:belongsToSource data:pmc-id-converter ;
+    ds:accessType "API" ;
+    ds:accessName "ID Converter API" ;
+    ds:endpoint <https://www.ncbi.nlm.nih.gov/pmc/utils/idconv/v1.0/> ;
+    ds:format "JSON", "XML", "CSV" ;
+    ds:rateLimit "3 requests/second recommended" ;
+    ds:batchSize "200 IDs per request" .
+
+data:pmc-idconv-ident-pmid a ds:Identifier ;
+    ds:belongsToSource data:pmc-id-converter ;
+    ds:identifierType "PMID" ;
+    ds:pattern "[0-9]+" ;
+    ds:example "12345678" .
+
+data:pmc-idconv-ident-pmcid a ds:Identifier ;
+    ds:belongsToSource data:pmc-id-converter ;
+    ds:identifierType "PMCID" ;
+    ds:pattern "PMC[0-9]+" ;
+    ds:example "PMC1234567" .
+
+data:pmc-idconv-ident-doi a ds:Identifier ;
+    ds:belongsToSource data:pmc-id-converter ;
+    ds:identifierType "DOI" ;
+    ds:pattern "10\\.[0-9]+/.+" ;
+    ds:example "10.1000/xyz123" .
+
+data:pmc-idconv-ident-nihms a ds:Identifier ;
+    ds:belongsToSource data:pmc-id-converter ;
+    ds:identifierType "Manuscript ID" ;
+    ds:pattern "MID:NIHMS[0-9]+" ;
+    ds:example "MID:NIHMS123456" .
+
+data:pmc-idconv-usecase-1 a ds:UseCase ;
+    ds:belongsToSource data:pmc-id-converter ;
+    ds:useCaseDescription "Converting between PMID/PMCID/DOI" .
+
+data:pmc-idconv-usecase-2 a ds:UseCase ;
+    ds:belongsToSource data:pmc-id-converter ;
+    ds:useCaseDescription "Bibliography standardization" .
+
+data:pmc-idconv-usecase-3 a ds:UseCase ;
+    ds:belongsToSource data:pmc-id-converter ;
+    ds:useCaseDescription "Systematic review workflows" .
+
+# -----------------------------------------------------------------------------
+# UniProt ID Mapping Service
+# -----------------------------------------------------------------------------
+
+data:uniprot-id-mapping a ds:DataSource ;
+    ds:id "uniprot.id.mapping" ;
+    ds:title "UniProt ID Mapping Service" ;
+    ds:belongsToCategory cat:LiteratureKnowledge ;
+    ds:belongsToSubcategory subcat:IdentifierMapping ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "identifiers", "proteins", "genes", "mapping", "cross-reference" ;
+    ds:lastUpdated "2026-01-23"^^xsd:date ;
+    ds:maintainer "UniProt Consortium" ;
+    foaf:homepage <https://www.uniprot.org/id-mapping> ;
+    ds:updateFrequency "Monthly" ;
+    ds:hasLicense license:CC-BY-4.0 ;
+    rdfs:comment "Converts identifiers between UniProt accessions and 100+ external database identifiers including gene databases (NCBI Gene, Ensembl), protein databases (RefSeq, PDB), and pathway databases." .
+
+data:uniprot-idmap-databases a ds:RecordCount ;
+    ds:belongsToSource data:uniprot-id-mapping ;
+    ds:countType "External Databases" ;
+    ds:count "100"^^xsd:integer ;
+    ds:countLabel "100+" .
+
+data:uniprot-idmap-api-access a ds:AccessMethod ;
+    ds:belongsToSource data:uniprot-id-mapping ;
+    ds:accessType "API" ;
+    ds:accessName "ID Mapping REST API" ;
+    ds:endpoint <https://rest.uniprot.org/idmapping> ;
+    ds:format "JSON", "TSV", "FASTA" ;
+    ds:rateLimit "100 requests/second" ;
+    ds:batchSize "100,000 IDs per job" .
+
+data:uniprot-idmap-ftp-access a ds:AccessMethod ;
+    ds:belongsToSource data:uniprot-id-mapping ;
+    ds:accessType "FTP" ;
+    ds:accessName "Pre-computed Mappings" ;
+    ds:endpoint <https://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/idmapping/> ;
+    ds:format "TSV" .
+
+data:uniprot-idmap-ident-ac a ds:Identifier ;
+    ds:belongsToSource data:uniprot-id-mapping ;
+    ds:identifierType "UniProt AC" ;
+    ds:pattern "[OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9]([A-Z][A-Z0-9]{2}[0-9]){1,2}" ;
+    ds:example "P04637" ;
+    ds:isPrimary true .
+
+data:uniprot-idmap-ident-geneid a ds:Identifier ;
+    ds:belongsToSource data:uniprot-id-mapping ;
+    ds:identifierType "NCBI Gene ID" ;
+    ds:pattern "[0-9]+" ;
+    ds:example "7157" .
+
+data:uniprot-idmap-ident-ensembl a ds:Identifier ;
+    ds:belongsToSource data:uniprot-id-mapping ;
+    ds:identifierType "Ensembl Gene" ;
+    ds:pattern "ENSG[0-9]+" ;
+    ds:example "ENSG00000141510" .
+
+data:uniprot-idmap-usecase-1 a ds:UseCase ;
+    ds:belongsToSource data:uniprot-id-mapping ;
+    ds:useCaseDescription "Converting gene IDs to protein IDs" .
+
+data:uniprot-idmap-usecase-2 a ds:UseCase ;
+    ds:belongsToSource data:uniprot-id-mapping ;
+    ds:useCaseDescription "Mapping across database systems" .
+
+data:uniprot-idmap-usecase-3 a ds:UseCase ;
+    ds:belongsToSource data:uniprot-id-mapping ;
+    ds:useCaseDescription "Batch identifier standardization" .
+
+data:uniprot-idmap-usecase-4 a ds:UseCase ;
+    ds:belongsToSource data:uniprot-id-mapping ;
+    ds:useCaseDescription "Cross-database data integration" .
+
+data:uniprot-idmap-xref-ensembl a ds:CrossReference ;
+    ds:belongsToSource data:uniprot-id-mapping ;
+    ds:targetDatabase "Ensembl" ;
+    ds:linkType "Gene ID" ;
+    ds:coverage "Bidirectional" .
+
+data:uniprot-idmap-xref-ncbi a ds:CrossReference ;
+    ds:belongsToSource data:uniprot-id-mapping ;
+    ds:targetDatabase "NCBI Gene" ;
+    ds:linkType "GeneID" ;
+    ds:coverage "Bidirectional" .
+
+data:uniprot-idmap-xref-pdb a ds:CrossReference ;
+    ds:belongsToSource data:uniprot-id-mapping ;
+    ds:targetDatabase "PDB" ;
+    ds:linkType "PDB ID" ;
+    ds:coverage "To only" .
+
+data:uniprot-idmap-xref-reactome a ds:CrossReference ;
+    ds:belongsToSource data:uniprot-id-mapping ;
+    ds:targetDatabase "Reactome" ;
+    ds:linkType "Pathway ID" ;
+    ds:coverage "To only" .
+
+# =============================================================================
+# 8.4 REGULATORY & LEGAL DATA SOURCES
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# ClinicalTrials.gov
+# -----------------------------------------------------------------------------
+
+data:clinicaltrials-gov a ds:DataSource ;
+    ds:id "clinicaltrials.gov" ;
+    ds:title "ClinicalTrials.gov" ;
+    ds:belongsToCategory cat:LiteratureKnowledge ;
+    ds:belongsToSubcategory subcat:RegulatoryLegal ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "clinical-trials", "regulatory", "research", "interventions", "fda" ;
+    ds:lastUpdated "2026-01-23"^^xsd:date ;
+    ds:maintainer "National Library of Medicine (NLM)" ;
+    foaf:homepage <https://clinicaltrials.gov> ;
+    ds:updateFrequency "Daily" ;
+    ds:hasLicense license:PublicDomain ;
+    rdfs:comment "World's largest clinical trials registry with detailed information about trial design, eligibility criteria, interventions, outcomes, and results. Registration required by law for FDA-regulated product trials." .
+
+data:ct-studies a ds:RecordCount ;
+    ds:belongsToSource data:clinicaltrials-gov ;
+    ds:countType "Registered Studies" ;
+    ds:count "500000"^^xsd:integer ;
+    ds:countLabel "500,000+" .
+
+data:ct-results a ds:RecordCount ;
+    ds:belongsToSource data:clinicaltrials-gov ;
+    ds:countType "Studies with Results" ;
+    ds:count "70000"^^xsd:integer ;
+    ds:countLabel "70,000+" .
+
+data:ct-countries a ds:RecordCount ;
+    ds:belongsToSource data:clinicaltrials-gov ;
+    ds:countType "Countries" ;
+    ds:count "220"^^xsd:integer ;
+    ds:countLabel "220+" .
+
+data:ct-sponsors a ds:RecordCount ;
+    ds:belongsToSource data:clinicaltrials-gov ;
+    ds:countType "Sponsors/Collaborators" ;
+    ds:count "400000"^^xsd:integer ;
+    ds:countLabel "400,000+" .
+
+data:ct-api-access a ds:AccessMethod ;
+    ds:belongsToSource data:clinicaltrials-gov ;
+    ds:accessType "API" ;
+    ds:accessName "REST API v2" ;
+    ds:endpoint <https://clinicaltrials.gov/api/v2> ;
+    ds:format "JSON", "CSV" ;
+    ds:batchSize "1000 per page" .
+
+data:ct-download-access a ds:AccessMethod ;
+    ds:belongsToSource data:clinicaltrials-gov ;
+    ds:accessType "Bulk" ;
+    ds:accessName "Full Database Download" ;
+    ds:endpoint <https://clinicaltrials.gov/ct2/resources/download> ;
+    ds:format "XML", "CSV" ;
+    ds:estimatedSize "5-20 GB" .
+
+data:ct-ident-nct a ds:Identifier ;
+    ds:belongsToSource data:clinicaltrials-gov ;
+    ds:identifierType "NCT Number" ;
+    ds:pattern "NCT[0-9]{8}" ;
+    ds:example "NCT00000001" ;
+    ds:isPrimary true .
+
+data:ct-usecase-1 a ds:UseCase ;
+    ds:belongsToSource data:clinicaltrials-gov ;
+    ds:useCaseDescription "Clinical trial discovery and monitoring" .
+
+data:ct-usecase-2 a ds:UseCase ;
+    ds:belongsToSource data:clinicaltrials-gov ;
+    ds:useCaseDescription "Drug development competitive intelligence" .
+
+data:ct-usecase-3 a ds:UseCase ;
+    ds:belongsToSource data:clinicaltrials-gov ;
+    ds:useCaseDescription "Systematic review of interventions" .
+
+data:ct-usecase-4 a ds:UseCase ;
+    ds:belongsToSource data:clinicaltrials-gov ;
+    ds:useCaseDescription "Patient recruitment support" .
+
+data:ct-usecase-5 a ds:UseCase ;
+    ds:belongsToSource data:clinicaltrials-gov ;
+    ds:useCaseDescription "Regulatory compliance tracking" .
+
+data:ct-xref-pubmed a ds:CrossReference ;
+    ds:belongsToSource data:clinicaltrials-gov ;
+    ds:targetDatabase "PubMed" ;
+    ds:linkType "PMID" ;
+    ds:coverage "Trial publications" .
+
+# -----------------------------------------------------------------------------
+# FDA openFDA
+# -----------------------------------------------------------------------------
+
+data:fda-openfda a ds:DataSource ;
+    ds:id "fda.openfda" ;
+    ds:title "FDA openFDA" ;
+    ds:belongsToCategory cat:LiteratureKnowledge ;
+    ds:belongsToSubcategory subcat:RegulatoryLegal ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "fda", "regulatory", "drugs", "devices", "adverse-events", "recalls" ;
+    ds:lastUpdated "2026-01-23"^^xsd:date ;
+    ds:maintainer "U.S. Food and Drug Administration (FDA)" ;
+    foaf:homepage <https://open.fda.gov> ;
+    ds:updateFrequency "Weekly" ;
+    ds:hasLicense license:PublicDomain ;
+    rdfs:comment "Open access to FDA public data through modern searchable API. Includes drug adverse events (FAERS), device adverse events (MAUDE), drug labeling, NDC codes, and recalls." .
+
+data:fda-drug-events a ds:RecordCount ;
+    ds:belongsToSource data:fda-openfda ;
+    ds:countType "Drug Adverse Events" ;
+    ds:count "20000000"^^xsd:integer ;
+    ds:countLabel "20M+" .
+
+data:fda-device-events a ds:RecordCount ;
+    ds:belongsToSource data:fda-openfda ;
+    ds:countType "Device Adverse Events" ;
+    ds:count "15000000"^^xsd:integer ;
+    ds:countLabel "15M+" .
+
+data:fda-drug-labels a ds:RecordCount ;
+    ds:belongsToSource data:fda-openfda ;
+    ds:countType "Drug Labels" ;
+    ds:count "150000"^^xsd:integer ;
+    ds:countLabel "150,000+" .
+
+data:fda-food-recalls a ds:RecordCount ;
+    ds:belongsToSource data:fda-openfda ;
+    ds:countType "Food Recalls" ;
+    ds:count "25000"^^xsd:integer ;
+    ds:countLabel "25,000+" .
+
+data:fda-api-access a ds:AccessMethod ;
+    ds:belongsToSource data:fda-openfda ;
+    ds:accessType "API" ;
+    ds:accessName "openFDA API" ;
+    ds:endpoint <https://api.fda.gov> ;
+    ds:format "JSON" ;
+    ds:rateLimit "40 requests/minute without key" ;
+    ds:rateLimitWithKey "240 requests/minute" ;
+    ds:dailyLimit "1,000 without key, 120,000 with key" .
+
+data:fda-download-access a ds:AccessMethod ;
+    ds:belongsToSource data:fda-openfda ;
+    ds:accessType "Bulk" ;
+    ds:accessName "Bulk Downloads" ;
+    ds:endpoint <https://open.fda.gov/apis/downloads> ;
+    ds:format "JSON" ;
+    ds:estimatedSize "1-50 GB depending on endpoint" .
+
+data:fda-ident-ndc a ds:Identifier ;
+    ds:belongsToSource data:fda-openfda ;
+    ds:identifierType "NDC Code" ;
+    ds:pattern "[0-9]{4,5}-[0-9]{3,4}-[0-9]{1,2}" ;
+    ds:example "0002-1200-01" .
+
+data:fda-ident-nda a ds:Identifier ;
+    ds:belongsToSource data:fda-openfda ;
+    ds:identifierType "Application Number" ;
+    ds:pattern "[AN]DA[0-9]+" ;
+    ds:example "NDA019501" .
+
+data:fda-ident-rxnorm a ds:Identifier ;
+    ds:belongsToSource data:fda-openfda ;
+    ds:identifierType "RxNorm" ;
+    ds:pattern "[0-9]+" ;
+    ds:example "310965" .
+
+data:fda-ident-unii a ds:Identifier ;
+    ds:belongsToSource data:fda-openfda ;
+    ds:identifierType "UNII" ;
+    ds:pattern "[A-Z0-9]{10}" ;
+    ds:example "362O9ITL9D" .
+
+data:fda-usecase-1 a ds:UseCase ;
+    ds:belongsToSource data:fda-openfda ;
+    ds:useCaseDescription "Adverse event signal detection" .
+
+data:fda-usecase-2 a ds:UseCase ;
+    ds:belongsToSource data:fda-openfda ;
+    ds:useCaseDescription "Drug safety analysis" .
+
+data:fda-usecase-3 a ds:UseCase ;
+    ds:belongsToSource data:fda-openfda ;
+    ds:useCaseDescription "Recall monitoring" .
+
+data:fda-usecase-4 a ds:UseCase ;
+    ds:belongsToSource data:fda-openfda ;
+    ds:useCaseDescription "Label information retrieval" .
+
+data:fda-usecase-5 a ds:UseCase ;
+    ds:belongsToSource data:fda-openfda ;
+    ds:useCaseDescription "Regulatory timeline research" .
+
+data:fda-limit-1 a ds:Limitation ;
+    ds:belongsToSource data:fda-openfda ;
+    ds:limitationDescription "Data should not be used for clinical decisions" .
+
+data:fda-limit-2 a ds:Limitation ;
+    ds:belongsToSource data:fda-openfda ;
+    ds:limitationDescription "Skip limit maximum is 26,000 records" .
+
+data:fda-xref-rxnorm a ds:CrossReference ;
+    ds:belongsToSource data:fda-openfda ;
+    ds:targetDatabase "RxNorm" ;
+    ds:linkType "RXCUI" ;
+    ds:coverage "Drug products" .
+
+data:fda-xref-drugbank a ds:CrossReference ;
+    ds:belongsToSource data:fda-openfda ;
+    ds:targetDatabase "DrugBank" ;
+    ds:linkType "DrugBank ID" ;
+    ds:coverage "Via harmonized fields" .
+
+# =============================================================================
+# END OF FILE
+# =============================================================================

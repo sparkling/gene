@@ -1,0 +1,836 @@
+# =============================================================================
+# Gene Data Source Instance Data - Nutrition & Food Category
+# =============================================================================
+# Generated: 2026-01-25
+# Category: 06.nutrition.food
+# Sources: 8
+# Subcategories: food.composition, dietary.supplements, bioactive.food.compounds, metabolomics
+# Conforms to: datasource-ontology.ttl, datasource-shapes.ttl
+# =============================================================================
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ds: <https://gene.example.org/ontology/datasource#> .
+@prefix tax: <https://gene.example.org/taxonomy/> .
+@prefix data: <https://gene.example.org/data/source/> .
+@prefix cat: <https://gene.example.org/data/category/> .
+@prefix subcat: <https://gene.example.org/data/subcategory/> .
+@prefix license: <https://gene.example.org/license/> .
+@prefix access: <https://gene.example.org/access/> .
+@prefix xref: <https://gene.example.org/xref/> .
+@prefix spdx: <http://spdx.org/licenses/> .
+
+# =============================================================================
+# LICENSES
+# =============================================================================
+
+license:CC-BY-NC-4.0 a ds:License ;
+    ds:licenseName "Creative Commons Attribution-NonCommercial 4.0 International" ;
+    ds:spdxIdentifier "CC-BY-NC-4.0" ;
+    ds:commercialUse false ;
+    ds:attributionRequired true ;
+    ds:redistribution true ;
+    ds:modificationAllowed true ;
+    rdfs:seeAlso <https://creativecommons.org/licenses/by-nc/4.0/> .
+
+license:ODbL-1.0 a ds:License ;
+    ds:licenseName "Open Database License 1.0" ;
+    ds:spdxIdentifier "ODbL-1.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistribution true ;
+    ds:shareAlike true ;
+    rdfs:seeAlso <https://opendatacommons.org/licenses/odbl/1-0/> .
+
+license:CC0-1.0 a ds:License ;
+    ds:licenseName "Creative Commons Zero 1.0 Universal" ;
+    ds:spdxIdentifier "CC0-1.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired false ;
+    ds:redistribution true ;
+    ds:publicDomain true ;
+    rdfs:seeAlso <https://creativecommons.org/publicdomain/zero/1.0/> .
+
+license:CC-BY-4.0 a ds:License ;
+    ds:licenseName "Creative Commons Attribution 4.0 International" ;
+    ds:spdxIdentifier "CC-BY-4.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistribution true ;
+    ds:modificationAllowed true ;
+    rdfs:seeAlso <https://creativecommons.org/licenses/by/4.0/> .
+
+license:ConsumerLab-Proprietary a ds:License ;
+    ds:licenseName "ConsumerLab Proprietary License" ;
+    ds:spdxIdentifier "LicenseRef-ConsumerLab-Proprietary" ;
+    ds:commercialUse false ;
+    ds:attributionRequired true ;
+    ds:redistribution false ;
+    ds:subscriptionRequired true ;
+    ds:subscriptionCost "$49.95/year" ;
+    rdfs:seeAlso <https://www.consumerlab.com/terms/> .
+
+license:NaturalMedicines-Proprietary a ds:License ;
+    ds:licenseName "Natural Medicines Proprietary License" ;
+    ds:spdxIdentifier "LicenseRef-NaturalMedicines-Proprietary" ;
+    ds:commercialUse false ;
+    ds:attributionRequired true ;
+    ds:redistribution false ;
+    ds:subscriptionRequired true ;
+    ds:ehrIntegration true ;
+    rdfs:seeAlso <https://naturalmedicines.therapeuticresearch.com/terms.aspx> .
+
+license:EuroFIR-DUA a ds:License ;
+    ds:licenseName "EuroFIR Data Use Agreement" ;
+    ds:spdxIdentifier "LicenseRef-EuroFIR-DUA" ;
+    ds:commercialUse false ;
+    ds:attributionRequired true ;
+    ds:redistribution false ;
+    ds:registrationRequired true ;
+    ds:academicAccessFree true ;
+    rdfs:seeAlso <https://www.eurofir.org/data-policy/> .
+
+# =============================================================================
+# DATA SOURCES - 6.1 FOOD COMPOSITION
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# FooDB - The Food Database
+# -----------------------------------------------------------------------------
+
+data:foodb a ds:DataSource ;
+    ds:id "foodb" ;
+    ds:title "FooDB - The Food Database" ;
+    ds:description "The world's largest and most comprehensive resource on food constituents, chemistry, and biology. Provides detailed information about chemical compounds found in common foods including structures, concentrations, and physiological effects." ;
+    ds:belongsToCategory cat:NutritionFood ;
+    ds:belongsToSubcategory subcat:FoodComposition ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "food" ;
+    ds:tag "compounds" ;
+    ds:tag "chemistry" ;
+    ds:tag "nutrients" ;
+    ds:tag "phytochemicals" ;
+    ds:lastUpdated "2023-01-01"^^xsd:date ;
+    ds:maintainer "Wishart Research Group, University of Alberta" ;
+    ds:website <https://foodb.ca> ;
+    ds:hasLicense license:CC-BY-NC-4.0 ;
+    ds:foodCount "~1000"^^xsd:string ;
+    ds:compoundCount "~70000"^^xsd:integer ;
+    ds:recordCount "~800000"^^xsd:string ;
+    ds:updateFrequency "Every 1-2 years" ;
+    rdfs:comment "Source documentation: 06.nutrition.food/6.1.food.composition/foodb" .
+
+data:foodb-version-2020 a ds:Version ;
+    ds:belongsToSource data:foodb ;
+    ds:versionString "2020-04-07" ;
+    ds:releaseDate "2020-04-07"^^xsd:date ;
+    ds:downloadSize "~2 GB (CSV compressed)" .
+
+data:foodb-access-download a ds:AccessMethod ;
+    ds:belongsToSource data:foodb ;
+    ds:accessType "HTTP Download" ;
+    ds:accessUrl <https://foodb.ca/downloads> ;
+    ds:formats "CSV, XML, JSON, SDF" ;
+    ds:registrationRequired false .
+
+data:foodb-access-web a ds:AccessMethod ;
+    ds:belongsToSource data:foodb ;
+    ds:accessType "Web Interface" ;
+    ds:accessUrl <https://foodb.ca> ;
+    ds:registrationRequired false .
+
+data:foodb-id-compound a ds:Identifier ;
+    ds:belongsToSource data:foodb ;
+    ds:identifierType "FooDB Compound ID" ;
+    ds:identifierPattern "FDB[0-9]{6}" ;
+    ds:identifierExample "FDB000123" .
+
+data:foodb-id-food a ds:Identifier ;
+    ds:belongsToSource data:foodb ;
+    ds:identifierType "FooDB Food ID" ;
+    ds:identifierPattern "FOOD[0-9]{5}" ;
+    ds:identifierExample "FOOD00123" .
+
+data:foodb-xref-pubchem a ds:CrossReference ;
+    ds:belongsToSource data:foodb ;
+    ds:externalDatabase "PubChem" ;
+    ds:externalIdField "pubchem_compound_id" ;
+    ds:coverageLevel "High" .
+
+data:foodb-xref-hmdb a ds:CrossReference ;
+    ds:belongsToSource data:foodb ;
+    ds:externalDatabase "HMDB" ;
+    ds:externalIdField "hmdb_id" ;
+    ds:coverageLevel "High" .
+
+data:foodb-xref-chebi a ds:CrossReference ;
+    ds:belongsToSource data:foodb ;
+    ds:externalDatabase "ChEBI" ;
+    ds:externalIdField "chebi_id" ;
+    ds:coverageLevel "High" .
+
+data:foodb-xref-kegg a ds:CrossReference ;
+    ds:belongsToSource data:foodb ;
+    ds:externalDatabase "KEGG Compound" ;
+    ds:externalIdField "kegg_id" ;
+    ds:coverageLevel "Medium" .
+
+data:foodb-xref-drugbank a ds:CrossReference ;
+    ds:belongsToSource data:foodb ;
+    ds:externalDatabase "DrugBank" ;
+    ds:externalIdField "drugbank_id" ;
+    ds:coverageLevel "Medium" .
+
+data:foodb-usecase-1 a ds:UseCase ;
+    ds:belongsToSource data:foodb ;
+    ds:useCaseDescription "Identifying chemical compounds in specific foods" .
+
+data:foodb-usecase-2 a ds:UseCase ;
+    ds:belongsToSource data:foodb ;
+    ds:useCaseDescription "Understanding food chemistry and flavor profiles" .
+
+data:foodb-usecase-3 a ds:UseCase ;
+    ds:belongsToSource data:foodb ;
+    ds:useCaseDescription "Nutritional composition analysis" .
+
+data:foodb-usecase-4 a ds:UseCase ;
+    ds:belongsToSource data:foodb ;
+    ds:useCaseDescription "Metabolomics study design" .
+
+data:foodb-usecase-5 a ds:UseCase ;
+    ds:belongsToSource data:foodb ;
+    ds:useCaseDescription "Food safety and contaminant assessment" .
+
+data:foodb-limitation-1 a ds:Limitation ;
+    ds:belongsToSource data:foodb ;
+    ds:limitationDescription "No public API available for programmatic access" .
+
+data:foodb-limitation-2 a ds:Limitation ;
+    ds:belongsToSource data:foodb ;
+    ds:limitationDescription "Commercial use requires license agreement" .
+
+data:foodb-limitation-3 a ds:Limitation ;
+    ds:belongsToSource data:foodb ;
+    ds:limitationDescription "Updates less frequent than some competitors" .
+
+data:foodb-limitation-4 a ds:Limitation ;
+    ds:belongsToSource data:foodb ;
+    ds:limitationDescription "Concentration data quality varies by source" .
+
+# -----------------------------------------------------------------------------
+# Open Food Facts
+# -----------------------------------------------------------------------------
+
+data:open-food-facts a ds:DataSource ;
+    ds:id "open.food.facts" ;
+    ds:title "Open Food Facts" ;
+    ds:description "A free, open, collaborative database of food products from around the world. Collects ingredients, allergens, nutrition facts, and all information found on product labels through crowdsourced contributions." ;
+    ds:belongsToCategory cat:NutritionFood ;
+    ds:belongsToSubcategory subcat:FoodComposition ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:tag "food" ;
+    ds:tag "products" ;
+    ds:tag "labels" ;
+    ds:tag "nutrition" ;
+    ds:tag "crowdsourced" ;
+    ds:tag "open-data" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    ds:maintainer "Open Food Facts Contributors" ;
+    ds:website <https://world.openfoodfacts.org> ;
+    ds:hasLicense license:ODbL-1.0 ;
+    ds:productCount ">3000000"^^xsd:string ;
+    ds:countryCount "180+"^^xsd:string ;
+    ds:contributorCount "30000+"^^xsd:string ;
+    ds:updateFrequency "Continuous" ;
+    rdfs:comment "Source documentation: 06.nutrition.food/6.1.food.composition/open.food.facts" .
+
+data:off-access-api a ds:AccessMethod ;
+    ds:belongsToSource data:open-food-facts ;
+    ds:accessType "REST API" ;
+    ds:accessUrl <https://world.openfoodfacts.org/api/v2> ;
+    ds:registrationRequired false ;
+    ds:rateLimit "~100 requests/minute recommended" .
+
+data:off-access-download a ds:AccessMethod ;
+    ds:belongsToSource data:open-food-facts ;
+    ds:accessType "HTTP Download" ;
+    ds:accessUrl <https://world.openfoodfacts.org/data> ;
+    ds:formats "CSV, JSONL, RDF, MongoDB dump, Parquet" ;
+    ds:updateSchedule "Daily at 02:00 UTC" .
+
+data:off-access-mobile a ds:AccessMethod ;
+    ds:belongsToSource data:open-food-facts ;
+    ds:accessType "Mobile App" ;
+    ds:platforms "iOS, Android" ;
+    ds:features "Barcode scanning" .
+
+data:off-id-barcode a ds:Identifier ;
+    ds:belongsToSource data:open-food-facts ;
+    ds:identifierType "Product Barcode" ;
+    ds:identifierPattern "EAN-13/UPC" ;
+    ds:identifierExample "3017620422003" .
+
+data:off-usecase-1 a ds:UseCase ;
+    ds:belongsToSource data:open-food-facts ;
+    ds:useCaseDescription "Product barcode lookup and identification" .
+
+data:off-usecase-2 a ds:UseCase ;
+    ds:belongsToSource data:open-food-facts ;
+    ds:useCaseDescription "Nutritional analysis of commercial products" .
+
+data:off-usecase-3 a ds:UseCase ;
+    ds:belongsToSource data:open-food-facts ;
+    ds:useCaseDescription "Allergen and ingredient tracking" .
+
+data:off-usecase-4 a ds:UseCase ;
+    ds:belongsToSource data:open-food-facts ;
+    ds:useCaseDescription "Food product categorization" .
+
+data:off-usecase-5 a ds:UseCase ;
+    ds:belongsToSource data:open-food-facts ;
+    ds:useCaseDescription "Environmental impact assessment (Eco-Score)" .
+
+data:off-limitation-1 a ds:Limitation ;
+    ds:belongsToSource data:open-food-facts ;
+    ds:limitationDescription "Crowdsourced data - quality varies; some fields may be incomplete" .
+
+data:off-limitation-2 a ds:Limitation ;
+    ds:belongsToSource data:open-food-facts ;
+    ds:limitationDescription "Duplicate barcodes - some products have multiple entries" .
+
+# =============================================================================
+# DATA SOURCES - 6.2 DIETARY SUPPLEMENTS
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# DSLD - Dietary Supplement Label Database
+# -----------------------------------------------------------------------------
+
+data:dsld a ds:DataSource ;
+    ds:id "dsld" ;
+    ds:title "DSLD - Dietary Supplement Label Database" ;
+    ds:description "A project of the NIH Office of Dietary Supplements containing the full label contents of dietary supplement products marketed in the United States, including vitamins, minerals, herbs, botanicals, amino acids, and specialty supplements." ;
+    ds:belongsToCategory cat:NutritionFood ;
+    ds:belongsToSubcategory subcat:DietarySupplements ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "supplements" ;
+    ds:tag "labels" ;
+    ds:tag "nih" ;
+    ds:tag "ods" ;
+    ds:tag "ingredients" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    ds:maintainer "NIH Office of Dietary Supplements (ODS)" ;
+    ds:website <https://dsld.od.nih.gov> ;
+    ds:hasLicense license:CC0-1.0 ;
+    ds:productCount "150000+"^^xsd:string ;
+    ds:ingredientCount "13000+"^^xsd:string ;
+    ds:brandCount "4000+"^^xsd:string ;
+    ds:updateFrequency "Monthly" ;
+    rdfs:comment "Source documentation: 06.nutrition.food/6.2.dietary.supplements/dsld" .
+
+data:dsld-access-api a ds:AccessMethod ;
+    ds:belongsToSource data:dsld ;
+    ds:accessType "REST API" ;
+    ds:accessUrl <https://api.ods.od.nih.gov/dsld> ;
+    ds:registrationRequired true ;
+    ds:registrationUrl <https://api.ods.od.nih.gov/signup> ;
+    ds:apiKeyRequired true ;
+    ds:rateLimit "~2 requests/second, ~10000/day" .
+
+data:dsld-access-download a ds:AccessMethod ;
+    ds:belongsToSource data:dsld ;
+    ds:accessType "HTTP Download" ;
+    ds:accessUrl <https://dsld.od.nih.gov/download> ;
+    ds:formats "CSV, JSON" .
+
+data:dsld-access-web a ds:AccessMethod ;
+    ds:belongsToSource data:dsld ;
+    ds:accessType "Web Interface" ;
+    ds:accessUrl <https://dsld.od.nih.gov> ;
+    ds:registrationRequired false .
+
+data:dsld-id-dsldid a ds:Identifier ;
+    ds:belongsToSource data:dsld ;
+    ds:identifierType "DSLD ID" ;
+    ds:identifierPattern "Numeric" ;
+    ds:identifierExample "123456" .
+
+data:dsld-id-upc a ds:Identifier ;
+    ds:belongsToSource data:dsld ;
+    ds:identifierType "UPC Barcode" ;
+    ds:identifierPattern "Standard" ;
+    ds:identifierExample "012345678901" .
+
+data:dsld-usecase-1 a ds:UseCase ;
+    ds:belongsToSource data:dsld ;
+    ds:useCaseDescription "Supplement ingredient surveillance" .
+
+data:dsld-usecase-2 a ds:UseCase ;
+    ds:belongsToSource data:dsld ;
+    ds:useCaseDescription "Market research and analysis" .
+
+data:dsld-usecase-3 a ds:UseCase ;
+    ds:belongsToSource data:dsld ;
+    ds:useCaseDescription "Regulatory compliance checking" .
+
+data:dsld-usecase-4 a ds:UseCase ;
+    ds:belongsToSource data:dsld ;
+    ds:useCaseDescription "Ingredient dosage assessment" .
+
+data:dsld-usecase-5 a ds:UseCase ;
+    ds:belongsToSource data:dsld ;
+    ds:useCaseDescription "Product formulation research" .
+
+# -----------------------------------------------------------------------------
+# ConsumerLab
+# -----------------------------------------------------------------------------
+
+data:consumerlab a ds:DataSource ;
+    ds:id "consumerlab" ;
+    ds:title "ConsumerLab" ;
+    ds:description "An independent organization that tests health and nutrition products. Provides detailed quality evaluations of dietary supplements, functional foods, and personal care products, verifying whether products contain what labels claim and checking for contamination." ;
+    ds:belongsToCategory cat:NutritionFood ;
+    ds:belongsToSubcategory subcat:DietarySupplements ;
+    ds:tier tax:Tier3 ;
+    ds:status tax:Active ;
+    ds:tag "supplements" ;
+    ds:tag "testing" ;
+    ds:tag "quality" ;
+    ds:tag "reviews" ;
+    ds:tag "consumer" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    ds:maintainer "ConsumerLab.com, LLC" ;
+    ds:website <https://www.consumerlab.com> ;
+    ds:hasLicense license:ConsumerLab-Proprietary ;
+    ds:productsTested "6500+"^^xsd:string ;
+    ds:brandsCovered "800+"^^xsd:string ;
+    ds:productCategories "50+"^^xsd:string ;
+    ds:updateFrequency "Continuous" ;
+    rdfs:comment "Source documentation: 06.nutrition.food/6.2.dietary.supplements/consumerlab" .
+
+data:consumerlab-access-web a ds:AccessMethod ;
+    ds:belongsToSource data:consumerlab ;
+    ds:accessType "Web Interface" ;
+    ds:accessUrl <https://www.consumerlab.com> ;
+    ds:registrationRequired true ;
+    ds:subscriptionRequired true ;
+    ds:subscriptionCost "$49.95/year (individual)" .
+
+data:consumerlab-limitation-1 a ds:Limitation ;
+    ds:belongsToSource data:consumerlab ;
+    ds:limitationDescription "No public API available" .
+
+data:consumerlab-limitation-2 a ds:Limitation ;
+    ds:belongsToSource data:consumerlab ;
+    ds:limitationDescription "Bulk data downloads not available" .
+
+data:consumerlab-limitation-3 a ds:Limitation ;
+    ds:belongsToSource data:consumerlab ;
+    ds:limitationDescription "Subscription required for full access" .
+
+data:consumerlab-limitation-4 a ds:Limitation ;
+    ds:belongsToSource data:consumerlab ;
+    ds:limitationDescription "Redistribution prohibited" .
+
+data:consumerlab-usecase-1 a ds:UseCase ;
+    ds:belongsToSource data:consumerlab ;
+    ds:useCaseDescription "Supplement quality verification" .
+
+data:consumerlab-usecase-2 a ds:UseCase ;
+    ds:belongsToSource data:consumerlab ;
+    ds:useCaseDescription "Product contamination screening" .
+
+data:consumerlab-usecase-3 a ds:UseCase ;
+    ds:belongsToSource data:consumerlab ;
+    ds:useCaseDescription "Comparative product analysis" .
+
+data:consumerlab-usecase-4 a ds:UseCase ;
+    ds:belongsToSource data:consumerlab ;
+    ds:useCaseDescription "Evidence-based supplement selection" .
+
+# -----------------------------------------------------------------------------
+# Natural Medicines Comprehensive Database
+# -----------------------------------------------------------------------------
+
+data:natural-medicines a ds:DataSource ;
+    ds:id "natural.medicines" ;
+    ds:title "Natural Medicines Comprehensive Database" ;
+    ds:description "A clinical decision support resource providing evidence-based information about natural products, dietary supplements, and complementary therapies. Includes detailed monographs with effectiveness ratings, safety grades, drug interactions, and dosing guidelines." ;
+    ds:belongsToCategory cat:NutritionFood ;
+    ds:belongsToSubcategory subcat:DietarySupplements ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:tag "natural-products" ;
+    ds:tag "evidence" ;
+    ds:tag "efficacy" ;
+    ds:tag "safety" ;
+    ds:tag "interactions" ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    ds:maintainer "TRC Healthcare" ;
+    ds:website <https://naturalmedicines.therapeuticresearch.com> ;
+    ds:hasLicense license:NaturalMedicines-Proprietary ;
+    ds:monographCount "1400+"^^xsd:string ;
+    ds:interactionCount "175000+"^^xsd:string ;
+    ds:updateFrequency "Continuous" ;
+    rdfs:comment "Source documentation: 06.nutrition.food/6.2.dietary.supplements/natural.medicines" .
+
+data:nm-access-web a ds:AccessMethod ;
+    ds:belongsToSource data:natural-medicines ;
+    ds:accessType "Web Interface" ;
+    ds:accessUrl <https://naturalmedicines.therapeuticresearch.com> ;
+    ds:subscriptionRequired true .
+
+data:nm-access-mobile a ds:AccessMethod ;
+    ds:belongsToSource data:natural-medicines ;
+    ds:accessType "Mobile App" ;
+    ds:platforms "iOS, Android" ;
+    ds:subscriptionRequired true .
+
+data:nm-access-ehr a ds:AccessMethod ;
+    ds:belongsToSource data:natural-medicines ;
+    ds:accessType "EHR Integration" ;
+    ds:platforms "Epic, Cerner, Allscripts" ;
+    ds:licenseType "Enterprise" .
+
+data:nm-usecase-1 a ds:UseCase ;
+    ds:belongsToSource data:natural-medicines ;
+    ds:useCaseDescription "Clinical decision support for natural products" .
+
+data:nm-usecase-2 a ds:UseCase ;
+    ds:belongsToSource data:natural-medicines ;
+    ds:useCaseDescription "Drug-supplement interaction checking" .
+
+data:nm-usecase-3 a ds:UseCase ;
+    ds:belongsToSource data:natural-medicines ;
+    ds:useCaseDescription "Evidence assessment for efficacy claims" .
+
+data:nm-usecase-4 a ds:UseCase ;
+    ds:belongsToSource data:natural-medicines ;
+    ds:useCaseDescription "Safety profile evaluation" .
+
+data:nm-usecase-5 a ds:UseCase ;
+    ds:belongsToSource data:natural-medicines ;
+    ds:useCaseDescription "Dosing recommendation development" .
+
+data:nm-limitation-1 a ds:Limitation ;
+    ds:belongsToSource data:natural-medicines ;
+    ds:limitationDescription "Subscription required for access" .
+
+data:nm-limitation-2 a ds:Limitation ;
+    ds:belongsToSource data:natural-medicines ;
+    ds:limitationDescription "No public API (enterprise only)" .
+
+data:nm-limitation-3 a ds:Limitation ;
+    ds:belongsToSource data:natural-medicines ;
+    ds:limitationDescription "Bulk downloads not available" .
+
+# =============================================================================
+# DATA SOURCES - 6.3 BIOACTIVE FOOD COMPOUNDS
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# eBASIS - Bioactive Substances in Food Information System
+# -----------------------------------------------------------------------------
+
+data:ebasis a ds:DataSource ;
+    ds:id "ebasis" ;
+    ds:title "eBASIS - Bioactive Substances in Food Information System" ;
+    ds:description "A European Food Information Resource (EuroFIR) database that compiles quality-evaluated composition data on bioactive compounds in plant-based foods. Focuses on compounds with potential health benefits beyond basic nutrition." ;
+    ds:belongsToCategory cat:NutritionFood ;
+    ds:belongsToSubcategory subcat:BioactiveFoodCompounds ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:tag "bioactive" ;
+    ds:tag "phytochemicals" ;
+    ds:tag "food" ;
+    ds:tag "europe" ;
+    ds:tag "composition" ;
+    ds:lastUpdated "2022-01-01"^^xsd:date ;
+    ds:maintainer "EuroFIR AISBL" ;
+    ds:website <https://ebasis.eurofir.org> ;
+    ds:hasLicense license:EuroFIR-DUA ;
+    ds:compoundCount "300+"^^xsd:string ;
+    ds:foodCount "500+"^^xsd:string ;
+    ds:dataPointCount "25000+"^^xsd:string ;
+    rdfs:comment "Source documentation: 06.nutrition.food/6.3.bioactive.food.compounds/ebasis" .
+
+data:ebasis-access-web a ds:AccessMethod ;
+    ds:belongsToSource data:ebasis ;
+    ds:accessType "Web Interface" ;
+    ds:accessUrl <https://ebasis.eurofir.org> ;
+    ds:registrationRequired true ;
+    ds:registrationFree true .
+
+data:ebasis-access-bulk a ds:AccessMethod ;
+    ds:belongsToSource data:ebasis ;
+    ds:accessType "Bulk Download" ;
+    ds:requiresAgreement true ;
+    ds:contactEmail "data@eurofir.org" .
+
+data:ebasis-id-compound a ds:Identifier ;
+    ds:belongsToSource data:ebasis ;
+    ds:identifierType "eBASIS Compound ID" ;
+    ds:identifierPattern "Internal" ;
+    ds:identifierExample "EB001234" .
+
+data:ebasis-id-eurofir a ds:Identifier ;
+    ds:belongsToSource data:ebasis ;
+    ds:identifierType "EuroFIR Food Code" ;
+    ds:identifierPattern "LanguaL-based" ;
+    ds:identifierExample "A0148" .
+
+data:ebasis-xref-pubchem a ds:CrossReference ;
+    ds:belongsToSource data:ebasis ;
+    ds:externalDatabase "PubChem" ;
+    ds:externalIdField "pubchem_cid" ;
+    ds:coverageLevel "Medium" .
+
+data:ebasis-usecase-1 a ds:UseCase ;
+    ds:belongsToSource data:ebasis ;
+    ds:useCaseDescription "Dietary bioactive exposure assessment" .
+
+data:ebasis-usecase-2 a ds:UseCase ;
+    ds:belongsToSource data:ebasis ;
+    ds:useCaseDescription "Food composition research" .
+
+data:ebasis-usecase-3 a ds:UseCase ;
+    ds:belongsToSource data:ebasis ;
+    ds:useCaseDescription "Health claims substantiation" .
+
+data:ebasis-usecase-4 a ds:UseCase ;
+    ds:belongsToSource data:ebasis ;
+    ds:useCaseDescription "Functional food development" .
+
+data:ebasis-usecase-5 a ds:UseCase ;
+    ds:belongsToSource data:ebasis ;
+    ds:useCaseDescription "Epidemiological study support" .
+
+data:ebasis-limitation-1 a ds:Limitation ;
+    ds:belongsToSource data:ebasis ;
+    ds:limitationDescription "Registration and data use agreement required" .
+
+data:ebasis-limitation-2 a ds:Limitation ;
+    ds:belongsToSource data:ebasis ;
+    ds:limitationDescription "Bulk downloads require EuroFIR agreement" .
+
+data:ebasis-limitation-3 a ds:Limitation ;
+    ds:belongsToSource data:ebasis ;
+    ds:limitationDescription "No public API available" .
+
+# =============================================================================
+# DATA SOURCES - 6.4 METABOLOMICS
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# HMDB - Human Metabolome Database
+# -----------------------------------------------------------------------------
+
+data:hmdb a ds:DataSource ;
+    ds:id "hmdb" ;
+    ds:title "HMDB - Human Metabolome Database" ;
+    ds:description "The most comprehensive database of human metabolites and their associated biological, chemical, clinical, and molecular biology data. Contains detailed information about small molecule metabolites found in the human body." ;
+    ds:belongsToCategory cat:NutritionFood ;
+    ds:belongsToSubcategory subcat:Metabolomics ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "metabolome" ;
+    ds:tag "metabolites" ;
+    ds:tag "human" ;
+    ds:tag "biomarkers" ;
+    ds:tag "spectroscopy" ;
+    ds:lastUpdated "2024-01-01"^^xsd:date ;
+    ds:maintainer "Wishart Research Group, University of Alberta" ;
+    ds:website <https://hmdb.ca> ;
+    ds:hasLicense license:CC-BY-NC-4.0 ;
+    ds:metaboliteCount "220000+"^^xsd:string ;
+    ds:metabolitesWithConcentrations "5000+"^^xsd:string ;
+    ds:msmsSpectraCount "650000+"^^xsd:string ;
+    ds:nmrSpectraCount "5000+"^^xsd:string ;
+    ds:updateFrequency "Annually" ;
+    rdfs:comment "Source documentation: 06.nutrition.food/6.4.metabolomics/hmdb" .
+
+data:hmdb-version-5 a ds:Version ;
+    ds:belongsToSource data:hmdb ;
+    ds:versionString "5.0" ;
+    ds:releaseDate "2022-01-01"^^xsd:date .
+
+data:hmdb-access-api a ds:AccessMethod ;
+    ds:belongsToSource data:hmdb ;
+    ds:accessType "REST API" ;
+    ds:accessUrl <https://hmdb.ca/api> ;
+    ds:formats "JSON, XML" ;
+    ds:registrationRequired false .
+
+data:hmdb-access-download a ds:AccessMethod ;
+    ds:belongsToSource data:hmdb ;
+    ds:accessType "HTTP Download" ;
+    ds:accessUrl <https://hmdb.ca/downloads> ;
+    ds:formats "XML, SDF, CSV" ;
+    ds:downloadSize "~10-20 GB total" .
+
+data:hmdb-access-web a ds:AccessMethod ;
+    ds:belongsToSource data:hmdb ;
+    ds:accessType "Web Interface" ;
+    ds:accessUrl <https://hmdb.ca> ;
+    ds:registrationRequired false .
+
+data:hmdb-access-metaboanalyst a ds:AccessMethod ;
+    ds:belongsToSource data:hmdb ;
+    ds:accessType "Analysis Platform" ;
+    ds:accessUrl <https://www.metaboanalyst.ca> .
+
+data:hmdb-id-hmdb a ds:Identifier ;
+    ds:belongsToSource data:hmdb ;
+    ds:identifierType "HMDB ID" ;
+    ds:identifierPattern "HMDB[0-9]{7}" ;
+    ds:identifierExample "HMDB0000001" .
+
+data:hmdb-xref-kegg a ds:CrossReference ;
+    ds:belongsToSource data:hmdb ;
+    ds:externalDatabase "KEGG" ;
+    ds:externalIdField "kegg_id" ;
+    ds:identifierPattern "C[0-9]{5}" ;
+    ds:coverageLevel "High" .
+
+data:hmdb-xref-pubchem a ds:CrossReference ;
+    ds:belongsToSource data:hmdb ;
+    ds:externalDatabase "PubChem" ;
+    ds:externalIdField "pubchem_compound_id" ;
+    ds:coverageLevel "High" .
+
+data:hmdb-xref-chebi a ds:CrossReference ;
+    ds:belongsToSource data:hmdb ;
+    ds:externalDatabase "ChEBI" ;
+    ds:externalIdField "chebi_id" ;
+    ds:identifierPattern "CHEBI:[0-9]+" ;
+    ds:coverageLevel "High" .
+
+data:hmdb-usecase-1 a ds:UseCase ;
+    ds:belongsToSource data:hmdb ;
+    ds:useCaseDescription "Metabolite identification from mass spectrometry" .
+
+data:hmdb-usecase-2 a ds:UseCase ;
+    ds:belongsToSource data:hmdb ;
+    ds:useCaseDescription "Biomarker discovery and validation" .
+
+data:hmdb-usecase-3 a ds:UseCase ;
+    ds:belongsToSource data:hmdb ;
+    ds:useCaseDescription "Metabolic pathway analysis" .
+
+data:hmdb-usecase-4 a ds:UseCase ;
+    ds:belongsToSource data:hmdb ;
+    ds:useCaseDescription "Clinical chemistry reference" .
+
+data:hmdb-usecase-5 a ds:UseCase ;
+    ds:belongsToSource data:hmdb ;
+    ds:useCaseDescription "Disease-metabolite association studies" .
+
+data:hmdb-limitation-1 a ds:Limitation ;
+    ds:belongsToSource data:hmdb ;
+    ds:limitationDescription "Commercial use requires license agreement" .
+
+data:hmdb-limitation-2 a ds:Limitation ;
+    ds:belongsToSource data:hmdb ;
+    ds:limitationDescription "Large XML files require streaming parser for memory efficiency" .
+
+# -----------------------------------------------------------------------------
+# Exposome-Explorer
+# -----------------------------------------------------------------------------
+
+data:exposome-explorer a ds:DataSource ;
+    ds:id "exposome.explorer" ;
+    ds:title "Exposome-Explorer" ;
+    ds:description "A manually curated database dedicated to biomarkers of dietary and environmental exposures. Systematically catalogs published associations between biomarkers measured in human samples and dietary or environmental exposures." ;
+    ds:belongsToCategory cat:NutritionFood ;
+    ds:belongsToSubcategory subcat:Metabolomics ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:tag "exposome" ;
+    ds:tag "biomarkers" ;
+    ds:tag "diet" ;
+    ds:tag "environment" ;
+    ds:tag "metabolomics" ;
+    ds:lastUpdated "2023-01-01"^^xsd:date ;
+    ds:maintainer "International Agency for Research on Cancer (IARC/WHO)" ;
+    ds:website <http://exposome-explorer.iarc.fr> ;
+    ds:hasLicense license:CC-BY-4.0 ;
+    ds:biomarkerCount "900+"^^xsd:string ;
+    ds:dietaryExposureCount "600+"^^xsd:string ;
+    ds:publicationCount "1500+"^^xsd:string ;
+    rdfs:comment "Source documentation: 06.nutrition.food/6.4.metabolomics/exposome.explorer" .
+
+data:ee-access-web a ds:AccessMethod ;
+    ds:belongsToSource data:exposome-explorer ;
+    ds:accessType "Web Interface" ;
+    ds:accessUrl <http://exposome-explorer.iarc.fr> ;
+    ds:registrationRequired false .
+
+data:ee-access-download a ds:AccessMethod ;
+    ds:belongsToSource data:exposome-explorer ;
+    ds:accessType "HTTP Download" ;
+    ds:accessUrl <http://exposome-explorer.iarc.fr/downloads> ;
+    ds:formats "TSV" ;
+    ds:registrationRequired false .
+
+data:ee-id-biomarker a ds:Identifier ;
+    ds:belongsToSource data:exposome-explorer ;
+    ds:identifierType "Biomarker ID" ;
+    ds:identifierPattern "Internal" ;
+    ds:identifierExample "EXP000123" .
+
+data:ee-id-exposure a ds:Identifier ;
+    ds:belongsToSource data:exposome-explorer ;
+    ds:identifierType "Exposure ID" ;
+    ds:identifierPattern "Internal" ;
+    ds:identifierExample "DIET00456" .
+
+data:ee-xref-hmdb a ds:CrossReference ;
+    ds:belongsToSource data:exposome-explorer ;
+    ds:externalDatabase "HMDB" ;
+    ds:externalIdField "hmdb_id" ;
+    ds:identifierPattern "HMDB[0-9]{7}" ;
+    ds:coverageLevel "High" .
+
+data:ee-xref-pubchem a ds:CrossReference ;
+    ds:belongsToSource data:exposome-explorer ;
+    ds:externalDatabase "PubChem" ;
+    ds:externalIdField "pubchem_cid" ;
+    ds:coverageLevel "Medium" .
+
+data:ee-xref-chebi a ds:CrossReference ;
+    ds:belongsToSource data:exposome-explorer ;
+    ds:externalDatabase "ChEBI" ;
+    ds:externalIdField "chebi_id" ;
+    ds:coverageLevel "Medium" .
+
+data:ee-usecase-1 a ds:UseCase ;
+    ds:belongsToSource data:exposome-explorer ;
+    ds:useCaseDescription "Dietary biomarker identification" .
+
+data:ee-usecase-2 a ds:UseCase ;
+    ds:belongsToSource data:exposome-explorer ;
+    ds:useCaseDescription "Exposure assessment methodology" .
+
+data:ee-usecase-3 a ds:UseCase ;
+    ds:belongsToSource data:exposome-explorer ;
+    ds:useCaseDescription "Epidemiological study design" .
+
+data:ee-usecase-4 a ds:UseCase ;
+    ds:belongsToSource data:exposome-explorer ;
+    ds:useCaseDescription "Metabolomics biomarker validation" .
+
+data:ee-usecase-5 a ds:UseCase ;
+    ds:belongsToSource data:exposome-explorer ;
+    ds:useCaseDescription "Diet-disease association research" .
+
+data:ee-limitation-1 a ds:Limitation ;
+    ds:belongsToSource data:exposome-explorer ;
+    ds:limitationDescription "No public API available" .
+
+# =============================================================================
+# END OF FILE
+# =============================================================================

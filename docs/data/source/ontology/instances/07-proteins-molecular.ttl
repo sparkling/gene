@@ -1,0 +1,1155 @@
+# =============================================================================
+# Proteins & Molecular Biology Data Source Instances
+# =============================================================================
+# Generated: 2026-01-25
+# Category: 07.proteins.molecular.biology
+# Sources: 5 (RefSeq, UniProt, AlphaFold DB, PDB, SWISS-MODEL)
+# Conforms to: datasource-ontology.ttl, datasource-shapes.ttl
+# =============================================================================
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ds: <https://gene.example.org/ontology/datasource#> .
+@prefix tax: <https://gene.example.org/taxonomy/> .
+@prefix data: <https://gene.example.org/data/source/> .
+@prefix cat: <https://gene.example.org/data/category/> .
+@prefix subcat: <https://gene.example.org/data/subcategory/> .
+@prefix license: <https://gene.example.org/data/license/> .
+@prefix version: <https://gene.example.org/data/version/> .
+@prefix access: <https://gene.example.org/data/access/> .
+@prefix xref: <https://gene.example.org/data/xref/> .
+@prefix id: <https://gene.example.org/data/identifier/> .
+@prefix usecase: <https://gene.example.org/data/usecase/> .
+@prefix limitation: <https://gene.example.org/data/limitation/> .
+
+# =============================================================================
+# CATEGORY AND SUBCATEGORIES
+# =============================================================================
+
+cat:ProteinsMolecularBiology a ds:Category ;
+    ds:id "proteins.molecular.biology" ;
+    ds:title "Proteins & Molecular Biology" ;
+    ds:categoryClassification tax:ProteinsMolecularBiology ;
+    ds:status tax:Active .
+
+subcat:ProteinSequencesAnnotations a ds:Subcategory ;
+    ds:id "protein.sequences.annotations" ;
+    ds:title "Protein Sequences & Annotations" ;
+    ds:belongsToCategory cat:ProteinsMolecularBiology ;
+    ds:subcategoryClassification tax:ProteinSequencesAnnotations ;
+    ds:status tax:Active .
+
+subcat:ProteinStructures a ds:Subcategory ;
+    ds:id "protein.structures" ;
+    ds:title "Protein Structures" ;
+    ds:belongsToCategory cat:ProteinsMolecularBiology ;
+    ds:subcategoryClassification tax:ProteinStructures ;
+    ds:status tax:Active .
+
+subcat:MolecularInteractions a ds:Subcategory ;
+    ds:id "molecular.interactions" ;
+    ds:title "Molecular Interactions" ;
+    ds:belongsToCategory cat:ProteinsMolecularBiology ;
+    ds:subcategoryClassification tax:MolecularInteractions ;
+    ds:status tax:Active ;
+    rdfs:comment "References IntAct, STRING, and Reactome from pathways.networks category" .
+
+# =============================================================================
+# DATA SOURCE: NCBI RefSeq
+# =============================================================================
+
+data:refseq a ds:DataSource ;
+    ds:id "refseq" ;
+    ds:title "NCBI RefSeq - Reference Sequence Database" ;
+    ds:description "NCBI Reference Sequence (RefSeq) database provides a comprehensive, integrated, non-redundant, well-annotated set of reference sequences including genomic DNA, transcripts, and proteins. RefSeq sequences are explicitly linked to their source data and include both computationally derived and manually curated records." ;
+    ds:belongsToCategory cat:ProteinsMolecularBiology ;
+    ds:belongsToSubcategory subcat:ProteinSequencesAnnotations ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:maintainer "National Center for Biotechnology Information (NCBI)" ;
+    ds:website "https://www.ncbi.nlm.nih.gov/refseq" ;
+    ds:updateFrequency "Bimonthly (6x/year)" ;
+    ds:lastUpdated "2026-01-23"^^xsd:date ;
+    ds:tag "sequences" ;
+    ds:tag "ncbi" ;
+    ds:tag "reference" ;
+    ds:tag "proteins" ;
+    ds:tag "transcripts" ;
+    ds:tag "genomes" ;
+    ds:hasLicense license:refseq-license ;
+    ds:hasAccessMethod access:refseq-web ;
+    ds:hasAccessMethod access:refseq-entrez ;
+    ds:hasAccessMethod access:refseq-ftp ;
+    ds:hasAccessMethod access:refseq-blast ;
+    ds:hasAccessMethod access:refseq-aspera ;
+    ds:hasAccessMethod access:refseq-datasets-cli ;
+    ds:hasIdentifier id:refseq-protein ;
+    ds:hasIdentifier id:refseq-mrna ;
+    ds:hasIdentifier id:refseq-ncrna ;
+    ds:hasIdentifier id:refseq-genome ;
+    ds:hasIdentifier id:refseq-gi ;
+    ds:hasUseCase usecase:refseq-variant-annotation ;
+    ds:hasUseCase usecase:refseq-genome-annotation ;
+    ds:hasUseCase usecase:refseq-sequence-comparison ;
+    ds:hasUseCase usecase:refseq-primer-design ;
+    ds:hasUseCase usecase:refseq-cross-database-linking ;
+    ds:hasLimitation limitation:refseq-gi-deprecated ;
+    ds:hasLimitation limitation:refseq-accession-versions ;
+    ds:recordCount "400000000"^^xsd:integer ;
+    rdfs:comment "Source documentation: 07.proteins.molecular.biology/7.1.protein.sequences.annotations/refseq" .
+
+# RefSeq License
+license:refseq-license a ds:License ;
+    ds:licenseName "Public Domain (US Government Work)" ;
+    ds:spdxIdentifier "CC0-1.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired false ;
+    ds:redistributionAllowed true ;
+    ds:modificationAllowed true ;
+    ds:hasPermission "Use for any purpose including commercial" ;
+    ds:hasPermission "Redistribute freely" ;
+    ds:hasPermission "Modify and create derivative works" ;
+    ds:hasPermission "Integrate into commercial products" ;
+    ds:hasPermission "No license required" ;
+    ds:hasRestriction "None legally required" ;
+    ds:attributionTemplate "Data from NCBI RefSeq. National Center for Biotechnology Information. https://www.ncbi.nlm.nih.gov/refseq/" ;
+    ds:citation "O'Leary NA, Wright MW, Brister JR, et al. Reference sequence (RefSeq) database at NCBI: current status, taxonomic expansion, and functional annotation. Nucleic Acids Research. 2016;44(D1):D733-D745. doi: 10.1093/nar/gkv1189" .
+
+# RefSeq Access Methods
+access:refseq-web a ds:AccessMethod ;
+    ds:accessType tax:WebInterface ;
+    ds:accessUrl "https://www.ncbi.nlm.nih.gov/refseq" ;
+    ds:description "Search and browse interface" ;
+    ds:registrationRequired false .
+
+access:refseq-entrez a ds:AccessMethod ;
+    ds:accessType tax:API ;
+    ds:accessUrl "https://eutils.ncbi.nlm.nih.gov/entrez/eutils" ;
+    ds:description "E-utilities API for programmatic access" ;
+    ds:registrationRequired false ;
+    ds:rateLimit "3 requests/second without API key" ;
+    ds:apiKeyRequired false ;
+    ds:apiKeyRecommended true .
+
+access:refseq-ftp a ds:AccessMethod ;
+    ds:accessType tax:FTP ;
+    ds:accessUrl "https://ftp.ncbi.nlm.nih.gov/refseq" ;
+    ds:description "Full downloads via FTP" ;
+    ds:registrationRequired false .
+
+access:refseq-blast a ds:AccessMethod ;
+    ds:accessType tax:WebService ;
+    ds:accessUrl "https://blast.ncbi.nlm.nih.gov" ;
+    ds:description "Sequence similarity search" ;
+    ds:registrationRequired false .
+
+access:refseq-aspera a ds:AccessMethod ;
+    ds:accessType tax:BulkDownload ;
+    ds:accessUrl "anonftp@ftp.ncbi.nlm.nih.gov:/refseq" ;
+    ds:description "High-speed Aspera transfer" ;
+    ds:registrationRequired false .
+
+access:refseq-datasets-cli a ds:AccessMethod ;
+    ds:accessType tax:CLI ;
+    ds:accessUrl "https://ftp.ncbi.nlm.nih.gov/pub/datasets/command-line/LATEST" ;
+    ds:description "NCBI Datasets command-line tool" ;
+    ds:registrationRequired false .
+
+# RefSeq Identifiers
+id:refseq-protein a ds:Identifier ;
+    ds:identifierName "RefSeq Protein" ;
+    ds:identifierPattern "[ANYXWZ]P_[0-9]+" ;
+    ds:identifierExample "NP_000001.1" ;
+    ds:description "RefSeq protein accession with version" .
+
+id:refseq-mrna a ds:Identifier ;
+    ds:identifierName "RefSeq mRNA" ;
+    ds:identifierPattern "[NX]M_[0-9]+" ;
+    ds:identifierExample "NM_000001.3" ;
+    ds:description "RefSeq mRNA transcript accession" .
+
+id:refseq-ncrna a ds:Identifier ;
+    ds:identifierName "RefSeq ncRNA" ;
+    ds:identifierPattern "[NX]R_[0-9]+" ;
+    ds:identifierExample "NR_000001.1" ;
+    ds:description "RefSeq non-coding RNA accession" .
+
+id:refseq-genome a ds:Identifier ;
+    ds:identifierName "RefSeq Genome" ;
+    ds:identifierPattern "N[CZW]_[0-9]+" ;
+    ds:identifierExample "NC_000001.11" ;
+    ds:description "RefSeq genomic sequence accession" .
+
+id:refseq-gi a ds:Identifier ;
+    ds:identifierName "GI Number" ;
+    ds:identifierPattern "[0-9]+" ;
+    ds:identifierExample "4557225" ;
+    ds:description "GenInfo Identifier (deprecated)" ;
+    ds:deprecated true .
+
+# RefSeq Use Cases
+usecase:refseq-variant-annotation a ds:UseCase ;
+    ds:useCaseTitle "Reference sequence for variant annotation" ;
+    ds:useCaseDescription "Provides stable reference sequences for annotating genetic variants" .
+
+usecase:refseq-genome-annotation a ds:UseCase ;
+    ds:useCaseTitle "Genome annotation pipeline" ;
+    ds:useCaseDescription "Serves as reference for genome annotation workflows" .
+
+usecase:refseq-sequence-comparison a ds:UseCase ;
+    ds:useCaseTitle "Sequence comparison and alignment" ;
+    ds:useCaseDescription "Standard reference for sequence alignment and comparison" .
+
+usecase:refseq-primer-design a ds:UseCase ;
+    ds:useCaseTitle "Primer and probe design" ;
+    ds:useCaseDescription "Reference for designing primers and probes" .
+
+usecase:refseq-cross-database-linking a ds:UseCase ;
+    ds:useCaseTitle "Cross-database linking" ;
+    ds:useCaseDescription "Standard identifiers for linking across databases" .
+
+# RefSeq Limitations
+limitation:refseq-gi-deprecated a ds:Limitation ;
+    ds:limitationDescription "GI numbers are deprecated; use accession.version instead" ;
+    ds:impact tax:Medium .
+
+limitation:refseq-accession-versions a ds:Limitation ;
+    ds:limitationDescription "Always include version number (NP_000537.3 not NP_000537) for reproducibility" ;
+    ds:impact tax:Medium .
+
+# RefSeq Versions
+version:refseq-human-protein a ds:Version ;
+    ds:versionName "Human Protein Sequences" ;
+    ds:versionFormat "FASTA (gzip)" ;
+    ds:fileSize "25 MB" ;
+    ds:downloadUrl "https://ftp.ncbi.nlm.nih.gov/refseq/H_sapiens/mRNA_Prot/human.protein.faa.gz" ;
+    ds:belongsToDataSource data:refseq .
+
+version:refseq-complete a ds:Version ;
+    ds:versionName "Complete RefSeq Release" ;
+    ds:versionFormat "Multiple formats" ;
+    ds:fileSize "500 GB" ;
+    ds:downloadUrl "https://ftp.ncbi.nlm.nih.gov/refseq/release/complete/" ;
+    ds:belongsToDataSource data:refseq .
+
+# =============================================================================
+# DATA SOURCE: UniProt
+# =============================================================================
+
+data:uniprot a ds:DataSource ;
+    ds:id "uniprot" ;
+    ds:title "UniProt - Universal Protein Resource" ;
+    ds:description "The Universal Protein Resource (UniProt) is the most comprehensive, high-quality, and freely accessible database of protein sequence and functional annotation. It is a collaboration between EMBL-EBI, SIB, and PIR. UniProt consists of Swiss-Prot (manually annotated) and TrEMBL (automatically annotated)." ;
+    ds:belongsToCategory cat:ProteinsMolecularBiology ;
+    ds:belongsToSubcategory subcat:ProteinSequencesAnnotations ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:maintainer "UniProt Consortium (EMBL-EBI, SIB, PIR)" ;
+    ds:website "https://www.uniprot.org" ;
+    ds:updateFrequency "Monthly (every 4 weeks)" ;
+    ds:lastUpdated "2026-01-23"^^xsd:date ;
+    ds:tag "proteins" ;
+    ds:tag "sequences" ;
+    ds:tag "annotations" ;
+    ds:tag "swiss-prot" ;
+    ds:tag "trembl" ;
+    ds:tag "curation" ;
+    ds:hasLicense license:uniprot-license ;
+    ds:hasAccessMethod access:uniprot-web ;
+    ds:hasAccessMethod access:uniprot-rest ;
+    ds:hasAccessMethod access:uniprot-sparql ;
+    ds:hasAccessMethod access:uniprot-ftp ;
+    ds:hasAccessMethod access:uniprot-idmapping ;
+    ds:hasIdentifier id:uniprot-accession ;
+    ds:hasIdentifier id:uniprot-id ;
+    ds:hasIdentifier id:uniprot-entry-name ;
+    ds:hasUseCase usecase:uniprot-function-annotation ;
+    ds:hasUseCase usecase:uniprot-sequence-retrieval ;
+    ds:hasUseCase usecase:uniprot-domain-classification ;
+    ds:hasUseCase usecase:uniprot-variant-interpretation ;
+    ds:hasUseCase usecase:uniprot-cross-database ;
+    ds:hasLimitation limitation:uniprot-trembl-quality ;
+    ds:hasLimitation limitation:uniprot-large-files ;
+    ds:hasCrossReference xref:uniprot-ncbi-gene ;
+    ds:hasCrossReference xref:uniprot-ensembl ;
+    ds:hasCrossReference xref:uniprot-refseq ;
+    ds:hasCrossReference xref:uniprot-pdb ;
+    ds:hasCrossReference xref:uniprot-go ;
+    ds:hasCrossReference xref:uniprot-interpro ;
+    ds:hasCrossReference xref:uniprot-pfam ;
+    ds:hasCrossReference xref:uniprot-kegg ;
+    ds:hasCrossReference xref:uniprot-reactome ;
+    ds:hasCrossReference xref:uniprot-chembl ;
+    ds:hasCrossReference xref:uniprot-drugbank ;
+    ds:hasCrossReference xref:uniprot-omim ;
+    ds:hasCrossReference xref:uniprot-string ;
+    ds:recordCount "570000"^^xsd:integer ;
+    ds:recordCountNote "Swiss-Prot reviewed; TrEMBL has 250M+ unreviewed" ;
+    rdfs:comment "Source documentation: 07.proteins.molecular.biology/7.1.protein.sequences.annotations/uniprot" .
+
+# UniProt License
+license:uniprot-license a ds:License ;
+    ds:licenseName "Creative Commons Attribution 4.0 International" ;
+    ds:spdxIdentifier "CC-BY-4.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistributionAllowed true ;
+    ds:modificationAllowed true ;
+    ds:hasPermission "Use for any purpose including commercial" ;
+    ds:hasPermission "Redistribute and share" ;
+    ds:hasPermission "Modify and create derivative works" ;
+    ds:hasPermission "Integrate into products and services" ;
+    ds:hasPermission "Bulk download without restriction" ;
+    ds:hasRestriction "Provide attribution to UniProt" ;
+    ds:hasRestriction "Indicate if modifications were made" ;
+    ds:attributionTemplate "Data from UniProt. The UniProt Consortium. https://www.uniprot.org/ License: CC BY 4.0" ;
+    ds:citation "The UniProt Consortium. UniProt: the Universal Protein Knowledgebase in 2023. Nucleic Acids Research. 2023;51(D1):D523-D531. doi: 10.1093/nar/gkac1052" .
+
+# UniProt Access Methods
+access:uniprot-web a ds:AccessMethod ;
+    ds:accessType tax:WebInterface ;
+    ds:accessUrl "https://www.uniprot.org" ;
+    ds:description "Search, browse, BLAST" ;
+    ds:registrationRequired false .
+
+access:uniprot-rest a ds:AccessMethod ;
+    ds:accessType tax:API ;
+    ds:accessUrl "https://rest.uniprot.org" ;
+    ds:description "REST API for programmatic access" ;
+    ds:registrationRequired false ;
+    ds:apiKeyRequired false .
+
+access:uniprot-sparql a ds:AccessMethod ;
+    ds:accessType tax:SPARQL ;
+    ds:accessUrl "https://sparql.uniprot.org" ;
+    ds:description "SPARQL endpoint for RDF queries" ;
+    ds:registrationRequired false .
+
+access:uniprot-ftp a ds:AccessMethod ;
+    ds:accessType tax:FTP ;
+    ds:accessUrl "https://ftp.uniprot.org" ;
+    ds:description "Full downloads via FTP" ;
+    ds:registrationRequired false .
+
+access:uniprot-idmapping a ds:AccessMethod ;
+    ds:accessType tax:WebService ;
+    ds:accessUrl "https://www.uniprot.org/id-mapping" ;
+    ds:description "Identifier conversion service" ;
+    ds:registrationRequired false .
+
+# UniProt Identifiers
+id:uniprot-accession a ds:Identifier ;
+    ds:identifierName "UniProt Accession" ;
+    ds:identifierPattern "[OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9]([A-Z][A-Z0-9]{2}[0-9]){1,2}" ;
+    ds:identifierExample "P04637" ;
+    ds:description "Primary stable UniProt accession number" .
+
+id:uniprot-id a ds:Identifier ;
+    ds:identifierName "UniProt ID" ;
+    ds:identifierPattern "[A-Z]+_[A-Z]+" ;
+    ds:identifierExample "P53_HUMAN" ;
+    ds:description "UniProt entry name (mnemonic)" .
+
+id:uniprot-entry-name a ds:Identifier ;
+    ds:identifierName "Entry Name" ;
+    ds:identifierPattern "[A-Z0-9]+_[A-Z]+" ;
+    ds:identifierExample "TP53_HUMAN" ;
+    ds:description "UniProt entry name with gene prefix" .
+
+# UniProt Use Cases
+usecase:uniprot-function-annotation a ds:UseCase ;
+    ds:useCaseTitle "Protein function annotation" ;
+    ds:useCaseDescription "Comprehensive functional annotations including molecular function, biological process, and cellular component" .
+
+usecase:uniprot-sequence-retrieval a ds:UseCase ;
+    ds:useCaseTitle "Sequence retrieval and analysis" ;
+    ds:useCaseDescription "Retrieve protein sequences for analysis and comparison" .
+
+usecase:uniprot-domain-classification a ds:UseCase ;
+    ds:useCaseTitle "Domain and family classification" ;
+    ds:useCaseDescription "Identify protein domains, families, and structural features" .
+
+usecase:uniprot-variant-interpretation a ds:UseCase ;
+    ds:useCaseTitle "Variant interpretation" ;
+    ds:useCaseDescription "Interpret effects of sequence variants on protein function" .
+
+usecase:uniprot-cross-database a ds:UseCase ;
+    ds:useCaseTitle "Cross-database linking" ;
+    ds:useCaseDescription "Central hub for protein-centric identifier mapping across 200+ databases" .
+
+# UniProt Limitations
+limitation:uniprot-trembl-quality a ds:Limitation ;
+    ds:limitationDescription "TrEMBL entries are automatically annotated and unreviewed; use Swiss-Prot for high-quality curated data" ;
+    ds:impact tax:Medium .
+
+limitation:uniprot-large-files a ds:Limitation ;
+    ds:limitationDescription "Large file downloads may require resume capability; use rsync for reliability" ;
+    ds:impact tax:Low .
+
+# UniProt Cross-References
+xref:uniprot-ncbi-gene a ds:CrossReference ;
+    ds:externalDatabase "NCBI Gene" ;
+    ds:externalField "GeneID" ;
+    ds:coverage tax:High .
+
+xref:uniprot-ensembl a ds:CrossReference ;
+    ds:externalDatabase "Ensembl" ;
+    ds:externalField "Ensembl" ;
+    ds:coverage tax:High .
+
+xref:uniprot-refseq a ds:CrossReference ;
+    ds:externalDatabase "RefSeq" ;
+    ds:externalField "RefSeq" ;
+    ds:coverage tax:High .
+
+xref:uniprot-pdb a ds:CrossReference ;
+    ds:externalDatabase "PDB" ;
+    ds:externalField "PDB" ;
+    ds:coverage tax:High .
+
+xref:uniprot-go a ds:CrossReference ;
+    ds:externalDatabase "Gene Ontology" ;
+    ds:externalField "GO" ;
+    ds:coverage tax:High .
+
+xref:uniprot-interpro a ds:CrossReference ;
+    ds:externalDatabase "InterPro" ;
+    ds:externalField "InterPro" ;
+    ds:coverage tax:High .
+
+xref:uniprot-pfam a ds:CrossReference ;
+    ds:externalDatabase "Pfam" ;
+    ds:externalField "Pfam" ;
+    ds:coverage tax:High .
+
+xref:uniprot-kegg a ds:CrossReference ;
+    ds:externalDatabase "KEGG" ;
+    ds:externalField "KEGG" ;
+    ds:coverage tax:High .
+
+xref:uniprot-reactome a ds:CrossReference ;
+    ds:externalDatabase "Reactome" ;
+    ds:externalField "Reactome" ;
+    ds:coverage tax:High .
+
+xref:uniprot-chembl a ds:CrossReference ;
+    ds:externalDatabase "ChEMBL" ;
+    ds:externalField "ChEMBL" ;
+    ds:coverage tax:High .
+
+xref:uniprot-drugbank a ds:CrossReference ;
+    ds:externalDatabase "DrugBank" ;
+    ds:externalField "DrugBank" ;
+    ds:coverage tax:Medium .
+
+xref:uniprot-omim a ds:CrossReference ;
+    ds:externalDatabase "OMIM" ;
+    ds:externalField "MIM" ;
+    ds:coverage tax:High .
+
+xref:uniprot-string a ds:CrossReference ;
+    ds:externalDatabase "STRING" ;
+    ds:externalField "STRING" ;
+    ds:coverage tax:High .
+
+# UniProt Versions
+version:uniprot-swissprot-fasta a ds:Version ;
+    ds:versionName "Swiss-Prot FASTA" ;
+    ds:versionFormat "FASTA (gzip)" ;
+    ds:fileSize "90 MB" ;
+    ds:downloadUrl "https://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/complete/uniprot_sprot.fasta.gz" ;
+    ds:belongsToDataSource data:uniprot .
+
+version:uniprot-swissprot-xml a ds:Version ;
+    ds:versionName "Swiss-Prot XML" ;
+    ds:versionFormat "XML (gzip)" ;
+    ds:fileSize "1 GB" ;
+    ds:downloadUrl "https://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/complete/uniprot_sprot.xml.gz" ;
+    ds:belongsToDataSource data:uniprot .
+
+version:uniprot-trembl-fasta a ds:Version ;
+    ds:versionName "TrEMBL FASTA" ;
+    ds:versionFormat "FASTA (gzip)" ;
+    ds:fileSize "50 GB" ;
+    ds:downloadUrl "https://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/complete/uniprot_trembl.fasta.gz" ;
+    ds:belongsToDataSource data:uniprot .
+
+version:uniprot-idmapping a ds:Version ;
+    ds:versionName "ID Mapping" ;
+    ds:versionFormat "TSV (gzip)" ;
+    ds:fileSize "15 GB" ;
+    ds:downloadUrl "https://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/idmapping/idmapping.dat.gz" ;
+    ds:belongsToDataSource data:uniprot .
+
+version:uniprot-human-proteome a ds:Version ;
+    ds:versionName "Human Reference Proteome" ;
+    ds:versionFormat "FASTA (gzip)" ;
+    ds:fileSize "25 MB" ;
+    ds:downloadUrl "https://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/reference_proteomes/Eukaryota/UP000005640/UP000005640_9606.fasta.gz" ;
+    ds:belongsToDataSource data:uniprot .
+
+# =============================================================================
+# DATA SOURCE: AlphaFold Database
+# =============================================================================
+
+data:alphafold-db a ds:DataSource ;
+    ds:id "alphafold-db" ;
+    ds:title "AlphaFold Protein Structure Database" ;
+    ds:description "The AlphaFold Protein Structure Database provides open access to highly accurate protein structure predictions generated by DeepMind's AlphaFold2 system. In collaboration with EMBL-EBI, the database offers predicted structures for nearly every protein in UniProt." ;
+    ds:belongsToCategory cat:ProteinsMolecularBiology ;
+    ds:belongsToSubcategory subcat:ProteinStructures ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:maintainer "EMBL-EBI and DeepMind" ;
+    ds:website "https://alphafold.ebi.ac.uk" ;
+    ds:updateFrequency "Annually with quarterly organism additions" ;
+    ds:lastUpdated "2023"^^xsd:gYear ;
+    ds:tag "structures" ;
+    ds:tag "prediction" ;
+    ds:tag "deep-learning" ;
+    ds:tag "alphafold" ;
+    ds:tag "3d" ;
+    ds:tag "modeling" ;
+    ds:hasLicense license:alphafold-license ;
+    ds:hasAccessMethod access:alphafold-web ;
+    ds:hasAccessMethod access:alphafold-api ;
+    ds:hasAccessMethod access:alphafold-ftp ;
+    ds:hasAccessMethod access:alphafold-gcs ;
+    ds:hasIdentifier id:alphafold-id ;
+    ds:hasIdentifier id:alphafold-uniprot ;
+    ds:hasUseCase usecase:alphafold-drug-design ;
+    ds:hasUseCase usecase:alphafold-function-prediction ;
+    ds:hasUseCase usecase:alphafold-binding-sites ;
+    ds:hasUseCase usecase:alphafold-variant-effect ;
+    ds:hasUseCase usecase:alphafold-template ;
+    ds:hasLimitation limitation:alphafold-confidence ;
+    ds:hasLimitation limitation:alphafold-disorder ;
+    ds:hasLimitation limitation:alphafold-multimer ;
+    ds:recordCount "200000000"^^xsd:integer ;
+    ds:recordCountNote "Predicted structures covering all UniProt organisms" ;
+    rdfs:comment "Source documentation: 07.proteins.molecular.biology/7.2.protein.structures/alphafold.db" .
+
+# AlphaFold License
+license:alphafold-license a ds:License ;
+    ds:licenseName "Creative Commons Attribution 4.0 International" ;
+    ds:spdxIdentifier "CC-BY-4.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistributionAllowed true ;
+    ds:modificationAllowed true ;
+    ds:hasPermission "Use for any purpose including commercial" ;
+    ds:hasPermission "Redistribute with attribution" ;
+    ds:hasPermission "Modify and create derivative works" ;
+    ds:hasPermission "Use in academic and industrial research" ;
+    ds:hasPermission "Download bulk data" ;
+    ds:hasPermission "Host copies of the database" ;
+    ds:hasRestriction "Provide appropriate attribution" ;
+    ds:hasRestriction "Indicate if changes were made" ;
+    ds:hasRestriction "Not imply DeepMind/EMBL-EBI endorsement" ;
+    ds:attributionTemplate "AlphaFold structure prediction from the AlphaFold Protein Structure Database (https://alphafold.ebi.ac.uk)." ;
+    ds:citation "Jumper J, Evans R, Pritzel A, et al. Highly accurate protein structure prediction with AlphaFold. Nature. 2021;596(7873):583-589. doi: 10.1038/s41586-021-03819-2" ;
+    ds:secondaryCitation "Varadi M, Anyango S, Deshpande M, et al. AlphaFold Protein Structure Database: massively expanding the structural coverage of protein-sequence space with high-accuracy models. Nucleic Acids Research. 2022;50(D1):D439-D444. doi: 10.1093/nar/gkab1061" .
+
+# AlphaFold Access Methods
+access:alphafold-web a ds:AccessMethod ;
+    ds:accessType tax:WebInterface ;
+    ds:accessUrl "https://alphafold.ebi.ac.uk" ;
+    ds:description "Browse and search with integrated Mol* 3D viewer" ;
+    ds:registrationRequired false .
+
+access:alphafold-api a ds:AccessMethod ;
+    ds:accessType tax:API ;
+    ds:accessUrl "https://alphafold.ebi.ac.uk/api" ;
+    ds:description "REST API for programmatic access" ;
+    ds:registrationRequired false .
+
+access:alphafold-ftp a ds:AccessMethod ;
+    ds:accessType tax:FTP ;
+    ds:accessUrl "https://ftp.ebi.ac.uk/pub/databases/alphafold" ;
+    ds:description "Bulk downloads via EBI FTP" ;
+    ds:registrationRequired false .
+
+access:alphafold-gcs a ds:AccessMethod ;
+    ds:accessType tax:CloudStorage ;
+    ds:accessUrl "gs://public-datasets-deepmind-alphafold-v4" ;
+    ds:description "Google Cloud Storage for high-speed bulk downloads" ;
+    ds:registrationRequired false .
+
+# AlphaFold Identifiers
+id:alphafold-id a ds:Identifier ;
+    ds:identifierName "AlphaFold ID" ;
+    ds:identifierPattern "AF-[A-Z0-9]+-F[0-9]+" ;
+    ds:identifierExample "AF-P04637-F1" ;
+    ds:description "AlphaFold entry identifier with UniProt accession and fragment number" .
+
+id:alphafold-uniprot a ds:Identifier ;
+    ds:identifierName "UniProt Accession" ;
+    ds:identifierPattern "[A-Z0-9]+" ;
+    ds:identifierExample "P04637" ;
+    ds:description "UniProt accession used to retrieve corresponding AlphaFold prediction" .
+
+# AlphaFold Use Cases
+usecase:alphafold-drug-design a ds:UseCase ;
+    ds:useCaseTitle "Structure-based drug design" ;
+    ds:useCaseDescription "Use predicted structures for computational drug design and virtual screening" .
+
+usecase:alphafold-function-prediction a ds:UseCase ;
+    ds:useCaseTitle "Protein function prediction" ;
+    ds:useCaseDescription "Infer function from predicted 3D structure" .
+
+usecase:alphafold-binding-sites a ds:UseCase ;
+    ds:useCaseTitle "Binding site identification" ;
+    ds:useCaseDescription "Identify potential ligand and protein binding sites" .
+
+usecase:alphafold-variant-effect a ds:UseCase ;
+    ds:useCaseTitle "Variant effect interpretation" ;
+    ds:useCaseDescription "Understand structural consequences of mutations" .
+
+usecase:alphafold-template a ds:UseCase ;
+    ds:useCaseTitle "Template for experimental structure determination" ;
+    ds:useCaseDescription "Use as starting model for X-ray or cryo-EM structure determination" .
+
+# AlphaFold Limitations
+limitation:alphafold-confidence a ds:Limitation ;
+    ds:limitationDescription "Always check pLDDT confidence scores: <50 = very low, 50-70 = low, 70-90 = confident, >90 = very high" ;
+    ds:impact tax:High .
+
+limitation:alphafold-disorder a ds:Limitation ;
+    ds:limitationDescription "Low pLDDT often indicates intrinsically disordered regions, not prediction error" ;
+    ds:impact tax:Medium .
+
+limitation:alphafold-multimer a ds:Limitation ;
+    ds:limitationDescription "Predictions are monomeric; use AlphaFold-Multimer for protein complexes" ;
+    ds:impact tax:High .
+
+# AlphaFold Versions
+version:alphafold-human a ds:Version ;
+    ds:versionName "Human Proteome v4" ;
+    ds:versionFormat "tar archive (PDB/mmCIF)" ;
+    ds:fileSize "15 GB" ;
+    ds:proteinCount "23000"^^xsd:integer ;
+    ds:downloadUrl "https://ftp.ebi.ac.uk/pub/databases/alphafold/latest/UP000005640_9606_HUMAN_v4.tar" ;
+    ds:belongsToDataSource data:alphafold-db .
+
+version:alphafold-mouse a ds:Version ;
+    ds:versionName "Mouse Proteome v4" ;
+    ds:versionFormat "tar archive (PDB/mmCIF)" ;
+    ds:fileSize "12 GB" ;
+    ds:proteinCount "21000"^^xsd:integer ;
+    ds:downloadUrl "https://ftp.ebi.ac.uk/pub/databases/alphafold/latest/UP000000589_10090_MOUSE_v4.tar" ;
+    ds:belongsToDataSource data:alphafold-db .
+
+version:alphafold-full a ds:Version ;
+    ds:versionName "Full Database v4" ;
+    ds:versionFormat "Multiple archives" ;
+    ds:fileSize "23 TB" ;
+    ds:proteinCount "200000000"^^xsd:integer ;
+    ds:belongsToDataSource data:alphafold-db .
+
+# =============================================================================
+# DATA SOURCE: PDB (Protein Data Bank)
+# =============================================================================
+
+data:pdb a ds:DataSource ;
+    ds:id "pdb" ;
+    ds:title "PDB - Protein Data Bank" ;
+    ds:description "The Protein Data Bank (PDB) is the single worldwide archive of experimentally determined three-dimensional structures of proteins, nucleic acids, and complex assemblies. Managed by the wwPDB partnership of RCSB PDB (US), PDBe (Europe), PDBj (Japan), and BMRB." ;
+    ds:belongsToCategory cat:ProteinsMolecularBiology ;
+    ds:belongsToSubcategory subcat:ProteinStructures ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:maintainer "Worldwide Protein Data Bank (wwPDB)" ;
+    ds:website "https://www.rcsb.org" ;
+    ds:updateFrequency "Weekly (Wednesdays)" ;
+    ds:lastUpdated "2026-01-23"^^xsd:date ;
+    ds:tag "structures" ;
+    ds:tag "crystallography" ;
+    ds:tag "cryo-em" ;
+    ds:tag "nmr" ;
+    ds:tag "experimental" ;
+    ds:tag "3d" ;
+    ds:hasLicense license:pdb-license ;
+    ds:hasAccessMethod access:pdb-rcsb ;
+    ds:hasAccessMethod access:pdb-pdbe ;
+    ds:hasAccessMethod access:pdb-pdbj ;
+    ds:hasAccessMethod access:pdb-rest ;
+    ds:hasAccessMethod access:pdb-ftp ;
+    ds:hasAccessMethod access:pdb-rsync ;
+    ds:hasIdentifier id:pdb-id ;
+    ds:hasIdentifier id:pdb-extended ;
+    ds:hasIdentifier id:pdb-chain ;
+    ds:hasIdentifier id:pdb-entity ;
+    ds:hasUseCase usecase:pdb-drug-design ;
+    ds:hasUseCase usecase:pdb-md-simulation ;
+    ds:hasUseCase usecase:pdb-protein-engineering ;
+    ds:hasUseCase usecase:pdb-validation ;
+    ds:hasUseCase usecase:pdb-education ;
+    ds:hasLimitation limitation:pdb-large-structures ;
+    ds:hasLimitation limitation:pdb-multiple-models ;
+    ds:hasLimitation limitation:pdb-biological-assembly ;
+    ds:recordCount "220000"^^xsd:integer ;
+    ds:recordCountNote "Total structures; 200K+ proteins, 15K+ nucleic acids, 25K+ cryo-EM" ;
+    rdfs:comment "Source documentation: 07.proteins.molecular.biology/7.2.protein.structures/pdb" .
+
+# PDB License
+license:pdb-license a ds:License ;
+    ds:licenseName "CC0 1.0 Universal (Public Domain)" ;
+    ds:spdxIdentifier "CC0-1.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired false ;
+    ds:redistributionAllowed true ;
+    ds:modificationAllowed true ;
+    ds:hasPermission "Use for any purpose including commercial" ;
+    ds:hasPermission "Redistribute without restriction" ;
+    ds:hasPermission "Modify and create derivative works" ;
+    ds:hasPermission "No attribution legally required" ;
+    ds:hasPermission "Bulk download freely" ;
+    ds:hasRestriction "None legally required" ;
+    ds:attributionTemplate "Structure from the RCSB Protein Data Bank (https://rcsb.org). PDB ID: [ID]" ;
+    ds:citation "Berman HM, Westbrook J, Feng Z, et al. The Protein Data Bank. Nucleic Acids Research. 2000;28(1):235-242. doi: 10.1093/nar/28.1.235" ;
+    ds:secondaryCitation "wwPDB consortium. Protein Data Bank: the single global archive for 3D macromolecular structure data. Nucleic Acids Research. 2019;47(D1):D520-D528." .
+
+# PDB Access Methods
+access:pdb-rcsb a ds:AccessMethod ;
+    ds:accessType tax:WebInterface ;
+    ds:accessUrl "https://www.rcsb.org" ;
+    ds:description "RCSB PDB US portal" ;
+    ds:registrationRequired false .
+
+access:pdb-pdbe a ds:AccessMethod ;
+    ds:accessType tax:WebInterface ;
+    ds:accessUrl "https://www.ebi.ac.uk/pdbe" ;
+    ds:description "PDBe European portal" ;
+    ds:registrationRequired false .
+
+access:pdb-pdbj a ds:AccessMethod ;
+    ds:accessType tax:WebInterface ;
+    ds:accessUrl "https://pdbj.org" ;
+    ds:description "PDBj Japan portal" ;
+    ds:registrationRequired false .
+
+access:pdb-rest a ds:AccessMethod ;
+    ds:accessType tax:API ;
+    ds:accessUrl "https://data.rcsb.org" ;
+    ds:description "REST API and GraphQL for programmatic access" ;
+    ds:registrationRequired false .
+
+access:pdb-ftp a ds:AccessMethod ;
+    ds:accessType tax:FTP ;
+    ds:accessUrl "https://ftp.wwpdb.org" ;
+    ds:description "wwPDB FTP for bulk downloads" ;
+    ds:registrationRequired false .
+
+access:pdb-rsync a ds:AccessMethod ;
+    ds:accessType tax:BulkDownload ;
+    ds:accessUrl "rsync.rcsb.org::ftp_data" ;
+    ds:description "rsync mirror for efficient database mirroring" ;
+    ds:registrationRequired false .
+
+# PDB Identifiers
+id:pdb-id a ds:Identifier ;
+    ds:identifierName "PDB ID" ;
+    ds:identifierPattern "[0-9][A-Z0-9]{3}" ;
+    ds:identifierExample "1TUP" ;
+    ds:description "4-character PDB entry identifier" .
+
+id:pdb-extended a ds:Identifier ;
+    ds:identifierName "Extended PDB ID" ;
+    ds:identifierPattern "pdb_[0-9]{8}" ;
+    ds:identifierExample "pdb_00001tup" ;
+    ds:description "Extended format PDB identifier for future expansion" .
+
+id:pdb-chain a ds:Identifier ;
+    ds:identifierName "Chain ID" ;
+    ds:identifierPattern "[A-Za-z0-9]" ;
+    ds:identifierExample "A" ;
+    ds:description "Single character chain identifier within a structure" .
+
+id:pdb-entity a ds:Identifier ;
+    ds:identifierName "Entity ID" ;
+    ds:identifierPattern "[0-9]+" ;
+    ds:identifierExample "1" ;
+    ds:description "Numeric entity identifier for unique molecules" .
+
+# PDB Use Cases
+usecase:pdb-drug-design a ds:UseCase ;
+    ds:useCaseTitle "Structure-based drug design" ;
+    ds:useCaseDescription "Experimental structures for computational drug design, docking, and lead optimization" .
+
+usecase:pdb-md-simulation a ds:UseCase ;
+    ds:useCaseTitle "Molecular dynamics simulations" ;
+    ds:useCaseDescription "Starting structures for MD simulations and conformational studies" .
+
+usecase:pdb-protein-engineering a ds:UseCase ;
+    ds:useCaseTitle "Protein engineering" ;
+    ds:useCaseDescription "Rational design of proteins with modified properties" .
+
+usecase:pdb-validation a ds:UseCase ;
+    ds:useCaseTitle "Structure validation and quality assessment" ;
+    ds:useCaseDescription "Validation reports and quality metrics for structure assessment" .
+
+usecase:pdb-education a ds:UseCase ;
+    ds:useCaseTitle "Educational and visualization resources" ;
+    ds:useCaseDescription "Teaching structural biology with 3D visualizations" .
+
+# PDB Limitations
+limitation:pdb-large-structures a ds:Limitation ;
+    ds:limitationDescription "Legacy PDB format limited to 99,999 atoms; use mmCIF for large structures" ;
+    ds:impact tax:High .
+
+limitation:pdb-multiple-models a ds:Limitation ;
+    ds:limitationDescription "NMR structures contain multiple models; select appropriate model for analysis" ;
+    ds:impact tax:Medium .
+
+limitation:pdb-biological-assembly a ds:Limitation ;
+    ds:limitationDescription "Asymmetric unit may not represent functional complex; download biological assembly (biounit) files" ;
+    ds:impact tax:High .
+
+# PDB Versions
+version:pdb-mmcif a ds:Version ;
+    ds:versionName "All mmCIF Structures" ;
+    ds:versionFormat "mmCIF (gzip)" ;
+    ds:fileSize "100 GB" ;
+    ds:downloadUrl "rsync://rsync.rcsb.org/ftp_data/structures/divided/mmCIF/" ;
+    ds:belongsToDataSource data:pdb .
+
+version:pdb-legacy a ds:Version ;
+    ds:versionName "All PDB Format Structures" ;
+    ds:versionFormat "PDB (gzip)" ;
+    ds:fileSize "80 GB" ;
+    ds:downloadUrl "rsync://rsync.rcsb.org/ftp_data/structures/divided/pdb/" ;
+    ds:belongsToDataSource data:pdb .
+
+version:pdb-biounit a ds:Version ;
+    ds:versionName "Biological Assemblies" ;
+    ds:versionFormat "mmCIF/PDB (gzip)" ;
+    ds:fileSize "200 GB" ;
+    ds:downloadUrl "rsync://rsync.rcsb.org/ftp_data/biounit/coordinates/divided/" ;
+    ds:belongsToDataSource data:pdb .
+
+# =============================================================================
+# DATA SOURCE: SWISS-MODEL Repository
+# =============================================================================
+
+data:swiss-model a ds:DataSource ;
+    ds:id "swiss-model" ;
+    ds:title "SWISS-MODEL Repository" ;
+    ds:description "SWISS-MODEL is a fully automated protein structure homology-modeling server and repository. It provides 3D protein models built using comparative modeling techniques, where structures are predicted based on evolutionary-related proteins with known experimental structures." ;
+    ds:belongsToCategory cat:ProteinsMolecularBiology ;
+    ds:belongsToSubcategory subcat:ProteinStructures ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:maintainer "Swiss Institute of Bioinformatics (SIB)" ;
+    ds:website "https://swissmodel.expasy.org" ;
+    ds:updateFrequency "Continuous with monthly repository refresh" ;
+    ds:lastUpdated "2026-01-23"^^xsd:date ;
+    ds:tag "modeling" ;
+    ds:tag "homology" ;
+    ds:tag "templates" ;
+    ds:tag "3d" ;
+    ds:tag "prediction" ;
+    ds:hasLicense license:swiss-model-license ;
+    ds:hasAccessMethod access:swiss-model-web ;
+    ds:hasAccessMethod access:swiss-model-repository ;
+    ds:hasAccessMethod access:swiss-model-api ;
+    ds:hasIdentifier id:swiss-model-id ;
+    ds:hasIdentifier id:swiss-model-uniprot ;
+    ds:hasIdentifier id:swiss-model-template ;
+    ds:hasIdentifier id:swiss-model-qmean ;
+    ds:hasUseCase usecase:swiss-model-homology ;
+    ds:hasUseCase usecase:swiss-model-template-based ;
+    ds:hasUseCase usecase:swiss-model-quality ;
+    ds:hasUseCase usecase:swiss-model-comparative ;
+    ds:hasUseCase usecase:swiss-model-structure-function ;
+    ds:hasLimitation limitation:swiss-model-template-dependent ;
+    ds:hasLimitation limitation:swiss-model-coverage ;
+    ds:hasLimitation limitation:swiss-model-rate-limit ;
+    ds:recordCount "5000000"^^xsd:integer ;
+    ds:recordCountNote "Pre-computed models; quality varies by template availability" ;
+    rdfs:comment "Source documentation: 07.proteins.molecular.biology/7.2.protein.structures/swiss.model" .
+
+# SWISS-MODEL License
+license:swiss-model-license a ds:License ;
+    ds:licenseName "Creative Commons Attribution-ShareAlike 4.0 International" ;
+    ds:spdxIdentifier "CC-BY-SA-4.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistributionAllowed true ;
+    ds:modificationAllowed true ;
+    ds:shareAlikeRequired true ;
+    ds:hasPermission "Use for any purpose including commercial" ;
+    ds:hasPermission "Redistribute with attribution" ;
+    ds:hasPermission "Modify and create derivative works" ;
+    ds:hasPermission "Use in academic and industrial research" ;
+    ds:hasPermission "Download bulk data (FTP available)" ;
+    ds:hasRestriction "Must provide attribution" ;
+    ds:hasRestriction "Derivatives must use same license (ShareAlike)" ;
+    ds:hasRestriction "Must indicate changes if modified" ;
+    ds:hasRestriction "Must not imply SIB endorsement" ;
+    ds:hasRestriction "Rate limits apply to API usage (1 request/second)" ;
+    ds:attributionTemplate "Models from the SWISS-MODEL Repository (https://swissmodel.expasy.org)." ;
+    ds:citation "Waterhouse A, Bertoni M, Bienert S, et al. SWISS-MODEL: homology modelling of protein structures and complexes. Nucleic Acids Research. 2018;46(W1):W296-W303. doi: 10.1093/nar/gky427" ;
+    ds:secondaryCitation "Studer G, Rempfer C, Waterhouse AM, et al. QMEANDisCo - distance constraints applied on model quality estimation. Bioinformatics. 2020;36(6):1765-1771. doi: 10.1093/bioinformatics/btz828" .
+
+# SWISS-MODEL Access Methods
+access:swiss-model-web a ds:AccessMethod ;
+    ds:accessType tax:WebInterface ;
+    ds:accessUrl "https://swissmodel.expasy.org" ;
+    ds:description "Interactive modeling interface" ;
+    ds:registrationRequired false .
+
+access:swiss-model-repository a ds:AccessMethod ;
+    ds:accessType tax:WebInterface ;
+    ds:accessUrl "https://swissmodel.expasy.org/repository" ;
+    ds:description "Pre-computed models repository" ;
+    ds:registrationRequired false .
+
+access:swiss-model-api a ds:AccessMethod ;
+    ds:accessType tax:API ;
+    ds:accessUrl "https://swissmodel.expasy.org/docs/api" ;
+    ds:description "REST API for programmatic access" ;
+    ds:registrationRequired false ;
+    ds:rateLimit "1 request/second" .
+
+# SWISS-MODEL Identifiers
+id:swiss-model-id a ds:Identifier ;
+    ds:identifierName "Model ID" ;
+    ds:identifierPattern "[a-z0-9]+" ;
+    ds:identifierExample "5a1a8b2c3d" ;
+    ds:description "Internal SWISS-MODEL model identifier" .
+
+id:swiss-model-uniprot a ds:Identifier ;
+    ds:identifierName "UniProt Accession" ;
+    ds:identifierPattern "[A-Z0-9]+" ;
+    ds:identifierExample "P04637" ;
+    ds:description "UniProt accession for target sequence" .
+
+id:swiss-model-template a ds:Identifier ;
+    ds:identifierName "Template PDB" ;
+    ds:identifierPattern "[0-9][A-Z0-9]{3}\\.[0-9]+\\.[A-Z]" ;
+    ds:identifierExample "1tup.1.A" ;
+    ds:description "PDB ID, model, and chain of template structure" .
+
+id:swiss-model-qmean a ds:Identifier ;
+    ds:identifierName "QMEAN Score" ;
+    ds:identifierPattern "-?[0-9]+\\.?[0-9]*" ;
+    ds:identifierExample "-1.23" ;
+    ds:description "QMEAN Z-score (-4 to 0, 0 = best)" .
+
+# SWISS-MODEL Use Cases
+usecase:swiss-model-homology a ds:UseCase ;
+    ds:useCaseTitle "Homology model building" ;
+    ds:useCaseDescription "Build 3D models based on evolutionarily related template structures" .
+
+usecase:swiss-model-template-based a ds:UseCase ;
+    ds:useCaseTitle "Template-based structure prediction" ;
+    ds:useCaseDescription "Predict protein structure using known homologous structures" .
+
+usecase:swiss-model-quality a ds:UseCase ;
+    ds:useCaseTitle "Model quality assessment" ;
+    ds:useCaseDescription "Assess model reliability using QMEAN and QMEANDisCo scores" .
+
+usecase:swiss-model-comparative a ds:UseCase ;
+    ds:useCaseTitle "Comparative structural analysis" ;
+    ds:useCaseDescription "Compare structures across protein families and orthologs" .
+
+usecase:swiss-model-structure-function a ds:UseCase ;
+    ds:useCaseTitle "Structure-function relationship studies" ;
+    ds:useCaseDescription "Understand protein function through structural context" .
+
+# SWISS-MODEL Limitations
+limitation:swiss-model-template-dependent a ds:Limitation ;
+    ds:limitationDescription "Model quality depends on template sequence identity; minimum 30% recommended" ;
+    ds:impact tax:High .
+
+limitation:swiss-model-coverage a ds:Limitation ;
+    ds:limitationDescription "Sequence coverage varies; some proteins have multiple partial models covering different regions" ;
+    ds:impact tax:Medium .
+
+limitation:swiss-model-rate-limit a ds:Limitation ;
+    ds:limitationDescription "API rate limited to 1 request/second; add delays between batch requests" ;
+    ds:impact tax:Low .
+
+# =============================================================================
+# MOLECULAR INTERACTIONS (Cross-references to other categories)
+# =============================================================================
+
+# Note: The molecular.interactions subcategory contains symlinks to:
+# - IntAct (from 04.pathways.networks/4.3.protein.protein.interactions)
+# - STRING (from 04.pathways.networks/4.3.protein.protein.interactions)
+# - Reactome (from 04.pathways.networks/4.1.metabolic.pathways)
+# These are not duplicated here; see the pathways-networks instances file.
+
+subcat:MolecularInteractions ds:relatedDataSource data:intact ;
+    ds:relatedDataSource data:string ;
+    ds:relatedDataSource data:reactome .
+
+# =============================================================================
+# QUALITY SCORE ENUMERATIONS
+# =============================================================================
+
+# pLDDT Score Ranges (AlphaFold)
+tax:pLDDT_VeryHigh a ds:QualityLevel ;
+    ds:scoreRange ">90" ;
+    ds:confidence "Very high" ;
+    ds:interpretation "Highly reliable; suitable for all applications" .
+
+tax:pLDDT_Confident a ds:QualityLevel ;
+    ds:scoreRange "70-90" ;
+    ds:confidence "Confident" ;
+    ds:interpretation "Generally good; backbone reliable" .
+
+tax:pLDDT_Low a ds:QualityLevel ;
+    ds:scoreRange "50-70" ;
+    ds:confidence "Low" ;
+    ds:interpretation "Structure uncertain; use with caution" .
+
+tax:pLDDT_VeryLow a ds:QualityLevel ;
+    ds:scoreRange "<50" ;
+    ds:confidence "Very low" ;
+    ds:interpretation "Likely disordered or unstructured" .
+
+# QMEAN Score Ranges (SWISS-MODEL)
+tax:QMEAN_Excellent a ds:QualityLevel ;
+    ds:scoreRange ">-1" ;
+    ds:confidence "Excellent" ;
+    ds:interpretation "High-confidence model" .
+
+tax:QMEAN_Good a ds:QualityLevel ;
+    ds:scoreRange "-1 to -2" ;
+    ds:confidence "Good" ;
+    ds:interpretation "Reliable for most uses" .
+
+tax:QMEAN_Moderate a ds:QualityLevel ;
+    ds:scoreRange "-2 to -3" ;
+    ds:confidence "Moderate" ;
+    ds:interpretation "Use with caution" .
+
+tax:QMEAN_Poor a ds:QualityLevel ;
+    ds:scoreRange "<-3" ;
+    ds:confidence "Poor" ;
+    ds:interpretation "Low reliability" .
+
+# Experimental Quality (PDB)
+tax:Resolution_High a ds:QualityLevel ;
+    ds:scoreRange "<2.0 A" ;
+    ds:confidence "High" ;
+    ds:interpretation "High-resolution X-ray structure" .
+
+tax:Resolution_Acceptable a ds:QualityLevel ;
+    ds:scoreRange "<3.0 A" ;
+    ds:confidence "Acceptable" ;
+    ds:interpretation "Standard resolution structure" .
+
+# =============================================================================
+# FILE FORMAT TAXONOMY
+# =============================================================================
+
+tax:FASTA a ds:FileFormat ;
+    ds:formatName "FASTA" ;
+    ds:mimeType "text/x-fasta" ;
+    ds:extension ".fasta" , ".faa" , ".fna" ;
+    ds:description "Sequence format for proteins and nucleic acids" .
+
+tax:mmCIF a ds:FileFormat ;
+    ds:formatName "mmCIF" ;
+    ds:mimeType "chemical/x-mmcif" ;
+    ds:extension ".cif" ;
+    ds:description "Macromolecular CIF - primary PDB format" .
+
+tax:PDBFormat a ds:FileFormat ;
+    ds:formatName "PDB" ;
+    ds:mimeType "chemical/x-pdb" ;
+    ds:extension ".pdb" ;
+    ds:description "Legacy Protein Data Bank format (limited atom count)" .
+
+tax:XML a ds:FileFormat ;
+    ds:formatName "XML" ;
+    ds:mimeType "application/xml" ;
+    ds:extension ".xml" ;
+    ds:description "Structured markup format" .
+
+tax:JSON a ds:FileFormat ;
+    ds:formatName "JSON" ;
+    ds:mimeType "application/json" ;
+    ds:extension ".json" ;
+    ds:description "JavaScript Object Notation" .
+
+tax:GenBank a ds:FileFormat ;
+    ds:formatName "GenBank" ;
+    ds:mimeType "text/x-genbank" ;
+    ds:extension ".gbk" , ".gb" , ".gbff" ;
+    ds:description "GenBank flat file format with annotations" .
+
+# =============================================================================
+# ACCESS TYPE TAXONOMY
+# =============================================================================
+
+tax:WebInterface a ds:AccessType ;
+    ds:accessTypeName "Web Interface" ;
+    ds:description "Interactive web-based access" .
+
+tax:API a ds:AccessType ;
+    ds:accessTypeName "REST API" ;
+    ds:description "Programmatic access via HTTP" .
+
+tax:SPARQL a ds:AccessType ;
+    ds:accessTypeName "SPARQL Endpoint" ;
+    ds:description "RDF query interface" .
+
+tax:FTP a ds:AccessType ;
+    ds:accessTypeName "FTP" ;
+    ds:description "File Transfer Protocol" .
+
+tax:BulkDownload a ds:AccessType ;
+    ds:accessTypeName "Bulk Download" ;
+    ds:description "High-speed bulk transfer (rsync, Aspera)" .
+
+tax:CloudStorage a ds:AccessType ;
+    ds:accessTypeName "Cloud Storage" ;
+    ds:description "Cloud-based storage (AWS, GCS)" .
+
+tax:CLI a ds:AccessType ;
+    ds:accessTypeName "Command-Line Tool" ;
+    ds:description "Dedicated CLI application" .
+
+tax:WebService a ds:AccessType ;
+    ds:accessTypeName "Web Service" ;
+    ds:description "SOAP or other web service" .
+
+# =============================================================================
+# COVERAGE LEVEL TAXONOMY
+# =============================================================================
+
+tax:High a ds:CoverageLevel ;
+    ds:coverageLevelName "High" ;
+    ds:description "Extensive coverage (>80%)" .
+
+tax:Medium a ds:CoverageLevel ;
+    ds:coverageLevelName "Medium" ;
+    ds:description "Moderate coverage (50-80%)" .
+
+tax:Low a ds:CoverageLevel ;
+    ds:coverageLevelName "Low" ;
+    ds:description "Limited coverage (<50%)" .
+
+# =============================================================================
+# IMPACT LEVEL TAXONOMY
+# =============================================================================
+
+tax:High a ds:ImpactLevel ;
+    ds:impactLevelName "High" ;
+    ds:description "Significant impact on data usage" .
+
+tax:Medium a ds:ImpactLevel ;
+    ds:impactLevelName "Medium" ;
+    ds:description "Moderate impact; workarounds available" .
+
+tax:Low a ds:ImpactLevel ;
+    ds:impactLevelName "Low" ;
+    ds:description "Minor impact; easily mitigated" .
+
+# =============================================================================
+# END OF FILE
+# =============================================================================
