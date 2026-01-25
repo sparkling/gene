@@ -3,6 +3,33 @@ name: datasource
 description: "Data source, datasource, database queries - find TCM, genomics, compounds databases. Use for: 'what data sources', 'find databases', 'TCM sources', 'list sources', 'compare databases', 'which databases have'. Natural language queries over biomedical data catalog."
 ---
 
+## EXECUTION INSTRUCTIONS (MANDATORY)
+
+**STOP. Before doing anything else, follow these steps exactly:**
+
+### Step 1: Generate SPARQL Query
+1. Read `resources/ontology-context.md` (in this skill's directory) for prefixes and schema
+2. Read `resources/query-guide.md` for query patterns matching user's intent
+3. Generate a SPARQL query for the user's question
+
+### Step 2: Execute Query Against Knowledge Graph
+Use the `qlever` skill to execute the query:
+```
+/qlever [your SPARQL query]
+```
+
+### Step 3: Format and Return Results
+- Present clean, human-readable output
+- Never show SPARQL queries, URIs, or prefixes to user
+- Group by category, sort by tier
+
+### FORBIDDEN ACTIONS
+- **NEVER** read files in `docs/data/source/resource/` - that's raw documentation, not the KG
+- **NEVER** manually browse markdown files to answer queries
+- **ALWAYS** query the knowledge graph via qlever/SPARQL
+
+---
+
 # Data Source Knowledge Graph
 
 ## What This Skill Does
