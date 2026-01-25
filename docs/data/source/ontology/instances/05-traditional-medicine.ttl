@@ -929,7 +929,7 @@ data:napralert a ds:DataSource ;
     ds:tag "literature" ;
     ds:tag "bioactivity" ;
     ds:website <https://napralert.pharmacy.uic.edu/> ;
-    ds:maintainedBy maint:UniversityOfIllinoisChicago ;
+    ds:maintainedBy maint:UIC ;
     ds:updateFrequency "Continuous curation" ;
     ds:hasLicense license:SubscriptionBased ;
     ds:lastUpdated "2026-01-25"^^xsd:date ;

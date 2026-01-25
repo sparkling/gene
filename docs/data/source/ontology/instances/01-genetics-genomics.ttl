@@ -23,6 +23,7 @@
 # === CLINVAR ===
 
 data:clinvar a ds:DataSource ;
+    ds:id "clinvar" ;
     ds:title "ClinVar" ;
     ds:description "NCBI's public archive of interpretations of clinically relevant variants. Aggregates information about genomic variation and its relationship to human health from clinical laboratories, research groups, and expert panels worldwide." ;
     ds:maintainedBy maint:NCBI ;
@@ -128,6 +129,7 @@ data:clinvar-limitation-2 a ds:Limitation ;
 # === DBSNP ===
 
 data:dbsnp a ds:DataSource ;
+    ds:id "dbsnp" ;
     ds:title "dbSNP" ;
     ds:description "NCBI's public archive for genetic variation data. Central repository for short genetic variations including SNVs, small indels, and microsatellites. Provides canonical RS identifier system." ;
     ds:maintainedBy maint:NCBI ;
@@ -195,6 +197,7 @@ data:dbsnp-limitation-2 a ds:Limitation ;
 # === DBVAR ===
 
 data:dbvar a ds:DataSource ;
+    ds:id "dbvar" ;
     ds:title "dbVar" ;
     ds:description "NCBI's public database of human genomic structural variation. Archives variants >50bp including deletions, duplications, insertions, inversions, translocations, and complex rearrangements." ;
     ds:maintainedBy maint:NCBI ;
@@ -243,6 +246,7 @@ data:dbvar-usecase-2 a ds:UseCase ;
 # === ALPHAMISSENSE ===
 
 data:alphamissense a ds:DataSource ;
+    ds:id "alphamissense" ;
     ds:title "AlphaMissense" ;
     ds:description "Google DeepMind's AI-powered pathogenicity predictor for all possible human missense variants. Built on AlphaFold2 architecture with calibrated pathogenicity scores." ;
     ds:maintainedBy maint:GoogleDeepMind ;
@@ -291,9 +295,10 @@ data:alphamissense-limitation-2 a ds:Limitation ;
 # === CADD ===
 
 data:cadd a ds:DataSource ;
+    ds:id "cadd" ;
     ds:title "CADD" ;
     ds:description "Combined Annotation Dependent Depletion - integrative annotation method that scores deleteriousness of SNVs and indels by combining 60+ genomic features." ;
-    ds:maintainedBy maint:UniversityOfWashington ;
+    ds:maintainedBy maint:UWash_BIH ;
     ds:website <https://cadd.gs.washington.edu/> ;
     ds:updateFrequency "Periodic releases" ;
     ds:recordCount "9000000000"^^xsd:string ;
@@ -343,6 +348,7 @@ data:cadd-usecase-2 a ds:UseCase ;
 # === DBNSFP ===
 
 data:dbnsfp a ds:DataSource ;
+    ds:id "dbnsfp" ;
     ds:title "dbNSFP" ;
     ds:description "Database for Non-synonymous SNPs' Functional Predictions - comprehensive database integrating 36+ prediction algorithms for all possible non-synonymous SNVs." ;
     ds:maintainedBy maint:LiuLab ;
@@ -379,6 +385,7 @@ data:dbnsfp-s3 a ds:AccessMethod ;
 # === SPLICEAI ===
 
 data:spliceai a ds:DataSource ;
+    ds:id "spliceai" ;
     ds:title "SpliceAI" ;
     ds:description "Illumina's deep learning tool that predicts splicing alterations caused by variants using a 32-layer neural network trained on 10,000+ human genes." ;
     ds:maintainedBy maint:Illumina ;
@@ -427,6 +434,7 @@ data:spliceai-api a ds:AccessMethod ;
 # === GNOMAD ===
 
 data:gnomad a ds:DataSource ;
+    ds:id "gnomad" ;
     ds:title "gnomAD" ;
     ds:description "Genome Aggregation Database - largest publicly available collection of human exome and genome sequencing data with allele frequencies across diverse populations and gene constraint metrics." ;
     ds:maintainedBy maint:BroadInstitute ;
@@ -488,6 +496,7 @@ data:gnomad-limitation-2 a ds:Limitation ;
 # === 1000 GENOMES ===
 
 data:1000genomes a ds:DataSource ;
+    ds:id "1000genomes" ;
     ds:title "1000 Genomes Project" ;
     ds:description "First large-scale effort to catalogue human genetic variation from 2,504 individuals across 26 populations. Foundational imputation reference panel." ;
     ds:maintainedBy maint:IGSR ;
@@ -524,9 +533,10 @@ data:1000genomes-ftp a ds:AccessMethod ;
 # === TOPMED ===
 
 data:topmed a ds:DataSource ;
+    ds:id "topmed" ;
     ds:title "TOPMed" ;
     ds:description "Trans-Omics for Precision Medicine - NHLBI program providing deep WGS (30x) of 180,000+ individuals for rare variant discovery in heart, lung, blood, and sleep disorders." ;
-    ds:maintainedBy maint:NHLBI ;
+    ds:maintainedBy maint:NHLBI_UMich ;
     ds:website <https://topmed.nhlbi.nih.gov/> ;
     ds:updateFrequency "Periodic freezes" ;
     ds:recordCount "400000000+"^^xsd:string ;
@@ -554,6 +564,7 @@ data:topmed-bravo a ds:AccessMethod ;
 # === UK BIOBANK ===
 
 data:ukbiobank a ds:DataSource ;
+    ds:id "ukbiobank" ;
     ds:title "UK Biobank" ;
     ds:description "Large-scale biomedical database with genetic, physical, and health information from 500,000 UK participants aged 40-69. Comprehensive prospective cohort study." ;
     ds:maintainedBy maint:UKBiobank ;
@@ -587,6 +598,7 @@ data:ukbiobank-rap a ds:AccessMethod ;
 # === CPIC ===
 
 data:cpic a ds:DataSource ;
+    ds:id "cpic" ;
     ds:title "CPIC" ;
     ds:description "Clinical Pharmacogenetics Implementation Consortium - creates peer-reviewed, evidence-based clinical practice guidelines for gene-drug pairs to help translate pharmacogenomic test results into prescribing decisions." ;
     ds:maintainedBy maint:CPIC ;
@@ -616,9 +628,10 @@ data:cpic-web a ds:AccessMethod ;
 # === PHARMGKB ===
 
 data:pharmgkb a ds:DataSource ;
+    ds:id "pharmgkb" ;
     ds:title "PharmGKB" ;
     ds:description "Pharmacogenomics Knowledge Base - leading resource curating knowledge about genetic variation impact on drug response, aggregating clinical annotations, variant annotations, and drug pathway diagrams." ;
-    ds:maintainedBy maint:StanfordUniversity ;
+    ds:maintainedBy maint:Stanford ;
     ds:website <https://www.pharmgkb.org/> ;
     ds:updateFrequency "Continuous" ;
     ds:recordCount "20000+ clinical annotations" ;
@@ -646,9 +659,10 @@ data:pharmgkb-api a ds:AccessMethod ;
 # === PHARMVAR ===
 
 data:pharmvar a ds:DataSource ;
+    ds:id "pharmvar" ;
     ds:title "PharmVar" ;
     ds:description "Pharmacogene Variation Consortium - central repository for pharmacogene haplotype (star allele) definitions and nomenclature. Standardizes naming of pharmacogene alleles." ;
-    ds:maintainedBy maint:PharmVarConsortium ;
+    ds:maintainedBy maint:PharmVar ;
     ds:website <https://www.pharmvar.org/> ;
     ds:updateFrequency "Continuous" ;
     ds:recordCount "3000+ alleles" ;
@@ -668,6 +682,7 @@ data:pharmvar-license a ds:License ;
 # === DPWG ===
 
 data:dpwg a ds:DataSource ;
+    ds:id "dpwg" ;
     ds:title "DPWG" ;
     ds:description "Dutch Pharmacogenetics Working Group - develops pharmacogenetics-based therapeutic recommendations integrated into Dutch national drug database (G-Standaard)." ;
     ds:maintainedBy maint:KNMP ;
@@ -695,9 +710,10 @@ data:dpwg-license a ds:License ;
 # === GTEX ===
 
 data:gtex a ds:DataSource ;
+    ds:id "gtex" ;
     ds:title "GTEx" ;
     ds:description "Genotype-Tissue Expression project - comprehensive resource of gene expression and genetic regulation data from 54 non-diseased human tissues from nearly 1,000 individuals." ;
-    ds:maintainedBy maint:GTExConsortium ;
+    ds:maintainedBy maint:GTEx ;
     ds:website <https://gtexportal.org/> ;
     ds:updateFrequency "Major releases" ;
     ds:recordCount "3300000+ eQTLs" ;
@@ -731,9 +747,10 @@ data:gtex-portal a ds:AccessMethod ;
 # === ENCODE ===
 
 data:encode a ds:DataSource ;
+    ds:id "encode" ;
     ds:title "ENCODE" ;
     ds:description "Encyclopedia of DNA Elements - comprehensive project identifying all functional elements in human and mouse genomes including transcription factor binding, chromatin accessibility, and histone modifications." ;
-    ds:maintainedBy maint:ENCODEConsortium ;
+    ds:maintainedBy maint:ENCODE ;
     ds:website <https://www.encodeproject.org/> ;
     ds:updateFrequency "Continuous" ;
     ds:recordCount "926535+ human cCREs" ;
@@ -760,6 +777,7 @@ data:encode-portal a ds:AccessMethod ;
 # === GWAS CATALOG ===
 
 data:gwas-catalog a ds:DataSource ;
+    ds:id "gwas-catalog" ;
     ds:title "GWAS Catalog" ;
     ds:description "NHGRI-EBI comprehensive curated collection of published genome-wide association studies with standardized, quality-controlled SNP-trait associations using EFO trait mapping." ;
     ds:maintainedBy maint:NHGRI_EBI ;
@@ -795,9 +813,10 @@ data:gwas-catalog-api a ds:AccessMethod ;
 # === EQTLGEN ===
 
 data:eqtlgen a ds:DataSource ;
+    ds:id "eqtlgen" ;
     ds:title "eQTLGen" ;
     ds:description "Large-scale meta-analysis identifying blood eQTLs from 31,684 individuals. Most comprehensive catalog of blood cis-eQTLs and trans-eQTLs." ;
-    ds:maintainedBy maint:EQTLGenConsortium ;
+    ds:maintainedBy maint:eQTLGen ;
     ds:website <https://www.eqtlgen.org/> ;
     ds:updateFrequency "Phase releases" ;
     ds:recordCount "16000+ cis-eQTLs" ;
@@ -821,9 +840,10 @@ data:eqtlgen-license a ds:License ;
 # === COSMIC ===
 
 data:cosmic a ds:DataSource ;
+    ds:id "cosmic" ;
     ds:title "COSMIC" ;
     ds:description "Catalogue Of Somatic Mutations In Cancer - world's largest resource for exploring somatic mutations in human cancer including Cancer Gene Census and mutational signatures." ;
-    ds:maintainedBy maint:WellcomeSangerInstitute ;
+    ds:maintainedBy maint:WellcomeSanger ;
     ds:website <https://cancer.sanger.ac.uk/cosmic> ;
     ds:updateFrequency "Quarterly releases" ;
     ds:recordCount "17000000+ mutations" ;
@@ -862,9 +882,10 @@ data:cosmic-download a ds:AccessMethod ;
 # === CIVIC ===
 
 data:civic a ds:DataSource ;
+    ds:id "civic" ;
     ds:title "CIViC" ;
     ds:description "Clinical Interpretation of Variants in Cancer - open-source, community-driven knowledgebase providing crowdsourced curation of variant-level clinical evidence for cancer." ;
-    ds:maintainedBy maint:WashingtonUniversitySchoolOfMedicine ;
+    ds:maintainedBy maint:WashingtonUSoM ;
     ds:website <https://civicdb.org/> ;
     ds:updateFrequency "Continuous community curation" ;
     ds:recordCount "8000+ evidence items" ;
@@ -891,6 +912,7 @@ data:civic-api a ds:AccessMethod ;
 # === ONCOKB ===
 
 data:oncokb a ds:DataSource ;
+    ds:id "oncokb" ;
     ds:title "OncoKB" ;
     ds:description "Memorial Sloan Kettering precision oncology knowledge base providing expert-curated annotation of cancer variant biological and clinical effects with FDA-recognized evidence levels." ;
     ds:maintainedBy maint:MSKCC ;
@@ -921,6 +943,7 @@ data:oncokb-api a ds:AccessMethod ;
 # === CBIOPORTAL ===
 
 data:cbioportal a ds:DataSource ;
+    ds:id "cbioportal" ;
     ds:title "cBioPortal" ;
     ds:description "Open-source platform for visualization, analysis, and download of large-scale cancer genomics datasets from TCGA, AACR Project GENIE, and institutional studies." ;
     ds:maintainedBy maint:MSKCC ;
@@ -951,6 +974,7 @@ data:cbioportal-api a ds:AccessMethod ;
 # === BRCA EXCHANGE ===
 
 data:brca-exchange a ds:DataSource ;
+    ds:id "brca-exchange" ;
     ds:title "BRCA Exchange" ;
     ds:description "Comprehensive resource for BRCA1 and BRCA2 variant data aggregation and classification as part of GA4GH. Provides expert-reviewed classifications from ENIGMA consortium." ;
     ds:maintainedBy maint:BRCAExchange ;
@@ -980,9 +1004,10 @@ data:brca-exchange-api a ds:AccessMethod ;
 # === CANCER GENE CENSUS ===
 
 data:cancer-gene-census a ds:DataSource ;
+    ds:id "cancer-gene-census" ;
     ds:title "Cancer Gene Census" ;
     ds:description "Catalogue of genes whose mutations are causally implicated in cancer. Distinguishes Tier 1 (documented) and Tier 2 (strong evidence) cancer genes." ;
-    ds:maintainedBy maint:WellcomeSangerInstitute ;
+    ds:maintainedBy maint:WellcomeSanger ;
     ds:website <https://cancer.sanger.ac.uk/census> ;
     ds:updateFrequency "Periodic updates" ;
     ds:recordCount "736 genes" ;
