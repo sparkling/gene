@@ -1583,3 +1583,678 @@ ds:maintainerEmail a owl:DatatypeProperty ;
     rdfs:comment "Email contact for the maintainer." ;
     rdfs:domain ds:Maintainer ;
     rdfs:range xsd:string .
+
+# =============================================================================
+# NUTRITION AND FOOD DATABASE PROPERTIES
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Count Properties (xsd:integer) - Nutrition/Food Domain
+# -----------------------------------------------------------------------------
+
+ds:biomarkerCount a owl:DatatypeProperty ;
+    rdfs:label "biomarker count" ;
+    rdfs:comment "Number of biomarkers in the database." ;
+    rdfs:domain [ owl:unionOf ( ds:DataSource ds:DataSourceStatistics ) ] ;
+    rdfs:range xsd:integer .
+
+ds:brandCount a owl:DatatypeProperty ;
+    rdfs:label "brand count" ;
+    rdfs:comment "Number of brands covered in the database." ;
+    rdfs:domain [ owl:unionOf ( ds:DataSource ds:DataSourceStatistics ) ] ;
+    rdfs:range xsd:integer .
+
+ds:contributorCount a owl:DatatypeProperty ;
+    rdfs:label "contributor count" ;
+    rdfs:comment "Number of contributors to the database." ;
+    rdfs:domain [ owl:unionOf ( ds:DataSource ds:DataSourceStatistics ) ] ;
+    rdfs:range xsd:integer .
+
+ds:countryCount a owl:DatatypeProperty ;
+    rdfs:label "country count" ;
+    rdfs:comment "Number of countries with data coverage in the database." ;
+    rdfs:domain [ owl:unionOf ( ds:DataSource ds:DataSourceStatistics ) ] ;
+    rdfs:range xsd:integer .
+
+ds:dataPointCount a owl:DatatypeProperty ;
+    rdfs:label "data point count" ;
+    rdfs:comment "Total number of data points in the database." ;
+    rdfs:domain [ owl:unionOf ( ds:DataSource ds:DataSourceStatistics ) ] ;
+    rdfs:range xsd:integer .
+
+ds:dietaryExposureCount a owl:DatatypeProperty ;
+    rdfs:label "dietary exposure count" ;
+    rdfs:comment "Number of dietary exposure records in the database." ;
+    rdfs:domain [ owl:unionOf ( ds:DataSource ds:DataSourceStatistics ) ] ;
+    rdfs:range xsd:integer .
+
+ds:ingredientCount a owl:DatatypeProperty ;
+    rdfs:label "ingredient count" ;
+    rdfs:comment "Number of ingredients catalogued in the database." ;
+    rdfs:domain [ owl:unionOf ( ds:DataSource ds:DataSourceStatistics ) ] ;
+    rdfs:range xsd:integer .
+
+ds:interactionCount a owl:DatatypeProperty ;
+    rdfs:label "interaction count" ;
+    rdfs:comment "Number of interactions (e.g., food-drug, nutrient-nutrient) recorded." ;
+    rdfs:domain [ owl:unionOf ( ds:DataSource ds:DataSourceStatistics ) ] ;
+    rdfs:range xsd:integer .
+
+ds:metaboliteCount a owl:DatatypeProperty ;
+    rdfs:label "metabolite count" ;
+    rdfs:comment "Number of metabolites in the database." ;
+    rdfs:domain [ owl:unionOf ( ds:DataSource ds:DataSourceStatistics ) ] ;
+    rdfs:range xsd:integer .
+
+ds:metabolitesWithConcentrations a owl:DatatypeProperty ;
+    rdfs:label "metabolites with concentrations" ;
+    rdfs:comment "Number of metabolites that have concentration data available." ;
+    rdfs:domain [ owl:unionOf ( ds:DataSource ds:DataSourceStatistics ) ] ;
+    rdfs:range xsd:integer .
+
+ds:monographCount a owl:DatatypeProperty ;
+    rdfs:label "monograph count" ;
+    rdfs:comment "Number of monographs (detailed reference documents) in the database." ;
+    rdfs:domain [ owl:unionOf ( ds:DataSource ds:DataSourceStatistics ) ] ;
+    rdfs:range xsd:integer .
+
+ds:msmsSpectraCount a owl:DatatypeProperty ;
+    rdfs:label "MS/MS spectra count" ;
+    rdfs:comment "Number of MS/MS (tandem mass spectrometry) spectra in the database." ;
+    rdfs:domain [ owl:unionOf ( ds:DataSource ds:DataSourceStatistics ) ] ;
+    rdfs:range xsd:integer .
+
+ds:nmrSpectraCount a owl:DatatypeProperty ;
+    rdfs:label "NMR spectra count" ;
+    rdfs:comment "Number of NMR (nuclear magnetic resonance) spectra in the database." ;
+    rdfs:domain [ owl:unionOf ( ds:DataSource ds:DataSourceStatistics ) ] ;
+    rdfs:range xsd:integer .
+
+ds:publicationCount a owl:DatatypeProperty ;
+    rdfs:label "publication count" ;
+    rdfs:comment "Number of publications referenced or included in the database." ;
+    rdfs:domain [ owl:unionOf ( ds:DataSource ds:DataSourceStatistics ) ] ;
+    rdfs:range xsd:integer .
+
+# -----------------------------------------------------------------------------
+# String Properties (xsd:string) - Nutrition/Food Domain
+# -----------------------------------------------------------------------------
+
+ds:brandsCovered a owl:DatatypeProperty ;
+    rdfs:label "brands covered" ;
+    rdfs:comment "Description or list of brands covered by the database." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:string .
+
+ds:features a owl:DatatypeProperty ;
+    rdfs:label "features" ;
+    rdfs:comment "Key features or capabilities of the data source." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:string .
+
+ds:platforms a owl:DatatypeProperty ;
+    rdfs:label "platforms" ;
+    rdfs:comment "Platforms on which the data source is available (e.g., web, mobile, API)." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:string .
+
+ds:productCategories a owl:DatatypeProperty ;
+    rdfs:label "product categories" ;
+    rdfs:comment "Categories of products covered by the database." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:string .
+
+ds:productsTested a owl:DatatypeProperty ;
+    rdfs:label "products tested" ;
+    rdfs:comment "Description of the types or number of products that have been tested." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:string .
+
+ds:updateSchedule a owl:DatatypeProperty ;
+    rdfs:label "update schedule" ;
+    rdfs:comment "Schedule or frequency of database updates (e.g., 'Daily', 'Weekly', 'Monthly')." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:string .
+
+# -----------------------------------------------------------------------------
+# Boolean Property - Nutrition/Food Domain
+# -----------------------------------------------------------------------------
+
+ds:registrationFree a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "registration free" ;
+    rdfs:comment "Whether access to the data source is available without registration." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:boolean .
+
+# =============================================================================
+# PROTEINS & MOLECULAR BIOLOGY PROPERTIES (07-proteins-molecular.ttl compliance)
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Object Properties for Data Source Relationships
+# -----------------------------------------------------------------------------
+
+ds:belongsToDataSource a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:label "belongs to data source" ;
+    rdfs:comment "Links a child resource (Version, etc.) to its parent DataSource. Alias for ds:belongsToSource." ;
+    owl:equivalentProperty ds:belongsToSource ;
+    rdfs:domain [ owl:unionOf ( ds:License ds:Version ds:AccessMethod ds:Identifier ds:UseCase ds:Limitation ds:CrossReference ds:RecordCount ) ] ;
+    rdfs:range ds:DataSource .
+
+ds:hasPermission a owl:DatatypeProperty ;
+    rdfs:label "has permission" ;
+    rdfs:comment "A permission granted by the license (e.g., 'Use for any purpose including commercial')." ;
+    rdfs:domain ds:License ;
+    rdfs:range xsd:string .
+
+ds:hasRestriction a owl:DatatypeProperty ;
+    rdfs:label "has restriction" ;
+    rdfs:comment "A restriction imposed by the license (e.g., 'Provide attribution to source')." ;
+    rdfs:domain ds:License ;
+    rdfs:range xsd:string .
+
+ds:relatedDataSource a owl:ObjectProperty ;
+    rdfs:label "related data source" ;
+    rdfs:comment "Links a subcategory or data source to related data sources. Used for cross-category references." ;
+    rdfs:domain [ owl:unionOf ( ds:Subcategory ds:DataSource ) ] ;
+    rdfs:range ds:DataSource .
+
+# -----------------------------------------------------------------------------
+# Access Type Properties
+# -----------------------------------------------------------------------------
+
+ds:accessTypeName a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "access type name" ;
+    rdfs:comment "Human-readable name for an access type classification (e.g., 'REST API', 'SPARQL Endpoint', 'FTP')." ;
+    rdfs:domain ds:AccessType ;
+    rdfs:range xsd:string .
+
+ds:apiKeyRecommended a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "API key recommended" ;
+    rdfs:comment "Whether an API key is recommended (but not required) for better rate limits or access." ;
+    rdfs:domain ds:AccessMethod ;
+    rdfs:range xsd:boolean .
+
+# -----------------------------------------------------------------------------
+# License Attribution Properties
+# -----------------------------------------------------------------------------
+
+ds:attributionTemplate a owl:DatatypeProperty ;
+    rdfs:label "attribution template" ;
+    rdfs:comment "A template string for attribution text with placeholders for customization." ;
+    rdfs:domain ds:License ;
+    rdfs:range xsd:string .
+
+ds:secondaryCitation a owl:DatatypeProperty ;
+    rdfs:label "secondary citation" ;
+    rdfs:comment "Additional citation text for secondary or related publications." ;
+    rdfs:domain ds:License ;
+    rdfs:range xsd:string .
+
+# -----------------------------------------------------------------------------
+# Quality Level Properties
+# -----------------------------------------------------------------------------
+
+ds:confidence a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "confidence" ;
+    rdfs:comment "Confidence level description for a quality classification (e.g., 'Very high', 'Confident', 'Low')." ;
+    rdfs:domain ds:QualityLevel ;
+    rdfs:range xsd:string .
+
+ds:scoreRange a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "score range" ;
+    rdfs:comment "Numeric or textual range for quality scores (e.g., '>90', '70-90', '<2.0 A')." ;
+    rdfs:domain ds:QualityLevel ;
+    rdfs:range xsd:string .
+
+ds:interpretation a owl:DatatypeProperty ;
+    rdfs:label "interpretation" ;
+    rdfs:comment "Guidance on how to interpret a quality level or score." ;
+    rdfs:domain ds:QualityLevel ;
+    rdfs:range xsd:string .
+
+# -----------------------------------------------------------------------------
+# Coverage Level Properties
+# -----------------------------------------------------------------------------
+
+ds:coverageLevelName a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "coverage level name" ;
+    rdfs:comment "Human-readable name for a coverage level classification (e.g., 'High', 'Medium', 'Low')." ;
+    rdfs:domain ds:CoverageLevel ;
+    rdfs:range xsd:string .
+
+# -----------------------------------------------------------------------------
+# Impact Level Properties
+# -----------------------------------------------------------------------------
+
+ds:impactLevelName a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "impact level name" ;
+    rdfs:comment "Human-readable name for an impact level classification (e.g., 'High', 'Medium', 'Low', 'Critical')." ;
+    rdfs:domain ds:ImpactLevel ;
+    rdfs:range xsd:string .
+
+# -----------------------------------------------------------------------------
+# Identifier Deprecation Property
+# -----------------------------------------------------------------------------
+
+ds:deprecated a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "deprecated" ;
+    rdfs:comment "Whether the identifier type or resource is deprecated and should not be used for new data." ;
+    rdfs:domain [ owl:unionOf ( ds:Identifier ds:DataSource ds:AccessMethod ) ] ;
+    rdfs:range xsd:boolean .
+
+# -----------------------------------------------------------------------------
+# File Format Properties
+# -----------------------------------------------------------------------------
+
+ds:formatName a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "format name" ;
+    rdfs:comment "Human-readable name for a file format (e.g., 'FASTA', 'mmCIF', 'JSON')." ;
+    rdfs:domain ds:FileFormat ;
+    rdfs:range xsd:string .
+
+ds:mimeType a owl:DatatypeProperty ;
+    rdfs:label "MIME type" ;
+    rdfs:comment "MIME type for the file format (e.g., 'application/json', 'text/x-fasta')." ;
+    rdfs:domain ds:FileFormat ;
+    rdfs:range xsd:string .
+
+ds:extension a owl:DatatypeProperty ;
+    rdfs:label "extension" ;
+    rdfs:comment "File extension(s) for the format (e.g., '.json', '.fasta', '.faa')." ;
+    rdfs:domain ds:FileFormat ;
+    rdfs:range xsd:string .
+
+# -----------------------------------------------------------------------------
+# Cross-Reference Field Property
+# -----------------------------------------------------------------------------
+
+ds:externalField a owl:DatatypeProperty ;
+    rdfs:label "external field" ;
+    rdfs:comment "Field name in the external database used for cross-referencing." ;
+    rdfs:domain ds:CrossReference ;
+    rdfs:range xsd:string .
+
+# -----------------------------------------------------------------------------
+# Version Properties
+# -----------------------------------------------------------------------------
+
+ds:proteinCount a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "protein count" ;
+    rdfs:comment "Number of proteins in the version or data source." ;
+    rdfs:domain [ owl:unionOf ( ds:Version ds:DataSource ) ] ;
+    rdfs:range xsd:integer .
+
+ds:recordCountNote a owl:DatatypeProperty ;
+    rdfs:label "record count note" ;
+    rdfs:comment "Explanatory note about record counts, providing context or caveats." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:string .
+
+ds:versionFormat a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "version format" ;
+    rdfs:comment "File format description for a specific version (e.g., 'FASTA (gzip)', 'tar archive (PDB/mmCIF)')." ;
+    rdfs:domain ds:Version ;
+    rdfs:range xsd:string .
+
+ds:versionId a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "version ID" ;
+    rdfs:comment "Unique identifier string for a version (distinct from versionNumber which may be a label)." ;
+    rdfs:domain ds:Version ;
+    rdfs:range xsd:string .
+
+# -----------------------------------------------------------------------------
+# Use Case Properties
+# -----------------------------------------------------------------------------
+
+ds:useCaseTitle a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "use case title" ;
+    rdfs:comment "Short title for a use case." ;
+    rdfs:domain ds:UseCase ;
+    rdfs:range xsd:string .
+
+# =============================================================================
+# TRADITIONAL MEDICINE / NATURAL PRODUCTS PROPERTIES
+# =============================================================================
+# Properties used for describing traditional medicine, herbal, and natural
+# product data sources (e.g., TCMSP, SymMap, ETCM, NPASS).
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Object Properties for Traditional Medicine Sources
+# -----------------------------------------------------------------------------
+
+ds:forDataSource a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:label "for data source" ;
+    rdfs:comment "Links a resource to its parent data source. Alias for ds:belongsToSource." ;
+    owl:equivalentProperty ds:belongsToSource ;
+    rdfs:domain [ owl:unionOf ( ds:License ds:Version ds:AccessMethod ds:Identifier ds:UseCase ds:Limitation ds:CrossReference ds:RecordCount ds:DataSourceStatistics ds:Metric ) ] ;
+    rdfs:range ds:DataSource .
+
+# -----------------------------------------------------------------------------
+# Entity Count Properties (xsd:integer)
+# -----------------------------------------------------------------------------
+
+ds:activityDataPointCount a owl:DatatypeProperty ;
+    rdfs:label "activity data point count" ;
+    rdfs:comment "Number of bioactivity data points in the database." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:integer .
+
+ds:anticancerCompoundCount a owl:DatatypeProperty ;
+    rdfs:label "anticancer compound count" ;
+    rdfs:comment "Number of compounds with anticancer activity in the database." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:integer .
+
+ds:assessmentReportCount a owl:DatatypeProperty ;
+    rdfs:label "assessment report count" ;
+    rdfs:comment "Number of assessment reports in the database." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:integer .
+
+ds:bindingAffinityDataCount a owl:DatatypeProperty ;
+    rdfs:label "binding affinity data count" ;
+    rdfs:comment "Number of binding affinity measurements in the database." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:integer .
+
+ds:cancerCellLineCount a owl:DatatypeProperty ;
+    rdfs:label "cancer cell line count" ;
+    rdfs:comment "Number of cancer cell lines represented in the database." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:integer .
+
+ds:communityListCount a owl:DatatypeProperty ;
+    rdfs:label "community list count" ;
+    rdfs:comment "Number of community lists or pharmacopoeia entries." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:integer .
+
+ds:crudeDrugCount a owl:DatatypeProperty ;
+    rdfs:label "crude drug count" ;
+    rdfs:comment "Number of crude drugs (raw medicinal materials) in the database." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:integer .
+
+ds:diseaseCount a owl:DatatypeProperty ;
+    rdfs:label "disease count" ;
+    rdfs:comment "Number of diseases or conditions in the database." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:integer .
+
+ds:dockingSimulationCount a owl:DatatypeProperty ;
+    rdfs:label "docking simulation count" ;
+    rdfs:comment "Number of molecular docking simulations in the database." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:integer .
+
+ds:drugLikeCompounds a owl:DatatypeProperty ;
+    rdfs:label "drug-like compounds" ;
+    rdfs:comment "Number of compounds meeting drug-likeness criteria." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:integer .
+
+ds:ethnobotanicalRecordCount a owl:DatatypeProperty ;
+    rdfs:label "ethnobotanical record count" ;
+    rdfs:comment "Number of ethnobotanical use records in the database." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:integer .
+
+ds:expressionExperiments a owl:DatatypeProperty ;
+    rdfs:label "expression experiments" ;
+    rdfs:comment "Number of gene expression experiments in the database." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:integer .
+
+ds:herbalIngredientCount a owl:DatatypeProperty ;
+    rdfs:label "herbal ingredient count" ;
+    rdfs:comment "Number of herbal ingredients in the database." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:integer .
+
+ds:herbalMonographCount a owl:DatatypeProperty ;
+    rdfs:label "herbal monograph count" ;
+    rdfs:comment "Number of herbal monographs in the database." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:integer .
+
+ds:herbalSubstanceCount a owl:DatatypeProperty ;
+    rdfs:label "herbal substance count" ;
+    rdfs:comment "Number of herbal substances in the database." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:integer .
+
+ds:kampoFormulaCount a owl:DatatypeProperty ;
+    rdfs:label "Kampo formula count" ;
+    rdfs:comment "Number of Kampo (Japanese traditional medicine) formulas in the database." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:integer .
+
+ds:knownTargetCount a owl:DatatypeProperty ;
+    rdfs:label "known target count" ;
+    rdfs:comment "Number of experimentally validated molecular targets." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:integer .
+
+ds:literatureRecordCount a owl:DatatypeProperty ;
+    rdfs:label "literature record count" ;
+    rdfs:comment "Number of literature records or references in the database." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:integer .
+
+ds:literatureReferenceCount a owl:DatatypeProperty ;
+    rdfs:label "literature reference count" ;
+    rdfs:comment "Number of literature references in the database." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:integer .
+
+ds:modernPhenotypeCount a owl:DatatypeProperty ;
+    rdfs:label "modern phenotype count" ;
+    rdfs:comment "Number of modern disease phenotypes mapped from traditional symptoms." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:integer .
+
+ds:molecularDescriptorsPerCompound a owl:DatatypeProperty ;
+    rdfs:label "molecular descriptors per compound" ;
+    rdfs:comment "Number of molecular descriptors calculated per compound." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:integer .
+
+ds:molecularTargetCount a owl:DatatypeProperty ;
+    rdfs:label "molecular target count" ;
+    rdfs:comment "Number of molecular targets in the database." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:integer .
+
+ds:naturalProductCount a owl:DatatypeProperty ;
+    rdfs:label "natural product count" ;
+    rdfs:comment "Number of natural products in the database." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:integer .
+
+ds:pharmacologicalRecordCount a owl:DatatypeProperty ;
+    rdfs:label "pharmacological record count" ;
+    rdfs:comment "Number of pharmacological activity records in the database." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:integer .
+
+ds:phytochemicalCount a owl:DatatypeProperty ;
+    rdfs:label "phytochemical count" ;
+    rdfs:comment "Number of phytochemicals (plant-derived compounds) in the database." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:integer .
+
+ds:plantCount a owl:DatatypeProperty ;
+    rdfs:label "plant count" ;
+    rdfs:comment "Number of plants in the database." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:integer .
+
+ds:plantSourceCount a owl:DatatypeProperty ;
+    rdfs:label "plant source count" ;
+    rdfs:comment "Number of plant sources (species or varieties) in the database." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:integer .
+
+ds:plantSpeciesCount a owl:DatatypeProperty ;
+    rdfs:label "plant species count" ;
+    rdfs:comment "Number of distinct plant species in the database." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:integer .
+
+ds:predictedTargetCount a owl:DatatypeProperty ;
+    rdfs:label "predicted target count" ;
+    rdfs:comment "Number of computationally predicted molecular targets." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:integer .
+
+ds:targetCount a owl:DatatypeProperty ;
+    rdfs:label "target count" ;
+    rdfs:comment "Number of molecular targets in the database." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:integer .
+
+ds:targetGeneCount a owl:DatatypeProperty ;
+    rdfs:label "target gene count" ;
+    rdfs:comment "Number of target genes in the database." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:integer .
+
+ds:targetProteinCount a owl:DatatypeProperty ;
+    rdfs:label "target protein count" ;
+    rdfs:comment "Number of target proteins in the database." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:integer .
+
+ds:tcmSymptomCount a owl:DatatypeProperty ;
+    rdfs:label "TCM symptom count" ;
+    rdfs:comment "Number of Traditional Chinese Medicine symptoms in the database." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:integer .
+
+ds:therapeuticIndicationCount a owl:DatatypeProperty ;
+    rdfs:label "therapeutic indication count" ;
+    rdfs:comment "Number of therapeutic indications in the database." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:integer .
+
+ds:therapeuticUseCount a owl:DatatypeProperty ;
+    rdfs:label "therapeutic use count" ;
+    rdfs:comment "Number of therapeutic uses documented in the database." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:integer .
+
+ds:traditionalSystemCount a owl:DatatypeProperty ;
+    rdfs:label "traditional system count" ;
+    rdfs:comment "Number of traditional medicine systems represented in the database." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:integer .
+
+ds:traditionalUseRegistrations a owl:DatatypeProperty ;
+    rdfs:label "traditional use registrations" ;
+    rdfs:comment "Number of traditional use registrations in the database." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:integer .
+
+ds:validatedTargetCount a owl:DatatypeProperty ;
+    rdfs:label "validated target count" ;
+    rdfs:comment "Number of experimentally validated targets in the database." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:integer .
+
+ds:yearsOfCoverage a owl:DatatypeProperty ;
+    rdfs:label "years of coverage" ;
+    rdfs:comment "Number of years of data coverage in the database." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:integer .
+
+# -----------------------------------------------------------------------------
+# Link/Relationship Count Properties (xsd:integer)
+# -----------------------------------------------------------------------------
+
+ds:compoundTargetLinks a owl:DatatypeProperty ;
+    rdfs:label "compound-target links" ;
+    rdfs:comment "Number of compound-to-target relationship links in the database." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:integer .
+
+ds:compoundTargetPairs a owl:DatatypeProperty ;
+    rdfs:label "compound-target pairs" ;
+    rdfs:comment "Number of compound-target interaction pairs in the database." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:integer .
+
+ds:herbCompoundLinks a owl:DatatypeProperty ;
+    rdfs:label "herb-compound links" ;
+    rdfs:comment "Number of herb-to-compound relationship links in the database." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:integer .
+
+ds:herbIngredientLinks a owl:DatatypeProperty ;
+    rdfs:label "herb-ingredient links" ;
+    rdfs:comment "Number of herb-to-ingredient relationship links in the database." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:integer .
+
+ds:herbTargetInteractionCount a owl:DatatypeProperty ;
+    rdfs:label "herb-target interaction count" ;
+    rdfs:comment "Number of herb-to-target interactions in the database." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:integer .
+
+ds:ingredientTargetLinks a owl:DatatypeProperty ;
+    rdfs:label "ingredient-target links" ;
+    rdfs:comment "Number of ingredient-to-target relationship links in the database." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:integer .
+
+ds:plantCompoundLinks a owl:DatatypeProperty ;
+    rdfs:label "plant-compound links" ;
+    rdfs:comment "Number of plant-to-compound relationship links in the database." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:integer .
+
+ds:plantPhytochemicalLinks a owl:DatatypeProperty ;
+    rdfs:label "plant-phytochemical links" ;
+    rdfs:comment "Number of plant-to-phytochemical relationship links in the database." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:integer .
+
+ds:plantTherapeuticLinks a owl:DatatypeProperty ;
+    rdfs:label "plant-therapeutic links" ;
+    rdfs:comment "Number of plant-to-therapeutic use relationship links in the database." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:integer .
+
+ds:symptomGeneLinks a owl:DatatypeProperty ;
+    rdfs:label "symptom-gene links" ;
+    rdfs:comment "Number of symptom-to-gene relationship links in the database." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:integer .
+
+ds:symptomHerbLinks a owl:DatatypeProperty ;
+    rdfs:label "symptom-herb links" ;
+    rdfs:comment "Number of symptom-to-herb relationship links in the database." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:integer .
+
+# -----------------------------------------------------------------------------
+# Other Traditional Medicine Properties
+# -----------------------------------------------------------------------------
+
+ds:recordType a owl:DatatypeProperty ;
+    rdfs:label "record type" ;
+    rdfs:comment "Type of records contained in the data source (e.g., 'herbs', 'compounds', 'formulas')." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:string .
+
+ds:wellEstablishedUse a owl:DatatypeProperty ;
+    rdfs:label "well-established use" ;
+    rdfs:comment "Whether the data source includes well-established use information." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:boolean .
+
+# =============================================================================
+# END OF FILE
+# =============================================================================

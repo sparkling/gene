@@ -1140,6 +1140,266 @@ tax:RDF a skos:Concept ;
     skos:exactMatch tax:RdfFormat .
 
 # -----------------------------------------------------------------------------
+# Additional Format Concepts - Bioinformatics
+# -----------------------------------------------------------------------------
+
+tax:BioPAX a skos:Concept ;
+    skos:prefLabel "BioPAX" ;
+    skos:altLabel "Biological Pathway Exchange" ;
+    skos:notation "biopax" ;
+    skos:definition "Biological Pathway Exchange format for representing biological pathway data in RDF/OWL. Used for pathway integration and analysis." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme .
+
+tax:GPML a skos:Concept ;
+    skos:prefLabel "GPML" ;
+    skos:altLabel "GenMAPP Pathway Markup Language" ;
+    skos:notation "gpml" ;
+    skos:definition "GenMAPP Pathway Markup Language, an XML format for biological pathways used by WikiPathways and PathVisio." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme .
+
+tax:mmCIF a skos:Concept ;
+    skos:prefLabel "mmCIF" ;
+    skos:altLabel "Macromolecular Crystallographic Information File" , "PDBx/mmCIF" ;
+    skos:notation "mmcif" ;
+    skos:definition "Macromolecular Crystallographic Information File format, the master format for PDB structures supporting complex assemblies and metadata." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme .
+
+tax:bigWig a skos:Concept ;
+    skos:prefLabel "bigWig" ;
+    skos:altLabel "BigWig" ;
+    skos:notation "bigwig" ;
+    skos:definition "Binary indexed format for dense, continuous genomic data such as coverage or signal tracks. Efficient for large-scale visualization." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme .
+
+tax:bigBed a skos:Concept ;
+    skos:prefLabel "bigBed" ;
+    skos:altLabel "BigBed" ;
+    skos:notation "bigbed" ;
+    skos:definition "Binary indexed format for genomic interval data, an indexed version of BED for efficient random access to large datasets." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme .
+
+tax:BCF a skos:Concept ;
+    skos:prefLabel "BCF" ;
+    skos:altLabel "Binary Call Format" , "Binary VCF" ;
+    skos:notation "bcf" ;
+    skos:definition "Binary Call Format, the binary version of VCF for efficient storage and processing of genetic variant data." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme .
+
+tax:CRAM a skos:Concept ;
+    skos:prefLabel "CRAM" ;
+    skos:altLabel "Compressed Reference-oriented Alignment Map" ;
+    skos:notation "cram" ;
+    skos:definition "Highly compressed format for storing aligned sequencing reads using reference-based compression. More space-efficient than BAM." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme .
+
+tax:OBO a skos:Concept ;
+    skos:prefLabel "OBO" ;
+    skos:altLabel "Open Biomedical Ontologies Format" , "OBO Flat File" ;
+    skos:notation "obo" ;
+    skos:definition "Open Biomedical Ontologies flat file format for representing biological and biomedical ontologies. Widely used in bioinformatics." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme .
+
+# -----------------------------------------------------------------------------
+# Additional Format Concepts - Data Interchange
+# -----------------------------------------------------------------------------
+
+tax:RDF_XML a skos:Concept ;
+    skos:prefLabel "RDF/XML" ;
+    skos:altLabel "RDF XML Syntax" ;
+    skos:notation "rdf-xml" ;
+    skos:definition "RDF/XML serialization format for Resource Description Framework data. Original W3C standard XML syntax for RDF." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme ;
+    skos:related tax:RDF .
+
+tax:SPARQLFormat a skos:Concept ;
+    skos:prefLabel "SPARQL Results" ;
+    skos:altLabel "SPARQL Query Results XML" , "SPARQL JSON" ;
+    skos:notation "sparql-results" ;
+    skos:definition "SPARQL query results format in XML or JSON, used to return data from SPARQL endpoint queries." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme .
+
+tax:GraphQLFormat a skos:Concept ;
+    skos:prefLabel "GraphQL Schema" ;
+    skos:altLabel "GraphQL SDL" , "Schema Definition Language" ;
+    skos:notation "graphql-schema" ;
+    skos:definition "GraphQL Schema Definition Language for defining API types, queries, and mutations in GraphQL services." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme .
+
+tax:Cypher a skos:Concept ;
+    skos:prefLabel "Cypher" ;
+    skos:altLabel "Cypher Query Language" , "openCypher" ;
+    skos:notation "cypher" ;
+    skos:definition "Cypher graph query language format, used primarily by Neo4j for querying and manipulating graph databases." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme .
+
+# -----------------------------------------------------------------------------
+# Additional Format Concepts - Structural/3D
+# -----------------------------------------------------------------------------
+
+tax:MMTF a skos:Concept ;
+    skos:prefLabel "MMTF" ;
+    skos:altLabel "Macromolecular Transmission Format" ;
+    skos:notation "mmtf" ;
+    skos:definition "Macromolecular Transmission Format, a binary format for efficient transmission and parsing of macromolecular structures." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme .
+
+tax:MOL2 a skos:Concept ;
+    skos:prefLabel "MOL2" ;
+    skos:altLabel "Tripos MOL2" , "Sybyl MOL2" ;
+    skos:notation "mol2" ;
+    skos:definition "Tripos MOL2 format for molecular structures with atom types, charges, and bond information. Common in computational chemistry." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme .
+
+tax:SMILES a skos:Concept ;
+    skos:prefLabel "SMILES" ;
+    skos:altLabel "Simplified Molecular Input Line Entry System" ;
+    skos:notation "smiles" ;
+    skos:definition "Simplified Molecular Input Line Entry System, a line notation for representing molecular structures as ASCII strings." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme .
+
+tax:InChI a skos:Concept ;
+    skos:prefLabel "InChI" ;
+    skos:altLabel "International Chemical Identifier" , "InChIKey" ;
+    skos:notation "inchi" ;
+    skos:definition "International Chemical Identifier, a textual identifier for chemical substances designed to provide a standard way to encode molecular information." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme .
+
+# -----------------------------------------------------------------------------
+# Additional Format Concepts - Sequence
+# -----------------------------------------------------------------------------
+
+tax:GFF3 a skos:Concept ;
+    skos:prefLabel "GFF3" ;
+    skos:altLabel "Generic Feature Format Version 3" ;
+    skos:notation "gff3" ;
+    skos:definition "Generic Feature Format version 3, a tab-delimited format for describing genes and other genomic features with hierarchical relationships." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme ;
+    skos:related tax:GffFormat .
+
+tax:GTF a skos:Concept ;
+    skos:prefLabel "GTF" ;
+    skos:altLabel "Gene Transfer Format" , "GFF2.5" ;
+    skos:notation "gtf" ;
+    skos:definition "Gene Transfer Format, a refined version of GFF for representing gene structure annotations, widely used for RNA-seq analysis." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme ;
+    skos:related tax:GffFormat .
+
+tax:BED12 a skos:Concept ;
+    skos:prefLabel "BED12" ;
+    skos:altLabel "12-column BED" , "Full BED" ;
+    skos:notation "bed12" ;
+    skos:definition "Extended BED format with 12 columns for representing gene structures with exons, including thick/thin regions and block information." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme ;
+    skos:related tax:BED .
+
+tax:GenBank a skos:Concept ;
+    skos:prefLabel "GenBank" ;
+    skos:altLabel "GenBank Flat File" , "GBFF" ;
+    skos:notation "genbank" ;
+    skos:definition "GenBank flat file format for annotated nucleotide sequences, including feature tables and metadata from NCBI databases." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme .
+
+tax:EMBL a skos:Concept ;
+    skos:prefLabel "EMBL" ;
+    skos:altLabel "EMBL Flat File" , "EMBL Format" ;
+    skos:notation "embl" ;
+    skos:definition "EMBL nucleotide sequence flat file format, similar to GenBank but used by European databases like ENA." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme .
+
+# -----------------------------------------------------------------------------
+# Additional Format Concepts - Spectral
+# -----------------------------------------------------------------------------
+
+tax:mzML a skos:Concept ;
+    skos:prefLabel "mzML" ;
+    skos:altLabel "Mass Spectrometry Markup Language" ;
+    skos:notation "mzml" ;
+    skos:definition "Open XML format for mass spectrometry data, storing spectra, chromatograms, and metadata. PSI standard format." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme .
+
+tax:mzXML a skos:Concept ;
+    skos:prefLabel "mzXML" ;
+    skos:altLabel "Mass Spectrometry XML" ;
+    skos:notation "mzxml" ;
+    skos:definition "XML format for mass spectrometry data, predecessor to mzML. Still widely used in proteomics and metabolomics." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme .
+
+tax:MGF a skos:Concept ;
+    skos:prefLabel "MGF" ;
+    skos:altLabel "Mascot Generic Format" ;
+    skos:notation "mgf" ;
+    skos:definition "Mascot Generic Format for peak lists from mass spectrometry, commonly used for database searching in proteomics." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme .
+
+# -----------------------------------------------------------------------------
+# Additional Format Concepts - Other
+# -----------------------------------------------------------------------------
+
+tax:YAML a skos:Concept ;
+    skos:prefLabel "YAML" ;
+    skos:altLabel "YAML Ain't Markup Language" , "YML" ;
+    skos:notation "yaml" ;
+    skos:definition "Human-readable data serialization format commonly used for configuration files and data exchange between languages." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme .
+
+tax:Parquet a skos:Concept ;
+    skos:prefLabel "Parquet" ;
+    skos:altLabel "Apache Parquet" ;
+    skos:notation "parquet" ;
+    skos:definition "Apache Parquet columnar storage format optimized for analytics workloads, supporting efficient compression and encoding." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme .
+
+tax:Arrow a skos:Concept ;
+    skos:prefLabel "Arrow" ;
+    skos:altLabel "Apache Arrow" , "Arrow IPC" ;
+    skos:notation "arrow" ;
+    skos:definition "Apache Arrow columnar in-memory format for efficient analytics, supporting zero-copy reads and cross-language compatibility." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme .
+
+tax:HDF5 a skos:Concept ;
+    skos:prefLabel "HDF5" ;
+    skos:altLabel "Hierarchical Data Format 5" , "H5" ;
+    skos:notation "hdf5" ;
+    skos:definition "Hierarchical Data Format version 5, a file format for storing large, complex, heterogeneous data with support for compression and chunking." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme .
+
+tax:NetCDF a skos:Concept ;
+    skos:prefLabel "NetCDF" ;
+    skos:altLabel "Network Common Data Form" , "NC" ;
+    skos:notation "netcdf" ;
+    skos:definition "Network Common Data Form, a self-describing format for array-oriented scientific data, commonly used in climate and geoscience." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme .
+
+# -----------------------------------------------------------------------------
 # License Type Scheme
 # -----------------------------------------------------------------------------
 

@@ -376,6 +376,15 @@ maint:GenomicsEngland a ds:Maintainer ;
     foaf:name "Genomics England" .
 
 # -----------------------------------------------------------------------------
+# GlaxoSmithKline (GSK)
+# -----------------------------------------------------------------------------
+
+maint:GSK a ds:Maintainer ;
+    rdfs:label "GlaxoSmithKline (GSK)" ;
+    rdfs:comment "Global pharmaceutical and biotechnology company headquartered in London, UK. Major contributor to drug discovery and clinical research databases." ;
+    foaf:name "GSK" .
+
+# -----------------------------------------------------------------------------
 # IGSR
 # -----------------------------------------------------------------------------
 
@@ -482,6 +491,11 @@ maint:EuropePMC a ds:Maintainer ;
 maint:WHO a ds:Maintainer ;
     rdfs:label "World Health Organization (WHO)" ;
     foaf:name "WHO" .
+
+maint:WHONomenclatureCommittee a ds:Maintainer ;
+    rdfs:label "WHO Nomenclature Committee for Factors of the HLA System" ;
+    rdfs:comment "International committee responsible for naming HLA genes and alleles, coordinating HLA nomenclature standards worldwide." ;
+    foaf:name "WHO Nomenclature Committee" .
 
 maint:IARC a ds:Maintainer ;
     rdfs:label "International Agency for Research on Cancer (IARC/WHO)" ;
