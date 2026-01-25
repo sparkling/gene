@@ -21,3 +21,4 @@ node_modules/
 
 # Local MCP config (may contain keys)
 .mcp.json
+__pycache__/
