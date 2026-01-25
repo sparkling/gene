@@ -13,9 +13,11 @@ description: "Data source, datasource, database queries - find TCM, genomics, co
 3. Generate a SPARQL query for the user's question
 
 ### Step 2: Execute Query Against Knowledge Graph
-Use the `qlever` skill to execute the query:
-```
-/qlever [your SPARQL query]
+Execute SPARQL via the Fuseki endpoint:
+```bash
+curl -s "http://localhost:3030/gene/sparql" \
+  --data-urlencode "query=[YOUR SPARQL]" \
+  -H "Accept: application/sparql-results+json"
 ```
 
 ### Step 3: Format and Return Results
