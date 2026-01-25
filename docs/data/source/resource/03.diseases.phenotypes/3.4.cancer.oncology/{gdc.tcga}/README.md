@@ -1,19 +1,22 @@
 ---
 id: gdc.tcga
 title: "GDC/TCGA - Genomic Data Commons and The Cancer Genome Atlas"
-type: data-source
-category: diseases
-subcategory: cancer.oncology
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 1
-last_updated: 2026-01-23
 status: active
-tags: [cancer, genomics, tcga, nci, multi-omics, somatic-mutations]
+category: diseases.phenotypes
+subcategory: cancer.oncology
+tags:
+  - cancer
+  - genomics
+  - tcga
+  - nci
+  - multi-omics
+  - somatic-mutations
 ---
 
 # GDC/TCGA - Genomic Data Commons and The Cancer Genome Atlas
-
-**Category:** [Diseases & Phenotypes](../../_index.md) > [Cancer & Oncology](../_index.md)
 
 ## Overview
 
@@ -80,17 +83,15 @@ The GDC continues to host TCGA data alongside newer cancer genomics projects, pr
 | COAD | Colon adenocarcinoma | 478 |
 | KIRC | Kidney clear cell carcinoma | 537 |
 
-## License
+## Limitations
 
-| Aspect | Value |
-|--------|-------|
-| License | NIH Data Sharing Policy |
-| Open Data | Summary statistics, processed data |
-| Controlled Data | Individual-level genomic data (dbGaP) |
-| Attribution | Required for publications |
+- Individual-level data requires dbGaP controlled access approval
+- TCGA samples are treatment-naive primary tumors; recurrence data limited
+- Sample demographics reflect US populations; global diversity limited
+- Data processing pipelines may differ from other cancer databases
 
 ## See Also
 
-- [Schema Documentation](./schema.md)
-- [COSMIC](../../../01.genetics.genomics/1.6.cancer.genomics/cosmic/_index.md) - Cancer mutation database
-- [cBioPortal](../../../01.genetics.genomics/1.6.cancer.genomics/cbioportal/_index.md) - Cancer genomics visualization
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [License Terms](./license.md) - Usage rights and restrictions

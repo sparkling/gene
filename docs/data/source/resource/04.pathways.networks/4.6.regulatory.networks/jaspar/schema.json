@@ -1,0 +1,159 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "jaspar-schema.json",
+  "title": "JASPAR Transcription Factor Binding Profile Record",
+  "description": "JSON Schema for JASPAR transcription factor binding profiles as position frequency/weight matrices.",
+  "type": "object",
+  "properties": {
+    "matrix_id": {
+      "type": "string",
+      "description": "JASPAR matrix identifier.",
+      "pattern": "^MA[0-9]+\\.[0-9]+$",
+      "examples": ["MA0106.3", "MA0139.1"]
+    },
+    "name": {
+      "type": "string",
+      "description": "Transcription factor name.",
+      "examples": ["TP53", "CTCF"]
+    },
+    "version": {
+      "type": "integer",
+      "description": "Matrix version number."
+    },
+    "collection": {
+      "type": "string",
+      "description": "JASPAR collection.",
+      "enum": ["CORE", "CNE", "PHYLOFACTS", "SPLICE", "POLII", "FAM"]
+    },
+    "tax_group": {
+      "type": "string",
+      "description": "Taxonomic group.",
+      "examples": ["vertebrates", "plants", "insects", "fungi"]
+    },
+    "species": {
+      "type": "array",
+      "description": "Species with this binding profile.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "tax_id": { "type": "string" },
+          "species": { "type": "string" }
+        }
+      }
+    },
+    "class": {
+      "type": "string",
+      "description": "Structural class of TF.",
+      "examples": ["Zinc-coordinating", "Helix-turn-helix", "Basic domains"]
+    },
+    "family": {
+      "type": "string",
+      "description": "TF family.",
+      "examples": ["C2H2 zinc finger factors", "bHLH factors", "bZIP factors"]
+    },
+    "uniprot_ids": {
+      "type": "array",
+      "description": "UniProt accessions for the TF.",
+      "items": { "type": "string" }
+    },
+    "data_type": {
+      "type": "string",
+      "description": "Data source type.",
+      "examples": ["ChIP-seq", "SELEX", "HT-SELEX", "PBM"]
+    },
+    "source": {
+      "type": "string",
+      "description": "Data source.",
+      "examples": ["ENCODE", "ReMap"]
+    },
+    "pubmed_ids": {
+      "type": "array",
+      "description": "PubMed references.",
+      "items": { "type": "string" }
+    },
+    "pfm": {
+      "type": "object",
+      "description": "Position Frequency Matrix (raw nucleotide counts).",
+      "properties": {
+        "A": {
+          "type": "array",
+          "items": { "type": "number" }
+        },
+        "C": {
+          "type": "array",
+          "items": { "type": "number" }
+        },
+        "G": {
+          "type": "array",
+          "items": { "type": "number" }
+        },
+        "T": {
+          "type": "array",
+          "items": { "type": "number" }
+        }
+      },
+      "required": ["A", "C", "G", "T"]
+    },
+    "pwm": {
+      "type": "object",
+      "description": "Position Weight Matrix (log-odds scores).",
+      "properties": {
+        "A": {
+          "type": "array",
+          "items": { "type": "number" }
+        },
+        "C": {
+          "type": "array",
+          "items": { "type": "number" }
+        },
+        "G": {
+          "type": "array",
+          "items": { "type": "number" }
+        },
+        "T": {
+          "type": "array",
+          "items": { "type": "number" }
+        }
+      }
+    },
+    "consensus": {
+      "type": "string",
+      "description": "Consensus binding sequence."
+    },
+    "sequence_logo": {
+      "type": "string",
+      "description": "URL to sequence logo image.",
+      "format": "uri"
+    },
+    "information_content": {
+      "type": "object",
+      "description": "Information content per position.",
+      "properties": {
+        "ic_values": {
+          "type": "array",
+          "items": { "type": "number" }
+        },
+        "total_ic": { "type": "number" },
+        "max_possible_ic": { "type": "number" }
+      }
+    },
+    "binding_sites": {
+      "type": "array",
+      "description": "Known binding sites.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "seq_id": { "type": "string" },
+          "start": { "type": "integer" },
+          "end": { "type": "integer" },
+          "strand": { "type": "string", "enum": ["+", "-"] },
+          "sequence": { "type": "string" },
+          "score": { "type": "number" },
+          "source": { "type": "string" }
+        }
+      }
+    }
+  },
+  "required": ["matrix_id", "name", "pfm"],
+  "additionalProperties": true
+}

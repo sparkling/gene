@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "openalex-schema.json",
+  "title": "OpenAlex Work Record",
+  "description": "JSON Schema for OpenAlex scholarly works records.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "OpenAlex unique identifier.",
+      "pattern": "^https://openalex.org/W[0-9]+$",
+      "examples": ["https://openalex.org/W2741809807"]
+    },
+    "doi": {
+      "type": "string",
+      "description": "Digital Object Identifier."
+    },
+    "title": {
+      "type": "string",
+      "description": "Work title."
+    },
+    "display_name": {
+      "type": "string",
+      "description": "Display title for the work."
+    },
+    "publication_year": {
+      "type": "integer",
+      "description": "Year of publication."
+    },
+    "publication_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Publication date."
+    },
+    "type": {
+      "type": "string",
+      "description": "Work type.",
+      "enum": ["article", "book", "book-chapter", "dataset", "dissertation", "preprint", "review"]
+    },
+    "authorships": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "author_position": { "type": "string", "enum": ["first", "middle", "last"] },
+          "author": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "display_name": { "type": "string" },
+              "orcid": { "type": "string" }
+            }
+          },
+          "institutions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": { "type": "string" },
+                "display_name": { "type": "string" },
+                "country_code": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "primary_location": {
+      "type": "object",
+      "properties": {
+        "source": {
+          "type": "object",
+          "properties": {
+            "id": { "type": "string" },
+            "display_name": { "type": "string" },
+            "issn_l": { "type": "string" },
+            "type": { "type": "string" }
+          }
+        },
+        "is_oa": { "type": "boolean" },
+        "license": { "type": "string" }
+      }
+    },
+    "open_access": {
+      "type": "object",
+      "properties": {
+        "is_oa": { "type": "boolean" },
+        "oa_status": { "type": "string", "enum": ["gold", "green", "hybrid", "bronze", "closed"] },
+        "oa_url": { "type": "string", "format": "uri" }
+      }
+    },
+    "cited_by_count": {
+      "type": "integer",
+      "description": "Number of citations."
+    },
+    "concepts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "display_name": { "type": "string" },
+          "level": { "type": "integer" },
+          "score": { "type": "number" }
+        }
+      }
+    },
+    "abstract_inverted_index": {
+      "type": "object",
+      "description": "Inverted index representation of abstract."
+    },
+    "referenced_works": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "related_works": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "counts_by_year": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "year": { "type": "integer" },
+          "cited_by_count": { "type": "integer" }
+        }
+      }
+    }
+  },
+  "required": ["id", "display_name"],
+  "additionalProperties": true
+}

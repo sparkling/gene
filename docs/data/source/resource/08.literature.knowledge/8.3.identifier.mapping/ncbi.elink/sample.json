@@ -1,0 +1,55 @@
+[
+  {
+    "dbfrom": "pubmed",
+    "id": "35922517",
+    "linksets": [
+      {
+        "dbto": "gene",
+        "linkname": "pubmed_gene",
+        "ids": ["672", "675", "7157"]
+      },
+      {
+        "dbto": "protein",
+        "linkname": "pubmed_protein",
+        "ids": ["P38398", "P51587"]
+      },
+      {
+        "dbto": "pmc",
+        "linkname": "pubmed_pmc",
+        "ids": ["PMC9876543"]
+      }
+    ],
+    "cmd": "neighbor"
+  },
+  {
+    "dbfrom": "gene",
+    "id": "672",
+    "linksets": [
+      {
+        "dbto": "pubmed",
+        "linkname": "gene_pubmed",
+        "ids": ["35922517", "34123456", "33456789"]
+      },
+      {
+        "dbto": "clinvar",
+        "linkname": "gene_clinvar",
+        "ids": ["12345", "23456", "34567"]
+      },
+      {
+        "dbto": "omim",
+        "linkname": "gene_omim",
+        "ids": ["113705"]
+      }
+    ],
+    "linksetdbs": [
+      {
+        "dbto": "pubmed",
+        "link": [
+          { "id": "35922517", "score": 95 },
+          { "id": "34123456", "score": 87 }
+        ]
+      }
+    ],
+    "cmd": "neighbor_score"
+  }
+]

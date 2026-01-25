@@ -127,6 +127,70 @@ cat braf_v600e.json | jq '.oncogenic'
 # Expected: "Oncogenic"
 ```
 
+## Dataset Versions
+
+### Current Release
+
+| Property | Value |
+|----------|-------|
+| Version | v4.x (2026-01) |
+| Release Date | Weekly updates |
+| Total Size | ~15 MB |
+| Genes | 700+ |
+| Variants | 5,000+ actionable |
+| Drugs | 200+ |
+
+### Version Contents
+
+| Component | Size | Records | Description |
+|-----------|------|---------|-------------|
+| all_genes.json | ~1 MB | 700+ | All annotated genes |
+| Actionable variants | API | 5,000+ | Therapeutically relevant |
+| Evidence items | API | 15,000+ | Literature-based evidence |
+| Drug associations | API | 2,000+ | Gene-drug relationships |
+
+### Evidence Levels
+
+| Level | Description | Count |
+|-------|-------------|-------|
+| 1 | FDA-recognized | 100+ |
+| 2 | Standard care | 200+ |
+| 3A | Clinical evidence | 500+ |
+| 3B | Case studies | 1,000+ |
+| 4 | Biological evidence | 3,000+ |
+| R1 | Resistance (standard) | 100+ |
+| R2 | Resistance (investigational) | 200+ |
+
+### Therapeutic Implications
+
+| Category | Variants | Description |
+|----------|----------|-------------|
+| Level 1 (FDA) | 100+ | FDA-approved biomarkers |
+| Level 2 (SOC) | 200+ | Standard of care |
+| Level 3A (Clinical) | 500+ | Clinical trial evidence |
+| Resistance | 300+ | Drug resistance markers |
+
+### FDA Recognition
+
+| Status | Description |
+|--------|-------------|
+| Class II Medical Device | FDA-cleared for tumor profiling |
+| Companion Diagnostic | Paired with targeted therapies |
+| NGS Panel Integration | Integrated in clinical sequencing |
+
+---
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | https://www.oncokb.org/api/v1/ |
+| Rate Limit | 10 req/sec (academic) |
+| Auth Required | Yes (API token) |
+| Response Format | JSON |
+
+---
+
 ## Update Schedule
 
 | Release | Frequency |

@@ -68,6 +68,10 @@ DSLD is essential for supplement research, regulatory analysis, ingredient surve
 
 ## See Also
 
-- [Schema Documentation](./schema.md)
-- [Natural Medicines](../natural.medicines/_index.md) - Evidence-based database
-- [ConsumerLab](../consumerlab/_index.md) - Product testing
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [Sample Data](./sample.json) - Example records
+- [License Terms](./license.md) - Usage rights and restrictions
+- [Schema Mapping](./mapping.xslt) - Transform to unified schema
+- [Natural Medicines](../natural.medicines/README.md) - Evidence-based database
+- [ConsumerLab](../consumerlab/README.md) - Product testing

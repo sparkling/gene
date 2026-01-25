@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gene.taxonomy/schemas/pdb",
+  "title": "PDB Structure Record",
+  "description": "JSON Schema for Protein Data Bank structure records",
+  "type": "object",
+  "properties": {
+    "entry_id": {
+      "type": "string",
+      "description": "4-character PDB identifier",
+      "pattern": "^[0-9][A-Za-z0-9]{3}$",
+      "examples": ["1TUP", "4HHB", "6LU7"]
+    },
+    "title": {
+      "type": "string",
+      "description": "Structure title"
+    },
+    "experimental_method": {
+      "type": "string",
+      "description": "Method of structure determination",
+      "enum": ["X-RAY DIFFRACTION", "ELECTRON MICROSCOPY", "SOLUTION NMR", "SOLID-STATE NMR", "NEUTRON DIFFRACTION", "OTHER"]
+    },
+    "resolution": {
+      "type": ["number", "null"],
+      "description": "Resolution in Angstroms (X-ray/EM)",
+      "minimum": 0
+    },
+    "deposition_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of structure deposition"
+    },
+    "release_date": {
+      "type": ["string", "null"],
+      "format": "date",
+      "description": "Date of public release"
+    },
+    "entities": {
+      "type": "array",
+      "description": "Molecular entities in the structure",
+      "items": {
+        "type": "object",
+        "properties": {
+          "entity_id": {"type": "integer"},
+          "type": {"type": "string", "enum": ["polymer", "non-polymer", "water"]},
+          "description": {"type": "string"},
+          "polymer_type": {"type": ["string", "null"]},
+          "sequence": {"type": ["string", "null"]},
+          "source_organism": {"type": ["string", "null"]},
+          "tax_id": {"type": ["integer", "null"]}
+        }
+      }
+    },
+    "assemblies": {
+      "type": "array",
+      "description": "Biological assemblies",
+      "items": {
+        "type": "object",
+        "properties": {
+          "assembly_id": {"type": "string"},
+          "oligomeric_state": {"type": "string"},
+          "chain_ids": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    },
+    "refinement": {
+      "type": ["object", "null"],
+      "description": "Refinement statistics (X-ray)",
+      "properties": {
+        "r_work": {"type": "number"},
+        "r_free": {"type": "number"},
+        "resolution_high": {"type": "number"},
+        "resolution_low": {"type": "number"}
+      }
+    },
+    "em_reconstruction": {
+      "type": ["object", "null"],
+      "description": "EM reconstruction details",
+      "properties": {
+        "resolution": {"type": "number"},
+        "resolution_method": {"type": "string"},
+        "symmetry_type": {"type": "string"}
+      }
+    },
+    "ligands": {
+      "type": "array",
+      "description": "Non-polymer ligands",
+      "items": {
+        "type": "object",
+        "properties": {
+          "comp_id": {"type": "string"},
+          "name": {"type": "string"},
+          "formula": {"type": "string"}
+        }
+      }
+    },
+    "citations": {
+      "type": "array",
+      "description": "Primary citations",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {"type": "string"},
+          "journal": {"type": "string"},
+          "year": {"type": "integer"},
+          "pubmed_id": {"type": ["integer", "null"]},
+          "doi": {"type": ["string", "null"]}
+        }
+      }
+    },
+    "validation": {
+      "type": ["object", "null"],
+      "description": "Structure validation metrics",
+      "properties": {
+        "clashscore": {"type": "number"},
+        "ramachandran_outliers": {"type": "number"},
+        "rsrz_outliers": {"type": "number"}
+      }
+    }
+  },
+  "required": ["entry_id", "title", "experimental_method"],
+  "additionalProperties": true
+}

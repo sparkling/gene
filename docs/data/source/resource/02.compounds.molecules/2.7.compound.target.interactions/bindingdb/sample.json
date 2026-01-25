@@ -1,0 +1,64 @@
+{
+  "source": "BindingDB",
+  "version": "2024",
+  "description": "Sample compound-target binding affinity records from BindingDB",
+  "records": [
+    {
+      "bindingdb_id": "BDBM50005208",
+      "ligand_name": "Aspirin",
+      "ligand_smiles": "CC(=O)Oc1ccccc1C(=O)O",
+      "ligand_inchikey": "BSYNRYMUTXBXSQ-UHFFFAOYSA-N",
+      "target": {
+        "name": "Cyclooxygenase-1",
+        "organism": "Homo sapiens",
+        "uniprot_id": "P23219",
+        "gene_name": "PTGS1"
+      },
+      "affinity": {
+        "ic50_nm": 170,
+        "ki_nm": null,
+        "kd_nm": null,
+        "assay_type": "Inhibition"
+      },
+      "reference": {
+        "pmid": 7531523,
+        "doi": "10.1016/0014-5793(94)01296-x"
+      }
+    },
+    {
+      "bindingdb_id": "BDBM50003456",
+      "ligand_name": "Imatinib",
+      "ligand_smiles": "Cc1ccc(NC(=O)c2ccc(CN3CCN(C)CC3)cc2)cc1Nc1nccc(-c2cccnc2)n1",
+      "ligand_inchikey": "KTUFNOKKBVMGRW-UHFFFAOYSA-N",
+      "target": {
+        "name": "Tyrosine-protein kinase ABL1",
+        "organism": "Homo sapiens",
+        "uniprot_id": "P00519",
+        "gene_name": "ABL1"
+      },
+      "affinity": {
+        "ic50_nm": 25,
+        "ki_nm": 13
+      }
+    },
+    {
+      "bindingdb_id": "BDBM50012345",
+      "ligand_name": "Erlotinib",
+      "ligand_inchikey": "AAKJLRGGTJKAMG-UHFFFAOYSA-N",
+      "target": {
+        "name": "Epidermal growth factor receptor",
+        "uniprot_id": "P00533",
+        "gene_name": "EGFR"
+      },
+      "affinity": {
+        "ic50_nm": 2,
+        "ki_nm": 0.7
+      }
+    }
+  ],
+  "queries": {
+    "web_search": "https://www.bindingdb.org/bind/ByTarget.jsp",
+    "download_tsv": "wget 'https://www.bindingdb.org/bind/downloads/BindingDB_All_2D_2024m1.tsv.zip'",
+    "download_sdf": "wget 'https://www.bindingdb.org/bind/downloads/BindingDB_All.sdf'"
+  }
+}

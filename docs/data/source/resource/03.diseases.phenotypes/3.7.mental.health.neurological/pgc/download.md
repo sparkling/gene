@@ -220,6 +220,33 @@ zcat pgc3_scz_wave3.2_public.tsv.gz | awk -F'\t' 'NR>1 {print $NF}' | sort -g | 
 zcat pgc3_scz_wave3.2_public.tsv.gz | cut -f2 | sort | uniq -c
 ```
 
+## Dataset Versions
+
+| Version | Release Date | Size | Status |
+|---------|--------------|------|--------|
+| SCZ3 | 2022-04 | ~500 MB | Current |
+| MDD3 | 2023-05 | ~800 MB | Current |
+| BIP3 | 2021-05 | ~400 MB | Current |
+| ADHD3 | 2023-06 | ~300 MB | Current |
+
+### Version Notes
+
+PGC current releases statistics:
+- Schizophrenia (SCZ3): 320,404 samples, 287 loci
+- Depression (MDD3): 1.2M+ samples, 243 loci
+- Bipolar (BIP3): 413,466 samples, 64 loci
+- ADHD: 225,534 samples, 27 loci
+- Cross-disorder: 8 psychiatric disorders analyzed jointly
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | `https://pgc.unc.edu/for-researchers/download-results/` |
+| Rate Limit | N/A (file downloads) |
+| Auth Required | No (summary stats), Yes (individual data via dbGaP) |
+| Documentation | https://pgc.unc.edu |
+
 ## Update Schedule
 
 | Study Type | Frequency |

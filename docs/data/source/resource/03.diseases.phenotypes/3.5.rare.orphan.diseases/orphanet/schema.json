@@ -1,0 +1,260 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "orphanet-rare-diseases-schema.json",
+  "title": "Orphanet Rare Disease Record",
+  "description": "JSON Schema for Orphanet rare disease nomenclature and clinical data. Contains 6,528 rare diseases with gene associations, HPO phenotypes, epidemiology, and expert center information via XML products from Orphadata.",
+  "type": "object",
+  "properties": {
+    "orpha_code": {
+      "type": "integer",
+      "description": "Numeric Orphanet disease identifier",
+      "examples": [558, 93344]
+    },
+    "orpha_id": {
+      "type": "string",
+      "description": "Full Orphanet identifier with prefix",
+      "pattern": "^(Orphanet:|ORPHA:)[0-9]+$",
+      "examples": ["Orphanet:558", "ORPHA:558"]
+    },
+    "name": {
+      "type": "string",
+      "description": "Preferred disease name",
+      "minLength": 1,
+      "maxLength": 500
+    },
+    "orpha_group": {
+      "type": "string",
+      "description": "Entity classification type",
+      "enum": ["Disorder", "Group of disorders", "Subtype of disorder"]
+    },
+    "disorder_type": {
+      "type": "object",
+      "description": "Disease/disorder type classification",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Disorder type ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "Disorder type name",
+          "enum": ["Disease", "Malformation syndrome", "Clinical syndrome", "Morphological anomaly", "Biological anomaly", "Particular clinical situation in a disease or syndrome", "Etiological subtype", "Clinical subtype", "Histopathological subtype", "Group of disorders"]
+        }
+      }
+    },
+    "synonyms": {
+      "type": "array",
+      "description": "Alternative disease names",
+      "items": {
+        "type": "string"
+      }
+    },
+    "definition": {
+      "type": ["string", "null"],
+      "description": "Textual disease definition"
+    },
+    "average_age_of_onset": {
+      "type": "array",
+      "description": "Age categories for disease onset",
+      "items": {
+        "type": "string",
+        "enum": ["Antenatal", "Neonatal", "Infancy", "Childhood", "Adolescent", "Adult", "Elderly", "All ages", "No data available"]
+      }
+    },
+    "average_age_of_death": {
+      "type": "array",
+      "description": "Age categories for death",
+      "items": {
+        "type": "string"
+      }
+    },
+    "type_of_inheritance": {
+      "type": "array",
+      "description": "Inheritance patterns",
+      "items": {
+        "type": "string",
+        "enum": ["Autosomal dominant", "Autosomal recessive", "X-linked dominant", "X-linked recessive", "Y-linked", "Mitochondrial inheritance", "Multigenic/multifactorial", "Not applicable", "Unknown"]
+      }
+    },
+    "gene_associations": {
+      "type": "array",
+      "description": "Genes associated with this disease",
+      "items": {
+        "$ref": "#/$defs/geneAssociation"
+      }
+    },
+    "phenotypes": {
+      "type": "array",
+      "description": "HPO phenotype annotations",
+      "items": {
+        "$ref": "#/$defs/phenotypeAnnotation"
+      }
+    },
+    "epidemiology": {
+      "type": "array",
+      "description": "Prevalence and incidence data",
+      "items": {
+        "$ref": "#/$defs/epidemiologyRecord"
+      }
+    },
+    "external_references": {
+      "type": "array",
+      "description": "Cross-references to external databases",
+      "items": {
+        "type": "object",
+        "properties": {
+          "source": {
+            "type": "string",
+            "enum": ["OMIM", "ICD-10", "ICD-11", "UMLS", "MeSH", "MedDRA", "SNOMED CT", "GARD"]
+          },
+          "reference": {
+            "type": "string"
+          }
+        },
+        "required": ["source", "reference"]
+      }
+    },
+    "classification": {
+      "type": "array",
+      "description": "Orphanet disease classifications",
+      "items": {
+        "type": "object",
+        "properties": {
+          "classification_id": {"type": "integer"},
+          "classification_name": {"type": "string"},
+          "parent_orpha_code": {"type": "integer"}
+        }
+      }
+    }
+  },
+  "required": ["orpha_code", "name"],
+  "$defs": {
+    "geneAssociation": {
+      "type": "object",
+      "description": "Gene-disease association from Product 6",
+      "properties": {
+        "gene_id": {
+          "type": "integer",
+          "description": "Internal gene ID"
+        },
+        "symbol": {
+          "type": "string",
+          "description": "HGNC gene symbol"
+        },
+        "name": {
+          "type": "string",
+          "description": "Full gene name"
+        },
+        "hgnc_id": {
+          "type": "integer",
+          "description": "HGNC ID number"
+        },
+        "gene_locus": {
+          "type": "string",
+          "description": "Chromosomal location",
+          "examples": ["15q21.1", "7q31.2"]
+        },
+        "association_type": {
+          "type": "object",
+          "properties": {
+            "id": {"type": "integer"},
+            "name": {
+              "type": "string",
+              "enum": [
+                "Disease-causing germline mutation(s) in",
+                "Disease-causing germline mutation(s) (loss of function) in",
+                "Disease-causing germline mutation(s) (gain of function) in",
+                "Disease-causing somatic mutation(s) in",
+                "Major susceptibility factor in",
+                "Modifying germline mutation in",
+                "Role in the phenotype of",
+                "Part of a fusion gene in",
+                "Candidate gene tested in",
+                "Biomarker tested in"
+              ]
+            }
+          }
+        },
+        "association_status": {
+          "type": "object",
+          "properties": {
+            "id": {"type": "integer"},
+            "name": {
+              "type": "string",
+              "enum": ["Assessed", "Not yet assessed"]
+            }
+          }
+        },
+        "source_of_validation": {
+          "type": "string",
+          "description": "PMID or other validation source"
+        }
+      },
+      "required": ["symbol", "association_type"]
+    },
+    "phenotypeAnnotation": {
+      "type": "object",
+      "description": "HPO phenotype annotation from Product 4",
+      "properties": {
+        "hpo_id": {
+          "type": "string",
+          "description": "HPO term identifier",
+          "pattern": "^HP:[0-9]{7}$"
+        },
+        "hpo_term": {
+          "type": "string",
+          "description": "HPO term name"
+        },
+        "frequency": {
+          "type": "object",
+          "description": "Phenotype frequency",
+          "properties": {
+            "id": {"type": "integer"},
+            "name": {
+              "type": "string",
+              "enum": ["Obligate (100%)", "Very frequent (99-80%)", "Frequent (79-30%)", "Occasional (29-5%)", "Very rare (<4-1%)", "Excluded (0%)"]
+            }
+          }
+        },
+        "diagnostic_criterion": {
+          "type": "boolean",
+          "description": "Whether phenotype is diagnostic"
+        }
+      },
+      "required": ["hpo_id"]
+    },
+    "epidemiologyRecord": {
+      "type": "object",
+      "description": "Epidemiological data from Product 9",
+      "properties": {
+        "prevalence_type": {
+          "type": "string",
+          "enum": ["Point prevalence", "Birth prevalence", "Lifetime prevalence", "Incidence", "Cases/families"]
+        },
+        "prevalence_qualification": {
+          "type": "string",
+          "enum": ["Mean", "Range", "Class only", "Value and class", "Case"]
+        },
+        "prevalence_class": {
+          "type": "string",
+          "description": "Categorical prevalence",
+          "examples": [">1 / 1000", "1-5 / 10 000", "<1 / 1 000 000", "Unknown"]
+        },
+        "val_moy": {
+          "type": "number",
+          "description": "Mean prevalence value (per 100,000)"
+        },
+        "prevalence_geographic": {
+          "type": "string",
+          "description": "Geographic scope",
+          "examples": ["Worldwide", "Europe", "United States"]
+        },
+        "validation_status": {
+          "type": "string",
+          "enum": ["Validated", "Not yet validated"]
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

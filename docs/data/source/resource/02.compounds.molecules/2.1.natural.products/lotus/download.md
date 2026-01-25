@@ -222,6 +222,29 @@ zcat lotus.json.gz | jq '.[0] | keys'
 zcat lotus.json.gz | jq '.[1000:1010]'
 ```
 
+## Dataset Versions
+
+| Version | Release Date | Size | Status |
+|---------|--------------|------|--------|
+| LOTUS 2025 | 2025-11-20 | ~1.2 GB | Current |
+| LOTUS 1.0 | 2021-02-28 | ~800 MB | Archived |
+
+### Version Notes
+
+LOTUS contains 750,000+ referenced structure-organism pairs:
+- Data hosted on Wikidata with community curation
+- Mirrored at lotus.naturalproducts.net (being phased out)
+- Available under CC0 license for unrestricted use
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | `https://query.wikidata.org/sparql` |
+| Rate Limit | Subject to Wikidata limits |
+| Auth Required | No |
+| Documentation | https://www.wikidata.org/wiki/Wikidata:SPARQL_query_service |
+
 ## Update Schedule
 
 | Release | Frequency |

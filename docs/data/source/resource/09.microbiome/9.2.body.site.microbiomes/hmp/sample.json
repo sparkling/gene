@@ -1,0 +1,64 @@
+[
+  {
+    "sample_id": "SRS011084",
+    "rand_subject_id": "HMP_SUBJ_001",
+    "fma_body_site": "UBERON:0009471",
+    "body_site": "Tongue dorsum",
+    "supersite": "Oral",
+    "collection_date": "2010-03-15",
+    "visit_number": 1,
+    "study": "HMP1",
+    "mixs": {
+      "biome": "ENVO:00002030",
+      "body_product": "UBERON:0000165",
+      "env_package": "human-oral",
+      "geo_loc_name": "USA: Missouri",
+      "lat_lon": "38.6270 -90.1994",
+      "material": "oral mucosa"
+    },
+    "sequence_data": {
+      "seq_type": "16S",
+      "format": "fastq",
+      "variable_region": "V3-V5",
+      "seq_model": "Roche 454"
+    },
+    "subtype": "tongue_swab",
+    "tags": ["HMP1", "oral", "healthy"]
+  },
+  {
+    "sample_id": "SRS024578",
+    "rand_subject_id": "HMP_SUBJ_045",
+    "fma_body_site": "UBERON:0001707",
+    "body_site": "Anterior nares",
+    "supersite": "Airways",
+    "collection_date": "2010-05-22",
+    "visit_number": 2,
+    "study": "HMP1",
+    "mixs": {
+      "biome": "ENVO:00002030",
+      "env_package": "human-associated",
+      "geo_loc_name": "USA: Texas"
+    },
+    "sequence_data": {
+      "seq_type": "WGS",
+      "format": "fastq",
+      "seq_model": "Illumina HiSeq"
+    },
+    "tags": ["HMP1", "nasal", "healthy"]
+  },
+  {
+    "sample_id": "SRS098765",
+    "rand_subject_id": "HMP_SUBJ_112",
+    "fma_body_site": "UBERON:0016485",
+    "body_site": "Supragingival plaque",
+    "supersite": "Oral",
+    "collection_date": "2011-01-10",
+    "study": "HMP1",
+    "sequence_data": {
+      "seq_type": "16S",
+      "format": "fastq",
+      "variable_region": "V1-V3"
+    },
+    "tags": ["HMP1", "oral", "plaque", "healthy"]
+  }
+]

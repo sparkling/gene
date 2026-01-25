@@ -1,19 +1,21 @@
 ---
 id: dr.dukes
 title: "Dr. Duke's Phytochemical and Ethnobotanical Databases"
-type: data-source
-category: compounds
-subcategory: natural-products
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 2
-last_updated: 2026-01-23
 status: active
-tags: [phytochemicals, ethnobotany, medicinal-plants, traditional-medicine, usda]
+category: compounds.molecules
+subcategory: natural.products
+tags:
+  - phytochemicals
+  - ethnobotany
+  - medicinal-plants
+  - traditional-medicine
+  - usda
 ---
 
 # Dr. Duke's Phytochemical and Ethnobotanical Databases
-
-**Category:** [Compounds & Molecules](../../_index.md) > [Natural Products](../_index.md)
 
 ## Overview
 
@@ -69,13 +71,12 @@ The data spans from 1992-2016 and represents one of the most comprehensive colle
 | Ethnobotany | Traditional uses by culture and region |
 | Toxicity | LD50 values and safety data |
 
-## License
+## Limitations
 
-| Aspect | Value |
-|--------|-------|
-| License | CC0 (Public Domain) |
-| Commercial Use | Yes |
-| Attribution Required | No |
+- Data spans 1992-2016 only (archived, no longer updated)
+- Historical compound names may not match modern nomenclature
+- Limited standardization of traditional use descriptions
+- Concentration data quality varies by source
 
 ## Related Resources
 
@@ -85,7 +86,9 @@ The data spans from 1992-2016 and represents one of the most comprehensive colle
 
 ## See Also
 
-- [Schema Documentation](./schema.md)
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [License Terms](./license.md) - Usage rights and restrictions
 
 ## References
 

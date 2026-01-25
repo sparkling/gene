@@ -1,0 +1,241 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "gdc-tcga-schema.json",
+  "title": "GDC/TCGA Cancer Genomics Record",
+  "description": "JSON Schema for NCI Genomic Data Commons (GDC) and The Cancer Genome Atlas (TCGA) data. Contains somatic mutations, gene expression, copy number, methylation, and clinical data for 33 cancer types across 11,000+ patients with multi-platform genomic profiling.",
+  "type": "object",
+  "properties": {
+    "case_id": {
+      "type": "string",
+      "description": "GDC unique case identifier (UUID)",
+      "format": "uuid",
+      "examples": ["1f601832-eee3-48fb-acf5-80c4a454f26e"]
+    },
+    "submitter_id": {
+      "type": "string",
+      "description": "TCGA barcode for patient/sample",
+      "pattern": "^TCGA-[A-Z0-9]{2}-[A-Z0-9]{4}(-[0-9]{2}[A-Z]?(-[0-9]{2}[A-Z]?(-[A-Z0-9]{4}(-[0-9]{2})?)?)?)?$",
+      "examples": ["TCGA-A1-A0SB", "TCGA-A1-A0SB-01A-11D-A142-09"]
+    },
+    "project_id": {
+      "type": "string",
+      "description": "GDC project identifier",
+      "pattern": "^TCGA-[A-Z]{2,4}$",
+      "examples": ["TCGA-BRCA", "TCGA-LUAD", "TCGA-COAD"]
+    },
+    "primary_site": {
+      "type": "string",
+      "description": "Anatomic site of primary tumor",
+      "examples": ["Breast", "Lung", "Colon", "Brain"]
+    },
+    "disease_type": {
+      "type": "string",
+      "description": "Cancer type classification",
+      "examples": ["Ductal and Lobular Neoplasms", "Adenomas and Adenocarcinomas"]
+    },
+    "sample": {
+      "type": ["object", "null"],
+      "description": "Sample information",
+      "properties": {
+        "sample_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "sample_type": {
+          "type": "string",
+          "enum": ["Primary Tumor", "Recurrent Tumor", "Metastatic", "Blood Derived Normal", "Solid Tissue Normal", "Primary Blood Derived Cancer - Peripheral Blood", "Additional - New Primary", "Additional Metastatic"]
+        },
+        "sample_type_id": {
+          "type": "string",
+          "description": "Two-digit sample type code",
+          "pattern": "^[0-9]{2}$",
+          "examples": ["01", "02", "10", "11"]
+        },
+        "tissue_type": {
+          "type": "string",
+          "enum": ["Tumor", "Normal", "Not Reported"]
+        },
+        "tumor_descriptor": {
+          "type": "string",
+          "enum": ["Primary", "Metastatic", "Recurrence", "Not Reported"]
+        },
+        "preservation_method": {
+          "type": "string",
+          "enum": ["FFPE", "Frozen", "OCT"]
+        }
+      }
+    },
+    "mutation": {
+      "type": ["object", "null"],
+      "description": "Somatic mutation from MAF file",
+      "properties": {
+        "hugo_symbol": {
+          "type": "string",
+          "description": "HGNC gene symbol"
+        },
+        "entrez_gene_id": {
+          "type": "integer",
+          "description": "NCBI Entrez Gene ID"
+        },
+        "chromosome": {
+          "type": "string",
+          "description": "Chromosome",
+          "enum": ["chr1", "chr2", "chr3", "chr4", "chr5", "chr6", "chr7", "chr8", "chr9", "chr10", "chr11", "chr12", "chr13", "chr14", "chr15", "chr16", "chr17", "chr18", "chr19", "chr20", "chr21", "chr22", "chrX", "chrY", "chrM"]
+        },
+        "start_position": {
+          "type": "integer",
+          "description": "Mutation start position (GRCh38)"
+        },
+        "end_position": {
+          "type": "integer",
+          "description": "Mutation end position (GRCh38)"
+        },
+        "reference_allele": {
+          "type": "string",
+          "description": "Reference allele"
+        },
+        "tumor_seq_allele2": {
+          "type": "string",
+          "description": "Tumor alternate allele"
+        },
+        "variant_classification": {
+          "type": "string",
+          "description": "Functional classification",
+          "enum": ["Missense_Mutation", "Nonsense_Mutation", "Frame_Shift_Del", "Frame_Shift_Ins", "In_Frame_Del", "In_Frame_Ins", "Splice_Site", "Splice_Region", "Silent", "3'UTR", "5'UTR", "Intron", "IGR", "RNA", "Translation_Start_Site", "Nonstop_Mutation"]
+        },
+        "variant_type": {
+          "type": "string",
+          "description": "Variant type",
+          "enum": ["SNP", "DNP", "TNP", "ONP", "INS", "DEL", "Complex"]
+        },
+        "dbsnp_rs": {
+          "type": "string",
+          "description": "dbSNP rsID",
+          "pattern": "^rs[0-9]+$"
+        },
+        "hgvsc": {
+          "type": "string",
+          "description": "HGVS coding notation"
+        },
+        "hgvsp": {
+          "type": "string",
+          "description": "HGVS protein notation"
+        },
+        "hgvsp_short": {
+          "type": "string",
+          "description": "Short protein change",
+          "examples": ["p.V600E", "p.R132H"]
+        },
+        "transcript_id": {
+          "type": "string",
+          "description": "Ensembl transcript ID",
+          "pattern": "^ENST[0-9]{11}$"
+        },
+        "t_depth": {
+          "type": "integer",
+          "description": "Tumor read depth"
+        },
+        "t_ref_count": {
+          "type": "integer",
+          "description": "Tumor reference allele count"
+        },
+        "t_alt_count": {
+          "type": "integer",
+          "description": "Tumor alternate allele count"
+        },
+        "n_depth": {
+          "type": "integer",
+          "description": "Normal read depth"
+        },
+        "tumor_vaf": {
+          "type": "number",
+          "description": "Tumor variant allele frequency",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "callers": {
+          "type": "array",
+          "description": "Variant callers that detected mutation",
+          "items": {
+            "type": "string",
+            "enum": ["MuTect2", "VarScan2", "MuSE", "Pindel", "SomaticSniper"]
+          }
+        }
+      }
+    },
+    "clinical": {
+      "type": ["object", "null"],
+      "description": "Clinical and demographic data",
+      "properties": {
+        "age_at_diagnosis": {
+          "type": "integer",
+          "description": "Age at diagnosis in days"
+        },
+        "gender": {
+          "type": "string",
+          "enum": ["male", "female", "unknown", "unspecified", "not reported"]
+        },
+        "race": {
+          "type": "string"
+        },
+        "ethnicity": {
+          "type": "string",
+          "enum": ["hispanic or latino", "not hispanic or latino", "not reported", "unknown"]
+        },
+        "vital_status": {
+          "type": "string",
+          "enum": ["Alive", "Dead", "Not Reported"]
+        },
+        "days_to_death": {
+          "type": "integer"
+        },
+        "days_to_last_follow_up": {
+          "type": "integer"
+        },
+        "tumor_stage": {
+          "type": "string",
+          "description": "AJCC/UICC tumor stage"
+        },
+        "tumor_grade": {
+          "type": "string"
+        }
+      }
+    },
+    "file": {
+      "type": ["object", "null"],
+      "description": "Data file information",
+      "properties": {
+        "file_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "file_name": {
+          "type": "string"
+        },
+        "data_type": {
+          "type": "string",
+          "description": "Type of data",
+          "enum": ["Aligned Reads", "Gene Expression Quantification", "Copy Number Segment", "Methylation Beta Value", "Masked Somatic Mutation", "Annotated Somatic Mutation", "Aggregated Somatic Mutation", "miRNA Expression Quantification", "Isoform Expression Quantification"]
+        },
+        "experimental_strategy": {
+          "type": "string",
+          "enum": ["WXS", "WGS", "RNA-Seq", "miRNA-Seq", "Methylation Array", "Genotyping Array", "Targeted Sequencing"]
+        },
+        "data_format": {
+          "type": "string",
+          "enum": ["BAM", "VCF", "MAF", "TSV", "TXT"]
+        },
+        "access": {
+          "type": "string",
+          "enum": ["open", "controlled"]
+        },
+        "platform": {
+          "type": "string",
+          "description": "Sequencing/array platform"
+        }
+      }
+    }
+  },
+  "required": ["case_id", "project_id"],
+  "additionalProperties": false
+}

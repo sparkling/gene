@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "gutmdisorder-schema.json",
+  "title": "gutMDisorder Association Record",
+  "description": "JSON Schema for gutMDisorder microbe-disease association entries.",
+  "type": "object",
+  "properties": {
+    "association_id": { "type": "integer", "description": "Unique association identifier" },
+    "microbe": {
+      "type": "object",
+      "properties": {
+        "taxid": { "type": "integer", "description": "NCBI Taxonomy ID" },
+        "name": { "type": "string", "description": "Scientific name" },
+        "rank": { "type": "string", "enum": ["species", "genus", "family", "order", "phylum"] },
+        "phylum": { "type": "string" },
+        "gram_stain": { "type": "string", "enum": ["positive", "negative"] }
+      },
+      "required": ["taxid", "name", "rank"]
+    },
+    "disease": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "Disease name" },
+        "icd10": { "type": "string", "description": "ICD-10 code" },
+        "mesh_id": { "type": "string", "pattern": "^D[0-9]+$", "description": "MeSH identifier" },
+        "doid": { "type": "string", "description": "Disease Ontology ID" },
+        "category": { "type": "string", "description": "Disease category" }
+      },
+      "required": ["name", "category"]
+    },
+    "association": {
+      "type": "object",
+      "properties": {
+        "direction": { "type": "string", "enum": ["increased", "decreased", "altered"] },
+        "sample_size": { "type": "integer", "minimum": 1 },
+        "cases": { "type": "integer" },
+        "controls": { "type": "integer" },
+        "effect_size": { "type": "number" },
+        "p_value": { "type": "number", "minimum": 0, "maximum": 1 }
+      },
+      "required": ["direction"]
+    },
+    "evidence": {
+      "type": "object",
+      "properties": {
+        "pmid": { "type": "integer", "description": "PubMed ID" },
+        "study_design": { "type": "string", "enum": ["case-control", "cohort", "cross-sectional", "longitudinal", "meta-analysis", "RCT"] },
+        "method": { "type": "string", "enum": ["16S", "WGS", "culture", "other"] }
+      },
+      "required": ["pmid"]
+    }
+  },
+  "required": ["association_id", "microbe", "disease", "association", "evidence"],
+  "additionalProperties": true
+}

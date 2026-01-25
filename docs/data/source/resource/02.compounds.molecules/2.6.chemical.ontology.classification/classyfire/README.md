@@ -1,19 +1,21 @@
 ---
 id: classyfire
 title: "ClassyFire - Chemical Taxonomy"
-type: data-source
-category: compounds
-subcategory: chemical-ontology
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 2
-last_updated: 2026-01-23
 status: active
-tags: [classification, taxonomy, chemical-structure, ontology, cheminformatics]
+category: compounds.molecules
+subcategory: chemical.ontology.classification
+tags:
+  - classification
+  - taxonomy
+  - chemical-structure
+  - ontology
+  - cheminformatics
 ---
 
 # ClassyFire - Chemical Taxonomy
-
-**Category:** [Compounds & Molecules](../../_index.md) > [Chemical Ontology & Classification](../_index.md)
 
 ## Overview
 
@@ -81,13 +83,18 @@ ClassyFire is widely used for metabolomics data annotation, chemical database or
 | Homogeneous mixtures | Single phase |
 | Heterogeneous mixtures | Multiple phases |
 
-## License
+## Limitations
 
-| Aspect | Value |
-|--------|-------|
-| License | Free for academic use |
-| Commercial Use | Contact required |
-| Attribution Required | Yes |
+- Commercial use requires contacting database maintainers
+- Classification is purely structural; biological context not considered
+- Complex mixtures and salts may have inconsistent classification
+- API rate limits may affect high-throughput classification
+
+## See Also
+
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [License Terms](./license.md) - Usage rights and restrictions
 
 ## Related Resources
 

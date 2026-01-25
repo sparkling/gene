@@ -86,6 +86,48 @@ bcftools view -h spliceai_scores.raw.snv.hg38.vcf.gz | head
 tabix spliceai_scores.raw.snv.hg38.vcf.gz 1:100000-100100
 ```
 
+## Dataset Versions
+
+### Current Release: v1.3.1
+
+| Property | Value |
+|----------|-------|
+| Version | 1.3.1 |
+| Release Date | 2024-12 |
+| Total Size | ~35 GB (all pre-computed) |
+| SNV Scores | 9 billion positions |
+| Indel Scores | 500M+ variants |
+
+### Version Contents
+
+| Component | Size | Records | Description |
+|-----------|------|---------|-------------|
+| spliceai_scores.raw.snv.hg38.vcf.gz | ~15 GB | 9B | SNVs (GRCh38) |
+| spliceai_scores.raw.snv.hg19.vcf.gz | ~15 GB | 9B | SNVs (GRCh37) |
+| spliceai_scores.raw.indel.hg38.vcf.gz | ~2 GB | 500M | Indels (GRCh38) |
+| spliceai_scores.raw.indel.hg19.vcf.gz | ~2 GB | 500M | Indels (GRCh37) |
+
+### Score Thresholds
+
+| Cutoff | Sensitivity | Precision | Use Case |
+|--------|-------------|-----------|----------|
+| 0.2 | High recall | Lower | Screening |
+| 0.5 | Balanced | Balanced | Recommended |
+| 0.8 | Lower | High precision | Confident calls |
+
+---
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | https://spliceailookup-api.broadinstitute.org/ |
+| Rate Limit | 1 req/sec recommended |
+| Auth Required | No |
+| Response Format | JSON |
+
+---
+
 ## Update Schedule
 
 | Release | Frequency |

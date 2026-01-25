@@ -1,14 +1,18 @@
 ---
 id: etcm
 title: "ETCM - Encyclopedia of Traditional Chinese Medicine"
-type: data-source
-category: traditional-medicine
-subcategory: traditional-chinese-medicine
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 2
-last_updated: 2026-01-23
 status: active
-tags: [tcm, traditional-chinese-medicine, herb, formula, pharmacology]
+category: traditional.medicine
+subcategory: traditional.chinese.medicine
+tags:
+  - tcm
+  - traditional-chinese-medicine
+  - herb
+  - formula
+  - pharmacology
 ---
 
 # ETCM - Encyclopedia of Traditional Chinese Medicine

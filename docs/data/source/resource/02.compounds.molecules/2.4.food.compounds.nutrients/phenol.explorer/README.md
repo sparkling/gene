@@ -1,19 +1,21 @@
 ---
 id: phenol.explorer
 title: "Phenol-Explorer - Polyphenol Database"
-type: data-source
-category: compounds
-subcategory: food-compounds
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 2
-last_updated: 2026-01-23
 status: active
-tags: [polyphenols, flavonoids, food-composition, bioavailability, metabolism]
+category: compounds.molecules
+subcategory: food.compounds.nutrients
+tags:
+  - polyphenols
+  - flavonoids
+  - food-composition
+  - bioavailability
+  - metabolism
 ---
 
 # Phenol-Explorer - Polyphenol Database
-
-**Category:** [Compounds & Molecules](../../_index.md) > [Food Compounds & Nutrients](../_index.md)
 
 ## Overview
 
@@ -70,13 +72,18 @@ Phenol-Explorer also includes extensive data on polyphenol metabolites found in 
 | Lignans | Secoisolariciresinol, matairesinol |
 | Other Polyphenols | Ellagic acid, curcumin |
 
-## License
+## Limitations
 
-| Aspect | Value |
-|--------|-------|
-| License | Free for academic use |
-| Commercial Use | Contact required |
-| Attribution Required | Yes |
+- Commercial use requires contacting database maintainers
+- Food composition varies by cultivar, season, and processing
+- Metabolite data limited to available pharmacokinetic studies
+- Not all analytical methods are directly comparable
+
+## See Also
+
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [License Terms](./license.md) - Usage rights and restrictions
 
 ## Related Resources
 

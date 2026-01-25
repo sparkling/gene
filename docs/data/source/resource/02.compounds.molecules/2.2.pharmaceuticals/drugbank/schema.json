@@ -1,0 +1,181 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "drugbank-schema.json",
+  "title": "DrugBank Drug Record",
+  "description": "JSON Schema for DrugBank drug records. Comprehensive drug data with 16,000+ entries including chemical properties, pharmacology, targets, 380,000+ drug-drug interactions, and mechanisms of action.",
+  "type": "object",
+  "properties": {
+    "drugbank_id": {
+      "type": "string",
+      "description": "DrugBank identifier",
+      "pattern": "^DB[0-9]{5}$",
+      "examples": ["DB00945", "DB00001"]
+    },
+    "name": {
+      "type": "string",
+      "description": "Drug name",
+      "minLength": 1
+    },
+    "type": {
+      "type": "string",
+      "description": "Drug type",
+      "enum": ["small molecule", "biotech"]
+    },
+    "description": {
+      "type": "string",
+      "description": "Drug description"
+    },
+    "cas_number": {
+      "type": "string",
+      "description": "CAS registry number"
+    },
+    "unii": {
+      "type": "string",
+      "description": "FDA UNII identifier"
+    },
+    "state": {
+      "type": "string",
+      "description": "Physical state",
+      "enum": ["solid", "liquid", "gas"]
+    },
+    "groups": {
+      "type": "array",
+      "description": "Drug development groups",
+      "items": {
+        "type": "string",
+        "enum": ["approved", "investigational", "experimental", "withdrawn", "nutraceutical", "vet_approved"]
+      }
+    },
+    "indication": {
+      "type": "string",
+      "description": "Therapeutic indications"
+    },
+    "pharmacodynamics": {
+      "type": "string",
+      "description": "PD description"
+    },
+    "mechanism_of_action": {
+      "type": "string",
+      "description": "MOA description"
+    },
+    "toxicity": {
+      "type": "string",
+      "description": "Toxicity information"
+    },
+    "metabolism": {
+      "type": "string",
+      "description": "Metabolic pathways"
+    },
+    "absorption": {
+      "type": "string",
+      "description": "Absorption profile"
+    },
+    "half_life": {
+      "type": "string",
+      "description": "Elimination half-life"
+    },
+    "protein_binding": {
+      "type": "string",
+      "description": "Protein binding percentage"
+    },
+    "chemical_properties": {
+      "$ref": "#/$defs/chemicalProperties"
+    },
+    "targets": {
+      "type": "array",
+      "description": "Drug targets",
+      "items": {
+        "$ref": "#/$defs/drugTarget"
+      }
+    },
+    "interactions": {
+      "type": "array",
+      "description": "Drug-drug interactions",
+      "items": {
+        "$ref": "#/$defs/drugInteraction"
+      }
+    },
+    "pathways": {
+      "type": "array",
+      "description": "Associated pathways",
+      "items": {
+        "$ref": "#/$defs/pathway"
+      }
+    }
+  },
+  "required": ["drugbank_id", "name", "groups"],
+  "$defs": {
+    "chemicalProperties": {
+      "type": "object",
+      "description": "Chemical and physical properties",
+      "properties": {
+        "molecular_formula": { "type": "string" },
+        "molecular_weight": { "type": "number" },
+        "monoisotopic_mass": { "type": "number" },
+        "smiles": { "type": "string" },
+        "inchi": { "type": "string" },
+        "inchikey": {
+          "type": "string",
+          "pattern": "^[A-Z]{14}-[A-Z]{10}-[A-Z]$"
+        },
+        "logp": { "type": "number" },
+        "pka": { "type": "string" }
+      }
+    },
+    "drugTarget": {
+      "type": "object",
+      "description": "Drug target relationship",
+      "properties": {
+        "target_id": { "type": "string" },
+        "name": { "type": "string" },
+        "organism": { "type": "string" },
+        "gene_name": { "type": "string" },
+        "uniprot_id": {
+          "type": "string",
+          "pattern": "^[A-Z][0-9][A-Z0-9]{3}[0-9]$"
+        },
+        "actions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["inhibitor", "agonist", "antagonist", "substrate", "inducer", "binder"]
+          }
+        },
+        "known_action": { "type": "string" },
+        "ki": { "type": "number" },
+        "kd": { "type": "number" },
+        "ic50": { "type": "number" },
+        "ec50": { "type": "number" }
+      },
+      "required": ["name", "actions"]
+    },
+    "drugInteraction": {
+      "type": "object",
+      "description": "Drug-drug interaction",
+      "properties": {
+        "interacting_drug_id": {
+          "type": "string",
+          "pattern": "^DB[0-9]{5}$"
+        },
+        "interacting_drug_name": { "type": "string" },
+        "description": { "type": "string" },
+        "severity": {
+          "type": "string",
+          "enum": ["major", "moderate", "minor"]
+        }
+      },
+      "required": ["interacting_drug_id", "description"]
+    },
+    "pathway": {
+      "type": "object",
+      "description": "Metabolic or signaling pathway",
+      "properties": {
+        "smpdb_id": { "type": "string" },
+        "name": { "type": "string" },
+        "category": { "type": "string" }
+      },
+      "required": ["smpdb_id", "name"]
+    }
+  },
+  "additionalProperties": false
+}

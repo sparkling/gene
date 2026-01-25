@@ -1,0 +1,270 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "pharmgkb-schema.json",
+  "title": "PharmGKB Pharmacogenomics Record",
+  "description": "JSON Schema for PharmGKB pharmacogenomics data. Contains gene-drug-phenotype relationships including clinical annotations, drug labels, dosing guidelines from CPIC/DPWG, variant annotations, and star allele haplotype definitions for pharmacogenomic genes.",
+  "type": "object",
+  "properties": {
+    "pgkb_id": {
+      "type": "string",
+      "description": "PharmGKB accession identifier",
+      "pattern": "^PA[0-9]+$",
+      "examples": ["PA126", "PA443560"]
+    },
+    "entity_type": {
+      "type": "string",
+      "description": "Type of PharmGKB entity",
+      "enum": ["Gene", "Drug", "Disease", "Variant", "Haplotype", "ClinicalAnnotation", "DrugLabel", "DosingGuideline", "Pathway"]
+    },
+    "name": {
+      "type": "string",
+      "description": "Entity name"
+    },
+    "gene": {
+      "type": ["object", "null"],
+      "description": "Gene information",
+      "properties": {
+        "pgkb_id": {
+          "type": "string",
+          "pattern": "^PA[0-9]+$"
+        },
+        "symbol": {
+          "type": "string",
+          "description": "HGNC gene symbol"
+        },
+        "ncbi_gene_id": {
+          "type": "string",
+          "description": "NCBI Entrez Gene ID"
+        },
+        "hgnc_id": {
+          "type": "string",
+          "description": "HGNC identifier"
+        },
+        "ensembl_id": {
+          "type": "string",
+          "description": "Ensembl gene ID",
+          "pattern": "^ENSG[0-9]{11}$"
+        },
+        "chromosome": {
+          "type": "string"
+        },
+        "is_vip": {
+          "type": "boolean",
+          "description": "Very Important Pharmacogene"
+        }
+      }
+    },
+    "drug": {
+      "type": ["object", "null"],
+      "description": "Drug information",
+      "properties": {
+        "pgkb_id": {
+          "type": "string",
+          "pattern": "^PA[0-9]+$"
+        },
+        "name": {
+          "type": "string"
+        },
+        "generic_names": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "trade_names": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "drugbank_id": {
+          "type": "string"
+        },
+        "atc_codes": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "rxnorm_id": {
+          "type": "string"
+        }
+      }
+    },
+    "haplotype": {
+      "type": ["object", "null"],
+      "description": "Star allele haplotype definition",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Star allele name",
+          "examples": ["CYP2C9*2", "CYP2D6*4"]
+        },
+        "gene_symbol": {
+          "type": "string"
+        },
+        "function": {
+          "type": "string",
+          "description": "Allele function",
+          "enum": ["Normal function", "Decreased function", "No function", "Increased function", "Uncertain function", "Unknown function"]
+        },
+        "activity_value": {
+          "type": ["number", "null"],
+          "description": "Activity score value"
+        },
+        "defining_variants": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "rsid": {"type": "string", "pattern": "^rs[0-9]+$"},
+              "hgvs": {"type": "string"},
+              "allele": {"type": "string"}
+            }
+          }
+        }
+      }
+    },
+    "diplotype": {
+      "type": ["string", "null"],
+      "description": "Diplotype (two alleles)",
+      "examples": ["CYP2C9*1/*2", "CYP2D6*1/*4"]
+    },
+    "phenotype": {
+      "type": ["string", "null"],
+      "description": "Metabolizer phenotype or drug response phenotype",
+      "examples": ["Poor Metabolizer", "Intermediate Metabolizer", "Normal Metabolizer", "Rapid Metabolizer", "Ultrarapid Metabolizer"]
+    },
+    "phenotype_category": {
+      "type": ["string", "null"],
+      "description": "Disease/phenotype category for clinical annotation"
+    },
+    "clinical_annotation": {
+      "type": ["object", "null"],
+      "description": "Clinical annotation data",
+      "properties": {
+        "annotation_id": {
+          "type": "string"
+        },
+        "level_of_evidence": {
+          "type": "string",
+          "description": "Evidence level",
+          "enum": ["1A", "1B", "2A", "2B", "3", "4"]
+        },
+        "phenotype_categories": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "related_chemicals": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "related_genes": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "variants": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "rsid": {"type": "string"},
+              "alleles": {"type": "string"}
+            }
+          }
+        },
+        "annotation_text": {
+          "type": "string"
+        }
+      }
+    },
+    "dosing_guideline": {
+      "type": ["object", "null"],
+      "description": "Clinical dosing guideline",
+      "properties": {
+        "guideline_id": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string",
+          "description": "Guideline source",
+          "enum": ["CPIC", "DPWG", "FDA", "CPNDS", "RNPGx", "Pro-PGx"]
+        },
+        "recommendation": {
+          "type": "string",
+          "description": "Dosing recommendation text"
+        },
+        "implication": {
+          "type": "string",
+          "description": "Clinical implication"
+        },
+        "strength": {
+          "type": "string",
+          "description": "Recommendation strength",
+          "enum": ["Strong", "Moderate", "Optional"]
+        },
+        "drug": {
+          "type": "string"
+        },
+        "gene": {
+          "type": "string"
+        },
+        "pmid": {
+          "type": "string"
+        }
+      }
+    },
+    "variant_annotation": {
+      "type": ["object", "null"],
+      "description": "Variant-level annotation",
+      "properties": {
+        "rsid": {
+          "type": "string",
+          "pattern": "^rs[0-9]+$"
+        },
+        "chromosome": {
+          "type": "string"
+        },
+        "position": {
+          "type": "integer",
+          "description": "GRCh38 position"
+        },
+        "reference_allele": {
+          "type": "string"
+        },
+        "variant_allele": {
+          "type": "string"
+        },
+        "gene_symbol": {
+          "type": "string"
+        },
+        "annotation_text": {
+          "type": "string"
+        }
+      }
+    },
+    "population_frequency": {
+      "type": ["object", "null"],
+      "description": "Biogeographical group frequencies",
+      "properties": {
+        "African": {"type": "number", "minimum": 0, "maximum": 1},
+        "American": {"type": "number", "minimum": 0, "maximum": 1},
+        "Central_South_Asian": {"type": "number", "minimum": 0, "maximum": 1},
+        "East_Asian": {"type": "number", "minimum": 0, "maximum": 1},
+        "European": {"type": "number", "minimum": 0, "maximum": 1},
+        "Near_Eastern": {"type": "number", "minimum": 0, "maximum": 1},
+        "Oceanian": {"type": "number", "minimum": 0, "maximum": 1}
+      }
+    },
+    "cross_references": {
+      "type": "array",
+      "description": "External database references",
+      "items": {
+        "type": "object",
+        "properties": {
+          "resource": {
+            "type": "string",
+            "enum": ["NCBI Gene", "HGNC", "Ensembl", "OMIM", "UniProt", "DrugBank", "RxNorm", "ChEBI", "PubChem", "ClinVar"]
+          },
+          "id": {"type": "string"}
+        }
+      }
+    }
+  },
+  "required": ["pgkb_id", "entity_type"],
+  "additionalProperties": false
+}

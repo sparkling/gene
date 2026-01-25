@@ -1,0 +1,86 @@
+[
+  {
+    "id": "MED/35922517",
+    "source": "MED",
+    "pmid": "35922517",
+    "pmcid": "PMC9876543",
+    "doi": "10.1038/s41586-022-05087-2",
+    "title": "Single-cell transcriptomics reveals heterogeneity in tumor microenvironment",
+    "authorString": "Smith JA, Chen W, Garcia ML.",
+    "authorList": {
+      "author": [
+        {
+          "fullName": "Smith JA",
+          "firstName": "John",
+          "lastName": "Smith",
+          "authorId": { "type": "ORCID", "value": "0000-0001-2345-6789" },
+          "affiliation": "Harvard Medical School"
+        },
+        {
+          "fullName": "Chen W",
+          "firstName": "Wei",
+          "lastName": "Chen",
+          "affiliation": "Broad Institute"
+        }
+      ]
+    },
+    "journalInfo": {
+      "journal": {
+        "title": "Nature",
+        "isoabbreviation": "Nature",
+        "issn": "0028-0836"
+      },
+      "volume": "608",
+      "issue": "7923",
+      "yearOfPublication": 2022
+    },
+    "abstractText": "Understanding cellular heterogeneity in tumors is crucial for developing targeted therapies...",
+    "pubTypeList": {
+      "pubType": ["Journal Article", "Research Support, N.I.H., Extramural"]
+    },
+    "meshHeadingList": {
+      "meshHeading": [
+        { "descriptorName": "Single-Cell Analysis", "majorTopic_YN": "Y" },
+        { "descriptorName": "Tumor Microenvironment", "majorTopic_YN": "Y" }
+      ]
+    },
+    "keywordList": {
+      "keyword": ["single-cell RNA-seq", "tumor heterogeneity", "cancer immunology"]
+    },
+    "citedByCount": 245,
+    "isOpenAccess": "Y",
+    "inEPMC": "Y",
+    "annotations": {
+      "genes": [
+        { "name": "TP53", "count": 5 },
+        { "name": "BRCA1", "count": 3 }
+      ],
+      "diseases": [
+        { "name": "breast cancer", "count": 12 }
+      ]
+    }
+  },
+  {
+    "id": "PPR/PPR456789",
+    "source": "PPR",
+    "doi": "10.1101/2024.01.15.575123",
+    "title": "Novel CRISPR approach for gene therapy in inherited disorders",
+    "authorString": "Johnson M, Lee S.",
+    "authorList": {
+      "author": [
+        {
+          "fullName": "Johnson M",
+          "firstName": "Michael",
+          "lastName": "Johnson"
+        }
+      ]
+    },
+    "abstractText": "We present a novel CRISPR-based approach for treating inherited disorders...",
+    "pubTypeList": {
+      "pubType": ["Preprint"]
+    },
+    "citedByCount": 15,
+    "isOpenAccess": "Y",
+    "inEPMC": "Y"
+  }
+]

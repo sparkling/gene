@@ -1,0 +1,225 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "1000genomes-schema.json",
+  "title": "1000 Genomes Variant Record",
+  "description": "JSON Schema for 1000 Genomes Project population frequency and genotype data.",
+  "type": "object",
+  "properties": {
+    "CHROM": {
+      "type": "string",
+      "description": "Chromosome identifier.",
+      "enum": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "X", "Y", "MT"]
+    },
+    "POS": {
+      "type": "integer",
+      "description": "1-based genomic position.",
+      "examples": [10177, 69094]
+    },
+    "ID": {
+      "type": "string",
+      "description": "Variant identifier (rsID or structural variant ID).",
+      "examples": ["rs367896724", "esv3585864"]
+    },
+    "REF": {
+      "type": "string",
+      "description": "Reference allele sequence.",
+      "pattern": "^[ACGTN]+$",
+      "examples": ["A", "C", "TAAAC"]
+    },
+    "ALT": {
+      "type": "array",
+      "description": "Alternate allele sequences.",
+      "items": {
+        "type": "string",
+        "pattern": "^[ACGTN*<>\\[\\]]+$"
+      },
+      "examples": [["AC"], ["G", "T"], ["<CN0>"]]
+    },
+    "QUAL": {
+      "type": "number",
+      "description": "Phred-scaled quality score.",
+      "minimum": 0,
+      "examples": [100, 999]
+    },
+    "FILTER": {
+      "type": "string",
+      "description": "Filter status.",
+      "enum": ["PASS", ".", "LowQual", "VQSRTrancheSNP99.90to100.00"]
+    },
+    "VT": {
+      "type": "string",
+      "description": "Variant type.",
+      "enum": ["SNP", "INDEL", "SV", "MNP"]
+    },
+    "AF": {
+      "type": "number",
+      "description": "Global allele frequency.",
+      "minimum": 0,
+      "maximum": 1,
+      "examples": [0.425319, 0.01, 0.0001]
+    },
+    "AC": {
+      "type": "integer",
+      "description": "Allele count in genotypes.",
+      "minimum": 0,
+      "examples": [2130, 50, 1]
+    },
+    "AN": {
+      "type": "integer",
+      "description": "Total number of alleles in called genotypes.",
+      "minimum": 0,
+      "examples": [5008, 5000]
+    },
+    "NS": {
+      "type": "integer",
+      "description": "Number of samples with data.",
+      "minimum": 0,
+      "examples": [2504, 2500]
+    },
+    "DP": {
+      "type": "integer",
+      "description": "Total read depth.",
+      "minimum": 0,
+      "examples": [18000, 50000]
+    },
+    "EAS_AF": {
+      "type": "number",
+      "description": "Allele frequency in East Asian samples.",
+      "minimum": 0,
+      "maximum": 1,
+      "examples": [0.3363, 0.01]
+    },
+    "EUR_AF": {
+      "type": "number",
+      "description": "Allele frequency in European samples.",
+      "minimum": 0,
+      "maximum": 1,
+      "examples": [0.4056, 0.02]
+    },
+    "AFR_AF": {
+      "type": "number",
+      "description": "Allele frequency in African samples.",
+      "minimum": 0,
+      "maximum": 1,
+      "examples": [0.4909, 0.005]
+    },
+    "AMR_AF": {
+      "type": "number",
+      "description": "Allele frequency in Ad Mixed American samples.",
+      "minimum": 0,
+      "maximum": 1,
+      "examples": [0.3602, 0.015]
+    },
+    "SAS_AF": {
+      "type": "number",
+      "description": "Allele frequency in South Asian samples.",
+      "minimum": 0,
+      "maximum": 1,
+      "examples": [0.4949, 0.008]
+    },
+    "EX_TARGET": {
+      "type": "boolean",
+      "description": "Whether variant is in exome target region."
+    },
+    "MULTI_ALLELIC": {
+      "type": "boolean",
+      "description": "Whether site is multi-allelic."
+    },
+    "AA": {
+      "type": "string",
+      "description": "Ancestral allele.",
+      "pattern": "^[ACGTN.]+$",
+      "examples": ["G", "A", "."]
+    },
+    "SVTYPE": {
+      "type": "string",
+      "description": "Structural variant type.",
+      "enum": ["DEL", "DUP", "INV", "INS", "CNV", "BND"]
+    },
+    "SVLEN": {
+      "type": "integer",
+      "description": "Structural variant length.",
+      "examples": [-5000, 1000, -150000]
+    },
+    "END": {
+      "type": "integer",
+      "description": "End position of the variant.",
+      "examples": [15177, 100000]
+    },
+    "CIPOS": {
+      "type": "array",
+      "description": "Confidence interval around POS.",
+      "items": { "type": "integer" },
+      "minItems": 2,
+      "maxItems": 2,
+      "examples": [[-10, 10], [-50, 50]]
+    },
+    "CIEND": {
+      "type": "array",
+      "description": "Confidence interval around END.",
+      "items": { "type": "integer" },
+      "minItems": 2,
+      "maxItems": 2,
+      "examples": [[-10, 10], [-100, 100]]
+    },
+    "sample_genotypes": {
+      "type": "object",
+      "description": "Per-sample genotype data (sample_id: genotype).",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "GT": {
+            "type": "string",
+            "description": "Genotype.",
+            "examples": ["0|0", "0|1", "1|1"]
+          },
+          "DS": {
+            "type": "number",
+            "description": "Dosage.",
+            "minimum": 0,
+            "maximum": 2
+          },
+          "GP": {
+            "type": "array",
+            "description": "Genotype probabilities.",
+            "items": { "type": "number" }
+          }
+        }
+      }
+    },
+    "population_samples": {
+      "type": "object",
+      "description": "Sample counts by population.",
+      "properties": {
+        "ACB": { "type": "integer", "description": "African Caribbeans in Barbados" },
+        "ASW": { "type": "integer", "description": "Americans of African Ancestry in SW USA" },
+        "BEB": { "type": "integer", "description": "Bengali from Bangladesh" },
+        "CDX": { "type": "integer", "description": "Chinese Dai in Xishuangbanna" },
+        "CEU": { "type": "integer", "description": "Utah Residents with Northern European Ancestry" },
+        "CHB": { "type": "integer", "description": "Han Chinese in Beijing" },
+        "CHS": { "type": "integer", "description": "Southern Han Chinese" },
+        "CLM": { "type": "integer", "description": "Colombians from Medellin" },
+        "ESN": { "type": "integer", "description": "Esan in Nigeria" },
+        "FIN": { "type": "integer", "description": "Finnish in Finland" },
+        "GBR": { "type": "integer", "description": "British in England and Scotland" },
+        "GIH": { "type": "integer", "description": "Gujarati Indian from Houston" },
+        "GWD": { "type": "integer", "description": "Gambian in Western Divisions" },
+        "IBS": { "type": "integer", "description": "Iberian Population in Spain" },
+        "ITU": { "type": "integer", "description": "Indian Telugu from the UK" },
+        "JPT": { "type": "integer", "description": "Japanese in Tokyo" },
+        "KHV": { "type": "integer", "description": "Kinh in Ho Chi Minh City" },
+        "LWK": { "type": "integer", "description": "Luhya in Webuye" },
+        "MSL": { "type": "integer", "description": "Mende in Sierra Leone" },
+        "MXL": { "type": "integer", "description": "Mexican Ancestry from Los Angeles" },
+        "PEL": { "type": "integer", "description": "Peruvians from Lima" },
+        "PJL": { "type": "integer", "description": "Punjabi from Lahore" },
+        "PUR": { "type": "integer", "description": "Puerto Ricans from Puerto Rico" },
+        "STU": { "type": "integer", "description": "Sri Lankan Tamil from the UK" },
+        "TSI": { "type": "integer", "description": "Toscani in Italia" },
+        "YRI": { "type": "integer", "description": "Yoruba in Ibadan" }
+      }
+    }
+  },
+  "required": ["CHROM", "POS", "REF", "ALT", "AF"],
+  "additionalProperties": true
+}

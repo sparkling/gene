@@ -1,0 +1,166 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "npact-schema.json",
+  "title": "NPACT Record",
+  "description": "JSON Schema for NPACT (Naturally occurring Plant-based Anti-cancer Compound-activity-Target) data. Focuses on experimentally validated anti-cancer compounds from plant sources.",
+  "type": "object",
+  "properties": {
+    "npact_id": {
+      "type": "string",
+      "description": "NPACT compound identifier.",
+      "pattern": "^NPACT[0-9]+$",
+      "examples": ["NPACT001234"]
+    },
+    "compound_name": {
+      "type": "string",
+      "description": "Compound name."
+    },
+    "identifiers": {
+      "type": "object",
+      "description": "External identifiers.",
+      "properties": {
+        "pubchem_cid": { "type": "integer" },
+        "cas_number": { "type": "string" },
+        "chembl_id": { "type": "string" }
+      }
+    },
+    "structure": {
+      "type": "object",
+      "description": "Chemical structure data.",
+      "properties": {
+        "smiles": { "type": "string" },
+        "inchi": { "type": "string" },
+        "molecular_formula": { "type": "string" },
+        "molecular_weight": { "type": "number" }
+      }
+    },
+    "physicochemical_properties": {
+      "type": "object",
+      "description": "Physicochemical properties.",
+      "properties": {
+        "logP": { "type": "number" },
+        "tpsa": { "type": "number" },
+        "hydrogen_bond_donors": { "type": "integer" },
+        "hydrogen_bond_acceptors": { "type": "integer" },
+        "rotatable_bonds": { "type": "integer" }
+      }
+    },
+    "drug_likeness": {
+      "type": "object",
+      "description": "Drug-likeness assessment.",
+      "properties": {
+        "lipinski_violations": { "type": "integer" },
+        "bioavailability_score": { "type": "number" }
+      }
+    },
+    "source_plants": {
+      "type": "array",
+      "description": "Plant source identifiers.",
+      "items": { "type": "string" }
+    },
+    "activity_data": {
+      "type": "array",
+      "description": "Bioactivity records.",
+      "items": { "$ref": "#/$defs/activityRecord" }
+    },
+    "target_proteins": {
+      "type": "array",
+      "description": "Target protein identifiers.",
+      "items": { "type": "string" }
+    },
+    "plant_source": {
+      "type": "object",
+      "description": "Plant source entity structure.",
+      "properties": {
+        "plant_id": { "type": "string" },
+        "botanical_name": { "type": "string" },
+        "family": { "type": "string" },
+        "common_names": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "traditional_systems": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "plant_parts_used": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "cell_line": {
+      "type": "object",
+      "description": "Cancer cell line entity structure.",
+      "properties": {
+        "cell_line_name": { "type": "string" },
+        "cancer_type": { "type": "string" },
+        "tissue_origin": { "type": "string" },
+        "species": { "type": "string" },
+        "atcc_id": { "type": "string" }
+      }
+    },
+    "target": {
+      "type": "object",
+      "description": "Target protein entity structure.",
+      "properties": {
+        "target_id": { "type": "string" },
+        "gene_symbol": { "type": "string" },
+        "gene_name": { "type": "string" },
+        "uniprot_id": { "type": "string" },
+        "target_class": { "type": "string" },
+        "cancer_relevance": { "type": "string" }
+      }
+    }
+  },
+  "$defs": {
+    "activityRecord": {
+      "type": "object",
+      "properties": {
+        "activity_id": { "type": "string" },
+        "compound_id": { "type": "string" },
+        "activity_type": {
+          "type": "string",
+          "enum": ["IC50", "EC50", "GI50", "LC50", "CC50"]
+        },
+        "activity_value": { "type": "number" },
+        "activity_unit": {
+          "type": "string",
+          "enum": ["nM", "uM", "mM", "ug/mL"]
+        },
+        "activity_relation": {
+          "type": "string",
+          "enum": ["=", "<", ">", "~"]
+        },
+        "cell_line": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "cancer_type": { "type": "string" },
+            "species": { "type": "string" },
+            "tissue": { "type": "string" }
+          }
+        },
+        "assay_details": {
+          "type": "object",
+          "properties": {
+            "assay_type": { "type": "string" },
+            "exposure_time": { "type": "string" },
+            "endpoint": { "type": "string" }
+          }
+        },
+        "reference": {
+          "type": "object",
+          "properties": {
+            "pubmed_id": { "type": "integer" },
+            "doi": { "type": "string" },
+            "authors": { "type": "string" },
+            "year": { "type": "integer" }
+          }
+        }
+      }
+    }
+  },
+  "required": ["npact_id", "compound_name"],
+  "additionalProperties": true
+}

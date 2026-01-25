@@ -1,0 +1,131 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "orphanet-phenotypes-schema.json",
+  "title": "Orphanet Phenotype Annotation Record",
+  "description": "JSON Schema for Orphanet Phenotype Annotations. Contains 100,000+ HPO annotations across 4,337+ rare diseases with frequency information (obligate to very rare) and validation status, curated by experts from 41 countries.",
+  "type": "object",
+  "properties": {
+    "disease_id": {
+      "type": "string",
+      "description": "Orphanet disease identifier",
+      "pattern": "^Orphanet:[0-9]+$",
+      "examples": ["Orphanet:558"]
+    },
+    "orpha_code": {
+      "type": "integer",
+      "description": "ORPHA code number"
+    },
+    "disease_name": {
+      "type": "string",
+      "description": "Disease name"
+    },
+    "phenotype_annotations": {
+      "type": "array",
+      "description": "HPO phenotype annotations",
+      "items": {
+        "$ref": "#/$defs/phenotypeAnnotation"
+      }
+    },
+    "inheritance_modes": {
+      "type": "array",
+      "description": "Inheritance patterns",
+      "items": {
+        "type": "string",
+        "enum": ["Autosomal dominant", "Autosomal recessive", "X-linked dominant", "X-linked recessive", "Y-linked", "Mitochondrial", "Sporadic", "Multigenic/multifactorial"]
+      }
+    },
+    "age_of_onset": {
+      "type": "array",
+      "description": "Typical age of onset",
+      "items": {
+        "type": "string"
+      }
+    },
+    "external_references": {
+      "type": "object",
+      "description": "Cross-references",
+      "properties": {
+        "omim_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[0-9]{6}$"
+          }
+        },
+        "icd10_codes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "mondo_id": {
+          "type": "string",
+          "pattern": "^MONDO:[0-9]{7}$"
+        }
+      }
+    }
+  },
+  "required": ["disease_id", "disease_name"],
+  "$defs": {
+    "phenotypeAnnotation": {
+      "type": "object",
+      "description": "HPO phenotype annotation",
+      "properties": {
+        "hpo_id": {
+          "type": "string",
+          "description": "HPO term identifier",
+          "pattern": "^HP:[0-9]{7}$",
+          "examples": ["HP:0001166"]
+        },
+        "hpo_term": {
+          "type": "string",
+          "description": "HPO term name"
+        },
+        "frequency": {
+          "type": "object",
+          "description": "Frequency of phenotype",
+          "properties": {
+            "hpo_frequency_id": {
+              "type": "string",
+              "description": "HPO frequency term",
+              "enum": ["HP:0040280", "HP:0040281", "HP:0040282", "HP:0040283", "HP:0040284", "HP:0040285"]
+            },
+            "frequency_label": {
+              "type": "string",
+              "description": "Frequency category",
+              "enum": ["Obligate", "Very frequent", "Frequent", "Occasional", "Very rare", "Excluded"]
+            },
+            "percentage_min": {
+              "type": "number",
+              "description": "Minimum percentage",
+              "minimum": 0,
+              "maximum": 100
+            },
+            "percentage_max": {
+              "type": "number",
+              "description": "Maximum percentage",
+              "minimum": 0,
+              "maximum": 100
+            }
+          },
+          "required": ["frequency_label"]
+        },
+        "diagnostic_criterion": {
+          "type": "boolean",
+          "description": "Is diagnostic criterion"
+        },
+        "validation_status": {
+          "type": "string",
+          "description": "Validation status",
+          "enum": ["Validated", "Not yet validated"]
+        },
+        "source": {
+          "type": "string",
+          "description": "Annotation source"
+        }
+      },
+      "required": ["hpo_id", "hpo_term", "frequency"]
+    }
+  },
+  "additionalProperties": false
+}

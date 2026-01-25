@@ -1,23 +1,34 @@
 ---
 id: dbnsfp
 title: "dbNSFP"
-type: data-source
-category: genetics
+type: source
+parent: ../README.md
+category: genetics.genomics
 subcategory: functional.prediction
-parent: ../_index.md
-tier: 1
-last_updated: 2026-01-23
+tier: 2
 status: active
-tags: [pathogenicity, prediction, annotation, ensemble, conservation]
+last_updated: 2026-01-25
+tags:
+  - pathogenicity
+  - prediction
+  - annotation
+  - ensemble
+  - conservation
 ---
 
 # dbNSFP
 
-**Category:** [Genetics & Genomics](../../_index.md) > [Functional Prediction](../_index.md)
+dbNSFP (database for Non-synonymous SNPs' Functional Predictions) is a comprehensive database integrating functional predictions from 36+ algorithms for all possible non-synonymous SNVs in the human genome. It serves as a one-stop resource combining deleteriousness scores, conservation metrics, and population frequencies with gene-level annotations.
 
 ## Overview
 
-dbNSFP (database for Non-synonymous SNPs' Functional Predictions) is a comprehensive database integrating functional predictions from 36+ algorithms for all possible non-synonymous SNVs in the human genome. It serves as a one-stop resource combining deleteriousness scores, conservation metrics, and population frequencies with gene-level annotations.
+| Property | Value |
+|----------|-------|
+| **Maintainer** | Liu Lab (USF) |
+| **Website** | https://www.dbnsfp.org/ |
+| **Update Frequency** | Periodic releases |
+| **Records** | 85,000,000+ variants |
+| **Latest Release** | v5.3.1 |
 
 The database covers approximately 85 million variants including non-synonymous SNVs and splice-site variants. It integrates predictions from SIFT, PolyPhen-2, CADD, REVEL, AlphaMissense, and many other algorithms, along with conservation scores (PhyloP, GERP++, phastCons) and population frequencies from gnomAD, 1000 Genomes, and TOPMed.
 
@@ -42,31 +53,31 @@ dbNSFP provides normalized rankscores for cross-algorithm comparison and include
 
 ## Key Identifiers
 
-| Identifier | Pattern | Example |
-|------------|---------|---------|
-| Position | chr:pos(1-based) | 17:7673803 |
-| Gene | HGNC symbol | TP53 |
-| Ensembl | ENSG/ENST IDs | ENSG00000141510 |
+| Identifier | Format | Example |
+|------------|--------|---------|
+| Position | `chr:pos (1-based)` | `17:7673803` |
+| Gene | `HGNC symbol` | `TP53` |
+| Ensembl | `ENSG/ENST IDs` | `ENSG00000141510` |
 
-## Access Methods
+## Limitations
 
-| Method | URL | Notes |
-|--------|-----|-------|
-| Amazon S3 | dbnsfp.s3.amazonaws.com | Primary download |
-| Website | https://www.dbnsfp.org/ | Documentation |
-| VEP Plugin | Ensembl VEP | Annotation |
-| SnpSift | SnpEff suite | Annotation |
+- File size is very large (~40GB uncompressed)
+- Some component scores have commercial licensing restrictions
+- Scores may disagree; no single consensus metric
+- Limited to coding and splice-site variants
+- Updates lag behind component databases
 
-## License
+## Data Quality Notes
 
-| Aspect | Value |
-|--------|-------|
-| License | Academic free; commercial contact |
-| Commercial Use | Requires contact (some scores excluded) |
-| Citation | Required (version-specific) |
+dbNSFP provides rankscores (0-1) normalized across all variants for each prediction algorithm, enabling fair comparison between methods. The MetaSVM and MetaLR ensemble scores combine multiple predictors with validated performance. Users should be aware that some component scores (e.g., CADD, REVEL) may have separate licensing requirements for commercial use.
 
 ## See Also
 
-- [Schema Documentation](./schema.md)
-- [AlphaMissense](../alphamissense/_index.md) - Included predictor
-- [CADD](../cadd/_index.md) - Included predictor
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [Example Records](./sample.json) - Sample data for code generation
+- [Download Guide](./download.md) - Access methods and API configuration
+- [License Terms](./license.md) - Usage rights and restrictions
+- [Schema Mapping](./mapping.xslt) - XSLT 3.0 transformation to unified schema
+- [AlphaMissense](../alphamissense/README.md) - Included predictor
+- [CADD](../cadd/README.md) - Included predictor

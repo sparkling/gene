@@ -1,23 +1,34 @@
 ---
 id: cancer-gene-census
 title: "Cancer Gene Census"
-type: data-source
-category: genetics
+type: source
+parent: ../README.md
+category: genetics.genomics
 subcategory: cancer.genomics
-parent: ../_index.md
 tier: 1
-last_updated: 2026-01-23
 status: active
-tags: [cancer, driver, oncogene, tumor-suppressor, census]
+last_updated: 2026-01-25
+tags:
+  - cancer
+  - driver
+  - oncogene
+  - tumor-suppressor
+  - census
 ---
 
 # Cancer Gene Census
 
-**Category:** [Genetics & Genomics](../../_index.md) > [Cancer Genomics](../_index.md)
+The Cancer Gene Census (CGC) is an ongoing effort to catalogue genes whose mutations are causally implicated in cancer. Maintained by the Wellcome Sanger Institute as part of COSMIC, it distinguishes between Tier 1 genes with documented cancer-causing mutations and Tier 2 genes with strong evidence of cancer involvement.
 
 ## Overview
 
-The Cancer Gene Census (CGC) is an ongoing effort to catalogue genes whose mutations are causally implicated in cancer. Maintained by the Wellcome Sanger Institute as part of COSMIC, it distinguishes between Tier 1 genes with documented cancer-causing mutations and Tier 2 genes with strong evidence of cancer involvement.
+| Property | Value |
+|----------|-------|
+| **Maintainer** | Wellcome Sanger Institute |
+| **Website** | https://cancer.sanger.ac.uk/census |
+| **Update Frequency** | Periodic updates |
+| **Records** | 736 genes |
+| **Latest Release** | Current (within COSMIC) |
 
 Each CGC entry includes the gene's role (oncogene, tumor suppressor, or fusion partner), associated cancer types, mutation types commonly observed, and supporting evidence from the literature. The census provides a gold-standard reference for cancer gene identification and driver mutation analysis.
 
@@ -42,30 +53,32 @@ The CGC is continuously updated as new cancer genes are identified through resea
 
 ## Key Identifiers
 
-| Identifier | Pattern | Example |
-|------------|---------|---------|
-| Gene | HUGO symbol | TP53 |
-| Tier | 1 or 2 | Tier 1 |
-| Role | Oncogene/TSG/Fusion | TSG |
+| Identifier | Format | Example |
+|------------|--------|---------|
+| Gene | `HUGO symbol` | `TP53` |
+| Tier | `1 or 2` | `Tier 1` |
+| Role | `Oncogene/TSG/Fusion` | `TSG` |
 
-## Access Methods
+## Limitations
 
-| Method | URL | Notes |
-|--------|-----|-------|
-| Web | https://cancer.sanger.ac.uk/census | Interactive list |
-| COSMIC | Part of COSMIC | Integrated access |
-| Downloads | Registered access | TSV format |
+- Registration required for full data access
+- Commercial use requires COSMIC license
+- Limited to genes with documented driver mutations
+- Does not include passenger mutation genes
+- Cancer type associations may be incomplete
 
-## License
+## Data Quality Notes
 
-| Aspect | Value |
-|--------|-------|
-| License | COSMIC license terms |
-| Commercial Use | Requires license |
-| Academic Use | Free with registration |
+CGC genes are curated based on published evidence of driver mutation status. Tier 1 genes have extensive documented evidence including functional studies, while Tier 2 genes have strong but less comprehensive evidence. The cancer type associations reflect predominant patterns and may not include all reported cancer contexts.
 
 ## See Also
 
-- [COSMIC](../cosmic/_index.md) - Somatic mutations
-- [OncoKB](../oncokb/_index.md) - Actionable genes
-- [CIViC](../civic/_index.md) - Clinical interpretations
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [Example Records](./sample.json) - Sample data for code generation
+- [Download Guide](./download.md) - Access methods and API configuration
+- [License Terms](./license.md) - Usage rights and restrictions
+- [Schema Mapping](./mapping.xslt) - XSLT 3.0 transformation to unified schema
+- [COSMIC](../cosmic/README.md) - Somatic mutations
+- [OncoKB](../oncokb/README.md) - Actionable genes
+- [CIViC](../civic/README.md) - Clinical interpretations

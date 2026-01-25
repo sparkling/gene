@@ -1,0 +1,82 @@
+{
+  "source": "Allen Brain Atlas",
+  "version": "2024",
+  "description": "Sample brain gene expression records from Allen Brain Atlas",
+  "records": [
+    {
+      "gene_symbol": "BDNF",
+      "gene_name": "brain derived neurotrophic factor",
+      "entrez_id": 627,
+      "expression_profile": {
+        "dataset": "Human Brain Atlas",
+        "brain_regions": [
+          {
+            "structure": "Hippocampus",
+            "structure_id": "HIP",
+            "expression_level": 8.5,
+            "expression_unit": "log2(TPM+1)",
+            "z_score": 2.3
+          },
+          {
+            "structure": "Prefrontal cortex",
+            "structure_id": "PFC",
+            "expression_level": 7.2,
+            "z_score": 1.1
+          },
+          {
+            "structure": "Amygdala",
+            "structure_id": "AMY",
+            "expression_level": 7.8,
+            "z_score": 1.7
+          }
+        ]
+      }
+    },
+    {
+      "gene_symbol": "SLC6A4",
+      "gene_name": "solute carrier family 6 member 4",
+      "entrez_id": 6532,
+      "expression_profile": {
+        "dataset": "Human Brain Atlas",
+        "brain_regions": [
+          {
+            "structure": "Raphe nuclei",
+            "expression_level": 9.2,
+            "z_score": 3.5
+          },
+          {
+            "structure": "Thalamus",
+            "expression_level": 4.1,
+            "z_score": -0.5
+          }
+        ]
+      },
+      "disease_associations": ["Depression", "Anxiety disorders", "OCD"]
+    },
+    {
+      "gene_symbol": "DRD2",
+      "gene_name": "dopamine receptor D2",
+      "entrez_id": 1813,
+      "expression_profile": {
+        "dataset": "Human Brain Atlas",
+        "brain_regions": [
+          {
+            "structure": "Striatum",
+            "expression_level": 9.8,
+            "z_score": 4.2
+          },
+          {
+            "structure": "Substantia nigra",
+            "expression_level": 8.1,
+            "z_score": 2.1
+          }
+        ]
+      }
+    }
+  ],
+  "queries": {
+    "web_atlas": "https://human.brain-map.org/",
+    "api_gene": "http://api.brain-map.org/api/v2/data/Gene/query.json?criteria=[acronym$eq'BDNF']",
+    "api_expression": "http://api.brain-map.org/api/v2/data/SectionDataSet/query.json?criteria=[genes.acronym$eq'BDNF']"
+  }
+}

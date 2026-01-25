@@ -1,0 +1,56 @@
+{
+  "source": "PhytoHub",
+  "version": "1.0",
+  "description": "Sample dietary phytochemical records from PhytoHub",
+  "records": [
+    {
+      "phytohub_id": "PHUB000001",
+      "name": "Quercetin",
+      "compound_class": "Flavonoids",
+      "subclass": "Flavonols",
+      "molecular_formula": "C15H10O7",
+      "molecular_weight": 302.24,
+      "smiles": "OC1=CC(O)=C2C(=O)C(O)=C(OC2=C1)C1=CC(O)=C(O)C=C1",
+      "inchikey": "REFJWTPEDVJJIY-UHFFFAOYSA-N",
+      "status": "expected",
+      "food_sources": ["Onions", "Apples", "Tea"],
+      "xrefs": {
+        "pubchem_cid": "5280343",
+        "chebi_id": "CHEBI:16243",
+        "hmdb_id": "HMDB0005794"
+      }
+    },
+    {
+      "phytohub_id": "PHUB000234",
+      "name": "Curcumin",
+      "compound_class": "Curcuminoids",
+      "molecular_formula": "C21H20O6",
+      "molecular_weight": 368.38,
+      "inchikey": "VFLDPWHFBUODDF-UHFFFAOYSA-N",
+      "status": "expected",
+      "food_sources": ["Turmeric"],
+      "xrefs": {
+        "pubchem_cid": "969516",
+        "chebi_id": "CHEBI:3962"
+      }
+    },
+    {
+      "phytohub_id": "PHUB000456",
+      "name": "Caffeic acid",
+      "compound_class": "Hydroxycinnamic acids",
+      "molecular_formula": "C9H8O4",
+      "molecular_weight": 180.16,
+      "inchikey": "QAIPRVGONGVQAS-DUXPYHPUSA-N",
+      "status": "expected",
+      "food_sources": ["Coffee", "Wine", "Olives"],
+      "xrefs": {
+        "pubchem_cid": "689043",
+        "chebi_id": "CHEBI:16433"
+      }
+    }
+  ],
+  "queries": {
+    "web_search": "https://phytohub.eu/compounds",
+    "download": "https://phytohub.eu/downloads"
+  }
+}

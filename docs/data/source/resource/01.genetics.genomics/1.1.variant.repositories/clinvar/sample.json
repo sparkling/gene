@@ -1,0 +1,83 @@
+[
+  {
+    "VariationID": 17661,
+    "Name": "NM_000546.6(TP53):c.743G>A (p.Arg248Gln)",
+    "GeneSymbol": "TP53",
+    "GeneID": 7157,
+    "Classification": {
+      "GermlineClassification": "Pathogenic",
+      "ReviewStatus": "criteria provided, multiple submitters, no conflicts"
+    },
+    "Conditions": [
+      {"Name": "Li-Fraumeni syndrome", "MedGenCUI": "C0085390", "OMIM": "151623"}
+    ],
+    "Location": {
+      "Assembly": "GRCh38",
+      "Chromosome": "17",
+      "Start": 7673803,
+      "Stop": 7673803,
+      "ReferenceAllele": "C",
+      "AlternateAllele": "T"
+    },
+    "HGVS": {
+      "genomic": "NC_000017.11:g.7673803C>T",
+      "coding": "NM_000546.6:c.743G>A",
+      "protein": "NP_000537.3:p.Arg248Gln"
+    },
+    "rsID": "rs28934576"
+  },
+  {
+    "VariationID": 12345,
+    "Name": "NM_000518.5(HBB):c.20A>T (p.Glu7Val)",
+    "GeneSymbol": "HBB",
+    "GeneID": 3043,
+    "Classification": {
+      "GermlineClassification": "Pathogenic",
+      "ReviewStatus": "reviewed by expert panel"
+    },
+    "Conditions": [
+      {"Name": "Sickle cell anemia", "MedGenCUI": "C0002895", "OMIM": "603903"}
+    ],
+    "Location": {
+      "Assembly": "GRCh38",
+      "Chromosome": "11",
+      "Start": 5227002,
+      "Stop": 5227002,
+      "ReferenceAllele": "T",
+      "AlternateAllele": "A"
+    },
+    "HGVS": {
+      "genomic": "NC_000011.10:g.5227002T>A",
+      "coding": "NM_000518.5:c.20A>T",
+      "protein": "NP_000509.1:p.Glu7Val"
+    },
+    "rsID": "rs334"
+  },
+  {
+    "VariationID": 98765,
+    "Name": "NM_007294.4(BRCA1):c.68_69delAG (p.Glu23ValfsTer17)",
+    "GeneSymbol": "BRCA1",
+    "GeneID": 672,
+    "Classification": {
+      "GermlineClassification": "Pathogenic",
+      "ReviewStatus": "reviewed by expert panel"
+    },
+    "Conditions": [
+      {"Name": "Hereditary breast and ovarian cancer syndrome", "MedGenCUI": "C0677776", "OMIM": "604370"}
+    ],
+    "Location": {
+      "Assembly": "GRCh38",
+      "Chromosome": "17",
+      "Start": 43124027,
+      "Stop": 43124028,
+      "ReferenceAllele": "AG",
+      "AlternateAllele": "-"
+    },
+    "HGVS": {
+      "genomic": "NC_000017.11:g.43124027_43124028del",
+      "coding": "NM_007294.4:c.68_69delAG",
+      "protein": "NP_009225.1:p.Glu23ValfsTer17"
+    },
+    "rsID": "rs80357914"
+  }
+]

@@ -1,19 +1,21 @@
 ---
 id: npatlas
 title: "NPAtlas - Natural Products Atlas"
-type: data-source
-category: compounds
-subcategory: natural-products
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 2
-last_updated: 2026-01-23
 status: active
-tags: [natural-products, microbial, marine, chemical-structures, drug-discovery]
+category: compounds.molecules
+subcategory: natural.products
+tags:
+  - natural-products
+  - microbial
+  - marine
+  - chemical-structures
+  - drug-discovery
 ---
 
 # NPAtlas - Natural Products Atlas
-
-**Category:** [Compounds & Molecules](../../_index.md) > [Natural Products](../_index.md)
 
 ## Overview
 
@@ -67,13 +69,18 @@ The database is particularly valuable for natural product dereplication, biosynt
 | Fungi | Ascomycetes, basidiomycetes |
 | Marine | Marine-derived microorganisms |
 
-## License
+## Limitations
 
-| Aspect | Value |
-|--------|-------|
-| License | CC BY 4.0 |
-| Commercial Use | Yes |
-| Attribution Required | Yes |
+- Focus on microbial sources; plant compounds less represented
+- Bioactivity data not included for all compounds
+- Some historical compounds may have revised structures
+- Manual curation means update lag for newly discovered compounds
+
+## See Also
+
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [License Terms](./license.md) - Usage rights and restrictions
 
 ## Related Resources
 

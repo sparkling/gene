@@ -198,13 +198,37 @@ head -50 phytohub_spectra.msp
 grep -c "PRECURSORMZ:" phytohub_spectra.msp
 ```
 
+## Dataset Versions
+
+| Version | Release Date | Size | Status |
+|---------|--------------|------|--------|
+| PhytoHub 1.4 | 2015 | ~100 MB | Current |
+| Earlier versions | 2013-2014 | Varies | Archived |
+
+### Version Notes
+
+PhytoHub contains dietary phytochemical metabolite data:
+- 1,150+ compounds and 67,000+ spectral annotations
+- MS/MS spectral library for metabolomics
+- Parent-metabolite relationships
+- Phase I, Phase II, and microbial metabolites
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | `http://phytohub.eu` |
+| Rate Limit | N/A (web interface) |
+| Auth Required | No |
+| Documentation | Contact maintainers |
+
 ## Update Schedule
 
 | Release | Frequency |
 |---------|-----------|
 | Database updates | Periodic |
 | Spectral additions | Ongoing |
-| Last major update | 2024 |
+| Last major update | 2015 |
 
 ## Common Issues
 

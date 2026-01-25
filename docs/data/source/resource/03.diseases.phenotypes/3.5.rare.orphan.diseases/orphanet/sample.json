@@ -1,0 +1,58 @@
+{
+  "source": "Orphanet Rare Diseases",
+  "version": "2024",
+  "description": "Sample rare disease epidemiology records from Orphanet",
+  "records": [
+    {
+      "orpha_code": "ORPHA:558",
+      "name": "Marfan syndrome",
+      "disorder_type": "Disease",
+      "disorder_group": "Rare genetic disease",
+      "epidemiology": {
+        "prevalence_class": "1-9 / 100 000",
+        "prevalence_geographic": "Worldwide",
+        "prevalence_type": "Point prevalence",
+        "prevalence_qualification": "Class only",
+        "mean_prevalence_per_million": 50
+      },
+      "age_of_onset": ["Infancy", "Childhood", "Adolescent", "Adult"],
+      "inheritance": ["Autosomal dominant"],
+      "associated_genes": [
+        {"gene_symbol": "FBN1", "gene_name": "fibrillin 1", "locus": "15q21.1"}
+      ],
+      "management": {
+        "expert_centers": 45,
+        "patient_organizations": 28
+      }
+    },
+    {
+      "orpha_code": "ORPHA:586",
+      "name": "Cystic fibrosis",
+      "disorder_type": "Disease",
+      "epidemiology": {
+        "prevalence_class": "1-5 / 10 000",
+        "prevalence_geographic": "Europe",
+        "incidence_at_birth": "1/3500"
+      },
+      "age_of_onset": ["Neonatal", "Infancy"],
+      "inheritance": ["Autosomal recessive"],
+      "associated_genes": [
+        {"gene_symbol": "CFTR", "gene_name": "CF transmembrane conductance regulator"}
+      ]
+    },
+    {
+      "orpha_code": "ORPHA:166024",
+      "name": "Multiple epiphyseal dysplasia",
+      "disorder_type": "Clinical group",
+      "epidemiology": {
+        "prevalence_class": "1-9 / 1 000 000"
+      },
+      "inheritance": ["Autosomal dominant", "Autosomal recessive"]
+    }
+  ],
+  "queries": {
+    "download_nomenclature": "wget https://www.orphadata.com/data/xml/en_product1.xml",
+    "download_epidemiology": "wget https://www.orphadata.com/data/xml/en_product9_prev.xml",
+    "download_genes": "wget https://www.orphadata.com/data/xml/en_product6.xml"
+  }
+}

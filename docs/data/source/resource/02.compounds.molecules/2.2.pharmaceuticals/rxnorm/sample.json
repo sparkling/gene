@@ -1,0 +1,69 @@
+{
+  "source": "RxNorm",
+  "version": "2024",
+  "description": "Sample drug concept records from RxNorm",
+  "records": [
+    {
+      "rxcui": "1191",
+      "name": "aspirin",
+      "tty": "IN",
+      "suppress": "N",
+      "related_concepts": [
+        {
+          "rxcui": "197382",
+          "name": "aspirin 325 MG Oral Tablet",
+          "tty": "SCD",
+          "relationship": "has_tradename"
+        },
+        {
+          "rxcui": "308416",
+          "name": "aspirin 81 MG Delayed Release Oral Tablet",
+          "tty": "SCD",
+          "relationship": "has_form"
+        }
+      ],
+      "properties": {
+        "ndc": ["0904-6703-59"],
+        "rxnorm_dose_form": "Oral Tablet"
+      }
+    },
+    {
+      "rxcui": "6809",
+      "name": "metformin",
+      "tty": "IN",
+      "suppress": "N",
+      "related_concepts": [
+        {
+          "rxcui": "861004",
+          "name": "metformin hydrochloride 500 MG Oral Tablet",
+          "tty": "SCD"
+        }
+      ]
+    },
+    {
+      "rxcui": "83367",
+      "name": "atorvastatin",
+      "tty": "IN",
+      "suppress": "N",
+      "related_concepts": [
+        {
+          "rxcui": "617310",
+          "name": "atorvastatin 10 MG Oral Tablet",
+          "tty": "SCD"
+        },
+        {
+          "rxcui": "259255",
+          "name": "Lipitor",
+          "tty": "BN",
+          "relationship": "has_tradename"
+        }
+      ]
+    }
+  ],
+  "queries": {
+    "rest": "curl 'https://rxnav.nlm.nih.gov/REST/rxcui/1191/allrelated.json' | jq",
+    "spelling": "curl 'https://rxnav.nlm.nih.gov/REST/spellingsuggestions.json?name=asprin' | jq",
+    "ndc_lookup": "curl 'https://rxnav.nlm.nih.gov/REST/ndcstatus.json?ndc=0904-6703-59' | jq",
+    "download": "wget https://download.nlm.nih.gov/umls/kss/rxnorm/RxNorm_full_current.zip"
+  }
+}

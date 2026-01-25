@@ -1,23 +1,34 @@
 ---
 id: oncokb
 title: "OncoKB"
-type: data-source
-category: genetics
+type: source
+parent: ../README.md
+category: genetics.genomics
 subcategory: cancer.genomics
-parent: ../_index.md
 tier: 1
-last_updated: 2026-01-23
 status: active
-tags: [cancer, precision-oncology, actionable, therapy, clinical]
+last_updated: 2026-01-25
+tags:
+  - cancer
+  - precision-oncology
+  - actionable
+  - therapy
+  - clinical
 ---
 
 # OncoKB
 
-**Category:** [Genetics & Genomics](../../_index.md) > [Cancer Genomics](../_index.md)
+OncoKB is a precision oncology knowledge base developed by Memorial Sloan Kettering Cancer Center. It provides expert-curated annotation of the biological and clinical effects of cancer variants, linking alterations to cancer types, therapeutic implications, and clinical evidence levels.
 
 ## Overview
 
-OncoKB is a precision oncology knowledge base developed by Memorial Sloan Kettering Cancer Center. It provides expert-curated annotation of the biological and clinical effects of cancer variants, linking alterations to cancer types, therapeutic implications, and clinical evidence levels.
+| Property | Value |
+|----------|-------|
+| **Maintainer** | Memorial Sloan Kettering Cancer Center |
+| **Website** | https://www.oncokb.org/ |
+| **Update Frequency** | Continuous |
+| **Records** | 5,000+ annotated variants |
+| **Latest Release** | Current (continuous) |
 
 Each variant annotation includes functional effect classification (oncogenic, likely oncogenic, etc.), associated cancer types, and therapeutic implications with FDA/guideline-based evidence levels (1-4). OncoKB covers mutations, copy number alterations, fusions, and tumor mutational burden across hundreds of genes.
 
@@ -42,30 +53,32 @@ OncoKB is integrated into clinical molecular tumor boards and commercial molecul
 
 ## Key Identifiers
 
-| Identifier | Pattern | Example |
-|------------|---------|---------|
-| Gene | HUGO symbol | BRAF |
-| Variant | Protein change | V600E |
-| Evidence Level | 1-4, R1-R2 | Level 1 |
+| Identifier | Format | Example |
+|------------|--------|---------|
+| Gene | `HUGO symbol` | `BRAF` |
+| Variant | `Protein change` | `V600E` |
+| Evidence Level | `1-4, R1-R2` | `Level 1` |
 
-## Access Methods
+## Limitations
 
-| Method | URL | Notes |
-|--------|-----|-------|
-| Web | https://www.oncokb.org/ | Interactive search |
-| API | REST endpoints | Programmatic access |
-| Downloads | Registered access | Data files |
+- Commercial use requires license agreement
+- Annotations focused on actionable variants
+- May not cover all rare variants
+- Evidence levels change with FDA approvals
+- API requires registration
 
-## License
+## Data Quality Notes
 
-| Aspect | Value |
-|--------|-------|
-| License | Free for academic; commercial license |
-| Commercial Use | Requires license |
-| Citation | Required |
+OncoKB annotations are curated by domain experts at MSK and reviewed according to a structured evidence framework. Level 1 evidence indicates FDA-recognized biomarkers, while lower levels indicate emerging or investigational evidence. Annotations are updated as new therapies gain approval and clinical trial data mature.
 
 ## See Also
 
-- [CIViC](../civic/_index.md) - Community curation
-- [cBioPortal](../cbioportal/_index.md) - Integrated annotations
-- [COSMIC](../cosmic/_index.md) - Somatic mutations
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [Example Records](./sample.json) - Sample data for code generation
+- [Download Guide](./download.md) - Access methods and API configuration
+- [License Terms](./license.md) - Usage rights and restrictions
+- [Schema Mapping](./mapping.xslt) - XSLT 3.0 transformation to unified schema
+- [CIViC](../civic/README.md) - Community curation
+- [cBioPortal](../cbioportal/README.md) - Integrated annotations
+- [COSMIC](../cosmic/README.md) - Somatic mutations

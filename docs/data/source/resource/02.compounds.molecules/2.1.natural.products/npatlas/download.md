@@ -144,13 +144,36 @@ jq '.[0:3] | .[].npa_id' npatlas_v2.json
 jq '[.[].organisms[].genus] | unique | length' npatlas_v2.json
 ```
 
+## Dataset Versions
+
+| Version | Release Date | Size | Status |
+|---------|--------------|------|--------|
+| NPAtlas 3.0 | 2025-01-06 | ~130 MB | Current |
+| NPAtlas 2.x | 2022-2024 | ~100 MB | Archived |
+
+### Version Notes
+
+NPAtlas 3.0 contains 36,545 compounds from microbially-derived natural products:
+- 1,347 newly curated papers
+- 590 structural corrections and revisions
+- Covers bacterial, fungal, and cyanobacterial compounds
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | `https://www.npatlas.org/api/v1` |
+| Rate Limit | 60-120 req/min |
+| Auth Required | No |
+| Documentation | https://www.npatlas.org/api/v1/docs |
+
 ## Update Schedule
 
 | Release | Frequency |
 |---------|-----------|
 | Major updates | Semi-annual |
 | Data additions | Monthly |
-| Last update | 2024 |
+| Last update | 2025-01 |
 
 ## API Rate Limits
 

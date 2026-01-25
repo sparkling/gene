@@ -1,0 +1,222 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "panelapp-schema.json",
+  "title": "PanelApp Gene Panel Record",
+  "description": "JSON Schema for Genomics England PanelApp. Contains 350+ gene panels with 4,500+ diagnostic-grade (Green) genes and 50,000+ expert reviews for NHS clinical genomics and the 100,000 Genomes Project.",
+  "type": "object",
+  "properties": {
+    "panel_id": {
+      "type": "integer",
+      "description": "Panel identifier"
+    },
+    "panel_name": {
+      "type": "string",
+      "description": "Panel name"
+    },
+    "version": {
+      "type": "string",
+      "description": "Panel version"
+    },
+    "disease_group": {
+      "type": "string",
+      "description": "Disease category"
+    },
+    "disease_sub_group": {
+      "type": "string",
+      "description": "Disease subcategory"
+    },
+    "status": {
+      "type": "string",
+      "description": "Panel status",
+      "enum": ["public", "promoted", "retired"]
+    },
+    "relevant_disorders": {
+      "type": "array",
+      "description": "Associated disorders",
+      "items": {
+        "type": "string"
+      }
+    },
+    "genes": {
+      "type": "array",
+      "description": "Genes in panel",
+      "items": {
+        "$ref": "#/$defs/panelGene"
+      }
+    },
+    "strs": {
+      "type": "array",
+      "description": "Short tandem repeats",
+      "items": {
+        "$ref": "#/$defs/str"
+      }
+    },
+    "regions": {
+      "type": "array",
+      "description": "Genomic regions",
+      "items": {
+        "$ref": "#/$defs/region"
+      }
+    },
+    "statistics": {
+      "type": "object",
+      "description": "Panel statistics",
+      "properties": {
+        "total_genes": {
+          "type": "integer"
+        },
+        "green_genes": {
+          "type": "integer"
+        },
+        "amber_genes": {
+          "type": "integer"
+        },
+        "red_genes": {
+          "type": "integer"
+        }
+      }
+    }
+  },
+  "required": ["panel_id", "panel_name"],
+  "$defs": {
+    "panelGene": {
+      "type": "object",
+      "description": "Gene in panel",
+      "properties": {
+        "gene_symbol": {
+          "type": "string",
+          "description": "HGNC gene symbol"
+        },
+        "hgnc_id": {
+          "type": "string",
+          "description": "HGNC identifier",
+          "pattern": "^HGNC:[0-9]+$",
+          "examples": ["HGNC:6990"]
+        },
+        "ensembl_id": {
+          "type": "string",
+          "description": "Ensembl gene ID",
+          "pattern": "^ENSG[0-9]{11}$"
+        },
+        "confidence_level": {
+          "type": "integer",
+          "description": "Evidence level (0-3)",
+          "minimum": 0,
+          "maximum": 3
+        },
+        "confidence_color": {
+          "type": "string",
+          "description": "Evidence color",
+          "enum": ["Green", "Amber", "Red", "Gray"]
+        },
+        "mode_of_inheritance": {
+          "type": "string",
+          "description": "Inheritance mode",
+          "enum": ["MONOALLELIC", "BIALLELIC", "BOTH", "X-LINKED", "MITOCHONDRIAL", "UNKNOWN"]
+        },
+        "phenotypes": {
+          "type": "array",
+          "description": "Associated phenotypes",
+          "items": {
+            "type": "string"
+          }
+        },
+        "penetrance": {
+          "type": "string",
+          "description": "Penetrance",
+          "enum": ["Complete", "Incomplete", "Unknown"]
+        },
+        "publications": {
+          "type": "array",
+          "description": "Supporting publications",
+          "items": {
+            "type": "string"
+          }
+        },
+        "evidence": {
+          "type": "array",
+          "description": "Evidence types",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": ["gene_symbol", "confidence_level"]
+    },
+    "str": {
+      "type": "object",
+      "description": "Short tandem repeat",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "STR name"
+        },
+        "chromosome": {
+          "type": "string",
+          "description": "Chromosome"
+        },
+        "start": {
+          "type": "integer",
+          "description": "Start position"
+        },
+        "end": {
+          "type": "integer",
+          "description": "End position"
+        },
+        "repeated_sequence": {
+          "type": "string",
+          "description": "Repeat motif"
+        },
+        "normal_repeats": {
+          "type": "integer",
+          "description": "Normal repeat count"
+        },
+        "pathogenic_repeats": {
+          "type": "integer",
+          "description": "Pathogenic threshold"
+        },
+        "confidence_level": {
+          "type": "integer",
+          "description": "Evidence level (0-3)"
+        }
+      },
+      "required": ["name"]
+    },
+    "region": {
+      "type": "object",
+      "description": "Genomic region",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Region name"
+        },
+        "chromosome": {
+          "type": "string",
+          "description": "Chromosome"
+        },
+        "start": {
+          "type": "integer",
+          "description": "Start position"
+        },
+        "end": {
+          "type": "integer",
+          "description": "End position"
+        },
+        "haploinsufficiency_score": {
+          "type": "string",
+          "description": "HI score"
+        },
+        "triplosensitivity_score": {
+          "type": "string",
+          "description": "TS score"
+        },
+        "confidence_level": {
+          "type": "integer",
+          "description": "Evidence level (0-3)"
+        }
+      },
+      "required": ["name"]
+    }
+  },
+  "additionalProperties": false
+}

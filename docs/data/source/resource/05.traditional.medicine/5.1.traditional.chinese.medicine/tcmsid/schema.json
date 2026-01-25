@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "tcmsid-schema.json",
+  "title": "TCMSID Compound Record",
+  "description": "JSON Schema for TCMSID compound data. Provides comprehensive ADME/T properties for TCM compounds with oral bioavailability and drug-likeness scores.",
+  "type": "object",
+  "properties": {
+    "compound_id": {
+      "type": "string",
+      "description": "TCMSID compound identifier (MOL prefix).",
+      "pattern": "^MOL[0-9]+$",
+      "examples": ["MOL000001"]
+    },
+    "compound_name": {
+      "type": "string",
+      "description": "Compound name."
+    },
+    "identifiers": {
+      "type": "object",
+      "description": "External identifiers.",
+      "properties": {
+        "pubchem_cid": { "type": "integer" },
+        "cas_number": { "type": "string" }
+      }
+    },
+    "structure": {
+      "type": "object",
+      "description": "Chemical structure.",
+      "properties": {
+        "smiles": { "type": "string" },
+        "molecular_formula": { "type": "string" },
+        "molecular_weight": { "type": "number" }
+      }
+    },
+    "adme_properties": {
+      "type": "object",
+      "description": "ADME property predictions.",
+      "properties": {
+        "ob": {
+          "type": "number",
+          "description": "Oral Bioavailability percentage (threshold >=30%)."
+        },
+        "dl": {
+          "type": "number",
+          "description": "Drug-Likeness score 0-1 (threshold >=0.18).",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "caco2": {
+          "type": "number",
+          "description": "Caco-2 permeability (threshold >=-0.4)."
+        },
+        "bbb": {
+          "type": "number",
+          "description": "Blood-Brain Barrier permeability (threshold >=-0.3)."
+        },
+        "hl": {
+          "type": "string",
+          "description": "Half-Life category.",
+          "enum": ["Long", "Short"]
+        }
+      }
+    },
+    "lipinski": {
+      "type": "object",
+      "description": "Lipinski Rule of Five compliance.",
+      "properties": {
+        "mw_ok": { "type": "boolean" },
+        "logp_ok": { "type": "boolean" },
+        "hbd_ok": { "type": "boolean" },
+        "hba_ok": { "type": "boolean" },
+        "violations": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4
+        }
+      }
+    },
+    "source_herbs": {
+      "type": "array",
+      "description": "Source herb identifiers.",
+      "items": { "type": "string" }
+    },
+    "predicted_targets": {
+      "type": "array",
+      "description": "Predicted target identifiers.",
+      "items": { "type": "string" }
+    },
+    "pathway_enrichment": {
+      "type": "array",
+      "description": "Enriched pathways.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "pathway_id": { "type": "string" },
+          "pathway_name": { "type": "string" },
+          "p_value": { "type": "number" },
+          "gene_count": { "type": "integer" }
+        }
+      }
+    }
+  },
+  "required": ["compound_id", "compound_name"],
+  "additionalProperties": true
+}

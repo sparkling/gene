@@ -1,23 +1,34 @@
 ---
 id: encode
 title: "ENCODE"
-type: data-source
-category: genetics
+type: source
+parent: ../README.md
+category: genetics.genomics
 subcategory: expression.regulation
-parent: ../_index.md
 tier: 1
-last_updated: 2026-01-23
 status: active
-tags: [functional, regulatory, enhancer, chromatin, epigenomics]
+last_updated: 2026-01-25
+tags:
+  - functional
+  - regulatory
+  - enhancer
+  - chromatin
+  - epigenomics
 ---
 
 # ENCODE
 
-**Category:** [Genetics & Genomics](../../_index.md) > [Expression & Regulation](../_index.md)
+ENCODE (Encyclopedia of DNA Elements) is a comprehensive project to identify all functional elements in the human and mouse genomes. It provides extensive data on transcription factor binding sites, chromatin accessibility, histone modifications, DNA methylation, and RNA expression across hundreds of cell types and tissues.
 
 ## Overview
 
-ENCODE (Encyclopedia of DNA Elements) is a comprehensive project to identify all functional elements in the human and mouse genomes. It provides extensive data on transcription factor binding sites, chromatin accessibility, histone modifications, DNA methylation, and RNA expression across hundreds of cell types and tissues.
+| Property | Value |
+|----------|-------|
+| **Maintainer** | ENCODE Consortium |
+| **Website** | https://www.encodeproject.org/ |
+| **Update Frequency** | Continuous |
+| **Records** | 926,535+ human cCREs |
+| **Latest Release** | ENCODE 4 (ongoing) |
 
 The ENCODE Registry of candidate cis-Regulatory Elements (cCREs) provides a standardized set of regulatory elements including promoters, enhancers, and CTCF-binding sites, classified by chromatin signatures. The SCREEN database allows interactive exploration of these elements and their associated signals.
 
@@ -42,31 +53,31 @@ ENCODE data is essential for interpreting non-coding variants, understanding gen
 
 ## Key Identifiers
 
-| Identifier | Pattern | Example |
-|------------|---------|---------|
-| cCRE | EH38E + 7 digits | EH38E1234567 |
-| Experiment | ENCSR + 6 chars | ENCSR000AAA |
-| File | ENCFF + 6 chars | ENCFF123ABC |
+| Identifier | Format | Example |
+|------------|--------|---------|
+| cCRE | `EH38E + 7 digits` | `EH38E1234567` |
+| Experiment | `ENCSR + 6 chars` | `ENCSR000AAA` |
+| File | `ENCFF + 6 chars` | `ENCFF123ABC` |
 
-## Access Methods
+## Limitations
 
-| Method | URL | Notes |
-|--------|-----|-------|
-| Portal | https://www.encodeproject.org/ | Interactive search |
-| SCREEN | https://screen.encodeproject.org/ | cCRE browser |
-| REST API | /api/ endpoints | Programmatic access |
-| Cloud | AWS, Google Cloud | Data downloads |
+- Cell line data may not reflect in vivo biology
+- Tissue coverage incomplete (some tissues underrepresented)
+- Functional validation limited for most elements
+- Computational predictions may include false positives
+- Large data volumes require significant storage
 
-## License
+## Data Quality Notes
 
-| Aspect | Value |
-|--------|-------|
-| License | Open Access |
-| Commercial Use | Yes |
-| Citation | Required per data use |
+ENCODE implements standardized data processing pipelines with quality metrics for each assay type. Experiments are assigned audit flags indicating potential quality issues. The cCRE registry integrates multiple assays to reduce false positives, with classification based on chromatin accessibility and histone modification patterns.
 
 ## See Also
 
-- [Schema Documentation](./schema.md)
-- [GTEx](../gtex/_index.md) - Expression data
-- [eQTLGen](../eqtlgen/_index.md) - eQTL data
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [Example Records](./sample.json) - Sample data for code generation
+- [Download Guide](./download.md) - Access methods and API configuration
+- [License Terms](./license.md) - Usage rights and restrictions
+- [Schema Mapping](./mapping.xslt) - XSLT 3.0 transformation to unified schema
+- [GTEx](../gtex/README.md) - Expression data
+- [eQTLGen](../eqtlgen/README.md) - eQTL data

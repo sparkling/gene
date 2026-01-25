@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "orphanet-schema.json",
+  "title": "Orphanet Rare Disease Record",
+  "description": "JSON Schema for Orphanet/ORDO rare disease records. Contains 6,528 rare diseases with gene associations, phenotypes, and expert center information across 8 languages.",
+  "type": "object",
+  "properties": {
+    "ordo_id": {
+      "type": "string",
+      "description": "Orphanet disease identifier",
+      "pattern": "^Orphanet:[0-9]+$",
+      "examples": ["Orphanet:558", "Orphanet:93344"]
+    },
+    "orpha_code": {
+      "type": "string",
+      "description": "Numeric Orphanet code",
+      "pattern": "^[0-9]+$"
+    },
+    "disease_name": {
+      "type": "string",
+      "description": "Disease name",
+      "minLength": 1
+    },
+    "disease_type": {
+      "type": "string",
+      "description": "Type of disease entity",
+      "enum": ["disorder", "disease", "clinical_syndrome", "morphological_anomaly", "biological_anomaly"]
+    },
+    "inheritance_pattern": {
+      "type": "string",
+      "description": "Mode of inheritance",
+      "enum": ["autosomal_dominant", "autosomal_recessive", "x_linked_dominant", "x_linked_recessive", "mitochondrial", "multigenic", "unknown"]
+    },
+    "prevalence": {
+      "type": "string",
+      "description": "Disease prevalence estimate",
+      "examples": ["1-9 / 100,000", "<1 / 1,000,000", "Unknown"]
+    },
+    "gene_associations": {
+      "type": "array",
+      "description": "Associated genes",
+      "items": {
+        "$ref": "#/$defs/geneAssociation"
+      }
+    },
+    "phenotypes": {
+      "type": "array",
+      "description": "HPO phenotype associations",
+      "items": {
+        "type": "object",
+        "properties": {
+          "hpo_id": {
+            "type": "string",
+            "pattern": "^HP:[0-9]{7}$"
+          },
+          "hpo_name": {
+            "type": "string"
+          },
+          "frequency": {
+            "type": "string",
+            "description": "Phenotype frequency"
+          }
+        },
+        "required": ["hpo_id"]
+      }
+    },
+    "xrefs": {
+      "type": "array",
+      "description": "Cross-references to other databases",
+      "items": {
+        "type": "object",
+        "properties": {
+          "source": {
+            "type": "string",
+            "enum": ["OMIM", "ICD-10", "MeSH", "UMLS", "MONDO"]
+          },
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": ["source", "id"]
+      }
+    },
+    "synonyms": {
+      "type": "array",
+      "description": "Disease name synonyms",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": ["ordo_id", "disease_name"],
+  "$defs": {
+    "geneAssociation": {
+      "type": "object",
+      "description": "Gene-disease association",
+      "properties": {
+        "gene_symbol": {
+          "type": "string",
+          "description": "Official gene symbol"
+        },
+        "hgnc_id": {
+          "type": "string",
+          "description": "HGNC identifier",
+          "pattern": "^HGNC:[0-9]+$"
+        },
+        "entrez_id": {
+          "type": "string",
+          "description": "NCBI Entrez Gene ID"
+        },
+        "association_type": {
+          "type": "string",
+          "description": "Type of gene-disease relationship",
+          "enum": [
+            "Disease-causing germline mutation(s) in",
+            "Disease-causing somatic mutation(s) in",
+            "Major susceptibility factor in",
+            "Modifying germline mutation in",
+            "Role in the phenotype of",
+            "Part of a fusion gene in",
+            "Candidate gene tested in"
+          ]
+        },
+        "association_status": {
+          "type": "string",
+          "description": "Curation status",
+          "enum": ["Assessed", "Not yet assessed"]
+        }
+      },
+      "required": ["gene_symbol", "association_type"]
+    }
+  },
+  "additionalProperties": false
+}

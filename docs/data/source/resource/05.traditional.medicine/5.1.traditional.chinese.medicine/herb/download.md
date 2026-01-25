@@ -88,6 +88,38 @@ print(f"Ingredients: {len(ingredients)}")
 | Current Version | HERB 2.0 |
 | Notification | Check website for updates |
 
+---
+
+## Dataset Versions
+
+### Current Release: HERB 2.0
+
+| Property | Value |
+|----------|-------|
+| Version | 2.0 |
+| Release Date | 2021-01-01 |
+| Total Size | ~500 MB |
+| Expression Data | 2,000+ experiments |
+
+### Version Contents
+
+| Component | Records | Description |
+|-----------|---------|-------------|
+| herbs.tsv | 1,037 | Herb metadata |
+| ingredients.tsv | 12,933 | Chemical compounds |
+| targets.tsv | 2,064 | Gene/protein targets |
+| herb_ingredient.tsv | 49,258 | Herb-compound associations |
+| ingredient_target.tsv | 28,212 | Compound-target links |
+| diseases.tsv | 866 | Disease associations |
+
+### Previous Versions
+
+| Version | Release | Status |
+|---------|---------|--------|
+| HERB 1.0 | 2020-01-01 | Archived |
+
+---
+
 ## Notes
 
 - Gene expression data is linked to GEO accessions

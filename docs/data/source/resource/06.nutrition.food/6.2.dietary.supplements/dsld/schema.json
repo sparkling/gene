@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gene.taxonomy/schemas/dsld",
+  "title": "DSLD Product Record",
+  "description": "JSON Schema for NIH Dietary Supplement Label Database records",
+  "type": "object",
+  "properties": {
+    "dsld_id": {
+      "type": "integer",
+      "description": "DSLD internal product identifier",
+      "examples": [123456, 789012]
+    },
+    "product_name": {
+      "type": "string",
+      "description": "Full product name as on label",
+      "maxLength": 500,
+      "examples": ["Vitamin D3 5000 IU"]
+    },
+    "brand_name": {
+      "type": ["string", "null"],
+      "description": "Brand name",
+      "examples": ["Nature's Way"]
+    },
+    "net_contents": {
+      "type": ["string", "null"],
+      "description": "Net quantity/count",
+      "examples": ["120 Softgels", "60 Capsules"]
+    },
+    "serving_size": {
+      "type": ["string", "null"],
+      "description": "Serving size description",
+      "examples": ["1 softgel", "2 capsules"]
+    },
+    "servings_per_container": {
+      "type": ["string", "null"],
+      "description": "Number of servings",
+      "examples": ["120", "30"]
+    },
+    "product_type": {
+      "type": ["string", "null"],
+      "description": "Product form",
+      "enum": ["Capsule", "Tablet", "Softgel", "Liquid", "Powder", "Gummy", "Lozenge", "Spray", null]
+    },
+    "upc": {
+      "type": ["string", "null"],
+      "description": "Universal Product Code",
+      "pattern": "^[0-9]{10,14}$"
+    },
+    "nhp_id": {
+      "type": ["string", "null"],
+      "description": "Canadian Natural Health Product ID"
+    },
+    "dietary_claims": {
+      "type": "array",
+      "description": "Health and dietary claims",
+      "items": {"type": "string"},
+      "examples": [["Gluten Free", "No artificial colors"]]
+    },
+    "ingredients": {
+      "type": "array",
+      "description": "Supplement Facts ingredients",
+      "items": {
+        "type": "object",
+        "properties": {
+          "ingredient_id": {"type": "integer"},
+          "ingredient_name": {"type": "string"},
+          "amount": {"type": ["string", "null"]},
+          "unit": {"type": ["string", "null"]},
+          "daily_value_percent": {"type": ["string", "null"]},
+          "ingredient_group": {"type": ["string", "null"]},
+          "source_name": {"type": ["string", "null"]},
+          "is_blend_component": {"type": "boolean"},
+          "blend_name": {"type": ["string", "null"]}
+        },
+        "required": ["ingredient_name"]
+      }
+    },
+    "manufacturer": {
+      "type": ["object", "null"],
+      "description": "Manufacturer information",
+      "properties": {
+        "name": {"type": "string"},
+        "address": {"type": "string"},
+        "city": {"type": "string"},
+        "state": {"type": "string"},
+        "country": {"type": "string"}
+      }
+    },
+    "date_entered": {
+      "type": "string",
+      "format": "date",
+      "description": "Database entry date"
+    },
+    "last_updated": {
+      "type": ["string", "null"],
+      "format": "date",
+      "description": "Last modification date"
+    }
+  },
+  "required": ["dsld_id", "product_name"],
+  "additionalProperties": true
+}

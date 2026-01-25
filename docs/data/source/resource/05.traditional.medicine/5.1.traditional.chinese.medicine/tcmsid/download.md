@@ -110,6 +110,41 @@ Check against published statistics:
 | Update Frequency | Periodic |
 | Notification | Check website |
 
+---
+
+## Dataset Versions
+
+### Current Release: TCMSID
+
+| Property | Value |
+|----------|-------|
+| Version | 1.0 |
+| Release Date | 2018-01-01 |
+| Total Size | ~150 MB |
+| Focus | ADME Properties |
+
+### Version Contents
+
+| Component | Records | Description |
+|-----------|---------|-------------|
+| TCM Herbs | 499 | Herb metadata |
+| Compounds | 29,384 | With full ADME properties |
+| Target Proteins | 3,311 | Predicted targets |
+| Diseases | 837 | Disease associations |
+| Compound-Target Pairs | 98,215 | Interaction predictions |
+
+### ADME Properties Included
+
+| Property | Threshold | Description |
+|----------|-----------|-------------|
+| OB | >= 30% | Oral Bioavailability |
+| DL | >= 0.18 | Drug-Likeness |
+| Caco-2 | >= -0.4 | Intestinal permeability |
+| BBB | >= -0.3 | Blood-brain barrier |
+| HL | Long/Short | Half-life |
+
+---
+
 ## Notes
 
 - All compounds have OB and DL scores

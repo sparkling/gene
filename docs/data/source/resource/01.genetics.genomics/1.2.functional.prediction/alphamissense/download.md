@@ -89,6 +89,48 @@ zcat AlphaMissense_hg38.tsv.gz | wc -l
 # Expected: ~71,000,000 lines
 ```
 
+## Dataset Versions
+
+### Current Release: v1.0.0
+
+| Property | Value |
+|----------|-------|
+| Version | 1.0.0 |
+| Release Date | 2023-09-22 |
+| Total Size | ~7.5 GB (all files) |
+| Variants | 71M missense predictions |
+| Genes | 19,233 protein-coding |
+
+### Version Contents
+
+| Component | Size | Records | Description |
+|-----------|------|---------|-------------|
+| AlphaMissense_hg38.tsv.gz | 643 MB | 71M | All variants (GRCh38) |
+| AlphaMissense_hg19.tsv.gz | 643 MB | 71M | All variants (GRCh37) |
+| AlphaMissense_gene_hg38.tsv.gz | 2 MB | 19K | Gene-level summary |
+| AlphaMissense_aa_substitutions.tsv.gz | 6.9 GB | 216M | All AA substitutions |
+
+### Classification Thresholds
+
+| Classification | Score Range | Count |
+|----------------|-------------|-------|
+| Likely Pathogenic | >= 0.564 | 32% |
+| Ambiguous | 0.340 - 0.564 | 23% |
+| Likely Benign | < 0.340 | 45% |
+
+---
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | gs://dm_alphamissense/ (GCS) |
+| Rate Limit | N/A (bulk download) |
+| Auth Required | No |
+| Response Format | TSV (gzipped) |
+
+---
+
 ## Update Schedule
 
 | Release | Frequency |

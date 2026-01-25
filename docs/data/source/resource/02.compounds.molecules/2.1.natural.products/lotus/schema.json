@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "lotus-schema.json",
+  "title": "LOTUS Natural Product Record",
+  "description": "JSON Schema for LOTUS (Linked Open Total Unified Structure-organism) records. Contains 750K+ referenced structure-organism pairs linking 290K+ unique structures to 40K+ organisms with literature citations via Wikidata. License: CC0.",
+  "type": "object",
+  "properties": {
+    "wikidataId": {
+      "type": "string",
+      "description": "Wikidata Q-identifier for the compound",
+      "pattern": "^Q[0-9]+$",
+      "examples": ["Q312879"]
+    },
+    "name": {
+      "type": "string",
+      "description": "Compound name"
+    },
+    "canonicalSmiles": {
+      "type": "string",
+      "description": "Canonical SMILES notation"
+    },
+    "isomericSmiles": {
+      "type": "string",
+      "description": "Isomeric SMILES with stereochemistry"
+    },
+    "inchi": {
+      "type": "string",
+      "description": "Standard InChI string",
+      "pattern": "^InChI=.*$"
+    },
+    "inchiKey": {
+      "type": "string",
+      "description": "InChI key (27 characters)",
+      "pattern": "^[A-Z]{14}-[A-Z]{10}-[A-Z]$"
+    },
+    "molecularFormula": {
+      "type": "string",
+      "description": "Molecular formula"
+    },
+    "molecularWeight": {
+      "type": "number",
+      "description": "Molecular weight in Daltons"
+    },
+    "foundInTaxa": {
+      "type": "array",
+      "description": "Source organisms (P703 relationships)",
+      "items": {
+        "$ref": "#/$defs/taxon"
+      }
+    },
+    "references": {
+      "type": "array",
+      "description": "Literature references (P248 relationships)",
+      "items": {
+        "$ref": "#/$defs/reference"
+      }
+    },
+    "npLikenessScore": {
+      "type": "number",
+      "description": "Natural product likeness score"
+    },
+    "fsp3": {
+      "type": "number",
+      "description": "Fraction sp3 carbons"
+    }
+  },
+  "required": ["wikidataId", "inchiKey"],
+  "$defs": {
+    "taxon": {
+      "type": "object",
+      "description": "Source organism",
+      "properties": {
+        "wikidataId": {
+          "type": "string",
+          "description": "Wikidata Q-identifier for organism",
+          "pattern": "^Q[0-9]+$"
+        },
+        "name": {
+          "type": "string",
+          "description": "Scientific name"
+        },
+        "rank": {
+          "type": "string",
+          "description": "Taxonomic rank"
+        },
+        "ncbiId": {
+          "type": "integer",
+          "description": "NCBI Taxonomy ID"
+        },
+        "ottId": {
+          "type": "integer",
+          "description": "Open Tree of Life ID"
+        }
+      },
+      "required": ["wikidataId"]
+    },
+    "reference": {
+      "type": "object",
+      "description": "Literature reference",
+      "properties": {
+        "wikidataId": {
+          "type": "string",
+          "description": "Wikidata Q-identifier for reference",
+          "pattern": "^Q[0-9]+$"
+        },
+        "doi": {
+          "type": "string",
+          "description": "Digital Object Identifier"
+        },
+        "pmid": {
+          "type": "integer",
+          "description": "PubMed ID"
+        },
+        "pmcid": {
+          "type": "string",
+          "description": "PubMed Central ID"
+        },
+        "title": {
+          "type": "string",
+          "description": "Publication title"
+        }
+      },
+      "required": ["wikidataId"]
+    }
+  },
+  "additionalProperties": false
+}

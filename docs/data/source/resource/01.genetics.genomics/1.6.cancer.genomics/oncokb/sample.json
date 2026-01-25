@@ -1,0 +1,139 @@
+[
+  {
+    "gene": {
+      "hugoSymbol": "BRAF",
+      "geneAliases": ["BRAF1", "RAFB1", "B-RAF"],
+      "entrezGeneId": 673,
+      "oncogene": true,
+      "tsg": false,
+      "grch37Isoform": "ENST00000288602",
+      "grch38Isoform": "ENST00000288602"
+    },
+    "alteration": {
+      "name": "V600E",
+      "alteration": "V600E",
+      "proteinStart": 600,
+      "proteinEnd": 600,
+      "refResidues": "V",
+      "variantResidues": "E",
+      "consequence": {
+        "term": "missense_variant",
+        "isGenerallyTruncating": false
+      },
+      "gene": "BRAF"
+    },
+    "treatments": [
+      {
+        "level": "1",
+        "fdaLevel": "Fda2",
+        "drugs": [
+          {"drugName": "Vemurafenib", "ncitCode": "C64768"},
+          {"drugName": "Dabrafenib", "ncitCode": "C82386"},
+          {"drugName": "Encorafenib", "ncitCode": "C98831"}
+        ],
+        "indications": [
+          {
+            "tumorType": "Melanoma",
+            "oncoTreeCode": "MEL",
+            "mainType": "Melanoma"
+          }
+        ],
+        "levelDescription": "FDA-approved therapy",
+        "pmids": ["21639808", "22608338", "30219628"]
+      },
+      {
+        "level": "2",
+        "fdaLevel": null,
+        "drugs": [
+          {"drugName": "Dabrafenib", "ncitCode": "C82386"},
+          {"drugName": "Trametinib", "ncitCode": "C77908"}
+        ],
+        "indications": [
+          {
+            "tumorType": "Non-Small Cell Lung Cancer",
+            "oncoTreeCode": "NSCLC",
+            "mainType": "Non-Small Cell Lung Cancer"
+          }
+        ],
+        "levelDescription": "Standard care",
+        "pmids": ["27283860"]
+      }
+    ],
+    "oncogenic": "Oncogenic",
+    "mutationEffect": "Gain-of-function",
+    "mutationEffectPmids": ["12068308", "12231629"]
+  },
+  {
+    "gene": {
+      "hugoSymbol": "EGFR",
+      "geneAliases": ["ERBB", "ERBB1", "HER1"],
+      "entrezGeneId": 1956,
+      "oncogene": true,
+      "tsg": false,
+      "grch37Isoform": "ENST00000275493",
+      "grch38Isoform": "ENST00000275493"
+    },
+    "alteration": {
+      "name": "L858R",
+      "alteration": "L858R",
+      "proteinStart": 858,
+      "proteinEnd": 858,
+      "refResidues": "L",
+      "variantResidues": "R",
+      "consequence": {
+        "term": "missense_variant",
+        "isGenerallyTruncating": false
+      },
+      "gene": "EGFR"
+    },
+    "treatments": [
+      {
+        "level": "1",
+        "fdaLevel": "Fda2",
+        "drugs": [
+          {"drugName": "Osimertinib", "ncitCode": "C102567"},
+          {"drugName": "Erlotinib", "ncitCode": "C65530"},
+          {"drugName": "Gefitinib", "ncitCode": "C1855"}
+        ],
+        "indications": [
+          {
+            "tumorType": "Non-Small Cell Lung Cancer",
+            "oncoTreeCode": "NSCLC",
+            "mainType": "Non-Small Cell Lung Cancer"
+          }
+        ],
+        "levelDescription": "FDA-approved therapy",
+        "pmids": ["19692680", "28841975"]
+      }
+    ],
+    "oncogenic": "Oncogenic",
+    "mutationEffect": "Gain-of-function",
+    "mutationEffectPmids": ["15696205", "16187797"]
+  },
+  {
+    "gene": {
+      "hugoSymbol": "TP53",
+      "geneAliases": ["p53", "LFS1", "TRP53"],
+      "entrezGeneId": 7157,
+      "oncogene": false,
+      "tsg": true
+    },
+    "alteration": {
+      "name": "R175H",
+      "alteration": "R175H",
+      "proteinStart": 175,
+      "proteinEnd": 175,
+      "refResidues": "R",
+      "variantResidues": "H",
+      "consequence": {
+        "term": "missense_variant",
+        "isGenerallyTruncating": false
+      },
+      "gene": "TP53"
+    },
+    "treatments": [],
+    "oncogenic": "Oncogenic",
+    "mutationEffect": "Loss-of-function",
+    "mutationEffectPmids": ["19847789", "8336941"]
+  }
+]

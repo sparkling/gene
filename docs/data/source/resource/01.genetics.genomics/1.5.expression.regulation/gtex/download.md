@@ -188,6 +188,61 @@ wc -l gene_tpm.gct
 zcat Whole_Blood.v8.signif_variant_gene_pairs.txt.gz | head -5
 ```
 
+## Dataset Versions
+
+### Current Release: V10
+
+| Property | Value |
+|----------|-------|
+| Version | V10 |
+| Release Date | 2024-11 |
+| Total Size | ~12 TB (all data types) |
+| Donors | 948 |
+| Tissues | 54 |
+| Samples | 17,382 RNA-seq |
+
+### Version Contents
+
+| Component | Size | Records | Description |
+|-----------|------|---------|-------------|
+| gene_tpm.gct.gz | ~1.5 GB | 56K genes | TPM matrix |
+| gene_reads.gct.gz | ~1.5 GB | 56K genes | Read counts |
+| GTEx_Analysis_v10_eQTL.tar | ~50 GB | varies | All cis-eQTL results |
+| SampleAttributesDS.txt | ~20 MB | 17K | Sample metadata |
+| SubjectPhenotypesDS.txt | ~1 MB | 948 | Donor phenotypes |
+
+### Tissue Coverage (54 tissues)
+
+| Category | Tissues | Samples |
+|----------|---------|---------|
+| Brain | 13 regions | 2,500+ |
+| Cardiovascular | 5 (heart, arteries) | 800+ |
+| Digestive | 8 (GI tract, liver) | 1,200+ |
+| Reproductive | 6 (various) | 600+ |
+| Other | 22 | 12,000+ |
+
+### Version History
+
+| Version | Release | Donors | Tissues | Status |
+|---------|---------|--------|---------|--------|
+| V10 | 2024-11 | 948 | 54 | Current |
+| V8 | 2020-06 | 838 | 54 | Available |
+| V9 | 2022 | - | - | Metadata only |
+| V7 | 2017-09 | 714 | 53 | Legacy |
+
+---
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | https://gtexportal.org/api/v2/ |
+| Rate Limit | 10 req/sec |
+| Auth Required | No (open access data) |
+| Response Format | JSON |
+
+---
+
 ## Update Schedule
 
 | Release | Frequency |

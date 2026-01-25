@@ -1,0 +1,156 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "decipher-schema.json",
+  "title": "DECIPHER Patient/Variant Record",
+  "description": "JSON Schema for DECIPHER rare disease database. Contains 50,000+ patient records, 40,000+ CNVs, and 60,000+ SNVs from 300+ clinical genetics centers across 35 countries with HPO phenotype annotations.",
+  "type": "object",
+  "properties": {
+    "patient_id": {
+      "type": "string",
+      "description": "DECIPHER patient identifier",
+      "pattern": "^DECIPHER:[0-9]+$",
+      "examples": ["DECIPHER:250001"]
+    },
+    "decipher_id": {
+      "type": "integer",
+      "description": "Numeric DECIPHER ID"
+    },
+    "sex": {
+      "type": "string",
+      "description": "Patient sex",
+      "enum": ["Male", "Female", "Unknown"]
+    },
+    "phenotypes": {
+      "type": "array",
+      "description": "HPO phenotype annotations",
+      "items": {
+        "$ref": "#/$defs/phenotype"
+      }
+    },
+    "variants": {
+      "type": "array",
+      "description": "Genomic variants",
+      "items": {
+        "$ref": "#/$defs/variant"
+      }
+    },
+    "inheritance": {
+      "type": "string",
+      "description": "Inheritance pattern",
+      "enum": ["De novo", "Inherited from father", "Inherited from mother", "Biparental", "Unknown"]
+    },
+    "contributing_center": {
+      "type": "string",
+      "description": "Clinical center"
+    },
+    "consent_level": {
+      "type": "string",
+      "description": "Data sharing consent",
+      "enum": ["Open access", "Managed access"]
+    }
+  },
+  "required": ["decipher_id"],
+  "$defs": {
+    "phenotype": {
+      "type": "object",
+      "description": "HPO phenotype",
+      "properties": {
+        "hpo_id": {
+          "type": "string",
+          "description": "HPO term ID",
+          "pattern": "^HP:[0-9]{7}$",
+          "examples": ["HP:0001249"]
+        },
+        "hpo_term": {
+          "type": "string",
+          "description": "HPO term name"
+        },
+        "observed": {
+          "type": "boolean",
+          "description": "Phenotype observed"
+        }
+      },
+      "required": ["hpo_id"]
+    },
+    "variant": {
+      "type": "object",
+      "description": "Genomic variant",
+      "properties": {
+        "variant_type": {
+          "type": "string",
+          "description": "Variant type",
+          "enum": ["CNV", "SNV", "Indel"]
+        },
+        "chromosome": {
+          "type": "string",
+          "description": "Chromosome"
+        },
+        "start": {
+          "type": "integer",
+          "description": "Start position (GRCh38)"
+        },
+        "end": {
+          "type": "integer",
+          "description": "End position (GRCh38)"
+        },
+        "reference": {
+          "type": "string",
+          "description": "Reference allele"
+        },
+        "alternative": {
+          "type": "string",
+          "description": "Alternative allele"
+        },
+        "copy_number": {
+          "type": "integer",
+          "description": "Copy number state (for CNV)"
+        },
+        "genes": {
+          "type": "array",
+          "description": "Affected genes",
+          "items": {
+            "type": "object",
+            "properties": {
+              "ensembl_id": {
+                "type": "string",
+                "description": "Ensembl gene ID",
+                "pattern": "^ENSG[0-9]{11}$"
+              },
+              "symbol": {
+                "type": "string",
+                "description": "Gene symbol"
+              },
+              "hi_score": {
+                "type": "number",
+                "description": "Haploinsufficiency score",
+                "minimum": 0,
+                "maximum": 100
+              },
+              "pli": {
+                "type": "number",
+                "description": "pLI score",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "loeuf": {
+                "type": "number",
+                "description": "LOEUF score"
+              }
+            }
+          }
+        },
+        "pathogenicity": {
+          "type": "string",
+          "description": "Variant classification",
+          "enum": ["Pathogenic", "Likely pathogenic", "Uncertain significance", "Likely benign", "Benign"]
+        },
+        "inheritance": {
+          "type": "string",
+          "description": "Inheritance pattern"
+        }
+      },
+      "required": ["variant_type", "chromosome", "start"]
+    }
+  },
+  "additionalProperties": false
+}

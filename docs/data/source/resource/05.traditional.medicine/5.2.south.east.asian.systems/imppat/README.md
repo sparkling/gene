@@ -1,19 +1,22 @@
 ---
 id: imppat
 title: "IMPPAT 2.0 - Indian Medicinal Plants, Phytochemistry And Therapeutics"
-type: data-source
-category: traditional-medicine
-subcategory: south-east-asian-systems
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 1
-last_updated: 2026-01-23
 status: active
-tags: [ayurveda, indian-medicine, phytochemistry, drug-likeness, admet, natural-products]
+category: traditional.medicine
+subcategory: south.east.asian.systems
+tags:
+  - ayurveda
+  - indian-medicine
+  - phytochemistry
+  - drug-likeness
+  - admet
+  - natural-products
 ---
 
 # IMPPAT 2.0 - Indian Medicinal Plants, Phytochemistry And Therapeutics
-
-**Category:** [Traditional Medicine](../../_index.md) > [South East Asian Systems](../_index.md)
 
 ## Overview
 
@@ -100,14 +103,6 @@ Target Proteins (5,042) ---> STITCH score >= 700
 | Veber | RotBonds<=10, TPSA<=140 | - |
 | QED Score | 0-1 scale | >0.5 favorable |
 
-## License
-
-| Aspect | Value |
-|--------|-------|
-| License | CC BY-NC 4.0 |
-| Commercial Use | Requires separate agreement |
-| Attribution | Citation required |
-
 ## Limitations
 
 - No public REST API (manual export required)
@@ -117,6 +112,6 @@ Target Proteins (5,042) ---> STITCH score >= 700
 
 ## See Also
 
-- [Schema Documentation](./schema.md)
-- [NPACT](../npact/_index.md)
-- [TM-MC](../tm.mc/_index.md)
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [License Terms](./license.md) - Usage rights and restrictions

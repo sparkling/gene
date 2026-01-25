@@ -1,0 +1,68 @@
+{
+  "source": "LOTUS",
+  "version": "2024",
+  "description": "Sample structure-organism pairs from LOTUS database",
+  "records": [
+    {
+      "structure": {
+        "wikidataId": "Q312879",
+        "name": "beta-Sitosterol",
+        "inchiKey": "KZJWDPNRJALLNS-VJSFXXLFSA-N",
+        "smiles": "CC[C@H](CC[C@@H](C)[C@H]1CC[C@@H]2[C@@]1(CC[C@H]3[C@H]2CC=C4[C@@]3(CC[C@@H](C4)O)C)C)C(C)C",
+        "molecularFormula": "C29H50O",
+        "molecularWeight": 414.71
+      },
+      "organism": {
+        "wikidataId": "Q158695",
+        "name": "Arabidopsis thaliana",
+        "ncbiId": 3702,
+        "rank": "species"
+      },
+      "reference": {
+        "wikidataId": "Q56636231",
+        "doi": "10.1016/j.phytochem.2018.01.001"
+      }
+    },
+    {
+      "structure": {
+        "wikidataId": "Q312879",
+        "name": "beta-Sitosterol",
+        "inchiKey": "KZJWDPNRJALLNS-VJSFXXLFSA-N",
+        "smiles": "CC[C@H](CC[C@@H](C)[C@H]1CC[C@@H]2[C@@]1(CC[C@H]3[C@H]2CC=C4[C@@]3(CC[C@@H](C4)O)C)C)C(C)C"
+      },
+      "organism": {
+        "wikidataId": "Q147098",
+        "name": "Allium cepa",
+        "ncbiId": 4679,
+        "rank": "species"
+      },
+      "reference": {
+        "wikidataId": "Q28189571",
+        "pmid": 29371045
+      }
+    },
+    {
+      "structure": {
+        "wikidataId": "Q15411458",
+        "name": "Quercetin",
+        "inchiKey": "REFJWTPEDVJJIY-UHFFFAOYSA-N",
+        "smiles": "OC1=CC(O)=C2C(=O)C(O)=C(OC2=C1)C1=CC(O)=C(O)C=C1",
+        "molecularFormula": "C15H10O7",
+        "molecularWeight": 302.24
+      },
+      "organism": {
+        "wikidataId": "Q161104",
+        "name": "Camellia sinensis",
+        "ncbiId": 4442,
+        "rank": "species"
+      },
+      "reference": {
+        "doi": "10.1021/jf049953k"
+      }
+    }
+  ],
+  "queries": {
+    "sparql": "curl -G 'https://query.wikidata.org/sparql' --data-urlencode 'query=SELECT ?compound ?inchikey WHERE { ?compound wdt:P703 wd:Q158695 ; wdt:P235 ?inchikey } LIMIT 10' -H 'Accept: application/json'",
+    "download": "wget https://zenodo.org/record/5794106/files/lotus.json.gz"
+  }
+}

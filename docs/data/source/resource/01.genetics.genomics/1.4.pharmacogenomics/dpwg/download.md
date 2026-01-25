@@ -92,6 +92,57 @@ cat dpwg_guidelines.json | jq '.data | length'
 cat dpwg_guidelines.json | jq '.data[] | select(.relatedChemicals[0].name == "clopidogrel")'
 ```
 
+## Dataset Versions
+
+### Current Release
+
+| Property | Value |
+|----------|-------|
+| Version | 2025-Q4 |
+| Release Date | 2025-12 |
+| Total Size | ~5 MB |
+| Guidelines | 100+ gene-drug pairs |
+| Languages | Dutch, English (PharmGKB) |
+
+### Version Contents
+
+| Component | Size | Records | Description |
+|-----------|------|---------|-------------|
+| dpwg_guidelines.json (PharmGKB) | ~2 MB | 100+ | All DPWG guidelines |
+| clinicalAnnotations.zip | ~5 MB | 1000+ | Including DPWG annotations |
+| G-Standaard (Dutch) | varies | 100+ | Dutch pharmacy system |
+
+### Gene-Drug Coverage
+
+| Category | Examples | Count |
+|----------|----------|-------|
+| CYP2D6 drugs | codeine, tramadol, tamoxifen | 25+ |
+| CYP2C19 drugs | clopidogrel, omeprazole | 15+ |
+| CYP2C9 drugs | warfarin, phenytoin | 10+ |
+| Other genes | DPYD, TPMT, VKORC1 | 50+ |
+
+### Comparison with CPIC
+
+| Aspect | DPWG | CPIC |
+|--------|------|------|
+| Origin | Netherlands | USA |
+| Focus | European practice | Global |
+| Integration | G-Standaard | EMR/EHR |
+| Harmonization | Ongoing | Ongoing |
+
+---
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | https://api.pharmgkb.org/v1/data/guideline |
+| Rate Limit | 10 req/sec |
+| Auth Required | No (PharmGKB account recommended) |
+| Response Format | JSON |
+
+---
+
 ## Update Schedule
 
 | Release | Frequency |

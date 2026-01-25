@@ -109,6 +109,68 @@ cut -f1 built_with_change_types.tsv | sort | uniq -c
 cut -f5 built_with_change_types.tsv | sort | uniq -c
 ```
 
+## Dataset Versions
+
+### Current Release
+
+| Property | Value |
+|----------|-------|
+| Version | Release 15 |
+| Release Date | 2025-12 |
+| Total Size | ~200 MB |
+| Variants | 45,000+ |
+| Sources | 15 databases |
+| ENIGMA Classified | 8,000+ |
+
+### Version Contents
+
+| Component | Size | Records | Description |
+|-----------|------|---------|-------------|
+| current_release.tar.gz | ~50 MB | 45K | Compressed release |
+| built_with_change_types.tsv | ~200 MB | 45K | Full variant data |
+| built.tsv | ~100 MB | 45K | Simplified version |
+| release_notes.txt | <1 KB | - | Release information |
+
+### Variant Classification
+
+| Classification | Count | Description |
+|----------------|-------|-------------|
+| Pathogenic | 8,000+ | Disease-causing |
+| Likely Pathogenic | 2,000+ | Probably pathogenic |
+| VUS | 20,000+ | Uncertain significance |
+| Likely Benign | 3,000+ | Probably benign |
+| Benign | 10,000+ | Not pathogenic |
+
+### Gene Distribution
+
+| Gene | Variants | Description |
+|------|----------|-------------|
+| BRCA1 | 20,000+ | Chromosome 17 |
+| BRCA2 | 25,000+ | Chromosome 13 |
+
+### Data Sources Aggregated
+
+| Source | Contribution | Description |
+|--------|--------------|-------------|
+| ClinVar | Major | Clinical submissions |
+| LOVD | Major | Locus-specific database |
+| BIC | Historical | Breast cancer database |
+| ENIGMA | Expert | Expert classifications |
+| GnomAD | Frequencies | Population data |
+
+---
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | https://brcaexchange.org/backend/ |
+| Rate Limit | 10 req/sec |
+| Auth Required | No |
+| Response Format | JSON |
+
+---
+
 ## Update Schedule
 
 | Release | Frequency |

@@ -296,6 +296,33 @@ grep "<ExternalReference>" orphanet_xrefs.xml | wc -l
 grep -A 20 "OrphaCode>558<" orphanet_diseases.xml
 ```
 
+## Dataset Versions
+
+| Version | Release Date | Size | Status |
+|---------|--------------|------|--------|
+| Orphanet Jan 2026 | 2026-01 | ~100 MB | Current |
+| Monthly releases | First week | Varies | Rolling |
+| ORDO v4.5 | 2025-12 | ~50 MB | Current |
+
+### Version Notes
+
+Orphanet current database statistics:
+- 6,300+ rare diseases catalogued
+- 4,200+ genes with disease associations
+- 12,000+ disease-gene associations
+- 10,000+ disease classifications
+- Multi-language support (8 languages)
+- Expert-curated by medical professionals
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | `https://api.orphanet.org/rd-api` |
+| Rate Limit | Reasonable use |
+| Auth Required | No |
+| Documentation | https://www.orphadata.com |
+
 ## Update Schedule
 
 | Product | Frequency |

@@ -1,0 +1,74 @@
+{
+  "source": "Open Targets Platform",
+  "version": "24.03",
+  "description": "Sample target-disease association records from Open Targets",
+  "records": [
+    {
+      "target": {
+        "id": "ENSG00000141510",
+        "symbol": "TP53",
+        "name": "tumor protein p53"
+      },
+      "disease": {
+        "id": "EFO:0000305",
+        "name": "breast carcinoma",
+        "therapeutic_areas": ["Oncology"]
+      },
+      "association_score": {
+        "overall": 0.89,
+        "datatypes": {
+          "literature": 0.65,
+          "rna_expression": 0.12,
+          "genetic_association": 0.85,
+          "somatic_mutation": 0.95,
+          "known_drug": 0.0,
+          "animal_model": 0.0,
+          "affected_pathway": 0.45
+        }
+      }
+    },
+    {
+      "target": {
+        "id": "ENSG00000012048",
+        "symbol": "BRCA1",
+        "name": "BRCA1 DNA repair associated"
+      },
+      "disease": {
+        "id": "EFO:0000305",
+        "name": "breast carcinoma"
+      },
+      "association_score": {
+        "overall": 0.95,
+        "datatypes": {
+          "genetic_association": 0.98,
+          "somatic_mutation": 0.78,
+          "known_drug": 0.85
+        }
+      }
+    },
+    {
+      "target": {
+        "id": "ENSG00000146648",
+        "symbol": "EGFR",
+        "name": "epidermal growth factor receptor"
+      },
+      "disease": {
+        "id": "EFO:0001071",
+        "name": "non-small cell lung carcinoma"
+      },
+      "association_score": {
+        "overall": 0.91,
+        "datatypes": {
+          "genetic_association": 0.72,
+          "somatic_mutation": 0.92,
+          "known_drug": 0.95
+        }
+      }
+    }
+  ],
+  "queries": {
+    "graphql": "curl 'https://api.platform.opentargets.org/api/v4/graphql' -X POST -H 'Content-Type: application/json' -d '{\"query\": \"{ target(ensemblId: \\\"ENSG00000141510\\\") { id approvedSymbol } }\"}'",
+    "rest_association": "curl 'https://api.platform.opentargets.org/api/v4/platform/public/association/filter?target=ENSG00000141510&disease=EFO:0000305' | jq",
+    "download": "wget https://ftp.ebi.ac.uk/pub/databases/opentargets/platform/24.03/output/etl/parquet/"
+  }
+}

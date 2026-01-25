@@ -1,0 +1,62 @@
+[
+  {
+    "CHROM": "chr7",
+    "POS": 140753336,
+    "REF": "A",
+    "ALT": "T",
+    "genome": "hg38",
+    "uniprot_id": "P15056",
+    "transcript_id": "ENST00000288602.11",
+    "protein_variant": "V600E",
+    "am_pathogenicity": 0.9972,
+    "am_class": "likely_pathogenic"
+  },
+  {
+    "CHROM": "chr17",
+    "POS": 7673803,
+    "REF": "G",
+    "ALT": "A",
+    "genome": "hg38",
+    "uniprot_id": "P04637",
+    "transcript_id": "ENST00000269305.9",
+    "protein_variant": "R175H",
+    "am_pathogenicity": 0.9856,
+    "am_class": "likely_pathogenic"
+  },
+  {
+    "CHROM": "chr1",
+    "POS": 69094,
+    "REF": "G",
+    "ALT": "A",
+    "genome": "hg38",
+    "uniprot_id": "Q8NH21",
+    "transcript_id": "ENST00000641515.2",
+    "protein_variant": "G2R",
+    "am_pathogenicity": 0.0897,
+    "am_class": "likely_benign"
+  },
+  {
+    "CHROM": "chr11",
+    "POS": 5227002,
+    "REF": "T",
+    "ALT": "A",
+    "genome": "hg38",
+    "uniprot_id": "P68871",
+    "transcript_id": "ENST00000335295.4",
+    "protein_variant": "E7V",
+    "am_pathogenicity": 0.8234,
+    "am_class": "likely_pathogenic"
+  },
+  {
+    "CHROM": "chr13",
+    "POS": 32398489,
+    "REF": "A",
+    "ALT": "G",
+    "genome": "hg38",
+    "uniprot_id": "P51587",
+    "transcript_id": "ENST00000380152.8",
+    "protein_variant": "K2950R",
+    "am_pathogenicity": 0.4521,
+    "am_class": "ambiguous"
+  }
+]

@@ -1,0 +1,71 @@
+[
+  {
+    "gene": {
+      "PharmGKB_Accession": "PA124",
+      "Symbol": "CYP2D6",
+      "Name": "cytochrome P450 family 2 subfamily D member 6",
+      "Is_VIP": true
+    },
+    "drug": {
+      "PharmGKB_Accession": "PA449053",
+      "Name": "codeine",
+      "Trade_Names": ["Tylenol with Codeine"],
+      "Has_PGx_On_Label": true
+    },
+    "clinical_annotation": {
+      "Annotation_ID": 1449309937,
+      "Location": "CYP2D6",
+      "Gene": "CYP2D6",
+      "Level_of_Evidence": "1A",
+      "Phenotype_Category": "Efficacy",
+      "Drug": "codeine",
+      "Phenotype": "CYP2D6 poor metabolizers have reduced conversion of codeine to morphine"
+    }
+  },
+  {
+    "gene": {
+      "PharmGKB_Accession": "PA126",
+      "Symbol": "CYP2C19",
+      "Name": "cytochrome P450 family 2 subfamily C member 19",
+      "Is_VIP": true
+    },
+    "drug": {
+      "PharmGKB_Accession": "PA449761",
+      "Name": "clopidogrel",
+      "Trade_Names": ["Plavix"],
+      "Has_PGx_On_Label": true
+    },
+    "clinical_annotation": {
+      "Annotation_ID": 1447983435,
+      "Location": "CYP2C19",
+      "Gene": "CYP2C19",
+      "Level_of_Evidence": "1A",
+      "Phenotype_Category": "Efficacy",
+      "Drug": "clopidogrel",
+      "Phenotype": "CYP2C19 poor metabolizers have reduced active metabolite formation and increased cardiovascular events"
+    }
+  },
+  {
+    "gene": {
+      "PharmGKB_Accession": "PA356",
+      "Symbol": "SLCO1B1",
+      "Name": "solute carrier organic anion transporter family member 1B1",
+      "Is_VIP": true
+    },
+    "drug": {
+      "PharmGKB_Accession": "PA451363",
+      "Name": "simvastatin",
+      "Trade_Names": ["Zocor"],
+      "Has_PGx_On_Label": true
+    },
+    "clinical_annotation": {
+      "Annotation_ID": 981654789,
+      "Location": "rs4149056",
+      "Gene": "SLCO1B1",
+      "Level_of_Evidence": "1A",
+      "Phenotype_Category": "Toxicity",
+      "Drug": "simvastatin",
+      "Phenotype": "SLCO1B1 521T>C carriers have increased risk of statin-induced myopathy"
+    }
+  }
+]

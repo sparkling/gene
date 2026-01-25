@@ -70,6 +70,10 @@ UniProt is the gold standard for protein annotation and is extensively cross-ref
 
 ## See Also
 
-- [Schema Documentation](./schema.md)
-- [RefSeq](../refseq/_index.md) - NCBI reference sequences
-- [UniProt ID Mapping](../../../08.literature.knowledge/8.3.identifier.mapping/uniprot.id.mapping/_index.md) - ID conversion
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [Sample Data](./sample.json) - Example records
+- [License Terms](./license.md) - Usage rights and restrictions
+- [Schema Mapping](./mapping.xslt) - Transform to unified schema
+- [RefSeq](../refseq/README.md) - NCBI reference sequences
+- [UniProt ID Mapping](../../../08.literature.knowledge/8.3.identifier.mapping/uniprot.id.mapping/README.md) - ID conversion

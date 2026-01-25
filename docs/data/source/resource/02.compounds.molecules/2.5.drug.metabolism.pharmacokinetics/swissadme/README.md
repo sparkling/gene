@@ -1,19 +1,21 @@
 ---
 id: swissadme
 title: "SwissADME - ADME Property Prediction"
-type: data-source
-category: compounds
-subcategory: drug-metabolism
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 2
-last_updated: 2026-01-23
 status: active
-tags: [adme, pharmacokinetics, drug-likeness, physicochemical, prediction]
+category: compounds.molecules
+subcategory: drug.metabolism.pharmacokinetics
+tags:
+  - adme
+  - pharmacokinetics
+  - drug-likeness
+  - physicochemical
+  - prediction
 ---
 
 # SwissADME - ADME Property Prediction
-
-**Category:** [Compounds & Molecules](../../_index.md) > [Drug Metabolism & Pharmacokinetics](../_index.md)
 
 ## Overview
 
@@ -78,13 +80,18 @@ SwissADME enables medicinal chemists and drug discovery scientists to quickly as
 | Ghose | 160 <= MW <= 480, -0.4 <= LogP <= 5.6 |
 | Muegge | 200 <= MW <= 600, -2 <= LogP <= 5 |
 
-## License
+## Limitations
 
-| Aspect | Value |
-|--------|-------|
-| License | Free for all users |
-| Commercial Use | Yes |
-| Registration | Not required |
+- Predictions are computational estimates, not experimental values
+- Batch processing limited to 100 compounds
+- No bulk download of training data or models
+- Predictions may be less accurate for chemotypes outside training set
+
+## See Also
+
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [License Terms](./license.md) - Usage rights and restrictions
 
 ## Related Resources
 

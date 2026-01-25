@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "gmrepo-schema.json",
+  "title": "GMrepo Sample Record",
+  "description": "JSON Schema for GMrepo gut microbiome repository sample entries.",
+  "type": "object",
+  "properties": {
+    "run_id": { "type": "string", "pattern": "^[SE]RR[0-9]+$", "description": "Sequencing run accession" },
+    "project_id": { "type": "string", "pattern": "^PRJ[EN][AB][0-9]+$", "description": "BioProject accession" },
+    "sample_id": { "type": "string", "description": "BioSample accession" },
+    "phenotype": { "type": "string", "description": "Disease/health phenotype" },
+    "phenotype_mesh_id": { "type": "string", "pattern": "^D[0-9]+$", "description": "MeSH identifier" },
+    "host_age": { "type": ["integer", "null"], "minimum": 0, "maximum": 120 },
+    "host_sex": { "type": ["string", "null"], "enum": ["male", "female", null] },
+    "host_bmi": { "type": ["number", "null"], "minimum": 10, "maximum": 70 },
+    "country": { "type": "string", "description": "Country of sample origin" },
+    "sequencing_type": { "type": "string", "enum": ["16S", "WGS"] },
+    "antibiotics_usage": { "type": "string", "enum": ["yes", "no", "unknown"] },
+    "collection_date": { "type": "string", "format": "date" },
+    "species_abundance": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "taxon_id": { "type": "integer" },
+          "taxon_name": { "type": "string" },
+          "rank": { "type": "string", "enum": ["species", "genus", "family", "phylum"] },
+          "relative_abundance": { "type": "number", "minimum": 0, "maximum": 1 },
+          "read_count": { "type": "integer" }
+        },
+        "required": ["taxon_id", "taxon_name", "relative_abundance"]
+      }
+    }
+  },
+  "required": ["run_id", "project_id", "sequencing_type"],
+  "additionalProperties": true
+}

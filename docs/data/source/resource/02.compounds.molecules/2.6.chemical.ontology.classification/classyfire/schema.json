@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "classyfire-schema.json",
+  "title": "ClassyFire Classification Record",
+  "description": "JSON Schema for ClassyFire chemical taxonomy classification results. ClassyFire provides hierarchical chemical classification via ChemOnt ontology with 4,825+ categories.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "ClassyFire query ID"
+    },
+    "identifier": {
+      "type": "string",
+      "description": "User-provided compound identifier or label"
+    },
+    "smiles": {
+      "type": "string",
+      "description": "Canonical SMILES representation of the compound"
+    },
+    "inchikey": {
+      "type": "string",
+      "description": "InChIKey for the compound",
+      "pattern": "^[A-Z]{14}-[A-Z]{10}-[A-Z]$"
+    },
+    "kingdom": {
+      "$ref": "#/$defs/classificationLevel",
+      "description": "Highest classification level (11 kingdoms)"
+    },
+    "superclass": {
+      "$ref": "#/$defs/classificationLevel",
+      "description": "Second classification level (37 superclasses)"
+    },
+    "class": {
+      "$ref": "#/$defs/classificationLevel",
+      "description": "Third classification level (150+ classes)"
+    },
+    "subclass": {
+      "$ref": "#/$defs/classificationLevel",
+      "description": "Fourth classification level (400+ subclasses)"
+    },
+    "intermediate_nodes": {
+      "type": "array",
+      "description": "Additional classification levels between subclass and direct_parent",
+      "items": {
+        "$ref": "#/$defs/classificationLevel"
+      }
+    },
+    "direct_parent": {
+      "$ref": "#/$defs/classificationLevel",
+      "description": "Most specific applicable classification category"
+    },
+    "alternative_parents": {
+      "type": "array",
+      "description": "Alternative valid classification paths",
+      "items": {
+        "$ref": "#/$defs/classificationLevel"
+      }
+    },
+    "molecular_framework": {
+      "type": "string",
+      "description": "Structural framework description"
+    },
+    "substituents": {
+      "type": "array",
+      "description": "Functional group substituents identified",
+      "items": {
+        "type": "string"
+      }
+    },
+    "description": {
+      "type": "string",
+      "description": "Compound description"
+    },
+    "external_descriptors": {
+      "type": "array",
+      "description": "External annotation descriptors",
+      "items": {
+        "type": "object"
+      }
+    },
+    "predicted_chebi_terms": {
+      "type": "array",
+      "description": "Predicted ChEBI ontology mappings",
+      "items": {
+        "type": "string",
+        "pattern": "^CHEBI:[0-9]+$"
+      }
+    },
+    "predicted_lipidmaps_terms": {
+      "type": "array",
+      "description": "Predicted LIPID MAPS classifications",
+      "items": {
+        "type": "string"
+      }
+    },
+    "classification_version": {
+      "type": "string",
+      "description": "ChemOnt version used for classification"
+    }
+  },
+  "required": ["smiles", "kingdom", "superclass", "class", "direct_parent", "classification_version"],
+  "$defs": {
+    "classificationLevel": {
+      "type": "object",
+      "description": "Single classification level entity in ChemOnt hierarchy",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Category name"
+        },
+        "description": {
+          "type": "string",
+          "description": "Category description"
+        },
+        "chemont_id": {
+          "type": "string",
+          "description": "ChemOnt identifier",
+          "pattern": "^CHEMONTID:[0-9]{7}$"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "Link to category page"
+        }
+      },
+      "required": ["name", "chemont_id"]
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,140 @@
+[
+  {
+    "variantId": "11-5227002-T-A",
+    "chrom": "11",
+    "pos": 5227002,
+    "ref": "T",
+    "alt": "A",
+    "exome": {
+      "ac": 156,
+      "an": 1420000,
+      "af": 0.00011,
+      "ac_hom": 12
+    },
+    "genome": {
+      "ac": 42,
+      "an": 152000,
+      "af": 0.00028,
+      "ac_hom": 3
+    },
+    "joint": {
+      "ac": 198,
+      "an": 1572000,
+      "af": 0.000126
+    },
+    "populations": [
+      {"id": "afr", "ac": 89, "an": 45000, "ac_hom": 8},
+      {"id": "nfe", "ac": 12, "an": 800000, "ac_hom": 0},
+      {"id": "sas", "ac": 45, "an": 100000, "ac_hom": 4},
+      {"id": "amr", "ac": 23, "an": 75000, "ac_hom": 0},
+      {"id": "eas", "ac": 0, "an": 50000, "ac_hom": 0}
+    ],
+    "flags": ["lcr"],
+    "lof": "HC",
+    "transcript_consequences": [
+      {
+        "gene_id": "ENSG00000244734",
+        "gene_symbol": "HBB",
+        "transcript_id": "ENST00000335295",
+        "hgvsc": "c.20A>T",
+        "hgvsp": "p.Glu7Val",
+        "consequence": "missense_variant"
+      }
+    ],
+    "in_silico_predictors": [
+      {"id": "revel", "value": "0.734"},
+      {"id": "cadd_phred", "value": "26.1"},
+      {"id": "sift", "value": "0.00"},
+      {"id": "polyphen", "value": "0.999"}
+    ]
+  },
+  {
+    "variantId": "7-140753336-A-T",
+    "chrom": "7",
+    "pos": 140753336,
+    "ref": "A",
+    "alt": "T",
+    "exome": {
+      "ac": 2,
+      "an": 1420000,
+      "af": 0.0000014,
+      "ac_hom": 0
+    },
+    "genome": {
+      "ac": 0,
+      "an": 152000,
+      "af": 0.0,
+      "ac_hom": 0
+    },
+    "joint": {
+      "ac": 2,
+      "an": 1572000,
+      "af": 0.0000013
+    },
+    "populations": [
+      {"id": "afr", "ac": 0, "an": 45000, "ac_hom": 0},
+      {"id": "nfe", "ac": 2, "an": 800000, "ac_hom": 0}
+    ],
+    "flags": [],
+    "lof": null,
+    "transcript_consequences": [
+      {
+        "gene_id": "ENSG00000157764",
+        "gene_symbol": "BRAF",
+        "transcript_id": "ENST00000288602",
+        "hgvsc": "c.1799T>A",
+        "hgvsp": "p.Val600Glu",
+        "consequence": "missense_variant"
+      }
+    ],
+    "in_silico_predictors": [
+      {"id": "revel", "value": "0.952"},
+      {"id": "cadd_phred", "value": "34.0"},
+      {"id": "sift", "value": "0.00"},
+      {"id": "polyphen", "value": "1.000"}
+    ]
+  },
+  {
+    "variantId": "17-7673803-G-A",
+    "chrom": "17",
+    "pos": 7673803,
+    "ref": "G",
+    "alt": "A",
+    "exome": {
+      "ac": 1,
+      "an": 1420000,
+      "af": 0.0000007,
+      "ac_hom": 0
+    },
+    "genome": {
+      "ac": 0,
+      "an": 152000,
+      "af": 0.0,
+      "ac_hom": 0
+    },
+    "joint": {
+      "ac": 1,
+      "an": 1572000,
+      "af": 0.0000006
+    },
+    "populations": [
+      {"id": "nfe", "ac": 1, "an": 800000, "ac_hom": 0}
+    ],
+    "flags": [],
+    "lof": null,
+    "transcript_consequences": [
+      {
+        "gene_id": "ENSG00000141510",
+        "gene_symbol": "TP53",
+        "transcript_id": "ENST00000269305",
+        "hgvsc": "c.524G>A",
+        "hgvsp": "p.Arg175His",
+        "consequence": "missense_variant"
+      }
+    ],
+    "in_silico_predictors": [
+      {"id": "revel", "value": "0.918"},
+      {"id": "cadd_phred", "value": "29.5"}
+    ]
+  }
+]

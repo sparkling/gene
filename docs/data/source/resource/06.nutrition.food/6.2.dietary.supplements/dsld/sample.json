@@ -1,0 +1,95 @@
+{
+  "_metadata": {
+    "source": "DSLD (NIH)",
+    "version": "v8",
+    "generated": "2026-01-25",
+    "record_count": 2,
+    "query_examples": [
+      "Search: GET /dsld/v8/browse?q=vitamin%20d",
+      "Get product: GET /dsld/v8/label/123456",
+      "Get ingredients: GET /dsld/v8/ingredients/123456"
+    ]
+  },
+  "records": [
+    {
+      "dsld_id": 123456,
+      "product_name": "Vitamin D3 5000 IU",
+      "brand_name": "Nature's Way",
+      "net_contents": "120 Softgels",
+      "serving_size": "1 softgel",
+      "servings_per_container": "120",
+      "product_type": "Softgel",
+      "upc": "033674100233",
+      "dietary_claims": [
+        "Gluten Free",
+        "No artificial colors"
+      ],
+      "ingredients": [
+        {
+          "ingredient_id": 789012,
+          "ingredient_name": "Vitamin D3 (as Cholecalciferol)",
+          "amount": "5000",
+          "unit": "IU",
+          "daily_value_percent": "1250",
+          "ingredient_group": "Vitamins",
+          "source_name": "Lanolin",
+          "is_blend_component": false,
+          "blend_name": null
+        }
+      ],
+      "manufacturer": {
+        "name": "Nature's Way Products",
+        "address": "825 Challenger Drive",
+        "city": "Green Bay",
+        "state": "WI",
+        "country": "USA"
+      },
+      "date_entered": "2023-05-15",
+      "last_updated": "2024-01-10"
+    },
+    {
+      "dsld_id": 234567,
+      "product_name": "Ashwagandha Root Extract 450mg",
+      "brand_name": "NOW Foods",
+      "net_contents": "90 Veg Capsules",
+      "serving_size": "1 capsule",
+      "servings_per_container": "90",
+      "product_type": "Capsule",
+      "upc": "733739046031",
+      "dietary_claims": [
+        "Vegan",
+        "Non-GMO"
+      ],
+      "ingredients": [
+        {
+          "ingredient_id": 345678,
+          "ingredient_name": "Ashwagandha Root Extract (Withania somnifera)",
+          "amount": "450",
+          "unit": "mg",
+          "daily_value_percent": null,
+          "ingredient_group": "Herbs/Botanicals",
+          "source_name": "Root",
+          "is_blend_component": false,
+          "blend_name": null
+        },
+        {
+          "ingredient_id": 345679,
+          "ingredient_name": "Withanolides",
+          "amount": "22.5",
+          "unit": "mg",
+          "daily_value_percent": null,
+          "ingredient_group": "Herbs/Botanicals",
+          "is_blend_component": false
+        }
+      ],
+      "manufacturer": {
+        "name": "NOW Health Group",
+        "city": "Bloomingdale",
+        "state": "IL",
+        "country": "USA"
+      },
+      "date_entered": "2022-08-20",
+      "last_updated": "2024-03-15"
+    }
+  ]
+}

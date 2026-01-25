@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "clinicaltrials-gov-schema.json",
+  "title": "ClinicalTrials.gov Study Record",
+  "description": "JSON Schema for ClinicalTrials.gov clinical study records (API v2).",
+  "type": "object",
+  "properties": {
+    "protocolSection": {
+      "type": "object",
+      "properties": {
+        "identificationModule": {
+          "type": "object",
+          "properties": {
+            "nctId": { "type": "string", "pattern": "^NCT[0-9]{8}$" },
+            "briefTitle": { "type": "string" },
+            "officialTitle": { "type": "string" },
+            "acronym": { "type": "string" },
+            "organization": {
+              "type": "object",
+              "properties": {
+                "fullName": { "type": "string" },
+                "class": { "type": "string" }
+              }
+            }
+          }
+        },
+        "statusModule": {
+          "type": "object",
+          "properties": {
+            "overallStatus": { "type": "string" },
+            "startDateStruct": { "type": "object" },
+            "completionDateStruct": { "type": "object" }
+          }
+        },
+        "designModule": {
+          "type": "object",
+          "properties": {
+            "studyType": { "type": "string" },
+            "phases": { "type": "array", "items": { "type": "string" } },
+            "enrollmentInfo": { "type": "object" }
+          }
+        },
+        "conditionsModule": {
+          "type": "object",
+          "properties": {
+            "conditions": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "armsInterventionsModule": {
+          "type": "object",
+          "properties": {
+            "armGroups": { "type": "array" },
+            "interventions": { "type": "array" }
+          }
+        },
+        "eligibilityModule": {
+          "type": "object",
+          "properties": {
+            "eligibilityCriteria": { "type": "string" },
+            "sex": { "type": "string" },
+            "minimumAge": { "type": "string" },
+            "maximumAge": { "type": "string" }
+          }
+        },
+        "outcomesModule": {
+          "type": "object",
+          "properties": {
+            "primaryOutcomes": { "type": "array" },
+            "secondaryOutcomes": { "type": "array" }
+          }
+        }
+      }
+    },
+    "resultsSection": {
+      "type": "object",
+      "properties": {
+        "participantFlowModule": { "type": "object" },
+        "outcomeMeasuresModule": { "type": "object" },
+        "adverseEventsModule": { "type": "object" }
+      }
+    },
+    "hasResults": { "type": "boolean" }
+  },
+  "required": ["protocolSection"],
+  "additionalProperties": true
+}

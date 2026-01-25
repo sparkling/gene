@@ -1,0 +1,81 @@
+{
+  "source": "Therapeutic Target Database",
+  "version": "2024",
+  "description": "Sample therapeutic target records from TTD",
+  "records": [
+    {
+      "target_id": "TTDS00035",
+      "target_name": "Cyclooxygenase-1",
+      "target_type": "Successful target",
+      "uniprot_id": "P23219",
+      "gene_name": "PTGS1",
+      "biochemical_class": "Enzyme",
+      "drugs": [
+        {
+          "drug_id": "D00109",
+          "drug_name": "Aspirin",
+          "cas_number": "50-78-2",
+          "highest_status": "Approved",
+          "mechanism": "COX inhibitor"
+        },
+        {
+          "drug_id": "D00126",
+          "drug_name": "Ibuprofen",
+          "cas_number": "15687-27-1",
+          "highest_status": "Approved"
+        }
+      ],
+      "diseases": [
+        {"disease_name": "Pain", "icd11_code": "MG30"},
+        {"disease_name": "Inflammation", "icd11_code": "4A44"}
+      ]
+    },
+    {
+      "target_id": "TTDS00281",
+      "target_name": "BCR-ABL fusion protein",
+      "target_type": "Successful target",
+      "biochemical_class": "Kinase",
+      "drugs": [
+        {
+          "drug_id": "D01441",
+          "drug_name": "Imatinib",
+          "cas_number": "152459-95-5",
+          "highest_status": "Approved",
+          "mechanism": "Tyrosine kinase inhibitor"
+        },
+        {
+          "drug_id": "D03218",
+          "drug_name": "Dasatinib",
+          "highest_status": "Approved"
+        }
+      ],
+      "diseases": [
+        {"disease_name": "Chronic myeloid leukemia", "icd11_code": "2B32.1"}
+      ]
+    },
+    {
+      "target_id": "TTDS00057",
+      "target_name": "HMG-CoA reductase",
+      "uniprot_id": "P04035",
+      "gene_name": "HMGCR",
+      "biochemical_class": "Enzyme",
+      "drugs": [
+        {
+          "drug_id": "D00360",
+          "drug_name": "Atorvastatin",
+          "highest_status": "Approved"
+        },
+        {
+          "drug_id": "D00359",
+          "drug_name": "Simvastatin",
+          "highest_status": "Approved"
+        }
+      ]
+    }
+  ],
+  "queries": {
+    "web_search": "http://db.idrblab.net/ttd/",
+    "target_search": "http://db.idrblab.net/ttd/search/target-result?search_api_fulltext=COX-1",
+    "download": "http://db.idrblab.net/ttd/full-data-download"
+  }
+}

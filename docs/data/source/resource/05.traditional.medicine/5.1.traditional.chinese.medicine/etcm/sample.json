@@ -1,0 +1,65 @@
+[
+  {
+    "herb_id": "H001",
+    "herb_name": "Radix Astragali",
+    "chinese_name": "Huang Qi",
+    "latin_name": "Astragalus membranaceus",
+    "properties": {
+      "nature": "Warm",
+      "flavor": "Sweet",
+      "meridian_tropism": ["Lung", "Spleen"]
+    },
+    "traditional_actions": ["Tonify Qi", "Strengthen exterior", "Promote tissue regeneration"],
+    "compound_count": 87,
+    "formula_count": 234,
+    "metadata": {
+      "family": "Leguminosae",
+      "part_used": "Root"
+    }
+  },
+  {
+    "compound_id": "C001",
+    "compound_name": "Astragaloside IV",
+    "pubchem_cid": 13943297,
+    "smiles": "CC(CCC=C(C)C)C1CCC2(C)C1C(O)CC1C3(C)CCC(OC4OCC(O)C(O)C4O)C(C)(C)C3CCC12C",
+    "molecular_weight": 784.99,
+    "source_herbs": ["Radix Astragali"],
+    "predicted_targets": [
+      {
+        "target_id": "P00533",
+        "gene_symbol": "EGFR",
+        "confidence_score": 0.78
+      },
+      {
+        "target_id": "P35354",
+        "gene_symbol": "PTGS2",
+        "confidence_score": 0.72
+      }
+    ],
+    "drug_likeness": {
+      "lipinski_violations": 2,
+      "veber_compliant": false
+    },
+    "metadata": {
+      "cas_number": "84687-43-4"
+    }
+  },
+  {
+    "formula_id": "F001",
+    "formula_name": "Bu Zhong Yi Qi Tang",
+    "english_name": "Tonify the Middle and Augment the Qi Decoction",
+    "composition": [
+      {"herb_id": "H001", "herb_name": "Huang Qi", "dosage": "15-30g"},
+      {"herb_id": "H002", "herb_name": "Ren Shen", "dosage": "6-9g"},
+      {"herb_id": "H003", "herb_name": "Bai Zhu", "dosage": "9-12g"},
+      {"herb_id": "H004", "herb_name": "Gan Cao", "dosage": "3-6g"}
+    ],
+    "indications": ["Spleen and Stomach Qi deficiency", "Organ prolapse", "Chronic fatigue"],
+    "contraindications": ["Excess conditions", "Yin deficiency with heat"],
+    "total_compounds": 156,
+    "metadata": {
+      "source_text": "Pi Wei Lun",
+      "author": "Li Dong-yuan"
+    }
+  }
+]

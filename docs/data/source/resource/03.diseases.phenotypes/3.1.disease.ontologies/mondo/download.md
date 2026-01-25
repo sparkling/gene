@@ -196,6 +196,31 @@ grep -A 10 "^id: MONDO:0007254" mondo.obo
 head -5 mondo.sssom.tsv
 ```
 
+## Dataset Versions
+
+| Version | Release Date | Size | Status |
+|---------|--------------|------|--------|
+| v2025-01-06 | 2025-01-06 | ~150 MB | Current |
+| v2024-12-03 | 2024-12-03 | ~145 MB | Archived |
+| Monthly releases | First Monday | Varies | Rolling |
+
+### Version Notes
+
+MONDO current release features:
+- 25,000+ disease concepts
+- Comprehensive mappings to OMIM, Orphanet, DOID, EFO
+- SSSOM standard for cross-ontology mappings
+- Automated classification using Elk reasoner
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | `https://www.ebi.ac.uk/ols/api/ontologies/mondo` |
+| Rate Limit | Reasonable use |
+| Auth Required | No |
+| Documentation | https://oboacademy.github.io/obook |
+
 ## Update Schedule
 
 | Release | Frequency |

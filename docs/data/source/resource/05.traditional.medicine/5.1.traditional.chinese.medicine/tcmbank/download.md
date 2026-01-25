@@ -129,6 +129,40 @@ Check against published statistics:
 | Update Frequency | Periodic |
 | Notification | Check website |
 
+---
+
+## Dataset Versions
+
+### Current Release: TCMBank
+
+| Property | Value |
+|----------|-------|
+| Version | 1.0 |
+| Release Date | 2022-01-01 |
+| Total Size | ~1 GB |
+| Focus | Molecular Structures |
+
+### Version Contents
+
+| Component | Records | Description |
+|-----------|---------|-------------|
+| TCM Herbs | 9,000+ | Herb metadata |
+| Compounds | 60,000+ | Chemical structures with properties |
+| Prescriptions/Formulas | 75,000+ | Traditional formulations |
+| Target Proteins | 15,000+ | Predicted targets |
+| Diseases | 8,000+ | Disease associations |
+| Compound-Target Pairs | 250,000+ | Interaction predictions |
+
+### Structure Data
+
+| Format | Description |
+|--------|-------------|
+| SDF | Standard structure-data format |
+| MOL | Single molecule format |
+| SMILES | Linear notation |
+
+---
+
 ## Notes
 
 - Largest TCM compound structure collection

@@ -219,12 +219,36 @@ grep "^\[Term\]" chebi.obo | wc -l
 zcat compounds.tsv.gz | head -5
 ```
 
+## Dataset Versions
+
+| Version | Release Date | Size | Status |
+|---------|--------------|------|--------|
+| ChEBI Jan 2026 | 2026-01-06 | ~1 GB total | Current |
+| Monthly releases | First week | Varies | Rolling |
+
+### Version Notes
+
+ChEBI current release features:
+- Ontology provided in FULL, CORE, and LITE variants
+- Available in OWL, OBO, and JSON formats (9 files total)
+- Monthly release cycle with nightly ontology updates
+- TSV, SDF, OBO, and OWL export formats
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | `https://www.ebi.ac.uk/chebi/webServices/rest/ChEBI` |
+| Rate Limit | Reasonable use |
+| Auth Required | No |
+| Documentation | https://www.ebi.ac.uk/chebi/webServices.do |
+
 ## Update Schedule
 
 | Release | Frequency |
 |---------|-----------|
 | Monthly releases | Monthly |
-| FTP updates | Monthly |
+| Nightly ontology | Daily |
 | Bug fixes | As needed |
 
 ## Common Issues

@@ -281,11 +281,37 @@ grep -A 20 "D003920" desc2026.xml | head -30
 zcat mesh.nt.gz | head -100
 ```
 
+## Dataset Versions
+
+| Version | Release Date | Size | Status |
+|---------|--------------|------|--------|
+| MeSH 2026 | 2025-11-14 | ~800 MB | Current |
+| MeSH 2025 | 2024-11 | ~750 MB | Archived |
+| Weekly SCR updates | Continuous | Varies | Incremental |
+
+### Version Notes
+
+MeSH 2026 release includes:
+- 30,000+ descriptors
+- 290,000+ supplementary concept records
+- 200,000+ terms including synonyms
+- Complete tree hierarchy for 16 categories
+- RDF/Linked Data format support
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | `https://id.nlm.nih.gov/mesh/sparql` |
+| Rate Limit | Reasonable use |
+| Auth Required | No |
+| Documentation | https://meshb.nlm.nih.gov/help |
+
 ## Update Schedule
 
 | Release | Frequency |
 |---------|-----------|
-| Annual release | December (for next year) |
+| Annual release | November (for next year) |
 | Weekly updates | Supplementary concepts |
 | MeSH on Demand | Continuous indexing |
 

@@ -265,6 +265,32 @@ grep -v "^!" syngo_data/syngo_annotations.gaf | cut -f3 | sort -u | wc -l
 wc -l syngo_data/syngo_genes.tsv
 ```
 
+## Dataset Versions
+
+| Version | Release Date | Size | Status |
+|---------|--------------|------|--------|
+| SynGO 1.2 | 2023-12-01 | ~20 MB | Current |
+| SynGO 1.1 | 2022-04-01 | ~18 MB | Archived |
+| SynGO 1.0 | 2019-07 | ~15 MB | Archived |
+
+### Version Notes
+
+SynGO 1.2 current statistics:
+- 1,225 unique genes annotated
+- 3,000+ evidence-based annotations
+- 179 synaptic ontology terms
+- Expert-curated by neuroscience consortium
+- Extends Gene Ontology for synaptic biology
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | `https://syngoportal.org` |
+| Rate Limit | N/A (downloads) |
+| Auth Required | No |
+| Documentation | https://syngoportal.org/about.html |
+
 ## Update Schedule
 
 | Release | Frequency |

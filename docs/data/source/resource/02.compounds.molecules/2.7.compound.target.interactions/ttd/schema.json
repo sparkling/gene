@@ -1,0 +1,192 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ttd-schema.json",
+  "title": "TTD Therapeutic Target Record",
+  "description": "JSON Schema for Therapeutic Target Database (TTD) records. Links 3,131 therapeutic targets to 39,862 drugs with development status, disease associations, and druggability assessments.",
+  "type": "object",
+  "properties": {
+    "target": {
+      "$ref": "#/$defs/target",
+      "description": "Therapeutic protein or nucleic acid target"
+    },
+    "drugs": {
+      "type": "array",
+      "description": "Drugs targeting this protein",
+      "items": {
+        "$ref": "#/$defs/drug"
+      }
+    },
+    "diseases": {
+      "type": "array",
+      "description": "Associated diseases with ICD-11 codes",
+      "items": {
+        "$ref": "#/$defs/disease"
+      }
+    },
+    "pathways": {
+      "type": "array",
+      "description": "Associated biological pathways",
+      "items": {
+        "$ref": "#/$defs/pathway"
+      }
+    }
+  },
+  "required": ["target"],
+  "$defs": {
+    "target": {
+      "type": "object",
+      "description": "Therapeutic target",
+      "properties": {
+        "ttd_target_id": {
+          "type": "string",
+          "description": "TTD target identifier",
+          "pattern": "^TTDT[0-9]{5}$"
+        },
+        "name": {
+          "type": "string",
+          "description": "Target name"
+        },
+        "uniprot_id": {
+          "type": "string",
+          "description": "UniProt accession",
+          "pattern": "^[A-Z][0-9][A-Z0-9]{3}[0-9]$"
+        },
+        "gene_name": {
+          "type": "string",
+          "description": "Gene symbol"
+        },
+        "target_type": {
+          "type": "string",
+          "description": "Molecular type",
+          "enum": ["Protein", "DNA", "RNA"]
+        },
+        "biochemical_class": {
+          "type": "string",
+          "description": "Biochemical classification (enzyme, receptor, etc.)"
+        },
+        "ecl_classification": {
+          "type": "string",
+          "description": "EC number if enzyme"
+        },
+        "target_validation": {
+          "type": "string",
+          "description": "Validation status",
+          "enum": ["Successful target", "Clinical trial target", "Preclinical/Patented", "Literature-reported target"]
+        },
+        "organism": {
+          "type": "string",
+          "description": "Species"
+        }
+      },
+      "required": ["ttd_target_id", "name", "target_type"]
+    },
+    "drug": {
+      "type": "object",
+      "description": "Drug or compound",
+      "properties": {
+        "ttd_drug_id": {
+          "type": "string",
+          "description": "TTD drug identifier (6 characters)",
+          "pattern": "^[A-Z0-9]{6}$"
+        },
+        "name": {
+          "type": "string",
+          "description": "Drug name"
+        },
+        "cas_number": {
+          "type": "string",
+          "description": "CAS registry number"
+        },
+        "pubchem_cid": {
+          "type": "integer",
+          "description": "PubChem compound ID"
+        },
+        "chembl_id": {
+          "type": "string",
+          "description": "ChEMBL identifier",
+          "pattern": "^CHEMBL[0-9]+$"
+        },
+        "drugbank_id": {
+          "type": "string",
+          "description": "DrugBank identifier",
+          "pattern": "^DB[0-9]{5}$"
+        },
+        "drug_class": {
+          "type": "string",
+          "description": "Drug modality",
+          "enum": ["Small Molecule", "Antibody", "ADC", "Peptide", "ASO", "siRNA", "mRNA", "Cell Therapy", "Gene Therapy"]
+        },
+        "highest_status": {
+          "type": "string",
+          "description": "Highest development status",
+          "enum": ["Approved", "Phase III", "Phase II", "Phase I", "Preclinical", "Discontinued", "Withdrawn"]
+        },
+        "activity_type": {
+          "type": "string",
+          "description": "Activity type (inhibitor, agonist, etc.)"
+        },
+        "mechanism": {
+          "type": "string",
+          "description": "Mechanism of action"
+        },
+        "company": {
+          "type": "string",
+          "description": "Developer company"
+        },
+        "indication": {
+          "type": "string",
+          "description": "Therapeutic indication"
+        }
+      },
+      "required": ["ttd_drug_id", "name"]
+    },
+    "disease": {
+      "type": "object",
+      "description": "Disease association",
+      "properties": {
+        "disease_id": {
+          "type": "string",
+          "description": "TTD disease ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "Disease name"
+        },
+        "icd_11_code": {
+          "type": "string",
+          "description": "ICD-11 classification code"
+        },
+        "therapeutic_area": {
+          "type": "string",
+          "description": "Therapeutic area (Oncology, CNS, etc.)"
+        }
+      },
+      "required": ["name"]
+    },
+    "pathway": {
+      "type": "object",
+      "description": "Biological pathway",
+      "properties": {
+        "pathway_id": {
+          "type": "string",
+          "description": "Pathway identifier"
+        },
+        "pathway_name": {
+          "type": "string",
+          "description": "Pathway name"
+        },
+        "source": {
+          "type": "string",
+          "description": "Pathway database source",
+          "enum": ["KEGG", "Reactome", "WikiPathways"]
+        },
+        "external_id": {
+          "type": "string",
+          "description": "Source pathway ID"
+        }
+      },
+      "required": ["pathway_name", "source"]
+    }
+  },
+  "additionalProperties": false
+}

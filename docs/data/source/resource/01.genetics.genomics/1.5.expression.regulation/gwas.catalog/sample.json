@@ -1,0 +1,89 @@
+[
+  {
+    "accessionId": "GCST000854",
+    "diseaseTrait": {
+      "trait": "Suicide risk"
+    },
+    "publicationInfo": {
+      "pubmedId": "21041247",
+      "publicationDate": "2010-11-01",
+      "publication": "Am J Psychiatry",
+      "title": "Genome-wide association study of suicide risk",
+      "author": {
+        "fullname": "Perlis RH",
+        "orcid": "0000-0001-5608-2293"
+      }
+    },
+    "initialSampleSize": "3,117 European ancestry Bipolar disorder cases",
+    "snpCount": 1922309,
+    "imputed": true,
+    "pooled": false,
+    "gxe": false,
+    "gxg": false,
+    "fullPvalueSet": false,
+    "ancestries": [
+      {
+        "type": "initial",
+        "ancestralGroups": [{"ancestralGroup": "European"}],
+        "countryOfRecruitment": [{"countryName": "United States"}],
+        "numberOfIndividuals": 3117
+      }
+    ]
+  },
+  {
+    "accessionId": "GCST002116",
+    "diseaseTrait": {
+      "trait": "Type 2 diabetes"
+    },
+    "publicationInfo": {
+      "pubmedId": "22885922",
+      "publicationDate": "2012-08-08",
+      "publication": "Nat Genet",
+      "title": "Large-scale association analysis for type 2 diabetes",
+      "author": {
+        "fullname": "Morris AP",
+        "orcid": null
+      }
+    },
+    "initialSampleSize": "12,171 cases, 56,862 controls",
+    "snpCount": 2500000,
+    "imputed": true,
+    "pooled": false,
+    "gxe": false,
+    "gxg": false,
+    "fullPvalueSet": true,
+    "ancestries": [
+      {
+        "type": "initial",
+        "ancestralGroups": [{"ancestralGroup": "European"}],
+        "countryOfRecruitment": [{"countryName": "United Kingdom"}],
+        "numberOfIndividuals": 69033
+      }
+    ]
+  },
+  {
+    "association": {
+      "pvalue": 7.0e-8,
+      "pvalueDescription": "(progression)",
+      "snpType": "novel",
+      "riskFrequency": 0.41,
+      "orPerCopyNum": 1.105,
+      "betaNum": null,
+      "betaUnit": null,
+      "range": "[1.07-1.14]",
+      "loci": [
+        {
+          "description": "Single variant",
+          "strongestRiskAlleles": [{"riskAlleleName": "rs9497975-?"}],
+          "authorReportedGenes": [
+            {
+              "geneName": "TAGAP",
+              "entrezGeneIds": [{"entrezGeneId": "117289"}],
+              "ensemblGeneIds": [{"ensemblGeneId": "ENSG00000164691"}]
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

@@ -1,19 +1,23 @@
 ---
 id: icd
 title: "International Classification of Diseases (ICD)"
-type: data-source
-category: diseases
-subcategory: disease.ontologies
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 1
-last_updated: 2026-01-23
 status: active
-tags: [ontology, classification, diseases, who, clinical-coding, icd-10, icd-11]
+category: diseases.phenotypes
+subcategory: disease.ontologies
+tags:
+  - ontology
+  - classification
+  - diseases
+  - who
+  - clinical-coding
+  - icd-10
+  - icd-11
 ---
 
 # International Classification of Diseases (ICD)
-
-**Category:** [Diseases & Phenotypes](../../_index.md) > [Disease Ontologies](../_index.md)
 
 ## Overview
 
@@ -68,17 +72,17 @@ The classification system is hierarchical, with chapters covering broad disease 
 | Tabular | CDC | ICD-10-CM text files |
 | Foundation | WHO | ICD-11 foundation layer |
 
-## License
+## Limitations
 
-| Aspect | Value |
-|--------|-------|
-| License | WHO Terms of Use |
-| Commercial Use | Restricted (license required) |
-| Attribution | Required |
-| API Access | Registration required |
+- Commercial use requires WHO license agreement
+- API access requires registration and approval
+- Clinical modifications (ICD-10-CM) vary by country
+- Rare diseases less granularly coded than common conditions
 
 ## See Also
 
-- [Schema Documentation](./schema.md)
-- [MeSH](../mesh/_index.md) - Medical vocabulary cross-reference
-- [MONDO](../mondo/_index.md) - Disease ontology with ICD mappings
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [License Terms](./license.md) - Usage rights and restrictions
+- [MeSH](../mesh/README.md) - Medical vocabulary cross-reference
+- [MONDO](../mondo/README.md) - Disease ontology with ICD mappings

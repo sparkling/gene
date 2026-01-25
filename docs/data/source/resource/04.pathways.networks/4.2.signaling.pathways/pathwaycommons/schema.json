@@ -1,0 +1,150 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "pathwaycommons-schema.json",
+  "title": "Pathway Commons Record",
+  "description": "JSON Schema for Pathway Commons data records. Aggregates pathway data from 22+ sources into BioPAX Level 3 and SIF formats.",
+  "type": "object",
+  "properties": {
+    "uri": {
+      "type": "string",
+      "description": "Unique identifier URI.",
+      "format": "uri",
+      "examples": ["http://identifiers.org/reactome/R-HSA-109581"]
+    },
+    "displayName": {
+      "type": "string",
+      "description": "Human-readable name.",
+      "minLength": 1,
+      "maxLength": 500
+    },
+    "name": {
+      "type": "array",
+      "description": "Alternative names.",
+      "items": { "type": "string" }
+    },
+    "biopaxClass": {
+      "type": "string",
+      "description": "BioPAX entity class.",
+      "enum": ["Pathway", "BiochemicalReaction", "Control", "Catalysis", "Protein", "SmallMolecule", "Complex", "Dna", "Rna", "PhysicalEntity"]
+    },
+    "organism": {
+      "type": "object",
+      "description": "Species information.",
+      "properties": {
+        "displayName": { "type": "string" },
+        "taxonId": {
+          "type": "string",
+          "pattern": "^[0-9]+$",
+          "examples": ["9606"]
+        }
+      }
+    },
+    "dataSource": {
+      "type": "array",
+      "description": "Source database(s).",
+      "items": { "type": "string" },
+      "examples": [["Reactome", "KEGG", "WikiPathways"]]
+    },
+    "pathwayComponent": {
+      "type": "array",
+      "description": "Contained reactions and controls.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "uri": { "type": "string" },
+          "displayName": { "type": "string" },
+          "biopaxClass": { "type": "string" }
+        }
+      }
+    },
+    "left": {
+      "type": "array",
+      "description": "Reaction substrates (for BiochemicalReaction).",
+      "items": { "$ref": "#/$defs/physicalEntity" }
+    },
+    "right": {
+      "type": "array",
+      "description": "Reaction products (for BiochemicalReaction).",
+      "items": { "$ref": "#/$defs/physicalEntity" }
+    },
+    "conversionDirection": {
+      "type": "string",
+      "description": "Reaction direction.",
+      "enum": ["LEFT-TO-RIGHT", "RIGHT-TO-LEFT", "REVERSIBLE"]
+    },
+    "controlType": {
+      "type": "string",
+      "description": "Type of regulatory control.",
+      "enum": ["ACTIVATION", "INHIBITION"]
+    },
+    "controller": {
+      "type": "array",
+      "description": "Regulating entities.",
+      "items": { "$ref": "#/$defs/physicalEntity" }
+    },
+    "controlled": {
+      "type": "object",
+      "description": "Regulated process.",
+      "$ref": "#/$defs/physicalEntity"
+    },
+    "component": {
+      "type": "array",
+      "description": "Complex components.",
+      "items": { "$ref": "#/$defs/physicalEntity" }
+    },
+    "entityReference": {
+      "type": "object",
+      "description": "Canonical entity reference.",
+      "properties": {
+        "uri": { "type": "string" },
+        "displayName": { "type": "string" }
+      }
+    },
+    "cellularLocation": {
+      "type": "object",
+      "description": "Subcellular location.",
+      "properties": {
+        "term": { "type": "string" },
+        "goId": { "type": "string", "pattern": "^GO:[0-9]{7}$" }
+      }
+    },
+    "xref": {
+      "type": "array",
+      "description": "External references.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "db": { "type": "string" },
+          "id": { "type": "string" }
+        }
+      }
+    },
+    "sifInteractions": {
+      "type": "array",
+      "description": "Simple Interaction Format edges.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "source": { "type": "string" },
+          "interactionType": {
+            "type": "string",
+            "enum": ["INTERACTS_WITH", "IN_COMPLEX_WITH", "CONTROLS-STATE-CHANGE-OF", "CONTROLS-TRANSPORT-OF", "CONTROLS-PHOSPHORYLATION-OF", "CONTROLS-EXPRESSION-OF", "CATALYSIS-PRECEDES", "NEIGHBOR_OF", "CONSUMPTION-CONTROLLED-BY", "CONTROLS-PRODUCTION-OF", "REACTS-WITH", "USED-TO-PRODUCE", "CHEMICAL-AFFECTS"]
+          },
+          "target": { "type": "string" }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "physicalEntity": {
+      "type": "object",
+      "properties": {
+        "uri": { "type": "string" },
+        "displayName": { "type": "string" },
+        "biopaxClass": { "type": "string" }
+      }
+    }
+  },
+  "required": ["uri", "displayName"],
+  "additionalProperties": true
+}

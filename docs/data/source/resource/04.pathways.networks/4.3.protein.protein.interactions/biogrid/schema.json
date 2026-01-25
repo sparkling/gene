@@ -1,0 +1,146 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "biogrid-schema.json",
+  "title": "BioGRID Interaction Record",
+  "description": "JSON Schema for BioGRID protein-protein and genetic interaction data in TAB format.",
+  "type": "object",
+  "properties": {
+    "INTERACTION_ID": {
+      "type": "integer",
+      "description": "Unique BioGRID interaction identifier."
+    },
+    "ENTREZ_GENE_A": {
+      "type": "string",
+      "description": "NCBI Gene ID for interactor A."
+    },
+    "ENTREZ_GENE_B": {
+      "type": "string",
+      "description": "NCBI Gene ID for interactor B."
+    },
+    "BIOGRID_A": {
+      "type": "integer",
+      "description": "BioGRID internal ID for interactor A."
+    },
+    "BIOGRID_B": {
+      "type": "integer",
+      "description": "BioGRID internal ID for interactor B."
+    },
+    "SYSTEMATIC_NAME_A": {
+      "type": "string",
+      "description": "Systematic gene name for interactor A."
+    },
+    "SYSTEMATIC_NAME_B": {
+      "type": "string",
+      "description": "Systematic gene name for interactor B."
+    },
+    "OFFICIAL_SYMBOL_A": {
+      "type": "string",
+      "description": "HGNC/official symbol for interactor A.",
+      "examples": ["TP53", "BRCA1"]
+    },
+    "OFFICIAL_SYMBOL_B": {
+      "type": "string",
+      "description": "HGNC/official symbol for interactor B."
+    },
+    "SYNONYMS_A": {
+      "type": "string",
+      "description": "Alias names (pipe-separated)."
+    },
+    "SYNONYMS_B": {
+      "type": "string",
+      "description": "Alias names (pipe-separated)."
+    },
+    "EXPERIMENTAL_SYSTEM": {
+      "type": "string",
+      "description": "Detection method.",
+      "examples": ["Two-hybrid", "Affinity Capture-MS", "Co-crystal Structure", "PCA", "FRET"]
+    },
+    "EXPERIMENTAL_SYSTEM_TYPE": {
+      "type": "string",
+      "description": "Interaction type category.",
+      "enum": ["physical", "genetic"]
+    },
+    "AUTHOR": {
+      "type": "string",
+      "description": "First author surname."
+    },
+    "PUBMED_ID": {
+      "type": "integer",
+      "description": "PubMed publication ID."
+    },
+    "ORGANISM_A": {
+      "type": "integer",
+      "description": "NCBI Taxonomy ID for interactor A.",
+      "examples": [9606, 10090, 559292]
+    },
+    "ORGANISM_B": {
+      "type": "integer",
+      "description": "NCBI Taxonomy ID for interactor B."
+    },
+    "THROUGHPUT": {
+      "type": "string",
+      "description": "Experiment throughput level.",
+      "enum": ["High Throughput", "Low Throughput"]
+    },
+    "QUANTITATION": {
+      "type": ["number", "null"],
+      "description": "Confidence score if available."
+    },
+    "MODIFICATION": {
+      "type": ["string", "null"],
+      "description": "Post-translational modification information.",
+      "examples": ["Phosphorylation", "Ubiquitination", "Acetylation"]
+    },
+    "QUALIFICATIONS": {
+      "type": ["string", "null"],
+      "description": "Additional details."
+    },
+    "TAGS": {
+      "type": ["string", "null"],
+      "description": "Custom tags."
+    },
+    "SOURCE_DATABASE": {
+      "type": "string",
+      "description": "Source of curation.",
+      "examples": ["BioGRID"]
+    },
+    "SWISS_PROT_A": {
+      "type": ["string", "null"],
+      "description": "UniProt Swiss-Prot accession for A."
+    },
+    "TREMBL_A": {
+      "type": ["string", "null"],
+      "description": "UniProt TrEMBL accession for A."
+    },
+    "SWISS_PROT_B": {
+      "type": ["string", "null"],
+      "description": "UniProt Swiss-Prot accession for B."
+    },
+    "TREMBL_B": {
+      "type": ["string", "null"],
+      "description": "UniProt TrEMBL accession for B."
+    },
+    "REFSEQ_A": {
+      "type": ["string", "null"],
+      "description": "RefSeq accession for A."
+    },
+    "REFSEQ_B": {
+      "type": ["string", "null"],
+      "description": "RefSeq accession for B."
+    },
+    "ONTOLOGY_TERM_IDS": {
+      "type": ["string", "null"],
+      "description": "GO terms (pipe-separated)."
+    },
+    "ONTOLOGY_TERM_NAMES": {
+      "type": ["string", "null"],
+      "description": "GO term names (pipe-separated)."
+    },
+    "ONTOLOGY_TERM_CATEGORIES": {
+      "type": ["string", "null"],
+      "description": "GO categories (BP, MF, CC)."
+    }
+  },
+  "required": ["INTERACTION_ID", "OFFICIAL_SYMBOL_A", "OFFICIAL_SYMBOL_B", "EXPERIMENTAL_SYSTEM_TYPE"],
+  "additionalProperties": true
+}

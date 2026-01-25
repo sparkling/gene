@@ -250,6 +250,31 @@ wc -l mim2gene.txt
 cat entry_100100.json | jq '.omim.entryList[0].entry.titles'
 ```
 
+## Dataset Versions
+
+| Version | Release Date | Size | Status |
+|---------|--------------|------|--------|
+| OMIM Jan 2026 | 2026-01-25 | ~300 MB | Current |
+| Daily updates | Continuous | Varies | Active |
+
+### Version Notes
+
+OMIM current database statistics:
+- 27,500+ entries (genes and phenotypes)
+- 17,300+ gene entries
+- 8,800+ phenotype entries with known molecular basis
+- 4,700+ phenotypic series
+- Daily curation by medical geneticists
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | `https://api.omim.org/api` |
+| Rate Limit | 4 req/sec |
+| Auth Required | Yes (API key required) |
+| Documentation | https://omim.org/help/api |
+
 ## Update Schedule
 
 | Release | Frequency |

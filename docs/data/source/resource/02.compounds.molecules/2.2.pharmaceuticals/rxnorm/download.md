@@ -171,12 +171,39 @@ head -1 RXNCONSO.RRF | tr '|' '\n' | wc -l
 cut -d'|' -f8 RXNCONSO.RRF | sort | uniq -d | wc -l
 ```
 
+## Dataset Versions
+
+| Version | Release Date | Size | Status |
+|---------|--------------|------|--------|
+| RxNorm Dec 2025 | 2025-12-01 | ~5 GB | Current |
+| RxNorm Nov 2025 | 2025-11-03 | ~5 GB | Archived |
+| Previous monthly | First Monday each month | ~5 GB | Archived |
+
+### Version Notes
+
+RxNorm December 2025 edition includes:
+- 14,592 base ingredients
+- 5,151 brand names
+- 17,544 clinical drugs
+- 9,721 branded drugs
+- 645 generic packs and 747 branded packs
+- RxNorm celebrates its 20th anniversary in 2025
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | `https://rxnav.nlm.nih.gov/REST` |
+| Rate Limit | 20 req/sec (anonymous) |
+| Auth Required | No (for API), Yes (for bulk download) |
+| Documentation | https://lhncbc.nlm.nih.gov/RxNav |
+
 ## Update Schedule
 
 | Release | Frequency |
 |---------|-----------|
 | Full release | Monthly (first Monday) |
-| API data | Weekly |
+| API data | Weekly (Wednesdays) |
 | Weekly updates | Available |
 
 ## API Rate Limits

@@ -1,0 +1,200 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "tm-mc-schema.json",
+  "title": "TM-MC Record",
+  "description": "JSON Schema for TM-MC (Traditional Medicine - Molecular Correlates) data. Integrates traditional medicine knowledge from multiple Asian systems to modern molecular understanding.",
+  "type": "object",
+  "properties": {
+    "plant_id": {
+      "type": "string",
+      "description": "TM-MC plant identifier.",
+      "pattern": "^TMMC_P_[0-9]+$",
+      "examples": ["TMMC_P_000001"]
+    },
+    "botanical_name": {
+      "type": "string",
+      "description": "Scientific Latin binomial name."
+    },
+    "family": {
+      "type": "string",
+      "description": "Botanical family."
+    },
+    "synonyms": {
+      "type": "array",
+      "description": "Taxonomic synonyms.",
+      "items": { "type": "string" }
+    },
+    "common_names": {
+      "type": "object",
+      "description": "Common names by language.",
+      "properties": {
+        "english": { "type": "string" },
+        "regional": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "traditional_systems": {
+      "type": "array",
+      "description": "Traditional medicine systems using this plant.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "system_code": {
+            "type": "string",
+            "enum": ["AYU", "TCM", "UNA", "SID", "KAM", "JAM"]
+          },
+          "system_name": { "type": "string" },
+          "local_name": { "type": "string" },
+          "therapeutic_category": { "type": "string" },
+          "uses": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    },
+    "compounds_isolated": {
+      "type": "array",
+      "description": "Compound identifiers.",
+      "items": { "type": "string" }
+    },
+    "therapeutic_indications": {
+      "type": "array",
+      "description": "Therapeutic indication identifiers.",
+      "items": { "type": "string" }
+    },
+    "system": {
+      "type": "object",
+      "description": "Traditional system entity structure.",
+      "properties": {
+        "system_code": {
+          "type": "string",
+          "enum": ["AYU", "TCM", "UNA", "SID", "KAM", "JAM"]
+        },
+        "system_name": { "type": "string" },
+        "region": { "type": "string" },
+        "description": { "type": "string" },
+        "plant_count": { "type": "integer" },
+        "characteristics": {
+          "type": "object",
+          "properties": {
+            "diagnostic_approach": { "type": "string" },
+            "classification_system": { "type": "string" },
+            "preparation_methods": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "compound": {
+      "type": "object",
+      "description": "Compound entity structure.",
+      "properties": {
+        "compound_id": {
+          "type": "string",
+          "pattern": "^TMMC_C_[0-9]+$"
+        },
+        "compound_name": { "type": "string" },
+        "identifiers": {
+          "type": "object",
+          "properties": {
+            "pubchem_cid": { "type": "integer" },
+            "chembl_id": { "type": "string" },
+            "cas_number": { "type": "string" }
+          }
+        },
+        "structure": {
+          "type": "object",
+          "properties": {
+            "smiles": { "type": "string" },
+            "inchi_key": { "type": "string" },
+            "molecular_formula": { "type": "string" },
+            "molecular_weight": { "type": "number" }
+          }
+        },
+        "source_plants": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "traditional_systems": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "target_proteins": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "target": {
+      "type": "object",
+      "description": "Target protein entity structure.",
+      "properties": {
+        "target_id": { "type": "string" },
+        "gene_symbol": { "type": "string" },
+        "gene_name": { "type": "string" },
+        "protein_class": { "type": "string" },
+        "source_systems": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "pathway_associations": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "indication": {
+      "type": "object",
+      "description": "Therapeutic indication entity structure.",
+      "properties": {
+        "indication_id": { "type": "string" },
+        "indication_name": { "type": "string" },
+        "mesh_id": { "type": "string" },
+        "traditional_terms": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "system": { "type": "string" },
+              "term": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "cross_system_analysis": {
+      "type": "object",
+      "description": "Cross-system convergence analysis.",
+      "properties": {
+        "systems_present": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "convergent_uses": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "indication": { "type": "string" },
+              "systems_agreeing": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "confidence": {
+                "type": "string",
+                "enum": ["high", "medium", "low"]
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": ["plant_id", "botanical_name"],
+  "additionalProperties": true
+}

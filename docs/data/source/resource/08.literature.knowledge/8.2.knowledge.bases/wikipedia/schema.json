@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "wikipedia-schema.json",
+  "title": "Wikipedia Article Record",
+  "description": "JSON Schema for Wikipedia article records from biomedical/scientific domains.",
+  "type": "object",
+  "properties": {
+    "pageid": {
+      "type": "integer",
+      "description": "Wikipedia page identifier.",
+      "examples": [12345678]
+    },
+    "title": {
+      "type": "string",
+      "description": "Article title."
+    },
+    "wikidata_id": {
+      "type": "string",
+      "description": "Wikidata item identifier.",
+      "pattern": "^Q[0-9]+$"
+    },
+    "extract": {
+      "type": "string",
+      "description": "Plain text extract (summary)."
+    },
+    "content": {
+      "type": "string",
+      "description": "Full article content (wikitext or HTML)."
+    },
+    "categories": {
+      "type": "array",
+      "description": "Article categories.",
+      "items": { "type": "string" }
+    },
+    "links": {
+      "type": "array",
+      "description": "Internal wiki links.",
+      "items": { "type": "string" }
+    },
+    "external_links": {
+      "type": "array",
+      "description": "External reference links.",
+      "items": { "type": "string", "format": "uri" }
+    },
+    "infobox": {
+      "type": "object",
+      "description": "Structured infobox data.",
+      "additionalProperties": { "type": "string" }
+    },
+    "images": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": { "type": "string" },
+          "url": { "type": "string", "format": "uri" }
+        }
+      }
+    },
+    "references": {
+      "type": "array",
+      "description": "Citation references.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "text": { "type": "string" },
+          "url": { "type": "string" },
+          "pmid": { "type": "string" },
+          "doi": { "type": "string" }
+        }
+      }
+    },
+    "coordinates": {
+      "type": "object",
+      "properties": {
+        "lat": { "type": "number" },
+        "lon": { "type": "number" }
+      }
+    },
+    "langlinks": {
+      "type": "array",
+      "description": "Interlanguage links.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "lang": { "type": "string" },
+          "title": { "type": "string" }
+        }
+      }
+    },
+    "revision": {
+      "type": "object",
+      "properties": {
+        "revid": { "type": "integer" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "user": { "type": "string" }
+      }
+    }
+  },
+  "required": ["pageid", "title"],
+  "additionalProperties": true
+}

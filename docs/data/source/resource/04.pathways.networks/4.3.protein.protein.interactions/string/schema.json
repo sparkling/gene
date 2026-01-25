@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "string-schema.json",
+  "title": "STRING Protein Interaction Record",
+  "description": "JSON Schema for STRING protein-protein interaction data. Contains interactions with confidence scores from multiple evidence channels.",
+  "type": "object",
+  "properties": {
+    "stringId_A": {
+      "type": "string",
+      "description": "STRING ID for protein A (taxid.ENSP format).",
+      "pattern": "^[0-9]+\\.ENSP[0-9]+$",
+      "examples": ["9606.ENSP00000269305"]
+    },
+    "stringId_B": {
+      "type": "string",
+      "description": "STRING ID for protein B.",
+      "pattern": "^[0-9]+\\.ENSP[0-9]+$"
+    },
+    "preferredName_A": {
+      "type": "string",
+      "description": "Gene symbol for protein A.",
+      "examples": ["TP53", "BRCA1"]
+    },
+    "preferredName_B": {
+      "type": "string",
+      "description": "Gene symbol for protein B."
+    },
+    "ncbiTaxonId": {
+      "type": "integer",
+      "description": "NCBI taxonomy ID.",
+      "examples": [9606, 10090]
+    },
+    "score": {
+      "type": "number",
+      "description": "Combined confidence score (0-1).",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "nscore": {
+      "type": "number",
+      "description": "Neighborhood score - gene proximity in genome.",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "fscore": {
+      "type": "number",
+      "description": "Fusion score - gene fusion events.",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "pscore": {
+      "type": "number",
+      "description": "Phylogenetic profile score - co-occurrence across genomes.",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "ascore": {
+      "type": "number",
+      "description": "Co-expression score - expression correlation.",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "escore": {
+      "type": "number",
+      "description": "Experimental score - laboratory evidence.",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "dscore": {
+      "type": "number",
+      "description": "Database score - curated pathway sources.",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "tscore": {
+      "type": "number",
+      "description": "Text-mining score - literature co-mentions.",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "annotation": {
+      "type": "string",
+      "description": "Protein description/annotation."
+    },
+    "enrichment": {
+      "type": "array",
+      "description": "Functional enrichment results.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "type": "string",
+            "enum": ["Process", "Function", "Component", "KEGG", "Pfam", "InterPro", "SMART", "Reactome", "WikiPathways", "HPO", "DisGeNET"]
+          },
+          "term": { "type": "string" },
+          "description": { "type": "string" },
+          "number_of_genes": { "type": "integer" },
+          "number_of_genes_in_background": { "type": "integer" },
+          "p_value": { "type": "number" },
+          "fdr": { "type": "number" },
+          "preferredNames": { "type": "string" }
+        }
+      }
+    }
+  },
+  "required": ["stringId_A", "stringId_B", "score"],
+  "additionalProperties": true
+}

@@ -110,12 +110,66 @@ cut -d',' -f5 cancer_gene_census.csv | sort | uniq -c
 grep "TP53" cancer_gene_census.csv
 ```
 
+## Dataset Versions
+
+### Current Release: COSMIC v103
+
+| Property | Value |
+|----------|-------|
+| Version | v103 (CGC) |
+| Release Date | 2025-11-18 |
+| Total Size | ~500 KB |
+| Tier 1 Genes | 350+ |
+| Tier 2 Genes | 400+ |
+| Total CGC Genes | 736 |
+
+### Version Contents
+
+| Component | Size | Records | Description |
+|-----------|------|---------|-------------|
+| cancer_gene_census.csv | ~500 KB | 736 | Full CGC list |
+| hallmarks_of_cancer.csv | ~100 KB | 736 | Hallmark annotations |
+| cancer_gene_census.tsv | ~500 KB | 736 | Tab-separated version |
+
+### Gene Classification
+
+| Category | Count | Description |
+|----------|-------|-------------|
+| Tier 1 | 350+ | Strong evidence, well-characterized |
+| Tier 2 | 400+ | Emerging evidence |
+| Oncogenes | 350+ | Gain-of-function drivers |
+| TSGs | 300+ | Tumor suppressors |
+| Fusion genes | 150+ | Recurrent fusions |
+
+### Hallmarks Coverage
+
+| Hallmark | Genes | Description |
+|----------|-------|-------------|
+| Proliferation | 200+ | Cell cycle, growth signals |
+| Apoptosis evasion | 150+ | Death resistance |
+| Invasion/metastasis | 100+ | Tissue spread |
+| Angiogenesis | 50+ | Blood vessel formation |
+| Immune evasion | 80+ | Immune escape |
+
+---
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | https://cancer.sanger.ac.uk/cosmic/api/ |
+| Rate Limit | 10 req/sec |
+| Auth Required | Yes (COSMIC account) |
+| Response Format | CSV, JSON |
+
+---
+
 ## Update Schedule
 
 | Release | Frequency |
 |---------|-----------|
 | CGC updates | Quarterly |
-| COSMIC releases | Quarterly (v99, v100, etc.) |
+| COSMIC releases | Quarterly (v103, v104, etc.) |
 | New genes | As evidence accumulated |
 
 ## Integration Notes

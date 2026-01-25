@@ -1,23 +1,34 @@
 ---
 id: 1000-genomes
 title: "1000 Genomes Project"
-type: data-source
-category: genetics
+type: source
+parent: ../README.md
+category: genetics.genomics
 subcategory: population.genetics
-parent: ../_index.md
 tier: 1
-last_updated: 2026-01-23
 status: active
-tags: [population, frequency, reference, diversity, global]
+last_updated: 2026-01-25
+tags:
+  - population
+  - frequency
+  - reference
+  - diversity
+  - global
 ---
 
 # 1000 Genomes Project
 
-**Category:** [Genetics & Genomics](../../_index.md) > [Population Genetics](../_index.md)
+The 1000 Genomes Project was the first large-scale effort to catalogue human genetic variation, sequencing genomes from 2,504 individuals across 26 populations from five continental super-populations: Africa (AFR), Americas (AMR), East Asia (EAS), Europe (EUR), and South Asia (SAS).
 
 ## Overview
 
-The 1000 Genomes Project was the first large-scale effort to catalogue human genetic variation, sequencing genomes from 2,504 individuals across 26 populations from five continental super-populations: Africa (AFR), Americas (AMR), East Asia (EAS), Europe (EUR), and South Asia (SAS).
+| Property | Value |
+|----------|-------|
+| **Maintainer** | IGSR (International Genome Sample Resource) |
+| **Website** | https://www.internationalgenome.org/ |
+| **Update Frequency** | Static (Phase 3 complete) |
+| **Records** | 88,000,000+ variants |
+| **Latest Release** | Phase 3 (2015), 30x resequencing (2020) |
 
 The project established foundational methods for population genetics studies and created a reference panel widely used for genotype imputation. Phase 3 data includes approximately 88 million variants including SNPs, indels, and structural variants, providing allele frequencies across diverse global populations.
 
@@ -42,31 +53,32 @@ The 30x high-coverage dataset (released in 2020) provides improved accuracy for 
 
 ## Key Identifiers
 
-| Identifier | Pattern | Example |
-|------------|---------|---------|
-| Sample | Population-based | HG00096 |
-| Population | 3-letter code | GBR, YRI, CHB |
-| Super-population | 3-letter code | EUR, AFR, EAS |
+| Identifier | Format | Example |
+|------------|--------|---------|
+| Sample | `Population-based` | `HG00096` |
+| Population | `3-letter code` | `GBR, YRI, CHB` |
+| Super-population | `3-letter code` | `EUR, AFR, EAS` |
 
-## Access Methods
+## Limitations
 
-| Method | URL | Notes |
-|--------|-----|-------|
-| IGSR | https://www.internationalgenome.org/ | Primary portal |
-| FTP | ftp://ftp.1000genomes.ebi.ac.uk/ | Data files |
-| AWS | s3://1000genomes | Cloud access |
-| Ensembl | Data browser | Integrated view |
+- Sample size small compared to newer resources (gnomAD, TOPMed)
+- Limited rare variant detection (<0.5% MAF)
+- Some populations underrepresented
+- Low-coverage sequencing in Phase 3 (4-8x average)
+- No phenotype or disease data available
 
-## License
+## Data Quality Notes
 
-| Aspect | Value |
-|--------|-------|
-| License | Fort Lauderdale Agreement |
-| Commercial Use | Yes |
-| Citation | Required |
+The 30x high-coverage resequencing addresses many quality limitations of the original low-coverage Phase 3 data. Variant calls are validated through multiple calling pipelines and available in both GRCh37 and GRCh38 coordinates. The dataset remains the most widely used imputation reference panel due to its diverse population representation.
 
 ## See Also
 
-- [gnomAD](../gnomad/_index.md) - Expanded populations
-- [TOPMed](../topmed/_index.md) - Deep sequencing
-- [UK Biobank](../uk.biobank/_index.md) - Large cohort
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [Example Records](./sample.json) - Sample data for code generation
+- [Download Guide](./download.md) - Access methods and API configuration
+- [License Terms](./license.md) - Usage rights and restrictions
+- [Schema Mapping](./mapping.xslt) - XSLT 3.0 transformation to unified schema
+- [gnomAD](../gnomad/README.md) - Expanded populations
+- [TOPMed](../topmed/README.md) - Deep sequencing
+- [UK Biobank](../uk.biobank/README.md) - Large cohort

@@ -1,0 +1,58 @@
+{
+  "source": "DisGeNET",
+  "version": "7.0",
+  "description": "Sample disease-gene association records from DisGeNET",
+  "records": [
+    {
+      "gene_id": 7157,
+      "gene_symbol": "TP53",
+      "disease_id": "umls:C0006826",
+      "disease_name": "Malignant Neoplasms",
+      "score": 0.95,
+      "ei": 1.0,
+      "el": "Limited",
+      "year_initial": 1989,
+      "year_final": 2024,
+      "source": "CURATED",
+      "source_details": ["CTD_human", "UNIPROT", "CLINVAR", "GWASCAT"],
+      "pmid_count": 15243
+    },
+    {
+      "gene_id": 672,
+      "gene_symbol": "BRCA1",
+      "disease_id": "umls:C0006142",
+      "disease_name": "Breast Carcinoma",
+      "score": 0.89,
+      "ei": 1.0,
+      "el": "Definitive",
+      "year_initial": 1994,
+      "year_final": 2024,
+      "source": "CURATED",
+      "pmid_count": 8764
+    },
+    {
+      "gene_id": 1956,
+      "gene_symbol": "EGFR",
+      "disease_id": "umls:C0684249",
+      "disease_name": "Carcinoma of lung",
+      "score": 0.76,
+      "ei": 0.9,
+      "source": "ALL",
+      "pmid_count": 5432
+    },
+    {
+      "gene_id": 2099,
+      "gene_symbol": "ESR1",
+      "disease_id": "umls:C0006142",
+      "disease_name": "Breast Carcinoma",
+      "score": 0.71,
+      "source": "ALL",
+      "pmid_count": 3211
+    }
+  ],
+  "queries": {
+    "rest_gene": "curl 'https://www.disgenet.org/api/gda/gene/TP53?source=ALL' -H 'Authorization: Bearer YOUR_API_KEY' | jq",
+    "rest_disease": "curl 'https://www.disgenet.org/api/gda/disease/C0006826' -H 'Authorization: Bearer YOUR_API_KEY' | jq",
+    "download": "https://www.disgenet.org/downloads (requires registration)"
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "_metadata": {
+    "source": "Open Food Facts",
+    "version": "2026-01",
+    "generated": "2026-01-25",
+    "record_count": 3,
+    "query_examples": [
+      "Get product: GET /api/v2/product/3017620422003",
+      "Search: GET /api/v2/search?brands=ferrero&page_size=10",
+      "By category: GET /api/v2/search?categories_tags=en:breakfast-cereals"
+    ]
+  },
+  "records": [
+    {
+      "code": "3017620422003",
+      "product_name": "Nutella",
+      "brands": "Ferrero",
+      "categories_tags": [
+        "en:spreads",
+        "en:sweet-spreads",
+        "en:cocoa-hazelnut-spreads"
+      ],
+      "quantity": "400 g",
+      "serving_size": "15 g",
+      "nutriments": {
+        "energy-kcal_100g": 539,
+        "fat_100g": 30.9,
+        "saturated-fat_100g": 10.6,
+        "carbohydrates_100g": 57.5,
+        "sugars_100g": 56.3,
+        "fiber_100g": 3.4,
+        "proteins_100g": 6.3,
+        "salt_100g": 0.107
+      },
+      "nutriscore_grade": "e",
+      "nutriscore_score": 26,
+      "nova_group": 4,
+      "ecoscore_grade": "c",
+      "ingredients_text": "Sugar, palm oil, hazelnuts (13%), skimmed milk powder (8.7%), fat-reduced cocoa (7.4%), emulsifier: lecithins (soya), vanillin.",
+      "allergens_tags": ["en:milk", "en:nuts", "en:soybeans"],
+      "labels_tags": [],
+      "countries_tags": ["en:france", "en:germany", "en:italy", "en:united-states"],
+      "created_t": 1330109127,
+      "last_modified_t": 1704067200
+    },
+    {
+      "code": "5000112618457",
+      "product_name": "Coca-Cola Original",
+      "brands": "Coca-Cola",
+      "categories_tags": [
+        "en:beverages",
+        "en:carbonated-drinks",
+        "en:sodas",
+        "en:colas"
+      ],
+      "quantity": "330 ml",
+      "serving_size": "330 ml",
+      "nutriments": {
+        "energy-kcal_100g": 42,
+        "fat_100g": 0,
+        "saturated-fat_100g": 0,
+        "carbohydrates_100g": 10.6,
+        "sugars_100g": 10.6,
+        "fiber_100g": 0,
+        "proteins_100g": 0,
+        "salt_100g": 0
+      },
+      "nutriscore_grade": "e",
+      "nova_group": 4,
+      "ecoscore_grade": "b",
+      "ingredients_text": "Carbonated water, sugar, colour (caramel E150d), phosphoric acid, natural flavourings including caffeine.",
+      "allergens_tags": [],
+      "created_t": 1370896542,
+      "last_modified_t": 1703980800
+    },
+    {
+      "code": "3760020507350",
+      "product_name": "Organic Rolled Oats",
+      "brands": "Bjorg",
+      "categories_tags": [
+        "en:cereals-and-potatoes",
+        "en:cereals-and-their-products",
+        "en:oat-flakes"
+      ],
+      "quantity": "500 g",
+      "serving_size": "40 g",
+      "nutriments": {
+        "energy-kcal_100g": 367,
+        "fat_100g": 7.0,
+        "saturated-fat_100g": 1.3,
+        "carbohydrates_100g": 58.7,
+        "sugars_100g": 1.1,
+        "fiber_100g": 10.1,
+        "proteins_100g": 13.5,
+        "salt_100g": 0.01
+      },
+      "nutriscore_grade": "a",
+      "nova_group": 1,
+      "ecoscore_grade": "a",
+      "ingredients_text": "Organic rolled oats.",
+      "allergens_tags": ["en:gluten"],
+      "labels_tags": ["en:organic", "en:eu-organic"],
+      "created_t": 1445612345,
+      "last_modified_t": 1703894400
+    }
+  ]
+}

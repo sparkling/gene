@@ -1,14 +1,18 @@
 ---
 id: tcmsid
 title: "TCMSID - TCM Systematic Pharmacology Database"
-type: data-source
-category: traditional-medicine
-subcategory: traditional-chinese-medicine
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 2
-last_updated: 2026-01-23
 status: active
-tags: [tcm, traditional-chinese-medicine, adme, pharmacokinetics, systems-pharmacology]
+category: traditional.medicine
+subcategory: traditional.chinese.medicine
+tags:
+  - tcm
+  - traditional-chinese-medicine
+  - adme
+  - pharmacokinetics
+  - systems-pharmacology
 ---
 
 # TCMSID - TCM Systematic Pharmacology Database

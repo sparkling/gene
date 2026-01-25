@@ -240,6 +240,31 @@ grep -A 50 "OrphaCode>558<" orphanet_phenotypes.xml | head -60
 grep "HPOId" orphanet_phenotypes.xml | head -10
 ```
 
+## Dataset Versions
+
+| Version | Release Date | Size | Status |
+|---------|--------------|------|--------|
+| Orphanet Jan 2026 | 2026-01 | ~50 MB | Current |
+| Monthly releases | First week | Varies | Rolling |
+
+### Version Notes
+
+Orphanet phenotype annotations current statistics:
+- 6,700+ rare diseases with phenotype annotations
+- 150,000+ disease-phenotype associations
+- HPO terms used for standardization
+- Frequency annotations (Obligate to Excluded)
+- Multi-language support (8 languages)
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | `https://api.orphanet.org/rd-api` |
+| Rate Limit | Reasonable use |
+| Auth Required | No |
+| Documentation | https://www.orphadata.com |
+
 ## Update Schedule
 
 | Release | Frequency |

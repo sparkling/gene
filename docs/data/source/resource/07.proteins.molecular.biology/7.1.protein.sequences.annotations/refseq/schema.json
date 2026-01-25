@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gene.taxonomy/schemas/refseq",
+  "title": "RefSeq Protein Record",
+  "description": "JSON Schema for NCBI RefSeq protein sequence records",
+  "type": "object",
+  "properties": {
+    "accession": {
+      "type": "string",
+      "description": "RefSeq accession with version",
+      "pattern": "^(NP_|XP_|YP_|WP_|AP_)[0-9]+\\.[0-9]+$",
+      "examples": ["NP_000537.3", "XP_016856789.1"]
+    },
+    "gi": {
+      "type": ["integer", "null"],
+      "description": "GenInfo Identifier (deprecated)"
+    },
+    "locus": {
+      "type": ["string", "null"],
+      "description": "Gene locus tag"
+    },
+    "definition": {
+      "type": "string",
+      "description": "Protein description/title",
+      "examples": ["cellular tumor antigen p53 [Homo sapiens]"]
+    },
+    "organism": {
+      "type": "string",
+      "description": "Source organism scientific name",
+      "examples": ["Homo sapiens", "Mus musculus"]
+    },
+    "taxonomy": {
+      "type": "array",
+      "description": "Taxonomic lineage",
+      "items": {"type": "string"},
+      "examples": [["Eukaryota", "Metazoa", "Chordata", "Mammalia"]]
+    },
+    "tax_id": {
+      "type": "integer",
+      "description": "NCBI Taxonomy ID",
+      "examples": [9606, 10090]
+    },
+    "gene": {
+      "type": ["string", "null"],
+      "description": "Gene symbol",
+      "examples": ["TP53", "BRCA1"]
+    },
+    "gene_id": {
+      "type": ["integer", "null"],
+      "description": "NCBI Gene ID",
+      "examples": [7157, 672]
+    },
+    "coded_by": {
+      "type": ["string", "null"],
+      "description": "Source transcript with CDS coordinates",
+      "examples": ["NM_000546.6:203..1384"]
+    },
+    "sequence": {
+      "type": "string",
+      "description": "Amino acid sequence",
+      "pattern": "^[ACDEFGHIKLMNPQRSTVWY]+$"
+    },
+    "length": {
+      "type": "integer",
+      "description": "Sequence length in amino acids",
+      "minimum": 1
+    },
+    "chromosome": {
+      "type": ["string", "null"],
+      "description": "Chromosome location",
+      "examples": ["17", "X", "MT"]
+    },
+    "map_location": {
+      "type": ["string", "null"],
+      "description": "Cytogenetic location",
+      "examples": ["17p13.1", "Xq28"]
+    },
+    "features": {
+      "type": "array",
+      "description": "Annotated sequence features",
+      "items": {
+        "type": "object",
+        "properties": {
+          "key": {"type": "string"},
+          "location": {"type": "string"},
+          "qualifiers": {"type": "object"}
+        }
+      }
+    },
+    "dbxrefs": {
+      "type": "array",
+      "description": "Database cross-references",
+      "items": {
+        "type": "object",
+        "properties": {
+          "database": {"type": "string"},
+          "id": {"type": "string"}
+        }
+      }
+    },
+    "comment": {
+      "type": ["string", "null"],
+      "description": "Annotation comments and status"
+    },
+    "create_date": {
+      "type": ["string", "null"],
+      "format": "date",
+      "description": "Record creation date"
+    },
+    "update_date": {
+      "type": ["string", "null"],
+      "format": "date",
+      "description": "Last update date"
+    }
+  },
+  "required": ["accession", "definition", "organism", "sequence", "length"],
+  "additionalProperties": true
+}

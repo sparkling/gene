@@ -275,6 +275,33 @@ head clinical.tsv
 md5sum -c md5sums.txt
 ```
 
+## Dataset Versions
+
+| Version | Release Date | Size | Status |
+|---------|--------------|------|--------|
+| GDC v42.0 | 2025-01-21 | Petabytes | Current |
+| v41.0 | 2024-11-07 | Petabytes | Archived |
+| Data releases | Continuous | Varies | Ongoing |
+
+### Version Notes
+
+GDC v42.0 current statistics:
+- 88,000+ cases across 78 projects
+- 844,000+ files available
+- 33 primary cancer sites
+- TCGA: 33 cancer types, 11,000+ patients
+- TARGET: pediatric cancers
+- CGCI, HCMI, MMRF and other programs
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | `https://api.gdc.cancer.gov` |
+| Rate Limit | Reasonable use |
+| Auth Required | No (open), Yes (controlled via dbGaP) |
+| Documentation | https://docs.gdc.cancer.gov/API |
+
 ## Update Schedule
 
 | Data Type | Frequency |

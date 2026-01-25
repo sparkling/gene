@@ -1,0 +1,155 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "eqtlgen-schema.json",
+  "title": "eQTLGen Association Record",
+  "description": "JSON Schema for eQTLGen Consortium blood eQTL association data.",
+  "type": "object",
+  "properties": {
+    "SNP": {
+      "type": "string",
+      "description": "dbSNP rsID for the variant.",
+      "pattern": "^rs[0-9]+$",
+      "examples": ["rs12345", "rs67890"]
+    },
+    "SNPChr": {
+      "type": "string",
+      "description": "Chromosome of the SNP.",
+      "enum": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "X"]
+    },
+    "SNPPos": {
+      "type": "integer",
+      "description": "Position of the SNP (GRCh37/hg19).",
+      "examples": [12345678, 98765432]
+    },
+    "AssessedAllele": {
+      "type": "string",
+      "description": "Effect allele (assessed for eQTL effect).",
+      "pattern": "^[ACGT]+$",
+      "examples": ["A", "G", "T", "C"]
+    },
+    "OtherAllele": {
+      "type": "string",
+      "description": "Non-effect allele.",
+      "pattern": "^[ACGT]+$",
+      "examples": ["G", "A", "C", "T"]
+    },
+    "Zscore": {
+      "type": "number",
+      "description": "Z-score for the eQTL association.",
+      "examples": [15.5, -8.2, 3.1]
+    },
+    "Gene": {
+      "type": "string",
+      "description": "Ensembl gene ID.",
+      "pattern": "^ENSG[0-9]{11}$",
+      "examples": ["ENSG00000141510", "ENSG00000157764"]
+    },
+    "GeneSymbol": {
+      "type": "string",
+      "description": "HGNC gene symbol.",
+      "examples": ["TP53", "BRCA1", "HLA-DRB1"]
+    },
+    "GeneChr": {
+      "type": "string",
+      "description": "Chromosome of the gene.",
+      "enum": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "X", "Y"]
+    },
+    "GenePos": {
+      "type": "integer",
+      "description": "TSS position of the gene.",
+      "examples": [12345678]
+    },
+    "Pvalue": {
+      "type": "number",
+      "description": "P-value for the association.",
+      "minimum": 0,
+      "maximum": 1,
+      "examples": [1e-50, 1e-10, 0.001]
+    },
+    "FDR": {
+      "type": "number",
+      "description": "False discovery rate.",
+      "minimum": 0,
+      "maximum": 1,
+      "examples": [0.001, 0.05, 0.01]
+    },
+    "NrCohorts": {
+      "type": "integer",
+      "description": "Number of cohorts with data for this SNP-gene pair.",
+      "minimum": 1,
+      "examples": [37, 25, 10]
+    },
+    "NrSamples": {
+      "type": "integer",
+      "description": "Total sample size.",
+      "examples": [31684, 25000, 10000]
+    },
+    "eQTL_type": {
+      "type": "string",
+      "description": "Type of eQTL (cis or trans).",
+      "enum": ["cis", "trans"]
+    },
+    "distance": {
+      "type": "integer",
+      "description": "Distance from SNP to gene TSS (bp).",
+      "examples": [1000, 500000, -50000]
+    },
+    "cis_trans_label": {
+      "type": "string",
+      "description": "Cis/trans classification with distance context.",
+      "examples": ["cis (100kb)", "trans (different chr)"]
+    },
+    "BonferroniP": {
+      "type": "number",
+      "description": "Bonferroni-corrected P-value.",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "effect_size": {
+      "type": "number",
+      "description": "Effect size (beta) of the eQTL.",
+      "examples": [0.5, -0.3, 0.1]
+    },
+    "se": {
+      "type": "number",
+      "description": "Standard error of the effect size.",
+      "examples": [0.05, 0.02]
+    },
+    "MAF": {
+      "type": "number",
+      "description": "Minor allele frequency.",
+      "minimum": 0,
+      "maximum": 0.5,
+      "examples": [0.15, 0.05, 0.01]
+    },
+    "HetISq": {
+      "type": "number",
+      "description": "Heterogeneity I-squared statistic.",
+      "minimum": 0,
+      "maximum": 100,
+      "examples": [25.5, 0, 75.2]
+    },
+    "HetP": {
+      "type": "number",
+      "description": "Heterogeneity P-value.",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "annotation": {
+      "type": "object",
+      "description": "Variant annotation.",
+      "properties": {
+        "consequence": {
+          "type": "string",
+          "examples": ["intron_variant", "missense_variant", "upstream_gene_variant"]
+        },
+        "regulatory_feature": {
+          "type": "string",
+          "examples": ["promoter", "enhancer", "CTCF_binding_site"]
+        }
+      }
+    }
+  },
+  "required": ["SNP", "Gene", "Zscore", "Pvalue", "eQTL_type"],
+  "additionalProperties": true
+}

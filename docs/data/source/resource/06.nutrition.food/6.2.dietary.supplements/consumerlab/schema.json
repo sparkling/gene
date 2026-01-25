@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gene.taxonomy/schemas/consumerlab",
+  "title": "ConsumerLab Product Review Record",
+  "description": "JSON Schema for ConsumerLab supplement testing and quality evaluation data",
+  "type": "object",
+  "properties": {
+    "review_id": {
+      "type": "string",
+      "description": "Unique review identifier",
+      "pattern": "^CL-[0-9]{4}-[A-Z]+-[0-9]{3}$",
+      "examples": ["CL-2024-VIT-D-001"]
+    },
+    "product_name": {
+      "type": "string",
+      "description": "Full product name as labeled",
+      "examples": ["Vitamin D3 5000 IU"]
+    },
+    "brand": {
+      "type": "string",
+      "description": "Brand or manufacturer name",
+      "examples": ["Nature Made", "NOW Foods"]
+    },
+    "upc": {
+      "type": ["string", "null"],
+      "description": "Universal Product Code (barcode)",
+      "pattern": "^[0-9]{12}$"
+    },
+    "category": {
+      "type": "string",
+      "description": "Product category",
+      "examples": ["Vitamins & Minerals", "Herbs & Botanicals"]
+    },
+    "subcategory": {
+      "type": ["string", "null"],
+      "description": "Product subcategory",
+      "examples": ["Vitamin D", "Fish Oil"]
+    },
+    "test_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of quality testing"
+    },
+    "approval_status": {
+      "type": "string",
+      "description": "Overall approval status",
+      "enum": ["Approved", "Not Approved", "Voluntarily Withdrawn", "Not Tested"]
+    },
+    "test_results": {
+      "type": "object",
+      "description": "Detailed test results",
+      "properties": {
+        "identity_test": {
+          "type": "object",
+          "properties": {
+            "status": {"type": "string", "enum": ["Pass", "Fail"]},
+            "notes": {"type": "string"}
+          }
+        },
+        "potency_results": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "ingredient": {"type": "string"},
+              "claimed": {"type": "string"},
+              "measured": {"type": "string"},
+              "percent_claim": {"type": "number"},
+              "status": {"type": "string", "enum": ["Pass", "Fail"]}
+            }
+          }
+        },
+        "heavy_metals": {
+          "type": "object",
+          "properties": {
+            "lead_mcg_daily": {"type": "object"},
+            "arsenic_mcg_daily": {"type": "object"},
+            "cadmium_mcg_daily": {"type": "object"},
+            "mercury_mcg_daily": {"type": "object"}
+          }
+        },
+        "disintegration": {
+          "type": "object",
+          "properties": {
+            "time_minutes": {"type": "number"},
+            "limit_minutes": {"type": "number"},
+            "status": {"type": "string", "enum": ["Pass", "Fail"]}
+          }
+        }
+      }
+    },
+    "cost_analysis": {
+      "type": ["object", "null"],
+      "description": "Cost and value analysis",
+      "properties": {
+        "price_paid": {"type": "number"},
+        "servings_per_container": {"type": "integer"},
+        "cost_per_serving": {"type": "number"}
+      }
+    },
+    "quality_seal": {
+      "type": "boolean",
+      "description": "ConsumerLab quality seal awarded"
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of last review update"
+    }
+  },
+  "required": ["review_id", "product_name", "brand", "approval_status"],
+  "additionalProperties": true
+}

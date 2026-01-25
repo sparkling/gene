@@ -1,0 +1,73 @@
+{
+  "source": "GDC/TCGA",
+  "version": "2024",
+  "description": "Sample cancer genomics records from GDC/TCGA",
+  "records": [
+    {
+      "case_id": "TCGA-AR-A1AJ",
+      "project_id": "TCGA-BRCA",
+      "primary_site": "Breast",
+      "disease_type": "Ductal and Lobular Neoplasms",
+      "primary_diagnosis": "Infiltrating duct carcinoma, NOS",
+      "demographic": {
+        "gender": "female",
+        "race": "white",
+        "ethnicity": "not hispanic or latino",
+        "vital_status": "Alive",
+        "age_at_diagnosis": 54
+      },
+      "samples": [
+        {
+          "sample_id": "TCGA-AR-A1AJ-01A",
+          "sample_type": "Primary Tumor",
+          "tumor_stage": "Stage IIA"
+        }
+      ],
+      "mutations": [
+        {
+          "gene_symbol": "TP53",
+          "variant_classification": "Missense_Mutation",
+          "hgvsc": "c.742C>T",
+          "hgvsp": "p.Arg248Trp",
+          "consequence": "missense_variant"
+        }
+      ]
+    },
+    {
+      "case_id": "TCGA-02-0001",
+      "project_id": "TCGA-GBM",
+      "primary_site": "Brain",
+      "disease_type": "Gliomas",
+      "primary_diagnosis": "Glioblastoma",
+      "mutations": [
+        {
+          "gene_symbol": "EGFR",
+          "variant_classification": "Amplification"
+        },
+        {
+          "gene_symbol": "PTEN",
+          "variant_classification": "Frame_Shift_Del"
+        }
+      ]
+    },
+    {
+      "case_id": "TCGA-06-0125",
+      "project_id": "TCGA-LUAD",
+      "primary_site": "Lung",
+      "disease_type": "Adenomas and Adenocarcinomas",
+      "primary_diagnosis": "Lung adenocarcinoma",
+      "mutations": [
+        {
+          "gene_symbol": "KRAS",
+          "variant_classification": "Missense_Mutation",
+          "hgvsp": "p.Gly12Cys"
+        }
+      ]
+    }
+  ],
+  "queries": {
+    "rest_cases": "curl 'https://api.gdc.cancer.gov/cases?filters={\"op\":\"=\",\"content\":{\"field\":\"project.project_id\",\"value\":\"TCGA-BRCA\"}}&size=5' | jq",
+    "rest_mutations": "curl 'https://api.gdc.cancer.gov/ssm_occurrences?filters={\"op\":\"=\",\"content\":{\"field\":\"case.project.project_id\",\"value\":\"TCGA-BRCA\"}}&size=5' | jq",
+    "download": "https://portal.gdc.cancer.gov/repository"
+  }
+}

@@ -1,19 +1,21 @@
 ---
 id: panelapp
 title: "PanelApp - Genomics England Gene Panels"
-type: data-source
-category: diseases
-subcategory: rare.orphan.diseases
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 2
-last_updated: 2026-01-23
 status: active
-tags: [gene-panels, clinical-genomics, diagnostic-genes, rare-diseases, nhs]
+category: diseases.phenotypes
+subcategory: rare.orphan.diseases
+tags:
+  - gene-panels
+  - clinical-genomics
+  - diagnostic-genes
+  - rare-diseases
+  - nhs
 ---
 
 # PanelApp - Genomics England Gene Panels
-
-**Category:** [Diseases & Phenotypes](../../_index.md) > [Rare & Orphan Diseases](../_index.md)
 
 ## Overview
 
@@ -76,17 +78,16 @@ PanelApp panels are used in the 100,000 Genomes Project and NHS clinical genomic
 | TSV | Panel exports | Gene lists |
 | BED | Gene coordinates | For bioinformatics |
 
-## License
+## Limitations
 
-| Aspect | Value |
-|--------|-------|
-| License | Open Access |
-| Commercial Use | Yes |
-| Attribution | Recommended |
-| API Access | Free, no registration |
+- Panels reflect UK clinical practice; may differ internationally
+- Evidence levels are crowd-sourced expert opinion
+- Continuous updates mean panel versions may change
+- Not all rare diseases have curated panels
 
 ## See Also
 
-- [Schema Documentation](./schema.md)
-- [Orphanet](../orphanet/_index.md) - Rare disease database
-- [ClinGen](../../../01.genetics.genomics/1.1.variant.repositories/clinvar/_index.md) - Gene curation
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [License Terms](./license.md) - Usage rights and restrictions
+- [Orphanet](../orphanet/README.md) - Rare disease database

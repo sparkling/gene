@@ -1,14 +1,18 @@
 ---
 id: jaspar
 title: "JASPAR - Transcription Factor Binding Profiles"
-type: data-source
-category: pathways
-subcategory: regulatory-networks
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 1
-last_updated: 2026-01-23
 status: active
-tags: [transcription-factors, binding-motifs, pwm, regulatory, open-access]
+category: pathways.networks
+subcategory: regulatory.networks
+tags:
+  - transcription-factors
+  - binding-motifs
+  - pwm
+  - regulatory
+  - open-access
 ---
 
 # JASPAR - Transcription Factor Binding Profiles
@@ -191,6 +195,13 @@ curl "https://jaspar.genereg.net/api/v1/sites/MA0106.3/"
 | MEME | Motif discovery |
 | TFBSTools | R/Bioconductor package |
 | RSAT | Regulatory Sequence Analysis |
+
+## Limitations
+
+- Motif scanning produces many false positive predictions
+- Position weight matrices assume position independence
+- Coverage varies across taxonomic groups
+- In silico predictions require experimental validation
 
 ## Download Files
 

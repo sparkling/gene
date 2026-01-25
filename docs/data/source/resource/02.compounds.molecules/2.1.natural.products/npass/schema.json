@@ -1,0 +1,148 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "npass-schema.json",
+  "title": "NPASS Natural Product Record",
+  "description": "JSON Schema for NPASS (Natural Product Activity and Species Source) records. Integrates 35,000+ natural product structures with 460,000+ quantitative bioactivity measurements (IC50, Ki, EC50) and 25,000+ source species with NCBI taxonomy links.",
+  "type": "object",
+  "properties": {
+    "npc_id": {
+      "type": "string",
+      "description": "NPASS compound identifier",
+      "pattern": "^NPC[0-9]+$",
+      "examples": ["NPC12345"]
+    },
+    "name": {
+      "type": "string",
+      "description": "Compound name"
+    },
+    "canonical_smiles": {
+      "type": "string",
+      "description": "Canonical SMILES structure"
+    },
+    "inchi": {
+      "type": "string",
+      "description": "InChI identifier"
+    },
+    "inchi_key": {
+      "type": "string",
+      "description": "InChI Key for lookups",
+      "pattern": "^[A-Z]{14}-[A-Z]{10}-[A-Z]$"
+    },
+    "molecular_formula": {
+      "type": "string",
+      "description": "Molecular formula"
+    },
+    "molecular_weight": {
+      "type": "number",
+      "description": "Molecular weight in Daltons"
+    },
+    "compound_class": {
+      "type": "string",
+      "description": "Natural product class"
+    },
+    "activities": {
+      "type": "array",
+      "description": "Quantitative bioactivity measurements",
+      "items": {
+        "$ref": "#/$defs/activity"
+      }
+    },
+    "species": {
+      "type": "array",
+      "description": "Source organisms producing this compound",
+      "items": {
+        "$ref": "#/$defs/species"
+      }
+    }
+  },
+  "required": ["npc_id", "canonical_smiles", "inchi_key"],
+  "$defs": {
+    "activity": {
+      "type": "object",
+      "description": "Quantitative bioactivity measurement",
+      "properties": {
+        "activity_id": {
+          "type": "integer",
+          "description": "Primary identifier"
+        },
+        "target_id": {
+          "type": "integer",
+          "description": "Target identifier"
+        },
+        "target_name": {
+          "type": "string",
+          "description": "Target name"
+        },
+        "uniprot_id": {
+          "type": "string",
+          "description": "UniProt accession"
+        },
+        "activity_type": {
+          "type": "string",
+          "description": "Activity measurement type",
+          "enum": ["IC50", "EC50", "Ki", "Kd", "MIC"]
+        },
+        "activity_value": {
+          "type": "number",
+          "description": "Numeric value"
+        },
+        "activity_unit": {
+          "type": "string",
+          "description": "Unit of measurement",
+          "enum": ["nM", "uM", "mM", "ug/ml", "mg/ml"]
+        },
+        "activity_relation": {
+          "type": "string",
+          "description": "Value relation",
+          "enum": ["=", "<", ">", "~", "<=", ">="]
+        },
+        "assay_type": {
+          "type": "string",
+          "description": "Assay type"
+        },
+        "reference": {
+          "type": "string",
+          "description": "PubMed ID or DOI"
+        }
+      },
+      "required": ["activity_type", "activity_value", "activity_unit"]
+    },
+    "species": {
+      "type": "object",
+      "description": "Source organism",
+      "properties": {
+        "species_id": {
+          "type": "integer",
+          "description": "Primary identifier"
+        },
+        "scientific_name": {
+          "type": "string",
+          "description": "Binomial name"
+        },
+        "ncbi_taxon_id": {
+          "type": "integer",
+          "description": "NCBI Taxonomy ID"
+        },
+        "kingdom": {
+          "type": "string",
+          "description": "Taxonomic kingdom",
+          "enum": ["Plantae", "Fungi", "Bacteria", "Animalia", "Archaea"]
+        },
+        "family": {
+          "type": "string",
+          "description": "Taxonomic family"
+        },
+        "part": {
+          "type": "string",
+          "description": "Plant part if applicable"
+        },
+        "reference": {
+          "type": "string",
+          "description": "Literature source"
+        }
+      },
+      "required": ["scientific_name"]
+    }
+  },
+  "additionalProperties": false
+}

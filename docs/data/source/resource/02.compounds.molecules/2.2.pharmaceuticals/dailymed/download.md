@@ -158,6 +158,29 @@ xmllint --xpath "//id/@root" label.xml
 xmllint --xpath "//title/text()" label.xml
 ```
 
+## Dataset Versions
+
+| Version | Release Date | Size | Status |
+|---------|--------------|------|--------|
+| Dec 2025 | 2025-12-19 | ~60 GB total | Current |
+| Monthly releases | First Monday | Varies | Archived |
+
+### Version Notes
+
+DailyMed contains 154,512+ labeling records submitted to FDA:
+- Prescription and nonprescription drugs
+- Human and animal drugs
+- Medical gases, devices, cosmetics, dietary supplements
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | `https://dailymed.nlm.nih.gov/dailymed/services/v2` |
+| Rate Limit | No hard limit |
+| Auth Required | No |
+| Documentation | https://dailymed.nlm.nih.gov/dailymed/app-support-web-services.cfm |
+
 ## Update Schedule
 
 | Release | Frequency |

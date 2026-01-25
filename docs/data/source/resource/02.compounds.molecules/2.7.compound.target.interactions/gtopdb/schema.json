@@ -1,0 +1,194 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "gtopdb-schema.json",
+  "title": "GtoPdb Pharmacology Record",
+  "description": "JSON Schema for Guide to Pharmacology (GtoPdb) records. Expert-curated pharmacological data on 3,000 targets and 13,000 ligands with quantitative affinities in pX notation.",
+  "type": "object",
+  "properties": {
+    "target": {
+      "$ref": "#/$defs/target",
+      "description": "Pharmacological target with IUPHAR nomenclature"
+    },
+    "ligand": {
+      "$ref": "#/$defs/ligand",
+      "description": "Compound acting on the target"
+    },
+    "interaction": {
+      "$ref": "#/$defs/interaction",
+      "description": "Quantitative target-ligand interaction"
+    }
+  },
+  "required": ["target", "ligand", "interaction"],
+  "$defs": {
+    "target": {
+      "type": "object",
+      "description": "Pharmacological target",
+      "properties": {
+        "target_id": {
+          "type": "integer",
+          "description": "GtoPdb target ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "Target name"
+        },
+        "abbreviation": {
+          "type": "string",
+          "description": "Short name/abbreviation"
+        },
+        "systematic_name": {
+          "type": "string",
+          "description": "IUPHAR systematic name"
+        },
+        "family_id": {
+          "type": "integer",
+          "description": "Target family ID"
+        },
+        "family": {
+          "type": "string",
+          "description": "Target family name"
+        },
+        "type": {
+          "type": "string",
+          "description": "Target type",
+          "enum": ["GPCR", "ion_channel", "NHR", "kinase", "enzyme", "transporter", "other"]
+        },
+        "hgnc_symbol": {
+          "type": "string",
+          "description": "HGNC gene symbol"
+        },
+        "hgnc_id": {
+          "type": "integer",
+          "description": "HGNC ID"
+        },
+        "uniprot_id": {
+          "type": "string",
+          "description": "UniProt accession",
+          "pattern": "^[A-Z][0-9][A-Z0-9]{3}[0-9]$"
+        },
+        "species": {
+          "type": "string",
+          "description": "Organism"
+        }
+      },
+      "required": ["target_id", "name", "type"]
+    },
+    "ligand": {
+      "type": "object",
+      "description": "Pharmacological ligand",
+      "properties": {
+        "ligand_id": {
+          "type": "integer",
+          "description": "GtoPdb ligand ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "Ligand name"
+        },
+        "type": {
+          "type": "string",
+          "description": "Ligand type",
+          "enum": ["synthetic", "metabolite", "endogenous", "natural_product", "peptide", "antibody"]
+        },
+        "approved": {
+          "type": "boolean",
+          "description": "Approved drug status"
+        },
+        "radioactive": {
+          "type": "boolean",
+          "description": "Radioligand flag"
+        },
+        "pubchem_sid": {
+          "type": "integer",
+          "description": "PubChem Substance ID"
+        },
+        "pubchem_cid": {
+          "type": "integer",
+          "description": "PubChem Compound ID"
+        },
+        "chembl_id": {
+          "type": "string",
+          "description": "ChEMBL identifier",
+          "pattern": "^CHEMBL[0-9]+$"
+        },
+        "inn": {
+          "type": "string",
+          "description": "International Nonproprietary Name"
+        },
+        "smiles": {
+          "type": "string",
+          "description": "Chemical structure SMILES"
+        },
+        "inchi": {
+          "type": "string",
+          "description": "InChI identifier"
+        },
+        "inchi_key": {
+          "type": "string",
+          "description": "InChI Key",
+          "pattern": "^[A-Z]{14}-[A-Z]{10}-[A-Z]$"
+        }
+      },
+      "required": ["ligand_id", "name", "type"]
+    },
+    "interaction": {
+      "type": "object",
+      "description": "Target-ligand interaction with pX affinity",
+      "properties": {
+        "interaction_id": {
+          "type": "integer",
+          "description": "Interaction identifier"
+        },
+        "type": {
+          "type": "string",
+          "description": "Interaction type",
+          "enum": ["agonist", "antagonist", "inhibitor", "activator", "modulator", "blocker", "channel_blocker", "gating_inhibitor"]
+        },
+        "action": {
+          "type": "string",
+          "description": "Pharmacological action",
+          "enum": ["Activation", "Inhibition", "Potentiation", "No effect"]
+        },
+        "selectivity": {
+          "type": "string",
+          "description": "Selectivity classification",
+          "enum": ["Selective", "Non-selective"]
+        },
+        "endogenous": {
+          "type": "boolean",
+          "description": "Endogenous ligand flag"
+        },
+        "affinity_type": {
+          "type": "string",
+          "description": "Type of affinity measurement (pX notation)",
+          "enum": ["pKi", "pIC50", "pEC50", "pKd", "pKB"]
+        },
+        "affinity_median": {
+          "type": "number",
+          "description": "Median pX value (e.g., pKi=8 means Ki=10nM)"
+        },
+        "affinity_low": {
+          "type": "number",
+          "description": "Low pX value in range"
+        },
+        "affinity_high": {
+          "type": "number",
+          "description": "High pX value in range"
+        },
+        "species": {
+          "type": "string",
+          "description": "Assay species"
+        },
+        "reference_ids": {
+          "type": "array",
+          "description": "Literature reference IDs",
+          "items": {
+            "type": "integer"
+          }
+        }
+      },
+      "required": ["type"]
+    }
+  },
+  "additionalProperties": false
+}

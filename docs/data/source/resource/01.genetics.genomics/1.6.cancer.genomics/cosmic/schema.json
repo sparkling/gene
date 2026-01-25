@@ -1,0 +1,288 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "cosmic-schema.json",
+  "title": "COSMIC Record",
+  "description": "JSON Schema for Catalogue of Somatic Mutations in Cancer (COSMIC) mutation data.",
+  "type": "object",
+  "properties": {
+    "entity_type": {
+      "type": "string",
+      "description": "Type of COSMIC entity.",
+      "enum": ["mutation", "gene", "sample", "signature", "census_gene", "fusion", "cnv", "resistance_mutation"]
+    },
+    "mutation": {
+      "type": "object",
+      "description": "Somatic mutation record.",
+      "properties": {
+        "COSMIC_MUTATION_ID": {
+          "type": "string",
+          "description": "Legacy COSMIC mutation identifier.",
+          "pattern": "^COSM[0-9]+$",
+          "examples": ["COSM476", "COSM6224"]
+        },
+        "GENOMIC_MUTATION_ID": {
+          "type": "string",
+          "description": "Genomic mutation identifier (COSV).",
+          "pattern": "^COSV[0-9]+$",
+          "examples": ["COSV56056643", "COSV99046288"]
+        },
+        "LEGACY_MUTATION_ID": {
+          "type": "string",
+          "pattern": "^COSM[0-9]+$"
+        },
+        "Gene_name": {
+          "type": "string",
+          "description": "Gene symbol.",
+          "examples": ["BRAF", "TP53", "KRAS"]
+        },
+        "Accession_Number": {
+          "type": "string",
+          "description": "Transcript accession.",
+          "examples": ["ENST00000288602"]
+        },
+        "Gene_CDS_length": {
+          "type": "integer",
+          "description": "CDS length in nucleotides."
+        },
+        "HGNC_ID": {
+          "type": "integer",
+          "description": "HGNC gene ID.",
+          "examples": [1097, 11998]
+        },
+        "Mutation_CDS": {
+          "type": "string",
+          "description": "CDS mutation notation.",
+          "examples": ["c.1799T>A", "c.35G>T"]
+        },
+        "Mutation_AA": {
+          "type": "string",
+          "description": "Amino acid mutation notation.",
+          "examples": ["p.V600E", "p.G12V"]
+        },
+        "Mutation_Description": {
+          "type": "string",
+          "description": "Mutation type description.",
+          "enum": ["Substitution - Missense", "Substitution - Nonsense", "Insertion - Frameshift", "Deletion - Frameshift", "Deletion - In frame", "Insertion - In frame", "Complex", "Complex - deletion inframe", "Complex - insertion inframe", "Complex - compound substitution", "Nonstop extension", "Unknown"]
+        },
+        "Mutation_zygosity": {
+          "type": "string",
+          "enum": ["het", "hom", ""]
+        },
+        "Mutation_genome_position": {
+          "type": "string",
+          "description": "Genomic coordinates.",
+          "examples": ["7:140453136-140453136"]
+        },
+        "Mutation_strand": {
+          "type": "string",
+          "enum": ["+", "-"]
+        },
+        "GRCh": {
+          "type": "integer",
+          "description": "Genome assembly version.",
+          "enum": [37, 38]
+        },
+        "Chromosome": {
+          "type": "string",
+          "enum": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "X", "Y", "MT"]
+        },
+        "Position": {
+          "type": "integer",
+          "description": "Genomic position."
+        },
+        "REF": {
+          "type": "string",
+          "description": "Reference allele."
+        },
+        "ALT": {
+          "type": "string",
+          "description": "Alternate allele."
+        },
+        "FATHMM_prediction": {
+          "type": "string",
+          "description": "FATHMM pathogenicity prediction.",
+          "enum": ["PATHOGENIC", "NEUTRAL"]
+        },
+        "FATHMM_score": {
+          "type": "number",
+          "description": "FATHMM score.",
+          "examples": [0.98, 0.12]
+        },
+        "Mutation_somatic_status": {
+          "type": "string",
+          "enum": ["Confirmed somatic variant", "Reported in another cancer sample as somatic", "Not specified", "Variant of unknown origin"]
+        }
+      }
+    },
+    "sample": {
+      "type": "object",
+      "description": "Sample information.",
+      "properties": {
+        "Sample_ID": {
+          "type": "integer",
+          "description": "COSMIC sample ID."
+        },
+        "Sample_name": {
+          "type": "string"
+        },
+        "ID_tumour": {
+          "type": "integer",
+          "description": "Tumour ID."
+        },
+        "Primary_site": {
+          "type": "string",
+          "description": "Primary tissue site.",
+          "examples": ["skin", "lung", "breast"]
+        },
+        "Site_subtype_1": {
+          "type": "string"
+        },
+        "Primary_histology": {
+          "type": "string",
+          "description": "Primary histology type.",
+          "examples": ["carcinoma", "melanoma", "lymphoma"]
+        },
+        "Histology_subtype_1": {
+          "type": "string",
+          "examples": ["adenocarcinoma", "squamous_cell_carcinoma"]
+        },
+        "Pubmed_PMID": {
+          "type": "integer"
+        },
+        "Study_ID": {
+          "type": "integer"
+        },
+        "Sample_source": {
+          "type": "string",
+          "enum": ["surgery", "biopsy", "autopsy", "cell-line", "xenograft"]
+        },
+        "Tumour_origin": {
+          "type": "string",
+          "enum": ["primary", "metastasis", "recurrence", "unknown"]
+        },
+        "Age": {
+          "type": "integer"
+        }
+      }
+    },
+    "signature": {
+      "type": "object",
+      "description": "Mutational signature.",
+      "properties": {
+        "Signature_ID": {
+          "type": "string",
+          "description": "Signature identifier.",
+          "pattern": "^SBS[0-9]+[a-z]?$|^DBS[0-9]+$|^ID[0-9]+$",
+          "examples": ["SBS1", "SBS7a", "DBS2", "ID1"]
+        },
+        "Signature_type": {
+          "type": "string",
+          "enum": ["SBS", "DBS", "ID"]
+        },
+        "Proposed_aetiology": {
+          "type": "string",
+          "examples": ["Age-related", "UV exposure", "APOBEC activity", "Defective DNA mismatch repair"]
+        },
+        "Cancer_types": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "Transcriptional_strand_bias": {
+          "type": "string"
+        },
+        "Replication_strand_bias": {
+          "type": "string"
+        }
+      }
+    },
+    "fusion": {
+      "type": "object",
+      "description": "Gene fusion record.",
+      "properties": {
+        "Fusion_ID": {
+          "type": "string",
+          "pattern": "^COSF[0-9]+$"
+        },
+        "Gene_5prime": {
+          "type": "string"
+        },
+        "Gene_3prime": {
+          "type": "string"
+        },
+        "Fusion_type": {
+          "type": "string",
+          "enum": ["Inferred Breakpoint", "Observed mRNA", "Observed Genomic"]
+        },
+        "Translocation_name": {
+          "type": "string",
+          "examples": ["BCR-ABL1", "EML4-ALK"]
+        }
+      }
+    },
+    "cnv": {
+      "type": "object",
+      "description": "Copy number variation.",
+      "properties": {
+        "CNV_ID": {
+          "type": "string"
+        },
+        "Gene_name": {
+          "type": "string"
+        },
+        "Chromosome": {
+          "type": "string"
+        },
+        "Start": {
+          "type": "integer"
+        },
+        "End": {
+          "type": "integer"
+        },
+        "CNV_type": {
+          "type": "string",
+          "enum": ["gain", "loss", "neutral"]
+        },
+        "Total_copy_number": {
+          "type": "integer"
+        },
+        "Minor_allele_copy_number": {
+          "type": "integer"
+        }
+      }
+    },
+    "resistance_mutation": {
+      "type": "object",
+      "description": "Drug resistance mutation.",
+      "properties": {
+        "Gene": {
+          "type": "string"
+        },
+        "Mutation": {
+          "type": "string"
+        },
+        "Drug": {
+          "type": "string"
+        },
+        "Drug_family": {
+          "type": "string"
+        },
+        "Resistance_mechanism": {
+          "type": "string"
+        },
+        "Disease": {
+          "type": "string"
+        },
+        "Pubmed_PMID": {
+          "type": "integer"
+        }
+      }
+    },
+    "cosmic_version": {
+      "type": "string",
+      "description": "COSMIC database version.",
+      "examples": ["v99", "v100"]
+    }
+  },
+  "required": ["entity_type"],
+  "additionalProperties": true
+}

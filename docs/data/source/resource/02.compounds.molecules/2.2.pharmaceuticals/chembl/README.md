@@ -1,19 +1,21 @@
 ---
 id: chembl
 title: "ChEMBL - Bioactivity Database"
-type: data-source
-category: compounds
-subcategory: pharmaceuticals
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 1
-last_updated: 2026-01-23
 status: active
-tags: [bioactivity, drug-discovery, pharmacology, targets, assays]
+category: compounds.molecules
+subcategory: pharmaceuticals
+tags:
+  - bioactivity
+  - drug-discovery
+  - pharmacology
+  - targets
+  - assays
 ---
 
 # ChEMBL - Bioactivity Database
-
-**Category:** [Compounds & Molecules](../../_index.md) > [Pharmaceuticals](../_index.md)
 
 ## Overview
 
@@ -72,13 +74,12 @@ ChEMBL provides extensive data on approved drugs, clinical candidates, and resea
 | Targets | Proteins, cell lines, organisms |
 | Drug Mechanisms | Approved drug target interactions |
 
-## License
+## Limitations
 
-| Aspect | Value |
-|--------|-------|
-| License | CC BY-SA 3.0 |
-| Commercial Use | Yes |
-| Attribution Required | Yes |
+- Activity values extracted from literature may have measurement variability
+- Assay conditions vary across sources
+- Some historical data may use outdated target nomenclature
+- Non-human target data may not translate to human biology
 
 ## Related Resources
 
@@ -88,7 +89,9 @@ ChEMBL provides extensive data on approved drugs, clinical candidates, and resea
 
 ## See Also
 
-- [Schema Documentation](./schema.md)
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [License Terms](./license.md) - Usage rights and restrictions
 
 ## References
 

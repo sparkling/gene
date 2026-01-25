@@ -1,0 +1,69 @@
+{
+  "source": "Genomics England PanelApp",
+  "version": "2024",
+  "description": "Sample gene panel records from PanelApp",
+  "records": [
+    {
+      "panel_id": 115,
+      "panel_name": "Intellectual disability",
+      "version": "4.0",
+      "relevant_disorders": ["Intellectual disability", "Developmental delay", "Learning disability"],
+      "number_of_genes": 1287,
+      "genes": [
+        {
+          "gene_symbol": "MECP2",
+          "hgnc_id": "HGNC:6990",
+          "confidence_level": 3,
+          "confidence_label": "Green",
+          "mode_of_inheritance": "X-LINKED: hemizygous mutation in males, biallelic mutations in females",
+          "phenotypes": ["Rett syndrome"],
+          "publications": ["PMID:10508514"]
+        },
+        {
+          "gene_symbol": "FMR1",
+          "hgnc_id": "HGNC:3775",
+          "confidence_level": 3,
+          "confidence_label": "Green",
+          "mode_of_inheritance": "X-LINKED",
+          "phenotypes": ["Fragile X syndrome"]
+        },
+        {
+          "gene_symbol": "SHANK3",
+          "hgnc_id": "HGNC:14294",
+          "confidence_level": 3,
+          "confidence_label": "Green",
+          "mode_of_inheritance": "MONOALLELIC, autosomal or pseudoautosomal"
+        }
+      ]
+    },
+    {
+      "panel_id": 5,
+      "panel_name": "Familial breast cancer",
+      "version": "2.5",
+      "number_of_genes": 28,
+      "genes": [
+        {
+          "gene_symbol": "BRCA1",
+          "confidence_level": 3,
+          "confidence_label": "Green",
+          "mode_of_inheritance": "MONOALLELIC"
+        },
+        {
+          "gene_symbol": "BRCA2",
+          "confidence_level": 3,
+          "confidence_label": "Green"
+        },
+        {
+          "gene_symbol": "PALB2",
+          "confidence_level": 3,
+          "confidence_label": "Green"
+        }
+      ]
+    }
+  ],
+  "queries": {
+    "rest_panels": "curl 'https://panelapp.genomicsengland.co.uk/api/v1/panels/' | jq",
+    "rest_panel_detail": "curl 'https://panelapp.genomicsengland.co.uk/api/v1/panels/115/' | jq",
+    "rest_gene": "curl 'https://panelapp.genomicsengland.co.uk/api/v1/genes/MECP2/' | jq"
+  }
+}

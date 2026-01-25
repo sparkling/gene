@@ -1,0 +1,129 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gene.taxonomy/schemas/natural-medicines",
+  "title": "Natural Medicines Monograph Record",
+  "description": "JSON Schema for Natural Medicines Comprehensive Database monograph data",
+  "type": "object",
+  "properties": {
+    "monograph_id": {
+      "type": "string",
+      "description": "Unique monograph identifier",
+      "pattern": "^NM-[0-9]{6}$",
+      "examples": ["NM-001234"]
+    },
+    "name": {
+      "type": "string",
+      "description": "Primary ingredient name",
+      "examples": ["Turmeric", "St. John's Wort"]
+    },
+    "scientific_names": {
+      "type": "array",
+      "description": "Scientific/Latin names",
+      "items": {"type": "string"},
+      "examples": [["Curcuma longa", "Curcuma domestica"]]
+    },
+    "common_names": {
+      "type": "array",
+      "description": "Alternative common names",
+      "items": {"type": "string"},
+      "examples": [["Curcumin", "Indian Saffron"]]
+    },
+    "family": {
+      "type": ["string", "null"],
+      "description": "Plant family",
+      "examples": ["Zingiberaceae"]
+    },
+    "parts_used": {
+      "type": "array",
+      "description": "Plant parts used medicinally",
+      "items": {"type": "string"},
+      "examples": [["Rhizome", "Root"]]
+    },
+    "overview": {
+      "type": ["string", "null"],
+      "description": "General description and background"
+    },
+    "safety_grade": {
+      "type": "string",
+      "description": "Overall safety classification",
+      "enum": ["Likely Safe", "Possibly Safe", "Possibly Unsafe", "Likely Unsafe", "Unsafe", "Insufficient Information"]
+    },
+    "effectiveness_ratings": {
+      "type": "array",
+      "description": "Evidence-based efficacy ratings by condition",
+      "items": {
+        "type": "object",
+        "properties": {
+          "condition": {"type": "string"},
+          "rating": {
+            "type": "string",
+            "enum": ["Effective", "Likely Effective", "Possibly Effective", "Possibly Ineffective", "Likely Ineffective", "Ineffective", "Insufficient Evidence"]
+          },
+          "evidence_level": {
+            "type": "string",
+            "enum": ["A", "B", "C", "D"]
+          },
+          "summary": {"type": "string"},
+          "typical_dose": {"type": ["string", "null"]}
+        }
+      }
+    },
+    "mechanism_of_action": {
+      "type": ["string", "null"],
+      "description": "Pharmacological mechanism"
+    },
+    "pharmacokinetics": {
+      "type": ["object", "null"],
+      "description": "ADME properties",
+      "properties": {
+        "absorption": {"type": "string"},
+        "metabolism": {"type": "string"},
+        "half_life": {"type": "string"},
+        "bioavailability": {"type": "string"}
+      }
+    },
+    "drug_interactions": {
+      "type": "array",
+      "description": "Known drug interactions",
+      "items": {
+        "type": "object",
+        "properties": {
+          "drug": {"type": "string"},
+          "severity": {
+            "type": "string",
+            "enum": ["Contraindicated", "Major", "Moderate", "Minor", "Unknown"]
+          },
+          "mechanism": {"type": "string"},
+          "management": {"type": "string"}
+        }
+      }
+    },
+    "contraindications": {
+      "type": "array",
+      "description": "Conditions where use is contraindicated",
+      "items": {"type": "string"}
+    },
+    "pregnancy_lactation": {
+      "type": ["object", "null"],
+      "description": "Safety during pregnancy/lactation",
+      "properties": {
+        "pregnancy": {"type": "string"},
+        "lactation": {"type": "string"}
+      }
+    },
+    "adverse_effects": {
+      "type": "array",
+      "description": "Known adverse effects",
+      "items": {
+        "type": "object",
+        "properties": {
+          "effect": {"type": "string"},
+          "frequency": {"type": "string"},
+          "severity": {"type": "string"}
+        }
+      }
+    }
+  },
+  "required": ["monograph_id", "name", "safety_grade"],
+  "additionalProperties": true
+}

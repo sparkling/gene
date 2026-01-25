@@ -1,0 +1,85 @@
+{
+  "_metadata": {
+    "source": "SWISS-MODEL Repository",
+    "version": "2026-01",
+    "generated": "2026-01-25",
+    "record_count": 2,
+    "query_examples": [
+      "Repository: /repository/uniprot/P04637",
+      "Model download: /repository/uniprot/P04637.pdb",
+      "AutoModel: POST /automodel"
+    ]
+  },
+  "records": [
+    {
+      "uniprot_ac": "P04637",
+      "sequence_length": 393,
+      "models": [
+        {
+          "model_id": "5a1b2c3d4e",
+          "from": 94,
+          "to": 289,
+          "template": "1tup.1.A",
+          "identity": 0.95,
+          "similarity": 0.98,
+          "coverage": 0.50,
+          "qmean": -0.85,
+          "qmean_disco": 0.78,
+          "oligo_state": "monomer",
+          "created_date": "2024-06-15",
+          "coordinate_url": "https://swissmodel.expasy.org/repository/uniprot/P04637/1.pdb"
+        },
+        {
+          "model_id": "6b2c3d4e5f",
+          "from": 319,
+          "to": 360,
+          "template": "3sak.1.A",
+          "identity": 1.00,
+          "similarity": 1.00,
+          "coverage": 0.10,
+          "qmean": -1.23,
+          "qmean_disco": 0.65,
+          "oligo_state": "tetramer",
+          "created_date": "2024-06-15",
+          "coordinate_url": "https://swissmodel.expasy.org/repository/uniprot/P04637/2.pdb"
+        }
+      ],
+      "coverage_image": "https://swissmodel.expasy.org/repository/uniprot/P04637.coverage.png"
+    },
+    {
+      "uniprot_ac": "P00533",
+      "sequence_length": 1210,
+      "models": [
+        {
+          "model_id": "7c3d4e5f6g",
+          "from": 25,
+          "to": 642,
+          "template": "3njp.1.A",
+          "identity": 0.88,
+          "similarity": 0.92,
+          "coverage": 0.51,
+          "qmean": -1.45,
+          "qmean_disco": 0.72,
+          "oligo_state": "monomer",
+          "created_date": "2024-08-20",
+          "coordinate_url": "https://swissmodel.expasy.org/repository/uniprot/P00533/1.pdb"
+        },
+        {
+          "model_id": "8d4e5f6g7h",
+          "from": 712,
+          "to": 979,
+          "template": "2gs6.1.A",
+          "identity": 0.99,
+          "similarity": 1.00,
+          "coverage": 0.22,
+          "qmean": -0.56,
+          "qmean_disco": 0.85,
+          "oligo_state": "monomer",
+          "created_date": "2024-08-20",
+          "coordinate_url": "https://swissmodel.expasy.org/repository/uniprot/P00533/2.pdb"
+        }
+      ],
+      "coverage_image": "https://swissmodel.expasy.org/repository/uniprot/P00533.coverage.png"
+    }
+  ]
+}

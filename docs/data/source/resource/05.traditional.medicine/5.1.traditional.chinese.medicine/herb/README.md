@@ -1,19 +1,21 @@
 ---
 id: herb
 title: "HERB - High-throughput Experiment and Reference Database"
-type: data-source
-category: traditional-medicine
-subcategory: traditional-chinese-medicine
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 1
-last_updated: 2026-01-23
 status: active
-tags: [tcm, traditional-chinese-medicine, gene-expression, transcriptomics, herbs]
+category: traditional.medicine
+subcategory: traditional.chinese.medicine
+tags:
+  - tcm
+  - traditional-chinese-medicine
+  - gene-expression
+  - transcriptomics
+  - herbs
 ---
 
 # HERB - High-throughput Experiment and Reference Database
-
-**Category:** [Traditional Medicine](../../_index.md) > [Traditional Chinese Medicine](../_index.md)
 
 ## Overview
 
@@ -85,14 +87,6 @@ Gene Expression Experiments (GEO)
 | Pathway Enrichment | KEGG/GO enrichment results |
 | Dose-Response | Multiple concentration data when available |
 
-## License
-
-| Aspect | Value |
-|--------|-------|
-| License | Academic use free |
-| Commercial Use | Contact maintainers |
-| Attribution | Citation required |
-
 ## Integration Value
 
 HERB provides unique experimental validation data that complements prediction-based databases:
@@ -111,6 +105,6 @@ HERB provides unique experimental validation data that complements prediction-ba
 
 ## See Also
 
-- [BATMAN-TCM](../batman.tcm/_index.md)
-- [SymMap](../symmap/_index.md)
-- [TCMSID](../tcmsid/_index.md)
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [License Terms](./license.md) - Usage rights and restrictions

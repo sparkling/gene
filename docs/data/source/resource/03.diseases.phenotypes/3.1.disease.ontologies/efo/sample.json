@@ -1,0 +1,49 @@
+{
+  "source": "EFO",
+  "version": "3.60.0",
+  "description": "Sample experimental factor ontology records from EFO",
+  "records": [
+    {
+      "efo_id": "EFO:0000400",
+      "label": "diabetes mellitus",
+      "definition": "A metabolic disease in which carbohydrate utilization is impaired as a result of a deficiency of insulin.",
+      "synonyms": ["diabetes", "DM"],
+      "parents": ["EFO:0000589"],
+      "xrefs": [
+        {"source": "MONDO", "id": "MONDO:0005015"},
+        {"source": "MeSH", "id": "D003920"},
+        {"source": "DOID", "id": "DOID:9351"}
+      ],
+      "children": [
+        {"efo_id": "EFO:0001360", "label": "type 1 diabetes mellitus"},
+        {"efo_id": "EFO:0001359", "label": "type 2 diabetes mellitus"}
+      ]
+    },
+    {
+      "efo_id": "EFO:0000305",
+      "label": "breast carcinoma",
+      "definition": "A carcinoma arising from breast tissue.",
+      "synonyms": ["breast cancer", "mammary carcinoma"],
+      "parents": ["EFO:0000311"],
+      "xrefs": [
+        {"source": "MONDO", "id": "MONDO:0007254"},
+        {"source": "NCIt", "id": "NCIT:C4872"}
+      ]
+    },
+    {
+      "efo_id": "EFO:0003885",
+      "label": "schizophrenia",
+      "definition": "A psychotic disorder characterized by distortions of thinking and perception.",
+      "parents": ["EFO:0000677"],
+      "xrefs": [
+        {"source": "DOID", "id": "DOID:5419"},
+        {"source": "MeSH", "id": "D012559"}
+      ]
+    }
+  ],
+  "queries": {
+    "obo_download": "wget http://www.ebi.ac.uk/efo/efo.obo",
+    "owl_download": "wget http://www.ebi.ac.uk/efo/efo.owl",
+    "ols_search": "curl 'https://www.ebi.ac.uk/ols/api/search?q=diabetes&ontology=efo' | jq"
+  }
+}

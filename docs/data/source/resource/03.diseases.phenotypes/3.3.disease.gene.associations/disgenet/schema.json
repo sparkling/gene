@@ -1,0 +1,204 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "disgenet-schema.json",
+  "title": "DisGeNET Association Record",
+  "description": "JSON Schema for DisGeNET disease-gene association database. Contains 628,000+ GDAs, 210,000+ VDAs for 17,500 genes and 24,000 diseases with score metrics (DSI, DPI, EI) from curated, literature, and inferred sources.",
+  "type": "object",
+  "properties": {
+    "association_type": {
+      "type": "string",
+      "description": "Association type",
+      "enum": ["GDA", "VDA"]
+    },
+    "gene_id": {
+      "type": "integer",
+      "description": "NCBI Gene ID"
+    },
+    "gene_symbol": {
+      "type": "string",
+      "description": "HGNC gene symbol"
+    },
+    "gene_name": {
+      "type": "string",
+      "description": "Full gene name"
+    },
+    "disease_id": {
+      "type": "string",
+      "description": "UMLS CUI",
+      "pattern": "^C[0-9]{7}$",
+      "examples": ["C0020443"]
+    },
+    "disease_name": {
+      "type": "string",
+      "description": "Disease name"
+    },
+    "score": {
+      "type": "number",
+      "description": "DisGeNET association score (0-1)",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "ei": {
+      "type": "number",
+      "description": "Evidence Index (0-1)",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "dsi": {
+      "type": "number",
+      "description": "Disease Specificity Index (0-1)",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "dpi": {
+      "type": "number",
+      "description": "Disease Pleiotropy Index (0-1)",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "association_type_ontology": {
+      "type": "string",
+      "description": "Association type from ontology",
+      "enum": ["Therapeutic", "DrugTarget", "Biomarker", "AlteredExpression", "Diagnostic", "Prognostic", "GeneticVariation", "Causal", "SomaticMutation", "GermlineMutation", "Susceptibility", "Modifying", "FunctionalAnnotation", "Posttranslational"]
+    },
+    "source": {
+      "type": "string",
+      "description": "Data source"
+    },
+    "pmids": {
+      "type": "array",
+      "description": "PubMed IDs",
+      "items": {
+        "type": "integer"
+      }
+    },
+    "n_pmids": {
+      "type": "integer",
+      "description": "Number of publications"
+    },
+    "first_year": {
+      "type": "integer",
+      "description": "First publication year"
+    },
+    "variant": {
+      "$ref": "#/$defs/variant"
+    },
+    "disease": {
+      "$ref": "#/$defs/disease"
+    },
+    "gene": {
+      "$ref": "#/$defs/gene"
+    }
+  },
+  "required": ["disease_id", "disease_name", "score"],
+  "$defs": {
+    "variant": {
+      "type": "object",
+      "description": "Genetic variant (for VDA)",
+      "properties": {
+        "snp_id": {
+          "type": "string",
+          "description": "dbSNP ID",
+          "pattern": "^rs[0-9]+$"
+        },
+        "chromosome": {
+          "type": "string",
+          "description": "Chromosome"
+        },
+        "position": {
+          "type": "integer",
+          "description": "GRCh38 position"
+        },
+        "reference": {
+          "type": "string",
+          "description": "Reference allele"
+        },
+        "alternative": {
+          "type": "string",
+          "description": "Alternative allele"
+        },
+        "consequence": {
+          "type": "string",
+          "description": "VEP consequence",
+          "enum": ["missense_variant", "intron_variant", "frameshift_variant", "intergenic_variant", "synonymous_variant", "splice_region_variant", "stop_gained", "3_prime_UTR_variant", "5_prime_UTR_variant", "regulatory_region_variant"]
+        },
+        "gnomad_af": {
+          "type": "number",
+          "description": "gnomAD allele frequency",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "disease": {
+      "type": "object",
+      "description": "Disease attributes",
+      "properties": {
+        "disease_type": {
+          "type": "string",
+          "description": "Disease type",
+          "enum": ["disease", "phenotype", "group"]
+        },
+        "disease_class": {
+          "type": "array",
+          "description": "MeSH disease classes",
+          "items": {
+            "type": "string"
+          }
+        },
+        "semantic_type": {
+          "type": "string",
+          "description": "UMLS semantic type"
+        },
+        "doid": {
+          "type": "string",
+          "description": "Disease Ontology ID"
+        },
+        "hpo": {
+          "type": "array",
+          "description": "HPO phenotype terms",
+          "items": {
+            "type": "string",
+            "pattern": "^HP:[0-9]{7}$"
+          }
+        },
+        "n_genes": {
+          "type": "integer",
+          "description": "Associated genes count"
+        },
+        "n_variants": {
+          "type": "integer",
+          "description": "Associated variants count"
+        }
+      }
+    },
+    "gene": {
+      "type": "object",
+      "description": "Gene attributes",
+      "properties": {
+        "uniprot_ids": {
+          "type": "array",
+          "description": "UniProt accessions",
+          "items": {
+            "type": "string"
+          }
+        },
+        "protein_class": {
+          "type": "string",
+          "description": "Protein classification"
+        },
+        "pli": {
+          "type": "number",
+          "description": "Loss-of-function intolerance (0-1)",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "n_diseases": {
+          "type": "integer",
+          "description": "Number of associated diseases"
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

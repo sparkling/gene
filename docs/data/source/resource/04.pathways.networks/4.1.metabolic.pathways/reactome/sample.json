@@ -1,0 +1,93 @@
+[
+  {
+    "dbId": 1430728,
+    "stId": "R-HSA-1430728",
+    "displayName": "Metabolism",
+    "schemaClass": "TopLevelPathway",
+    "speciesName": "Homo sapiens",
+    "isInDisease": false,
+    "hasDiagram": true,
+    "hasEHLD": true,
+    "doi": "10.3180/R-HSA-1430728.15",
+    "releaseDate": "2011-02-05",
+    "metadata": {
+      "version": "R-HSA-1430728.16",
+      "source_url": "https://reactome.org/content/detail/R-HSA-1430728"
+    }
+  },
+  {
+    "dbId": 109581,
+    "stId": "R-HSA-109581",
+    "displayName": "Apoptosis",
+    "schemaClass": "TopLevelPathway",
+    "speciesName": "Homo sapiens",
+    "isInDisease": false,
+    "hasDiagram": true,
+    "hasEHLD": true,
+    "summation": "Apoptosis is a process of programmed cell death",
+    "goBiologicalProcess": {
+      "accession": "GO:0006915",
+      "displayName": "apoptotic process"
+    },
+    "literatureReference": [
+      {"pubMedIdentifier": 10583946, "title": "Apoptosis review"}
+    ],
+    "metadata": {
+      "version": "R-HSA-109581.12",
+      "source_url": "https://reactome.org/content/detail/R-HSA-109581"
+    }
+  },
+  {
+    "dbId": 69541,
+    "stId": "R-HSA-69541",
+    "displayName": "Cytochrome c binds APAF1",
+    "schemaClass": "Reaction",
+    "speciesName": "Homo sapiens",
+    "isInDisease": false,
+    "input": [
+      {
+        "dbId": 69523,
+        "displayName": "CYCS [cytosol]",
+        "schemaClass": "EntityWithAccessionedSequence",
+        "referenceEntity": {
+          "identifier": "P99999",
+          "databaseName": "UniProt"
+        }
+      }
+    ],
+    "output": [
+      {
+        "dbId": 69543,
+        "displayName": "Apoptosome complex",
+        "schemaClass": "Complex"
+      }
+    ],
+    "catalystActivity": [],
+    "metadata": {
+      "version": "R-HSA-69541.5",
+      "source_url": "https://reactome.org/content/detail/R-HSA-69541"
+    }
+  },
+  {
+    "dbId": 191273,
+    "stId": "R-HSA-191273",
+    "displayName": "Cholesterol biosynthesis",
+    "schemaClass": "Pathway",
+    "speciesName": "Homo sapiens",
+    "isInDisease": false,
+    "hasDiagram": true,
+    "compartment": [
+      {
+        "accession": "GO:0005789",
+        "displayName": "endoplasmic reticulum membrane"
+      }
+    ],
+    "hasEvent": [
+      {"stId": "R-HSA-192823", "displayName": "Activation of SREBP"}
+    ],
+    "metadata": {
+      "version": "R-HSA-191273.8",
+      "source_url": "https://reactome.org/content/detail/R-HSA-191273"
+    }
+  }
+]

@@ -145,6 +145,62 @@ bcftools view -H gnomad.exomes.v4.1.sites.chr1.vcf.bgz | wc -l
 tabix -l gnomad.exomes.v4.1.sites.chr1.vcf.bgz
 ```
 
+## Dataset Versions
+
+### Current Release: v4.1
+
+| Property | Value |
+|----------|-------|
+| Version | v4.1 |
+| Release Date | 2024-04 |
+| Total Size | ~1.5 TB (VCF), ~650 GB (HT) |
+| Exomes | 730,947 individuals |
+| Genomes | 76,215 individuals |
+| Total Individuals | 807,162 |
+
+### Version Contents
+
+| Component | Size | Records | Description |
+|-----------|------|---------|-------------|
+| Exome VCFs (all chr) | ~250 GB | 62.9M SNVs | Sites-only VCF |
+| Genome VCFs (all chr) | ~400 GB | 756M variants | Sites-only VCF |
+| Exome Hail Table | ~250 GB | 62.9M | For Hail analysis |
+| Genome Hail Table | ~400 GB | 756M | For Hail analysis |
+| Constraint metrics | ~50 MB | 19,704 genes | pLI, LOEUF scores |
+
+### Ancestry Composition
+
+| Ancestry | Exomes | Genomes |
+|----------|--------|---------|
+| European (NFE) | 470K | 35K |
+| African (AFR) | 31K | 21K |
+| Admixed American (AMR) | 32K | 7K |
+| East Asian (EAS) | 19K | 3K |
+| South Asian (SAS) | 26K | 2K |
+| Middle Eastern (MID) | 3K | 300 |
+| Remaining | 150K | 8K |
+
+### Previous Versions
+
+| Version | Release | Exomes | Genomes | Status |
+|---------|---------|--------|---------|--------|
+| v4.0 | 2023-11 | 730K | 76K | Fixed in v4.1 |
+| v3.1.2 | 2021-10 | - | 76K | Genomes only |
+| v2.1.1 | 2019-03 | 125K | 15K | Legacy |
+
+---
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | https://gnomad.broadinstitute.org/api |
+| Rate Limit | 1 req/sec recommended |
+| Auth Required | No |
+| Response Format | GraphQL (JSON) |
+
+---
+
 ## Update Schedule
 
 | Release | Frequency |

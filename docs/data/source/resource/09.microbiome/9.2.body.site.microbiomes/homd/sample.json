@@ -1,0 +1,73 @@
+[
+  {
+    "homt_id": "HMT-096",
+    "ncbi_taxid": 1309,
+    "genus": "Streptococcus",
+    "species": "mutans",
+    "full_name": "Streptococcus mutans",
+    "cultivation_status": "Named",
+    "type_strain": "ATCC 25175",
+    "taxonomy": {
+      "phylum": "Firmicutes",
+      "class": "Bacilli",
+      "order": "Lactobacillales",
+      "family": "Streptococcaceae"
+    },
+    "phenotype": {
+      "gram_stain": "positive",
+      "cell_shape": "coccus",
+      "oxygen_req": "facultative",
+      "motility": false,
+      "spore_forming": false
+    },
+    "disease_association": ["dental caries", "endocarditis"],
+    "oral_sites": ["teeth", "plaque", "saliva"],
+    "genomes_available": 45,
+    "sequences_16s": 125
+  },
+  {
+    "homt_id": "HMT-707",
+    "ncbi_taxid": 837,
+    "genus": "Porphyromonas",
+    "species": "gingivalis",
+    "full_name": "Porphyromonas gingivalis",
+    "cultivation_status": "Named",
+    "type_strain": "ATCC 33277",
+    "taxonomy": {
+      "phylum": "Bacteroidetes",
+      "class": "Bacteroidia",
+      "order": "Bacteroidales",
+      "family": "Porphyromonadaceae"
+    },
+    "phenotype": {
+      "gram_stain": "negative",
+      "cell_shape": "coccobacillus",
+      "oxygen_req": "anaerobic",
+      "motility": false
+    },
+    "disease_association": ["periodontitis", "halitosis", "systemic disease"],
+    "oral_sites": ["subgingival plaque", "periodontal pocket"],
+    "genomes_available": 38,
+    "sequences_16s": 89
+  },
+  {
+    "homt_id": "HMT-871",
+    "ncbi_taxid": null,
+    "genus": "Prevotella",
+    "species": "[G-1] sp. HMT-871",
+    "full_name": "Prevotella [G-1] sp. HMT-871",
+    "cultivation_status": "Provisional",
+    "type_strain": null,
+    "taxonomy": {
+      "phylum": "Bacteroidetes",
+      "family": "Prevotellaceae"
+    },
+    "phenotype": {
+      "gram_stain": "negative",
+      "oxygen_req": "anaerobic"
+    },
+    "oral_sites": ["subgingival plaque"],
+    "genomes_available": 0,
+    "sequences_16s": 12
+  }
+]

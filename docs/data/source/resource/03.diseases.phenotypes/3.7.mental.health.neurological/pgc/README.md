@@ -1,19 +1,22 @@
 ---
 id: pgc
 title: "Psychiatric Genomics Consortium (PGC)"
-type: data-source
-category: diseases
-subcategory: mental.health.neurological
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 1
-last_updated: 2026-01-23
 status: active
-tags: [psychiatric, gwas, schizophrenia, depression, bipolar, genetics]
+category: diseases.phenotypes
+subcategory: mental.health.neurological
+tags:
+  - psychiatric
+  - gwas
+  - schizophrenia
+  - depression
+  - bipolar
+  - genetics
 ---
 
 # Psychiatric Genomics Consortium (PGC)
-
-**Category:** [Diseases & Phenotypes](../../_index.md) > [Mental Health & Neurological](../_index.md)
 
 ## Overview
 
@@ -78,17 +81,16 @@ PGC makes summary statistics from published studies freely available, enabling r
 | PRS Weights | Polygenic scores | Open |
 | Individual Data | Genotypes, phenotypes | Controlled (dbGaP) |
 
-## License
+## Limitations
 
-| Aspect | Value |
-|--------|-------|
-| License | PGC Data Use Agreement |
-| Summary Stats | Free for academic use |
-| Individual Data | dbGaP controlled access |
-| Attribution | Required - cite specific study |
+- Individual-level data requires dbGaP controlled access
+- European ancestry overrepresented in most studies
+- Phenotype definitions vary across contributing cohorts
+- Rare variant data limited in GWAS format
 
 ## See Also
 
-- [Schema Documentation](./schema.md)
-- [Allen Brain Atlas](../allen.brain.atlas/_index.md) - Brain expression
-- [GWAS Catalog](../../../01.genetics.genomics/1.5.expression.regulation/gwas.catalog/_index.md) - Full GWAS database
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [License Terms](./license.md) - Usage rights and restrictions
+- [Allen Brain Atlas](../allen.brain.atlas/README.md) - Brain expression

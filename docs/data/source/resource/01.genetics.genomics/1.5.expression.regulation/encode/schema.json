@@ -1,0 +1,255 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "encode-schema.json",
+  "title": "ENCODE Record",
+  "description": "JSON Schema for Encyclopedia of DNA Elements (ENCODE) functional genomics data.",
+  "type": "object",
+  "properties": {
+    "accession": {
+      "type": "string",
+      "description": "ENCODE accession identifier.",
+      "pattern": "^ENC(SR|FF|BS|AB|DO|GM|LB|PL|EX)[0-9]{6,}[A-Z]{0,3}$",
+      "examples": ["ENCSR000AAA", "ENCFF001ABC", "ENCBS123DEF"]
+    },
+    "entity_type": {
+      "type": "string",
+      "description": "Type of ENCODE entity.",
+      "enum": ["experiment", "file", "biosample", "antibody", "donor", "genetic_modification", "library", "replicate", "analysis", "annotation", "cCRE"]
+    },
+    "experiment": {
+      "type": "object",
+      "description": "Experiment metadata.",
+      "properties": {
+        "accession": {
+          "type": "string",
+          "pattern": "^ENCSR[0-9]{6}[A-Z]{0,3}$"
+        },
+        "assay_title": {
+          "type": "string",
+          "description": "Assay type.",
+          "enum": ["ChIP-seq", "RNA-seq", "ATAC-seq", "DNase-seq", "WGBS", "Hi-C", "CAGE", "eCLIP", "whole-genome shotgun bisulfite sequencing", "single-cell RNA sequencing assay", "CUT&RUN", "CUT&Tag", "STARR-seq"]
+        },
+        "assay_term_name": {
+          "type": "string",
+          "description": "Standardized assay term.",
+          "examples": ["ChIP-seq", "total RNA-seq"]
+        },
+        "target": {
+          "type": "string",
+          "description": "Target (for ChIP-seq, CUT&RUN).",
+          "examples": ["H3K27ac-human", "CTCF-human", "POLR2A-human"]
+        },
+        "biosample_ontology": {
+          "type": "object",
+          "properties": {
+            "term_name": {
+              "type": "string",
+              "examples": ["K562", "HepG2", "GM12878"]
+            },
+            "classification": {
+              "type": "string",
+              "enum": ["cell line", "primary cell", "tissue", "in vitro differentiated cells", "organoid"]
+            },
+            "organ_slims": {
+              "type": "array",
+              "items": { "type": "string" },
+              "examples": [["blood", "lymphatic system"]]
+            }
+          }
+        },
+        "status": {
+          "type": "string",
+          "enum": ["released", "revoked", "archived", "in progress", "submitted"]
+        },
+        "date_released": {
+          "type": "string",
+          "format": "date"
+        },
+        "lab": {
+          "type": "string",
+          "examples": ["/labs/encode-processing-pipeline/"]
+        },
+        "award": {
+          "type": "string",
+          "examples": ["/awards/ENCODE4/"]
+        }
+      }
+    },
+    "file": {
+      "type": "object",
+      "description": "File metadata.",
+      "properties": {
+        "accession": {
+          "type": "string",
+          "pattern": "^ENCFF[0-9]{6}[A-Z]{0,3}$"
+        },
+        "file_format": {
+          "type": "string",
+          "description": "File format.",
+          "enum": ["fastq", "bam", "bigWig", "bigBed", "bed", "tsv", "hic", "tar", "txt"]
+        },
+        "file_type": {
+          "type": "string",
+          "examples": ["bed narrowPeak", "bigWig", "bam", "fastq"]
+        },
+        "output_type": {
+          "type": "string",
+          "description": "Output type classification.",
+          "enum": ["alignments", "signal p-value", "peaks", "fold change over control", "IDR thresholded peaks", "gene quantifications", "transcript quantifications", "chromatin accessibility", "methylation state at CpG"]
+        },
+        "assembly": {
+          "type": "string",
+          "description": "Genome assembly.",
+          "enum": ["GRCh38", "hg19", "mm10", "mm39"]
+        },
+        "file_size": {
+          "type": "integer",
+          "description": "File size in bytes.",
+          "examples": [1000000000, 500000]
+        },
+        "md5sum": {
+          "type": "string",
+          "description": "MD5 checksum.",
+          "pattern": "^[a-f0-9]{32}$"
+        },
+        "href": {
+          "type": "string",
+          "description": "Download URL path.",
+          "examples": ["/files/ENCFF001ABC/@@download/ENCFF001ABC.bigWig"]
+        },
+        "derived_from": {
+          "type": "array",
+          "description": "Parent files this was derived from.",
+          "items": { "type": "string" }
+        },
+        "step_run": {
+          "type": "string",
+          "description": "Analysis pipeline step that generated this file."
+        }
+      }
+    },
+    "biosample": {
+      "type": "object",
+      "description": "Biosample metadata.",
+      "properties": {
+        "accession": {
+          "type": "string",
+          "pattern": "^ENCBS[0-9]{6}[A-Z]{0,3}$"
+        },
+        "biosample_ontology": {
+          "type": "object",
+          "properties": {
+            "term_id": {
+              "type": "string",
+              "pattern": "^(CL|EFO|UBERON|NTR):[0-9]+$"
+            },
+            "term_name": { "type": "string" },
+            "classification": { "type": "string" }
+          }
+        },
+        "organism": {
+          "type": "string",
+          "enum": ["human", "mouse"]
+        },
+        "life_stage": {
+          "type": "string",
+          "enum": ["adult", "embryonic", "postnatal", "unknown", "child"]
+        },
+        "age": {
+          "type": "string",
+          "examples": ["53 year", "90 or above year", "unknown"]
+        },
+        "sex": {
+          "type": "string",
+          "enum": ["male", "female", "mixed", "unknown"]
+        },
+        "donor": {
+          "type": "string",
+          "description": "Donor accession.",
+          "pattern": "^ENCDO[0-9]{6}[A-Z]{0,3}$"
+        }
+      }
+    },
+    "cCRE": {
+      "type": "object",
+      "description": "Candidate cis-regulatory element annotation.",
+      "properties": {
+        "accession": {
+          "type": "string",
+          "description": "cCRE identifier.",
+          "pattern": "^EH38E[0-9]{7}$",
+          "examples": ["EH38E1234567"]
+        },
+        "chromosome": {
+          "type": "string",
+          "examples": ["chr1", "chrX"]
+        },
+        "start": {
+          "type": "integer",
+          "description": "Start position (0-based)."
+        },
+        "end": {
+          "type": "integer",
+          "description": "End position."
+        },
+        "ccre_class": {
+          "type": "string",
+          "description": "cCRE classification.",
+          "enum": ["PLS", "pELS", "dELS", "CTCF-only", "DNase-H3K4me3"]
+        },
+        "ccre_class_description": {
+          "type": "string",
+          "description": "Full classification description.",
+          "enum": [
+            "Promoter-like signatures",
+            "Proximal enhancer-like signatures",
+            "Distal enhancer-like signatures",
+            "CTCF-only",
+            "DNase-H3K4me3"
+          ]
+        },
+        "max_Z_score": {
+          "type": "number",
+          "description": "Maximum Z-score across cell types."
+        },
+        "biosamples_with_activity": {
+          "type": "array",
+          "description": "Cell types with activity.",
+          "items": { "type": "string" }
+        },
+        "linked_genes": {
+          "type": "array",
+          "description": "Genes linked to this cCRE.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "gene_symbol": { "type": "string" },
+              "gene_id": { "type": "string" },
+              "method": {
+                "type": "string",
+                "enum": ["RNAPII-ChIA-PET", "Hi-C", "eQTL", "CRISPR"]
+              },
+              "score": { "type": "number" }
+            }
+          }
+        }
+      }
+    },
+    "annotation": {
+      "type": "object",
+      "description": "ENCODE annotation.",
+      "properties": {
+        "annotation_type": {
+          "type": "string",
+          "enum": ["candidate Cis-Regulatory Elements", "representative DNase hypersensitivity sites", "chromatin state"]
+        },
+        "encyclopedia_version": {
+          "type": "string",
+          "examples": ["ENCODE4 v1", "ENCODE3 v3"]
+        }
+      }
+    }
+  },
+  "required": ["accession", "entity_type"],
+  "additionalProperties": true
+}

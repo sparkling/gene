@@ -1,0 +1,65 @@
+[
+  {
+    "participant": {
+      "eid": "1234567",
+      "sex": 0,
+      "year_of_birth": 1950,
+      "ethnicity": "White British"
+    },
+    "phenotype": {
+      "field_id": 21001,
+      "instance": 0,
+      "array": 0,
+      "value": 27.5,
+      "field_name": "Body mass index (BMI)",
+      "category": "Body composition measures"
+    },
+    "genetics": {
+      "genotype_array": "UK Biobank Axiom Array",
+      "imputation_panel": "HRC + UK10K",
+      "variants_called": 93095623
+    }
+  },
+  {
+    "participant": {
+      "eid": "2345678",
+      "sex": 1,
+      "year_of_birth": 1962,
+      "ethnicity": "South Asian"
+    },
+    "phenotype": {
+      "field_id": 30750,
+      "instance": 0,
+      "array": 0,
+      "value": 5.2,
+      "field_name": "Glycated haemoglobin (HbA1c)",
+      "category": "Blood biochemistry"
+    },
+    "genetics": {
+      "genotype_array": "UK Biobank Axiom Array",
+      "imputation_panel": "HRC + UK10K",
+      "variants_called": 93095623
+    }
+  },
+  {
+    "participant": {
+      "eid": "3456789",
+      "sex": 0,
+      "year_of_birth": 1975,
+      "ethnicity": "African"
+    },
+    "phenotype": {
+      "field_id": 30710,
+      "instance": 0,
+      "array": 0,
+      "value": 1.45,
+      "field_name": "C-reactive protein",
+      "category": "Blood biochemistry"
+    },
+    "genetics": {
+      "genotype_array": "UK Biobank Axiom Array",
+      "imputation_panel": "HRC + UK10K",
+      "variants_called": 93095623
+    }
+  }
+]

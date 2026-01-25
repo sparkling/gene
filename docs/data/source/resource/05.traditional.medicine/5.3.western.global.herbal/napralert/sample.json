@@ -1,0 +1,84 @@
+[
+  {
+    "organism_id": "NAP_ORG_001234",
+    "scientific_name": "Ginkgo biloba",
+    "family": "Ginkgoaceae",
+    "kingdom": "Plantae",
+    "compound_id": "NAP_CPD_001234",
+    "compound_name": "Ginkgolide B",
+    "cas_number": "15291-77-7",
+    "molecular_formula": "C20H24O10",
+    "ethnobotany": {
+      "traditional_use": "Memory enhancement, cognitive function",
+      "geographic_origin": "China, Japan",
+      "preparation_method": "Leaf extract",
+      "administration_route": "Oral"
+    },
+    "pharmacology": {
+      "activity_type": "Platelet-activating factor antagonist",
+      "model_system": "in vitro",
+      "activity_value": 0.15,
+      "activity_unit": "uM"
+    },
+    "literature": {
+      "pubmed_id": 12345678,
+      "authors": "Smith et al.",
+      "title": "Ginkgolide B as PAF antagonist",
+      "journal": "Phytomedicine",
+      "year": 2020
+    },
+    "chemistry": {
+      "compound_class": "Diterpene lactone",
+      "isolation_source": "Leaves"
+    }
+  },
+  {
+    "organism_id": "NAP_ORG_002345",
+    "scientific_name": "Echinacea purpurea",
+    "family": "Asteraceae",
+    "kingdom": "Plantae",
+    "compound_id": "NAP_CPD_002345",
+    "compound_name": "Chicoric acid",
+    "cas_number": "70831-56-0",
+    "ethnobotany": {
+      "traditional_use": "Immune stimulation, common cold",
+      "geographic_origin": "North America",
+      "preparation_method": "Root or aerial parts extraction",
+      "administration_route": "Oral"
+    },
+    "pharmacology": {
+      "activity_type": "Immunostimulant",
+      "model_system": "in vivo (mouse)",
+      "activity_value": 50,
+      "activity_unit": "mg/kg"
+    },
+    "toxicology": {
+      "toxicity_type": "Acute oral",
+      "ld50": ">2000 mg/kg"
+    },
+    "literature": {
+      "pubmed_id": 23456789,
+      "year": 2019
+    }
+  },
+  {
+    "organism_id": "NAP_ORG_003456",
+    "scientific_name": "Silybum marianum",
+    "family": "Asteraceae",
+    "kingdom": "Plantae",
+    "compound_name": "Silymarin",
+    "cas_number": "65666-07-1",
+    "ethnobotany": {
+      "traditional_use": "Liver protection, hepatitis",
+      "geographic_origin": "Mediterranean",
+      "preparation_method": "Seed extract"
+    },
+    "pharmacology": {
+      "activity_type": "Hepatoprotective",
+      "model_system": "in vivo (rat)"
+    },
+    "chemistry": {
+      "compound_class": "Flavonolignan complex"
+    }
+  }
+]

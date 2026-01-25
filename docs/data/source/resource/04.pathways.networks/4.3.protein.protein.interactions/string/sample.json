@@ -1,0 +1,82 @@
+[
+  {
+    "stringId_A": "9606.ENSP00000269305",
+    "stringId_B": "9606.ENSP00000360716",
+    "preferredName_A": "TP53",
+    "preferredName_B": "MDM2",
+    "ncbiTaxonId": 9606,
+    "score": 999,
+    "nscore": 0,
+    "fscore": 0,
+    "pscore": 0,
+    "ascore": 161,
+    "escore": 948,
+    "dscore": 900,
+    "tscore": 968,
+    "metadata": {
+      "confidence": "highest",
+      "string_version": "12.0",
+      "query_url": "https://string-db.org/api/json/network?identifiers=TP53%0dMDM2&species=9606"
+    }
+  },
+  {
+    "stringId_A": "9606.ENSP00000418960",
+    "stringId_B": "9606.ENSP00000261584",
+    "preferredName_A": "BRCA1",
+    "preferredName_B": "BRCA2",
+    "ncbiTaxonId": 9606,
+    "score": 988,
+    "nscore": 0,
+    "fscore": 0,
+    "pscore": 0,
+    "ascore": 246,
+    "escore": 893,
+    "dscore": 900,
+    "tscore": 954,
+    "metadata": {
+      "confidence": "highest",
+      "string_version": "12.0",
+      "query_url": "https://string-db.org/api/json/network?identifiers=BRCA1%0dBRCA2&species=9606"
+    }
+  },
+  {
+    "stringId_A": "9606.ENSP00000275493",
+    "stringId_B": "9606.ENSP00000269305",
+    "preferredName_A": "ATM",
+    "preferredName_B": "TP53",
+    "ncbiTaxonId": 9606,
+    "score": 984,
+    "nscore": 0,
+    "fscore": 0,
+    "pscore": 0,
+    "ascore": 52,
+    "escore": 917,
+    "dscore": 900,
+    "tscore": 891,
+    "metadata": {
+      "confidence": "highest",
+      "string_version": "12.0",
+      "query_url": "https://string-db.org/api/json/network?identifiers=ATM%0dTP53&species=9606"
+    }
+  },
+  {
+    "stringId_A": "9606.ENSP00000263967",
+    "stringId_B": "9606.ENSP00000340943",
+    "preferredName_A": "EGFR",
+    "preferredName_B": "GRB2",
+    "ncbiTaxonId": 9606,
+    "score": 965,
+    "nscore": 0,
+    "fscore": 0,
+    "pscore": 0,
+    "ascore": 145,
+    "escore": 875,
+    "dscore": 900,
+    "tscore": 812,
+    "metadata": {
+      "confidence": "highest",
+      "string_version": "12.0",
+      "query_url": "https://string-db.org/api/json/network?identifiers=EGFR%0dGRB2&species=9606"
+    }
+  }
+]

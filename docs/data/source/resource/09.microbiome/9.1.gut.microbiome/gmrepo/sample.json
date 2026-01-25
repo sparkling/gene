@@ -1,0 +1,60 @@
+[
+  {
+    "run_id": "SRR1234567",
+    "project_id": "PRJNA123456",
+    "sample_id": "SAMN1234567",
+    "phenotype": "Type 2 diabetes",
+    "phenotype_mesh_id": "D003924",
+    "host_age": 45,
+    "host_sex": "male",
+    "host_bmi": 28.5,
+    "country": "China",
+    "sequencing_type": "16S",
+    "antibiotics_usage": "no",
+    "collection_date": "2018-06-15",
+    "species_abundance": [
+      {
+        "taxon_id": 816,
+        "taxon_name": "Bacteroides",
+        "rank": "genus",
+        "relative_abundance": 0.2534,
+        "read_count": 15234
+      },
+      {
+        "taxon_id": 1263,
+        "taxon_name": "Ruminococcus",
+        "rank": "genus",
+        "relative_abundance": 0.1234,
+        "read_count": 7421
+      }
+    ]
+  },
+  {
+    "run_id": "ERR2345678",
+    "project_id": "PRJEB6070",
+    "sample_id": "SAMEA2345678",
+    "phenotype": "Health",
+    "host_age": 32,
+    "host_sex": "female",
+    "host_bmi": 22.1,
+    "country": "Denmark",
+    "sequencing_type": "WGS",
+    "antibiotics_usage": "no",
+    "species_abundance": [
+      {
+        "taxon_id": 853,
+        "taxon_name": "Faecalibacterium prausnitzii",
+        "rank": "species",
+        "relative_abundance": 0.1856,
+        "read_count": 45678
+      },
+      {
+        "taxon_id": 821,
+        "taxon_name": "Bacteroides thetaiotaomicron",
+        "rank": "species",
+        "relative_abundance": 0.0923,
+        "read_count": 22456
+      }
+    ]
+  }
+]

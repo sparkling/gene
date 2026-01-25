@@ -1,0 +1,160 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "reactome-schema.json",
+  "title": "Reactome Pathway Record",
+  "description": "JSON Schema for Reactome pathway and reaction data. Represents biological pathways as interconnected graphs with molecular reactions.",
+  "type": "object",
+  "properties": {
+    "dbId": {
+      "type": "integer",
+      "description": "Internal Reactome database ID."
+    },
+    "stId": {
+      "type": "string",
+      "description": "Stable identifier with species prefix.",
+      "pattern": "^R-[A-Z]{3}-[0-9]+$",
+      "examples": ["R-HSA-1430728", "R-HSA-109581"]
+    },
+    "stIdVersion": {
+      "type": "string",
+      "description": "Versioned stable identifier.",
+      "examples": ["R-HSA-1430728.16"]
+    },
+    "displayName": {
+      "type": "string",
+      "description": "Human-readable name.",
+      "minLength": 1,
+      "maxLength": 500,
+      "examples": ["Metabolism", "Apoptosis"]
+    },
+    "name": {
+      "type": "array",
+      "description": "Alternative names.",
+      "items": { "type": "string" }
+    },
+    "schemaClass": {
+      "type": "string",
+      "description": "Entity type in Reactome hierarchy.",
+      "enum": ["TopLevelPathway", "Pathway", "Reaction", "BlackBoxEvent", "Polymerisation", "Depolymerisation", "FailedReaction", "Complex", "EntitySet", "DefinedSet", "CandidateSet", "OpenSet", "EntityWithAccessionedSequence", "SimpleEntity", "Drug", "Polymer", "OtherEntity"]
+    },
+    "speciesName": {
+      "type": "string",
+      "description": "Species name.",
+      "examples": ["Homo sapiens", "Mus musculus"]
+    },
+    "releaseDate": {
+      "type": "string",
+      "format": "date",
+      "description": "First release date."
+    },
+    "isInDisease": {
+      "type": "boolean",
+      "description": "Whether this is a disease pathway."
+    },
+    "isInferred": {
+      "type": "boolean",
+      "description": "Whether inferred from orthology."
+    },
+    "hasDiagram": {
+      "type": "boolean",
+      "description": "Has pathway diagram."
+    },
+    "hasEHLD": {
+      "type": "boolean",
+      "description": "Has Enhanced High-Level Diagram."
+    },
+    "doi": {
+      "type": "string",
+      "description": "Digital Object Identifier."
+    },
+    "compartment": {
+      "type": "array",
+      "description": "Cellular locations (GO terms).",
+      "items": {
+        "type": "object",
+        "properties": {
+          "dbId": { "type": "integer" },
+          "displayName": { "type": "string" },
+          "accession": { "type": "string", "pattern": "^GO:[0-9]{7}$" }
+        }
+      }
+    },
+    "hasEvent": {
+      "type": "array",
+      "description": "Child events in pathway.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "dbId": { "type": "integer" },
+          "stId": { "type": "string" },
+          "displayName": { "type": "string" },
+          "schemaClass": { "type": "string" }
+        }
+      }
+    },
+    "input": {
+      "type": "array",
+      "description": "Reaction inputs.",
+      "items": { "$ref": "#/$defs/physicalEntity" }
+    },
+    "output": {
+      "type": "array",
+      "description": "Reaction outputs.",
+      "items": { "$ref": "#/$defs/physicalEntity" }
+    },
+    "catalystActivity": {
+      "type": "array",
+      "description": "Enzymatic catalysis information.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "physicalEntity": { "$ref": "#/$defs/physicalEntity" },
+          "activity": {
+            "type": "object",
+            "properties": {
+              "displayName": { "type": "string" },
+              "accession": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "referenceEntity": {
+      "type": "object",
+      "description": "External database reference.",
+      "properties": {
+        "dbId": { "type": "integer" },
+        "stId": { "type": "string" },
+        "identifier": { "type": "string" },
+        "databaseName": { "type": "string", "examples": ["UniProt", "ChEBI"] },
+        "url": { "type": "string", "format": "uri" }
+      }
+    },
+    "literatureReference": {
+      "type": "array",
+      "description": "PubMed citations.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "pubMedIdentifier": { "type": "integer" },
+          "title": { "type": "string" },
+          "journal": { "type": "string" },
+          "year": { "type": "integer" }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "physicalEntity": {
+      "type": "object",
+      "properties": {
+        "dbId": { "type": "integer" },
+        "stId": { "type": "string" },
+        "displayName": { "type": "string" },
+        "schemaClass": { "type": "string" }
+      }
+    }
+  },
+  "required": ["stId", "displayName"],
+  "additionalProperties": true
+}

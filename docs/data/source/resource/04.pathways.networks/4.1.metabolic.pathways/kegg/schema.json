@@ -1,0 +1,175 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "kegg-schema.json",
+  "title": "KEGG KGML Record",
+  "description": "JSON Schema for KEGG Pathway Map data records in KGML format. KEGG represents biological pathways with graphical and relational information.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "KEGG pathway identifier.",
+      "pattern": "^(path:)?[a-z]{3}[0-9]{5}$",
+      "examples": ["hsa00010", "path:hsa04115"]
+    },
+    "name": {
+      "type": "string",
+      "description": "Pathway or entity name.",
+      "minLength": 1,
+      "maxLength": 500,
+      "examples": ["Glycolysis", "p53 signaling pathway"]
+    },
+    "type": {
+      "type": "string",
+      "description": "Entity type classification.",
+      "enum": ["pathway", "gene", "compound", "ortholog", "enzyme", "group", "map", "brite", "other"]
+    },
+    "org": {
+      "type": "string",
+      "description": "Three-letter organism code.",
+      "pattern": "^[a-z]{3}$",
+      "examples": ["hsa", "mmu", "sce"]
+    },
+    "number": {
+      "type": "string",
+      "description": "Pathway number.",
+      "pattern": "^[0-9]{5}$",
+      "examples": ["04115", "00010"]
+    },
+    "title": {
+      "type": "string",
+      "description": "Pathway title."
+    },
+    "image": {
+      "type": "string",
+      "description": "URL to pathway image.",
+      "format": "uri"
+    },
+    "link": {
+      "type": "string",
+      "description": "URL to pathway detail page.",
+      "format": "uri"
+    },
+    "entries": {
+      "type": "array",
+      "description": "Pathway entry nodes.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Entry identifier within pathway."
+          },
+          "name": {
+            "type": "string",
+            "description": "KEGG identifier (organism:gene_id or compound format).",
+            "examples": ["hsa:7157", "cpd:C00001", "ko:K00001"]
+          },
+          "type": {
+            "type": "string",
+            "enum": ["ortholog", "enzyme", "gene", "group", "compound", "map", "brite", "other"]
+          },
+          "reaction": {
+            "type": "string",
+            "description": "Associated reaction identifier."
+          },
+          "link": {
+            "type": "string",
+            "format": "uri"
+          },
+          "graphics": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "x": { "type": "integer" },
+              "y": { "type": "integer" },
+              "type": { "type": "string", "enum": ["rectangle", "circle", "roundrectangle", "line"] },
+              "width": { "type": "integer" },
+              "height": { "type": "integer" },
+              "fgcolor": { "type": "string" },
+              "bgcolor": { "type": "string" }
+            }
+          }
+        },
+        "required": ["id", "name", "type"]
+      }
+    },
+    "relations": {
+      "type": "array",
+      "description": "Relationships between pathway entries.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "entry1": {
+            "type": "string",
+            "description": "Source entry ID."
+          },
+          "entry2": {
+            "type": "string",
+            "description": "Target entry ID."
+          },
+          "type": {
+            "type": "string",
+            "description": "Relation type.",
+            "enum": ["ECrel", "PPrel", "GErel", "PCrel", "maplink"]
+          },
+          "subtypes": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "enum": ["compound", "activation", "inhibition", "binding/association", "dissociation", "indirect effect", "state change", "missing interaction", "phosphorylation", "dephosphorylation", "glycosylation", "ubiquitination", "methylation", "expression", "repression"]
+                },
+                "value": { "type": "string" }
+              }
+            }
+          }
+        },
+        "required": ["entry1", "entry2", "type"]
+      }
+    },
+    "reactions": {
+      "type": "array",
+      "description": "Metabolic reactions in the pathway.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": {
+            "type": "string",
+            "description": "Reaction identifier.",
+            "examples": ["rn:R00001"]
+          },
+          "type": {
+            "type": "string",
+            "enum": ["reversible", "irreversible"]
+          },
+          "substrates": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": { "type": "string" },
+                "name": { "type": "string" }
+              }
+            }
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": { "type": "string" },
+                "name": { "type": "string" }
+              }
+            }
+          }
+        },
+        "required": ["id", "name", "type"]
+      }
+    }
+  },
+  "required": ["id", "name"],
+  "additionalProperties": true
+}

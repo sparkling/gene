@@ -1,23 +1,34 @@
 ---
 id: brca-exchange
 title: "BRCA Exchange"
-type: data-source
-category: genetics
+type: source
+parent: ../README.md
+category: genetics.genomics
 subcategory: cancer.genomics
-parent: ../_index.md
 tier: 2
-last_updated: 2026-01-23
 status: active
-tags: [cancer, brca1, brca2, hereditary, variant]
+last_updated: 2026-01-25
+tags:
+  - cancer
+  - brca1
+  - brca2
+  - hereditary
+  - variant
 ---
 
 # BRCA Exchange
 
-**Category:** [Genetics & Genomics](../../_index.md) > [Cancer Genomics](../_index.md)
+BRCA Exchange is a comprehensive resource for BRCA1 and BRCA2 variant data aggregation and classification. As part of the Global Alliance for Genomics and Health (GA4GH), it brings together data from clinical laboratories, research databases, and population resources to provide expert-reviewed classifications for variants in these critical cancer predisposition genes.
 
 ## Overview
 
-BRCA Exchange is a comprehensive resource for BRCA1 and BRCA2 variant data aggregation and classification. As part of the Global Alliance for Genomics and Health (GA4GH), it brings together data from clinical laboratories, research databases, and population resources to provide expert-reviewed classifications for variants in these critical cancer predisposition genes.
+| Property | Value |
+|----------|-------|
+| **Maintainer** | BRCA Exchange / GA4GH |
+| **Website** | https://brcaexchange.org/ |
+| **Update Frequency** | Monthly |
+| **Records** | 52,000+ BRCA variants |
+| **Latest Release** | Current (monthly updates) |
 
 The database aggregates variant classifications from ClinVar, LOVD, ENIGMA consortium, and other sources, providing a unified view of clinical significance with expert review. The ENIGMA consortium provides the most authoritative classifications based on extensive functional and clinical evidence.
 
@@ -42,30 +53,32 @@ BRCA Exchange is essential for clinical laboratories interpreting BRCA variants,
 
 ## Key Identifiers
 
-| Identifier | Pattern | Example |
-|------------|---------|---------|
-| Gene | BRCA1/BRCA2 | BRCA1 |
-| HGVS | Protein/DNA | c.68_69delAG |
-| Source | Database name | ClinVar |
+| Identifier | Format | Example |
+|------------|--------|---------|
+| Gene | `BRCA1/BRCA2` | `BRCA1` |
+| HGVS | `Protein/DNA` | `c.68_69delAG` |
+| Source | `Database name` | `ClinVar` |
 
-## Access Methods
+## Limitations
 
-| Method | URL | Notes |
-|--------|-----|-------|
-| Web | https://brcaexchange.org/ | Interactive search |
-| API | REST endpoints | Programmatic access |
-| Downloads | TSV files | Bulk data |
+- Limited to BRCA1 and BRCA2 only
+- Classification discordances exist between sources
+- Some variants lack expert review
+- Population frequency data incomplete for some variants
+- Historical nomenclature variations may exist
 
-## License
+## Data Quality Notes
 
-| Aspect | Value |
-|--------|-------|
-| License | Open Access |
-| Commercial Use | Yes |
-| Citation | Required |
+BRCA Exchange prioritizes ENIGMA expert-reviewed classifications when available, as these represent the highest confidence assessments. Discordances between source databases are flagged for user review. The aggregation approach may show conflicting classifications, which should be interpreted in context of the underlying evidence and source credibility.
 
 ## See Also
 
-- [ClinVar](../../1.1.variant.repositories/clinvar/_index.md) - Source data
-- [OncoKB](../oncokb/_index.md) - Actionability
-- [CIViC](../civic/_index.md) - Clinical evidence
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [Example Records](./sample.json) - Sample data for code generation
+- [Download Guide](./download.md) - Access methods and API configuration
+- [License Terms](./license.md) - Usage rights and restrictions
+- [Schema Mapping](./mapping.xslt) - XSLT 3.0 transformation to unified schema
+- [ClinVar](../../1.1.variant.repositories/clinvar/README.md) - Source data
+- [OncoKB](../oncokb/README.md) - Actionability
+- [CIViC](../civic/README.md) - Clinical evidence

@@ -1,0 +1,151 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "etcm-schema.json",
+  "title": "ETCM Record",
+  "description": "JSON Schema for ETCM (Encyclopedia of Traditional Chinese Medicine) data. Comprehensive TCM data organized according to classical theory.",
+  "type": "object",
+  "properties": {
+    "herb_id": {
+      "type": "string",
+      "description": "ETCM herb identifier.",
+      "pattern": "^H[0-9]+$",
+      "examples": ["H001"]
+    },
+    "herb_name_chinese": {
+      "type": "string",
+      "description": "Chinese herb name."
+    },
+    "herb_name_pinyin": {
+      "type": "string",
+      "description": "Pinyin romanization."
+    },
+    "herb_name_english": {
+      "type": "string",
+      "description": "English name."
+    },
+    "herb_name_latin": {
+      "type": "string",
+      "description": "Botanical Latin name."
+    },
+    "tcm_properties": {
+      "type": "object",
+      "description": "TCM property classification.",
+      "properties": {
+        "nature": {
+          "type": "string",
+          "description": "Thermal nature (Xing).",
+          "enum": ["cold", "cool", "neutral", "warm", "hot"]
+        },
+        "flavor": {
+          "type": "array",
+          "description": "Flavor classification (Wei).",
+          "items": {
+            "type": "string",
+            "enum": ["sour", "bitter", "sweet", "pungent", "salty"]
+          }
+        },
+        "meridian_tropism": {
+          "type": "array",
+          "description": "Target meridians (Gui Jing).",
+          "items": {
+            "type": "string",
+            "enum": ["lung", "heart", "liver", "spleen", "kidney", "stomach", "gallbladder", "bladder", "large_intestine", "small_intestine", "triple_burner", "pericardium"]
+          }
+        }
+      }
+    },
+    "actions": {
+      "type": "array",
+      "description": "Therapeutic actions.",
+      "items": { "type": "string" }
+    },
+    "indications": {
+      "type": "array",
+      "description": "Disease patterns treated.",
+      "items": { "type": "string" }
+    },
+    "formula_count": {
+      "type": "integer",
+      "description": "Number of formulas containing this herb."
+    },
+    "compound_count": {
+      "type": "integer",
+      "description": "Number of compounds isolated from this herb."
+    },
+    "formula": {
+      "type": "object",
+      "description": "Formula entity structure.",
+      "properties": {
+        "formula_id": {
+          "type": "string",
+          "pattern": "^F[0-9]+$"
+        },
+        "formula_name_chinese": { "type": "string" },
+        "formula_name_pinyin": { "type": "string" },
+        "formula_name_english": { "type": "string" },
+        "classical_source": { "type": "string" },
+        "composition": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "herb_id": { "type": "string" },
+              "herb_name": { "type": "string" },
+              "role": {
+                "type": "string",
+                "enum": ["jun", "chen", "zuo", "shi"]
+              },
+              "dosage": { "type": "string" }
+            }
+          }
+        },
+        "therapeutic_category": { "type": "string" }
+      }
+    },
+    "compound": {
+      "type": "object",
+      "description": "Compound entity structure.",
+      "properties": {
+        "compound_id": {
+          "type": "string",
+          "pattern": "^C[0-9]+$"
+        },
+        "pubchem_cid": { "type": "integer" },
+        "compound_name": { "type": "string" },
+        "smiles": { "type": "string" },
+        "inchi": { "type": "string" },
+        "molecular_formula": { "type": "string" },
+        "molecular_weight": { "type": "number" },
+        "source_herbs": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "predicted_targets": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "target": {
+      "type": "object",
+      "description": "Target entity structure.",
+      "properties": {
+        "target_id": { "type": "string" },
+        "gene_symbol": { "type": "string" },
+        "gene_name": { "type": "string" },
+        "protein_class": { "type": "string" }
+      }
+    },
+    "disease": {
+      "type": "object",
+      "description": "Disease entity structure.",
+      "properties": {
+        "disease_id": { "type": "string" },
+        "disease_name": { "type": "string" },
+        "mesh_id": { "type": "string" }
+      }
+    }
+  },
+  "required": ["herb_id"],
+  "additionalProperties": true
+}

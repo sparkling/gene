@@ -1,0 +1,101 @@
+[
+  {
+    "variant_id": "var_000001",
+    "gene_symbol": "BRCA1",
+    "chromosome": "17",
+    "position_hg38": 43093221,
+    "reference": "AG",
+    "alternate": "A",
+    "hgvs_cdna": "NM_007294.4:c.68_69del",
+    "hgvs_protein": "NP_009225.1:p.Glu23ValfsTer17",
+    "variant_type": "frameshift",
+    "clinical_significance_enigma": "Pathogenic",
+    "clinical_significance_clinvar": "Pathogenic",
+    "date_last_evaluated_enigma": "2023-06-15",
+    "review_status_enigma": "ENIGMA expert panel reviewed",
+    "assertion_method": "ENIGMA BRCA1/2 Classification Criteria",
+    "allele_frequency_gnomad": 0.00002,
+    "allele_frequency_exac": 0.00003,
+    "synonyms": [
+      "185delAG",
+      "c.68_69delAG",
+      "187delAG"
+    ],
+    "population_data": {
+      "ashkenazi_jewish": 0.01,
+      "global": 0.00002
+    }
+  },
+  {
+    "variant_id": "var_000002",
+    "gene_symbol": "BRCA2",
+    "chromosome": "13",
+    "position_hg38": 32340301,
+    "reference": "AAAG",
+    "alternate": "A",
+    "hgvs_cdna": "NM_000059.4:c.5946del",
+    "hgvs_protein": "NP_000050.3:p.Ser1982ArgfsTer22",
+    "variant_type": "frameshift",
+    "clinical_significance_enigma": "Pathogenic",
+    "clinical_significance_clinvar": "Pathogenic",
+    "date_last_evaluated_enigma": "2023-09-20",
+    "review_status_enigma": "ENIGMA expert panel reviewed",
+    "assertion_method": "ENIGMA BRCA1/2 Classification Criteria",
+    "allele_frequency_gnomad": 0.00008,
+    "allele_frequency_exac": 0.00009,
+    "synonyms": [
+      "6174delT",
+      "c.5946delT"
+    ],
+    "population_data": {
+      "ashkenazi_jewish": 0.012,
+      "global": 0.00008
+    }
+  },
+  {
+    "variant_id": "var_000003",
+    "gene_symbol": "BRCA1",
+    "chromosome": "17",
+    "position_hg38": 43045684,
+    "reference": "G",
+    "alternate": "A",
+    "hgvs_cdna": "NM_007294.4:c.5123C>T",
+    "hgvs_protein": "NP_009225.1:p.Ala1708Val",
+    "variant_type": "missense",
+    "clinical_significance_enigma": "Uncertain Significance",
+    "clinical_significance_clinvar": "Uncertain significance",
+    "date_last_evaluated_enigma": "2024-01-10",
+    "review_status_enigma": "ENIGMA expert panel reviewed",
+    "assertion_method": "ENIGMA BRCA1/2 Classification Criteria",
+    "allele_frequency_gnomad": 0.00001,
+    "allele_frequency_exac": 0.000008,
+    "synonyms": [],
+    "functional_data": {
+      "splicing_assay": "normal",
+      "functional_assay": "intermediate"
+    }
+  },
+  {
+    "variant_id": "var_000004",
+    "gene_symbol": "BRCA2",
+    "chromosome": "13",
+    "position_hg38": 32332591,
+    "reference": "C",
+    "alternate": "T",
+    "hgvs_cdna": "NM_000059.4:c.316+5G>C",
+    "hgvs_protein": null,
+    "variant_type": "splice region",
+    "clinical_significance_enigma": "Likely Benign",
+    "clinical_significance_clinvar": "Likely benign",
+    "date_last_evaluated_enigma": "2022-11-05",
+    "review_status_enigma": "ENIGMA expert panel reviewed",
+    "assertion_method": "ENIGMA BRCA1/2 Classification Criteria",
+    "allele_frequency_gnomad": 0.002,
+    "allele_frequency_exac": 0.0018,
+    "synonyms": [],
+    "splicing_prediction": {
+      "maxentscan": "no effect",
+      "spliceai": 0.02
+    }
+  }
+]

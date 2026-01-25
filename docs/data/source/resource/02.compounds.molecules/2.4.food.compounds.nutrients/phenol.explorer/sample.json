@@ -1,0 +1,69 @@
+{
+  "source": "Phenol-Explorer",
+  "version": "3.6",
+  "description": "Sample polyphenol records from Phenol-Explorer database",
+  "records": [
+    {
+      "compound_id": "PE000001",
+      "name": "Quercetin",
+      "compound_class": "Flavonols",
+      "subclass": "Flavonols",
+      "molecular_formula": "C15H10O7",
+      "molecular_weight": 302.24,
+      "smiles": "OC1=CC(O)=C2C(=O)C(O)=C(OC2=C1)C1=CC(O)=C(O)C=C1",
+      "inchikey": "REFJWTPEDVJJIY-UHFFFAOYSA-N",
+      "food_sources": [
+        {
+          "food": "Onions, raw",
+          "content_mg_per_100g": 20.0,
+          "content_range": "5-50"
+        },
+        {
+          "food": "Apples, with skin",
+          "content_mg_per_100g": 4.42
+        }
+      ]
+    },
+    {
+      "compound_id": "PE000045",
+      "name": "Resveratrol",
+      "compound_class": "Stilbenes",
+      "subclass": "Stilbenes",
+      "molecular_formula": "C14H12O3",
+      "molecular_weight": 228.24,
+      "smiles": "OC1=CC=C(C=CC2=CC(O)=CC(O)=C2)C=C1",
+      "inchikey": "LUKBXSAWLPMMSZ-OWOJBTEDSA-N",
+      "food_sources": [
+        {
+          "food": "Red wine",
+          "content_mg_per_100ml": 0.5,
+          "content_range": "0.1-1.5"
+        },
+        {
+          "food": "Grapes, red",
+          "content_mg_per_100g": 0.35
+        }
+      ]
+    },
+    {
+      "compound_id": "PE000123",
+      "name": "Epigallocatechin gallate",
+      "compound_class": "Flavanols",
+      "subclass": "Catechins",
+      "molecular_formula": "C22H18O11",
+      "molecular_weight": 458.37,
+      "food_sources": [
+        {
+          "food": "Green tea, brewed",
+          "content_mg_per_100ml": 70.0,
+          "content_range": "25-140"
+        }
+      ]
+    }
+  ],
+  "queries": {
+    "web_search": "http://phenol-explorer.eu/compounds",
+    "compound_detail": "http://phenol-explorer.eu/compounds/PE000001",
+    "download": "http://phenol-explorer.eu/downloads"
+  }
+}

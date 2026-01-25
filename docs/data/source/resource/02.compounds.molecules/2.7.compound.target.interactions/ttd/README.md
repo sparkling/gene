@@ -1,19 +1,21 @@
 ---
 id: ttd
 title: "TTD - Therapeutic Target Database"
-type: data-source
-category: compounds
-subcategory: compound-target-interactions
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 1
-last_updated: 2026-01-23
 status: active
-tags: [therapeutic-targets, drug-targets, druggability, clinical-trials, drug-development]
+category: compounds.molecules
+subcategory: compound.target.interactions
+tags:
+  - therapeutic-targets
+  - drug-targets
+  - druggability
+  - clinical-trials
+  - drug-development
 ---
 
 # TTD - Therapeutic Target Database
-
-**Category:** [Compounds & Molecules](../../_index.md) > [Compound-Target Interactions](../_index.md)
 
 ## Overview
 
@@ -80,13 +82,12 @@ The database integrates target information with disease associations (ICD-11 cod
 | Cell Therapy | CAR-T, stem cells |
 | Gene Therapy | Gene delivery vectors |
 
-## License
+## Limitations
 
-| Aspect | Value |
-|--------|-------|
-| License | Free for academic use |
-| Commercial Use | Limited |
-| Attribution Required | Yes |
+- Commercial use has restrictions
+- Clinical trial status may not be current
+- Target classifications based on primary literature curation
+- Drug modality coverage varies by type
 
 ## Related Resources
 
@@ -96,7 +97,9 @@ The database integrates target information with disease associations (ICD-11 cod
 
 ## See Also
 
-- [Schema Documentation](./schema.md)
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [License Terms](./license.md) - Usage rights and restrictions
 
 ## References
 

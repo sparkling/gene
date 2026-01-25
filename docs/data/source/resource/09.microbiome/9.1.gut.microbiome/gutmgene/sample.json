@@ -1,0 +1,60 @@
+[
+  {
+    "association_id": 12345,
+    "microbe": {
+      "taxid": 853,
+      "name": "Faecalibacterium prausnitzii",
+      "phylum": "Firmicutes",
+      "gram_stain": "positive",
+      "oxygen_req": "anaerobic"
+    },
+    "gene": {
+      "gene_id": 3586,
+      "symbol": "IL10",
+      "name": "interleukin 10",
+      "species": "Homo sapiens"
+    },
+    "effect": {
+      "direction": "up",
+      "fold_change": 2.5,
+      "tissue": "colon",
+      "condition": "germ-free colonization"
+    },
+    "evidence": {
+      "pmid": 28123456,
+      "experiment_type": "mono-colonization",
+      "method": "RNA-seq",
+      "model": "germ-free mice",
+      "p_value": 0.001
+    }
+  },
+  {
+    "association_id": 12346,
+    "microbe": {
+      "taxid": 816,
+      "name": "Bacteroides vulgatus",
+      "phylum": "Bacteroidetes",
+      "gram_stain": "negative",
+      "oxygen_req": "anaerobic"
+    },
+    "gene": {
+      "gene_id": 7124,
+      "symbol": "TNF",
+      "name": "tumor necrosis factor",
+      "species": "Homo sapiens"
+    },
+    "effect": {
+      "direction": "down",
+      "fold_change": 0.4,
+      "tissue": "intestine",
+      "condition": "probiotic supplementation"
+    },
+    "evidence": {
+      "pmid": 29234567,
+      "experiment_type": "probiotic supplementation",
+      "method": "qPCR",
+      "model": "cell line",
+      "p_value": 0.005
+    }
+  }
+]

@@ -112,6 +112,48 @@ bcftools view -H GRCh38.nr_deletions.vcf.gz | wc -l
 bcftools query -f '%INFO/SVTYPE\n' GRCh38.variant_region.vcf.gz | sort | uniq -c
 ```
 
+## Dataset Versions
+
+### Current Release
+
+| Property | Value |
+|----------|-------|
+| Version | Continuous (2026-01) |
+| Release Date | Daily updates |
+| Total Size | ~3 GB (all VCFs) |
+| SV Records | 7M+ structural variants |
+| Studies | 500+ studies |
+
+### Version Contents
+
+| Component | Size | Records | Description |
+|-----------|------|---------|-------------|
+| GRCh38.nr_deletions.vcf.gz | ~500 MB | 2M | Non-redundant deletions |
+| GRCh38.nr_duplications.vcf.gz | ~200 MB | 800K | Non-redundant duplications |
+| GRCh38.nr_insertions.vcf.gz | ~300 MB | 1M | Non-redundant insertions |
+| GRCh38.variant_region.vcf.gz | ~2 GB | 7M | All variant regions |
+
+### Major Studies
+
+| Study ID | Description | Variants |
+|----------|-------------|----------|
+| nstd166 | gnomAD-SV | 400K |
+| nstd102 | 1000G Phase 3 SVs | 68K |
+| nstd186 | TOPMed SVs | 200K |
+
+---
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | https://www.ncbi.nlm.nih.gov/dbvar/ |
+| Rate Limit | 3 req/sec (10 with API key) |
+| Auth Required | No |
+| Response Format | XML, VCF, BED |
+
+---
+
 ## Update Schedule
 
 | Release | Frequency |

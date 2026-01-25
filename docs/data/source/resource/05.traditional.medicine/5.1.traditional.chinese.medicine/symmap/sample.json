@@ -1,0 +1,62 @@
+[
+  {
+    "symptom_id": "SMSY00001",
+    "tcm_symptom": "Headache",
+    "chinese_name": "Tou Tong",
+    "description": "Pain in the head region according to TCM theory",
+    "hpo_mappings": [
+      {"hpo_id": "HP:0002315", "hpo_term": "Headache", "mapping_score": 0.95}
+    ],
+    "associated_herbs": [
+      {"herb_id": "SMHB00023", "herb_name": "Chuanxiong", "confidence": 0.89},
+      {"herb_id": "SMHB00045", "herb_name": "Baizhi", "confidence": 0.82}
+    ],
+    "associated_genes": ["CALCA", "TRPV1", "CGRP"],
+    "associated_diseases": [
+      {"mesh_id": "D008881", "disease_name": "Migraine Disorders"}
+    ],
+    "metadata": {
+      "tcm_pattern": "Wind-Cold",
+      "syndrome": "External pathogen invasion"
+    }
+  },
+  {
+    "herb_id": "SMHB00023",
+    "herb_name": "Chuanxiong",
+    "latin_name": "Ligusticum chuanxiong",
+    "symptom_count": 45,
+    "compound_count": 78,
+    "target_count": 234,
+    "top_symptoms": [
+      {"symptom": "Headache", "confidence": 0.89},
+      {"symptom": "Menstrual pain", "confidence": 0.85},
+      {"symptom": "Blood stasis", "confidence": 0.78}
+    ],
+    "metadata": {
+      "nature": "Warm",
+      "flavor": "Pungent",
+      "meridian": ["Liver", "Gallbladder", "Pericardium"]
+    }
+  },
+  {
+    "compound_id": "SMCP00456",
+    "compound_name": "Tetramethylpyrazine",
+    "pubchem_cid": 14296,
+    "smiles": "CC1=NC(C)=C(C)N=C1C",
+    "molecular_weight": 136.19,
+    "source_herbs": [
+      {"herb_id": "SMHB00023", "herb_name": "Chuanxiong"}
+    ],
+    "target_genes": ["VEGFA", "NOS3", "HMOX1"],
+    "pathway_enrichment": [
+      {"kegg_id": "hsa04370", "pathway_name": "VEGF signaling pathway", "pvalue": 1.5e-8}
+    ],
+    "symptom_associations": [
+      {"symptom_id": "SMSY00001", "symptom_name": "Headache", "score": 0.76}
+    ],
+    "metadata": {
+      "cas_number": "1124-11-4",
+      "drugbank_id": "DB12967"
+    }
+  }
+]

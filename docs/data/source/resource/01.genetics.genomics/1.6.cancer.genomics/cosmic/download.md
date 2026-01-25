@@ -181,6 +181,62 @@ zcat CosmicMutantExport.tsv.gz | head -5
 wc -l cancer_gene_census.csv
 ```
 
+## Dataset Versions
+
+### Current Release: v103
+
+| Property | Value |
+|----------|-------|
+| Version | v103 |
+| Release Date | 2025-11-18 |
+| Total Size | ~20 GB |
+| Coding Mutations | 8M+ |
+| Non-coding Mutations | 10M+ |
+| Tumor Samples | 1.5M+ |
+
+### Version Contents
+
+| Component | Size | Records | Description |
+|-----------|------|---------|-------------|
+| CosmicMutantExport.tsv.gz | ~5 GB | 8M | Complete mutation export |
+| CosmicCodingMuts.vcf.gz | ~2 GB | 8M | Coding mutations (VCF) |
+| CosmicNonCodingVariants.vcf.gz | ~3 GB | 10M | Non-coding variants |
+| cancer_gene_census.csv | ~500 KB | 736 | Cancer Gene Census |
+| CosmicFusionExport.tsv.gz | ~100 MB | 30K | Gene fusions |
+| CosmicCompleteCNA.tsv.gz | ~2 GB | 5M | Copy number data |
+
+### Version History
+
+| Version | Release | New Features | Status |
+|---------|---------|--------------|--------|
+| v103 | 2025-11 | Pipeline upgrade | Current |
+| v102 | 2025-08 | 8 new hallmark genes | Archived |
+| v101 | 2025-05 | Rare cancer focus | Archived |
+| v100 | 2024-11 | 100th release milestone | Archived |
+
+### Data Categories
+
+| Category | Records | Description |
+|----------|---------|-------------|
+| Somatic mutations | 8M+ | Point mutations |
+| Gene Census | 736 | Driver genes (Tier 1+2) |
+| Fusions | 30K+ | Gene fusion events |
+| CNV | 5M+ | Copy number alterations |
+| Resistance | 5K+ | Drug resistance mutations |
+
+---
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | https://cancer.sanger.ac.uk/cosmic/api/ |
+| Rate Limit | 10 req/sec |
+| Auth Required | Yes (COSMIC account) |
+| Response Format | JSON, TSV, VCF |
+
+---
+
 ## Update Schedule
 
 | Release | Frequency |

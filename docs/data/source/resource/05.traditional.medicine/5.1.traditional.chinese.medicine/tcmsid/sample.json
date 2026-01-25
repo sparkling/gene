@@ -1,0 +1,79 @@
+[
+  {
+    "compound_id": "MOL000001",
+    "compound_name": "Quercetin",
+    "pubchem_cid": 5280343,
+    "smiles": "OC1=CC(O)=C2C(=O)C(O)=C(OC2=C1)C3=CC(O)=C(O)C=C3",
+    "molecular_weight": 302.24,
+    "adme_properties": {
+      "oral_bioavailability": 46.43,
+      "drug_likeness": 0.28,
+      "caco2_permeability": 0.05,
+      "bbb_permeability": -0.77,
+      "half_life": "long",
+      "lipinski_violations": 0
+    },
+    "source_herbs": [
+      {"herb_id": "TCMSID001", "herb_name": "Sophora japonica"}
+    ],
+    "targets": [
+      {
+        "gene_symbol": "PTGS2",
+        "uniprot_id": "P35354",
+        "target_type": "validated"
+      },
+      {
+        "gene_symbol": "NOS2",
+        "uniprot_id": "P35228",
+        "target_type": "predicted"
+      }
+    ],
+    "diseases": [
+      {"disease_name": "Inflammation", "disease_id": "DIS001"},
+      {"disease_name": "Cancer", "disease_id": "DIS002"}
+    ],
+    "metadata": {
+      "filter_status": "pass_OB_DL",
+      "cas_number": "117-39-5"
+    }
+  },
+  {
+    "herb_id": "TCMSID001",
+    "herb_name": "Sophora japonica",
+    "chinese_name": "Huai Hua",
+    "compound_count": 34,
+    "active_compounds": 12,
+    "target_count": 89,
+    "active_compounds_list": [
+      {"mol_id": "MOL000001", "name": "Quercetin", "ob": 46.43, "dl": 0.28},
+      {"mol_id": "MOL000098", "name": "Kaempferol", "ob": 41.88, "dl": 0.24}
+    ],
+    "pathway_enrichment": [
+      {"kegg_id": "hsa04370", "pathway_name": "VEGF signaling", "pvalue": 2.3e-12}
+    ],
+    "metadata": {
+      "family": "Leguminosae",
+      "part_used": "Flower"
+    }
+  },
+  {
+    "target_id": "T001",
+    "gene_symbol": "PTGS2",
+    "uniprot_id": "P35354",
+    "gene_name": "Prostaglandin G/H synthase 2",
+    "compound_count": 156,
+    "herb_count": 89,
+    "associated_compounds": [
+      {"mol_id": "MOL000001", "name": "Quercetin", "ob": 46.43},
+      {"mol_id": "MOL000098", "name": "Kaempferol", "ob": 41.88}
+    ],
+    "disease_associations": [
+      {"disease_name": "Inflammation", "association_score": 0.95},
+      {"disease_name": "Pain", "association_score": 0.89}
+    ],
+    "metadata": {
+      "protein_class": "Oxidoreductase",
+      "druggability": "High"
+    }
+  }
+]

@@ -1,0 +1,82 @@
+{
+  "_metadata": {
+    "source": "Exposome-Explorer",
+    "version": "2024",
+    "generated": "2026-01-25",
+    "record_count": 2,
+    "query_examples": [
+      "Browse biomarkers: exposome-explorer.iarc.fr/biomarkers",
+      "Browse exposures: exposome-explorer.iarc.fr/exposures",
+      "Search: exposome-explorer.iarc.fr/search"
+    ]
+  },
+  "records": [
+    {
+      "association_id": 456,
+      "biomarker": {
+        "biomarker_id": 123,
+        "biomarker_name": "4-O-methylgallic acid",
+        "pubchem_cid": 13159,
+        "hmdb_id": "HMDB0002122",
+        "cas_number": "3934-84-7",
+        "molecular_formula": "C8H8O5",
+        "biomarker_type": "Phenolic acid metabolite"
+      },
+      "exposure": {
+        "exposure_id": 789,
+        "exposure_name": "Tea consumption",
+        "exposure_category": "Dietary",
+        "exposure_subcategory": "Beverages",
+        "food_group": "Tea and infusions"
+      },
+      "specimen_type": "urine",
+      "association_type": "positive",
+      "effect_size": 0.42,
+      "effect_unit": "Pearson correlation",
+      "p_value": 0.00001,
+      "confidence_interval": "0.35-0.49",
+      "sample_size": 450,
+      "population": "European adults, free-living",
+      "study_type": "cross-sectional",
+      "reference": {
+        "reference_id": 1234,
+        "pubmed_id": 23456789,
+        "doi": "10.1093/example",
+        "authors": "Smith J et al.",
+        "year": 2019,
+        "title": "Urinary biomarkers of tea consumption",
+        "journal": "Am J Clin Nutr"
+      }
+    },
+    {
+      "association_id": 567,
+      "biomarker": {
+        "biomarker_id": 234,
+        "biomarker_name": "beta-Carotene",
+        "pubchem_cid": 5280489,
+        "hmdb_id": "HMDB0000561",
+        "biomarker_type": "Carotenoid"
+      },
+      "exposure": {
+        "exposure_id": 890,
+        "exposure_name": "Fruit and vegetable consumption",
+        "exposure_category": "Dietary",
+        "exposure_subcategory": "Fruits and vegetables"
+      },
+      "specimen_type": "plasma",
+      "association_type": "positive",
+      "effect_size": 0.55,
+      "effect_unit": "Spearman correlation",
+      "p_value": 0.0001,
+      "sample_size": 320,
+      "population": "US adults, NHANES",
+      "study_type": "cross-sectional",
+      "reference": {
+        "reference_id": 2345,
+        "pubmed_id": 34567890,
+        "year": 2021,
+        "title": "Plasma carotenoids as dietary biomarkers"
+      }
+    }
+  ]
+}

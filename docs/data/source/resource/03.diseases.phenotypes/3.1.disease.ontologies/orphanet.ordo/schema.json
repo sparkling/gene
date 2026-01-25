@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "orphanet-ordo-schema.json",
+  "title": "Orphanet Rare Disease Ontology (ORDO) Term",
+  "description": "JSON Schema for ORDO ontology terms. ORDO is the formal OWL representation of Orphanet rare disease nomenclature containing 6,500+ disease concepts with hierarchical relationships, cross-references, and semantic mappings to OMIM, ICD, UMLS, and other ontologies.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "ORDO term identifier (URI format)",
+      "pattern": "^http://www\\.orpha\\.net/ORDO/Orphanet_[0-9]+$",
+      "examples": ["http://www.orpha.net/ORDO/Orphanet_558"]
+    },
+    "orpha_code": {
+      "type": "integer",
+      "description": "Numeric Orphanet code extracted from ID"
+    },
+    "curie": {
+      "type": "string",
+      "description": "Compact URI (CURIE) format",
+      "pattern": "^Orphanet:[0-9]+$",
+      "examples": ["Orphanet:558"]
+    },
+    "name": {
+      "type": "string",
+      "description": "Preferred term label (rdfs:label)",
+      "minLength": 1
+    },
+    "definition": {
+      "type": ["string", "null"],
+      "description": "Textual definition (IAO_0000115)"
+    },
+    "synonyms": {
+      "type": "array",
+      "description": "Alternative labels (exact, related, narrow, broad)",
+      "items": {
+        "type": "object",
+        "properties": {
+          "label": {"type": "string"},
+          "type": {
+            "type": "string",
+            "enum": ["hasExactSynonym", "hasRelatedSynonym", "hasNarrowSynonym", "hasBroadSynonym"]
+          }
+        },
+        "required": ["label"]
+      }
+    },
+    "is_a": {
+      "type": "array",
+      "description": "Parent class relationships (rdfs:subClassOf)",
+      "items": {
+        "type": "string",
+        "pattern": "^(http://www\\.orpha\\.net/ORDO/Orphanet_[0-9]+|Orphanet:[0-9]+)$"
+      }
+    },
+    "orpha_group": {
+      "type": ["string", "null"],
+      "description": "Entity group classification",
+      "enum": ["Disorder", "Group of disorders", "Subtype of disorder", null]
+    },
+    "disorder_type": {
+      "type": ["object", "null"],
+      "description": "Disorder type classification",
+      "properties": {
+        "id": {"type": "string"},
+        "name": {"type": "string"}
+      }
+    },
+    "association_type": {
+      "type": ["string", "null"],
+      "description": "Gene-disease association type (when applicable)"
+    },
+    "association_status": {
+      "type": ["string", "null"],
+      "description": "Association curation status",
+      "enum": ["Assessed", "Not validated", null]
+    },
+    "xref": {
+      "type": "array",
+      "description": "Cross-references to external databases (oboInOwl:hasDbXref)",
+      "items": {
+        "type": "string"
+      },
+      "examples": [["OMIM:154700", "ICD-10:Q87.4", "UMLS:C0024796", "MeSH:D008382"]]
+    },
+    "exact_match": {
+      "type": "array",
+      "description": "Exact equivalence mappings (skos:exactMatch)",
+      "items": {"type": "string"}
+    },
+    "close_match": {
+      "type": "array",
+      "description": "Close but not exact mappings (skos:closeMatch)",
+      "items": {"type": "string"}
+    },
+    "related_match": {
+      "type": "array",
+      "description": "Related concept mappings (skos:relatedMatch)",
+      "items": {"type": "string"}
+    },
+    "part_of": {
+      "type": "array",
+      "description": "Part-of relationships to other ORDO terms",
+      "items": {"type": "string"}
+    },
+    "has_part": {
+      "type": "array",
+      "description": "Has-part relationships",
+      "items": {"type": "string"}
+    },
+    "obsolete": {
+      "type": "boolean",
+      "description": "Whether term is deprecated",
+      "default": false
+    },
+    "replaced_by": {
+      "type": ["string", "null"],
+      "description": "Replacement term if obsolete"
+    },
+    "comment": {
+      "type": ["string", "null"],
+      "description": "Editorial notes (rdfs:comment)"
+    }
+  },
+  "required": ["id", "name"],
+  "additionalProperties": false
+}

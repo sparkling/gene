@@ -1,0 +1,224 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "omim-schema.json",
+  "title": "OMIM Entry Record",
+  "description": "JSON Schema for Online Mendelian Inheritance in Man (OMIM) records. The authoritative compendium of 16,000+ human genes and 9,000+ genetic phenotypes with 29,000+ allelic variants and expert-authored entries on Mendelian disorders.",
+  "type": "object",
+  "properties": {
+    "mim_number": {
+      "type": "string",
+      "description": "MIM number identifier",
+      "pattern": "^[*#+%^][0-9]{6}$",
+      "examples": ["*154700", "#154700", "+134610", "%176300"]
+    },
+    "prefix": {
+      "type": "string",
+      "description": "Entry type prefix",
+      "enum": ["*", "#", "+", "%", "^"]
+    },
+    "title": {
+      "type": "string",
+      "description": "Entry title"
+    },
+    "alternative_titles": {
+      "type": "array",
+      "description": "Alternative titles and symbols",
+      "items": {
+        "type": "string"
+      }
+    },
+    "entry_type": {
+      "type": "string",
+      "description": "Entry classification",
+      "enum": ["gene", "phenotype", "gene_phenotype", "suspected_phenotype", "moved_removed"]
+    },
+    "text": {
+      "type": "object",
+      "description": "Entry text sections",
+      "properties": {
+        "description": {
+          "type": "string",
+          "description": "Main description"
+        },
+        "clinical_features": {
+          "type": "string",
+          "description": "Clinical features"
+        },
+        "inheritance": {
+          "type": "string",
+          "description": "Inheritance pattern"
+        },
+        "molecular_genetics": {
+          "type": "string",
+          "description": "Molecular genetics"
+        },
+        "animal_model": {
+          "type": "string",
+          "description": "Animal models"
+        }
+      }
+    },
+    "gene_map": {
+      "$ref": "#/$defs/geneMap"
+    },
+    "allelic_variants": {
+      "type": "array",
+      "description": "Known allelic variants",
+      "items": {
+        "$ref": "#/$defs/allelicVariant"
+      }
+    },
+    "phenotype_map": {
+      "type": "array",
+      "description": "Associated phenotypes",
+      "items": {
+        "$ref": "#/$defs/phenotypeMap"
+      }
+    },
+    "references": {
+      "type": "array",
+      "description": "Literature citations",
+      "items": {
+        "$ref": "#/$defs/reference"
+      }
+    },
+    "external_links": {
+      "$ref": "#/$defs/externalLinks"
+    }
+  },
+  "required": ["mim_number", "title"],
+  "$defs": {
+    "geneMap": {
+      "type": "object",
+      "description": "Gene mapping data",
+      "properties": {
+        "gene_symbol": {
+          "type": "string",
+          "description": "HGNC gene symbol"
+        },
+        "gene_name": {
+          "type": "string",
+          "description": "Full gene name"
+        },
+        "chromosome": {
+          "type": "string",
+          "description": "Chromosomal location"
+        },
+        "cytogenetic_location": {
+          "type": "string",
+          "description": "Cytogenetic band"
+        },
+        "genomic_coordinates": {
+          "type": "string",
+          "description": "GRCh38 coordinates"
+        },
+        "ensembl_id": {
+          "type": "string",
+          "description": "Ensembl gene ID",
+          "pattern": "^ENSG[0-9]{11}$"
+        }
+      }
+    },
+    "allelicVariant": {
+      "type": "object",
+      "description": "Allelic variant",
+      "properties": {
+        "number": {
+          "type": "string",
+          "description": "Variant number within entry"
+        },
+        "name": {
+          "type": "string",
+          "description": "Variant name"
+        },
+        "mutation": {
+          "type": "string",
+          "description": "Mutation description"
+        },
+        "dbsnp_id": {
+          "type": "string",
+          "description": "dbSNP identifier",
+          "pattern": "^rs[0-9]+$"
+        },
+        "clinvar_id": {
+          "type": "string",
+          "description": "ClinVar accession"
+        }
+      }
+    },
+    "phenotypeMap": {
+      "type": "object",
+      "description": "Phenotype mapping",
+      "properties": {
+        "phenotype_mim": {
+          "type": "string",
+          "description": "Phenotype MIM number"
+        },
+        "phenotype": {
+          "type": "string",
+          "description": "Phenotype name"
+        },
+        "inheritance": {
+          "type": "string",
+          "description": "Inheritance mode",
+          "enum": ["AD", "AR", "XL", "XLD", "XLR", "YL", "Mi", "Mu", "IC", "SMu", "DD"]
+        },
+        "phenotype_mapping_key": {
+          "type": "integer",
+          "description": "Mapping confidence (1-4)",
+          "minimum": 1,
+          "maximum": 4
+        }
+      }
+    },
+    "reference": {
+      "type": "object",
+      "description": "Literature reference",
+      "properties": {
+        "pmid": {
+          "type": "integer",
+          "description": "PubMed ID"
+        },
+        "title": {
+          "type": "string",
+          "description": "Article title"
+        },
+        "authors": {
+          "type": "string",
+          "description": "Author list"
+        },
+        "journal": {
+          "type": "string",
+          "description": "Journal name"
+        },
+        "year": {
+          "type": "integer",
+          "description": "Publication year"
+        }
+      }
+    },
+    "externalLinks": {
+      "type": "object",
+      "description": "External database links",
+      "properties": {
+        "hgnc_id": {
+          "type": "string",
+          "description": "HGNC ID"
+        },
+        "ncbi_gene_id": {
+          "type": "integer",
+          "description": "NCBI Gene ID"
+        },
+        "uniprot_id": {
+          "type": "string",
+          "description": "UniProt accession"
+        },
+        "orphanet_id": {
+          "type": "string",
+          "description": "Orphanet ID"
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

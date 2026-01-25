@@ -224,6 +224,32 @@ cut -d',' -f1 ddg2p.csv | sort -u > ddg2p_genes.txt
 comm -12 hi_genes.txt ddg2p_genes.txt | wc -l
 ```
 
+## Dataset Versions
+
+| Version | Release Date | Size | Status |
+|---------|--------------|------|--------|
+| DECIPHER 2025 | 2025-01 | ~50 MB public | Current |
+| DDG2P v4.0 | 2024-12 | ~2 MB | Current |
+| Continuous updates | Real-time | Varies | Active |
+
+### Version Notes
+
+DECIPHER current statistics:
+- 50,000+ patient submissions worldwide
+- 2,500+ DD genes in DDG2P
+- Haploinsufficiency scores for 19,000+ genes
+- pLI constraint scores for protein-coding genes
+- Active DDD (Deciphering Developmental Disorders) cohort
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | `https://www.deciphergenomics.org/api/v1` |
+| Rate Limit | Account-based |
+| Auth Required | Yes (for patient data) |
+| Documentation | https://www.deciphergenomics.org/about/data-sharing |
+
 ## Update Schedule
 
 | Data Type | Frequency |

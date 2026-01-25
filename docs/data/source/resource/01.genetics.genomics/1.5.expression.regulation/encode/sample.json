@@ -1,0 +1,89 @@
+[
+  {
+    "experiment": {
+      "accession": "ENCSR000AKA",
+      "assay_title": "ChIP-seq",
+      "target": "H3K27ac",
+      "biosample_summary": "GM12878 (B-lymphocyte, female)",
+      "status": "released",
+      "date_released": "2012-06-15",
+      "lab": "Bradley Bernstein, Broad",
+      "project": "ENCODE",
+      "files": [
+        {"accession": "ENCFF001XVH", "file_format": "bam"},
+        {"accession": "ENCFF001XVJ", "file_format": "bigWig"}
+      ]
+    },
+    "file": {
+      "accession": "ENCFF001XVH",
+      "file_format": "bam",
+      "file_size": 2345678901,
+      "assembly": "GRCh38",
+      "output_type": "alignments",
+      "replicate": 1,
+      "read_length": 36,
+      "mapped_read_length": 36
+    },
+    "cCRE": {
+      "id": "EH38E1310418",
+      "chromosome": "chr17",
+      "start": 43115000,
+      "end": 43115500,
+      "classification": "PLS",
+      "ccRE_class": "Promoter-like signature",
+      "maxZ_H3K4me3": 2.45,
+      "maxZ_H3K27ac": 3.12,
+      "maxZ_CTCF": 0.89,
+      "maxZ_DNase": 2.67,
+      "nearby_genes": ["BRCA1", "NBR2"]
+    }
+  },
+  {
+    "experiment": {
+      "accession": "ENCSR000BRQ",
+      "assay_title": "RNA-seq",
+      "target": null,
+      "biosample_summary": "K562 (erythroleukemia, female)",
+      "status": "released",
+      "date_released": "2013-02-01",
+      "lab": "Thomas Gingeras, CSHL",
+      "project": "ENCODE"
+    },
+    "file": {
+      "accession": "ENCFF234ABC",
+      "file_format": "tsv",
+      "file_size": 12345678,
+      "assembly": "GRCh38",
+      "output_type": "gene quantifications",
+      "replicate": 1
+    },
+    "cCRE": {
+      "id": "EH38E1567890",
+      "chromosome": "chr11",
+      "start": 5225000,
+      "end": 5230000,
+      "classification": "PLS",
+      "ccRE_class": "Promoter-like signature",
+      "maxZ_H3K4me3": 3.89,
+      "maxZ_H3K27ac": 2.78,
+      "maxZ_CTCF": 1.23,
+      "maxZ_DNase": 3.45,
+      "nearby_genes": ["HBB", "HBD", "HBG1"]
+    }
+  },
+  {
+    "cCRE": {
+      "id": "EH38E2345678",
+      "chromosome": "chr7",
+      "start": 140750000,
+      "end": 140755000,
+      "classification": "ELS",
+      "ccRE_class": "Enhancer-like signature (distal)",
+      "maxZ_H3K4me3": 0.56,
+      "maxZ_H3K27ac": 4.12,
+      "maxZ_CTCF": 0.23,
+      "maxZ_DNase": 2.89,
+      "nearby_genes": ["BRAF"]
+    }
+  }
+]

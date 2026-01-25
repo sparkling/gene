@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "europe-pmc-schema.json",
+  "title": "Europe PMC Article Record",
+  "description": "JSON Schema for Europe PMC scientific literature records.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Europe PMC unique identifier.",
+      "examples": ["PMC7654321", "MED/12345678", "PPR/PPR123456"]
+    },
+    "source": {
+      "type": "string",
+      "description": "Source database.",
+      "enum": ["MED", "PMC", "PAT", "AGR", "CBA", "ETH", "HIR", "CTX", "PPR"]
+    },
+    "pmid": {
+      "type": "string",
+      "description": "PubMed identifier."
+    },
+    "pmcid": {
+      "type": "string",
+      "description": "PubMed Central identifier."
+    },
+    "doi": {
+      "type": "string",
+      "description": "Digital Object Identifier."
+    },
+    "title": {
+      "type": "string",
+      "description": "Article title."
+    },
+    "authorString": {
+      "type": "string",
+      "description": "Authors as formatted string."
+    },
+    "authorList": {
+      "type": "object",
+      "properties": {
+        "author": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "fullName": { "type": "string" },
+              "firstName": { "type": "string" },
+              "lastName": { "type": "string" },
+              "authorId": {
+                "type": "object",
+                "properties": {
+                  "type": { "type": "string" },
+                  "value": { "type": "string" }
+                }
+              },
+              "affiliation": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "journalInfo": {
+      "type": "object",
+      "properties": {
+        "journal": {
+          "type": "object",
+          "properties": {
+            "title": { "type": "string" },
+            "isoabbreviation": { "type": "string" },
+            "issn": { "type": "string" }
+          }
+        },
+        "volume": { "type": "string" },
+        "issue": { "type": "string" },
+        "yearOfPublication": { "type": "integer" }
+      }
+    },
+    "abstractText": {
+      "type": "string",
+      "description": "Article abstract."
+    },
+    "pubTypeList": {
+      "type": "object",
+      "properties": {
+        "pubType": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "meshHeadingList": {
+      "type": "object",
+      "properties": {
+        "meshHeading": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "descriptorName": { "type": "string" },
+              "majorTopic_YN": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "keywordList": {
+      "type": "object",
+      "properties": {
+        "keyword": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "citedByCount": {
+      "type": "integer",
+      "description": "Number of citations."
+    },
+    "isOpenAccess": {
+      "type": "string",
+      "description": "Open access status (Y/N)."
+    },
+    "inEPMC": {
+      "type": "string",
+      "description": "Full text in Europe PMC (Y/N)."
+    },
+    "annotations": {
+      "type": "object",
+      "description": "Text-mined annotations.",
+      "properties": {
+        "genes": { "type": "array", "items": { "type": "object" } },
+        "diseases": { "type": "array", "items": { "type": "object" } },
+        "chemicals": { "type": "array", "items": { "type": "object" } }
+      }
+    }
+  },
+  "required": ["id", "source", "title"],
+  "additionalProperties": true
+}

@@ -295,6 +295,32 @@ head panel_245.tsv
 cat panel_245.json | jq '.version_created'
 ```
 
+## Dataset Versions
+
+| Version | Release Date | Size | Status |
+|---------|--------------|------|--------|
+| PanelApp 2025 | 2025-01 | ~500 MB total | Current |
+| Continuous updates | Real-time | Varies | Active |
+| Signed-off panels | Periodic | Varies | Clinical grade |
+
+### Version Notes
+
+PanelApp current statistics:
+- 600+ gene panels
+- 4,000+ genes with diagnostic evidence
+- Expert-curated by NHS Genomics England
+- Green/Amber/Red evidence ratings
+- Multiple panel versions for audit trail
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | `https://panelapp.genomicsengland.co.uk/api/v1` |
+| Rate Limit | Reasonable use |
+| Auth Required | No |
+| Documentation | https://panelapp.genomicsengland.co.uk/api/docs |
+
 ## Update Schedule
 
 | Update Type | Frequency |

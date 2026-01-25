@@ -70,6 +70,10 @@ PDB is the authoritative source for experimental protein structures and is funda
 
 ## See Also
 
-- [Schema Documentation](./schema.md)
-- [AlphaFold DB](../alphafold.db/_index.md) - Predicted structures
-- [SWISS-MODEL](../swiss.model/_index.md) - Homology models
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [Sample Data](./sample.json) - Example records
+- [License Terms](./license.md) - Usage rights and restrictions
+- [Schema Mapping](./mapping.xslt) - Transform to unified schema
+- [AlphaFold DB](../alphafold.db/README.md) - Predicted structures
+- [SWISS-MODEL](../swiss.model/README.md) - Homology models

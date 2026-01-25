@@ -1,14 +1,18 @@
 ---
 id: tm.mc
 title: "TM-MC - Traditional Medicine - Molecular Correlates"
-type: data-source
-category: traditional-medicine
-subcategory: south-east-asian-systems
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 2
-last_updated: 2026-01-23
 status: active
-tags: [traditional-medicine, multi-system, molecular-targets, ayurveda, tcm]
+category: traditional.medicine
+subcategory: south.east.asian.systems
+tags:
+  - traditional-medicine
+  - multi-system
+  - molecular-targets
+  - ayurveda
+  - tcm
 ---
 
 # TM-MC - Traditional Medicine - Molecular Correlates

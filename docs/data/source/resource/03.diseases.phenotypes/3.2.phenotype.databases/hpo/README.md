@@ -1,19 +1,21 @@
 ---
 id: hpo
 title: "Human Phenotype Ontology (HPO)"
-type: data-source
-category: diseases
-subcategory: phenotype.databases
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 1
-last_updated: 2026-01-23
 status: active
-tags: [ontology, phenotypes, rare-diseases, clinical-features, diagnosis]
+category: diseases.phenotypes
+subcategory: phenotype.databases
+tags:
+  - ontology
+  - phenotypes
+  - rare-diseases
+  - clinical-features
+  - diagnosis
 ---
 
 # Human Phenotype Ontology (HPO)
-
-**Category:** [Diseases & Phenotypes](../../_index.md) > [Phenotype Databases](../_index.md)
 
 ## Overview
 
@@ -69,17 +71,17 @@ Disease-phenotype annotations in HPO connect over 9,500 rare diseases to their c
 | Annotations | phenotype.hpoa | 35.0 MB |
 | Gene Links | genes_to_phenotype.txt | 20.1 MB |
 
-## License
+## Limitations
 
-| Aspect | Value |
-|--------|-------|
-| License | Open Access |
-| Commercial Use | Yes |
-| Attribution | Recommended |
-| URL | https://hpo.jax.org/app/license |
+- Primarily focused on rare diseases; common disease phenotypes less represented
+- Frequency annotations available for subset of diseases
+- Clinical modifier and severity terms still evolving
+- Non-English translations may lag main ontology
 
 ## See Also
 
-- [Schema Documentation](./schema.md)
-- [OMIM](../omim/_index.md) - Mendelian disease database
-- [MONDO](../../3.1.disease.ontologies/mondo/_index.md) - Disease ontology
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [License Terms](./license.md) - Usage rights and restrictions
+- [OMIM](../omim/README.md) - Mendelian disease database
+- [MONDO](../../3.1.disease.ontologies/mondo/README.md) - Disease ontology

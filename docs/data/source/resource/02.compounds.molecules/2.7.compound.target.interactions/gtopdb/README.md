@@ -1,19 +1,22 @@
 ---
 id: gtopdb
 title: "GtoPdb - Guide to Pharmacology"
-type: data-source
-category: compounds
-subcategory: compound-target-interactions
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 1
-last_updated: 2026-01-23
 status: active
-tags: [pharmacology, iuphar, receptors, ion-channels, drug-targets, curated]
+category: compounds.molecules
+subcategory: compound.target.interactions
+tags:
+  - pharmacology
+  - iuphar
+  - receptors
+  - ion-channels
+  - drug-targets
+  - curated
 ---
 
 # GtoPdb - Guide to Pharmacology
-
-**Category:** [Compounds & Molecules](../../_index.md) > [Compound-Target Interactions](../_index.md)
 
 ## Overview
 
@@ -79,13 +82,12 @@ GtoPdb serves as the official database of the International Union of Basic and C
 | pEC50 | -log10(EC50) activation |
 | pKd | -log10(Kd) dissociation |
 
-## License
+## Limitations
 
-| Aspect | Value |
-|--------|-------|
-| License | CC BY-SA 4.0 |
-| Commercial Use | Yes |
-| Attribution Required | Yes |
+- Coverage prioritizes established drug targets over novel targets
+- Quarterly updates mean recently approved drugs may lag
+- Expert curation means smaller scale than aggregated databases
+- pX values converted from varied experimental conditions
 
 ## Related Resources
 
@@ -95,7 +97,9 @@ GtoPdb serves as the official database of the International Union of Basic and C
 
 ## See Also
 
-- [Schema Documentation](./schema.md)
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [License Terms](./license.md) - Usage rights and restrictions
 
 ## References
 

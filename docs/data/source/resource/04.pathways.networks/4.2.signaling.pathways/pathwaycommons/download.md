@@ -286,6 +286,60 @@ gunzip -c PathwayCommons12.All.hgnc.txt.gz | \
   cut -f4 | sort -u | head -20
 ```
 
+---
+
+## Dataset Versions
+
+### Current Release: PC2 Version 12
+
+| Property | Value |
+|----------|-------|
+| Version | 12 |
+| Release Date | 2023-08-01 |
+| Total Size | ~5 GB (all formats) |
+| Interactions | ~2.4 million |
+
+### Version Contents
+
+| Component | Size | Records | Description |
+|-----------|------|---------|-------------|
+| PathwayCommons12.All.hgnc.sif.gz | ~25 MB | ~2.4M | SIF format (HGNC) |
+| PathwayCommons12.All.BIOPAX.owl.gz | ~1.5 GB | ~5,700 pathways | BioPAX Level 3 |
+| PathwayCommons12.All.hgnc.gmt.gz | ~5 MB | ~5,700 | GSEA gene sets |
+| PathwayCommons12.All.hgnc.txt.gz | ~100 MB | ~2.4M | Extended SIF |
+
+### Previous Versions
+
+| Version | Release | Size | Status |
+|---------|---------|------|--------|
+| 11 | 2020-09-01 | ~4 GB | Archived |
+| 10 | 2019-03-01 | ~3.5 GB | Archived |
+
+---
+
+## API Access
+
+### Configuration
+
+| Property | Value |
+|----------|-------|
+| Base URL | `https://www.pathwaycommons.org/pc2` |
+| Authentication | None required |
+| Rate Limit | No strict limit |
+| Response Format | BioPAX, SIF, JSON-LD, GSEA |
+
+### API Endpoints
+
+| Operation | Endpoint | Example |
+|-----------|----------|---------|
+| Get | `/get` | `?uri=http://identifiers.org/reactome/R-HSA-109581&format=BIOPAX` |
+| Graph | `/graph` | `?source=TP53&kind=neighborhood&format=SIF` |
+| Search | `/search` | `?q=TP53&type=Pathway&organism=9606` |
+| Top Pathways | `/top_pathways` | `?q=TP53+BRCA1+ATM` |
+| Traverse | `/traverse` | `?uri=...&path=ProteinReference/entityReferenceOf` |
+
+---
+
 ## Update Schedule
 
 | Release | Frequency |

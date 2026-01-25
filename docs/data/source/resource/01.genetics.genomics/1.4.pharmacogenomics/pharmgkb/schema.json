@@ -1,0 +1,285 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "pharmgkb-schema.json",
+  "title": "PharmGKB Record",
+  "description": "JSON Schema for PharmGKB pharmacogenomics knowledge base records.",
+  "type": "object",
+  "properties": {
+    "PharmGKB_Accession": {
+      "type": "string",
+      "description": "PharmGKB accession identifier (PA + integer).",
+      "pattern": "^PA[0-9]+$",
+      "examples": ["PA124", "PA449053", "PA166104938"]
+    },
+    "entity_type": {
+      "type": "string",
+      "description": "Type of PharmGKB entity.",
+      "enum": ["Gene", "Drug", "Variant", "Clinical_Annotation", "Drug_Label", "Guideline", "Pathway", "Haplotype", "Diplotype", "Phenotype"]
+    },
+    "gene": {
+      "type": "object",
+      "description": "Gene information.",
+      "properties": {
+        "PharmGKB_Accession": {
+          "type": "string",
+          "pattern": "^PA[0-9]+$"
+        },
+        "Symbol": {
+          "type": "string",
+          "description": "HGNC gene symbol.",
+          "examples": ["CYP2D6", "TPMT", "VKORC1"]
+        },
+        "Name": {
+          "type": "string",
+          "description": "Full gene name.",
+          "examples": ["cytochrome P450 family 2 subfamily D member 6"]
+        },
+        "Alternative_Names": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "Alternative_Symbols": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "Is_VIP": {
+          "type": "boolean",
+          "description": "Is a Very Important Pharmacogene."
+        },
+        "Has_Variant_Annotation": {
+          "type": "boolean",
+          "description": "Has curated variant annotations."
+        },
+        "Cross_References": {
+          "type": "object",
+          "properties": {
+            "HGNC": { "type": "string" },
+            "NCBI_Gene": { "type": "string" },
+            "Ensembl": { "type": "string" },
+            "UniProt": { "type": "string" }
+          }
+        }
+      }
+    },
+    "drug": {
+      "type": "object",
+      "description": "Drug information.",
+      "properties": {
+        "PharmGKB_Accession": {
+          "type": "string",
+          "pattern": "^PA[0-9]+$"
+        },
+        "Name": {
+          "type": "string",
+          "description": "Generic drug name.",
+          "examples": ["codeine", "warfarin", "clopidogrel"]
+        },
+        "Trade_Names": {
+          "type": "array",
+          "items": { "type": "string" },
+          "examples": [["Tylenol with Codeine"], ["Coumadin", "Jantoven"]]
+        },
+        "Type": {
+          "type": "string",
+          "description": "Drug type classification.",
+          "examples": ["Small molecule", "Biological"]
+        },
+        "ATC_Codes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Z][0-9]{2}[A-Z]{2}[0-9]{2}$"
+          }
+        },
+        "RxNorm_Identifiers": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "DrugBank_ID": {
+          "type": "string",
+          "pattern": "^DB[0-9]{5}$",
+          "examples": ["DB00318", "DB00682"]
+        },
+        "Has_PGx_On_Label": {
+          "type": "boolean",
+          "description": "Has pharmacogenomic information on FDA label."
+        }
+      }
+    },
+    "clinical_annotation": {
+      "type": "object",
+      "description": "Evidence-based clinical annotation.",
+      "properties": {
+        "Annotation_ID": {
+          "type": "integer",
+          "description": "Unique annotation identifier.",
+          "examples": [1449309937, 1183632176]
+        },
+        "Location": {
+          "type": "string",
+          "description": "Variant or haplotype location.",
+          "examples": ["CYP2D6", "rs1800460"]
+        },
+        "Gene": {
+          "type": "string",
+          "description": "Gene symbol.",
+          "examples": ["CYP2D6", "TPMT"]
+        },
+        "Level_of_Evidence": {
+          "type": "string",
+          "description": "Evidence level classification.",
+          "enum": ["1A", "1B", "2A", "2B", "3", "4"]
+        },
+        "Phenotype_Category": {
+          "type": "string",
+          "description": "Phenotype category.",
+          "enum": ["Efficacy", "Toxicity", "Dosage", "Metabolism/PK", "Other"]
+        },
+        "Drug": {
+          "type": "string",
+          "description": "Associated drug name.",
+          "examples": ["codeine", "azathioprine"]
+        },
+        "Phenotype": {
+          "type": "string",
+          "description": "Clinical phenotype description.",
+          "examples": ["CYP2D6 poor metabolizers have reduced conversion of codeine to morphine"]
+        },
+        "URL": {
+          "type": "string",
+          "format": "uri",
+          "description": "PharmGKB URL for the annotation."
+        }
+      }
+    },
+    "variant": {
+      "type": "object",
+      "description": "Genetic variant information.",
+      "properties": {
+        "Variant_ID": {
+          "type": "string",
+          "description": "Variant identifier.",
+          "examples": ["PA166155095", "rs1800460"]
+        },
+        "Gene": {
+          "type": "string"
+        },
+        "RS_ID": {
+          "type": "string",
+          "pattern": "^rs[0-9]+$",
+          "examples": ["rs3892097", "rs1800460"]
+        },
+        "Location": {
+          "type": "string",
+          "description": "Genomic location.",
+          "examples": ["chr22:42128174"]
+        },
+        "Variant_Haplotypes": {
+          "type": "array",
+          "description": "Associated star allele haplotypes.",
+          "items": { "type": "string" },
+          "examples": [["*4"], ["*3A", "*3B"]]
+        },
+        "Variant_Summary": {
+          "type": "string",
+          "description": "Functional summary."
+        },
+        "Biogeographical_Groups": {
+          "type": "object",
+          "description": "Population frequency data.",
+          "additionalProperties": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          }
+        }
+      }
+    },
+    "drug_label": {
+      "type": "object",
+      "description": "Regulatory agency drug label PGx information.",
+      "properties": {
+        "Label_ID": {
+          "type": "string",
+          "description": "Label identifier."
+        },
+        "Drug": {
+          "type": "string"
+        },
+        "Source": {
+          "type": "string",
+          "description": "Regulatory agency source.",
+          "enum": ["FDA", "EMA", "PMDA", "HCSC", "Swissmedic"]
+        },
+        "Genes": {
+          "type": "array",
+          "description": "PGx genes mentioned on label.",
+          "items": { "type": "string" }
+        },
+        "PGx_Level": {
+          "type": "string",
+          "description": "Testing recommendation level.",
+          "enum": ["Genetic testing required", "Genetic testing recommended", "Actionable PGx", "Informative PGx"]
+        },
+        "Summary": {
+          "type": "string",
+          "description": "Label content summary."
+        }
+      }
+    },
+    "pathway": {
+      "type": "object",
+      "description": "Drug mechanism pathway.",
+      "properties": {
+        "Pathway_ID": {
+          "type": "string",
+          "pattern": "^PA[0-9]+$"
+        },
+        "Name": {
+          "type": "string",
+          "description": "Pathway name.",
+          "examples": ["Codeine Pathway, Pharmacokinetics"]
+        },
+        "Drug": {
+          "type": "string"
+        },
+        "Genes": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "Type": {
+          "type": "string",
+          "description": "Pathway type.",
+          "enum": ["PK", "PD", "PK/PD"]
+        }
+      }
+    },
+    "guideline": {
+      "type": "object",
+      "description": "Clinical guideline information.",
+      "properties": {
+        "Guideline_ID": {
+          "type": "string",
+          "pattern": "^PA[0-9]+$"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "Source": {
+          "type": "string",
+          "enum": ["CPIC", "DPWG", "CPNDS", "RNPGx", "Other"]
+        },
+        "Genes": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "Drugs": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    }
+  },
+  "required": ["PharmGKB_Accession", "entity_type"],
+  "additionalProperties": true
+}

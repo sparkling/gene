@@ -235,6 +235,31 @@ grep -c '^\$\$\$\$' Compound_000000001_000025000.sdf
 zcat CID-SMILES.gz | wc -l
 ```
 
+## Dataset Versions
+
+| Version | Release Date | Size | Status |
+|---------|--------------|------|--------|
+| PubChem 2025 | 2025-01 (NAR paper) | Multi-TB | Current |
+| Continuous updates | Daily | N/A | Ongoing |
+
+### Version Notes
+
+PubChem 2025 update statistics (as of Sept 2024):
+- 119 million compounds
+- 322 million substances
+- 295 million bioactivities
+- 1000+ data sources
+- 130+ new sources added in past two years
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | `https://pubchem.ncbi.nlm.nih.gov/rest/pug` |
+| Rate Limit | 5 req/sec |
+| Auth Required | No |
+| Documentation | https://pubchem.ncbi.nlm.nih.gov/docs/pug-rest |
+
 ## Update Schedule
 
 | Data Type | Frequency |

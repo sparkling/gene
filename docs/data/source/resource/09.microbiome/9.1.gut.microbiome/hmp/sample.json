@@ -1,0 +1,45 @@
+[
+  {
+    "sample_id": "SRS001001",
+    "rand_subject_id": "HMP_SUBJ_001",
+    "fma_body_site": "UBERON:0001988",
+    "body_site": "stool",
+    "visit_number": 1,
+    "collection_date": "2015-06-15",
+    "mixs": {
+      "biome": "ENVO:00002030",
+      "body_product": "UBERON:0001988",
+      "env_package": "human-gut",
+      "geo_loc_name": "USA: Missouri",
+      "lat_lon": "38.63 -90.20"
+    },
+    "sequence_data": {
+      "seq_type": "16S",
+      "format": "fastq",
+      "variable_region": "V4",
+      "seq_model": "Illumina MiSeq"
+    },
+    "checksums": { "md5": "d41d8cd98f00b204e9800998ecf8427e" },
+    "urls": ["https://downloads.hmpdacc.org/data/HMP1/16S/SRS001001.fastq.gz"],
+    "study": "HMP1"
+  },
+  {
+    "sample_id": "SRS002345",
+    "rand_subject_id": "HMP2_J12345",
+    "fma_body_site": "UBERON:0001988",
+    "body_site": "stool",
+    "visit_number": 3,
+    "collection_date": "2016-03-22",
+    "mixs": {
+      "biome": "ENVO:00002030",
+      "env_package": "human-gut",
+      "geo_loc_name": "USA: Massachusetts"
+    },
+    "sequence_data": {
+      "seq_type": "WGS",
+      "format": "fastq",
+      "seq_model": "Illumina HiSeq"
+    },
+    "study": "IBDMDB"
+  }
+]

@@ -1,0 +1,160 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ipd-imgt-hla-schema.json",
+  "title": "IPD-IMGT/HLA Allele Record",
+  "description": "JSON Schema for IPD-IMGT/HLA database. The international repository of 30,000+ HLA gene sequences providing reference nomenclature for human MHC alleles, critical for transplantation, disease associations, and pharmacogenomics.",
+  "type": "object",
+  "properties": {
+    "allele_name": {
+      "type": "string",
+      "description": "Full HLA allele name",
+      "pattern": "^HLA-[A-Z]+[0-9]*\\*[0-9:]+[NLSCAQ]?$",
+      "examples": ["HLA-A*02:01:01:01", "HLA-DRB1*04:01"]
+    },
+    "ipd_accession": {
+      "type": "string",
+      "description": "IPD accession number",
+      "pattern": "^HLA[0-9]+$",
+      "examples": ["HLA00001"]
+    },
+    "gene": {
+      "type": "string",
+      "description": "HLA gene",
+      "pattern": "^HLA-[A-Z]+[0-9]*$",
+      "examples": ["HLA-A", "HLA-DRB1"]
+    },
+    "allele_group": {
+      "type": "string",
+      "description": "First field (serological equivalent)",
+      "pattern": "^[0-9]+$"
+    },
+    "specific_protein": {
+      "type": "string",
+      "description": "Second field (protein sequence)",
+      "pattern": "^[0-9]+$"
+    },
+    "synonymous_substitution": {
+      "type": "string",
+      "description": "Third field (synonymous coding)"
+    },
+    "noncoding_difference": {
+      "type": "string",
+      "description": "Fourth field (non-coding)"
+    },
+    "expression_suffix": {
+      "type": "string",
+      "description": "Expression status suffix",
+      "enum": ["N", "L", "S", "C", "A", "Q"]
+    },
+    "mhc_class": {
+      "type": "string",
+      "description": "MHC class",
+      "enum": ["I", "II"]
+    },
+    "sequence": {
+      "type": "object",
+      "description": "Sequence data",
+      "properties": {
+        "nucleotide": {
+          "type": "string",
+          "description": "Nucleotide sequence"
+        },
+        "protein": {
+          "type": "string",
+          "description": "Protein sequence"
+        },
+        "exons": {
+          "type": "array",
+          "description": "Exon sequences",
+          "items": {
+            "type": "object",
+            "properties": {
+              "exon_number": {
+                "type": "integer"
+              },
+              "sequence": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "cell_lines": {
+      "type": "array",
+      "description": "Cell lines carrying this allele",
+      "items": {
+        "type": "string"
+      }
+    },
+    "ethnic_distribution": {
+      "type": "object",
+      "description": "Population frequencies",
+      "additionalProperties": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1
+      }
+    },
+    "serological_types": {
+      "type": "array",
+      "description": "Serological specificities",
+      "items": {
+        "type": "string"
+      }
+    },
+    "disease_associations": {
+      "type": "array",
+      "description": "Disease associations",
+      "items": {
+        "type": "object",
+        "properties": {
+          "disease": {
+            "type": "string"
+          },
+          "odds_ratio": {
+            "type": "number"
+          },
+          "pmid": {
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "drug_associations": {
+      "type": "array",
+      "description": "Pharmacogenomic associations",
+      "items": {
+        "type": "object",
+        "properties": {
+          "drug": {
+            "type": "string"
+          },
+          "reaction": {
+            "type": "string"
+          },
+          "recommendation": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "cross_references": {
+      "type": "object",
+      "description": "External database links",
+      "properties": {
+        "genbank": {
+          "type": "string"
+        },
+        "ena": {
+          "type": "string"
+        },
+        "uniprot": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "required": ["allele_name", "gene"],
+  "additionalProperties": false
+}

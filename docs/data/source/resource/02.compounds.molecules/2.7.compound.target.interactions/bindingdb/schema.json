@@ -1,0 +1,205 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "bindingdb-schema.json",
+  "title": "BindingDB Binding Affinity Record",
+  "description": "JSON Schema for BindingDB binding affinity data. Contains quantitative binding measurements (IC50, Ki, Kd, EC50) for 2.9M+ drug-target interactions with 1.3M+ compounds and 9,400 targets.",
+  "type": "object",
+  "properties": {
+    "bindingdb_reactant_id": {
+      "type": "integer",
+      "description": "BindingDB primary record identifier"
+    },
+    "ligand": {
+      "$ref": "#/$defs/ligand",
+      "description": "Small molecule compound with structural data"
+    },
+    "target": {
+      "$ref": "#/$defs/target",
+      "description": "Protein target with identifiers"
+    },
+    "affinity": {
+      "$ref": "#/$defs/affinity",
+      "description": "Measured binding affinity data"
+    },
+    "reference": {
+      "$ref": "#/$defs/reference",
+      "description": "Literature or patent source"
+    }
+  },
+  "required": ["bindingdb_reactant_id", "ligand", "target", "affinity"],
+  "$defs": {
+    "ligand": {
+      "type": "object",
+      "description": "Small molecule compound",
+      "properties": {
+        "monomer_id": {
+          "type": "integer",
+          "description": "BindingDB ligand ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "Compound name"
+        },
+        "smiles": {
+          "type": "string",
+          "description": "SMILES structure"
+        },
+        "inchi": {
+          "type": "string",
+          "description": "InChI identifier"
+        },
+        "inchi_key": {
+          "type": "string",
+          "description": "InChI Key",
+          "pattern": "^[A-Z]{14}-[A-Z]{10}-[A-Z]$"
+        },
+        "molecular_weight": {
+          "type": "number",
+          "description": "Molecular weight in Daltons"
+        },
+        "molecular_formula": {
+          "type": "string",
+          "description": "Chemical formula"
+        },
+        "alogp": {
+          "type": "number",
+          "description": "Calculated LogP"
+        },
+        "psa": {
+          "type": "number",
+          "description": "Polar surface area"
+        },
+        "hbd": {
+          "type": "integer",
+          "description": "Hydrogen bond donors"
+        },
+        "hba": {
+          "type": "integer",
+          "description": "Hydrogen bond acceptors"
+        },
+        "rotatable_bonds": {
+          "type": "integer",
+          "description": "Number of rotatable bonds"
+        }
+      },
+      "required": ["monomer_id", "smiles", "inchi_key"]
+    },
+    "target": {
+      "type": "object",
+      "description": "Protein target",
+      "properties": {
+        "target_id": {
+          "type": "integer",
+          "description": "BindingDB target ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "Target name"
+        },
+        "organism": {
+          "type": "string",
+          "description": "Species (e.g., Homo sapiens)"
+        },
+        "uniprot_id": {
+          "type": "string",
+          "description": "UniProt accession",
+          "pattern": "^[A-Z][0-9][A-Z0-9]{3}[0-9]$"
+        },
+        "gene_symbol": {
+          "type": "string",
+          "description": "Gene name"
+        },
+        "pdb_ids": {
+          "type": "array",
+          "description": "PDB structure identifiers",
+          "items": {
+            "type": "string",
+            "pattern": "^[0-9][A-Z0-9]{3}$"
+          }
+        },
+        "ec_number": {
+          "type": "string",
+          "description": "EC enzyme classification"
+        },
+        "target_type": {
+          "type": "string",
+          "description": "Target classification"
+        }
+      },
+      "required": ["name", "organism"]
+    },
+    "affinity": {
+      "type": "object",
+      "description": "Binding affinity measurement",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Affinity measurement type",
+          "enum": ["IC50", "Ki", "Kd", "EC50", "Kon", "Koff"]
+        },
+        "value": {
+          "type": "number",
+          "description": "Numeric affinity value"
+        },
+        "unit": {
+          "type": "string",
+          "description": "Unit of measurement",
+          "enum": ["nM", "uM", "mM", "pM", "M-1s-1", "s-1"]
+        },
+        "relation": {
+          "type": "string",
+          "description": "Value relation",
+          "enum": ["=", "<", ">", "~", "<=", ">="]
+        },
+        "ph": {
+          "type": "number",
+          "description": "Assay pH"
+        },
+        "temperature": {
+          "type": "number",
+          "description": "Assay temperature in Celsius"
+        },
+        "assay_description": {
+          "type": "string",
+          "description": "Assay method description"
+        }
+      },
+      "required": ["type", "value", "unit"]
+    },
+    "reference": {
+      "type": "object",
+      "description": "Literature or patent source",
+      "properties": {
+        "reference_id": {
+          "type": "integer",
+          "description": "BindingDB reference ID"
+        },
+        "pmid": {
+          "type": "integer",
+          "description": "PubMed ID"
+        },
+        "doi": {
+          "type": "string",
+          "description": "DOI"
+        },
+        "patent_number": {
+          "type": "string",
+          "description": "Patent number"
+        },
+        "title": {
+          "type": "string",
+          "description": "Publication title"
+        },
+        "authors": {
+          "type": "string",
+          "description": "Author list"
+        },
+        "year": {
+          "type": "integer",
+          "description": "Publication year"
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

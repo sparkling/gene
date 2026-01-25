@@ -290,6 +290,62 @@ tomtom meme_out/meme.txt JASPAR2024_CORE_vertebrates_pfms_meme.txt
 | Recommended | 10 requests/second |
 | Bulk download | Unlimited |
 
+---
+
+## Dataset Versions
+
+### Current Release: JASPAR 2024
+
+| Property | Value |
+|----------|-------|
+| Version | JASPAR 2024 |
+| Release Date | 2024-01-01 |
+| Total Profiles | ~3,700 |
+| CORE Vertebrates | ~900 |
+
+### Version Contents
+
+| Component | Size | Records | Description |
+|-----------|------|---------|-------------|
+| JASPAR2024_CORE_vertebrates_non-redundant_pfms_jaspar.txt | ~2 MB | ~900 | Vertebrate PFMs |
+| JASPAR2024_CORE_plants_non-redundant_pfms_jaspar.txt | ~500 KB | ~250 | Plant PFMs |
+| JASPAR2024_CORE_non-redundant_pfms_jaspar.txt | ~3 MB | ~1,200 | All taxa PFMs |
+| JASPAR2024_CORE_redundant_pfms_jaspar.zip | ~10 MB | ~3,700 | All versions |
+
+### Previous Versions
+
+| Version | Release | CORE Profiles | Status |
+|---------|---------|---------------|--------|
+| JASPAR 2022 | 2022-01-01 | ~1,000 | Archived |
+| JASPAR 2020 | 2020-01-01 | ~750 | Archived |
+| JASPAR 2018 | 2018-01-01 | ~590 | Archived |
+
+---
+
+## API Access
+
+### Configuration
+
+| Property | Value |
+|----------|-------|
+| Base URL | `https://jaspar.genereg.net/api/v1` |
+| Authentication | None required |
+| Rate Limit | 10 requests/second recommended |
+| Response Format | JSON, PFM, MEME, TRANSFAC |
+
+### API Endpoints
+
+| Operation | Endpoint | Example |
+|-----------|----------|---------|
+| Get Matrix | `/matrix/{id}/` | `/matrix/MA0106.3/` |
+| Get Format | `/matrix/{id}/` | `?format=meme` |
+| Search | `/matrix/` | `?name=TP53&collection=CORE` |
+| By Species | `/matrix/` | `?species=9606&tax_group=vertebrates` |
+| Sites | `/sites/{id}/` | `/sites/MA0106.3/` |
+| Collections | `/collections/` | List all collections |
+
+---
+
 ## See Also
 
 - [Schema Documentation](./schema.md)

@@ -1,0 +1,50 @@
+[
+  {
+    "chrom": "1",
+    "pos": 10177,
+    "ref": "A",
+    "alt": "AC",
+    "allele_freq": 0.4251,
+    "allele_count": 153036,
+    "allele_num": 360000,
+    "filter": "PASS",
+    "heterozygote_count": 98456,
+    "homozygote_count": 27290
+  },
+  {
+    "chrom": "11",
+    "pos": 5227002,
+    "ref": "T",
+    "alt": "A",
+    "allele_freq": 0.0089,
+    "allele_count": 3204,
+    "allele_num": 360000,
+    "filter": "PASS",
+    "heterozygote_count": 2845,
+    "homozygote_count": 180
+  },
+  {
+    "chrom": "7",
+    "pos": 140753336,
+    "ref": "A",
+    "alt": "T",
+    "allele_freq": 0.000012,
+    "allele_count": 4,
+    "allele_num": 360000,
+    "filter": "PASS",
+    "heterozygote_count": 4,
+    "homozygote_count": 0
+  },
+  {
+    "chrom": "17",
+    "pos": 7673803,
+    "ref": "G",
+    "alt": "A",
+    "allele_freq": 0.000008,
+    "allele_count": 3,
+    "allele_num": 360000,
+    "filter": "PASS",
+    "heterozygote_count": 3,
+    "homozygote_count": 0
+  }
+]

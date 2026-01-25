@@ -90,13 +90,66 @@ curl -s "https://bravo.sph.umich.edu/freeze8/hg38/api/v1/variant?variant_id=1-10
 # Should return frequency value
 ```
 
+## Dataset Versions
+
+### Current Release: Freeze 10b
+
+| Property | Value |
+|----------|-------|
+| Version | Freeze 10b (GRCh38) |
+| Release Date | 2024-Q4 |
+| Total Size | ~50 TB (full WGS) |
+| Samples | ~206,000 individuals |
+| SNVs | 781 million |
+| Indels | 62 million |
+
+### Version Contents
+
+| Component | Size | Records | Description |
+|-----------|------|---------|-------------|
+| Bravo API | N/A | 781M | Variant frequencies (public) |
+| TOPMed VCFs | ~50 TB | 843M | Individual genotypes (dbGaP) |
+| Imputation panel | ~100 GB | - | Reference panel (server) |
+
+### Freeze History
+
+| Version | Release | Samples | Status |
+|---------|---------|---------|--------|
+| Freeze 10b | 2024 | 206K | Current |
+| Freeze 9b | 2023 | 180K | Available |
+| Freeze 8 | 2021 | 150K | Available |
+| Freeze 5b | 2018 | 62K | Archived |
+
+### Ancestry Breakdown (Bravo)
+
+| Ancestry | Proportion |
+|----------|------------|
+| European | 52% |
+| African American | 25% |
+| Hispanic/Latino | 12% |
+| Asian | 8% |
+| Other | 3% |
+
+---
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | https://bravo.sph.umich.edu/freeze8/hg38/api/v1/ |
+| Rate Limit | 10 req/sec |
+| Auth Required | No (public frequencies) |
+| Response Format | JSON |
+
+---
+
 ## Update Schedule
 
 | Release | Frequency |
 |---------|-----------|
 | Freeze versions | Every 1-2 years |
 | Bravo updates | With each freeze |
-| Current | Freeze 8 (2021) |
+| Current | Freeze 10b (2024) |
 
 ## Integration Notes
 

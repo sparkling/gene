@@ -1,0 +1,104 @@
+[
+  {
+    "ingredient_id": "HIT001234",
+    "ingredient_name": "Curcumin",
+    "pubchem_cid": 969516,
+    "cas_number": "458-37-7",
+    "smiles": "COC1=CC(=CC(=C1O)OC)C=CC(=O)CC(=O)C=CC2=CC(=C(C=C2)O)OC",
+    "inchi_key": "VFLDPWHFBUODDF-FCXRPNKRSA-N",
+    "source_herbs": [
+      {
+        "herb_name": "Turmeric",
+        "scientific_name": "Curcuma longa",
+        "traditional_system": "Ayurveda"
+      },
+      {
+        "herb_name": "Jianghuang",
+        "scientific_name": "Curcuma longa",
+        "traditional_system": "TCM"
+      }
+    ],
+    "target_id": "P35354",
+    "gene_symbol": "PTGS2",
+    "target_name": "Prostaglandin G/H synthase 2",
+    "interaction_id": "HIT_INT_001234",
+    "evidence": {
+      "evidence_type": "enzyme_inhibition",
+      "assay_type": "Fluorescence assay",
+      "pubmed_id": 12345678,
+      "citation": "Zhang et al. 2020, J Nat Prod"
+    },
+    "binding_affinity": {
+      "affinity_type": "IC50",
+      "affinity_value": 2.5,
+      "affinity_unit": "uM",
+      "activity_type": "inhibitor"
+    },
+    "traditional_system_coverage": ["TCM", "Ayurveda"],
+    "cross_references": [
+      {"database": "BATMAN-TCM", "id": "BTM-001234"},
+      {"database": "IMPPAT", "id": "IMPPAT_CHEM_00123"}
+    ]
+  },
+  {
+    "ingredient_id": "HIT002345",
+    "ingredient_name": "Berberine",
+    "pubchem_cid": 2353,
+    "cas_number": "2086-83-1",
+    "source_herbs": [
+      {
+        "herb_name": "Huanglian",
+        "scientific_name": "Coptis chinensis",
+        "traditional_system": "TCM"
+      }
+    ],
+    "target_id": "P28482",
+    "gene_symbol": "MAPK1",
+    "target_name": "Mitogen-activated protein kinase 1",
+    "interaction_id": "HIT_INT_002345",
+    "evidence": {
+      "evidence_type": "binding_assay",
+      "assay_type": "Surface plasmon resonance",
+      "pubmed_id": 23456789
+    },
+    "binding_affinity": {
+      "affinity_type": "Kd",
+      "affinity_value": 150,
+      "affinity_unit": "nM",
+      "activity_type": "binder"
+    },
+    "traditional_system_coverage": ["TCM"]
+  },
+  {
+    "ingredient_id": "HIT003456",
+    "ingredient_name": "Ginsenoside Rg1",
+    "pubchem_cid": 441923,
+    "source_herbs": [
+      {
+        "herb_name": "Renshen",
+        "scientific_name": "Panax ginseng",
+        "traditional_system": "TCM"
+      },
+      {
+        "herb_name": "Ginseng",
+        "scientific_name": "Panax ginseng",
+        "traditional_system": "Kampo"
+      }
+    ],
+    "target_id": "P04637",
+    "gene_symbol": "TP53",
+    "target_name": "Cellular tumor antigen p53",
+    "evidence": {
+      "evidence_type": "cell_based",
+      "assay_type": "Western blot",
+      "pubmed_id": 34567890
+    },
+    "binding_affinity": {
+      "affinity_type": "EC50",
+      "affinity_value": 10,
+      "affinity_unit": "uM",
+      "activity_type": "modulator"
+    },
+    "traditional_system_coverage": ["TCM", "Kampo"]
+  }
+]

@@ -1,19 +1,21 @@
 ---
 id: orange.book
 title: "FDA Orange Book - Approved Drug Products"
-type: data-source
-category: compounds
-subcategory: pharmaceuticals
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 2
-last_updated: 2026-01-23
 status: active
-tags: [fda, approved-drugs, therapeutic-equivalence, patents, exclusivity]
+category: compounds.molecules
+subcategory: pharmaceuticals
+tags:
+  - fda
+  - approved-drugs
+  - therapeutic-equivalence
+  - patents
+  - exclusivity
 ---
 
 # FDA Orange Book - Approved Drug Products
-
-**Category:** [Compounds & Molecules](../../_index.md) > [Pharmaceuticals](../_index.md)
 
 ## Overview
 
@@ -69,13 +71,18 @@ The database is updated monthly and available in electronic format through the F
 | BN | Extended release, not equivalent |
 | BX | Insufficient data |
 
-## License
+## Limitations
 
-| Aspect | Value |
-|--------|-------|
-| License | Public Domain (US Government) |
-| Commercial Use | Yes |
-| Attribution Required | No |
+- US market only; does not include drugs approved in other countries
+- Patent listings may not be current between monthly updates
+- Discontinued products may remain listed
+- TE codes do not guarantee interchangeability for all patients
+
+## See Also
+
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [License Terms](./license.md) - Usage rights and restrictions
 
 ## Related Resources
 

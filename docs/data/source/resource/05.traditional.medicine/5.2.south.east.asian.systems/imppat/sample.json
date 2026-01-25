@@ -1,0 +1,85 @@
+[
+  {
+    "plant_id": "IMPPAT_PLANT_03985",
+    "scientific_name": "Withania somnifera",
+    "family": "Solanaceae",
+    "vernacular_names": {
+      "hindi": "Ashwagandha",
+      "tamil": "Amukkira",
+      "telugu": "Penneru",
+      "kannada": "Ashwagandhi"
+    },
+    "traditional_system": ["Ayurveda", "Unani"],
+    "therapeutic_use": ["adaptogen", "anti-inflammatory", "neuroprotective"],
+    "compound_id": "IMPPAT_CHEM_15234",
+    "compound_name": "Withanolide A",
+    "pubchem_cid": 11294368,
+    "smiles": "CC(C)C(=O)OC1C(C)(C)C2CCC3C(CCC4C3CC(O)C35OC(CC(O)C35)C6=CC(=O)OC6)C2(C)CC1O",
+    "inchi_key": "SHCQVKJGUSYZHG-UHFFFAOYSA-N",
+    "molecular_formula": "C28H38O6",
+    "molecular_weight": 470.6,
+    "plant_part": ["root", "leaf"],
+    "lipinski_rule_of_five": {
+      "passes": true,
+      "violations": 0
+    },
+    "qed_score": 0.52,
+    "admet_absorption": {
+      "gi_absorption": "High",
+      "pgp_substrate": "No",
+      "water_solubility": "Moderate"
+    },
+    "gene_symbol": "NR3C1",
+    "stitch_score": 850
+  },
+  {
+    "plant_id": "IMPPAT_PLANT_02145",
+    "scientific_name": "Curcuma longa",
+    "family": "Zingiberaceae",
+    "vernacular_names": {
+      "hindi": "Haldi",
+      "tamil": "Manjal"
+    },
+    "traditional_system": ["Ayurveda", "Siddha"],
+    "therapeutic_use": ["anti-inflammatory", "antioxidant", "hepatoprotective"],
+    "compound_id": "IMPPAT_CHEM_00123",
+    "compound_name": "Curcumin",
+    "pubchem_cid": 969516,
+    "smiles": "COC1=CC(=CC(=C1O)OC)C=CC(=O)CC(=O)C=CC2=CC(=C(C=C2)O)OC",
+    "inchi_key": "VFLDPWHFBUODDF-FCXRPNKRSA-N",
+    "molecular_formula": "C21H20O6",
+    "molecular_weight": 368.38,
+    "plant_part": ["rhizome"],
+    "lipinski_rule_of_five": {
+      "passes": true,
+      "violations": 0
+    },
+    "qed_score": 0.49,
+    "admet_absorption": {
+      "gi_absorption": "Low",
+      "pgp_substrate": "Yes"
+    },
+    "gene_symbol": "PTGS2",
+    "stitch_score": 920
+  },
+  {
+    "plant_id": "IMPPAT_PLANT_01567",
+    "scientific_name": "Ocimum sanctum",
+    "family": "Lamiaceae",
+    "vernacular_names": {
+      "hindi": "Tulsi",
+      "tamil": "Thulasi"
+    },
+    "traditional_system": ["Ayurveda"],
+    "therapeutic_use": ["immunomodulatory", "anti-stress", "respiratory"],
+    "compound_id": "IMPPAT_CHEM_08765",
+    "compound_name": "Eugenol",
+    "pubchem_cid": 3314,
+    "molecular_formula": "C10H12O2",
+    "molecular_weight": 164.2,
+    "plant_part": ["leaf", "seed"],
+    "qed_score": 0.67,
+    "gene_symbol": "TRPV1",
+    "stitch_score": 780
+  }
+]

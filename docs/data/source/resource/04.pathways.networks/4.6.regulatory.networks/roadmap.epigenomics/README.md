@@ -1,14 +1,18 @@
 ---
 id: roadmap-epigenomics
 title: "Roadmap Epigenomics Project"
-type: data-source
-category: pathways
-subcategory: regulatory-networks
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 1
-last_updated: 2026-01-23
 status: active
-tags: [epigenomics, chromatin, histone-modifications, dna-methylation, regulatory]
+category: pathways.networks
+subcategory: regulatory.networks
+tags:
+  - epigenomics
+  - chromatin
+  - histone-modifications
+  - dna-methylation
+  - regulatory
 ---
 
 # Roadmap Epigenomics Project
@@ -199,6 +203,13 @@ wget https://egg2.wustl.edu/roadmap/data/byDataType/dnamethylation/WGBS/Fraction
 | LOLA | Region overlap analysis |
 | deepTools | Signal processing |
 | bedtools | Interval operations |
+
+## Limitations
+
+- Data from bulk tissue samples, not single cells
+- Chromatin state calls are model predictions, not ground truth
+- Very large file sizes require substantial storage
+- Some protected data requires dbGaP access approval
 
 ## Citation
 

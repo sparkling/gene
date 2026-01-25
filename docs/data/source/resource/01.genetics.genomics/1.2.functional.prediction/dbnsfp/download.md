@@ -80,6 +80,56 @@ zcat dbNSFP5.3_variant.chr1.gz | head -1 | tr '\t' '\n' | wc -l
 # Expected: 600+ columns
 ```
 
+## Dataset Versions
+
+### Current Release: v5.3
+
+| Property | Value |
+|----------|-------|
+| Version | 5.3.1a |
+| Release Date | 2025-10 |
+| Total Size | ~40 GB (zipped) |
+| nsSNVs | 83M non-synonymous |
+| ssSNVs | 2.4M splice-site |
+
+### Version Contents
+
+| Component | Size | Records | Description |
+|-----------|------|---------|-------------|
+| dbNSFP5.3.1a.zip | ~40 GB | 85M | Full database |
+| dbNSFP5.3_gene.complete.gz | ~100 MB | 19K | Gene-level annotations |
+| dbNSFP5.3_variant.chr*.gz | varies | per chr | Per-chromosome files |
+
+### Prediction Algorithms (36 total)
+
+| Category | Algorithms |
+|----------|------------|
+| Conservation | SIFT, SIFT4G, PROVEAN, phyloP, phastCons |
+| Functional | PolyPhen2, MutationTaster, FATHMM-XF |
+| Ensemble | CADD, REVEL, MetaLR, MetaRNN, MetaSVM |
+| Deep Learning | ESM1b, AlphaMissense, MutFormer |
+
+### Previous Versions
+
+| Version | Release | Size | Status |
+|---------|---------|------|--------|
+| v5.2 | 2025-06 | ~38 GB | Archived |
+| v5.1 | 2025-02 | ~36 GB | Archived |
+| v5.0 | 2024-08 | ~35 GB | Archived |
+
+---
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | https://dbnsfp.s3.amazonaws.com/ |
+| Rate Limit | N/A (bulk download) |
+| Auth Required | No |
+| Response Format | TSV (zipped) |
+
+---
+
 ## Update Schedule
 
 | Release | Frequency |

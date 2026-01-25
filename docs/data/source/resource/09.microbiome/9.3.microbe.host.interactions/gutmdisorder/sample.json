@@ -1,0 +1,86 @@
+[
+  {
+    "association_id": 12345,
+    "microbe": {
+      "taxid": 816,
+      "name": "Bacteroides vulgatus",
+      "rank": "species",
+      "phylum": "Bacteroidetes",
+      "gram_stain": "negative"
+    },
+    "disease": {
+      "name": "Type 2 Diabetes",
+      "icd10": "E11",
+      "mesh_id": "D003924",
+      "category": "Metabolic disorders"
+    },
+    "association": {
+      "direction": "decreased",
+      "sample_size": 200,
+      "cases": 100,
+      "controls": 100,
+      "effect_size": 0.45,
+      "p_value": 0.001
+    },
+    "evidence": {
+      "pmid": 28123456,
+      "study_design": "case-control",
+      "method": "16S"
+    }
+  },
+  {
+    "association_id": 12346,
+    "microbe": {
+      "taxid": 853,
+      "name": "Faecalibacterium prausnitzii",
+      "rank": "species",
+      "phylum": "Firmicutes",
+      "gram_stain": "positive"
+    },
+    "disease": {
+      "name": "Crohn's Disease",
+      "icd10": "K50",
+      "mesh_id": "D003424",
+      "category": "Gastrointestinal"
+    },
+    "association": {
+      "direction": "decreased",
+      "sample_size": 150,
+      "cases": 75,
+      "controls": 75,
+      "p_value": 0.0001
+    },
+    "evidence": {
+      "pmid": 29234567,
+      "study_design": "cohort",
+      "method": "WGS"
+    }
+  },
+  {
+    "association_id": 12347,
+    "microbe": {
+      "taxid": 562,
+      "name": "Escherichia coli",
+      "rank": "species",
+      "phylum": "Proteobacteria",
+      "gram_stain": "negative"
+    },
+    "disease": {
+      "name": "Colorectal Cancer",
+      "icd10": "C18",
+      "mesh_id": "D015179",
+      "category": "Cancer"
+    },
+    "association": {
+      "direction": "increased",
+      "sample_size": 300,
+      "effect_size": 0.62,
+      "p_value": 0.005
+    },
+    "evidence": {
+      "pmid": 30345678,
+      "study_design": "meta-analysis",
+      "method": "16S"
+    }
+  }
+]

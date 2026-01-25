@@ -1,0 +1,138 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "symmap-schema.json",
+  "title": "SymMap 2.0 Record",
+  "description": "JSON Schema for SymMap 2.0 data. Bridges TCM symptoms to modern phenotypes via Human Phenotype Ontology (HPO) mappings.",
+  "type": "object",
+  "properties": {
+    "symptom_id": {
+      "type": "string",
+      "description": "SymMap symptom identifier.",
+      "pattern": "^SMSY[0-9]+$",
+      "examples": ["SMSY00001"]
+    },
+    "symptom_name_chinese": {
+      "type": "string",
+      "description": "Chinese symptom name."
+    },
+    "symptom_name_english": {
+      "type": "string",
+      "description": "English symptom name."
+    },
+    "symptom_category": {
+      "type": "string",
+      "description": "TCM symptom classification."
+    },
+    "tcm_pattern": {
+      "type": "string",
+      "description": "TCM Zheng pattern."
+    },
+    "hpo_mappings": {
+      "type": "array",
+      "description": "Mappings to Human Phenotype Ontology.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "hpo_id": {
+            "type": "string",
+            "pattern": "^HP:[0-9]{7}$"
+          },
+          "hpo_term": { "type": "string" },
+          "mapping_confidence": { "type": "number" }
+        }
+      }
+    },
+    "associated_herbs": {
+      "type": "array",
+      "description": "Associated herb identifiers.",
+      "items": { "type": "string" }
+    },
+    "associated_genes": {
+      "type": "array",
+      "description": "Associated gene symbols.",
+      "items": { "type": "string" }
+    },
+    "associated_diseases": {
+      "type": "array",
+      "description": "Associated disease identifiers.",
+      "items": { "type": "string" }
+    },
+    "herb": {
+      "type": "object",
+      "description": "Herb entity structure.",
+      "properties": {
+        "herb_id": {
+          "type": "string",
+          "pattern": "^SMHB[0-9]+$"
+        },
+        "herb_name_chinese": { "type": "string" },
+        "herb_name_pinyin": { "type": "string" },
+        "herb_name_english": { "type": "string" },
+        "herb_name_latin": { "type": "string" },
+        "tcm_properties": {
+          "type": "object",
+          "properties": {
+            "nature": { "type": "string" },
+            "flavor": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "meridian_tropism": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          }
+        },
+        "compound_count": { "type": "integer" }
+      }
+    },
+    "compound": {
+      "type": "object",
+      "description": "Compound entity structure.",
+      "properties": {
+        "compound_id": {
+          "type": "string",
+          "pattern": "^SMCP[0-9]+$"
+        },
+        "pubchem_cid": { "type": "integer" },
+        "compound_name": { "type": "string" },
+        "smiles": { "type": "string" },
+        "molecular_weight": { "type": "number" },
+        "source_herbs": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "target_genes": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "target": {
+      "type": "object",
+      "description": "Target gene entity structure.",
+      "properties": {
+        "gene_symbol": { "type": "string" },
+        "gene_name": { "type": "string" },
+        "entrez_gene_id": { "type": "integer" },
+        "uniprot_id": { "type": "string" }
+      }
+    },
+    "disease": {
+      "type": "object",
+      "description": "Disease entity structure.",
+      "properties": {
+        "disease_id": { "type": "string" },
+        "disease_name": { "type": "string" },
+        "mesh_id": { "type": "string" },
+        "omim_id": { "type": "integer" },
+        "hpo_phenotypes": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    }
+  },
+  "required": ["symptom_id"],
+  "additionalProperties": true
+}

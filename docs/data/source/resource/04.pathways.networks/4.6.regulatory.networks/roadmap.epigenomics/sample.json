@@ -1,0 +1,66 @@
+[
+  {
+    "epigenome_id": "E003",
+    "name": "H1 Cells",
+    "type": "ESC",
+    "group": "ES/iPS",
+    "anatomy": "Embryonic Stem Cell",
+    "available_assays": ["H3K4me1", "H3K4me3", "H3K27ac", "H3K27me3", "H3K36me3", "H3K9me3", "WGBS", "RNA-seq"],
+    "chromatin_states_url": "https://egg2.wustl.edu/roadmap/data/byFileType/chromhmmSegmentations/ChmmModels/coreMarks/jointModel/final/E003_15_coreMarks_mnemonics.bed.gz",
+    "metadata": {
+      "sex": "male",
+      "donor_age": "embryonic",
+      "biosample_id": "SAMN02632555",
+      "release": "Release 9"
+    }
+  },
+  {
+    "epigenome_id": "E116",
+    "name": "GM12878",
+    "type": "Primary Cell",
+    "group": "Blood",
+    "anatomy": "Blood & T-cell",
+    "available_assays": ["H3K4me1", "H3K4me3", "H3K27ac", "H3K27me3", "H3K36me3", "WGBS"],
+    "chromatin_states_url": "https://egg2.wustl.edu/roadmap/data/byFileType/chromhmmSegmentations/ChmmModels/coreMarks/jointModel/final/E116_15_coreMarks_mnemonics.bed.gz",
+    "metadata": {
+      "sex": "female",
+      "donor_age": "adult",
+      "biosample_id": "SAMN02632678",
+      "release": "Release 9"
+    }
+  },
+  {
+    "region": {
+      "chrom": "chr17",
+      "start": 7565097,
+      "end": 7590868,
+      "gene": "TP53"
+    },
+    "epigenome_id": "E003",
+    "chromatin_state": "1_TssA",
+    "state_name": "Active TSS",
+    "state_color": "#FF0000",
+    "marks_present": ["H3K4me3", "H3K27ac"],
+    "metadata": {
+      "model": "15-state ChromHMM",
+      "description": "Active transcription start site"
+    }
+  },
+  {
+    "region": {
+      "chrom": "chr7",
+      "start": 55086714,
+      "end": 55279322,
+      "gene": "EGFR"
+    },
+    "epigenome_id": "E116",
+    "chromatin_state": "7_Enh",
+    "state_name": "Enhancers",
+    "state_color": "#FFFF00",
+    "marks_present": ["H3K4me1", "H3K27ac"],
+    "metadata": {
+      "model": "15-state ChromHMM",
+      "description": "Active enhancer region"
+    }
+  }
+]

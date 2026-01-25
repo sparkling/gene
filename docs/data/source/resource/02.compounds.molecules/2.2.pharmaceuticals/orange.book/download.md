@@ -191,6 +191,31 @@ head -1 products.txt | tr '~' '\n' | wc -l
 awk -F'~' 'NF!=13 {print NR": "NF" fields"}' products.txt | head
 ```
 
+## Dataset Versions
+
+| Version | Release Date | Size | Status |
+|---------|--------------|------|--------|
+| 45th Edition | 2025-02 | ~50 MB | Current |
+| Dec 2025 Supplement | 2025-12 | ~15 MB | Current cumulative |
+| Previous editions | Annual | Varies | Archived |
+
+### Version Notes
+
+Orange Book 45th Edition (2025) contains:
+- 85 dosage forms and 47 routes of administration
+- Approved drug products with therapeutic equivalence evaluations
+- Reference Standard list updated monthly
+- Data files updated with monthly cumulative supplements
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | `https://api.fda.gov/drug/drugsfda.json` |
+| Rate Limit | 1000 req/day (no key), higher with key |
+| Auth Required | No (optional API key for higher limits) |
+| Documentation | https://open.fda.gov/apis/drug/drugsfda |
+
 ## Update Schedule
 
 | Release | Frequency |

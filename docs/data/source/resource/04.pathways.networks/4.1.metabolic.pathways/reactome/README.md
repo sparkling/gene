@@ -1,14 +1,19 @@
 ---
 id: reactome
 title: "Reactome Pathway Database"
-type: data-source
-category: pathways
-subcategory: metabolic-pathways
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 1
-last_updated: 2026-01-23
 status: active
-tags: [pathways, metabolic, reactome, neo4j, biopax, open-access]
+category: pathways.networks
+subcategory: metabolic.pathways
+tags:
+  - pathways
+  - metabolic
+  - reactome
+  - neo4j
+  - biopax
+  - open-access
 ---
 
 # Reactome Pathway Database
@@ -120,6 +125,13 @@ curl -X POST "https://reactome.org/AnalysisService/identifiers/" \
 | Ensembl | Gene identifiers |
 | KEGG | Pathway mappings |
 | PubMed | Literature citations |
+
+## Limitations
+
+- Human-focused with computationally inferred pathways for other species
+- Graph database queries require Cypher knowledge
+- Large pathway downloads may be slow
+- Complex nested structure can be challenging to parse
 
 ## Neo4j Query Examples
 

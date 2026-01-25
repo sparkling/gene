@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "gutmgene-schema.json",
+  "title": "gutMGene Microbe-Gene Association Record",
+  "description": "JSON Schema for gutMGene microbe-host gene expression associations.",
+  "type": "object",
+  "properties": {
+    "association_id": { "type": "integer", "description": "Unique association identifier" },
+    "microbe": {
+      "type": "object",
+      "properties": {
+        "taxid": { "type": "integer", "description": "NCBI Taxonomy ID" },
+        "name": { "type": "string", "description": "Scientific species name" },
+        "phylum": { "type": "string", "description": "Taxonomic phylum" },
+        "gram_stain": { "type": "string", "enum": ["positive", "negative", "variable"] },
+        "oxygen_req": { "type": "string", "enum": ["aerobic", "anaerobic", "facultative"] }
+      },
+      "required": ["taxid", "name"]
+    },
+    "gene": {
+      "type": "object",
+      "properties": {
+        "gene_id": { "type": "integer", "description": "NCBI Entrez Gene ID" },
+        "symbol": { "type": "string", "description": "Official gene symbol" },
+        "name": { "type": "string", "description": "Full gene name" },
+        "species": { "type": "string", "description": "Host species (Homo sapiens, Mus musculus)" }
+      },
+      "required": ["gene_id", "symbol"]
+    },
+    "effect": {
+      "type": "object",
+      "properties": {
+        "direction": { "type": "string", "enum": ["up", "down", "altered"] },
+        "fold_change": { "type": "number", "description": "Expression fold change" },
+        "tissue": { "type": "string", "description": "Tissue/organ affected" },
+        "condition": { "type": "string", "description": "Experimental condition" }
+      },
+      "required": ["direction"]
+    },
+    "evidence": {
+      "type": "object",
+      "properties": {
+        "pmid": { "type": "integer", "description": "PubMed ID" },
+        "experiment_type": { "type": "string", "description": "GF colonization, antibiotics, etc." },
+        "method": { "type": "string", "enum": ["RNA-seq", "microarray", "qPCR", "other"] },
+        "model": { "type": "string", "description": "Germ-free mice, cell line, etc." },
+        "p_value": { "type": "number", "minimum": 0, "maximum": 1 }
+      },
+      "required": ["pmid"]
+    }
+  },
+  "required": ["association_id", "microbe", "gene", "effect", "evidence"],
+  "additionalProperties": true
+}

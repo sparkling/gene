@@ -1,0 +1,48 @@
+{
+  "source": "MeSH",
+  "version": "2024",
+  "description": "Sample medical subject heading records from MeSH",
+  "records": [
+    {
+      "mesh_id": "D003920",
+      "descriptor_name": "Diabetes Mellitus",
+      "tree_numbers": ["C18.452.394.750", "C19.246"],
+      "definition": "A heterogeneous group of disorders characterized by HYPERGLYCEMIA and GLUCOSE INTOLERANCE.",
+      "synonyms": ["Diabetes", "Mellitus, Diabetes"],
+      "semantic_types": ["Disease or Syndrome"],
+      "narrower_concepts": [
+        {"mesh_id": "D003922", "name": "Diabetes Mellitus, Type 1"},
+        {"mesh_id": "D003924", "name": "Diabetes Mellitus, Type 2"}
+      ],
+      "related_concepts": [
+        {"mesh_id": "D006943", "name": "Hyperglycemia"},
+        {"mesh_id": "D007328", "name": "Insulin"}
+      ]
+    },
+    {
+      "mesh_id": "D009369",
+      "descriptor_name": "Neoplasms",
+      "tree_numbers": ["C04"],
+      "definition": "New abnormal growth of tissue.",
+      "synonyms": ["Cancer", "Tumor", "Tumors", "Neoplasm"],
+      "semantic_types": ["Neoplastic Process"],
+      "narrower_concepts": [
+        {"mesh_id": "D002277", "name": "Carcinoma"},
+        {"mesh_id": "D001943", "name": "Breast Neoplasms"}
+      ]
+    },
+    {
+      "mesh_id": "D006973",
+      "descriptor_name": "Hypertension",
+      "tree_numbers": ["C14.907.489"],
+      "definition": "Persistently high systemic arterial BLOOD PRESSURE.",
+      "synonyms": ["High Blood Pressure", "Blood Pressure, High"],
+      "semantic_types": ["Disease or Syndrome"]
+    }
+  ],
+  "queries": {
+    "rest_search": "curl 'https://id.nlm.nih.gov/mesh/lookup/descriptor?label=diabetes&match=contains&limit=10' | jq",
+    "sparql": "curl -G 'https://id.nlm.nih.gov/mesh/sparql' --data-urlencode 'query=PREFIX mesh: <http://id.nlm.nih.gov/mesh/> SELECT ?d ?name WHERE { ?d a mesh:Descriptor ; mesh:prefLabel ?name } LIMIT 10'",
+    "download": "wget ftp://nlmpubs.nlm.nih.gov/online/mesh/MESH_FILES/xmlmesh/desc2024.xml"
+  }
+}

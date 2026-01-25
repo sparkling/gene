@@ -176,6 +176,61 @@ curl -s "https://www.encodeproject.org/files/ENCFF123ABC/?format=json" | \
 md5sum ENCFF123ABC.bam
 ```
 
+## Dataset Versions
+
+### Current Release
+
+| Property | Value |
+|----------|-------|
+| Version | ENCODE 4 (continuous) |
+| Release Date | Ongoing (2024-2026) |
+| Total Size | ~100+ PB (all experiments) |
+| Datasets | 106,000+ released |
+| Experiments | 23,000+ functional genomics |
+| Annotations | 60,000+ computational |
+
+### Version Contents
+
+| Category | Count | Description |
+|----------|-------|-------------|
+| Functional genomics | 23,000+ | ChIP-seq, ATAC-seq, RNA-seq |
+| Functional characterization | 800+ | Transgenic enhancers |
+| Single-cell | 1,000+ | scRNA-seq, scATAC-seq |
+| Integrative analyses | 60,000+ | Computational products |
+
+### Experiment Types
+
+| Assay | Experiments | Typical Size |
+|-------|-------------|--------------|
+| ChIP-seq | 5,000+ | 1-50 GB/exp |
+| RNA-seq | 4,000+ | 5-100 GB/exp |
+| ATAC-seq | 2,000+ | 2-30 GB/exp |
+| Hi-C | 500+ | 50-500 GB/exp |
+| WGBS | 300+ | 50-200 GB/exp |
+| DNase-seq | 1,000+ | 2-20 GB/exp |
+
+### ENCODE Project Phases
+
+| Phase | Years | Focus |
+|-------|-------|-------|
+| ENCODE 1 | 2003-2007 | Pilot phase |
+| ENCODE 2 | 2007-2012 | Scaling up |
+| ENCODE 3 | 2012-2017 | Comprehensive catalog |
+| ENCODE 4 | 2017-present | Functional elements, disease |
+
+---
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | https://www.encodeproject.org/search/ |
+| Rate Limit | 10 req/sec |
+| Auth Required | No |
+| Response Format | JSON |
+
+---
+
 ## Update Schedule
 
 | Release | Frequency |

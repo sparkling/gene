@@ -120,6 +120,29 @@ head -1 dukes_phytochem.csv | tr ',' '\n' | wc -l
 awk -F',' '{print $1}' dukes_phytochem.csv | sort | uniq -c
 ```
 
+## Dataset Versions
+
+| Version | Release Date | Size | Status |
+|---------|--------------|------|--------|
+| v1.9.12.6-Beta | 2017-10-18 | ~50 MB | Current |
+| Legacy | 1992-2016 | Varies | Archived |
+
+### Version Notes
+
+Dr. Duke's Database is an archived static resource covering data from 1992-2016:
+- Based on Dr. James Duke's compilations from his USDA work
+- Released under CC0 public domain license
+- No new updates expected (historical archive)
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | `https://phytochem.nal.usda.gov` |
+| Rate Limit | N/A (web interface) |
+| Auth Required | No |
+| Documentation | https://phytochem.nal.usda.gov |
+
 ## Update Schedule
 
 | Release | Frequency |

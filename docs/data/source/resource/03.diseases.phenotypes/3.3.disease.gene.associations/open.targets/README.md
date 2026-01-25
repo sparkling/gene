@@ -1,19 +1,21 @@
 ---
 id: open.targets
 title: "Open Targets Platform"
-type: data-source
-category: diseases
-subcategory: disease.gene.associations
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 1
-last_updated: 2026-01-23
 status: active
-tags: [drug-targets, evidence, associations, graphql, target-validation]
+category: diseases.phenotypes
+subcategory: disease.gene.associations
+tags:
+  - drug-targets
+  - evidence
+  - associations
+  - graphql
+  - target-validation
 ---
 
 # Open Targets Platform
-
-**Category:** [Diseases & Phenotypes](../../_index.md) > [Disease Gene Associations](../_index.md)
 
 ## Overview
 
@@ -79,16 +81,16 @@ Each target-disease association includes detailed evidence breakdown by data typ
 | Animal Models | IMPC, MGI |
 | Text Mining | Europe PMC |
 
-## License
+## Limitations
 
-| Aspect | Value |
-|--------|-------|
-| License | CC BY 4.0 |
-| Commercial Use | Yes |
-| Attribution | Required |
+- Evidence scores are aggregate; individual source quality varies
+- Tractability assessments are predictions, not experimental validation
+- Quarterly releases mean some data lags source databases
+- EFO disease ontology may not map to all clinical terminologies
 
 ## See Also
 
-- [Schema Documentation](./schema.md)
-- [DisGeNET](../disgenet/_index.md) - Complementary gene-disease resource
-- [ChEMBL](../../../04.drugs.compounds/4.1.drug.databases/chembl/_index.md) - Drug bioactivity data
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [License Terms](./license.md) - Usage rights and restrictions
+- [DisGeNET](../disgenet/README.md) - Complementary gene-disease resource

@@ -1,0 +1,61 @@
+{
+  "source": "DailyMed",
+  "version": "2024",
+  "description": "Sample drug labeling records from DailyMed",
+  "records": [
+    {
+      "set_id": "0023b8ed-8d6c-4b5c-5e56-e0dc0e2f8c5a",
+      "name": "ASPIRIN",
+      "ndc_codes": ["0904-6703-59", "0904-6703-24"],
+      "labeler": "Major Pharmaceuticals",
+      "product_type": "HUMAN OTC DRUG",
+      "dosage_form": "TABLET, COATED",
+      "route": "ORAL",
+      "active_ingredients": [
+        {
+          "name": "ASPIRIN",
+          "strength": "325 mg"
+        }
+      ],
+      "indications_and_usage": "For temporary relief of headache, pain, and fever",
+      "warnings": "Reye syndrome warning for children and teenagers"
+    },
+    {
+      "set_id": "4a2f5c89-1234-4b67-89ab-cdef01234567",
+      "name": "ATORVASTATIN CALCIUM",
+      "ndc_codes": ["0093-5058-01"],
+      "labeler": "Teva Pharmaceuticals USA",
+      "product_type": "HUMAN PRESCRIPTION DRUG",
+      "dosage_form": "TABLET, FILM COATED",
+      "route": "ORAL",
+      "active_ingredients": [
+        {
+          "name": "ATORVASTATIN CALCIUM",
+          "strength": "10 mg"
+        }
+      ],
+      "indications_and_usage": "Adjunct to diet for hyperlipidemia; prevention of cardiovascular disease"
+    },
+    {
+      "set_id": "5b3e7a98-2345-5c78-90bc-def012345678",
+      "name": "METFORMIN HYDROCHLORIDE",
+      "ndc_codes": ["0378-0234-01"],
+      "labeler": "Mylan Pharmaceuticals",
+      "product_type": "HUMAN PRESCRIPTION DRUG",
+      "dosage_form": "TABLET",
+      "route": "ORAL",
+      "active_ingredients": [
+        {
+          "name": "METFORMIN HYDROCHLORIDE",
+          "strength": "500 mg"
+        }
+      ],
+      "indications_and_usage": "For the treatment of type 2 diabetes mellitus"
+    }
+  ],
+  "queries": {
+    "rest": "curl 'https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=aspirin' | jq",
+    "spl_download": "curl 'https://dailymed.nlm.nih.gov/dailymed/downloadFile.cfm?setId=0023b8ed-8d6c-4b5c-5e56-e0dc0e2f8c5a&type=zip'",
+    "download_all": "wget https://dailymed.nlm.nih.gov/dailymed/spl-resources-all-drug-labels.zip"
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "source": "MONDO",
+  "version": "2024-01",
+  "description": "Sample disease ontology records from MONDO",
+  "records": [
+    {
+      "mondo_id": "MONDO:0005015",
+      "label": "diabetes mellitus",
+      "definition": "A metabolic disease characterized by abnormally high levels of glucose in the blood.",
+      "synonyms": ["diabetes", "DM"],
+      "parents": ["MONDO:0005151"],
+      "xrefs": [
+        {"source": "OMIM", "id": "OMIM:125853"},
+        {"source": "DOID", "id": "DOID:9351"},
+        {"source": "MeSH", "id": "MESH:D003920"},
+        {"source": "ICD10CM", "id": "E10-E14"}
+      ],
+      "subsets": ["mondo_core"]
+    },
+    {
+      "mondo_id": "MONDO:0007947",
+      "label": "Marfan syndrome",
+      "definition": "An autosomal dominant connective tissue disorder affecting the skeletal, ocular, and cardiovascular systems.",
+      "synonyms": ["MFS"],
+      "parents": ["MONDO:0019950"],
+      "xrefs": [
+        {"source": "OMIM", "id": "OMIM:154700"},
+        {"source": "Orphanet", "id": "Orphanet:558"},
+        {"source": "DOID", "id": "DOID:14323"}
+      ],
+      "subsets": ["mondo_rare"],
+      "gene_associations": ["FBN1"]
+    },
+    {
+      "mondo_id": "MONDO:0007254",
+      "label": "breast cancer",
+      "definition": "A malignant neoplasm of the breast.",
+      "parents": ["MONDO:0004989"],
+      "xrefs": [
+        {"source": "OMIM", "id": "OMIM:114480"},
+        {"source": "NCIt", "id": "NCIT:C4872"},
+        {"source": "DOID", "id": "DOID:1612"}
+      ],
+      "subsets": ["mondo_core"]
+    }
+  ],
+  "queries": {
+    "obo_download": "wget http://purl.obolibrary.org/obo/mondo.obo",
+    "owl_download": "wget http://purl.obolibrary.org/obo/mondo.owl",
+    "ols_search": "curl 'https://www.ebi.ac.uk/ols/api/search?q=diabetes&ontology=mondo' | jq"
+  }
+}

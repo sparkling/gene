@@ -1,0 +1,181 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "dpwg-schema.json",
+  "title": "DPWG Guideline Record",
+  "description": "JSON Schema for Dutch Pharmacogenetics Working Group (DPWG) clinical pharmacogenetic guidelines.",
+  "type": "object",
+  "properties": {
+    "guideline_id": {
+      "type": "string",
+      "description": "Unique guideline identifier.",
+      "pattern": "^DPWG-[A-Z0-9]+-[A-Z0-9]+$",
+      "examples": ["DPWG-CYP2D6-codeine", "DPWG-TPMT-azathioprine"]
+    },
+    "gene": {
+      "type": "string",
+      "description": "Pharmacogene symbol.",
+      "examples": ["CYP2D6", "TPMT", "VKORC1", "CYP2C19"]
+    },
+    "drug": {
+      "type": "string",
+      "description": "Drug name (generic).",
+      "examples": ["codeine", "azathioprine", "warfarin", "clopidogrel"]
+    },
+    "drug_atc": {
+      "type": "string",
+      "description": "ATC code for the drug.",
+      "pattern": "^[A-Z][0-9]{2}[A-Z]{2}[0-9]{2}$",
+      "examples": ["N02AA59", "L04AX01", "B01AA03"]
+    },
+    "recommendation_class": {
+      "type": "string",
+      "description": "Recommendation urgency classification.",
+      "enum": ["Urgent", "Non-urgent", "Not recommended"]
+    },
+    "phenotype": {
+      "type": "string",
+      "description": "Metabolizer phenotype.",
+      "enum": [
+        "Poor Metabolizer",
+        "Intermediate Metabolizer",
+        "Normal Metabolizer",
+        "Rapid Metabolizer",
+        "Ultrarapid Metabolizer",
+        "Indeterminate"
+      ]
+    },
+    "genotype_phenotype_mapping": {
+      "type": "array",
+      "description": "Genotype to phenotype mapping.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "diplotype": {
+            "type": "string",
+            "description": "Star allele diplotype.",
+            "examples": ["*1/*1", "*1/*4", "*4/*4", "*1/*17"]
+          },
+          "activity_score": {
+            "type": "number",
+            "description": "Activity score if applicable.",
+            "examples": [2.0, 1.0, 0.0, 1.5]
+          },
+          "phenotype": {
+            "type": "string",
+            "description": "Predicted phenotype."
+          }
+        }
+      }
+    },
+    "recommendation": {
+      "type": "object",
+      "description": "Clinical recommendation details.",
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "Full recommendation text.",
+          "examples": ["Select alternative drug or reduce dose by 50%"]
+        },
+        "implication": {
+          "type": "string",
+          "description": "Clinical implication of the phenotype.",
+          "examples": ["Reduced conversion of codeine to morphine"]
+        },
+        "action": {
+          "type": "string",
+          "description": "Recommended action.",
+          "enum": ["Use alternative", "Reduce dose", "Increase dose", "Standard dose", "Avoid", "Use with caution", "No action needed"]
+        },
+        "dose_adjustment": {
+          "type": "string",
+          "description": "Specific dose adjustment if applicable.",
+          "examples": ["50% of standard dose", "25% reduction", "150% of standard dose"]
+        }
+      }
+    },
+    "evidence_level": {
+      "type": "string",
+      "description": "Level of evidence supporting the recommendation.",
+      "enum": ["1", "2", "3", "4", "5"]
+    },
+    "literature_references": {
+      "type": "array",
+      "description": "Supporting literature references.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "pmid": {
+            "type": "integer",
+            "description": "PubMed ID.",
+            "examples": [12345678, 98765432]
+          },
+          "title": {
+            "type": "string"
+          },
+          "authors": {
+            "type": "string"
+          },
+          "journal": {
+            "type": "string"
+          },
+          "year": {
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "allele_functionality": {
+      "type": "array",
+      "description": "Allele function assignments.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "allele": {
+            "type": "string",
+            "description": "Star allele designation.",
+            "examples": ["*1", "*4", "*17", "*2"]
+          },
+          "function": {
+            "type": "string",
+            "description": "Functional classification.",
+            "enum": ["Normal function", "Decreased function", "No function", "Increased function", "Uncertain function"]
+          },
+          "activity_value": {
+            "type": "number",
+            "description": "Activity value for score calculation.",
+            "examples": [1.0, 0.5, 0.0, 1.5, 2.0]
+          }
+        }
+      }
+    },
+    "version": {
+      "type": "string",
+      "description": "Guideline version.",
+      "examples": ["2023.1", "2022.2"]
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of last update.",
+      "examples": ["2023-06-15"]
+    },
+    "pharmgkb_id": {
+      "type": "string",
+      "description": "PharmGKB guideline accession.",
+      "pattern": "^PA[0-9]+$",
+      "examples": ["PA166104938"]
+    },
+    "cpic_guideline_id": {
+      "type": "string",
+      "description": "Related CPIC guideline if exists.",
+      "examples": ["codeine-cyp2d6"]
+    },
+    "knmp_id": {
+      "type": "string",
+      "description": "KNMP (Dutch pharmacy) identifier.",
+      "examples": ["G-standaard-123"]
+    }
+  },
+  "required": ["gene", "drug", "phenotype", "recommendation"],
+  "additionalProperties": true
+}

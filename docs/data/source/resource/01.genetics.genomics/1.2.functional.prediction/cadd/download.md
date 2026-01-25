@@ -80,6 +80,58 @@ tabix whole_genome_SNVs.tsv.gz 1:100000-100100
 md5sum whole_genome_SNVs.tsv.gz
 ```
 
+## Dataset Versions
+
+### Current Release: v1.7
+
+| Property | Value |
+|----------|-------|
+| Version | 1.7 (scripts v1.7.2) |
+| Release Date | 2024-01 |
+| Total Size | ~85 GB (GRCh38 SNVs) |
+| SNV Scores | 9 billion positions |
+| Reference | GRCh38/GRCh37 |
+
+### Version Contents
+
+| Component | Size | Records | Description |
+|-----------|------|---------|-------------|
+| whole_genome_SNVs.tsv.gz (GRCh38) | ~80 GB | 9B | All possible SNVs |
+| whole_genome_SNVs.tsv.gz.tbi | ~3 MB | - | Tabix index |
+| gnomad.genomes.r4.0.indel.tsv.gz | ~2 GB | 6M | Pre-scored indels |
+| InDels_inclAnno.tsv.gz | varies | - | Annotated indels |
+
+### Model Improvements in v1.7
+
+| Feature | Description |
+|---------|-------------|
+| ESM-1v | Meta protein language model |
+| Regulatory CNN | Sequence-based predictions |
+| Zoonomia | 240-mammal conservation |
+| APARENT2 | Polyadenylation predictions |
+| GENCODE v110 | Updated gene annotations |
+
+### Previous Versions
+
+| Version | Release | Size | Status |
+|---------|---------|------|--------|
+| v1.6 | 2021-03 | ~75 GB | GRCh38/37 available |
+| v1.5 | 2019-02 | ~70 GB | Archived |
+| v1.4 | 2017-11 | ~65 GB | Archived |
+
+---
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | https://cadd.gs.washington.edu/score |
+| Rate Limit | 1000 variants/request (web) |
+| Auth Required | No |
+| Response Format | TSV |
+
+---
+
 ## Update Schedule
 
 | Release | Frequency |

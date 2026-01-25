@@ -132,6 +132,62 @@ cat brca_mutations.json | jq '.[].hugoGeneSymbol' | sort | uniq -c | sort -rn | 
 cat brca_mutations.json | jq '.[].sampleId' | sort -u | wc -l
 ```
 
+## Dataset Versions
+
+### Current Release
+
+| Property | Value |
+|----------|-------|
+| Version | Continuous (2026-01) |
+| Release Date | Daily updates |
+| Total Size | ~500 GB (all studies) |
+| Studies | 400+ |
+| Samples | 200,000+ |
+| Genes | 20,000+ |
+
+### Version Contents
+
+| Component | Size | Records | Description |
+|-----------|------|---------|-------------|
+| data_mutations.txt (per study) | 10-500 MB | varies | MAF-format mutations |
+| data_CNA.txt (per study) | 1-50 MB | varies | Copy number data |
+| data_clinical_patient.txt | 1-10 MB | varies | Patient clinical data |
+| data_clinical_sample.txt | 1-10 MB | varies | Sample clinical data |
+| data_mrna_seq_v2_rsem.txt | 10-100 MB | varies | Expression data |
+
+### Major Studies
+
+| Study | Samples | Cancer Type |
+|-------|---------|-------------|
+| TCGA Pan-Cancer | 11,000+ | 33 cancer types |
+| METABRIC | 2,500+ | Breast cancer |
+| MSK-IMPACT | 50,000+ | Various cancers |
+| GENIE | 100,000+ | Multi-institution |
+| PCAWG | 2,800+ | Whole genomes |
+
+### Data Types Available
+
+| Type | Coverage | Description |
+|------|----------|-------------|
+| Mutations | 98% studies | SNVs, indels |
+| CNA | 90% studies | Copy number |
+| Expression | 60% studies | mRNA levels |
+| Methylation | 30% studies | DNA methylation |
+| Fusions | 50% studies | Structural variants |
+
+---
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | https://www.cbioportal.org/api/ |
+| Rate Limit | 100 req/min |
+| Auth Required | No |
+| Response Format | JSON |
+
+---
+
 ## Update Schedule
 
 | Release | Frequency |

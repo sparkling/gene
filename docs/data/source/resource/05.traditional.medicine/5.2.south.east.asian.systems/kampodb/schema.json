@@ -1,0 +1,129 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "kampodb-schema.json",
+  "title": "KampoDB Record",
+  "description": "JSON Schema for KampoDB (Kampo Medicine Database) data records with REST API access.",
+  "type": "object",
+  "properties": {
+    "formula_id": {
+      "type": "string",
+      "description": "Kampo formula code identifier.",
+      "examples": ["KT", "YKS", "TSS"]
+    },
+    "formula_name": {
+      "type": "string",
+      "description": "Romanized Kampo formula name.",
+      "examples": ["Kakkonto", "Yokukansankan"]
+    },
+    "formula_name_jp": {
+      "type": "string",
+      "description": "Japanese kanji formula name."
+    },
+    "phonetic": {
+      "type": "string",
+      "description": "Japanese kana pronunciation."
+    },
+    "crude_drug_id": {
+      "type": "integer",
+      "description": "Crude drug identifier (0-179).",
+      "minimum": 0,
+      "maximum": 179
+    },
+    "crude_drug_name": {
+      "type": "string",
+      "description": "English crude drug name.",
+      "examples": ["Cinnamon Bark", "Ephedra Herb"]
+    },
+    "crude_drug_name_jp": {
+      "type": "string",
+      "description": "Japanese crude drug name."
+    },
+    "botanical_origin": {
+      "type": "string",
+      "description": "Botanical/biological source."
+    },
+    "compound_id": {
+      "type": "integer",
+      "description": "PubChem Compound Identifier."
+    },
+    "compound_name": {
+      "type": "string",
+      "description": "Chemical compound name."
+    },
+    "molecular_formula": {
+      "type": "string",
+      "description": "Chemical formula."
+    },
+    "protein_id": {
+      "type": "integer",
+      "description": "NCBI Gene ID for target protein."
+    },
+    "gene_symbol": {
+      "type": "string",
+      "description": "Gene symbol/name."
+    },
+    "protein_aliases": {
+      "type": "string",
+      "description": "Comma-separated alias names."
+    },
+    "docking": {
+      "type": "object",
+      "description": "Molecular docking results.",
+      "properties": {
+        "domain_id": {
+          "type": "integer",
+          "description": "Protein structural domain identifier."
+        },
+        "affinity_kcal_mol": {
+          "type": "number",
+          "description": "Predicted binding affinity (kcal/mol, more negative = stronger)."
+        },
+        "ligand_atoms": {
+          "type": "integer",
+          "description": "Number of atoms in ligand."
+        },
+        "protein_atoms": {
+          "type": "integer",
+          "description": "Number of atoms in protein domain."
+        }
+      }
+    },
+    "pathways": {
+      "type": "array",
+      "description": "KEGG pathway associations.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "pathway_id": {
+            "type": "string",
+            "pattern": "^hsa[0-9]+$"
+          },
+          "pathway_name": { "type": "string" }
+        }
+      }
+    },
+    "diseases": {
+      "type": "array",
+      "description": "KEGG disease associations.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "disease_id": { "type": "string" },
+          "disease_name": { "type": "string" }
+        }
+      }
+    },
+    "go_biological_process": {
+      "type": "array",
+      "description": "GO Biological Process terms.",
+      "items": { "type": "string" }
+    },
+    "go_molecular_function": {
+      "type": "array",
+      "description": "GO Molecular Function terms.",
+      "items": { "type": "string" }
+    }
+  },
+  "required": ["formula_id"],
+  "additionalProperties": true
+}

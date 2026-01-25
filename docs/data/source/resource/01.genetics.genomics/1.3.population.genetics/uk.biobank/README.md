@@ -1,23 +1,34 @@
 ---
 id: uk-biobank
 title: "UK Biobank"
-type: data-source
-category: genetics
+type: source
+parent: ../README.md
+category: genetics.genomics
 subcategory: population.genetics
-parent: ../_index.md
 tier: 2
-last_updated: 2026-01-23
 status: active
-tags: [population, biobank, phenotype, gwas, longitudinal]
+last_updated: 2026-01-25
+tags:
+  - population
+  - biobank
+  - phenotype
+  - gwas
+  - longitudinal
 ---
 
 # UK Biobank
 
-**Category:** [Genetics & Genomics](../../_index.md) > [Population Genetics](../_index.md)
+UK Biobank is a large-scale biomedical database containing genetic, physical, and health information from 500,000 volunteer participants aged 40-69 from across the United Kingdom. It is one of the most comprehensive prospective cohort studies ever conducted, linking genetic data with extensive phenotypic measurements and health outcomes.
 
 ## Overview
 
-UK Biobank is a large-scale biomedical database containing genetic, physical, and health information from 500,000 volunteer participants aged 40-69 from across the United Kingdom. It is one of the most comprehensive prospective cohort studies ever conducted, linking genetic data with extensive phenotypic measurements and health outcomes.
+| Property | Value |
+|----------|-------|
+| **Maintainer** | UK Biobank Ltd |
+| **Website** | https://www.ukbiobank.ac.uk/ |
+| **Update Frequency** | Continuous data additions |
+| **Records** | 500,000 participants |
+| **Latest Release** | Ongoing releases |
 
 The genetic data includes genotyping array data (all participants), exome sequencing (all participants), and whole genome sequencing (expanding coverage). Phenotypic data encompasses physical measurements, lifestyle factors, biomarker assays, imaging data, and longitudinal health records through linkage with NHS and death registries.
 
@@ -42,31 +53,32 @@ UK Biobank has enabled thousands of genetic association studies and serves as a 
 
 ## Key Identifiers
 
-| Identifier | Pattern | Example |
-|------------|---------|---------|
-| Participant | eid (encrypted) | 1234567 |
-| Field | field-instance-array | 21001-0-0 |
-| Data Category | Category ID | 100001 |
+| Identifier | Format | Example |
+|------------|--------|---------|
+| Participant | `eid (encrypted)` | `1234567` |
+| Field | `field-instance-array` | `21001-0-0` |
+| Data Category | `Category ID` | `100001` |
 
-## Access Methods
+## Limitations
 
-| Method | URL | Notes |
-|--------|-----|-------|
-| Portal | https://www.ukbiobank.ac.uk/ | Application required |
-| RAP | Research Analysis Platform | Cloud analysis |
-| DNA Nexus | UKB-RAP | Approved researchers |
-| Bulk Data | Downloads | Large file access |
+- Access requires approved research application (weeks to months)
+- Participants predominantly white British (limited diversity)
+- Age range 40-69 at recruitment (no pediatric data)
+- Healthy volunteer bias (healthier than general population)
+- Commercial access requires separate licensing
 
-## License
+## Data Quality Notes
 
-| Aspect | Value |
-|--------|-------|
-| License | UK Biobank Access Agreement |
-| Commercial Use | Requires approval |
-| Application | Required for all access |
+UK Biobank implements extensive quality control including genotype QC, sample QC, and phenotype validation. Genetic data is imputed to the Haplotype Reference Consortium panel. The Research Analysis Platform (RAP) provides cloud-based analysis without requiring data download, addressing storage and security concerns.
 
 ## See Also
 
-- [gnomAD](../gnomad/_index.md) - Population frequencies
-- [GWAS Catalog](../../1.5.expression.regulation/gwas.catalog/_index.md) - GWAS results
-- [TOPMed](../topmed/_index.md) - US equivalent
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [Example Records](./sample.json) - Sample data for code generation
+- [Download Guide](./download.md) - Access methods and API configuration
+- [License Terms](./license.md) - Usage rights and restrictions
+- [Schema Mapping](./mapping.xslt) - XSLT 3.0 transformation to unified schema
+- [gnomAD](../gnomad/README.md) - Population frequencies
+- [GWAS Catalog](../../1.5.expression.regulation/gwas.catalog/README.md) - GWAS results
+- [TOPMed](../topmed/README.md) - US equivalent

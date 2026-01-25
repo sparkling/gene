@@ -196,6 +196,29 @@ head -5 coconut.csv
 zcat coconut_db.json.gz | jq '.[0:5] | .[].coconut_id'
 ```
 
+## Dataset Versions
+
+| Version | Release Date | Size | Status |
+|---------|--------------|------|--------|
+| COCONUT 2.0 | 2025-01-06 | ~1.5 GB | Current |
+| COCONUT 1.x | 2021-2024 | ~1 GB | Archived |
+
+### Version Notes
+
+COCONUT 2.0 represents a comprehensive overhaul and curation of the database:
+- Aggregates data from 63+ open natural product sources
+- Uses ChEMBL curation pipeline with RDKit post-processing
+- Standardizes molecular structures and metadata while preserving stereochemistry
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | `https://coconut.naturalproducts.net/api` |
+| Rate Limit | 60-120 req/min (see below) |
+| Auth Required | No |
+| Documentation | https://coconut.naturalproducts.net/api/docs |
+
 ## Update Schedule
 
 | Release | Frequency |

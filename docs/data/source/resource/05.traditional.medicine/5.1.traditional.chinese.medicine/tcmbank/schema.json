@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "tcmbank-schema.json",
+  "title": "TCMBank Compound Record",
+  "description": "JSON Schema for TCMBank compound data. Comprehensive TCM compound library for drug discovery with drug-likeness assessment and ADMET predictions.",
+  "type": "object",
+  "properties": {
+    "compound_id": {
+      "type": "string",
+      "description": "TCMBank internal compound identifier.",
+      "pattern": "^TCM[0-9]+$",
+      "examples": ["TCM001234"]
+    },
+    "compound_name": {
+      "type": "string",
+      "description": "Compound common name."
+    },
+    "compound_name_chinese": {
+      "type": "string",
+      "description": "Chinese name if applicable."
+    },
+    "identifiers": {
+      "type": "object",
+      "description": "External identifiers.",
+      "properties": {
+        "pubchem_cid": { "type": "integer" },
+        "chembl_id": { "type": "string" },
+        "cas_number": { "type": "string" }
+      }
+    },
+    "structure": {
+      "type": "object",
+      "description": "Chemical structure data.",
+      "properties": {
+        "smiles": { "type": "string" },
+        "inchi": { "type": "string" },
+        "inchi_key": {
+          "type": "string",
+          "pattern": "^[A-Z]{14}-[A-Z]{10}-[A-Z]$"
+        }
+      }
+    },
+    "physicochemical_properties": {
+      "type": "object",
+      "description": "Physicochemical properties.",
+      "properties": {
+        "molecular_formula": { "type": "string" },
+        "molecular_weight": { "type": "number" },
+        "logP": { "type": "number" },
+        "tpsa": { "type": "number", "description": "Topological Polar Surface Area" },
+        "hydrogen_bond_donors": { "type": "integer" },
+        "hydrogen_bond_acceptors": { "type": "integer" },
+        "rotatable_bonds": { "type": "integer" },
+        "heavy_atom_count": { "type": "integer" },
+        "ring_count": { "type": "integer" }
+      }
+    },
+    "drug_likeness": {
+      "type": "object",
+      "description": "Drug-likeness assessment.",
+      "properties": {
+        "lipinski_violations": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4
+        },
+        "veber_compliant": { "type": "boolean" },
+        "pains_alerts": { "type": "integer" },
+        "lead_like": { "type": "boolean" }
+      }
+    },
+    "admet_predictions": {
+      "type": "object",
+      "description": "ADMET property predictions.",
+      "properties": {
+        "absorption": {
+          "type": "object",
+          "properties": {
+            "gi_absorption": { "type": "string", "enum": ["High", "Low"] },
+            "pgp_substrate": { "type": "string", "enum": ["Yes", "No"] }
+          }
+        },
+        "distribution": {
+          "type": "object",
+          "properties": {
+            "bbb_permeant": { "type": "string", "enum": ["Yes", "No"] }
+          }
+        },
+        "metabolism": {
+          "type": "object",
+          "properties": {
+            "cyp_inhibitors": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          }
+        },
+        "toxicity": {
+          "type": "object",
+          "properties": {
+            "ames_mutagenicity": { "type": "string", "enum": ["Yes", "No"] },
+            "hepatotoxicity_risk": { "type": "string", "enum": ["High", "Medium", "Low"] }
+          }
+        }
+      }
+    },
+    "source_herbs": {
+      "type": "array",
+      "description": "Source herb identifiers.",
+      "items": { "type": "string" }
+    },
+    "predicted_targets": {
+      "type": "array",
+      "description": "Predicted target protein identifiers.",
+      "items": { "type": "string" }
+    }
+  },
+  "required": ["compound_id", "compound_name"],
+  "additionalProperties": true
+}

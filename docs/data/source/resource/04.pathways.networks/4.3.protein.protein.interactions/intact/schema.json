@@ -1,0 +1,186 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "intact-schema.json",
+  "title": "IntAct Molecular Interaction Record",
+  "description": "JSON Schema for IntAct molecular interaction data. Curated interactions with PSI-MI controlled vocabularies and evidence codes.",
+  "type": "object",
+  "properties": {
+    "interactionAc": {
+      "type": "string",
+      "description": "IntAct interaction accession identifier.",
+      "pattern": "^EBI-[0-9]+$",
+      "examples": ["EBI-77734"]
+    },
+    "interactorA": {
+      "type": "object",
+      "description": "First interacting molecule.",
+      "$ref": "#/$defs/interactor"
+    },
+    "interactorB": {
+      "type": "object",
+      "description": "Second interacting molecule.",
+      "$ref": "#/$defs/interactor"
+    },
+    "interactionType": {
+      "type": "object",
+      "description": "Type of molecular interaction.",
+      "properties": {
+        "miIdentifier": {
+          "type": "string",
+          "pattern": "^MI:[0-9]{4}$",
+          "examples": ["MI:0915", "MI:0407"]
+        },
+        "shortLabel": {
+          "type": "string",
+          "examples": ["physical association", "direct interaction"]
+        }
+      }
+    },
+    "detectionMethod": {
+      "type": "object",
+      "description": "Experimental detection method.",
+      "properties": {
+        "miIdentifier": {
+          "type": "string",
+          "pattern": "^MI:[0-9]{4}$",
+          "examples": ["MI:0018", "MI:0019"]
+        },
+        "shortLabel": {
+          "type": "string",
+          "examples": ["two hybrid", "coimmunoprecipitation"]
+        }
+      }
+    },
+    "publication": {
+      "type": "object",
+      "description": "Literature reference.",
+      "properties": {
+        "pubmedId": { "type": "string" },
+        "firstAuthor": { "type": "string" },
+        "year": { "type": "integer" }
+      }
+    },
+    "confidenceScore": {
+      "type": "number",
+      "description": "IntAct MI score (0-1).",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "sourceDatabase": {
+      "type": "string",
+      "description": "Source database.",
+      "examples": ["intact", "mint", "dip"]
+    },
+    "hostOrganism": {
+      "type": "object",
+      "description": "Experimental host organism.",
+      "properties": {
+        "taxId": { "type": "integer" },
+        "scientificName": { "type": "string" }
+      }
+    },
+    "experimentalRole": {
+      "type": "object",
+      "description": "Experimental roles of participants.",
+      "properties": {
+        "roleA": {
+          "type": "string",
+          "enum": ["bait", "prey", "neutral component", "self"]
+        },
+        "roleB": {
+          "type": "string",
+          "enum": ["bait", "prey", "neutral component", "self"]
+        }
+      }
+    },
+    "biologicalRole": {
+      "type": "object",
+      "description": "Biological roles of participants.",
+      "properties": {
+        "roleA": { "type": "string" },
+        "roleB": { "type": "string" }
+      }
+    },
+    "features": {
+      "type": "array",
+      "description": "Binding regions and features.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "participant": { "type": "string", "enum": ["A", "B"] },
+          "featureType": { "type": "string" },
+          "range": { "type": "string" }
+        }
+      }
+    },
+    "stoichiometry": {
+      "type": "object",
+      "properties": {
+        "stoichiometryA": { "type": "integer" },
+        "stoichiometryB": { "type": "integer" }
+      }
+    },
+    "negative": {
+      "type": "boolean",
+      "description": "Whether this is a negative interaction result."
+    },
+    "xrefs": {
+      "type": "array",
+      "description": "Cross-references.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "database": { "type": "string" },
+          "id": { "type": "string" }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "interactor": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "description": "Primary identifier (e.g., UniProt accession)."
+        },
+        "database": {
+          "type": "string",
+          "examples": ["uniprotkb", "chebi", "ensembl"]
+        },
+        "shortLabel": { "type": "string" },
+        "fullName": { "type": "string" },
+        "aliases": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "type": { "type": "string" }
+            }
+          }
+        },
+        "organism": {
+          "type": "object",
+          "properties": {
+            "taxId": { "type": "integer" },
+            "scientificName": { "type": "string" },
+            "commonName": { "type": "string" }
+          }
+        },
+        "interactorType": {
+          "type": "object",
+          "properties": {
+            "miIdentifier": { "type": "string" },
+            "shortLabel": {
+              "type": "string",
+              "enum": ["protein", "dna", "rna", "small molecule", "complex", "gene"]
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": ["interactionAc", "interactorA", "interactorB"],
+  "additionalProperties": true
+}

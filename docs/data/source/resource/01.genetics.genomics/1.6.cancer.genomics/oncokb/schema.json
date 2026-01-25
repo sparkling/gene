@@ -1,0 +1,303 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "oncokb-schema.json",
+  "title": "OncoKB Record",
+  "description": "JSON Schema for OncoKB precision oncology knowledge base curated variant annotations.",
+  "type": "object",
+  "properties": {
+    "entity_type": {
+      "type": "string",
+      "description": "Type of OncoKB entity.",
+      "enum": ["gene", "alteration", "therapeutic_implication", "diagnostic_implication", "prognostic_implication", "annotated_variant"]
+    },
+    "gene": {
+      "type": "object",
+      "description": "Gene-level oncogenic status.",
+      "properties": {
+        "hugoSymbol": {
+          "type": "string",
+          "description": "HGNC gene symbol.",
+          "examples": ["BRAF", "EGFR", "TP53"]
+        },
+        "entrezGeneId": {
+          "type": "integer",
+          "description": "NCBI Entrez Gene ID.",
+          "examples": [673, 1956, 7157]
+        },
+        "oncogene": {
+          "type": "boolean",
+          "description": "Whether gene is classified as oncogene."
+        },
+        "tsg": {
+          "type": "boolean",
+          "description": "Whether gene is classified as tumor suppressor gene."
+        },
+        "geneAliases": {
+          "type": "array",
+          "description": "Alternative gene names.",
+          "items": { "type": "string" }
+        },
+        "background": {
+          "type": "string",
+          "description": "Gene background description."
+        },
+        "grch37Isoform": {
+          "type": "string",
+          "description": "GRCh37 canonical isoform.",
+          "examples": ["ENST00000288602"]
+        },
+        "grch38Isoform": {
+          "type": "string",
+          "description": "GRCh38 canonical isoform.",
+          "examples": ["ENST00000288602"]
+        }
+      }
+    },
+    "alteration": {
+      "type": "object",
+      "description": "Genomic alteration.",
+      "properties": {
+        "gene": {
+          "type": "object",
+          "properties": {
+            "hugoSymbol": { "type": "string" },
+            "entrezGeneId": { "type": "integer" }
+          }
+        },
+        "alteration": {
+          "type": "string",
+          "description": "Alteration name.",
+          "examples": ["V600E", "AMPLIFICATION", "L858R", "Truncating Mutations"]
+        },
+        "name": {
+          "type": "string",
+          "description": "Full alteration name.",
+          "examples": ["V600E", "Amplification"]
+        },
+        "alterationType": {
+          "type": "string",
+          "description": "Type of alteration.",
+          "enum": ["MUTATION", "COPY_NUMBER_ALTERATION", "STRUCTURAL_VARIANT", "ANY"]
+        },
+        "consequence": {
+          "type": "object",
+          "properties": {
+            "term": {
+              "type": "string",
+              "examples": ["missense_variant", "stop_gained", "frameshift_variant"]
+            },
+            "isGenerallyTruncating": {
+              "type": "boolean"
+            }
+          }
+        },
+        "proteinStart": {
+          "type": "integer",
+          "description": "Protein position start."
+        },
+        "proteinEnd": {
+          "type": "integer",
+          "description": "Protein position end."
+        },
+        "refResidues": {
+          "type": "string",
+          "description": "Reference amino acid(s).",
+          "examples": ["V", "L", "E"]
+        },
+        "variantResidues": {
+          "type": "string",
+          "description": "Variant amino acid(s).",
+          "examples": ["E", "R", "K"]
+        }
+      }
+    },
+    "annotated_variant": {
+      "type": "object",
+      "description": "Fully annotated variant with oncogenic and clinical implications.",
+      "properties": {
+        "query": {
+          "type": "object",
+          "properties": {
+            "hugoSymbol": { "type": "string" },
+            "alteration": { "type": "string" },
+            "tumorType": { "type": "string" }
+          }
+        },
+        "geneExist": {
+          "type": "boolean"
+        },
+        "variantExist": {
+          "type": "boolean"
+        },
+        "alleleExist": {
+          "type": "boolean"
+        },
+        "oncogenic": {
+          "type": "string",
+          "description": "Oncogenic classification.",
+          "enum": ["Oncogenic", "Likely Oncogenic", "Predicted Oncogenic", "Likely Neutral", "Inconclusive", "Unknown"]
+        },
+        "mutationEffect": {
+          "type": "object",
+          "properties": {
+            "knownEffect": {
+              "type": "string",
+              "enum": ["Gain-of-function", "Loss-of-function", "Likely Gain-of-function", "Likely Loss-of-function", "Switch-of-function", "Likely Switch-of-function", "Neutral", "Likely Neutral", "Inconclusive", "Unknown"]
+            },
+            "description": {
+              "type": "string"
+            },
+            "citations": {
+              "type": "object",
+              "properties": {
+                "pmids": {
+                  "type": "array",
+                  "items": { "type": "string" }
+                },
+                "abstracts": {
+                  "type": "array",
+                  "items": { "type": "object" }
+                }
+              }
+            }
+          }
+        },
+        "highestSensitiveLevel": {
+          "type": "string",
+          "description": "Highest therapeutic sensitivity level.",
+          "enum": ["LEVEL_1", "LEVEL_2", "LEVEL_3A", "LEVEL_3B", "LEVEL_4", null]
+        },
+        "highestResistanceLevel": {
+          "type": "string",
+          "description": "Highest therapeutic resistance level.",
+          "enum": ["LEVEL_R1", "LEVEL_R2", null]
+        },
+        "highestDiagnosticImplicationLevel": {
+          "type": "string",
+          "enum": ["LEVEL_Dx1", "LEVEL_Dx2", "LEVEL_Dx3", null]
+        },
+        "highestPrognosticImplicationLevel": {
+          "type": "string",
+          "enum": ["LEVEL_Px1", "LEVEL_Px2", "LEVEL_Px3", null]
+        },
+        "highestFdaLevel": {
+          "type": "string",
+          "enum": ["LEVEL_Fda1", "LEVEL_Fda2", "LEVEL_Fda3", null]
+        },
+        "treatments": {
+          "type": "array",
+          "description": "Therapeutic implications.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "level": {
+                "type": "string",
+                "enum": ["LEVEL_1", "LEVEL_2", "LEVEL_3A", "LEVEL_3B", "LEVEL_4", "LEVEL_R1", "LEVEL_R2"]
+              },
+              "alterations": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "drugs": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "drugName": { "type": "string" },
+                    "ncitCode": { "type": "string" }
+                  }
+                }
+              },
+              "cancerTypes": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "mainType": { "type": "string" },
+                    "subtype": { "type": "string" },
+                    "code": { "type": "string" }
+                  }
+                }
+              },
+              "fdaLevel": {
+                "type": "string"
+              },
+              "levelAssociatedCancerType": {
+                "type": "object"
+              },
+              "description": {
+                "type": "string"
+              },
+              "pmids": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "abstracts": {
+                "type": "array",
+                "items": { "type": "object" }
+              }
+            }
+          }
+        },
+        "diagnosticSummary": {
+          "type": "string"
+        },
+        "prognosticSummary": {
+          "type": "string"
+        },
+        "diagnosticImplications": {
+          "type": "array",
+          "items": { "type": "object" }
+        },
+        "prognosticImplications": {
+          "type": "array",
+          "items": { "type": "object" }
+        },
+        "hotspot": {
+          "type": "boolean",
+          "description": "Whether variant is a mutation hotspot."
+        },
+        "vus": {
+          "type": "boolean",
+          "description": "Whether variant is classified as VUS."
+        }
+      }
+    },
+    "evidence_levels": {
+      "type": "object",
+      "description": "Evidence level definitions.",
+      "properties": {
+        "LEVEL_1": {
+          "type": "string",
+          "const": "FDA-recognized biomarker predictive of response to an FDA-approved drug in this indication"
+        },
+        "LEVEL_2": {
+          "type": "string",
+          "const": "Standard care biomarker recommended by the NCCN or other professional guidelines predictive of response to an FDA-approved drug in this indication"
+        },
+        "LEVEL_3A": {
+          "type": "string",
+          "const": "Compelling clinical evidence supports the biomarker as being predictive of response to a drug in this indication"
+        },
+        "LEVEL_3B": {
+          "type": "string",
+          "const": "Standard care or investigational biomarker predictive of response to an FDA-approved or investigational drug in another indication"
+        },
+        "LEVEL_4": {
+          "type": "string",
+          "const": "Compelling biological evidence supports the biomarker as being predictive of response to a drug"
+        },
+        "LEVEL_R1": {
+          "type": "string",
+          "const": "Standard care biomarker predictive of resistance to an FDA-approved drug in this indication"
+        },
+        "LEVEL_R2": {
+          "type": "string",
+          "const": "Compelling clinical evidence supports the biomarker as being predictive of resistance to a drug"
+        }
+      }
+    }
+  },
+  "required": ["entity_type"],
+  "additionalProperties": true
+}

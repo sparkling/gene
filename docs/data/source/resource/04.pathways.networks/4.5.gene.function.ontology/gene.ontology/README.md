@@ -1,14 +1,18 @@
 ---
 id: gene-ontology
 title: "Gene Ontology (GO)"
-type: data-source
-category: pathways
-subcategory: gene-function-ontology
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 1
-last_updated: 2026-01-23
 status: active
-tags: [ontology, gene-function, go-terms, annotation, open-access]
+category: pathways.networks
+subcategory: gene.function.ontology
+tags:
+  - ontology
+  - gene-function
+  - go-terms
+  - annotation
+  - open-access
 ---
 
 # Gene Ontology (GO)
@@ -169,6 +173,13 @@ Pre-defined subsets for high-level analysis:
 | ChEBI | Chemical entity refs |
 | EC | Enzyme classification |
 | InterPro | Domain annotations |
+
+## Limitations
+
+- Electronic annotations (IEA) are less reliable than experimental
+- Annotation completeness varies greatly across species
+- Ontology updates may change term relationships
+- Multi-species analysis requires careful evidence filtering
 
 ## Download Files
 

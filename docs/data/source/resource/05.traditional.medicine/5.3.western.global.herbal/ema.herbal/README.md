@@ -1,14 +1,18 @@
 ---
 id: ema.herbal
 title: "EMA Herbal Medicines - European Medicines Agency"
-type: data-source
-category: traditional-medicine
-subcategory: western-global-herbal
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 1
-last_updated: 2026-01-23
 status: active
-tags: [herbal-medicine, european, regulatory, monographs, traditional-use]
+category: traditional.medicine
+subcategory: western.global.herbal
+tags:
+  - herbal-medicine
+  - european
+  - regulatory
+  - monographs
+  - traditional-use
 ---
 
 # EMA Herbal Medicines - European Medicines Agency

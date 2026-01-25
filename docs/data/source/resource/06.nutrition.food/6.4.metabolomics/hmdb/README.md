@@ -71,6 +71,10 @@ HMDB is a cornerstone resource for metabolomics research, providing gold-standar
 
 ## See Also
 
-- [Schema Documentation](./schema.md)
-- [Exposome-Explorer](../exposome.explorer/_index.md) - Exposure biomarkers
-- [FooDB](../../6.1.food.composition/foodb/_index.md) - Food compound database
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [Sample Data](./sample.json) - Example records
+- [License Terms](./license.md) - Usage rights and restrictions
+- [Schema Mapping](./mapping.xslt) - Transform to unified schema
+- [Exposome-Explorer](../exposome.explorer/README.md) - Exposure biomarkers
+- [FooDB](../../6.1.food.composition/foodb/README.md) - Food compound database

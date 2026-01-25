@@ -1,0 +1,87 @@
+[
+  {
+    "pathway_id": "hsa00010",
+    "name": "Glycolysis / Gluconeogenesis",
+    "organism": "hsa",
+    "description": "Glycolysis is the process of converting glucose into pyruvate and generating ATP",
+    "genes": [
+      {"gene_id": "hsa:2597", "symbol": "GAPDH", "type": "gene"},
+      {"gene_id": "hsa:5315", "symbol": "PKM", "type": "gene"},
+      {"gene_id": "hsa:2821", "symbol": "GPI", "type": "gene"}
+    ],
+    "compounds": [
+      {"compound_id": "C00001", "name": "H2O"},
+      {"compound_id": "C00002", "name": "ATP"},
+      {"compound_id": "C00022", "name": "Pyruvate"}
+    ],
+    "relations": [
+      {
+        "entry1": "hsa:2597",
+        "entry2": "hsa:5315",
+        "type": "ECrel",
+        "subtype": "compound"
+      }
+    ],
+    "metadata": {
+      "last_updated": "2025-12-01",
+      "image_url": "https://www.kegg.jp/kegg/pathway/hsa/hsa00010.png",
+      "link": "https://www.kegg.jp/kegg-bin/show_pathway?hsa00010"
+    }
+  },
+  {
+    "pathway_id": "hsa04115",
+    "name": "p53 signaling pathway",
+    "organism": "hsa",
+    "description": "The p53 tumor suppressor protein regulates cell cycle arrest, apoptosis, senescence, and DNA repair",
+    "genes": [
+      {"gene_id": "hsa:7157", "symbol": "TP53", "type": "gene"},
+      {"gene_id": "hsa:4193", "symbol": "MDM2", "type": "gene"},
+      {"gene_id": "hsa:1026", "symbol": "CDKN1A", "type": "gene"}
+    ],
+    "compounds": [],
+    "relations": [
+      {
+        "entry1": "hsa:4193",
+        "entry2": "hsa:7157",
+        "type": "PPrel",
+        "subtype": "inhibition"
+      },
+      {
+        "entry1": "hsa:7157",
+        "entry2": "hsa:1026",
+        "type": "GErel",
+        "subtype": "expression"
+      }
+    ],
+    "metadata": {
+      "last_updated": "2025-11-15",
+      "image_url": "https://www.kegg.jp/kegg/pathway/hsa/hsa04115.png",
+      "link": "https://www.kegg.jp/kegg-bin/show_pathway?hsa04115"
+    }
+  },
+  {
+    "pathway_id": "hsa04110",
+    "name": "Cell cycle",
+    "organism": "hsa",
+    "description": "Mitotic cell cycle regulation through cyclin-dependent kinases",
+    "genes": [
+      {"gene_id": "hsa:983", "symbol": "CDK1", "type": "gene"},
+      {"gene_id": "hsa:890", "symbol": "CCNA2", "type": "gene"},
+      {"gene_id": "hsa:5925", "symbol": "RB1", "type": "gene"}
+    ],
+    "compounds": [],
+    "relations": [
+      {
+        "entry1": "hsa:983",
+        "entry2": "hsa:5925",
+        "type": "PPrel",
+        "subtype": "phosphorylation"
+      }
+    ],
+    "metadata": {
+      "last_updated": "2025-10-20",
+      "image_url": "https://www.kegg.jp/kegg/pathway/hsa/hsa04110.png",
+      "link": "https://www.kegg.jp/kegg-bin/show_pathway?hsa04110"
+    }
+  }
+]

@@ -1,0 +1,100 @@
+[
+  {
+    "study": {
+      "studyId": "msk_impact_2017",
+      "name": "MSK-IMPACT Clinical Sequencing Cohort (MSKCC, Nat Med 2017)",
+      "description": "Targeted sequencing of 10,000+ tumor samples using MSK-IMPACT panel",
+      "cancerTypeId": "mixed",
+      "pmid": "28481359",
+      "citation": "Zehir A et al., 2017, Nat Med",
+      "groups": "PUBLIC",
+      "status": 0
+    },
+    "cancer_type": {
+      "cancerTypeId": "mel",
+      "name": "Melanoma",
+      "dedicatedColor": "Black",
+      "shortName": "MEL",
+      "parent": "skin"
+    },
+    "molecular_profile": {
+      "molecularProfileId": "msk_impact_2017_mutations",
+      "studyId": "msk_impact_2017",
+      "molecularAlterationType": "MUTATION_EXTENDED",
+      "datatype": "MAF",
+      "name": "Mutations",
+      "showProfileInAnalysisTab": true
+    },
+    "mutation": {
+      "entrezGeneId": 673,
+      "hugoGeneSymbol": "BRAF",
+      "sampleId": "P-0001234-T01-IM3",
+      "patientId": "P-0001234",
+      "studyId": "msk_impact_2017",
+      "center": "MSKCC",
+      "mutationStatus": "Somatic",
+      "validationStatus": "Valid",
+      "tumorAltCount": 234,
+      "tumorRefCount": 456,
+      "normalAltCount": 0,
+      "normalRefCount": 890,
+      "startPosition": 140753336,
+      "endPosition": 140753336,
+      "referenceAllele": "A",
+      "variantAllele": "T",
+      "proteinChange": "V600E",
+      "mutationType": "Missense_Mutation",
+      "ncbiBuild": "GRCh38",
+      "chromosome": "7",
+      "variantType": "SNP"
+    }
+  },
+  {
+    "study": {
+      "studyId": "brca_tcga_pan_can_atlas_2018",
+      "name": "Breast Invasive Carcinoma (TCGA, PanCancer Atlas)",
+      "description": "TCGA PanCancer Atlas breast cancer cohort",
+      "cancerTypeId": "brca",
+      "pmid": "29625050",
+      "citation": "Hoadley KA et al., 2018, Cell",
+      "groups": "PUBLIC"
+    },
+    "mutation": {
+      "entrezGeneId": 7157,
+      "hugoGeneSymbol": "TP53",
+      "sampleId": "TCGA-A2-A0T2-01",
+      "patientId": "TCGA-A2-A0T2",
+      "studyId": "brca_tcga_pan_can_atlas_2018",
+      "center": "TCGA",
+      "mutationStatus": "Somatic",
+      "validationStatus": "Unknown",
+      "tumorAltCount": 189,
+      "tumorRefCount": 234,
+      "startPosition": 7673803,
+      "endPosition": 7673803,
+      "referenceAllele": "G",
+      "variantAllele": "A",
+      "proteinChange": "R175H",
+      "mutationType": "Missense_Mutation",
+      "ncbiBuild": "GRCh38",
+      "chromosome": "17",
+      "variantType": "SNP"
+    }
+  },
+  {
+    "clinical_data": {
+      "patientId": "TCGA-A2-A0T2",
+      "studyId": "brca_tcga_pan_can_atlas_2018",
+      "attributes": {
+        "OS_STATUS": "0:LIVING",
+        "OS_MONTHS": 45.6,
+        "DFS_STATUS": "0:DiseaseFree",
+        "DFS_MONTHS": 42.3,
+        "AGE": 54,
+        "SEX": "Female",
+        "CANCER_TYPE": "Breast Invasive Carcinoma",
+        "SUBTYPE": "Luminal A"
+      }
+    }
+  }
+]

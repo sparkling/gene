@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "hmp-gut-schema.json",
+  "title": "HMP Gut Microbiome Sample Record",
+  "description": "JSON Schema for Human Microbiome Project gut sample records.",
+  "type": "object",
+  "properties": {
+    "sample_id": { "type": "string", "description": "Unique sample identifier" },
+    "rand_subject_id": { "type": "string", "description": "Randomized subject ID (HIPAA)" },
+    "fma_body_site": { "type": "string", "description": "FMA ontology term" },
+    "body_site": { "type": "string", "enum": ["stool", "cecum", "colon"] },
+    "visit_number": { "type": "integer", "minimum": 1 },
+    "collection_date": { "type": "string", "format": "date" },
+    "mixs": {
+      "type": "object",
+      "properties": {
+        "biome": { "type": "string" },
+        "body_product": { "type": "string" },
+        "env_package": { "type": "string" },
+        "geo_loc_name": { "type": "string" },
+        "lat_lon": { "type": "string" }
+      }
+    },
+    "sequence_data": {
+      "type": "object",
+      "properties": {
+        "seq_type": { "type": "string", "enum": ["16S", "WGS"] },
+        "format": { "type": "string", "enum": ["fastq", "fasta"] },
+        "variable_region": { "type": "string" },
+        "seq_model": { "type": "string" }
+      }
+    },
+    "checksums": {
+      "type": "object",
+      "properties": {
+        "md5": { "type": "string", "pattern": "^[a-f0-9]{32}$" }
+      }
+    },
+    "urls": { "type": "array", "items": { "type": "string", "format": "uri" } },
+    "study": { "type": "string", "enum": ["HMP1", "IBDMDB", "T2D", "MOMS-PI"] }
+  },
+  "required": ["sample_id", "body_site"],
+  "additionalProperties": true
+}

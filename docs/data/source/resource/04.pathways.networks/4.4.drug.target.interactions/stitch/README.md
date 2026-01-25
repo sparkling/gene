@@ -1,14 +1,18 @@
 ---
 id: stitch
 title: "STITCH - Chemical-Protein Interaction Networks"
-type: data-source
-category: pathways
-subcategory: drug-target-interactions
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 2
-last_updated: 2026-01-23
 status: active
-tags: [drug-target, chemical-protein, interactions, network, open-access]
+category: pathways.networks
+subcategory: drug.target.interactions
+tags:
+  - drug-target
+  - chemical-protein
+  - interactions
+  - network
+  - open-access
 ---
 
 # STITCH - Chemical-Protein Interaction Networks
@@ -188,6 +192,13 @@ curl "http://stitch.embl.de/api/json/network?identifiers=aspirin%0dTP53%0dMDM2&s
 | protein_chemical.links.v5.0.tsv.gz | Protein-chemical interactions |
 | chemicals.v5.0.tsv.gz | Chemical annotations |
 | chemical.sources.v5.0.tsv.gz | Evidence sources |
+
+## Limitations
+
+- HTTP (not HTTPS) may cause security issues in some environments
+- Predicted interactions may include false positives
+- Chemical ID mapping can be complex (merged vs stereospecific)
+- Text-mining scores may not reflect direct binding evidence
 
 ## Actions (Interaction Types)
 

@@ -1,0 +1,80 @@
+[
+  {
+    "biogrid_interaction_id": 103,
+    "biogrid_id_a": 112315,
+    "biogrid_id_b": 108607,
+    "entrez_gene_a": 7157,
+    "entrez_gene_b": 4193,
+    "systematic_name_a": "-",
+    "systematic_name_b": "-",
+    "official_symbol_a": "TP53",
+    "official_symbol_b": "MDM2",
+    "experimental_system": "Two-hybrid",
+    "experimental_system_type": "physical",
+    "throughput": "Low Throughput",
+    "score": null,
+    "modification": "-",
+    "phenotypes": "-",
+    "qualifications": "-",
+    "source_database": "BIOGRID",
+    "publication_source": "PUBMED:1535557",
+    "organism_a": 9606,
+    "organism_b": 9606,
+    "metadata": {
+      "author": "Momand J (1992)",
+      "publication_title": "The mdm-2 oncogene product forms a complex with the p53 protein"
+    }
+  },
+  {
+    "biogrid_interaction_id": 45672,
+    "biogrid_id_a": 107205,
+    "biogrid_id_b": 107206,
+    "entrez_gene_a": 672,
+    "entrez_gene_b": 580,
+    "systematic_name_a": "-",
+    "systematic_name_b": "-",
+    "official_symbol_a": "BRCA1",
+    "official_symbol_b": "BARD1",
+    "experimental_system": "Affinity Capture-MS",
+    "experimental_system_type": "physical",
+    "throughput": "High Throughput",
+    "score": null,
+    "modification": "-",
+    "phenotypes": "-",
+    "qualifications": "-",
+    "source_database": "BIOGRID",
+    "publication_source": "PUBMED:9054499",
+    "organism_a": 9606,
+    "organism_b": 9606,
+    "metadata": {
+      "author": "Wu LC (1996)",
+      "publication_title": "Identification of a RING protein that can interact with the BRCA1 gene product"
+    }
+  },
+  {
+    "biogrid_interaction_id": 789456,
+    "biogrid_id_a": 112789,
+    "biogrid_id_b": 115234,
+    "entrez_gene_a": 472,
+    "entrez_gene_b": 476,
+    "systematic_name_a": "-",
+    "systematic_name_b": "-",
+    "official_symbol_a": "ATM",
+    "official_symbol_b": "ATP1A1",
+    "experimental_system": "Synthetic Lethality",
+    "experimental_system_type": "genetic",
+    "throughput": "High Throughput",
+    "score": null,
+    "modification": "-",
+    "phenotypes": "lethal",
+    "qualifications": "conditional",
+    "source_database": "BIOGRID",
+    "publication_source": "PUBMED:25436964",
+    "organism_a": 9606,
+    "organism_b": 9606,
+    "metadata": {
+      "author": "Rauscher B (2017)",
+      "publication_title": "Synthetic lethality screen"
+    }
+  }
+]

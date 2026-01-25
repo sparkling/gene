@@ -91,6 +91,58 @@ bcftools query -l input.vcf.gz | wc -l
 bcftools view -H input.vcf.gz | wc -l
 ```
 
+## Dataset Versions
+
+### Current Release: Phase 3 High-Coverage (30x)
+
+| Property | Value |
+|----------|-------|
+| Version | Phase 3 (30x) |
+| Release Date | 2022-04-22 |
+| Total Size | ~500 GB (all VCFs) |
+| Samples | 3,202 individuals |
+| Populations | 26 populations |
+
+### Version Contents
+
+| Component | Size | Records | Description |
+|-----------|------|---------|-------------|
+| Per-chr VCF (chr1) | ~20 GB | 6.5M | Chromosome 1 phased |
+| Per-chr VCF (chr22) | ~5 GB | 1.2M | Chromosome 22 phased |
+| Sample panel | 50 KB | 3,202 | Sample metadata |
+| Population descriptions | 10 KB | 26 | Population info |
+
+### Population Breakdown
+
+| Super-Pop | Populations | Samples |
+|-----------|-------------|---------|
+| AFR | 7 populations | 661 |
+| AMR | 4 populations | 347 |
+| EAS | 5 populations | 504 |
+| EUR | 5 populations | 503 |
+| SAS | 5 populations | 489 |
+
+### Previous Versions
+
+| Version | Release | Samples | Status |
+|---------|---------|---------|--------|
+| Phase 3 (low-cov) | 2015-05 | 2,504 | Available |
+| Phase 2 | 2013-03 | 1,092 | Archived |
+| Phase 1 | 2012-05 | 1,094 | Archived |
+
+---
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | ftp://ftp.1000genomes.ebi.ac.uk/ |
+| Rate Limit | N/A (FTP) |
+| Auth Required | No |
+| Response Format | VCF, CRAM, BAM |
+
+---
+
 ## Update Schedule
 
 | Release | Frequency |

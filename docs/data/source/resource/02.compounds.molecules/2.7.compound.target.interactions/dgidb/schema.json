@@ -1,0 +1,153 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "dgidb-schema.json",
+  "title": "DGIdb Drug-Gene Interaction Record",
+  "description": "JSON Schema for DGIdb (Drug Gene Interaction Database) records. Aggregates 90,000+ drug-gene interactions from 40+ sources with druggability categories and interaction types via GraphQL API.",
+  "type": "object",
+  "properties": {
+    "gene": {
+      "$ref": "#/$defs/gene",
+      "description": "Gene entry with identifiers and druggability info"
+    },
+    "drug": {
+      "$ref": "#/$defs/drug",
+      "description": "Drug/compound entry with identifiers"
+    },
+    "interactionTypes": {
+      "type": "array",
+      "description": "Interaction type classifications",
+      "items": {
+        "$ref": "#/$defs/interactionType"
+      }
+    },
+    "interactionScore": {
+      "type": "number",
+      "description": "Confidence score for the interaction"
+    },
+    "sources": {
+      "type": "array",
+      "description": "Source databases providing evidence",
+      "items": {
+        "$ref": "#/$defs/source"
+      }
+    },
+    "pmids": {
+      "type": "array",
+      "description": "PubMed reference IDs",
+      "items": {
+        "type": "integer"
+      }
+    }
+  },
+  "required": ["gene", "drug", "sources"],
+  "$defs": {
+    "gene": {
+      "type": "object",
+      "description": "Gene entry",
+      "properties": {
+        "conceptId": {
+          "type": "string",
+          "description": "Normalized gene ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "Gene symbol (HGNC)"
+        },
+        "longName": {
+          "type": "string",
+          "description": "Full gene name"
+        },
+        "geneCategories": {
+          "type": "array",
+          "description": "Druggability categories",
+          "items": {
+            "type": "string",
+            "enum": ["KINASE", "DRUGGABLE GENOME", "CLINICALLY ACTIONABLE", "TUMOR SUPPRESSOR", "TRANSCRIPTION FACTOR", "G PROTEIN COUPLED RECEPTOR", "ION CHANNEL", "TRANSPORTER", "PROTEASE"]
+          }
+        },
+        "entrezId": {
+          "type": "integer",
+          "description": "NCBI Entrez Gene ID"
+        },
+        "ensemblId": {
+          "type": "string",
+          "description": "Ensembl gene ID",
+          "pattern": "^ENSG[0-9]{11}$"
+        }
+      },
+      "required": ["conceptId", "name"]
+    },
+    "drug": {
+      "type": "object",
+      "description": "Drug/compound entry",
+      "properties": {
+        "conceptId": {
+          "type": "string",
+          "description": "Normalized drug ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "Drug name"
+        },
+        "approved": {
+          "type": "boolean",
+          "description": "FDA approval status"
+        },
+        "chemblId": {
+          "type": "string",
+          "description": "ChEMBL identifier",
+          "pattern": "^CHEMBL[0-9]+$"
+        },
+        "drugbankId": {
+          "type": "string",
+          "description": "DrugBank identifier",
+          "pattern": "^DB[0-9]{5}$"
+        },
+        "aliases": {
+          "type": "array",
+          "description": "Alternative names",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": ["conceptId", "name"]
+    },
+    "interactionType": {
+      "type": "object",
+      "description": "Interaction type classification",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Interaction type",
+          "enum": ["inhibitor", "activator", "antagonist", "agonist", "antibody", "antisense", "binder", "modulator", "blocker", "vaccine"]
+        },
+        "directionality": {
+          "type": "string",
+          "description": "Direction of action"
+        }
+      },
+      "required": ["type"]
+    },
+    "source": {
+      "type": "object",
+      "description": "Source database",
+      "properties": {
+        "sourceDbName": {
+          "type": "string",
+          "description": "Database name"
+        },
+        "sourceDbVersion": {
+          "type": "string",
+          "description": "Version"
+        },
+        "citation": {
+          "type": "string",
+          "description": "Reference citation"
+        }
+      },
+      "required": ["sourceDbName"]
+    }
+  },
+  "additionalProperties": false
+}

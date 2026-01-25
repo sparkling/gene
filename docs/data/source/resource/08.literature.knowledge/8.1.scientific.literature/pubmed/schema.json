@@ -1,0 +1,131 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "pubmed-schema.json",
+  "title": "PubMed Article Record",
+  "description": "JSON Schema for PubMed biomedical literature citation records.",
+  "type": "object",
+  "properties": {
+    "pmid": {
+      "type": "integer",
+      "description": "PubMed unique identifier for the article.",
+      "minimum": 1,
+      "examples": [12345678, 98765432]
+    },
+    "title": {
+      "type": "string",
+      "description": "Article title.",
+      "minLength": 1
+    },
+    "abstract": {
+      "type": "string",
+      "description": "Article abstract text."
+    },
+    "authors": {
+      "type": "array",
+      "description": "List of article authors.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "last_name": { "type": "string" },
+          "fore_name": { "type": "string" },
+          "initials": { "type": "string" },
+          "affiliation": { "type": "string" },
+          "orcid": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[0-9X]$" }
+        },
+        "required": ["last_name"]
+      }
+    },
+    "journal": {
+      "type": "object",
+      "description": "Journal publication information.",
+      "properties": {
+        "title": { "type": "string" },
+        "iso_abbreviation": { "type": "string" },
+        "issn": { "type": "string" },
+        "volume": { "type": "string" },
+        "issue": { "type": "string" },
+        "pub_date": {
+          "type": "object",
+          "properties": {
+            "year": { "type": "integer" },
+            "month": { "type": "string" },
+            "day": { "type": "integer" }
+          }
+        }
+      }
+    },
+    "pagination": {
+      "type": "string",
+      "description": "Page numbers (e.g., '123-145')."
+    },
+    "doi": {
+      "type": "string",
+      "description": "Digital Object Identifier.",
+      "pattern": "^10\\.[0-9]+/"
+    },
+    "pmc_id": {
+      "type": "string",
+      "description": "PubMed Central identifier.",
+      "pattern": "^PMC[0-9]+$"
+    },
+    "publication_types": {
+      "type": "array",
+      "description": "Publication type classifications.",
+      "items": { "type": "string" }
+    },
+    "mesh_terms": {
+      "type": "array",
+      "description": "Medical Subject Headings descriptors.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "descriptor_name": { "type": "string" },
+          "descriptor_ui": { "type": "string", "pattern": "^D[0-9]+$" },
+          "major_topic": { "type": "boolean" },
+          "qualifiers": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "qualifier_name": { "type": "string" },
+                "qualifier_ui": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "keywords": {
+      "type": "array",
+      "description": "Author-supplied keywords.",
+      "items": { "type": "string" }
+    },
+    "grants": {
+      "type": "array",
+      "description": "Funding grant information.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "grant_id": { "type": "string" },
+          "agency": { "type": "string" },
+          "country": { "type": "string" }
+        }
+      }
+    },
+    "references": {
+      "type": "array",
+      "description": "Cited references (PMIDs).",
+      "items": { "type": "integer" }
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "date_created": { "type": "string", "format": "date" },
+        "date_revised": { "type": "string", "format": "date" },
+        "pub_status": { "type": "string", "enum": ["ppublish", "epublish", "aheadofprint"] }
+      }
+    }
+  },
+  "required": ["pmid", "title"],
+  "additionalProperties": true
+}

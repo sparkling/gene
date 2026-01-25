@@ -1,0 +1,100 @@
+{
+  "_metadata": {
+    "source": "NCBI RefSeq",
+    "version": "Release 224",
+    "generated": "2026-01-25",
+    "record_count": 2,
+    "query_examples": [
+      "E-fetch: efetch.fcgi?db=protein&id=NP_000537.3&rettype=gp&retmode=json",
+      "E-search: esearch.fcgi?db=protein&term=TP53[gene]+AND+human[organism]",
+      "FTP: ftp.ncbi.nlm.nih.gov/refseq/"
+    ]
+  },
+  "records": [
+    {
+      "accession": "NP_000537.3",
+      "gi": 4557577,
+      "locus": "NP_000537",
+      "definition": "cellular tumor antigen p53 [Homo sapiens]",
+      "organism": "Homo sapiens",
+      "taxonomy": [
+        "Eukaryota",
+        "Metazoa",
+        "Chordata",
+        "Craniata",
+        "Vertebrata",
+        "Mammalia",
+        "Primates",
+        "Hominidae",
+        "Homo"
+      ],
+      "tax_id": 9606,
+      "gene": "TP53",
+      "gene_id": 7157,
+      "coded_by": "NM_000546.6:203..1384",
+      "sequence": "MEEPQSDPSVEPPLSQETFSDLWKLLPENNVLSPLPSQAMDDLMLSPDDIEQWFTEDPGPDEAPRMPEAAPPVAPAPAAPTPAAPAPAPSWPLSSSVPSQKTYQGSYGFRLGFLHSGTAKSVTCTYSPALNKMFCQLAKTCPVQLWVDSTPPPGTRVRAMAIYKQSQHMTEVVRRCPHHERCSDSDGLAPPQHLIRVEGNLRVEYLDDRNTFRHSVVVPYEPPEVGSDCTTIHYNYMCNSSCMGGMNRRPILTIITLEDSSGNLLGRNSFEVRVCACPGRDRRTEEENLRKKGEPHHELPPGSTKRALPNNTSSSPQPKKKPLDGEYFTLQIRGRERFEMFRELNEALELKDAQAGKEPGGSRAHSSHLKSKKGQSTSRHKKLMFKTEGPDSD",
+      "length": 393,
+      "chromosome": "17",
+      "map_location": "17p13.1",
+      "features": [
+        {
+          "key": "Protein",
+          "location": "1..393",
+          "qualifiers": {
+            "product": "cellular tumor antigen p53",
+            "note": "tumor suppressor p53"
+          }
+        },
+        {
+          "key": "Region",
+          "location": "102..292",
+          "qualifiers": {
+            "region_name": "P53",
+            "note": "p53 DNA-binding domain",
+            "db_xref": "CDD:cd08367"
+          }
+        },
+        {
+          "key": "CDS",
+          "location": "1..393",
+          "qualifiers": {
+            "gene": "TP53",
+            "coded_by": "NM_000546.6:203..1384",
+            "db_xref": ["GeneID:7157", "CCDS:CCDS11118.1"]
+          }
+        }
+      ],
+      "dbxrefs": [
+        {"database": "GeneID", "id": "7157"},
+        {"database": "UniProtKB", "id": "P04637"},
+        {"database": "CCDS", "id": "CCDS11118.1"},
+        {"database": "HGNC", "id": "11998"},
+        {"database": "MIM", "id": "191170"},
+        {"database": "PDB", "id": "1TUP"}
+      ],
+      "comment": "VALIDATED REFSEQ: This record has undergone validation",
+      "create_date": "1999-02-10",
+      "update_date": "2026-01-15"
+    },
+    {
+      "accession": "NP_005219.2",
+      "definition": "epidermal growth factor receptor preproprotein [Homo sapiens]",
+      "organism": "Homo sapiens",
+      "tax_id": 9606,
+      "gene": "EGFR",
+      "gene_id": 1956,
+      "coded_by": "NM_005228.5:247..3879",
+      "sequence": "MRPSGTAGAALLALLAALCPASRALEEKKVCQGTSNKLTQLGTFEDHFLSLQRMFNNCEVVLGNLEITYVQRNYDLSFLKTIQEVAGYVLIALNTVERIPLENLQIIRGNMYYENSYALAVLSNYDANKTGLKELPMRNLQEILHGAVRFSNNPALCNVESIQWRDIVSSDFLSNMSMDFQNHLGSCQKCDPSCPNGSCWGAGEENCQKLTKIICAQQCSGRCRGKSPSDCCHNQCAAGCTGPRESDCLVCRKFRDEATCKDTCPPLMLYNPTTYQMDVNPEGKYSFGATCVKKCPRNYVVTDHGSCVRACGADSYEMEEDGVRKCKKCEGPCRKVCNGIGIGEFKDSLSINATNIKHFKNCTSISGDLHILPVAFRGDSFTHTPPLDPQELDILKTVKEITGFLLIQAWPENRTDLHAFENLEIIRGRTKQHGQFSLAVVSLNITSLGLRSLKEISDGDVIISGNKNLCYANTINWKKLFGTSGQKTKIISNRGENSCKATGQVCHALCSPEGCWGPEPRDCVSCRNVSRGRECVDKCNLLEGEPREFVENSECIQCHPECLPQAMNITCTGRGPDNCIQCAHYIDGPHCVKTCPAGVMGENNTLVWKYADAGHVCHLCHPNCTYGCTGPGLEGCPTNGPKIPSIATGMVGALLLLLVVALGIGLFMRRRHIVRKRTLRRLLQERELVEPLTPSGEAPNQALLRILKETEFKKIKVLGSGAFGTVYKGLWIPEGEKVKIPVAIKELREATSPKANKEILDEAYVMASVDNPHVCRLLGICLTSTVQLITQLMPFGCLLDYVREHKDNIGSQYLLNWCVQIAKGMNYLEDRRLVHRDLAARNVLVKTPQHVKITDFGLAKLLGAEEKEYHAEGGKVPIKWMALESILHRIYTHQSDVWSYGVTVWELMTFGSKPYDGIPASEISSILEKGERLPQPPICTIDVYMIMVKCWMIDADSRPKFRELIIEFSKMARDPQRYLVIQGDERMHLPSPTDSNFYRALMDEEDMDDVVDADEYLIPQQGFFSSPSTSRTPLLSSLSATSNNSTVACIDRNGLQSCPIKEDSFLQRYSSDPTGALTEDSIDDTFLPVPEYINQSVPKRPAGSVQNPVYHNQPLNPAPSRDPHYQDPHSTAVGNPEYLNTVQPTCVNSTFDSPAHWAQKGSHQISLDNPDYQQDFFPKEAKPNGIFKGSTAENAEYLRVAPQSSEFIGA",
+      "length": 1210,
+      "chromosome": "7",
+      "map_location": "7p11.2",
+      "dbxrefs": [
+        {"database": "GeneID", "id": "1956"},
+        {"database": "UniProtKB", "id": "P00533"},
+        {"database": "HGNC", "id": "3236"}
+      ],
+      "create_date": "2002-06-17",
+      "update_date": "2025-12-01"
+    }
+  ]
+}

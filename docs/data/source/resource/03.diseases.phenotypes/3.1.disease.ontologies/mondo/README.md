@@ -1,19 +1,21 @@
 ---
 id: mondo
 title: "MONDO Disease Ontology"
-type: data-source
-category: diseases
-subcategory: disease.ontologies
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 1
-last_updated: 2026-01-23
 status: active
-tags: [ontology, diseases, rare-diseases, cross-references, monarch-initiative]
+category: diseases.phenotypes
+subcategory: disease.ontologies
+tags:
+  - ontology
+  - diseases
+  - rare-diseases
+  - cross-references
+  - monarch-initiative
 ---
 
 # MONDO Disease Ontology
-
-**Category:** [Diseases & Phenotypes](../../_index.md) > [Disease Ontologies](../_index.md)
 
 ## Overview
 
@@ -67,16 +69,17 @@ MONDO is particularly valuable for rare disease research, providing comprehensiv
 | OBO | mondo.obo | 50.7 MB |
 | JSON | mondo.json | 102.7 MB |
 
-## License
+## Limitations
 
-| Aspect | Value |
-|--------|-------|
-| License | CC BY 4.0 |
-| Commercial Use | Yes |
-| Attribution | Required - "Mondo Disease Ontology, Monarch Initiative" |
+- Large file size may challenge some ontology tools
+- Equivalence mappings require OWL reasoning to fully exploit
+- Some source databases update faster than MONDO integration
+- Complex disease subtypes may have ongoing classification revisions
 
 ## See Also
 
-- [Schema Documentation](./schema.md)
-- [HPO](../../3.2.phenotype.databases/hpo/_index.md) - Phenotype ontology
-- [Orphanet](../../3.5.rare.orphan.diseases/orphanet/_index.md) - Rare disease database
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [License Terms](./license.md) - Usage rights and restrictions
+- [HPO](../../3.2.phenotype.databases/hpo/README.md) - Phenotype ontology
+- [Orphanet](../../3.5.rare.orphan.diseases/orphanet/README.md) - Rare disease database

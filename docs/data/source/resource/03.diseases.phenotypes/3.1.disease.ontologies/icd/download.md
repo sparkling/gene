@@ -234,6 +234,36 @@ head -50 icd10cm_tabular_2024.xml
 cat icd11_diabetes_search.json | jq '.destinationEntities | length'
 ```
 
+## Dataset Versions
+
+| Version | Release Date | Size | Status |
+|---------|--------------|------|--------|
+| ICD-11 v2025-01 | 2025-01-01 | API-based | Current |
+| ICD-10-CM 2025 | 2024-10-01 | ~100 MB | Current |
+| ICD-10-CM 2024 | 2023-10-01 | ~95 MB | Archived |
+
+### Version Notes
+
+ICD-11 (current WHO version):
+- 17,000+ diagnostic categories
+- Foundation layer with 100,000+ entities
+- Multiple linearizations (MMS, Primary Care, etc.)
+- REST API for programmatic access
+
+ICD-10-CM 2025 (US Clinical Modification):
+- 72,750+ valid diagnosis codes
+- FY2025 effective October 1, 2024
+- Annual updates from CDC/CMS
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | `https://id.who.int/icd` (ICD-11) |
+| Rate Limit | Token-based access |
+| Auth Required | Yes (OAuth2 for ICD-11 API) |
+| Documentation | https://icd.who.int/icdapi |
+
 ## Update Schedule
 
 | Version | Frequency |

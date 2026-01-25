@@ -1,19 +1,22 @@
 ---
 id: bindingdb
 title: "BindingDB - Binding Affinity Database"
-type: data-source
-category: compounds
-subcategory: compound-target-interactions
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 1
-last_updated: 2026-01-23
 status: active
-tags: [binding-affinity, drug-target, ic50, ki, pharmacology, drug-discovery]
+category: compounds.molecules
+subcategory: compound.target.interactions
+tags:
+  - binding-affinity
+  - drug-target
+  - ic50
+  - ki
+  - pharmacology
+  - drug-discovery
 ---
 
 # BindingDB - Binding Affinity Database
-
-**Category:** [Compounds & Molecules](../../_index.md) > [Compound-Target Interactions](../_index.md)
 
 ## Overview
 
@@ -79,13 +82,12 @@ BindingDB integrates data from scientific publications, patents, and direct depo
 | getLigandsByPDBs | Compounds binding to PDB structures |
 | getTargetByCompound | Targets for a given compound |
 
-## License
+## Limitations
 
-| Aspect | Value |
-|--------|-------|
-| License | CC BY 3.0 |
-| Commercial Use | Yes |
-| Attribution Required | Yes |
+- Assay conditions vary across sources; values not always comparable
+- Target protein sequences may differ from current UniProt entries
+- Some IC50 values extracted from patents lack experimental detail
+- Selectivity profiling requires cross-target comparison
 
 ## Related Resources
 
@@ -95,7 +97,9 @@ BindingDB integrates data from scientific publications, patents, and direct depo
 
 ## See Also
 
-- [Schema Documentation](./schema.md)
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [License Terms](./license.md) - Usage rights and restrictions
 
 ## References
 

@@ -1,0 +1,141 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "hit-2.0-schema.json",
+  "title": "HIT 2.0 Record",
+  "description": "JSON Schema for HIT 2.0 (Herbal Ingredients' Targets) experimentally validated interaction data.",
+  "type": "object",
+  "properties": {
+    "ingredient_id": {
+      "type": "string",
+      "description": "HIT internal ingredient identifier.",
+      "pattern": "^HIT[0-9]+$",
+      "examples": ["HIT001234"]
+    },
+    "ingredient_name": {
+      "type": "string",
+      "description": "Chemical compound name."
+    },
+    "pubchem_cid": {
+      "type": "integer",
+      "description": "PubChem Compound Identifier."
+    },
+    "cas_number": {
+      "type": "string",
+      "description": "CAS Registry Number.",
+      "pattern": "^[0-9]+-[0-9]+-[0-9]+$"
+    },
+    "smiles": {
+      "type": "string",
+      "description": "SMILES molecular notation."
+    },
+    "inchi_key": {
+      "type": "string",
+      "description": "InChIKey hash."
+    },
+    "source_herbs": {
+      "type": "array",
+      "description": "Source herbs containing this ingredient.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "herb_name": { "type": "string" },
+          "scientific_name": { "type": "string" },
+          "traditional_system": {
+            "type": "string",
+            "enum": ["TCM", "Ayurveda", "Kampo", "Western", "Other"]
+          }
+        }
+      }
+    },
+    "target_id": {
+      "type": "string",
+      "description": "Target protein identifier (UniProt accession).",
+      "pattern": "^[A-Z][0-9][A-Z0-9]{3}[0-9]$",
+      "examples": ["P04637"]
+    },
+    "gene_symbol": {
+      "type": "string",
+      "description": "HGNC gene symbol.",
+      "examples": ["TP53", "EGFR"]
+    },
+    "target_name": {
+      "type": "string",
+      "description": "Full target protein name."
+    },
+    "interaction_id": {
+      "type": "string",
+      "description": "HIT interaction identifier.",
+      "pattern": "^HIT_INT_[0-9]+$"
+    },
+    "evidence": {
+      "type": "object",
+      "description": "Experimental evidence details.",
+      "properties": {
+        "evidence_type": {
+          "type": "string",
+          "description": "Type of experimental validation.",
+          "enum": ["binding_assay", "enzyme_inhibition", "cell_based", "in_vivo", "clinical"]
+        },
+        "assay_type": {
+          "type": "string",
+          "description": "Specific assay used."
+        },
+        "pubmed_id": {
+          "type": "integer",
+          "description": "PubMed reference."
+        },
+        "citation": {
+          "type": "string",
+          "description": "Literature citation."
+        }
+      }
+    },
+    "binding_affinity": {
+      "type": "object",
+      "description": "Quantitative binding data.",
+      "properties": {
+        "affinity_type": {
+          "type": "string",
+          "enum": ["IC50", "Ki", "Kd", "EC50"]
+        },
+        "affinity_value": {
+          "type": "number",
+          "description": "Affinity measurement value."
+        },
+        "affinity_unit": {
+          "type": "string",
+          "description": "Unit of measurement.",
+          "enum": ["nM", "uM", "mM"]
+        },
+        "activity_type": {
+          "type": "string",
+          "enum": ["inhibitor", "agonist", "antagonist", "modulator", "binder"]
+        }
+      }
+    },
+    "traditional_system_coverage": {
+      "type": "array",
+      "description": "Traditional medicine systems covered.",
+      "items": {
+        "type": "string",
+        "enum": ["TCM", "Ayurveda", "Kampo", "Western", "African", "Other"]
+      }
+    },
+    "cross_references": {
+      "type": "array",
+      "description": "Cross-references to other databases.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "database": {
+            "type": "string",
+            "enum": ["BATMAN-TCM", "KampoDB", "IMPPAT", "SymMap", "ChEMBL", "DrugBank"]
+          },
+          "id": { "type": "string" }
+        }
+      }
+    }
+  },
+  "required": ["ingredient_id", "target_id"],
+  "additionalProperties": true
+}

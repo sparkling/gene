@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "npclassifier-schema.json",
+  "title": "NPClassifier Classification Result",
+  "description": "JSON Schema for NPClassifier natural product biosynthetic classification results. Deep learning-based classification into 7 pathway classes, 35+ superclasses, and 200+ classes with confidence scores.",
+  "type": "object",
+  "properties": {
+    "smiles": {
+      "type": "string",
+      "description": "Input SMILES structure string"
+    },
+    "pathway_results": {
+      "type": "array",
+      "description": "Predicted biosynthetic pathway origins with confidence scores",
+      "items": {
+        "$ref": "#/$defs/pathwayResult"
+      }
+    },
+    "superclass_results": {
+      "type": "array",
+      "description": "Predicted structural superclasses with confidence scores",
+      "items": {
+        "$ref": "#/$defs/superclassResult"
+      }
+    },
+    "class_results": {
+      "type": "array",
+      "description": "Predicted fine-grained classes with confidence scores",
+      "items": {
+        "$ref": "#/$defs/classResult"
+      }
+    },
+    "isglycoside": {
+      "type": "boolean",
+      "description": "Whether glycoside moiety was detected"
+    }
+  },
+  "required": ["smiles", "pathway_results", "superclass_results", "class_results", "isglycoside"],
+  "$defs": {
+    "pathwayResult": {
+      "type": "object",
+      "description": "Single biosynthetic pathway prediction",
+      "properties": {
+        "pathway": {
+          "type": "string",
+          "description": "Pathway name",
+          "enum": [
+            "Terpenoids",
+            "Polyketides",
+            "Alkaloids",
+            "Amino acids and Peptides",
+            "Carbohydrates",
+            "Fatty acids",
+            "Shikimates and Phenylpropanoids"
+          ]
+        },
+        "pathway_score": {
+          "type": "number",
+          "description": "Confidence score (0-1)",
+          "minimum": 0,
+          "maximum": 1
+        }
+      },
+      "required": ["pathway", "pathway_score"]
+    },
+    "superclassResult": {
+      "type": "object",
+      "description": "Single superclass prediction",
+      "properties": {
+        "superclass": {
+          "type": "string",
+          "description": "Superclass name (35+ categories)"
+        },
+        "superclass_score": {
+          "type": "number",
+          "description": "Confidence score (0-1)",
+          "minimum": 0,
+          "maximum": 1
+        }
+      },
+      "required": ["superclass", "superclass_score"]
+    },
+    "classResult": {
+      "type": "object",
+      "description": "Single class prediction",
+      "properties": {
+        "class": {
+          "type": "string",
+          "description": "Fine-grained class name (200+ categories)"
+        },
+        "class_score": {
+          "type": "number",
+          "description": "Confidence score (0-1)",
+          "minimum": 0,
+          "maximum": 1
+        }
+      },
+      "required": ["class", "class_score"]
+    }
+  },
+  "additionalProperties": false
+}

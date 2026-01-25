@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "hpo-schema.json",
+  "title": "Human Phenotype Ontology (HPO) Term Record",
+  "description": "JSON Schema for HPO phenotype terms. HPO provides standardized vocabulary of 13,000+ phenotypic abnormalities with 156,000+ disease annotations for rare disease diagnosis and genomic interpretation.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "HPO term identifier",
+      "pattern": "^HP:[0-9]{7}$",
+      "examples": ["HP:0001250", "HP:0001627", "HP:0002719"]
+    },
+    "name": {
+      "type": "string",
+      "description": "Primary phenotype term name",
+      "minLength": 1
+    },
+    "definition": {
+      "type": "string",
+      "description": "Textual definition of the phenotype"
+    },
+    "comment": {
+      "type": "string",
+      "description": "Additional explanatory comments"
+    },
+    "synonyms": {
+      "type": "array",
+      "description": "Alternative names for the phenotype",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "type": {
+            "type": "string",
+            "enum": ["EXACT", "NARROW", "BROAD", "RELATED"]
+          },
+          "scope": {
+            "type": "string",
+            "description": "Synonym scope (e.g., layperson, plural_form)"
+          }
+        },
+        "required": ["name"]
+      }
+    },
+    "xrefs": {
+      "type": "array",
+      "description": "Cross-references to external terminologies",
+      "items": {
+        "type": "object",
+        "properties": {
+          "source": {
+            "type": "string",
+            "description": "External database (UMLS, SNOMED, MeSH, etc.)"
+          },
+          "id": {
+            "type": "string",
+            "description": "External identifier"
+          }
+        },
+        "required": ["source", "id"]
+      }
+    },
+    "is_a": {
+      "type": "array",
+      "description": "Parent terms in the ontology hierarchy",
+      "items": {
+        "type": "string",
+        "pattern": "^HP:[0-9]{7}$"
+      }
+    },
+    "subset": {
+      "type": "array",
+      "description": "Ontology subsets this term belongs to",
+      "items": {
+        "type": "string"
+      }
+    },
+    "created_by": {
+      "type": "string",
+      "description": "Term creator"
+    },
+    "creation_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the term was created"
+    },
+    "alt_id": {
+      "type": "array",
+      "description": "Alternative/obsolete identifiers",
+      "items": {
+        "type": "string",
+        "pattern": "^HP:[0-9]{7}$"
+      }
+    }
+  },
+  "required": ["id", "name"],
+  "additionalProperties": false
+}

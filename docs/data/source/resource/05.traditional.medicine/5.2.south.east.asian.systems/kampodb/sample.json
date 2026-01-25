@@ -1,0 +1,89 @@
+[
+  {
+    "formula_id": "KT",
+    "formula_name": "Kakkonto",
+    "formula_name_jp": "葛根湯",
+    "phonetic": "かっこんとう",
+    "crude_drug_id": 40,
+    "crude_drug_name": "Cinnamon Bark",
+    "crude_drug_name_jp": "桂皮",
+    "botanical_origin": "Cinnamomum cassia",
+    "compound_id": 2244,
+    "compound_name": "Salicylic acid",
+    "molecular_formula": "C7H6O3",
+    "protein_id": 5743,
+    "gene_symbol": "PTGS2",
+    "docking": {
+      "domain_id": 1,
+      "affinity_kcal_mol": -7.2,
+      "ligand_atoms": 12,
+      "protein_atoms": 580
+    },
+    "pathways": [
+      {
+        "pathway_id": "hsa04668",
+        "pathway_name": "TNF signaling pathway"
+      },
+      {
+        "pathway_id": "hsa04064",
+        "pathway_name": "NF-kappa B signaling pathway"
+      }
+    ],
+    "go_biological_process": ["inflammatory response", "prostaglandin biosynthetic process"]
+  },
+  {
+    "formula_id": "YKS",
+    "formula_name": "Yokukansankan",
+    "formula_name_jp": "抑肝散加陳皮半夏",
+    "phonetic": "よくかんさんかちんぴはんげ",
+    "crude_drug_id": 65,
+    "crude_drug_name": "Uncaria Hook",
+    "crude_drug_name_jp": "釣藤鈎",
+    "botanical_origin": "Uncaria rhynchophylla",
+    "compound_id": 72326,
+    "compound_name": "Rhynchophylline",
+    "molecular_formula": "C22H28N2O4",
+    "protein_id": 2904,
+    "gene_symbol": "GRIN2B",
+    "docking": {
+      "domain_id": 2,
+      "affinity_kcal_mol": -8.5,
+      "ligand_atoms": 28,
+      "protein_atoms": 1420
+    },
+    "pathways": [
+      {
+        "pathway_id": "hsa04724",
+        "pathway_name": "Glutamatergic synapse"
+      }
+    ],
+    "go_molecular_function": ["NMDA glutamate receptor activity"]
+  },
+  {
+    "formula_id": "RKT",
+    "formula_name": "Rikkunshito",
+    "formula_name_jp": "六君子湯",
+    "phonetic": "りっくんしとう",
+    "crude_drug_id": 88,
+    "crude_drug_name": "Ginseng",
+    "crude_drug_name_jp": "人参",
+    "botanical_origin": "Panax ginseng",
+    "compound_id": 441923,
+    "compound_name": "Ginsenoside Rg1",
+    "molecular_formula": "C42H72O14",
+    "protein_id": 2475,
+    "gene_symbol": "MTOR",
+    "docking": {
+      "domain_id": 1,
+      "affinity_kcal_mol": -6.8,
+      "ligand_atoms": 58,
+      "protein_atoms": 2520
+    },
+    "diseases": [
+      {
+        "disease_id": "H00409",
+        "disease_name": "Type 2 diabetes mellitus"
+      }
+    ]
+  }
+]

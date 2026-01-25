@@ -1,0 +1,71 @@
+{
+  "source": "DECIPHER",
+  "version": "2024",
+  "description": "Sample developmental disorder records from DECIPHER",
+  "records": [
+    {
+      "patient_id": 12345,
+      "sex": "Female",
+      "phenotypes": [
+        {"hpo_id": "HP:0001249", "hpo_term": "Intellectual disability"},
+        {"hpo_id": "HP:0000252", "hpo_term": "Microcephaly"},
+        {"hpo_id": "HP:0001250", "hpo_term": "Seizures"}
+      ],
+      "variants": [
+        {
+          "chromosome": "2",
+          "start": 197500123,
+          "end": 197500123,
+          "reference": "G",
+          "alternate": "A",
+          "gene_symbol": "SF3B1",
+          "consequence": "missense_variant",
+          "inheritance": "de novo",
+          "pathogenicity": "likely_pathogenic"
+        }
+      ]
+    },
+    {
+      "patient_id": 23456,
+      "sex": "Male",
+      "phenotypes": [
+        {"hpo_id": "HP:0001263", "hpo_term": "Global developmental delay"},
+        {"hpo_id": "HP:0001999", "hpo_term": "Abnormal facial shape"}
+      ],
+      "variants": [
+        {
+          "chromosome": "17",
+          "start": 41234123,
+          "end": 41512312,
+          "variant_type": "deletion",
+          "size_kb": 278,
+          "genes_affected": ["NF1"],
+          "pathogenicity": "pathogenic"
+        }
+      ],
+      "syndrome": {
+        "name": "Neurofibromatosis type 1",
+        "omim": "162200"
+      }
+    },
+    {
+      "patient_id": 34567,
+      "sex": "Female",
+      "phenotypes": [
+        {"hpo_id": "HP:0001631", "hpo_term": "Atrial septal defect"},
+        {"hpo_id": "HP:0000316", "hpo_term": "Hypertelorism"}
+      ],
+      "variants": [
+        {
+          "gene_symbol": "TBX5",
+          "consequence": "frameshift_variant",
+          "inheritance": "autosomal_dominant"
+        }
+      ]
+    }
+  ],
+  "queries": {
+    "web_search": "https://www.deciphergenomics.org/browser",
+    "api_note": "API access requires registration and data access agreement"
+  }
+}

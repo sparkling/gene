@@ -1,0 +1,157 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "hpo-ontology-schema.json",
+  "title": "Human Phenotype Ontology Term",
+  "description": "JSON Schema for HPO phenotype ontology terms. Contains 13,000+ standardized terms for human phenotypic abnormalities organized in a hierarchical DAG structure with definitions, synonyms, and cross-references to UMLS, SNOMED-CT, and other medical vocabularies.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "HPO term identifier",
+      "pattern": "^HP:[0-9]{7}$",
+      "examples": ["HP:0001250", "HP:0001166"]
+    },
+    "name": {
+      "type": "string",
+      "description": "Preferred term name",
+      "minLength": 1,
+      "examples": ["Seizure", "Arachnodactyly"]
+    },
+    "definition": {
+      "type": ["string", "null"],
+      "description": "Textual definition with source attribution"
+    },
+    "definition_xrefs": {
+      "type": "array",
+      "description": "Sources for the definition",
+      "items": {
+        "type": "string"
+      },
+      "examples": [["PMID:22983531", "HPO:probinson"]]
+    },
+    "synonyms": {
+      "type": "array",
+      "description": "Alternative names with synonym type",
+      "items": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string",
+            "description": "Synonym text"
+          },
+          "type": {
+            "type": "string",
+            "description": "Synonym type",
+            "enum": ["EXACT", "RELATED", "NARROW", "BROAD"]
+          },
+          "xrefs": {
+            "type": "array",
+            "items": {"type": "string"}
+          }
+        },
+        "required": ["label"]
+      }
+    },
+    "is_a": {
+      "type": "array",
+      "description": "Parent term relationships (superclasses)",
+      "items": {
+        "type": "string",
+        "pattern": "^HP:[0-9]{7}$"
+      }
+    },
+    "xrefs": {
+      "type": "array",
+      "description": "Cross-references to external vocabularies",
+      "items": {
+        "type": "string"
+      },
+      "examples": [["UMLS:C0036572", "SNOMEDCT_US:91175000", "MSH:D012640"]]
+    },
+    "comment": {
+      "type": ["string", "null"],
+      "description": "Additional notes about the term"
+    },
+    "subset": {
+      "type": "array",
+      "description": "Named subsets this term belongs to",
+      "items": {
+        "type": "string",
+        "enum": ["hposlim_core", "hpo_slim", "fetal_phenotypes"]
+      }
+    },
+    "alt_id": {
+      "type": "array",
+      "description": "Alternative/obsolete identifiers that now map to this term",
+      "items": {
+        "type": "string",
+        "pattern": "^HP:[0-9]{7}$"
+      }
+    },
+    "property_values": {
+      "type": "array",
+      "description": "Additional annotation properties",
+      "items": {
+        "type": "object",
+        "properties": {
+          "property": {"type": "string"},
+          "value": {"type": "string"}
+        }
+      }
+    },
+    "created_by": {
+      "type": ["string", "null"],
+      "description": "Curator who created the term"
+    },
+    "creation_date": {
+      "type": ["string", "null"],
+      "description": "ISO 8601 date when term was created",
+      "format": "date-time"
+    },
+    "is_obsolete": {
+      "type": "boolean",
+      "description": "Whether term is deprecated",
+      "default": false
+    },
+    "replaced_by": {
+      "type": ["string", "null"],
+      "description": "Replacement term if obsolete",
+      "pattern": "^HP:[0-9]{7}$"
+    },
+    "consider": {
+      "type": "array",
+      "description": "Suggested replacement terms if obsolete",
+      "items": {
+        "type": "string",
+        "pattern": "^HP:[0-9]{7}$"
+      }
+    },
+    "namespace": {
+      "type": "string",
+      "description": "HPO namespace",
+      "enum": ["HP"]
+    },
+    "logical_definition": {
+      "type": ["object", "null"],
+      "description": "OWL logical definition (intersection_of, etc.)",
+      "properties": {
+        "genus": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "differentia": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "relation": {"type": "string"},
+              "filler": {"type": "string"}
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": ["id", "name"],
+  "additionalProperties": false
+}

@@ -1,0 +1,128 @@
+{
+  "_metadata": {
+    "source": "HMDB",
+    "version": "5.0",
+    "generated": "2026-01-25",
+    "record_count": 2,
+    "query_examples": [
+      "Get metabolite: GET /metabolites/HMDB0000001.json",
+      "Search: hmdb.ca/unearth?query=glucose",
+      "Spectra search: hmdb.ca/spectra"
+    ]
+  },
+  "records": [
+    {
+      "accession": "HMDB0000001",
+      "version": 5,
+      "name": "1-Methylhistidine",
+      "description": "1-Methylhistidine (1-MHis) is a methylated amino acid derivative found in mammalian tissues...",
+      "chemical_formula": "C7H11N3O2",
+      "average_molecular_weight": 169.181,
+      "monoisotopic_molecular_weight": 169.085126611,
+      "iupac_name": "(2S)-2-amino-3-(1-methyl-1H-imidazol-4-yl)propanoic acid",
+      "cas_registry_number": "332-80-9",
+      "smiles": "CN1C=NC(CC(N)C(O)=O)=C1",
+      "inchi": "InChI=1S/C7H11N3O2/c1-10-4-9-5(3-10)2-6(8)7(11)12/h3-4,6H,2,8H2,1H3,(H,11,12)/t6-/m0/s1",
+      "inchikey": "BRMWTNUJHUMWMS-LURJTMIESA-N",
+      "state": "Solid",
+      "taxonomy": {
+        "kingdom": "Organic compounds",
+        "superclass": "Organic acids and derivatives",
+        "class": "Carboxylic acids and derivatives",
+        "subclass": "Amino acids, peptides, and analogues",
+        "direct_parent": "Histidine and derivatives"
+      },
+      "biological_properties": {
+        "cellular_locations": ["Cytoplasm"],
+        "biofluid_locations": ["Blood", "Urine"],
+        "tissue_locations": ["Muscle"]
+      },
+      "concentrations": [
+        {
+          "biofluid": "Blood",
+          "concentration_value": 5.2,
+          "concentration_units": "uM",
+          "age": "Adult (>18 years)",
+          "sex": "Both",
+          "condition": "Normal",
+          "subject_count": 120,
+          "pubmed_id": 12345678
+        },
+        {
+          "biofluid": "Urine",
+          "concentration_value": 180,
+          "concentration_units": "umol/mmol creatinine",
+          "condition": "Normal",
+          "subject_count": 85
+        }
+      ],
+      "diseases": [
+        {
+          "disease_name": "Histidinemia",
+          "omim_id": "235800",
+          "concentration_change": "Elevated",
+          "pubmed_id": 23456789
+        }
+      ],
+      "pathways": [
+        {
+          "pathway_name": "Histidine Metabolism",
+          "kegg_id": "map00340",
+          "smpdb_id": "SMP00044"
+        }
+      ],
+      "external_links": [
+        {"resource": "PubChem", "id": "92105"},
+        {"resource": "ChEBI", "id": "CHEBI:50599"},
+        {"resource": "KEGG", "id": "C01152"},
+        {"resource": "FooDB", "id": "FDB000570"}
+      ]
+    },
+    {
+      "accession": "HMDB0000122",
+      "version": 5,
+      "name": "D-Glucose",
+      "description": "D-Glucose is a monosaccharide and the most abundant carbohydrate...",
+      "chemical_formula": "C6H12O6",
+      "average_molecular_weight": 180.156,
+      "iupac_name": "(2R,3S,4R,5R)-2,3,4,5,6-pentahydroxyhexanal",
+      "cas_registry_number": "50-99-7",
+      "smiles": "OCC(O)C(O)C(O)C(O)C=O",
+      "inchikey": "WQZGKKKJIJFFOK-GASJEMHNSA-N",
+      "state": "Solid",
+      "taxonomy": {
+        "kingdom": "Organic compounds",
+        "superclass": "Organooxygen compounds",
+        "class": "Carbohydrates and carbohydrate conjugates",
+        "direct_parent": "Hexoses"
+      },
+      "biological_properties": {
+        "biofluid_locations": ["Blood", "Urine", "CSF", "Saliva"],
+        "tissue_locations": ["All tissues"]
+      },
+      "concentrations": [
+        {
+          "biofluid": "Blood",
+          "concentration_value": 5.0,
+          "concentration_units": "mM",
+          "condition": "Normal (fasting)",
+          "subject_count": 500
+        }
+      ],
+      "diseases": [
+        {
+          "disease_name": "Diabetes mellitus",
+          "omim_id": "222100",
+          "concentration_change": "Elevated"
+        }
+      ],
+      "pathways": [
+        {
+          "pathway_name": "Glycolysis",
+          "kegg_id": "map00010",
+          "smpdb_id": "SMP00040"
+        }
+      ]
+    }
+  ]
+}

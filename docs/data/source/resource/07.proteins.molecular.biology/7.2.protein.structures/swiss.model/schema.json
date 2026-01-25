@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gene.taxonomy/schemas/swiss-model",
+  "title": "SWISS-MODEL Repository Record",
+  "description": "JSON Schema for SWISS-MODEL homology model records",
+  "type": "object",
+  "properties": {
+    "uniprot_ac": {
+      "type": "string",
+      "description": "UniProt accession",
+      "pattern": "^[OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9]([A-Z][A-Z0-9]{2}[0-9]){1,2}$",
+      "examples": ["P04637", "Q9Y6K9"]
+    },
+    "sequence_id": {
+      "type": "string",
+      "description": "Internal sequence identifier"
+    },
+    "sequence_length": {
+      "type": "integer",
+      "description": "Full protein sequence length",
+      "minimum": 1
+    },
+    "models": {
+      "type": "array",
+      "description": "Pre-computed homology models",
+      "items": {
+        "type": "object",
+        "properties": {
+          "model_id": {
+            "type": "string",
+            "description": "Unique model identifier"
+          },
+          "from": {
+            "type": "integer",
+            "description": "Start residue in UniProt sequence",
+            "minimum": 1
+          },
+          "to": {
+            "type": "integer",
+            "description": "End residue in UniProt sequence",
+            "minimum": 1
+          },
+          "template": {
+            "type": "string",
+            "description": "Template PDB ID + chain (e.g., 1tup.1.A)",
+            "pattern": "^[0-9][a-zA-Z0-9]{3}\\.[0-9]+\\.[A-Za-z]$"
+          },
+          "identity": {
+            "type": "number",
+            "description": "Sequence identity to template (0-1)",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "similarity": {
+            "type": ["number", "null"],
+            "description": "Sequence similarity to template (0-1)",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "coverage": {
+            "type": "number",
+            "description": "Sequence coverage (0-1)",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "qmean": {
+            "type": "number",
+            "description": "QMEAN Z-score (-4 to 0)",
+            "minimum": -10,
+            "maximum": 2
+          },
+          "qmean_disco": {
+            "type": ["number", "null"],
+            "description": "QMEANDisCo score (0-1)",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "oligo_state": {
+            "type": ["string", "null"],
+            "description": "Oligomeric state",
+            "enum": ["monomer", "homodimer", "homotrimer", "homotetramer", "heterodimer", null]
+          },
+          "created_date": {
+            "type": "string",
+            "format": "date",
+            "description": "Model generation date"
+          },
+          "coordinate_url": {
+            "type": ["string", "null"],
+            "format": "uri",
+            "description": "URL to download model coordinates"
+          }
+        },
+        "required": ["model_id", "from", "to", "template", "identity", "coverage", "qmean"]
+      }
+    },
+    "coverage_image": {
+      "type": ["string", "null"],
+      "format": "uri",
+      "description": "URL to coverage visualization image"
+    }
+  },
+  "required": ["uniprot_ac", "models"],
+  "additionalProperties": true
+}

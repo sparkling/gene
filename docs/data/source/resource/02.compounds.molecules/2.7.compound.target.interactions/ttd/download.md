@@ -203,13 +203,38 @@ wc -l TTD_drug_download.txt
 grep -c "TTDT" TTD_target_download.txt
 ```
 
+## Dataset Versions
+
+| Version | Release Date | Size | Status |
+|---------|--------------|------|--------|
+| TTD 2024 | 2024-09 | ~200 MB | Current |
+| TTD 2022 | 2022 | ~150 MB | Archived |
+
+### Version Notes
+
+TTD 2024 (Therapeutic Target Database) contains:
+- 3,500+ therapeutic targets
+- 39,000+ drugs (approved, clinical, experimental)
+- 15,000+ target-drug interactions
+- Drug development status tracking
+- Multi-omics target data
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | `https://idrblab.net/ttd` |
+| Rate Limit | N/A (web interface) |
+| Auth Required | No |
+| Documentation | https://idrblab.net/ttd/full-data-download |
+
 ## Update Schedule
 
 | Release | Frequency |
 |---------|-----------|
 | Database updates | Semi-annual |
 | Web interface | Continuous |
-| Last major update | 2024 |
+| Last major update | 2024-09 |
 
 ## Common Issues
 

@@ -1,14 +1,18 @@
 ---
 id: msigdb
 title: "MSigDB - Molecular Signatures Database"
-type: data-source
-category: pathways
-subcategory: gene-function-ontology
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 1
-last_updated: 2026-01-23
 status: active
-tags: [gene-sets, gsea, enrichment, signatures, broad-institute]
+category: pathways.networks
+subcategory: gene.function.ontology
+tags:
+  - gene-sets
+  - gsea
+  - enrichment
+  - signatures
+  - broad-institute
 ---
 
 # MSigDB - Molecular Signatures Database
@@ -173,6 +177,13 @@ HALLMARK_APOPTOSIS	http://www.gsea-msigdb.org/gsea/msigdb/cards/HALLMARK_APOPTOS
 3. **Run enrichment** - GSEA, ORA, or ssGSEA
 4. **Filter results** - FDR q-value < 0.25 typical cutoff
 5. **Interpret biology** - Review leading edge genes
+
+## Limitations
+
+- Human-centric; ortholog mapping needed for other species
+- Some gene sets derived from older studies may be outdated
+- Overlap between gene sets can affect enrichment statistics
+- GSEA software has non-commercial license restrictions
 
 ## Download Files
 

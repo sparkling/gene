@@ -184,6 +184,31 @@ grep "xref: DOID:" efo.obo | wc -l
 grep "xref: HP:" efo.obo | wc -l
 ```
 
+## Dataset Versions
+
+| Version | Release Date | Size | Status |
+|---------|--------------|------|--------|
+| v3.76.0 | 2025-01 | ~200 MB | Current |
+| v3.75.0 | 2024-12 | ~195 MB | Archived |
+| Monthly releases | Continuous | Varies | Rolling |
+
+### Version Notes
+
+EFO current release features:
+- 60,000+ classes including traits and phenotypes
+- Primary vocabulary for GWAS Catalog and Open Targets
+- Comprehensive disease, anatomy, and experimental factor coverage
+- Regular imports from external ontologies
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | `https://www.ebi.ac.uk/ols4/api/ontologies/efo` |
+| Rate Limit | Reasonable use |
+| Auth Required | No |
+| Documentation | https://www.ebi.ac.uk/efo |
+
 ## Update Schedule
 
 | Release | Frequency |

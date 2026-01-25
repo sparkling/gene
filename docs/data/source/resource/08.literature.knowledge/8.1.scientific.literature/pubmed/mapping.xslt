@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ============================================================
+  PubMed -> Unified Scientific Literature Schema Mapping
+  ============================================================
+  Source: ./schema.json
+  Target: ../schema.json (Unified Scientific Literature Schema)
+  XSLT Version: 3.0
+
+  TRANSFORMATION SUMMARY:
+  +-------------------------+-----------------+--------------+
+  | Source Field            | Target Field    | Transform    |
+  +-------------------------+-----------------+--------------+
+  | pmid                    | id              | Prefix       |
+  | title                   | title           | Direct       |
+  | abstract                | abstract        | Direct       |
+  | authors                 | authors         | Normalize    |
+  | doi                     | doi             | Direct       |
+  | journal.pub_date.year   | publication_year| Extract      |
+  | mesh_terms              | subjects        | Flatten      |
+  +-------------------------+-----------------+--------------+
+
+  NULL HANDLING:
+  - abstract: null if empty
+  - doi: null if not present
+
+  NOTES:
+  - PMID prefixed with "PMID:" for unified ID format
+  - Authors normalized to unified name format
+-->
+<xsl:stylesheet version="3.0"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:fn="http://www.w3.org/2005/xpath-functions"
+    xmlns:map="http://www.w3.org/2005/xpath-functions/map"
+    xmlns:array="http://www.w3.org/2005/xpath-functions/array"
+    xmlns:local="http://local.functions"
+    exclude-result-prefixes="xs fn map array local">
+
+  <xsl:output method="json" indent="yes"/>
+
+  <!-- ============================================================
+       Entry Point: Parse JSON input
+       ============================================================ -->
+  <xsl:template name="xsl:initial-template">
+    <xsl:param name="input" as="xs:string"/>
+    <xsl:variable name="source" select="json-to-xml($input)"/>
+    <xsl:apply-templates select="$source/fn:map"/>
+  </xsl:template>
+
+  <!-- ============================================================
+       Main Record Transformation
+       ============================================================ -->
+  <xsl:template match="fn:map">
+    <fn:map>
+      <!-- Primary identifier with prefix -->
+      <fn:string key="id">
+        <xsl:value-of select="concat('PMID:', fn:number[@key='pmid'])"/>
+      </fn:string>
+
+      <!-- Title -->
+      <fn:string key="title">
+        <xsl:value-of select="fn:string[@key='title']"/>
+      </fn:string>
+
+      <!-- Abstract with null handling -->
+      <xsl:choose>
+        <xsl:when test="fn:string[@key='abstract'] and fn:string[@key='abstract'] != ''">
+          <fn:string key="abstract">
+            <xsl:value-of select="fn:string[@key='abstract']"/>
+          </fn:string>
+        </xsl:when>
+        <xsl:otherwise>
+          <fn:null key="abstract"/>
+        </xsl:otherwise>
+      </xsl:choose>
+
+      <!-- Authors transformation -->
+      <fn:array key="authors">
+        <xsl:for-each select="fn:array[@key='authors']/fn:map">
+          <fn:map>
+            <fn:string key="name">
+              <xsl:value-of select="concat(fn:string[@key='fore_name'], ' ', fn:string[@key='last_name'])"/>
+            </fn:string>
+            <xsl:if test="fn:string[@key='orcid']">
+              <fn:string key="orcid">
+                <xsl:value-of select="fn:string[@key='orcid']"/>
+              </fn:string>
+            </xsl:if>
+          </fn:map>
+        </xsl:for-each>
+      </fn:array>
+
+      <!-- DOI -->
+      <xsl:if test="fn:string[@key='doi']">
+        <fn:string key="doi">
+          <xsl:value-of select="fn:string[@key='doi']"/>
+        </fn:string>
+      </xsl:if>
+
+      <!-- Publication year -->
+      <xsl:if test="fn:map[@key='journal']/fn:map[@key='pub_date']/fn:number[@key='year']">
+        <fn:number key="publication_year">
+          <xsl:value-of select="fn:map[@key='journal']/fn:map[@key='pub_date']/fn:number[@key='year']"/>
+        </fn:number>
+      </xsl:if>
+
+      <!-- Journal -->
+      <fn:string key="source">
+        <xsl:value-of select="fn:map[@key='journal']/fn:string[@key='title']"/>
+      </fn:string>
+
+      <!-- Subjects from MeSH terms -->
+      <fn:array key="subjects">
+        <xsl:for-each select="fn:array[@key='mesh_terms']/fn:map">
+          <fn:string>
+            <xsl:value-of select="fn:string[@key='descriptor_name']"/>
+          </fn:string>
+        </xsl:for-each>
+      </fn:array>
+
+      <!-- Source metadata -->
+      <fn:map key="_source">
+        <fn:string key="database">PubMed</fn:string>
+        <fn:number key="original_id">
+          <xsl:value-of select="fn:number[@key='pmid']"/>
+        </fn:number>
+        <xsl:if test="fn:string[@key='pmc_id']">
+          <fn:string key="pmc_id">
+            <xsl:value-of select="fn:string[@key='pmc_id']"/>
+          </fn:string>
+        </xsl:if>
+      </fn:map>
+
+    </fn:map>
+  </xsl:template>
+
+</xsl:stylesheet>

@@ -1,0 +1,55 @@
+{
+  "source": "HPO",
+  "version": "2024-01",
+  "description": "Sample phenotype ontology records from Human Phenotype Ontology",
+  "records": [
+    {
+      "hpo_id": "HP:0001250",
+      "label": "Seizure",
+      "definition": "A seizure is an episode of abnormal electrical activity in the brain.",
+      "synonyms": ["Convulsions", "Epileptic seizure", "Seizures"],
+      "parents": ["HP:0012638"],
+      "comment": "The term 'seizure' is used for this feature to distinguish it from epilepsy.",
+      "xrefs": [
+        {"source": "UMLS", "id": "C0036572"},
+        {"source": "MeSH", "id": "D012640"}
+      ]
+    },
+    {
+      "hpo_id": "HP:0001263",
+      "label": "Global developmental delay",
+      "definition": "A delay in the achievement of motor or mental milestones in the domains of development of a child.",
+      "synonyms": ["Developmental delay", "GDD", "Psychomotor delay"],
+      "parents": ["HP:0001249"],
+      "xrefs": [
+        {"source": "UMLS", "id": "C0557874"}
+      ]
+    },
+    {
+      "hpo_id": "HP:0000316",
+      "label": "Hypertelorism",
+      "definition": "Interpupillary distance more than 2 SD above the mean.",
+      "synonyms": ["Wide-set eyes", "Widely spaced eyes"],
+      "parents": ["HP:0100886"],
+      "xrefs": [
+        {"source": "UMLS", "id": "C0020534"}
+      ]
+    },
+    {
+      "hpo_id": "HP:0001631",
+      "label": "Atrial septal defect",
+      "definition": "A defect in the interatrial septum allowing communication between the left and right atria.",
+      "synonyms": ["ASD"],
+      "parents": ["HP:0010438"],
+      "xrefs": [
+        {"source": "UMLS", "id": "C0018817"},
+        {"source": "MeSH", "id": "D006344"}
+      ]
+    }
+  ],
+  "queries": {
+    "obo_download": "wget http://purl.obolibrary.org/obo/hp.obo",
+    "owl_download": "wget http://purl.obolibrary.org/obo/hp.owl",
+    "ols_search": "curl 'https://www.ebi.ac.uk/ols/api/search?q=seizure&ontology=hp' | jq"
+  }
+}

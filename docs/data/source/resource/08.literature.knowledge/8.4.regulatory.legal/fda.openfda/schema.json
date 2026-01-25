@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "fda-openfda-schema.json",
+  "title": "OpenFDA Drug Event Record",
+  "description": "JSON Schema for FDA OpenFDA drug adverse event records (FAERS).",
+  "type": "object",
+  "properties": {
+    "safetyreportid": { "type": "string", "description": "Unique report ID" },
+    "safetyreportversion": { "type": "string" },
+    "receivedate": { "type": "string", "pattern": "^[0-9]{8}$" },
+    "serious": { "type": "string", "enum": ["1", "2"] },
+    "seriousnessdeath": { "type": "string" },
+    "seriousnesshospitalization": { "type": "string" },
+    "occurcountry": { "type": "string" },
+    "patient": {
+      "type": "object",
+      "properties": {
+        "patientsex": { "type": "string" },
+        "patientonsetage": { "type": "string" },
+        "patientonsetageunit": { "type": "string" },
+        "reaction": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "reactionmeddrapt": { "type": "string" },
+              "reactionoutcome": { "type": "string" }
+            }
+          }
+        },
+        "drug": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "drugcharacterization": { "type": "string" },
+              "medicinalproduct": { "type": "string" },
+              "drugindication": { "type": "string" },
+              "openfda": {
+                "type": "object",
+                "properties": {
+                  "brand_name": { "type": "array", "items": { "type": "string" } },
+                  "generic_name": { "type": "array", "items": { "type": "string" } },
+                  "rxcui": { "type": "array", "items": { "type": "string" } }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "primarysource": {
+      "type": "object",
+      "properties": {
+        "qualification": { "type": "string" },
+        "reportercountry": { "type": "string" }
+      }
+    }
+  },
+  "required": ["safetyreportid"],
+  "additionalProperties": true
+}

@@ -1,0 +1,46 @@
+[
+  {
+    "gene": "CYP2D6",
+    "drug": "codeine",
+    "phenotype": "PM (Poor Metabolizer)",
+    "activity_score": "0",
+    "recommendation": "Morphine is not or only to a small extent formed. There is insufficient analgesia; the therapy is ineffective. 1. Select an alternative. Tramadol and oxycodone are not suitable alternatives because their effectiveness is reduced in PM patients. Avoid all codeine-containing products.",
+    "urgency": "C (Monitor therapy)",
+    "evidence_level": "Published",
+    "source": "DPWG",
+    "guideline_url": "https://www.knmp.nl/kennis/kennisbank/pharmacogenetics"
+  },
+  {
+    "gene": "CYP2C19",
+    "drug": "omeprazole",
+    "phenotype": "UM (Ultrarapid Metabolizer)",
+    "activity_score": ">2",
+    "recommendation": "The plasma concentration of omeprazole is decreased. This may result in reduced efficacy. 1. Consider a higher dose or use an alternative PPI (pantoprazole, rabeprazole).",
+    "urgency": "B (High priority)",
+    "evidence_level": "Published",
+    "source": "DPWG",
+    "guideline_url": "https://www.knmp.nl/kennis/kennisbank/pharmacogenetics"
+  },
+  {
+    "gene": "DPYD",
+    "drug": "fluorouracil",
+    "phenotype": "PM (Poor Metabolizer)",
+    "activity_score": "0-0.5",
+    "recommendation": "The risk of severe, potentially fatal toxicity is substantially increased. Avoid use of 5-fluorouracil or capecitabine. Consider alternative treatment.",
+    "urgency": "A (Action required)",
+    "evidence_level": "Published",
+    "source": "DPWG",
+    "guideline_url": "https://www.knmp.nl/kennis/kennisbank/pharmacogenetics"
+  },
+  {
+    "gene": "VKORC1",
+    "drug": "warfarin",
+    "phenotype": "rs9923231 AA genotype",
+    "activity_score": null,
+    "recommendation": "Gene variants lead to higher sensitivity to coumarins. Start with 50% of the standard initial dose.",
+    "urgency": "B (High priority)",
+    "evidence_level": "Published",
+    "source": "DPWG",
+    "guideline_url": "https://www.knmp.nl/kennis/kennisbank/pharmacogenetics"
+  }
+]

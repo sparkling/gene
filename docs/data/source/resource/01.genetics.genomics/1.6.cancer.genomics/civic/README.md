@@ -1,23 +1,34 @@
 ---
 id: civic
 title: "CIViC"
-type: data-source
-category: genetics
+type: source
+parent: ../README.md
+category: genetics.genomics
 subcategory: cancer.genomics
-parent: ../_index.md
 tier: 1
-last_updated: 2026-01-23
 status: active
-tags: [cancer, clinical, interpretation, community, evidence]
+last_updated: 2026-01-25
+tags:
+  - cancer
+  - clinical
+  - interpretation
+  - community
+  - evidence
 ---
 
 # CIViC
 
-**Category:** [Genetics & Genomics](../../_index.md) > [Cancer Genomics](../_index.md)
+CIViC (Clinical Interpretation of Variants in Cancer) is an open-source, community-driven knowledgebase of clinical interpretations for cancer variants. Developed by Washington University, it provides crowdsourced curation of variant-level evidence linking genomic alterations to clinical outcomes, therapies, and diagnostic/prognostic implications.
 
 ## Overview
 
-CIViC (Clinical Interpretation of Variants in Cancer) is an open-source, community-driven knowledgebase of clinical interpretations for cancer variants. Developed by Washington University, it provides crowdsourced curation of variant-level evidence linking genomic alterations to clinical outcomes, therapies, and diagnostic/prognostic implications.
+| Property | Value |
+|----------|-------|
+| **Maintainer** | Washington University School of Medicine |
+| **Website** | https://civicdb.org/ |
+| **Update Frequency** | Continuous community curation |
+| **Records** | 8,000+ evidence items |
+| **Latest Release** | Current (continuous) |
 
 Each evidence item in CIViC links a variant to a specific disease, evidence type (predictive, diagnostic, prognostic, predisposing, functional, oncogenic), evidence level (validated, clinical, case study, preclinical), and clinical significance. The wiki-style platform allows community contributions with expert review.
 
@@ -42,31 +53,32 @@ CIViC follows the AMP/ASCO/CAP guidelines for somatic variant interpretation and
 
 ## Key Identifiers
 
-| Identifier | Pattern | Example |
-|------------|---------|---------|
-| Gene | CIViC ID | 5 (BRAF) |
-| Variant | CIViC ID | 12 (V600E) |
-| Evidence | CIViC ID | EID1234 |
+| Identifier | Format | Example |
+|------------|--------|---------|
+| Gene | `CIViC ID` | `5 (BRAF)` |
+| Variant | `CIViC ID` | `12 (V600E)` |
+| Evidence | `CIViC ID` | `EID1234` |
 
-## Access Methods
+## Limitations
 
-| Method | URL | Notes |
-|--------|-----|-------|
-| Web | https://civicdb.org/ | Interactive curation |
-| API | GraphQL | Programmatic access |
-| Downloads | Nightly releases | TSV, JSON |
-| GitHub | civic-server | Open source |
+- Community curation may include errors
+- Evidence quality varies by item
+- Coverage incomplete for rare variants
+- Some evidence items awaiting expert review
+- Therapy recommendations may not reflect current practice
 
-## License
+## Data Quality Notes
 
-| Aspect | Value |
-|--------|-------|
-| License | CC0 1.0 (Public Domain) |
-| Commercial Use | Yes |
-| Contribution | Open to all |
+CIViC implements a trust-based curation model with evidence ratings and expert review. Assertions represent higher-confidence curated statements following AMP/ASCO/CAP guidelines. Evidence items should be evaluated based on their evidence level (A-E) and rating for clinical use. The CC0 license enables unrestricted use and redistribution.
 
 ## See Also
 
-- [OncoKB](../oncokb/_index.md) - Expert curation
-- [COSMIC](../cosmic/_index.md) - Somatic mutations
-- [cBioPortal](../cbioportal/_index.md) - Genomics data
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [Example Records](./sample.json) - Sample data for code generation
+- [Download Guide](./download.md) - Access methods and API configuration
+- [License Terms](./license.md) - Usage rights and restrictions
+- [Schema Mapping](./mapping.xslt) - XSLT 3.0 transformation to unified schema
+- [OncoKB](../oncokb/README.md) - Expert curation
+- [COSMIC](../cosmic/README.md) - Somatic mutations
+- [cBioPortal](../cbioportal/README.md) - Genomics data

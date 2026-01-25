@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "efo-schema.json",
+  "title": "Experimental Factor Ontology (EFO) Term Record",
+  "description": "JSON Schema for EFO terms. Provides systematic description of experimental variables for EBI databases with 50,000+ terms integrating Disease Ontology, HPO, and ChEBI for GWAS Catalog and Open Targets.",
+  "type": "object",
+  "properties": {
+    "efo_id": {
+      "type": "string",
+      "description": "EFO term identifier",
+      "pattern": "^EFO_[0-9]{7}$",
+      "examples": ["EFO_0000685", "EFO_0001421"]
+    },
+    "label": {
+      "type": "string",
+      "description": "Term name",
+      "minLength": 1
+    },
+    "definition": {
+      "type": "string",
+      "description": "Term definition"
+    },
+    "synonyms": {
+      "type": "array",
+      "description": "Alternative names",
+      "items": {
+        "type": "string"
+      }
+    },
+    "parents": {
+      "type": "array",
+      "description": "Parent terms (is_a relationships)",
+      "items": {
+        "type": "string",
+        "pattern": "^EFO_[0-9]{7}$"
+      }
+    },
+    "children": {
+      "type": "array",
+      "description": "Child terms",
+      "items": {
+        "type": "string",
+        "pattern": "^EFO_[0-9]{7}$"
+      }
+    },
+    "xrefs": {
+      "type": "array",
+      "description": "Cross-references to external ontologies",
+      "items": {
+        "type": "object",
+        "properties": {
+          "source": {
+            "type": "string",
+            "description": "External source",
+            "enum": ["Orphanet", "DOID", "HP", "MONDO", "NCIt", "MESH", "OMIM", "SNOMEDCT"]
+          },
+          "id": {
+            "type": "string",
+            "description": "External identifier"
+          }
+        },
+        "required": ["source", "id"]
+      }
+    },
+    "term_type": {
+      "type": "string",
+      "description": "Type of EFO term",
+      "enum": ["disease", "phenotype", "measurement", "material", "cell_type", "anatomical_entity", "organism"]
+    },
+    "source_ontology": {
+      "type": "string",
+      "description": "Original source ontology if imported"
+    }
+  },
+  "required": ["efo_id", "label"],
+  "additionalProperties": false
+}

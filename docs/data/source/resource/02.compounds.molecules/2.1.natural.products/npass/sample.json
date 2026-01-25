@@ -1,0 +1,80 @@
+{
+  "source": "NPASS",
+  "version": "2023",
+  "description": "Sample natural product activity records from NPASS",
+  "records": [
+    {
+      "npc_id": "NPC12345",
+      "name": "Artemisinin",
+      "smiles": "CC1CCC2C(C)C(=O)OC3OC4(C)CCC1C23OO4",
+      "inchi_key": "BLUAFEHZUWYNDE-NNWCWBAJSA-N",
+      "molecular_weight": 282.33,
+      "activities": [
+        {
+          "target": "Plasmodium falciparum",
+          "activity_type": "IC50",
+          "value": 4.8,
+          "unit": "nM",
+          "assay_type": "Antimalarial"
+        }
+      ],
+      "species": [
+        {
+          "name": "Artemisia annua",
+          "ncbi_taxon_id": 35608,
+          "kingdom": "Plantae"
+        }
+      ]
+    },
+    {
+      "npc_id": "NPC23456",
+      "name": "Paclitaxel",
+      "smiles": "CC1=C2C(C(=O)C3(C(CC4C(C3C(C(C2(C)C)(CC1OC(=O)C(C(C5=CC=CC=C5)NC(=O)C6=CC=CC=C6)O)O)OC(=O)C7=CC=CC=C7)(CO4)OC(=O)C)O)C)OC(=O)C",
+      "inchi_key": "RCINICONZNJXQF-MZXODVADSA-N",
+      "molecular_weight": 853.91,
+      "activities": [
+        {
+          "target": "Tubulin",
+          "activity_type": "IC50",
+          "value": 0.02,
+          "unit": "uM",
+          "assay_type": "Cytotoxicity"
+        }
+      ],
+      "species": [
+        {
+          "name": "Taxus brevifolia",
+          "ncbi_taxon_id": 46221,
+          "kingdom": "Plantae"
+        }
+      ]
+    },
+    {
+      "npc_id": "NPC34567",
+      "name": "Morphine",
+      "smiles": "CN1CCC23C4C1CC5=C2C(=C(C=C5)O)OC3C(C=C4)O",
+      "inchi_key": "BQJCRHHNABKAKU-KBQPJGBKSA-N",
+      "molecular_weight": 285.34,
+      "activities": [
+        {
+          "target": "Mu opioid receptor",
+          "activity_type": "Ki",
+          "value": 1.8,
+          "unit": "nM",
+          "assay_type": "Binding"
+        }
+      ],
+      "species": [
+        {
+          "name": "Papaver somniferum",
+          "ncbi_taxon_id": 3469,
+          "kingdom": "Plantae"
+        }
+      ]
+    }
+  ],
+  "queries": {
+    "web_interface": "http://bidd.group/NPASS/",
+    "download": "http://bidd.group/NPASS/download.html"
+  }
+}

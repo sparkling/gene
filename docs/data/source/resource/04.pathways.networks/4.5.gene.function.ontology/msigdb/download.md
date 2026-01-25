@@ -263,6 +263,61 @@ Example: `h.all.v2024.1.Hs.symbols.gmt`
 - Hs = Homo sapiens
 - symbols = HGNC gene symbols
 
+---
+
+## Dataset Versions
+
+### Current Release: v2024.1.Hs
+
+| Property | Value |
+|----------|-------|
+| Version | 2024.1.Hs |
+| Release Date | 2024-03-01 |
+| Total Gene Sets | ~33,000 |
+| Collections | 9 |
+
+### Version Contents
+
+| Component | Size | Records | Description |
+|-----------|------|---------|-------------|
+| h.all.v2024.1.Hs.symbols.gmt | ~50 KB | 50 | Hallmark gene sets |
+| c2.all.v2024.1.Hs.symbols.gmt | ~5 MB | ~6,400 | Curated gene sets |
+| c5.all.v2024.1.Hs.symbols.gmt | ~10 MB | ~15,000 | GO gene sets |
+| msigdb.v2024.1.Hs.symbols.gmt | ~30 MB | ~33,000 | All collections |
+
+### Previous Versions
+
+| Version | Release | Gene Sets | Status |
+|---------|---------|-----------|--------|
+| 2023.2.Hs | 2023-09-01 | ~32,500 | Archived |
+| 2023.1.Hs | 2023-03-01 | ~32,000 | Archived |
+| 2022.1.Hs | 2022-03-01 | ~31,500 | Archived |
+
+---
+
+## API Access
+
+### Configuration
+
+| Property | Value |
+|----------|-------|
+| Base URL | `https://www.gsea-msigdb.org/gsea/msigdb/api/v1` |
+| Authentication | None required |
+| Rate Limit | No strict limit |
+| Response Format | JSON |
+
+### API Endpoints
+
+| Operation | Endpoint | Example |
+|-----------|----------|---------|
+| Search | `/gene_sets` | `?keyword=apoptosis&collection=H` |
+| Get Gene Set | `/gene_sets/{name}` | `/gene_sets/HALLMARK_APOPTOSIS` |
+| Get Genes | `/gene_sets/{name}/genes` | `/gene_sets/HALLMARK_APOPTOSIS/genes` |
+| Collections | `/collections` | List all collections |
+| Download GMT | `/gene_sets/{name}/gmt` | Get single gene set as GMT |
+
+---
+
 ## See Also
 
 - [Schema Documentation](./schema.md)

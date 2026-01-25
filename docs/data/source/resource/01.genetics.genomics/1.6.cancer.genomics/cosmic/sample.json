@@ -1,0 +1,81 @@
+[
+  {
+    "mutation": {
+      "mutation_id": "COSV57092983",
+      "legacy_mutation_id": "COSM476",
+      "gene_name": "BRAF",
+      "gene_cds_length": 2301,
+      "primary_site": "skin",
+      "primary_histology": "malignant melanoma",
+      "genome_wide_screen": true,
+      "genomic_mutation_id": "COSV57092983",
+      "cds_mutation": "c.1799T>A",
+      "aa_mutation": "p.V600E",
+      "mutation_description": "Substitution - Missense",
+      "hgvsc": "ENST00000288602.11:c.1799T>A",
+      "hgvsp": "ENSP00000288602.7:p.Val600Glu",
+      "grch38_position": "7:140753336-140753336",
+      "grch38_strand": "-",
+      "fathmm_prediction": "PATHOGENIC",
+      "fathmm_score": 0.99
+    },
+    "sample": {
+      "sample_id": "COSS2245671",
+      "sample_name": "MEL-JUSO",
+      "tumour_origin": "primary",
+      "sample_type": "cell line",
+      "age_at_tumour_recurrence": null,
+      "zygosity": "het"
+    }
+  },
+  {
+    "mutation": {
+      "mutation_id": "COSV52661078",
+      "legacy_mutation_id": "COSM10648",
+      "gene_name": "TP53",
+      "gene_cds_length": 1182,
+      "primary_site": "large intestine",
+      "primary_histology": "carcinoma",
+      "genome_wide_screen": true,
+      "genomic_mutation_id": "COSV52661078",
+      "cds_mutation": "c.524G>A",
+      "aa_mutation": "p.R175H",
+      "mutation_description": "Substitution - Missense",
+      "hgvsc": "ENST00000269305.9:c.524G>A",
+      "hgvsp": "ENSP00000269305.5:p.Arg175His",
+      "grch38_position": "17:7673803-7673803",
+      "grch38_strand": "-",
+      "fathmm_prediction": "PATHOGENIC",
+      "fathmm_score": 0.97
+    },
+    "sample": {
+      "sample_id": "COSS3456789",
+      "sample_name": "HT-29",
+      "tumour_origin": "primary",
+      "sample_type": "cell line",
+      "age_at_tumour_recurrence": null,
+      "zygosity": "het"
+    }
+  },
+  {
+    "census_gene": {
+      "gene_name": "EGFR",
+      "gene_id": 1956,
+      "tier": 1,
+      "hallmark": "sustaining proliferative signaling",
+      "role_in_cancer": "oncogene",
+      "mutation_types": "A, Mis",
+      "cancer_syndrome": null,
+      "tumour_types_somatic": "lung, glioma, colorectal",
+      "tumour_types_germline": null,
+      "synonyms": "ERBB, ERBB1, HER1"
+    },
+    "signature": {
+      "signature_id": "SBS4",
+      "signature_name": "Tobacco smoking",
+      "proposed_aetiology": "Tobacco smoking",
+      "cancer_types": "lung",
+      "additional_mutations": "C>A enrichment"
+    }
+  }
+]

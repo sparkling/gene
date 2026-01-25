@@ -135,6 +135,39 @@ Check against published statistics:
 | Update Frequency | Periodic |
 | Notification | Check website |
 
+---
+
+## Dataset Versions
+
+### Current Release: SymMap 2.0
+
+| Property | Value |
+|----------|-------|
+| Version | 2.0 |
+| Release Date | 2020-01-01 |
+| Total Size | ~200 MB |
+| Focus | Symptom-Phenotype Mapping |
+
+### Version Contents
+
+| Component | Records | Description |
+|-----------|---------|-------------|
+| TCM Symptoms | 1,717 | Traditional symptom patterns |
+| Modern Phenotypes | 5,000+ | HPO mappings |
+| TCM Herbs | 961 | Herb metadata |
+| Compounds | 19,595 | Chemical compounds |
+| Target Genes | 4,302 | Gene targets |
+| Diseases | 5,235 | Disease associations |
+| Symptom-Gene Links | 322,073 | Associations |
+
+### Previous Versions
+
+| Version | Release | Status |
+|---------|---------|--------|
+| SymMap 1.0 | 2018-01-01 | Archived |
+
+---
+
 ## Notes
 
 - Unique symptom-centric perspective on TCM

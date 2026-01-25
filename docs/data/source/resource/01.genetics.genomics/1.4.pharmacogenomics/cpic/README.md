@@ -1,23 +1,34 @@
 ---
 id: cpic
 title: "CPIC"
-type: data-source
-category: genetics
+type: source
+parent: ../README.md
+category: genetics.genomics
 subcategory: pharmacogenomics
-parent: ../_index.md
 tier: 1
-last_updated: 2026-01-23
 status: active
-tags: [pharmacogenomics, guidelines, clinical, prescribing, dosing]
+last_updated: 2026-01-25
+tags:
+  - pharmacogenomics
+  - guidelines
+  - clinical
+  - prescribing
+  - dosing
 ---
 
 # CPIC
 
-**Category:** [Genetics & Genomics](../../_index.md) > [Pharmacogenomics](../_index.md)
+CPIC (Clinical Pharmacogenetics Implementation Consortium) is an international consortium that creates freely available, peer-reviewed, evidence-based clinical practice guidelines for gene-drug pairs. CPIC guidelines help clinicians translate pharmacogenomic test results into actionable prescribing decisions.
 
 ## Overview
 
-CPIC (Clinical Pharmacogenetics Implementation Consortium) is an international consortium that creates freely available, peer-reviewed, evidence-based clinical practice guidelines for gene-drug pairs. CPIC guidelines help clinicians translate pharmacogenomic test results into actionable prescribing decisions.
+| Property | Value |
+|----------|-------|
+| **Maintainer** | CPIC (hosted at cpicpgx.org) |
+| **Website** | https://cpicpgx.org/ |
+| **Update Frequency** | Continuous guideline updates |
+| **Records** | 75+ gene-drug pairs |
+| **Latest Release** | Current (continuous) |
 
 Each CPIC guideline provides gene-specific information, drug-specific dosing recommendations, and clinical decision support resources including allele functionality tables, phenotype-to-diplotype translation, and therapeutic recommendations. Guidelines are regularly updated as new evidence emerges.
 
@@ -42,31 +53,32 @@ CPIC guidelines are developed through collaboration between PharmGKB (curation),
 
 ## Key Identifiers
 
-| Identifier | Pattern | Example |
-|------------|---------|---------|
-| Guideline | DOI | 10.1002/cpt.1234 |
-| Gene | HGNC symbol | CYP2D6 |
-| Drug | Generic name | codeine |
+| Identifier | Format | Example |
+|------------|--------|---------|
+| Guideline | `DOI` | `10.1002/cpt.1234` |
+| Gene | `HGNC symbol` | `CYP2D6` |
+| Drug | `Generic name` | `codeine` |
 
-## Access Methods
+## Limitations
 
-| Method | URL | Notes |
-|--------|-----|-------|
-| Web | https://cpicpgx.org/ | Primary site |
-| PharmGKB | https://www.pharmgkb.org/cpic | Curated data |
-| API | PharmGKB API | Programmatic access |
-| PubMed | Guidelines published | Full text |
+- Limited to genes with actionable evidence
+- May not cover all drugs in a class
+- Recommendations primarily based on European ancestry data
+- Some guidelines lack pediatric dosing
+- Implementation requires EHR customization
 
-## License
+## Data Quality Notes
 
-| Aspect | Value |
-|--------|-------|
-| License | Open Access |
-| Commercial Use | Yes |
-| Citation | Required per guideline |
+CPIC guidelines undergo rigorous peer review and are published in Clinical Pharmacology & Therapeutics. Evidence is graded from A (strong) to D (weak), with corresponding recommendation strength. Guidelines with Level A evidence and strong recommendations represent the highest confidence for clinical implementation.
 
 ## See Also
 
-- [PharmGKB](../pharmgkb/_index.md) - Data curation
-- [PharmVar](../pharmvar/_index.md) - Allele definitions
-- [DPWG](../dpwg/_index.md) - Dutch guidelines
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [Example Records](./sample.json) - Sample data for code generation
+- [Download Guide](./download.md) - Access methods and API configuration
+- [License Terms](./license.md) - Usage rights and restrictions
+- [Schema Mapping](./mapping.xslt) - XSLT 3.0 transformation to unified schema
+- [PharmGKB](../pharmgkb/README.md) - Data curation
+- [PharmVar](../pharmvar/README.md) - Allele definitions
+- [DPWG](../dpwg/README.md) - Dutch guidelines

@@ -1,14 +1,19 @@
 ---
 id: pathwaycommons
 title: "Pathway Commons"
-type: data-source
-category: pathways
-subcategory: signaling-pathways
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 2
-last_updated: 2026-01-23
 status: active
-tags: [pathways, signaling, aggregation, biopax, sif, open-access]
+category: pathways.networks
+subcategory: signaling.pathways
+tags:
+  - pathways
+  - signaling
+  - aggregation
+  - biopax
+  - sif
+  - open-access
 ---
 
 # Pathway Commons
@@ -147,6 +152,13 @@ ATM	CONTROLS-PHOSPHORYLATION-OF	TP53
 | PubMed | Literature references |
 | Reactome | Pathway source |
 | KEGG | Pathway source |
+
+## Limitations
+
+- Aggregated data inherits quality issues from source databases
+- BioPAX format has steep learning curve
+- Some source databases have licensing restrictions
+- Integration may introduce redundant or conflicting information
 
 ## Graph Query Types
 

@@ -1,23 +1,34 @@
 ---
 id: dpwg
 title: "DPWG"
-type: data-source
-category: genetics
+type: source
+parent: ../README.md
+category: genetics.genomics
 subcategory: pharmacogenomics
-parent: ../_index.md
 tier: 2
-last_updated: 2026-01-23
 status: active
-tags: [pharmacogenomics, guidelines, dutch, prescribing, european]
+last_updated: 2026-01-25
+tags:
+  - pharmacogenomics
+  - guidelines
+  - dutch
+  - prescribing
+  - european
 ---
 
 # DPWG
 
-**Category:** [Genetics & Genomics](../../_index.md) > [Pharmacogenomics](../_index.md)
+DPWG (Dutch Pharmacogenetics Working Group) develops pharmacogenetics-based therapeutic recommendations for drug-gene interactions. Operating since 2005, DPWG guidelines are integrated into the Dutch national drug database (G-Standaard) and are used throughout the Netherlands healthcare system.
 
 ## Overview
 
-DPWG (Dutch Pharmacogenetics Working Group) develops pharmacogenetics-based therapeutic recommendations for drug-gene interactions. Operating since 2005, DPWG guidelines are integrated into the Dutch national drug database (G-Standaard) and are used throughout the Netherlands healthcare system.
+| Property | Value |
+|----------|-------|
+| **Maintainer** | KNMP (Royal Dutch Pharmacists Association) |
+| **Website** | https://www.pharmgkb.org/page/dpwg |
+| **Update Frequency** | Periodic updates |
+| **Records** | 100+ gene-drug pairs |
+| **Latest Release** | Current (continuous) |
 
 DPWG guidelines follow a systematic methodology assessing clinical relevance of gene-drug interactions based on published evidence. Recommendations are categorized by urgency (requiring immediate action vs. optional adjustments) and provide specific dosing guidance or alternative drug recommendations.
 
@@ -42,30 +53,32 @@ The guidelines are available through PharmGKB and complement CPIC guidelines, wi
 
 ## Key Identifiers
 
-| Identifier | Pattern | Example |
-|------------|---------|---------|
-| Gene | HGNC symbol | CYP2C19 |
-| Drug | Generic name | clopidogrel |
-| ATC Code | WHO ATC | B01AC04 |
+| Identifier | Format | Example |
+|------------|--------|---------|
+| Gene | `HGNC symbol` | `CYP2C19` |
+| Drug | `Generic name` | `clopidogrel` |
+| ATC Code | `WHO ATC` | `B01AC04` |
 
-## Access Methods
+## Limitations
 
-| Method | URL | Notes |
-|--------|-----|-------|
-| KNMP | https://www.knmp.nl/ | Dutch Pharmacy |
-| PharmGKB | https://www.pharmgkb.org/page/dpwg | English access |
-| G-Standaard | National database | Dutch healthcare |
+- Primarily European population data
+- Dutch language for some primary documentation
+- May differ from CPIC recommendations
+- Limited to actionable gene-drug pairs
+- Updates may lag behind new evidence
 
-## License
+## Data Quality Notes
 
-| Aspect | Value |
-|--------|-------|
-| License | KNMP terms |
-| Commercial Use | Contact KNMP |
-| PharmGKB Access | CC BY-SA 4.0 |
+DPWG guidelines are developed through systematic literature review with structured evidence assessment. Recommendations are graded by clinical relevance and evidence strength. Cross-referencing with CPIC guidelines is recommended when discrepancies exist, as methodological differences may lead to different recommendations for the same gene-drug pair.
 
 ## See Also
 
-- [PharmGKB](../pharmgkb/_index.md) - English access
-- [CPIC](../cpic/_index.md) - US guidelines
-- [PharmVar](../pharmvar/_index.md) - Allele definitions
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [Example Records](./sample.json) - Sample data for code generation
+- [Download Guide](./download.md) - Access methods and API configuration
+- [License Terms](./license.md) - Usage rights and restrictions
+- [Schema Mapping](./mapping.xslt) - XSLT 3.0 transformation to unified schema
+- [PharmGKB](../pharmgkb/README.md) - English access
+- [CPIC](../cpic/README.md) - US guidelines
+- [PharmVar](../pharmvar/README.md) - Allele definitions

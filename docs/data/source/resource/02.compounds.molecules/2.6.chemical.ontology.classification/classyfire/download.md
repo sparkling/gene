@@ -450,12 +450,36 @@ for inchikey, name, expected_parent in test_cases:
     print(f"{name}: Expected '{expected_parent}', Got '{actual}' [{status}]")
 ```
 
+## Dataset Versions
+
+| Version | Release Date | Size | Status |
+|---------|--------------|------|--------|
+| ChemOnt 2.1 | 2016-11 | ~10 MB | Current |
+| Pre-computed Index | Continuous | 80M+ compounds | Current |
+
+### Version Notes
+
+ClassyFire provides automated chemical classification:
+- ChemOnt taxonomy with 4,825+ chemical classes
+- 11 hierarchical levels (Kingdom to direct parent)
+- 80M+ pre-computed compound classifications via InChIKey
+- Ruby API available for programmatic access
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | `http://classyfire.wishartlab.com` |
+| Rate Limit | ~1000 InChIKey lookups/hour |
+| Auth Required | No |
+| Documentation | http://classyfire.wishartlab.com |
+
 ## Update Schedule
 
 | Release | Frequency |
 |---------|-----------|
 | Pre-computed Index | Monthly |
-| ChemOnt Updates | Annual |
+| ChemOnt Updates | As needed |
 | API | Continuous |
 
 ## Rate Limits

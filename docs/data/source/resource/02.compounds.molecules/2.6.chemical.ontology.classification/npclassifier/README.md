@@ -1,19 +1,21 @@
 ---
 id: npclassifier
 title: "NPClassifier - Natural Product Classification"
-type: data-source
-category: compounds
-subcategory: chemical-ontology
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 2
-last_updated: 2026-01-23
 status: active
-tags: [natural-products, classification, biosynthesis, pathway, taxonomy]
+category: compounds.molecules
+subcategory: chemical.ontology.classification
+tags:
+  - natural-products
+  - classification
+  - biosynthesis
+  - pathway
+  - taxonomy
 ---
 
 # NPClassifier - Natural Product Classification
-
-**Category:** [Compounds & Molecules](../../_index.md) > [Chemical Ontology & Classification](../_index.md)
 
 ## Overview
 
@@ -81,13 +83,18 @@ NPClassifier is particularly valuable for natural product dereplication, chemota
 | isglycoside | Glycoside detection |
 | confidence | Classification confidence |
 
-## License
+## Limitations
 
-| Aspect | Value |
-|--------|-------|
-| License | MIT |
-| Commercial Use | Yes |
-| Attribution Required | Yes |
+- Deep learning model may misclassify unusual structures
+- Synthetic compounds not designed for NP classification
+- Biosynthetic pathway predictions are computational estimates
+- Glycoside detection may miss non-standard sugar moieties
+
+## See Also
+
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [License Terms](./license.md) - Usage rights and restrictions
 
 ## Related Resources
 

@@ -1,0 +1,67 @@
+[
+  {
+    "sample_id": "MBMAP_S0001234",
+    "site_code": "GI_LI_COLON",
+    "site_name": "Colon",
+    "site_category": "GI",
+    "anatomy_term": "UBERON:0001155",
+    "study_id": "PRJNA123456",
+    "subject_id": "SUB001",
+    "age": 45,
+    "sex": "female",
+    "health_status": "healthy",
+    "sequencing_method": "16S_V4",
+    "taxonomic_profile": [
+      {"taxon_name": "Bacteroides vulgatus", "taxon_id": 821, "abundance": 0.15},
+      {"taxon_name": "Faecalibacterium prausnitzii", "taxon_id": 853, "abundance": 0.12},
+      {"taxon_name": "Prevotella copri", "taxon_id": 165179, "abundance": 0.08}
+    ],
+    "diversity": {
+      "shannon": 3.8,
+      "simpson": 0.92,
+      "observed_species": 185,
+      "chao1": 220.5,
+      "evenness": 0.73
+    }
+  },
+  {
+    "sample_id": "MBMAP_S0002345",
+    "site_code": "ORAL_TONGUE",
+    "site_name": "Tongue dorsum",
+    "site_category": "ORAL",
+    "anatomy_term": "UBERON:0009471",
+    "study_id": "PRJEB7890",
+    "subject_id": "SUB045",
+    "age": 32,
+    "sex": "male",
+    "health_status": "healthy",
+    "sequencing_method": "16S_V3V4",
+    "taxonomic_profile": [
+      {"taxon_name": "Streptococcus salivarius", "taxon_id": 1304, "abundance": 0.25},
+      {"taxon_name": "Veillonella dispar", "taxon_id": 39778, "abundance": 0.15},
+      {"taxon_name": "Neisseria subflava", "taxon_id": 28449, "abundance": 0.10}
+    ],
+    "diversity": {
+      "shannon": 2.9,
+      "simpson": 0.85,
+      "observed_species": 95
+    }
+  },
+  {
+    "sample_id": "MBMAP_S0003456",
+    "site_code": "SKIN_ARM_FOSSA",
+    "site_name": "Antecubital fossa",
+    "site_category": "SKIN",
+    "study_id": "PRJNA456789",
+    "health_status": "healthy",
+    "sequencing_method": "16S_V1V3",
+    "taxonomic_profile": [
+      {"taxon_name": "Staphylococcus epidermidis", "taxon_id": 1282, "abundance": 0.30},
+      {"taxon_name": "Corynebacterium tuberculostearicum", "taxon_id": 37822, "abundance": 0.18}
+    ],
+    "diversity": {
+      "shannon": 1.8,
+      "observed_species": 45
+    }
+  }
+]

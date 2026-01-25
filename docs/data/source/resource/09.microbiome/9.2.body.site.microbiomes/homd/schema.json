@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "homd-schema.json",
+  "title": "HOMD Taxon Record",
+  "description": "JSON Schema for Human Oral Microbiome Database taxon entries.",
+  "type": "object",
+  "properties": {
+    "homt_id": { "type": "string", "pattern": "^HMT-[0-9]{3}$", "description": "HOMD taxon identifier" },
+    "ncbi_taxid": { "type": ["integer", "null"], "description": "NCBI Taxonomy ID" },
+    "genus": { "type": "string", "description": "Genus name" },
+    "species": { "type": "string", "description": "Species epithet or provisional name" },
+    "full_name": { "type": "string", "description": "Complete scientific name" },
+    "cultivation_status": { "type": "string", "enum": ["Named", "Unnamed", "Provisional"] },
+    "type_strain": { "type": ["string", "null"], "description": "Type strain designation" },
+    "taxonomy": {
+      "type": "object",
+      "properties": {
+        "phylum": { "type": "string" },
+        "class": { "type": "string" },
+        "order": { "type": "string" },
+        "family": { "type": "string" }
+      }
+    },
+    "phenotype": {
+      "type": "object",
+      "properties": {
+        "gram_stain": { "type": "string", "enum": ["positive", "negative", "variable"] },
+        "cell_shape": { "type": "string" },
+        "oxygen_req": { "type": "string", "enum": ["aerobic", "anaerobic", "facultative", "microaerophilic"] },
+        "motility": { "type": "boolean" },
+        "spore_forming": { "type": "boolean" }
+      }
+    },
+    "disease_association": { "type": "array", "items": { "type": "string" } },
+    "oral_sites": { "type": "array", "items": { "type": "string" } },
+    "genomes_available": { "type": "integer", "minimum": 0 },
+    "sequences_16s": { "type": "integer", "minimum": 0 }
+  },
+  "required": ["homt_id", "genus", "species", "cultivation_status"],
+  "additionalProperties": true
+}

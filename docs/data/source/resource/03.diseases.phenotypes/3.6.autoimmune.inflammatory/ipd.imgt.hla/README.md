@@ -1,19 +1,22 @@
 ---
 id: ipd.imgt.hla
 title: "IPD-IMGT/HLA - Immuno Polymorphism Database"
-type: data-source
-category: diseases
-subcategory: autoimmune.inflammatory
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 1
-last_updated: 2026-01-23
 status: active
-tags: [hla, immunogenetics, transplantation, alleles, mhc, histocompatibility]
+category: diseases.phenotypes
+subcategory: autoimmune.inflammatory
+tags:
+  - hla
+  - immunogenetics
+  - transplantation
+  - alleles
+  - mhc
+  - histocompatibility
 ---
 
 # IPD-IMGT/HLA - Immuno Polymorphism Database
-
-**Category:** [Diseases & Phenotypes](../../_index.md) > [Autoimmune & Inflammatory](../_index.md)
 
 ## Overview
 
@@ -78,17 +81,16 @@ HLA genes are the most polymorphic in the human genome and play essential roles 
 | Synonymous | :01 | Coding synonymous |
 | Non-coding | :01 | Non-coding differences |
 
-## License
+## Limitations
 
-| Aspect | Value |
-|--------|-------|
-| License | Creative Commons |
-| Commercial Use | Yes with attribution |
-| Attribution | Required |
-| Citation | PMID: Required for publications |
+- HLA naming nomenclature complex for non-specialists
+- Not all populations equally represented in allele discovery
+- Functional impact of novel alleles often unknown
+- Disease associations curated elsewhere (not in IPD)
 
 ## See Also
 
-- [Schema Documentation](./schema.md)
-- [ImmunoBase](../immunobase/_index.md) - Autoimmune genetics
-- [PharmGKB](../../../04.drugs.compounds/4.3.pharmacogenomics/pharmgkb/_index.md) - HLA drug associations
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [License Terms](./license.md) - Usage rights and restrictions
+- [ImmunoBase](../immunobase/README.md) - Autoimmune genetics

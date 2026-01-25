@@ -1,0 +1,214 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "brca-exchange-schema.json",
+  "title": "BRCA Exchange Variant Record",
+  "description": "JSON Schema for BRCA Exchange aggregated BRCA1/BRCA2 variant classifications.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "BRCA Exchange internal variant ID.",
+      "examples": [1, 1000, 50000]
+    },
+    "Gene_Symbol": {
+      "type": "string",
+      "description": "Gene symbol (BRCA1 or BRCA2).",
+      "enum": ["BRCA1", "BRCA2"]
+    },
+    "Genomic_Coordinate_hg38": {
+      "type": "string",
+      "description": "Genomic coordinate in chr:pos:ref:alt format (GRCh38).",
+      "pattern": "^chr[0-9XY]+:[0-9]+:[ACGT]+:[ACGT]+$",
+      "examples": ["chr17:43124027:AG:A", "chr13:32315086:G:A"]
+    },
+    "Genomic_Coordinate_hg37": {
+      "type": "string",
+      "description": "Genomic coordinate (GRCh37).",
+      "pattern": "^chr[0-9XY]+:[0-9]+:[ACGT]+:[ACGT]+$"
+    },
+    "HGVS_cDNA": {
+      "type": "string",
+      "description": "HGVS coding DNA change.",
+      "examples": ["c.68_69delAG", "c.5946delT", "c.9976A>T"]
+    },
+    "HGVS_Protein": {
+      "type": "string",
+      "description": "HGVS protein change.",
+      "examples": ["p.Glu23ValfsTer17", "p.Ser1982ArgfsTer22", "p.Lys3326Ter"]
+    },
+    "Reference_Sequence": {
+      "type": "string",
+      "description": "Reference transcript sequence.",
+      "examples": ["NM_007294.4", "NM_000059.4"]
+    },
+    "Protein_Sequence": {
+      "type": "string",
+      "description": "Reference protein sequence.",
+      "examples": ["NP_009225.1", "NP_000050.3"]
+    },
+    "Pathogenicity_expert": {
+      "type": "string",
+      "description": "ENIGMA expert classification.",
+      "enum": ["Pathogenic", "Likely pathogenic", "Uncertain significance", "Likely benign", "Benign", "Not yet reviewed", null]
+    },
+    "Pathogenicity_all": {
+      "type": "string",
+      "description": "Aggregated classification across all sources.",
+      "examples": ["Pathogenic", "Benign / Little Clinical Significance", "Not Yet Classified"]
+    },
+    "Clinical_significance_ENIGMA": {
+      "type": "string",
+      "description": "ENIGMA consortium classification.",
+      "enum": ["Pathogenic", "Likely pathogenic", "Uncertain significance", "Likely benign", "Benign", "Not yet classified", null]
+    },
+    "Clinical_significance_ClinVar": {
+      "type": "string",
+      "description": "ClinVar clinical significance.",
+      "examples": ["Pathogenic", "Likely pathogenic", "Uncertain significance", "Conflicting interpretations of pathogenicity"]
+    },
+    "Date_last_evaluated_ENIGMA": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of ENIGMA review.",
+      "examples": ["2019-03-15"]
+    },
+    "Assertion_method_ENIGMA": {
+      "type": "string",
+      "description": "ENIGMA classification criteria.",
+      "examples": ["ENIGMA BRCA1/2 Classification Criteria (2017)"]
+    },
+    "Assertion_method_citation_ENIGMA": {
+      "type": "string",
+      "description": "Citation for assertion method."
+    },
+    "Comment_on_clinical_significance_ENIGMA": {
+      "type": "string",
+      "description": "ENIGMA classification comments."
+    },
+    "Source": {
+      "type": "string",
+      "description": "Contributing data sources.",
+      "examples": ["ClinVar,ENIGMA,LOVD", "ClinVar,BIC"]
+    },
+    "Source_URL": {
+      "type": "array",
+      "description": "URLs to source entries.",
+      "items": {
+        "type": "string",
+        "format": "uri"
+      }
+    },
+    "Submitter_ClinVar": {
+      "type": "array",
+      "description": "ClinVar submitting organizations.",
+      "items": { "type": "string" },
+      "examples": [["Ambry Genetics", "GeneDx", "ENIGMA"]]
+    },
+    "SCV_ClinVar": {
+      "type": "array",
+      "description": "ClinVar SCV accessions.",
+      "items": {
+        "type": "string",
+        "pattern": "^SCV[0-9]+$"
+      }
+    },
+    "Allele_Frequency": {
+      "type": "number",
+      "description": "Population allele frequency.",
+      "minimum": 0,
+      "maximum": 1,
+      "examples": [0.0001, 0.005]
+    },
+    "Max_Allele_Frequency": {
+      "type": "number",
+      "description": "Maximum allele frequency across populations.",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "Allele_frequency_gnomAD": {
+      "type": "number",
+      "description": "gnomAD allele frequency.",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "Allele_count_gnomAD": {
+      "type": "integer",
+      "description": "gnomAD allele count."
+    },
+    "Allele_number_gnomAD": {
+      "type": "integer",
+      "description": "gnomAD total alleles."
+    },
+    "Homozygous_count_gnomAD": {
+      "type": "integer",
+      "description": "gnomAD homozygous count."
+    },
+    "Variant_effect": {
+      "type": "string",
+      "description": "Predicted variant effect.",
+      "enum": ["frameshift", "nonsense", "missense", "synonymous", "splice_site", "start_lost", "stop_lost", "inframe_deletion", "inframe_insertion", "intronic", "5_prime_UTR", "3_prime_UTR"]
+    },
+    "BIC_Nomenclature": {
+      "type": "string",
+      "description": "BIC (Breast Cancer Information Core) nomenclature.",
+      "examples": ["185delAG", "6174delT"]
+    },
+    "Literature_source_exLOVD": {
+      "type": "array",
+      "description": "Literature references from ex-LOVD.",
+      "items": { "type": "string" }
+    },
+    "Functional_analysis_result_LOVD": {
+      "type": "string",
+      "description": "Functional assay results from LOVD.",
+      "examples": ["Abnormal", "Normal", "Not tested"]
+    },
+    "Functional_analysis_technique_LOVD": {
+      "type": "string",
+      "description": "Functional assay technique.",
+      "examples": ["RNA analysis", "Protein analysis", "HDR assay"]
+    },
+    "Co_occurrence_LR": {
+      "type": "number",
+      "description": "Likelihood ratio from co-occurrence data."
+    },
+    "Segregation_LR": {
+      "type": "number",
+      "description": "Likelihood ratio from segregation analysis."
+    },
+    "Summary_evidence_LR": {
+      "type": "number",
+      "description": "Summary likelihood ratio."
+    },
+    "Prior_probability_pathogenicity": {
+      "type": "number",
+      "description": "Prior probability of pathogenicity.",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "Posterior_probability_pathogenicity": {
+      "type": "number",
+      "description": "Posterior probability of pathogenicity.",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "dbSNP_rs": {
+      "type": "string",
+      "description": "dbSNP rsID.",
+      "pattern": "^rs[0-9]+$",
+      "examples": ["rs80357906", "rs80357713"]
+    },
+    "Change_Type": {
+      "type": "string",
+      "description": "Type of sequence change.",
+      "enum": ["substitution", "deletion", "insertion", "delins", "duplication"]
+    },
+    "Data_release_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of data release."
+    }
+  },
+  "required": ["Gene_Symbol", "Genomic_Coordinate_hg38", "HGVS_cDNA", "Pathogenicity_all"],
+  "additionalProperties": true
+}

@@ -1,19 +1,21 @@
 ---
 id: allen.brain.atlas
 title: "Allen Brain Atlas"
-type: data-source
-category: diseases
-subcategory: mental.health.neurological
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 1
-last_updated: 2026-01-23
 status: active
-tags: [brain, neuroanatomy, gene-expression, transcriptomics, neuroscience]
+category: diseases.phenotypes
+subcategory: mental.health.neurological
+tags:
+  - brain
+  - neuroanatomy
+  - gene-expression
+  - transcriptomics
+  - neuroscience
 ---
 
 # Allen Brain Atlas
-
-**Category:** [Diseases & Phenotypes](../../_index.md) > [Mental Health & Neurological](../_index.md)
 
 ## Overview
 
@@ -78,17 +80,16 @@ These resources enable researchers to identify brain region-specific gene expres
 | NIfTI | Brain images | Download portal |
 | HDF5 | Large datasets | Bulk download |
 
-## License
+## Limitations
 
-| Aspect | Value |
-|--------|-------|
-| License | Allen Institute Terms of Use |
-| Commercial Use | Yes with attribution |
-| Attribution | Required |
-| Citation | Allen Institute for Brain Science |
+- Human brain data from limited number of donors (6)
+- Postmortem tissue may not reflect living brain biology
+- Microarray data lower resolution than RNA-seq
+- Some brain regions under-sampled
 
 ## See Also
 
-- [Schema Documentation](./schema.md)
-- [GTEx](../../../01.genetics.genomics/1.5.expression.regulation/gtex/_index.md) - Multi-tissue expression
-- [PGC](../pgc/_index.md) - Psychiatric genetics
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [License Terms](./license.md) - Usage rights and restrictions
+- [PGC](../pgc/README.md) - Psychiatric genetics

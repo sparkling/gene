@@ -200,6 +200,59 @@ grep -i "diabetes" gwas_catalog_associations.tsv | wc -l
 head -1 gwas_catalog_associations.tsv | tr '\t' '\n' | nl
 ```
 
+## Dataset Versions
+
+### Current Release
+
+| Property | Value |
+|----------|-------|
+| Version | 2026-01 (Weekly) |
+| Release Date | 2026-01-20 |
+| Total Size | ~500 MB |
+| Studies | 7,000+ |
+| Associations | 500,000+ |
+| Publications | 6,000+ |
+
+### Version Contents
+
+| Component | Size | Records | Description |
+|-----------|------|---------|-------------|
+| gwas-catalog-associations.tsv | ~200 MB | 500K+ | All associations |
+| gwas-catalog-associations_ontology.tsv | ~250 MB | 500K+ | With EFO mapping |
+| gwas-catalog-studies.tsv | ~50 MB | 7K+ | All studies |
+| gwas-catalog-ancestry.tsv | ~20 MB | 15K+ | Ancestry data |
+
+### Summary Statistics
+
+| Category | Studies | Size Range |
+|----------|---------|------------|
+| Full summary stats | 5,000+ | 10 MB - 10 GB |
+| Harmonized | 4,000+ | Standardized |
+| Available traits | 3,000+ | Various diseases |
+
+### Trait Categories
+
+| Category | Associations | Description |
+|----------|--------------|-------------|
+| Cancer | 50,000+ | Various cancer types |
+| Cardiovascular | 40,000+ | Heart, blood pressure |
+| Metabolic | 35,000+ | Diabetes, obesity |
+| Neurological | 30,000+ | Brain disorders |
+| Autoimmune | 25,000+ | Immune conditions |
+
+---
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | https://www.ebi.ac.uk/gwas/rest/api/ |
+| Rate Limit | 100 req/min |
+| Auth Required | No |
+| Response Format | JSON |
+
+---
+
 ## Update Schedule
 
 | Release | Frequency |

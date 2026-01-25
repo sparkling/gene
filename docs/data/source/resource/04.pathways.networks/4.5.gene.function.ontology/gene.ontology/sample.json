@@ -1,0 +1,71 @@
+[
+  {
+    "id": "GO:0006915",
+    "name": "apoptotic process",
+    "namespace": "biological_process",
+    "definition": "A programmed cell death process which begins when a cell receives an internal or external signal and proceeds through a series of biochemical events.",
+    "is_a": ["GO:0012501"],
+    "synonyms": ["apoptosis", "programmed cell death by apoptosis"],
+    "xrefs": ["Wikipedia:Apoptosis"],
+    "metadata": {
+      "created": "2000-01-01",
+      "subset": ["goslim_generic", "goslim_chembl"]
+    }
+  },
+  {
+    "id": "GO:0008152",
+    "name": "metabolic process",
+    "namespace": "biological_process",
+    "definition": "The chemical reactions and pathways, including anabolism and catabolism, by which living organisms transform chemical substances.",
+    "is_a": ["GO:0008150"],
+    "synonyms": ["metabolism", "metabolic pathway"],
+    "xrefs": ["Wikipedia:Metabolism"],
+    "metadata": {
+      "created": "2000-01-01",
+      "subset": ["goslim_generic"]
+    }
+  },
+  {
+    "id": "GO:0005654",
+    "name": "nucleoplasm",
+    "namespace": "cellular_component",
+    "definition": "That part of the nuclear content other than the chromosomes or the nucleolus.",
+    "is_a": ["GO:0005634"],
+    "part_of": ["GO:0005634"],
+    "synonyms": ["nuclear matrix"],
+    "metadata": {
+      "created": "2000-01-01",
+      "subset": ["goslim_generic"]
+    }
+  },
+  {
+    "id": "GO:0003700",
+    "name": "DNA-binding transcription factor activity",
+    "namespace": "molecular_function",
+    "definition": "A protein that binds DNA and modulates the transcription of genes.",
+    "is_a": ["GO:0003674"],
+    "synonyms": ["transcription factor activity"],
+    "xrefs": ["EC:2.7.7.6"],
+    "metadata": {
+      "created": "2000-01-01",
+      "subset": ["goslim_generic"]
+    }
+  },
+  {
+    "annotation": {
+      "db": "UniProtKB",
+      "db_object_id": "P04637",
+      "db_object_symbol": "TP53",
+      "go_id": "GO:0006915",
+      "evidence_code": "IDA",
+      "aspect": "P",
+      "taxon": "taxon:9606",
+      "date": "20210115",
+      "assigned_by": "UniProt",
+      "metadata": {
+        "qualifier": "involved_in",
+        "pubmed": "PMID:10583946"
+      }
+    }
+  }
+]

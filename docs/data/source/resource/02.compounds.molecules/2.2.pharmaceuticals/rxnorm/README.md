@@ -1,19 +1,21 @@
 ---
 id: rxnorm
 title: "RxNorm - Normalized Drug Nomenclature"
-type: data-source
-category: compounds
-subcategory: pharmaceuticals
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 1
-last_updated: 2026-01-23
 status: active
-tags: [terminology, drug-names, normalization, interoperability, nlm]
+category: compounds.molecules
+subcategory: pharmaceuticals
+tags:
+  - terminology
+  - drug-names
+  - normalization
+  - interoperability
+  - nlm
 ---
 
 # RxNorm - Normalized Drug Nomenclature
-
-**Category:** [Compounds & Molecules](../../_index.md) > [Pharmaceuticals](../_index.md)
 
 ## Overview
 
@@ -70,13 +72,18 @@ The terminology includes ingredients, drug forms, strengths, and branded/generic
 | BPCK | Branded Pack |
 | DF | Dose Form |
 
-## License
+## Limitations
 
-| Aspect | Value |
-|--------|-------|
-| License | UMLS License (free) |
-| Commercial Use | Yes |
-| Attribution Required | Yes |
+- Primarily US drug products; international coverage limited
+- UMLS license required for full download
+- Veterinary drugs not included
+- Non-drug products (devices, supplements) not covered
+
+## See Also
+
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [License Terms](./license.md) - Usage rights and restrictions
 
 ## Related Resources
 

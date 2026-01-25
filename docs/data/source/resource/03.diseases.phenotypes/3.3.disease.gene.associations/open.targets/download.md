@@ -235,6 +235,33 @@ print(f"Unique diseases: {df['diseaseId'].nunique()}")
 EOF
 ```
 
+## Dataset Versions
+
+| Version | Release Date | Size | Status |
+|---------|--------------|------|--------|
+| 25.01 | 2025-01 | ~150 GB total | Current |
+| 24.09 | 2024-09 | ~140 GB total | Archived |
+| Quarterly releases | Every 3 months | Varies | Rolling |
+
+### Version Notes
+
+Open Targets Platform 25.01 features:
+- 64,000+ targets
+- 24,000+ diseases/phenotypes
+- 17M+ evidence records
+- 14,000+ drugs/compounds
+- GraphQL API and BigQuery access
+- Parquet format for bulk downloads
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | `https://api.platform.opentargets.org/api/v4/graphql` |
+| Rate Limit | Reasonable use |
+| Auth Required | No |
+| Documentation | https://platform-docs.opentargets.org |
+
 ## Update Schedule
 
 | Release | Frequency |

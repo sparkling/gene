@@ -1,0 +1,54 @@
+[
+  {
+    "model_id": "Bacteroides_thetaiotaomicron_VPI_5482",
+    "model_type": "microbe",
+    "organism_name": "Bacteroides thetaiotaomicron VPI-5482",
+    "ncbi_taxid": 818,
+    "reactions_count": 1498,
+    "metabolites_count": 1371,
+    "genes_count": 872,
+    "gram_stain": "negative",
+    "oxygen_status": "anaerobic",
+    "subsystems": [
+      "Carbohydrate metabolism",
+      "Amino acid metabolism",
+      "Vitamin biosynthesis"
+    ]
+  },
+  {
+    "model_id": "Recon3D",
+    "model_type": "human",
+    "organism_name": "Homo sapiens",
+    "ncbi_taxid": 9606,
+    "reactions_count": 13543,
+    "metabolites_count": 4140,
+    "genes_count": 2248
+  },
+  {
+    "reaction": {
+      "rxn_id": "HEX1",
+      "name": "Hexokinase (D-glucose:ATP)",
+      "equation": "atp[c] + glc_D[c] -> adp[c] + g6p[c] + h[c]",
+      "formula": "C10H12N5O13P3 + C6H12O6 -> C10H12N5O10P2 + C6H11O9P + H",
+      "subsystem": "Glycolysis/gluconeogenesis",
+      "gpr": "(HKDC1) or (GCK) or (HK3) or (HK2) or (HK1)",
+      "lb": 0,
+      "ub": 1000,
+      "reversibility": false,
+      "ec_number": "2.7.1.1"
+    }
+  },
+  {
+    "metabolite": {
+      "met_id": "glc_D[c]",
+      "name": "D-Glucose",
+      "formula": "C6H12O6",
+      "charge": 0,
+      "compartment": "c",
+      "kegg_id": "C00031",
+      "chebi_id": "17634",
+      "pubchem_id": "5793",
+      "hmdb_id": "HMDB0000122"
+    }
+  }
+]

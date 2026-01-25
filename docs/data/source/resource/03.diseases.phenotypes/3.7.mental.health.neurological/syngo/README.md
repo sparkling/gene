@@ -1,19 +1,21 @@
 ---
 id: syngo
 title: "SynGO - Synaptic Gene Ontologies"
-type: data-source
-category: diseases
-subcategory: mental.health.neurological
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 2
-last_updated: 2026-01-23
 status: active
-tags: [synapse, neuroscience, gene-ontology, synaptic-function, brain-disorders]
+category: diseases.phenotypes
+subcategory: mental.health.neurological
+tags:
+  - synapse
+  - neuroscience
+  - gene-ontology
+  - synaptic-function
+  - brain-disorders
 ---
 
 # SynGO - Synaptic Gene Ontologies
-
-**Category:** [Diseases & Phenotypes](../../_index.md) > [Mental Health & Neurological](../_index.md)
 
 ## Overview
 
@@ -86,17 +88,17 @@ SynGO is particularly valuable for interpreting genetic studies of neuropsychiat
 | ECO:0005644 | Electron microscopy |
 | ECO:0006063 | Biochemical assay |
 
-## License
+## Limitations
 
-| Aspect | Value |
-|--------|-------|
-| License | CC BY 4.0 |
-| Commercial Use | Yes |
-| Attribution | Required |
-| Citation | Koopmans et al. 2019 Neuron |
+- Focused on synapse biology; non-synaptic brain genes not covered
+- Annotation depth varies by gene; well-studied genes better annotated
+- Evidence limited to published experimental data
+- Mouse data may not fully translate to human
 
 ## See Also
 
-- [Schema Documentation](./schema.md)
-- [Allen Brain Atlas](../allen.brain.atlas/_index.md) - Brain expression data
-- [PGC](../pgc/_index.md) - Psychiatric genetics
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [License Terms](./license.md) - Usage rights and restrictions
+- [Allen Brain Atlas](../allen.brain.atlas/README.md) - Brain expression data
+- [PGC](../pgc/README.md) - Psychiatric genetics

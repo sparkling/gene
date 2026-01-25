@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "pubmed-central-schema.json",
+  "title": "PubMed Central Article Record",
+  "description": "JSON Schema for PMC full-text biomedical article records.",
+  "type": "object",
+  "properties": {
+    "pmc_id": {
+      "type": "string",
+      "description": "PubMed Central unique identifier.",
+      "pattern": "^PMC[0-9]+$",
+      "examples": ["PMC7654321", "PMC1234567"]
+    },
+    "pmid": {
+      "type": "integer",
+      "description": "Associated PubMed identifier.",
+      "minimum": 1
+    },
+    "doi": {
+      "type": "string",
+      "description": "Digital Object Identifier.",
+      "pattern": "^10\\.[0-9]+/"
+    },
+    "title": {
+      "type": "string",
+      "description": "Article title."
+    },
+    "abstract": {
+      "type": "string",
+      "description": "Article abstract text."
+    },
+    "body": {
+      "type": "object",
+      "description": "Full-text article content.",
+      "properties": {
+        "sections": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": { "type": "string" },
+              "content": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "authors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "surname": { "type": "string" },
+          "given_names": { "type": "string" },
+          "affiliations": { "type": "array", "items": { "type": "string" } },
+          "orcid": { "type": "string" }
+        }
+      }
+    },
+    "journal": {
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "issn": { "type": "string" },
+        "publisher": { "type": "string" }
+      }
+    },
+    "pub_date": {
+      "type": "object",
+      "properties": {
+        "year": { "type": "integer" },
+        "month": { "type": "integer" },
+        "day": { "type": "integer" }
+      }
+    },
+    "license": {
+      "type": "object",
+      "description": "Article license information.",
+      "properties": {
+        "type": { "type": "string" },
+        "text": { "type": "string" },
+        "url": { "type": "string", "format": "uri" }
+      }
+    },
+    "figures": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "label": { "type": "string" },
+          "caption": { "type": "string" },
+          "url": { "type": "string", "format": "uri" }
+        }
+      }
+    },
+    "tables": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "label": { "type": "string" },
+          "caption": { "type": "string" }
+        }
+      }
+    },
+    "references": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "citation_text": { "type": "string" },
+          "pmid": { "type": "integer" },
+          "doi": { "type": "string" }
+        }
+      }
+    },
+    "supplementary_materials": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "label": { "type": "string" },
+          "media_type": { "type": "string" },
+          "url": { "type": "string", "format": "uri" }
+        }
+      }
+    }
+  },
+  "required": ["pmc_id", "title"],
+  "additionalProperties": true
+}

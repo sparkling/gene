@@ -1,0 +1,160 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "cancer-gene-census-schema.json",
+  "title": "Cancer Gene Census Record",
+  "description": "JSON Schema for COSMIC Cancer Gene Census curated cancer gene data.",
+  "type": "object",
+  "properties": {
+    "Gene_Symbol": {
+      "type": "string",
+      "description": "HGNC gene symbol.",
+      "examples": ["TP53", "BRCA1", "KRAS", "EGFR"]
+    },
+    "Name": {
+      "type": "string",
+      "description": "Full gene name.",
+      "examples": ["tumor protein p53", "BRCA1 DNA repair associated"]
+    },
+    "Entrez_GeneId": {
+      "type": "integer",
+      "description": "NCBI Entrez Gene ID.",
+      "examples": [7157, 672, 3845]
+    },
+    "Genome_Location": {
+      "type": "string",
+      "description": "Cytogenetic location.",
+      "examples": ["17p13.1", "17q21.31", "12p12.1"]
+    },
+    "Tier": {
+      "type": "integer",
+      "description": "Census tier (1=strong evidence, 2=supporting evidence).",
+      "enum": [1, 2]
+    },
+    "Hallmark": {
+      "type": "boolean",
+      "description": "Whether gene is a cancer hallmark gene."
+    },
+    "Chr_Band": {
+      "type": "string",
+      "description": "Chromosome band.",
+      "examples": ["17p13", "17q21"]
+    },
+    "Somatic": {
+      "type": "boolean",
+      "description": "Whether mutations are found somatically in cancer."
+    },
+    "Germline": {
+      "type": "boolean",
+      "description": "Whether germline mutations predispose to cancer."
+    },
+    "Tumour_Types_Somatic": {
+      "type": "array",
+      "description": "Tumor types with somatic mutations.",
+      "items": { "type": "string" },
+      "examples": [["breast", "ovarian", "lung"], ["colorectal", "pancreatic"]]
+    },
+    "Tumour_Types_Germline": {
+      "type": "array",
+      "description": "Tumor types with germline predisposition.",
+      "items": { "type": "string" },
+      "examples": [["breast", "ovarian"], ["Li-Fraumeni syndrome"]]
+    },
+    "Cancer_Syndrome": {
+      "type": "array",
+      "description": "Associated cancer syndromes.",
+      "items": { "type": "string" },
+      "examples": [["Li-Fraumeni syndrome"], ["Hereditary breast-ovarian cancer syndrome"]]
+    },
+    "Tissue_Type": {
+      "type": "array",
+      "description": "Tissue types where mutations occur.",
+      "items": { "type": "string" },
+      "examples": [["E", "M", "L", "O"], ["E"]]
+    },
+    "Molecular_Genetics": {
+      "type": "string",
+      "description": "Molecular genetics classification.",
+      "enum": ["Dom", "Rec", "Dom/Rec"]
+    },
+    "Role_in_Cancer": {
+      "type": "string",
+      "description": "Functional role in cancer.",
+      "enum": ["oncogene", "TSG", "oncogene, TSG", "fusion"]
+    },
+    "Mutation_Types": {
+      "type": "array",
+      "description": "Types of mutations observed.",
+      "items": {
+        "type": "string",
+        "enum": ["Mis", "N", "F", "S", "D", "A", "T", "O"]
+      }
+    },
+    "Mutation_Types_Expanded": {
+      "type": "object",
+      "description": "Expanded mutation type descriptions.",
+      "properties": {
+        "Mis": { "type": "boolean", "description": "Missense" },
+        "N": { "type": "boolean", "description": "Nonsense" },
+        "F": { "type": "boolean", "description": "Frameshift" },
+        "S": { "type": "boolean", "description": "Splice site" },
+        "D": { "type": "boolean", "description": "Large deletion" },
+        "A": { "type": "boolean", "description": "Amplification" },
+        "T": { "type": "boolean", "description": "Translocation" },
+        "O": { "type": "boolean", "description": "Other" }
+      }
+    },
+    "Translocation_Partner": {
+      "type": "array",
+      "description": "Translocation partner genes.",
+      "items": { "type": "string" },
+      "examples": [["BCR", "ETV6"], ["ALK", "ROS1"]]
+    },
+    "Other_Germline_Mut": {
+      "type": "string",
+      "description": "Other germline mutation information."
+    },
+    "Other_Syndrome": {
+      "type": "string",
+      "description": "Other associated syndromes."
+    },
+    "Synonyms": {
+      "type": "array",
+      "description": "Gene symbol synonyms.",
+      "items": { "type": "string" },
+      "examples": [["P53", "LFS1"], ["BRCA1/BRCA2"]]
+    },
+    "census_annotation": {
+      "type": "object",
+      "description": "Additional census annotations.",
+      "properties": {
+        "cell_type": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "cancer_driver": {
+          "type": "boolean"
+        },
+        "intogen_driver": {
+          "type": "boolean"
+        },
+        "CGC_version": {
+          "type": "string",
+          "examples": ["v99", "v100"]
+        }
+      }
+    },
+    "pubmed_ids": {
+      "type": "array",
+      "description": "Supporting PubMed references.",
+      "items": { "type": "integer" }
+    },
+    "cosmic_id": {
+      "type": "string",
+      "description": "COSMIC gene ID.",
+      "pattern": "^COSG[0-9]+$",
+      "examples": ["COSG123"]
+    }
+  },
+  "required": ["Gene_Symbol", "Tier", "Role_in_Cancer"],
+  "additionalProperties": true
+}

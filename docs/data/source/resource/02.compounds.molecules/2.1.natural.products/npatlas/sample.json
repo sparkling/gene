@@ -1,0 +1,68 @@
+{
+  "source": "NPAtlas",
+  "version": "2024",
+  "description": "Sample microbial natural product records from NPAtlas",
+  "records": [
+    {
+      "npa_id": "NPA001234",
+      "name": "Streptomycin",
+      "canonical_smiles": "CC1OC(OC2C(O)C(O)C(NC(N)=N)C(O)C2O)C(OC2OC(CO)C(O)C(N)C2O)C(O)C1NC(N)=N",
+      "inchi_key": "UCSJYZPVAKXKNQ-HZYVHMACSA-N",
+      "molecular_formula": "C21H39N7O12",
+      "molecular_weight": 581.57,
+      "compound_class": "Aminoglycoside",
+      "origin_type": "bacterial",
+      "organisms": [
+        {
+          "name": "Streptomyces griseus",
+          "ncbi_taxon_id": 1911,
+          "phylum": "Actinobacteria"
+        }
+      ],
+      "references": [
+        {
+          "pmid": 12345678,
+          "year": 1944
+        }
+      ]
+    },
+    {
+      "npa_id": "NPA002345",
+      "name": "Vancomycin",
+      "inchi_key": "MYPYJXKWCTUITO-UHFFFAOYSA-N",
+      "molecular_formula": "C66H75Cl2N9O24",
+      "molecular_weight": 1449.25,
+      "compound_class": "Glycopeptide",
+      "origin_type": "bacterial",
+      "organisms": [
+        {
+          "name": "Amycolatopsis orientalis",
+          "ncbi_taxon_id": 31958,
+          "phylum": "Actinobacteria"
+        }
+      ]
+    },
+    {
+      "npa_id": "NPA003456",
+      "name": "Penicillin G",
+      "canonical_smiles": "CC1(C)SC2C(NC(=O)CC3=CC=CC=C3)C(=O)N2C1C(=O)O",
+      "inchi_key": "JGSARLDLIJGVTE-MBNYWOFBSA-N",
+      "molecular_formula": "C16H18N2O4S",
+      "molecular_weight": 334.39,
+      "compound_class": "Beta-lactam",
+      "origin_type": "fungal",
+      "organisms": [
+        {
+          "name": "Penicillium chrysogenum",
+          "ncbi_taxon_id": 5076,
+          "phylum": "Ascomycota"
+        }
+      ]
+    }
+  ],
+  "queries": {
+    "rest": "curl 'https://www.npatlas.org/api/v1/compound/NPA001234' | jq",
+    "search": "curl -X POST 'https://www.npatlas.org/api/v1/search' -H 'Content-Type: application/json' -d '{\"query\": \"streptomycin\"}'",
+    "download": "wget https://www.npatlas.org/static/downloads/npatlas_v2.json.gz"
+  }
+}

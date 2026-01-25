@@ -178,6 +178,33 @@ EOF
 grep -c '\$\$\$\$' chembl_34.sdf
 ```
 
+## Dataset Versions
+
+| Version | Release Date | Size | Status |
+|---------|--------------|------|--------|
+| ChEMBL 34 | 2024-06 | ~7 GB total | Current |
+| ChEMBL 33 | 2023-12 | ~6.5 GB | Archived |
+| ChEMBL 32 | 2023-06 | ~6 GB | Archived |
+
+### Version Notes
+
+ChEMBL 34 (latest) contains:
+- 2.4M+ compounds with drug-like properties
+- 20M+ bioactivity measurements
+- 15,000+ targets
+- Natural Product likeness scores
+- Updated Chemical Probes flag
+- Patent bioactivity data
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | `https://www.ebi.ac.uk/chembl/api/data` |
+| Rate Limit | No hard limit (be reasonable) |
+| Auth Required | No |
+| Documentation | https://chembl.gitbook.io/chembl-interface-documentation |
+
 ## Update Schedule
 
 | Release | Frequency |

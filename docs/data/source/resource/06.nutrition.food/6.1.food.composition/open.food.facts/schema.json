@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gene.taxonomy/schemas/open-food-facts",
+  "title": "Open Food Facts Product Record",
+  "description": "JSON Schema for Open Food Facts crowdsourced food product data",
+  "type": "object",
+  "properties": {
+    "code": {
+      "type": "string",
+      "description": "Product barcode (EAN-13 or internal identifier)",
+      "pattern": "^[0-9]{8,14}$",
+      "examples": ["3017620422003", "5000112118957"]
+    },
+    "product_name": {
+      "type": "string",
+      "description": "Product name as displayed on packaging",
+      "examples": ["Nutella", "Coca-Cola Original"]
+    },
+    "brands": {
+      "type": ["string", "null"],
+      "description": "Brand name(s), comma-separated if multiple",
+      "examples": ["Ferrero", "Coca-Cola"]
+    },
+    "categories_tags": {
+      "type": "array",
+      "description": "Hierarchical category classification tags",
+      "items": {"type": "string"},
+      "examples": [["en:breakfast-cereals", "en:cocoa-hazelnut-spreads"]]
+    },
+    "quantity": {
+      "type": ["string", "null"],
+      "description": "Package quantity with unit",
+      "examples": ["400 g", "1.5 L"]
+    },
+    "serving_size": {
+      "type": ["string", "null"],
+      "description": "Serving size with unit",
+      "examples": ["15 g", "250 ml"]
+    },
+    "nutriments": {
+      "type": "object",
+      "description": "Nutritional values per 100g/100ml",
+      "properties": {
+        "energy-kcal_100g": {"type": "number", "description": "Energy in kcal"},
+        "fat_100g": {"type": "number", "description": "Total fat (g)"},
+        "saturated-fat_100g": {"type": "number", "description": "Saturated fat (g)"},
+        "carbohydrates_100g": {"type": "number", "description": "Total carbohydrates (g)"},
+        "sugars_100g": {"type": "number", "description": "Total sugars (g)"},
+        "fiber_100g": {"type": "number", "description": "Dietary fiber (g)"},
+        "proteins_100g": {"type": "number", "description": "Protein (g)"},
+        "salt_100g": {"type": "number", "description": "Salt (g)"},
+        "sodium_100g": {"type": "number", "description": "Sodium (g)"}
+      }
+    },
+    "nutriscore_grade": {
+      "type": ["string", "null"],
+      "description": "Nutri-Score grade from A (best) to E (worst)",
+      "enum": ["a", "b", "c", "d", "e", null]
+    },
+    "nutriscore_score": {
+      "type": ["integer", "null"],
+      "description": "Nutri-Score numeric value (lower is better)"
+    },
+    "nova_group": {
+      "type": ["integer", "null"],
+      "description": "NOVA food processing classification (1-4)",
+      "minimum": 1,
+      "maximum": 4
+    },
+    "ecoscore_grade": {
+      "type": ["string", "null"],
+      "description": "Eco-Score environmental grade A-E",
+      "enum": ["a", "b", "c", "d", "e", null]
+    },
+    "ingredients_text": {
+      "type": ["string", "null"],
+      "description": "Full ingredients list as text"
+    },
+    "allergens_tags": {
+      "type": "array",
+      "description": "Allergen tags",
+      "items": {"type": "string"},
+      "examples": [["en:gluten", "en:milk", "en:nuts"]]
+    },
+    "labels_tags": {
+      "type": "array",
+      "description": "Product labels and certifications",
+      "items": {"type": "string"},
+      "examples": [["en:organic", "en:fair-trade"]]
+    },
+    "countries_tags": {
+      "type": "array",
+      "description": "Countries where product is sold",
+      "items": {"type": "string"}
+    },
+    "image_url": {
+      "type": ["string", "null"],
+      "format": "uri",
+      "description": "Product image URL"
+    },
+    "created_t": {
+      "type": "integer",
+      "description": "Unix timestamp of creation"
+    },
+    "last_modified_t": {
+      "type": "integer",
+      "description": "Unix timestamp of last modification"
+    }
+  },
+  "required": ["code"],
+  "additionalProperties": true
+}

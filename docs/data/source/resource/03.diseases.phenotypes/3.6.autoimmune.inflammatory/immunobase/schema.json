@@ -1,0 +1,166 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "immunobase-schema.json",
+  "title": "ImmunoBase Association Record",
+  "description": "JSON Schema for ImmunoBase genetic association database. Curated GWAS and fine-mapping data for 12 major immune-mediated diseases with 350+ associated regions, 1,000+ SNP associations, and 200+ credible sets.",
+  "type": "object",
+  "properties": {
+    "region_id": {
+      "type": "string",
+      "description": "Genomic region identifier",
+      "examples": ["1p13.2"]
+    },
+    "chromosome": {
+      "type": "string",
+      "description": "Chromosome"
+    },
+    "start": {
+      "type": "integer",
+      "description": "Region start (GRCh38)"
+    },
+    "end": {
+      "type": "integer",
+      "description": "Region end (GRCh38)"
+    },
+    "lead_snp": {
+      "type": "string",
+      "description": "Lead SNP ID",
+      "pattern": "^rs[0-9]+$",
+      "examples": ["rs2476601"]
+    },
+    "genes": {
+      "type": "array",
+      "description": "Candidate genes in region",
+      "items": {
+        "$ref": "#/$defs/gene"
+      }
+    },
+    "disease_associations": {
+      "type": "array",
+      "description": "Disease associations",
+      "items": {
+        "$ref": "#/$defs/diseaseAssociation"
+      }
+    },
+    "credible_set": {
+      "$ref": "#/$defs/credibleSet"
+    },
+    "functional_annotations": {
+      "type": "array",
+      "description": "Functional evidence",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": ["region_id", "chromosome"],
+  "$defs": {
+    "gene": {
+      "type": "object",
+      "description": "Candidate gene",
+      "properties": {
+        "gene_symbol": {
+          "type": "string",
+          "description": "Gene symbol"
+        },
+        "ensembl_id": {
+          "type": "string",
+          "description": "Ensembl gene ID",
+          "pattern": "^ENSG[0-9]{11}$"
+        },
+        "evidence_score": {
+          "type": "number",
+          "description": "Causal gene evidence",
+          "minimum": 0,
+          "maximum": 1
+        }
+      },
+      "required": ["gene_symbol"]
+    },
+    "diseaseAssociation": {
+      "type": "object",
+      "description": "Disease association",
+      "properties": {
+        "disease_code": {
+          "type": "string",
+          "description": "Disease abbreviation",
+          "enum": ["T1D", "RA", "CEL", "MS", "CD", "UC", "IBD", "PSC", "PSO", "AS", "JIA", "SLE"]
+        },
+        "disease_name": {
+          "type": "string",
+          "description": "Full disease name"
+        },
+        "snp_id": {
+          "type": "string",
+          "description": "Associated SNP",
+          "pattern": "^rs[0-9]+$"
+        },
+        "p_value": {
+          "type": "number",
+          "description": "Association p-value"
+        },
+        "odds_ratio": {
+          "type": "number",
+          "description": "Effect size"
+        },
+        "risk_allele": {
+          "type": "string",
+          "description": "Risk allele"
+        },
+        "risk_allele_frequency": {
+          "type": "number",
+          "description": "Risk allele frequency",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "study": {
+          "type": "string",
+          "description": "Study reference"
+        },
+        "pmid": {
+          "type": "integer",
+          "description": "PubMed ID"
+        }
+      },
+      "required": ["disease_code", "snp_id", "p_value"]
+    },
+    "credibleSet": {
+      "type": "object",
+      "description": "Fine-mapping credible set",
+      "properties": {
+        "set_id": {
+          "type": "string",
+          "description": "Credible set ID"
+        },
+        "size": {
+          "type": "integer",
+          "description": "Number of variants"
+        },
+        "coverage": {
+          "type": "number",
+          "description": "Posterior probability coverage",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "variants": {
+          "type": "array",
+          "description": "Variants in set",
+          "items": {
+            "type": "object",
+            "properties": {
+              "snp_id": {
+                "type": "string"
+              },
+              "posterior_probability": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

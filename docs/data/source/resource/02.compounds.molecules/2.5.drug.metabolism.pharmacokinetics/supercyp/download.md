@@ -164,6 +164,31 @@ cut -d',' -f3 supercyp_data.csv | sort | uniq
 head -1 supercyp_data.csv
 ```
 
+## Dataset Versions
+
+| Version | Release Date | Size | Status |
+|---------|--------------|------|--------|
+| SuperCYP 2.0 | 2013-06 | ~20 MB | Current |
+| SuperCYP 1.0 | 2010 | ~10 MB | Archived |
+
+### Version Notes
+
+SuperCYP 2.0 contains comprehensive CYP450 interaction data:
+- 3,300 drugs with CYP interaction profiles
+- 2,000+ CYP substrates, inhibitors, inducers
+- Ki/IC50 values where available
+- Links to primary literature
+- Major CYP isoforms: 3A4, 2D6, 2C9, 2C19, 1A2, 2B6, 2E1
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | `http://bioinformatics.charite.de/supercyp` |
+| Rate Limit | N/A (web interface) |
+| Auth Required | No |
+| Documentation | Contact supercyp@charite.de |
+
 ## Update Schedule
 
 | Release | Frequency |

@@ -1,19 +1,20 @@
 ---
 id: npass
 title: "NPASS - Natural Product Activity and Species Source Database"
-type: data-source
-category: compounds
-subcategory: natural-products
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 2
-last_updated: 2026-01-23
 status: active
-tags: [natural-products, bioactivity, species-source, drug-discovery]
+category: compounds.molecules
+subcategory: natural.products
+tags:
+  - natural-products
+  - bioactivity
+  - species-source
+  - drug-discovery
 ---
 
 # NPASS - Natural Product Activity and Species Source Database
-
-**Category:** [Compounds & Molecules](../../_index.md) > [Natural Products](../_index.md)
 
 ## Overview
 
@@ -67,13 +68,18 @@ NPASS serves as a bridge between natural product chemistry and pharmacology, ena
 | Species Source | Organism taxonomy and occurrence |
 | Target Information | Protein targets with UniProt links |
 
-## License
+## Limitations
 
-| Aspect | Value |
-|--------|-------|
-| License | Academic use free |
-| Commercial Use | Contact required |
-| Attribution Required | Yes |
+- Commercial use requires contact with database maintainers
+- Limited API access compared to other databases
+- Last update was in 2023; may not include recent compounds
+- Bioactivity data quality varies by source
+
+## See Also
+
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [License Terms](./license.md) - Usage rights and restrictions
 
 ## Related Resources
 

@@ -1,19 +1,21 @@
 ---
 id: dailymed
 title: "DailyMed - FDA Drug Labeling"
-type: data-source
-category: compounds
-subcategory: pharmaceuticals
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 2
-last_updated: 2026-01-23
 status: active
-tags: [fda, drug-labels, prescribing-information, spl, regulatory]
+category: compounds.molecules
+subcategory: pharmaceuticals
+tags:
+  - fda
+  - drug-labels
+  - prescribing-information
+  - spl
+  - regulatory
 ---
 
 # DailyMed - FDA Drug Labeling
-
-**Category:** [Compounds & Molecules](../../_index.md) > [Pharmaceuticals](../_index.md)
 
 ## Overview
 
@@ -70,13 +72,18 @@ The database includes drug package inserts, patient information, and medication 
 | Adverse Reactions | Side effects |
 | Drug Interactions | Interaction data |
 
-## License
+## Limitations
 
-| Aspect | Value |
-|--------|-------|
-| License | Public Domain (US Government) |
-| Commercial Use | Yes |
-| Attribution Required | No |
+- US market drugs only; international products not included
+- SPL parsing can be complex for programmatic access
+- Historical labels may not reflect current approved use
+- OTC products less consistently formatted
+
+## See Also
+
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [License Terms](./license.md) - Usage rights and restrictions
 
 ## Related Resources
 

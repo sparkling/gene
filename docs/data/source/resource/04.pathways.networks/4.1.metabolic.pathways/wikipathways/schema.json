@@ -1,0 +1,146 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "wikipathways-schema.json",
+  "title": "WikiPathways GPML Record",
+  "description": "JSON Schema for WikiPathways pathway data in GPML format. Stores biological semantics and graphical layout for pathway diagrams.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "WikiPathways identifier.",
+      "pattern": "^WP[0-9]+$",
+      "examples": ["WP554", "WP254"]
+    },
+    "name": {
+      "type": "string",
+      "description": "Pathway name.",
+      "minLength": 1,
+      "maxLength": 500,
+      "examples": ["Apoptosis signaling pathway", "Cholesterol biosynthesis pathway"]
+    },
+    "type": {
+      "type": "string",
+      "description": "Record type.",
+      "const": "pathway"
+    },
+    "version": {
+      "type": "string",
+      "description": "Version date (YYYYMMDD format).",
+      "pattern": "^[0-9]{8}$"
+    },
+    "organism": {
+      "type": "string",
+      "description": "Species name.",
+      "examples": ["Homo sapiens", "Mus musculus"]
+    },
+    "dataNodes": {
+      "type": "array",
+      "description": "Biological entities in the pathway.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "graphId": {
+            "type": "string",
+            "description": "Unique node identifier within GPML document."
+          },
+          "textLabel": {
+            "type": "string",
+            "description": "Display text."
+          },
+          "type": {
+            "type": "string",
+            "description": "Node type classification.",
+            "enum": ["GeneProduct", "Metabolite", "Protein", "Rna", "Complex", "Pathway", "Unknown"]
+          },
+          "groupRef": {
+            "type": "string",
+            "description": "Group membership identifier."
+          },
+          "xref": {
+            "type": "object",
+            "properties": {
+              "database": {
+                "type": "string",
+                "examples": ["Ensembl", "Entrez Gene", "UniProt", "ChEBI", "HMDB", "WikiPathways"]
+              },
+              "id": { "type": "string" }
+            }
+          },
+          "graphics": {
+            "type": "object",
+            "properties": {
+              "centerX": { "type": "number" },
+              "centerY": { "type": "number" },
+              "width": { "type": "number" },
+              "height": { "type": "number" },
+              "zOrder": { "type": "integer" },
+              "fillColor": { "type": "string" },
+              "fontSize": { "type": "integer" },
+              "shapeType": { "type": "string" }
+            }
+          }
+        },
+        "required": ["graphId", "textLabel", "type"]
+      }
+    },
+    "interactions": {
+      "type": "array",
+      "description": "Biological relationships between nodes.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "graphId": { "type": "string" },
+          "points": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "x": { "type": "number" },
+                "y": { "type": "number" },
+                "graphRef": { "type": "string" },
+                "relX": { "type": "number" },
+                "relY": { "type": "number" },
+                "arrowHead": {
+                  "type": "string",
+                  "enum": ["Arrow", "mim-catalysis", "mim-stimulation", "mim-inhibition", "mim-conversion", "mim-modification", "mim-binding", "mim-cleavage", "TBar"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "groups": {
+      "type": "array",
+      "description": "Group definitions for complexes.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "groupId": { "type": "string" },
+          "style": {
+            "type": "string",
+            "enum": ["None", "Group", "Complex", "Pathway"]
+          },
+          "textLabel": { "type": "string" }
+        }
+      }
+    },
+    "shapes": {
+      "type": "array",
+      "description": "Visual elements representing compartments.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "graphId": { "type": "string" },
+          "textLabel": { "type": "string" },
+          "shapeType": {
+            "type": "string",
+            "enum": ["Rectangle", "RoundedRectangle", "Oval", "Mitochondria", "Endoplasmic Reticulum", "Golgi Apparatus", "Nucleus", "Cell"]
+          }
+        }
+      }
+    }
+  },
+  "required": ["id", "name"],
+  "additionalProperties": true
+}

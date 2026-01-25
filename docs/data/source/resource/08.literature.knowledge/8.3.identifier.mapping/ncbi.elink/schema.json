@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ncbi-elink-schema.json",
+  "title": "NCBI ELink Record",
+  "description": "JSON Schema for NCBI ELink cross-database linking records.",
+  "type": "object",
+  "properties": {
+    "dbfrom": {
+      "type": "string",
+      "description": "Source database name.",
+      "examples": ["pubmed", "gene", "protein"]
+    },
+    "id": {
+      "type": "string",
+      "description": "Source record identifier."
+    },
+    "linksets": {
+      "type": "array",
+      "description": "Link result sets.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "dbto": { "type": "string", "description": "Target database" },
+          "linkname": { "type": "string", "description": "Link type name" },
+          "ids": {
+            "type": "array",
+            "description": "Linked record IDs.",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    },
+    "linksetdbs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "dbto": { "type": "string" },
+          "link": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": { "type": "string" },
+                "score": { "type": "integer" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "cmd": {
+      "type": "string",
+      "description": "ELink command used.",
+      "enum": ["neighbor", "neighbor_score", "neighbor_history", "acheck", "ncheck", "lcheck", "llinks", "llinkslib", "prlinks"]
+    }
+  },
+  "required": ["dbfrom", "id"],
+  "additionalProperties": true
+}

@@ -1,0 +1,141 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "napralert-schema.json",
+  "title": "NAPRALERT Record",
+  "description": "JSON Schema for NAPRALERT (Natural Products Alert) database records.",
+  "type": "object",
+  "properties": {
+    "organism_id": {
+      "type": "string",
+      "description": "NAPRALERT organism identifier.",
+      "pattern": "^NAP_ORG_[0-9]+$",
+      "examples": ["NAP_ORG_001234"]
+    },
+    "scientific_name": {
+      "type": "string",
+      "description": "Scientific Latin binomial name.",
+      "examples": ["Ginkgo biloba"]
+    },
+    "family": {
+      "type": "string",
+      "description": "Taxonomic family."
+    },
+    "kingdom": {
+      "type": "string",
+      "description": "Taxonomic kingdom.",
+      "enum": ["Plantae", "Fungi", "Bacteria", "Animalia"]
+    },
+    "compound_id": {
+      "type": "string",
+      "description": "NAPRALERT compound identifier.",
+      "pattern": "^NAP_CPD_[0-9]+$"
+    },
+    "compound_name": {
+      "type": "string",
+      "description": "Chemical compound name."
+    },
+    "cas_number": {
+      "type": "string",
+      "description": "CAS Registry Number.",
+      "pattern": "^[0-9]+-[0-9]+-[0-9]+$",
+      "examples": ["458-37-7"]
+    },
+    "molecular_formula": {
+      "type": "string",
+      "description": "Chemical formula."
+    },
+    "ethnobotany": {
+      "type": "object",
+      "description": "Ethnobotanical information.",
+      "properties": {
+        "traditional_use": {
+          "type": "string",
+          "description": "Documented therapeutic application."
+        },
+        "geographic_origin": {
+          "type": "string",
+          "description": "Region/country of traditional use."
+        },
+        "preparation_method": {
+          "type": "string",
+          "description": "Method of preparation."
+        },
+        "administration_route": {
+          "type": "string",
+          "description": "Route of administration."
+        },
+        "dosage": {
+          "type": "string",
+          "description": "Traditional dosage information."
+        }
+      }
+    },
+    "pharmacology": {
+      "type": "object",
+      "description": "Pharmacological data.",
+      "properties": {
+        "activity_type": {
+          "type": "string",
+          "description": "Type of biological activity."
+        },
+        "model_system": {
+          "type": "string",
+          "description": "Experimental model (in vitro/vivo)."
+        },
+        "activity_value": {
+          "type": "number",
+          "description": "Quantitative activity measurement."
+        },
+        "activity_unit": {
+          "type": "string",
+          "description": "Unit of measurement."
+        },
+        "reference_standard": {
+          "type": "string",
+          "description": "Positive control compound."
+        }
+      }
+    },
+    "toxicology": {
+      "type": "object",
+      "description": "Toxicological data.",
+      "properties": {
+        "toxicity_type": { "type": "string" },
+        "ld50": { "type": "string" },
+        "adverse_effects": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "literature": {
+      "type": "object",
+      "description": "Literature reference.",
+      "properties": {
+        "pubmed_id": {
+          "type": "integer",
+          "description": "PubMed ID."
+        },
+        "napralert_ref_id": {
+          "type": "string",
+          "description": "NAPRALERT internal reference."
+        },
+        "authors": { "type": "string" },
+        "title": { "type": "string" },
+        "journal": { "type": "string" },
+        "year": { "type": "integer" }
+      }
+    },
+    "chemistry": {
+      "type": "object",
+      "description": "Chemical information.",
+      "properties": {
+        "compound_class": { "type": "string" },
+        "isolation_source": { "type": "string" },
+        "isolation_method": { "type": "string" }
+      }
+    }
+  },
+  "required": ["organism_id"],
+  "additionalProperties": true
+}

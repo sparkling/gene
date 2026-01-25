@@ -1,0 +1,168 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "dailymed-schema.json",
+  "title": "DailyMed Drug Label Record",
+  "description": "JSON Schema for DailyMed FDA drug labeling records. Contains 140,000+ SPL documents with structured drug label sections (indications, dosage, warnings), NDC codes, and active ingredients. Data in SPL XML format with daily updates.",
+  "type": "object",
+  "properties": {
+    "set_id": {
+      "type": "string",
+      "description": "Unique document identifier (UUID)",
+      "format": "uuid"
+    },
+    "version_number": {
+      "type": "integer",
+      "description": "Label version number"
+    },
+    "effective_time": {
+      "type": "string",
+      "description": "Label effective date",
+      "format": "date"
+    },
+    "document_type": {
+      "type": "string",
+      "description": "Label type",
+      "enum": ["HUMAN PRESCRIPTION DRUG LABEL", "HUMAN OTC DRUG LABEL", "VACCINE LABEL", "PLASMA DERIVATIVE LABEL", "CELLULAR THERAPY LABEL"]
+    },
+    "title": {
+      "type": "string",
+      "description": "Drug product title"
+    },
+    "marketing_status": {
+      "type": "string",
+      "description": "Current marketing status",
+      "enum": ["prescription", "otc", "discontinued"]
+    },
+    "products": {
+      "type": "array",
+      "description": "Drug products in this label",
+      "items": {
+        "$ref": "#/$defs/product"
+      }
+    },
+    "sections": {
+      "type": "array",
+      "description": "Label sections",
+      "items": {
+        "$ref": "#/$defs/section"
+      }
+    }
+  },
+  "required": ["set_id", "title"],
+  "$defs": {
+    "product": {
+      "type": "object",
+      "description": "Drug product",
+      "properties": {
+        "product_id": {
+          "type": "string",
+          "description": "Internal identifier"
+        },
+        "name": {
+          "type": "string",
+          "description": "Product name"
+        },
+        "nonproprietary_name": {
+          "type": "string",
+          "description": "Generic name"
+        },
+        "dose_form": {
+          "type": "string",
+          "description": "Dosage form"
+        },
+        "route": {
+          "type": "string",
+          "description": "Administration route"
+        },
+        "marketing_category": {
+          "type": "string",
+          "description": "Regulatory category",
+          "enum": ["NDA", "ANDA", "BLA", "OTC MONOGRAPH FINAL", "UNAPPROVED DRUG OTHER"]
+        },
+        "application_number": {
+          "type": "string",
+          "description": "NDA/ANDA/BLA number"
+        },
+        "ndc_codes": {
+          "type": "array",
+          "description": "NDC identifiers",
+          "items": {
+            "$ref": "#/$defs/ndcCode"
+          }
+        },
+        "active_ingredients": {
+          "type": "array",
+          "description": "Active substances",
+          "items": {
+            "$ref": "#/$defs/activeIngredient"
+          }
+        }
+      },
+      "required": ["name"]
+    },
+    "ndcCode": {
+      "type": "object",
+      "description": "National Drug Code",
+      "properties": {
+        "ndc": {
+          "type": "string",
+          "description": "NDC code (10-11 digits)",
+          "pattern": "^[0-9]{4,5}-[0-9]{3,4}-[0-9]{1,2}$"
+        },
+        "package_description": {
+          "type": "string",
+          "description": "Package type"
+        },
+        "package_quantity": {
+          "type": "integer",
+          "description": "Count per package"
+        }
+      },
+      "required": ["ndc"]
+    },
+    "activeIngredient": {
+      "type": "object",
+      "description": "Active ingredient",
+      "properties": {
+        "substance_name": {
+          "type": "string",
+          "description": "Active ingredient name"
+        },
+        "strength": {
+          "type": "string",
+          "description": "Amount per unit"
+        },
+        "strength_unit": {
+          "type": "string",
+          "description": "Unit of strength"
+        },
+        "unii": {
+          "type": "string",
+          "description": "FDA Unique Ingredient Identifier",
+          "pattern": "^[A-Z0-9]{10}$"
+        }
+      },
+      "required": ["substance_name"]
+    },
+    "section": {
+      "type": "object",
+      "description": "Label section",
+      "properties": {
+        "section_code": {
+          "type": "string",
+          "description": "LOINC section code"
+        },
+        "section_name": {
+          "type": "string",
+          "description": "Section title"
+        },
+        "text": {
+          "type": "string",
+          "description": "Section content"
+        }
+      },
+      "required": ["section_code", "section_name"]
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,19 +1,21 @@
 ---
 id: drugbank
 title: "DrugBank - Comprehensive Drug Database"
-type: data-source
-category: compounds
-subcategory: pharmaceuticals
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 1
-last_updated: 2026-01-23
 status: active
-tags: [drugs, pharmacology, targets, interactions, drug-discovery]
+category: compounds.molecules
+subcategory: pharmaceuticals
+tags:
+  - drugs
+  - pharmacology
+  - targets
+  - interactions
+  - drug-discovery
 ---
 
 # DrugBank - Comprehensive Drug Database
-
-**Category:** [Compounds & Molecules](../../_index.md) > [Pharmaceuticals](../_index.md)
 
 ## Overview
 
@@ -70,13 +72,18 @@ DrugBank serves as a critical resource for drug discovery, clinical practice, an
 | Interactions | Drug-drug, drug-food interactions |
 | Clinical | Indications, contraindications, dosing |
 
-## License
+## Limitations
 
-| Aspect | Value |
-|--------|-------|
-| License (Academic) | CC BY-NC 4.0 |
-| Commercial Use | Subscription required |
-| Attribution Required | Yes |
+- Commercial use requires paid subscription
+- API access restricted without subscription
+- Some experimental drugs have incomplete data
+- Drug interaction predictions may not cover all combinations
+
+## See Also
+
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [License Terms](./license.md) - Usage rights and restrictions
 
 ## Related Resources
 

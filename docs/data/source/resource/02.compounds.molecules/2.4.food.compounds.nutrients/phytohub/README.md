@@ -1,19 +1,21 @@
 ---
 id: phytohub
 title: "PhytoHub - Dietary Phytochemical Metabolome"
-type: data-source
-category: compounds
-subcategory: food-compounds
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 2
-last_updated: 2026-01-23
 status: active
-tags: [phytochemicals, metabolites, biomarkers, dietary-exposure, mass-spectrometry]
+category: compounds.molecules
+subcategory: food.compounds.nutrients
+tags:
+  - phytochemicals
+  - metabolites
+  - biomarkers
+  - dietary-exposure
+  - mass-spectrometry
 ---
 
 # PhytoHub - Dietary Phytochemical Metabolome
-
-**Category:** [Compounds & Molecules](../../_index.md) > [Food Compounds & Nutrients](../_index.md)
 
 ## Overview
 
@@ -69,13 +71,18 @@ PhytoHub supports the identification of unknown metabolites in metabolomics stud
 | Phase II Metabolites | Conjugates (glucuronides, sulfates) |
 | Microbial Metabolites | Gut bacteria products |
 
-## License
+## Limitations
 
-| Aspect | Value |
-|--------|-------|
-| License | Free for academic use |
-| Commercial Use | Contact required |
-| Attribution Required | Yes |
+- Commercial use requires contacting database maintainers
+- MS/MS spectra coverage not complete for all compounds
+- Metabolite pathways are partially characterized
+- Individual variation in metabolism not captured
+
+## See Also
+
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [License Terms](./license.md) - Usage rights and restrictions
 
 ## Related Resources
 

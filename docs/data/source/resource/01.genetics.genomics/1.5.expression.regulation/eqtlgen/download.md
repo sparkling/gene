@@ -96,6 +96,59 @@ zcat 2019-12-11-cis-eQTLsFDR0.05*.txt.gz | wc -l
 zcat 2019-12-11-cis-eQTLsFDR0.05*.txt.gz | head -1
 ```
 
+## Dataset Versions
+
+### Current Release: Phase I
+
+| Property | Value |
+|----------|-------|
+| Version | Phase I (2019-12-11) |
+| Release Date | 2019-12-11 |
+| Total Size | ~7 GB |
+| Samples | 31,684 individuals |
+| Cohorts | 37 cohorts |
+| Reference | GRCh37/hg19 |
+
+### Version Contents
+
+| Component | Size | Records | Description |
+|-----------|------|---------|-------------|
+| cis-eQTLsFDR0.05*.txt.gz | ~200 MB | 16,987 | Significant cis-eQTLs |
+| cis-eQTLsFDR*.txt.gz | ~5 GB | 10M+ | All cis-eQTL tests |
+| trans-eQTLsFDR0.05*.txt.gz | ~50 MB | 3,853 | Significant trans-eQTLs |
+| trans-eQTLsFDR*.txt.gz | ~2 GB | 100M+ | All trans-eQTL tests |
+
+### eQTL Statistics
+
+| Category | Count | Description |
+|----------|-------|-------------|
+| Tested genes | 19,250 | Protein-coding genes |
+| Significant cis-eGenes | 16,987 | FDR < 0.05 |
+| Significant trans-eGenes | 3,853 | FDR < 0.05 |
+| Tested SNPs | 10M+ | Common variants |
+
+### Tissue/Cell Type
+
+| Type | Description |
+|------|-------------|
+| Blood | Whole blood eQTLs |
+| PBMC | Peripheral blood cells |
+| Monocytes | Subset available |
+| CD4+ T cells | Subset available |
+
+---
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | https://www.eqtlgen.org/api/v1/ |
+| Rate Limit | 10 req/sec |
+| Auth Required | No |
+| Response Format | JSON, TSV |
+
+---
+
 ## Update Schedule
 
 | Release | Frequency |

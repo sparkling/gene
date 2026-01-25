@@ -165,6 +165,48 @@ tabix -l clinvar.vcf.gz
 zcat variant_summary.txt.gz | head -1 | tr '\t' '\n' | nl
 ```
 
+## Dataset Versions
+
+### Current Release
+
+| Property | Value |
+|----------|-------|
+| Version | 2026-01 (Weekly) |
+| Release Date | 2026-01-20 |
+| Total Size | ~2.5 GB (XML), ~177 MB (VCF) |
+| Variant Records | 2.5M+ VCV records |
+| Submissions | 4M+ SCV records |
+
+### Version Contents
+
+| Component | Size | Records | Description |
+|-----------|------|---------|-------------|
+| clinvar.vcf.gz | ~150 MB | 2.5M | All variants (VCF format) |
+| ClinVarFullRelease.xml.gz | ~2.5 GB | 2.5M | Complete XML database |
+| variant_summary.txt.gz | ~200 MB | 2.5M | Tab-delimited summary |
+| submission_summary.txt.gz | ~500 MB | 4M | All submissions |
+
+### Previous Versions
+
+| Version | Release | Size | Status |
+|---------|---------|------|--------|
+| 2025-12 | 2025-12-16 | ~2.4 GB | Archived |
+| 2025-11 | 2025-11-18 | ~2.4 GB | Archived |
+| 2025-10 | 2025-10-21 | ~2.3 GB | Archived |
+
+---
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | https://eutils.ncbi.nlm.nih.gov/entrez/eutils/ |
+| Rate Limit | 3 req/sec (10 with API key) |
+| Auth Required | No (API key recommended) |
+| Response Format | XML, JSON |
+
+---
+
 ## Update Schedule
 
 | Release | Frequency |

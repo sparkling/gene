@@ -1,19 +1,21 @@
 ---
 id: foodb
 title: "FooDB - The Food Database"
-type: data-source
-category: nutrition
-subcategory: food.composition
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 1
-last_updated: 2026-01-23
 status: active
-tags: [food, compounds, chemistry, nutrients, phytochemicals]
+category: compounds.molecules
+subcategory: food.compounds.nutrients
+tags:
+  - food
+  - compounds
+  - chemistry
+  - nutrients
+  - phytochemicals
 ---
 
 # FooDB - The Food Database
-
-**Category:** [Nutrition](../../../_index.md) > [Food Composition](../_index.md)
 
 ## Overview
 
@@ -58,16 +60,18 @@ FooDB is particularly valuable for nutritional research, food chemistry, metabol
 | Downloads | https://foodb.ca/downloads | Full database dumps |
 | API | N/A | No public API |
 
-## License
+## Limitations
 
-| Aspect | Value |
-|--------|-------|
-| License | Creative Commons Attribution-NonCommercial 4.0 |
-| Commercial Use | Requires license |
-| Attribution | Required |
+- No public API available for programmatic access
+- Commercial use requires license agreement
+- Updates less frequent than some competitors
+- Concentration data quality varies by source
 
 ## See Also
 
-- [Schema Documentation](./schema.md)
-- [HMDB](../../6.4.metabolomics/hmdb/_index.md) - Human Metabolome Database
-- [USDA FoodData](../usda.fooddata/) - US nutrient database
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [Sample Data](./sample.json) - Example records
+- [License Terms](./license.md) - Usage rights and restrictions
+- [Schema Mapping](./mapping.xslt) - Transform to unified schema
+- [USDA FoodData](../usda.fooddata/README.md) - US nutrient database

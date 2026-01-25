@@ -1,0 +1,68 @@
+[
+  {
+    "herb_id": "HERB001234",
+    "herb_name": "Radix Scutellariae",
+    "chinese_name": "Huang Qin",
+    "latin_name": "Scutellaria baicalensis",
+    "ingredient_count": 156,
+    "target_count": 89,
+    "disease_count": 45,
+    "expression_experiments": [
+      {
+        "geo_accession": "GSE12345",
+        "platform": "Affymetrix Human Genome U133A",
+        "condition": "Treatment with Baicalin 50uM",
+        "cell_line": "HepG2",
+        "up_regulated_genes": 234,
+        "down_regulated_genes": 189
+      }
+    ],
+    "metadata": {
+      "family": "Lamiaceae",
+      "part_used": "Root"
+    }
+  },
+  {
+    "ingredient_id": "ING001234",
+    "ingredient_name": "Baicalin",
+    "pubchem_cid": 64982,
+    "smiles": "O=C1CC(C2=CC(O)=C(O)C=C2)=C(O)C3=CC=C(O)C=C13",
+    "molecular_weight": 446.36,
+    "source_herbs": [
+      {"herb_id": "HERB001234", "herb_name": "Radix Scutellariae"}
+    ],
+    "validated_targets": [
+      {
+        "gene_symbol": "PTGS2",
+        "gene_id": 5743,
+        "validation_type": "experimental",
+        "pubmed_ids": [12345678, 23456789]
+      }
+    ],
+    "expression_signature": {
+      "top_up_genes": ["HMOX1", "NQO1", "GCLC"],
+      "top_down_genes": ["IL6", "TNF", "IL1B"],
+      "connectivity_score": 0.78
+    },
+    "metadata": {
+      "cas_number": "21967-41-9"
+    }
+  },
+  {
+    "disease_id": "DIS001",
+    "disease_name": "Inflammation",
+    "mesh_id": "D007249",
+    "associated_herbs": [
+      {"herb_id": "HERB001234", "herb_name": "Huang Qin", "confidence": 0.89},
+      {"herb_id": "HERB001235", "herb_name": "Huang Lian", "confidence": 0.85}
+    ],
+    "gene_overlap": {
+      "disease_genes": 156,
+      "herb_target_overlap": 45,
+      "enrichment_pvalue": 1.2e-15
+    },
+    "metadata": {
+      "icd10": "R00-R99"
+    }
+  }
+]

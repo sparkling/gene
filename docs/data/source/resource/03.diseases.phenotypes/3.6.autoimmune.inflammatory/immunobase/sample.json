@@ -1,0 +1,73 @@
+{
+  "source": "ImmunoBase",
+  "version": "2024",
+  "description": "Sample immune-mediated disease genetic association records from ImmunoBase",
+  "records": [
+    {
+      "disease": "Rheumatoid arthritis",
+      "disease_abbreviation": "RA",
+      "total_associations": 106,
+      "selected_loci": [
+        {
+          "locus_name": "HLA-DRB1",
+          "chromosome": "6",
+          "position": "32546547-32557625",
+          "lead_snp": "rs6910071",
+          "p_value": 1e-300,
+          "odds_ratio": 3.2,
+          "effect_allele": "G",
+          "pmid": [20453842, 24390342]
+        },
+        {
+          "locus_name": "PTPN22",
+          "chromosome": "1",
+          "position": "114356433",
+          "lead_snp": "rs2476601",
+          "p_value": 1.2e-58,
+          "odds_ratio": 1.75,
+          "gene_symbol": "PTPN22",
+          "pmid": [15208781]
+        }
+      ]
+    },
+    {
+      "disease": "Type 1 diabetes",
+      "disease_abbreviation": "T1D",
+      "total_associations": 58,
+      "selected_loci": [
+        {
+          "locus_name": "HLA",
+          "chromosome": "6",
+          "lead_snp": "rs9272346",
+          "p_value": 1e-350,
+          "odds_ratio": 6.8
+        },
+        {
+          "locus_name": "INS",
+          "chromosome": "11",
+          "lead_snp": "rs689",
+          "p_value": 3.2e-125,
+          "gene_symbol": "INS"
+        }
+      ]
+    },
+    {
+      "disease": "Crohn's disease",
+      "disease_abbreviation": "CD",
+      "total_associations": 201,
+      "selected_loci": [
+        {
+          "locus_name": "NOD2",
+          "chromosome": "16",
+          "lead_snp": "rs2066847",
+          "p_value": 1e-180,
+          "odds_ratio": 3.5
+        }
+      ]
+    }
+  ],
+  "queries": {
+    "web_browse": "https://genetics.opentargets.org/",
+    "note": "ImmunoBase has been integrated into Open Targets Genetics"
+  }
+}

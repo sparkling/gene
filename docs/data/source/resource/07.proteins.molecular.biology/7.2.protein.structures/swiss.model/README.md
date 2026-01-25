@@ -69,7 +69,11 @@ SWISS-MODEL complements experimental structures (PDB) and AI predictions (AlphaF
 
 ## See Also
 
-- [Schema Documentation](./schema.md)
-- [PDB](../pdb/_index.md) - Experimental structures (templates)
-- [AlphaFold DB](../alphafold.db/_index.md) - AI predictions
-- [UniProt](../../7.1.protein.sequences.annotations/uniprot/_index.md) - Sequences
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [Sample Data](./sample.json) - Example records
+- [License Terms](./license.md) - Usage rights and restrictions
+- [Schema Mapping](./mapping.xslt) - Transform to unified schema
+- [PDB](../pdb/README.md) - Experimental structures (templates)
+- [AlphaFold DB](../alphafold.db/README.md) - AI predictions
+- [UniProt](../../7.1.protein.sequences.annotations/uniprot/README.md) - Sequences

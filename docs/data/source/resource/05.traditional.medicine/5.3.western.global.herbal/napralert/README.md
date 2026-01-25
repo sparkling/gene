@@ -1,14 +1,18 @@
 ---
 id: napralert
 title: "NAPRALERT - Natural Products Alert"
-type: data-source
-category: traditional-medicine
-subcategory: western-global-herbal
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 1
-last_updated: 2026-01-23
 status: active
-tags: [natural-products, ethnobotany, pharmacognosy, literature, bioactivity]
+category: traditional.medicine
+subcategory: western.global.herbal
+tags:
+  - natural-products
+  - ethnobotany
+  - pharmacognosy
+  - literature
+  - bioactivity
 ---
 
 # NAPRALERT - Natural Products Alert

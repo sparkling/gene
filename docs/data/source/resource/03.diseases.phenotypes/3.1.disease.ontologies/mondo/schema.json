@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "mondo-schema.json",
+  "title": "MONDO Disease Ontology Term Record",
+  "description": "JSON Schema for MONDO (Monarch Disease Ontology) records. Unified disease ontology integrating 25,938 diseases with 129,914 cross-references via precise equivalence axioms to OMIM, Orphanet, EFO, DOID, and NCIt.",
+  "type": "object",
+  "properties": {
+    "mondo_id": {
+      "type": "string",
+      "description": "MONDO disease identifier",
+      "pattern": "^MONDO:[0-9]{7}$",
+      "examples": ["MONDO:0005015", "MONDO:0007947"]
+    },
+    "label": {
+      "type": "string",
+      "description": "Disease name",
+      "minLength": 1
+    },
+    "definition": {
+      "type": "string",
+      "description": "Disease definition"
+    },
+    "parent_id": {
+      "type": "string",
+      "description": "Parent term in hierarchy (is_a relationship)",
+      "pattern": "^MONDO:[0-9]{7}$"
+    },
+    "parents": {
+      "type": "array",
+      "description": "All parent terms",
+      "items": {
+        "type": "string",
+        "pattern": "^MONDO:[0-9]{7}$"
+      }
+    },
+    "children": {
+      "type": "array",
+      "description": "Child terms",
+      "items": {
+        "type": "string",
+        "pattern": "^MONDO:[0-9]{7}$"
+      }
+    },
+    "synonyms": {
+      "type": "array",
+      "description": "Alternative disease names",
+      "items": {
+        "type": "string"
+      }
+    },
+    "xrefs": {
+      "type": "array",
+      "description": "Cross-references to external databases",
+      "items": {
+        "$ref": "#/$defs/crossReference"
+      }
+    },
+    "exact_mappings": {
+      "type": "array",
+      "description": "1:1 equivalence axioms (exactMatch)",
+      "items": {
+        "$ref": "#/$defs/crossReference"
+      }
+    },
+    "close_mappings": {
+      "type": "array",
+      "description": "Very similar mappings (closeMatch)",
+      "items": {
+        "$ref": "#/$defs/crossReference"
+      }
+    },
+    "narrow_mappings": {
+      "type": "array",
+      "description": "More specific mappings (narrowMatch)",
+      "items": {
+        "$ref": "#/$defs/crossReference"
+      }
+    },
+    "broad_mappings": {
+      "type": "array",
+      "description": "More general mappings (broadMatch)",
+      "items": {
+        "$ref": "#/$defs/crossReference"
+      }
+    },
+    "subsets": {
+      "type": "array",
+      "description": "Subset memberships (mondo_rare, mondo_core, etc.)",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": ["mondo_id", "label"],
+  "$defs": {
+    "crossReference": {
+      "type": "object",
+      "description": "External database reference",
+      "properties": {
+        "source": {
+          "type": "string",
+          "description": "Database source",
+          "enum": ["OMIM", "Orphanet", "DOID", "NCIt", "MeSH", "EFO", "UMLS", "SNOMEDCT"]
+        },
+        "id": {
+          "type": "string",
+          "description": "External identifier"
+        }
+      },
+      "required": ["source", "id"]
+    }
+  },
+  "additionalProperties": false
+}

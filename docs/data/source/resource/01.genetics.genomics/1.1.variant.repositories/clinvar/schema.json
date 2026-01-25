@@ -1,0 +1,210 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "clinvar-schema.json",
+  "title": "ClinVar Variation Record",
+  "description": "JSON Schema for ClinVar clinical variant interpretation records from NCBI's public archive.",
+  "type": "object",
+  "properties": {
+    "VariationID": {
+      "type": "integer",
+      "description": "ClinVar internal variation identifier for any variation record including complex variants.",
+      "examples": [17661, 67890]
+    },
+    "AlleleID": {
+      "type": "integer",
+      "description": "Unique identifier for a simple variant (single allele) in ClinVar.",
+      "examples": [12345, 54321]
+    },
+    "VCV": {
+      "type": "string",
+      "description": "Variation Archive accession representing aggregate interpretation across all submitters.",
+      "pattern": "^VCV[0-9]{9}\\.[0-9]+$",
+      "examples": ["VCV000017661.4", "VCV000000123.4"]
+    },
+    "RCV": {
+      "type": "string",
+      "description": "Record accession for a single variant-condition pair with clinical interpretation.",
+      "pattern": "^RCV[0-9]{9}\\.[0-9]+$",
+      "examples": ["RCV000012345.6", "RCV000012346.7"]
+    },
+    "SCV": {
+      "type": "string",
+      "description": "Submitted record accession for an individual submission from a single submitter.",
+      "pattern": "^SCV[0-9]{9}\\.[0-9]+$",
+      "examples": ["SCV000123456.7"]
+    },
+    "Name": {
+      "type": "string",
+      "description": "Preferred HGVS expression or variant name.",
+      "examples": ["NM_000546.6(TP53):c.743G>A (p.Arg248Gln)", "NM_000518.5(HBB):c.20A>T (p.Glu7Val)"]
+    },
+    "Type": {
+      "type": "string",
+      "description": "Variant type classification.",
+      "enum": ["single nucleotide variant", "deletion", "insertion", "duplication", "indel", "inversion", "complex", "Translocation", "copy number gain", "copy number loss", "Microsatellite"]
+    },
+    "GeneSymbol": {
+      "type": "string",
+      "description": "HGNC gene symbol for the affected gene.",
+      "examples": ["TP53", "BRCA1", "HBB"]
+    },
+    "GeneID": {
+      "type": "integer",
+      "description": "NCBI Entrez Gene identifier linking variant to affected gene.",
+      "examples": [7157, 672, 3043]
+    },
+    "HGNC_ID": {
+      "type": "string",
+      "description": "HGNC identifier for the gene.",
+      "pattern": "^HGNC:[0-9]+$",
+      "examples": ["HGNC:11998", "HGNC:1100"]
+    },
+    "ClinicalSignificance": {
+      "type": "string",
+      "description": "Clinical significance classification assigned to the variant.",
+      "enum": ["Pathogenic", "Likely pathogenic", "Uncertain significance", "Likely benign", "Benign", "Pathogenic/Likely pathogenic", "Benign/Likely benign", "drug response", "association", "risk factor", "protective", "Affects", "Conflicting classifications of pathogenicity", "not provided", "other"]
+    },
+    "ClinSigSimple": {
+      "type": "integer",
+      "description": "Simplified clinical significance: 0=benign, 1=pathogenic, -1=conflicting.",
+      "enum": [-1, 0, 1]
+    },
+    "ReviewStatus": {
+      "type": "string",
+      "description": "Review status indicating level of evidence and submitter consensus.",
+      "enum": ["practice guideline", "reviewed by expert panel", "criteria provided, multiple submitters, no conflicts", "criteria provided, single submitter", "criteria provided, conflicting classifications", "no assertion criteria provided", "no classification provided"]
+    },
+    "LastEvaluated": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of the most recent evaluation.",
+      "examples": ["2025-06-15"]
+    },
+    "Assembly": {
+      "type": "string",
+      "description": "Reference genome assembly (GRCh37 or GRCh38).",
+      "enum": ["GRCh37", "GRCh38"]
+    },
+    "Chromosome": {
+      "type": "string",
+      "description": "Chromosome number or name.",
+      "enum": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "X", "Y", "MT"]
+    },
+    "Start": {
+      "type": "integer",
+      "description": "1-based start position (right-shifted for ClinVar).",
+      "examples": [5227002, 43124027]
+    },
+    "Stop": {
+      "type": "integer",
+      "description": "1-based stop position.",
+      "examples": [5227002, 43124029]
+    },
+    "ReferenceAllele": {
+      "type": "string",
+      "description": "Reference sequence at the variant position.",
+      "examples": ["T", "AG", "C"]
+    },
+    "AlternateAllele": {
+      "type": "string",
+      "description": "Variant sequence.",
+      "examples": ["A", "A", "T"]
+    },
+    "Cytogenetic": {
+      "type": "string",
+      "description": "Cytogenetic band location.",
+      "examples": ["11p15.4", "17q21.31"]
+    },
+    "HGVS": {
+      "type": "object",
+      "description": "HGVS nomenclature expressions for the variant.",
+      "properties": {
+        "genomic": {
+          "type": "string",
+          "description": "Genomic HGVS expression (NC_ accession).",
+          "examples": ["NC_000011.10:g.5227002T>A"]
+        },
+        "coding": {
+          "type": "string",
+          "description": "Coding DNA HGVS expression (NM_ accession).",
+          "examples": ["NM_000518.5:c.20A>T"]
+        },
+        "protein": {
+          "type": "string",
+          "description": "Protein HGVS expression (NP_ accession).",
+          "examples": ["NP_000509.1:p.Glu7Val"]
+        }
+      }
+    },
+    "RS_ID": {
+      "type": "integer",
+      "description": "dbSNP RS identifier (null if -1 or not available).",
+      "examples": [28934576, 121913279]
+    },
+    "dbVar_ID": {
+      "type": "string",
+      "description": "dbVar structural variant identifier (nsv/esv).",
+      "pattern": "^(nsv|esv)[0-9]+$",
+      "examples": ["nsv123456", "esv789012"]
+    },
+    "Origin": {
+      "type": "string",
+      "description": "Variant origin classification.",
+      "enum": ["germline", "somatic", "de novo", "inherited", "maternal", "paternal", "uniparental", "biparental", "not-tested", "tested-inconclusive", "unknown"]
+    },
+    "NumberOfSubmitters": {
+      "type": "integer",
+      "description": "Count of distinct submitters for this variant.",
+      "examples": [5, 12, 1]
+    },
+    "NumberOfSubmissions": {
+      "type": "integer",
+      "description": "Total number of submissions for this variant.",
+      "examples": [8, 15, 1]
+    },
+    "Conditions": {
+      "type": "array",
+      "description": "Associated diseases/phenotypes from MedGen.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string",
+            "description": "Condition name.",
+            "examples": ["Li-Fraumeni syndrome", "Sickle cell anemia"]
+          },
+          "MedGenCUI": {
+            "type": "string",
+            "description": "MedGen Concept Unique Identifier.",
+            "pattern": "^C[0-9]+$",
+            "examples": ["C0085390", "C0002895"]
+          },
+          "OMIM": {
+            "type": "string",
+            "description": "OMIM disease identifier.",
+            "pattern": "^[0-9]{6}$",
+            "examples": ["151623", "603903"]
+          }
+        },
+        "required": ["Name"]
+      }
+    },
+    "SomaticClinicalImpact": {
+      "type": "string",
+      "description": "Somatic clinical impact classification.",
+      "enum": ["Tier I - Strong", "Tier II - Potential", "Tier III - Unknown", "Tier IV - Benign/Likely benign"]
+    },
+    "Oncogenicity": {
+      "type": "string",
+      "description": "Oncogenicity classification for somatic variants.",
+      "enum": ["Oncogenic", "Likely oncogenic", "Uncertain significance", "Likely benign", "Benign"]
+    },
+    "Submitter": {
+      "type": "string",
+      "description": "Organization name of the submitter.",
+      "examples": ["Ambry Genetics", "GeneDx", "LabCorp Genetics"]
+    }
+  },
+  "required": ["VariationID", "Name", "ClinicalSignificance", "ReviewStatus"],
+  "additionalProperties": true
+}

@@ -1,14 +1,18 @@
 ---
 id: string
 title: "STRING - Search Tool for Retrieval of Interacting Genes/Proteins"
-type: data-source
-category: pathways
-subcategory: protein-protein-interactions
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 1
-last_updated: 2026-01-23
 status: active
-tags: [ppi, interactions, functional-associations, network, open-access]
+category: pathways.networks
+subcategory: protein.protein.interactions
+tags:
+  - ppi
+  - interactions
+  - functional-associations
+  - network
+  - open-access
 ---
 
 # STRING - Search Tool for Retrieval of Interacting Genes/Proteins
@@ -183,6 +187,13 @@ curl "https://string-db.org/api/json/homology?identifiers=TP53&species=9606&spec
 |------|-------------|
 | functional | All association types (default) |
 | physical | Only physical binding interactions |
+
+## Limitations
+
+- Combined scores may overestimate confidence for text-mined interactions
+- Physical interactions not distinguished from functional associations by default
+- Very large bulk files require significant storage and processing
+- Text-mining may introduce false positives from co-mentions
 
 ## Bulk Download Files
 

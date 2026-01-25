@@ -1,0 +1,131 @@
+{
+  "_metadata": {
+    "source": "UniProtKB",
+    "version": "Release 2026_01",
+    "generated": "2026-01-25",
+    "record_count": 2,
+    "query_examples": [
+      "GET: /uniprotkb/P04637.json",
+      "Search: /uniprotkb/search?query=gene:TP53+AND+organism_id:9606",
+      "ID mapping: /idmapping/run (POST)"
+    ]
+  },
+  "records": [
+    {
+      "primaryAccession": "P04637",
+      "uniProtkbId": "P53_HUMAN",
+      "entryType": "UniProtKB reviewed (Swiss-Prot)",
+      "proteinExistence": "1: Evidence at protein level",
+      "organism": {
+        "scientificName": "Homo sapiens",
+        "commonName": "Human",
+        "taxonId": 9606,
+        "lineage": [
+          "Eukaryota",
+          "Metazoa",
+          "Chordata",
+          "Craniata",
+          "Vertebrata",
+          "Mammalia",
+          "Primates",
+          "Hominidae",
+          "Homo"
+        ]
+      },
+      "proteinDescription": {
+        "recommendedName": {
+          "fullName": {"value": "Cellular tumor antigen p53"}
+        },
+        "alternativeNames": [
+          {"fullName": {"value": "Tumor suppressor p53"}},
+          {"fullName": {"value": "Phosphoprotein p53"}},
+          {"fullName": {"value": "Antigen NY-CO-13"}}
+        ]
+      },
+      "genes": [
+        {
+          "geneName": {"value": "TP53"},
+          "synonyms": [{"value": "P53"}]
+        }
+      ],
+      "sequence": {
+        "value": "MEEPQSDPSVEPPLSQETFSDLWKLLPENNVLSPLPSQAMDDLMLSPDDIEQWFTEDPGPDEAPRMPEAAPPVAPAPAAPTPAAPAPAPSWPLSSSVPSQKTYQGSYGFRLGFLHSGTAKSVTCTYSPALNKMFCQLAKTCPVQLWVDSTPPPGTRVRAMAIYKQSQHMTEVVRRCPHHERCSDSDGLAPPQHLIRVEGNLRVEYLDDRNTFRHSVVVPYEPPEVGSDCTTIHYNYMCNSSCMGGMNRRPILTIITLEDSSGNLLGRNSFEVRVCACPGRDRRTEEENLRKKGEPHHELPPGSTKRALPNNTSSSPQPKKKPLDGEYFTLQIRGRERFEMFRELNEALELKDAQAGKEPGGSRAHSSHLKSKKGQSTSRHKKLMFKTEGPDSD",
+        "length": 393,
+        "molWeight": 43653,
+        "crc64": "AD5C149FD8106131"
+      },
+      "features": [
+        {
+          "type": "Domain",
+          "location": {"start": {"value": 102}, "end": {"value": 292}},
+          "description": "p53 DNA-binding",
+          "evidences": [{"evidenceCode": "ECO:0000255"}]
+        },
+        {
+          "type": "Binding site",
+          "location": {"start": {"value": 176}, "end": {"value": 176}},
+          "description": "Zinc"
+        },
+        {
+          "type": "Natural variant",
+          "location": {"start": {"value": 175}, "end": {"value": 175}},
+          "description": "R -> H (hotspot mutation)",
+          "featureId": "VAR_006137"
+        }
+      ],
+      "comments": [
+        {
+          "commentType": "FUNCTION",
+          "texts": [{"value": "Acts as a tumor suppressor in many tumor types; induces growth arrest or apoptosis..."}]
+        },
+        {
+          "commentType": "SUBCELLULAR LOCATION",
+          "texts": [{"value": "Nucleus. Cytoplasm. Endoplasmic reticulum membrane."}]
+        }
+      ],
+      "uniProtKBCrossReferences": [
+        {"database": "PDB", "id": "1TUP"},
+        {"database": "RefSeq", "id": "NP_000537.3"},
+        {"database": "Ensembl", "id": "ENSG00000141510"},
+        {"database": "HGNC", "id": "HGNC:11998"},
+        {"database": "GeneID", "id": "7157"}
+      ],
+      "keywords": [
+        {"id": "KW-0028", "name": "Activator"},
+        {"id": "KW-0238", "name": "DNA-binding"},
+        {"id": "KW-0805", "name": "Tumor suppressor"}
+      ]
+    },
+    {
+      "primaryAccession": "P00533",
+      "uniProtkbId": "EGFR_HUMAN",
+      "entryType": "UniProtKB reviewed (Swiss-Prot)",
+      "proteinExistence": "1: Evidence at protein level",
+      "organism": {
+        "scientificName": "Homo sapiens",
+        "taxonId": 9606
+      },
+      "proteinDescription": {
+        "recommendedName": {
+          "fullName": {"value": "Epidermal growth factor receptor"},
+          "ecNumbers": [{"value": "2.7.10.1"}]
+        }
+      },
+      "genes": [
+        {
+          "geneName": {"value": "EGFR"},
+          "synonyms": [{"value": "ERBB1"}, {"value": "HER1"}]
+        }
+      ],
+      "sequence": {
+        "value": "MRPSGTAGAALLALLAALCPASRALEEKKVCQGTSNKLTQLGTFEDHFLSLQRMFNNCEVVLGNLEITYVQRNYDLSFLKTIQEVAGYVLIALNTVERIPLENLQIIRGNMYYENSYALAVLSNYDANKTGLKELPMRNLQEILHGAVRFSNNPALCNVESIQWRDIV...",
+        "length": 1210,
+        "molWeight": 134277
+      },
+      "keywords": [
+        {"id": "KW-0418", "name": "Kinase"},
+        {"id": "KW-0675", "name": "Receptor"}
+      ]
+    }
+  ]
+}

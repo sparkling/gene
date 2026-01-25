@@ -1,19 +1,21 @@
 ---
 id: kampodb
 title: "KampoDB - Kampo Medicine Database"
-type: data-source
-category: traditional-medicine
-subcategory: south-east-asian-systems
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 1
-last_updated: 2026-01-23
 status: active
-tags: [kampo, japanese-medicine, rest-api, docking, network-pharmacology]
+category: traditional.medicine
+subcategory: south.east.asian.systems
+tags:
+  - kampo
+  - japanese-medicine
+  - rest-api
+  - docking
+  - network-pharmacology
 ---
 
 # KampoDB - Kampo Medicine Database
-
-**Category:** [Traditional Medicine](../../_index.md) > [South East Asian Systems](../_index.md)
 
 ## Overview
 
@@ -112,14 +114,6 @@ curl "https://wakanmoview.inm.u-toyama.ac.jp/kampo/api/protein/2475/pathway"
 | ligand_atoms | Compound atom count |
 | protein_atoms | Target domain atom count |
 
-## License
-
-| Aspect | Value |
-|--------|-------|
-| License | CC BY-SA 4.0 |
-| Commercial Use | Allowed with attribution |
-| ShareAlike | Required for derivatives |
-
 ## Limitations
 
 - No bulk download endpoint (query individual entities)
@@ -129,6 +123,6 @@ curl "https://wakanmoview.inm.u-toyama.ac.jp/kampo/api/protein/2475/pathway"
 
 ## See Also
 
-- [Schema Documentation](./schema.md)
-- [BATMAN-TCM](../5.1.traditional.chinese.medicine/batman.tcm/_index.md)
-- [HIT 2.0](../../5.4.multi.system.integration/{hit.2.0}/_index.md)
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [License Terms](./license.md) - Usage rights and restrictions

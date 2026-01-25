@@ -1,0 +1,73 @@
+[
+  {
+    "chemicalId": "CIDm00002244",
+    "stringId": "9606.ENSP00000284981",
+    "preferredName_chemical": "aspirin",
+    "preferredName_protein": "PTGS2",
+    "ncbiTaxonId": 9606,
+    "combined_score": 997,
+    "experimentalScore": 970,
+    "databaseScore": 900,
+    "textminingScore": 834,
+    "action": "inhibition",
+    "metadata": {
+      "pubchem_cid": 2244,
+      "drugbank_id": "DB00945",
+      "chebi_id": "CHEBI:15365",
+      "confidence": "highest"
+    }
+  },
+  {
+    "chemicalId": "CIDm00005743",
+    "stringId": "9606.ENSP00000269305",
+    "preferredName_chemical": "paclitaxel",
+    "preferredName_protein": "TUBB",
+    "ncbiTaxonId": 9606,
+    "combined_score": 985,
+    "experimentalScore": 942,
+    "databaseScore": 900,
+    "textminingScore": 756,
+    "action": "binding",
+    "metadata": {
+      "pubchem_cid": 5743,
+      "drugbank_id": "DB01229",
+      "chebi_id": "CHEBI:45863",
+      "confidence": "highest"
+    }
+  },
+  {
+    "chemicalId": "CIDm00002519",
+    "stringId": "9606.ENSP00000321356",
+    "preferredName_chemical": "caffeine",
+    "preferredName_protein": "ADORA2A",
+    "ncbiTaxonId": 9606,
+    "combined_score": 934,
+    "experimentalScore": 891,
+    "databaseScore": 800,
+    "textminingScore": 689,
+    "action": "inhibition",
+    "metadata": {
+      "pubchem_cid": 2519,
+      "drugbank_id": "DB00201",
+      "chebi_id": "CHEBI:27732",
+      "confidence": "highest"
+    }
+  },
+  {
+    "chemicalId": "CIDm00000969516",
+    "stringId": "9606.ENSP00000345602",
+    "preferredName_chemical": "curcumin",
+    "preferredName_protein": "NFKB1",
+    "ncbiTaxonId": 9606,
+    "combined_score": 745,
+    "experimentalScore": 456,
+    "databaseScore": 500,
+    "textminingScore": 612,
+    "action": "inhibition",
+    "metadata": {
+      "pubchem_cid": 969516,
+      "chebi_id": "CHEBI:3962",
+      "confidence": "high"
+    }
+  }
+]

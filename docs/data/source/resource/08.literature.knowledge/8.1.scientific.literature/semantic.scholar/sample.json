@@ -1,0 +1,82 @@
+[
+  {
+    "paperId": "649def34f8be52c8b66281af98ae884c09aef38b",
+    "corpusId": 251402588,
+    "externalIds": {
+      "DOI": "10.1038/s41586-022-05087-2",
+      "PubMed": "35922517",
+      "PubMedCentral": "PMC9876543"
+    },
+    "title": "Single-cell transcriptomics reveals heterogeneity in tumor microenvironment",
+    "abstract": "Understanding cellular heterogeneity in tumors is crucial for developing targeted therapies. Using single-cell RNA sequencing, we characterized 50,000 cells from primary tumors...",
+    "venue": "Nature",
+    "year": 2022,
+    "authors": [
+      {
+        "authorId": "2108234567",
+        "name": "John A. Smith",
+        "url": "https://www.semanticscholar.org/author/2108234567"
+      },
+      {
+        "authorId": "2109876543",
+        "name": "Wei Chen",
+        "url": "https://www.semanticscholar.org/author/2109876543"
+      }
+    ],
+    "citationCount": 245,
+    "referenceCount": 52,
+    "influentialCitationCount": 35,
+    "isOpenAccess": true,
+    "openAccessPdf": {
+      "url": "https://www.nature.com/articles/s41586-022-05087-2.pdf",
+      "status": "GOLD"
+    },
+    "fieldsOfStudy": ["Medicine", "Biology"],
+    "s2FieldsOfStudy": [
+      { "category": "Medicine", "source": "external" },
+      { "category": "Biology", "source": "s2-fos-model" }
+    ],
+    "publicationTypes": ["JournalArticle"],
+    "publicationDate": "2022-08-18",
+    "journal": {
+      "name": "Nature",
+      "volume": "608",
+      "pages": "517-524"
+    },
+    "tldr": {
+      "model": "tldr@v2.0.0",
+      "text": "Single-cell RNA sequencing of 50,000 tumor cells reveals distinct cell populations with unique transcriptional signatures, providing insights for targeted cancer therapy development."
+    }
+  },
+  {
+    "paperId": "abc123def456789012345678901234567890abcd",
+    "corpusId": 258765432,
+    "externalIds": {
+      "ArXiv": "2201.12345"
+    },
+    "title": "Attention Is All You Need",
+    "abstract": "The dominant sequence transduction models are based on complex recurrent or convolutional neural networks...",
+    "venue": "NeurIPS",
+    "year": 2017,
+    "authors": [
+      {
+        "authorId": "1234567890",
+        "name": "Ashish Vaswani"
+      }
+    ],
+    "citationCount": 85000,
+    "referenceCount": 35,
+    "influentialCitationCount": 12000,
+    "isOpenAccess": true,
+    "openAccessPdf": {
+      "url": "https://arxiv.org/pdf/1706.03762.pdf",
+      "status": "GREEN"
+    },
+    "fieldsOfStudy": ["Computer Science"],
+    "publicationTypes": ["Conference"],
+    "tldr": {
+      "model": "tldr@v2.0.0",
+      "text": "This paper introduces the Transformer architecture, which relies entirely on attention mechanisms, achieving state-of-the-art results in machine translation."
+    }
+  }
+]

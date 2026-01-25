@@ -1,0 +1,240 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ukbiobank-schema.json",
+  "title": "UK Biobank Record",
+  "description": "JSON Schema for UK Biobank participant and genetic data.",
+  "type": "object",
+  "properties": {
+    "eid": {
+      "type": "integer",
+      "description": "Encrypted participant identifier (unique per application).",
+      "examples": [1000001, 5999999]
+    },
+    "field_id": {
+      "type": "integer",
+      "description": "UK Biobank data field identifier.",
+      "examples": [21001, 30000, 41270]
+    },
+    "instance": {
+      "type": "integer",
+      "description": "Assessment visit instance (0=initial, 1=repeat, 2=imaging, 3=repeat imaging).",
+      "enum": [0, 1, 2, 3]
+    },
+    "array_index": {
+      "type": "integer",
+      "description": "Array index for multi-valued fields.",
+      "minimum": 0,
+      "examples": [0, 1, 2]
+    },
+    "value": {
+      "description": "Field value (type varies by field).",
+      "examples": [25.5, "Male", "2020-01-15", 1]
+    },
+    "field_title": {
+      "type": "string",
+      "description": "Human-readable field name.",
+      "examples": ["Body mass index (BMI)", "Sex", "Date of attending assessment centre"]
+    },
+    "category": {
+      "type": "string",
+      "description": "UK Biobank data category.",
+      "examples": ["Body size measures", "Demographics", "Touchscreen"]
+    },
+    "value_type": {
+      "type": "string",
+      "description": "Data type of the value.",
+      "enum": ["Integer", "Continuous", "Categorical single", "Categorical multiple", "Text", "Date", "Time", "Compound"]
+    },
+    "units": {
+      "type": "string",
+      "description": "Units of measurement if applicable.",
+      "examples": ["kg/m2", "years", "mmHg", "mmol/L"]
+    },
+    "coding": {
+      "type": "object",
+      "description": "Coding scheme for categorical values.",
+      "properties": {
+        "coding_id": {
+          "type": "integer",
+          "description": "UK Biobank coding ID.",
+          "examples": [100, 9, 19]
+        },
+        "meaning": {
+          "type": "string",
+          "description": "Human-readable meaning of the code.",
+          "examples": ["Female", "Yes", "Prefer not to answer"]
+        }
+      }
+    },
+    "genotype": {
+      "type": "object",
+      "description": "Genetic data for participant.",
+      "properties": {
+        "sex_chromosome_aneuploidy": {
+          "type": "boolean",
+          "description": "Whether participant has sex chromosome aneuploidy."
+        },
+        "genetic_sex": {
+          "type": "string",
+          "description": "Inferred genetic sex.",
+          "enum": ["Female", "Male", "Undetermined"]
+        },
+        "heterozygosity": {
+          "type": "number",
+          "description": "Heterozygosity rate.",
+          "examples": [0.15, 0.12]
+        },
+        "heterozygosity_pca_corrected": {
+          "type": "number",
+          "description": "PCA-corrected heterozygosity.",
+          "examples": [0.14, 0.11]
+        },
+        "in_kinship_table": {
+          "type": "boolean",
+          "description": "Whether participant appears in kinship table (has relatives)."
+        },
+        "excluded_from_kinship_inference": {
+          "type": "boolean",
+          "description": "Whether participant was excluded from kinship inference."
+        },
+        "genetic_ethnic_grouping": {
+          "type": "string",
+          "description": "Inferred genetic ancestry.",
+          "enum": ["White", "Black", "Asian", "Chinese", "Mixed", "Other"]
+        },
+        "pc1": { "type": "number", "description": "Principal component 1." },
+        "pc2": { "type": "number", "description": "Principal component 2." },
+        "pc3": { "type": "number", "description": "Principal component 3." },
+        "pc4": { "type": "number", "description": "Principal component 4." },
+        "pc5": { "type": "number", "description": "Principal component 5." },
+        "pc6": { "type": "number", "description": "Principal component 6." },
+        "pc7": { "type": "number", "description": "Principal component 7." },
+        "pc8": { "type": "number", "description": "Principal component 8." },
+        "pc9": { "type": "number", "description": "Principal component 9." },
+        "pc10": { "type": "number", "description": "Principal component 10." }
+      }
+    },
+    "variant_data": {
+      "type": "object",
+      "description": "Genotype data for a specific variant.",
+      "properties": {
+        "rsid": {
+          "type": "string",
+          "pattern": "^rs[0-9]+$",
+          "examples": ["rs12345"]
+        },
+        "chromosome": {
+          "type": "string",
+          "enum": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "X", "Y", "MT"]
+        },
+        "position": {
+          "type": "integer",
+          "description": "Genomic position."
+        },
+        "allele1": {
+          "type": "string",
+          "description": "First allele.",
+          "pattern": "^[ACGT]+$"
+        },
+        "allele2": {
+          "type": "string",
+          "description": "Second allele.",
+          "pattern": "^[ACGT]+$"
+        },
+        "genotype": {
+          "type": "string",
+          "description": "Genotype call.",
+          "examples": ["AA", "AG", "GG", "NA"]
+        },
+        "dosage": {
+          "type": "number",
+          "description": "Imputed dosage (0-2).",
+          "minimum": 0,
+          "maximum": 2
+        },
+        "imputation_quality": {
+          "type": "number",
+          "description": "Imputation info score (0-1).",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "wes_variant": {
+      "type": "object",
+      "description": "Whole exome sequencing variant data.",
+      "properties": {
+        "chrom": { "type": "string" },
+        "pos": { "type": "integer" },
+        "ref": { "type": "string" },
+        "alt": { "type": "string" },
+        "gt": {
+          "type": "string",
+          "description": "Genotype.",
+          "examples": ["0/0", "0/1", "1/1"]
+        },
+        "dp": {
+          "type": "integer",
+          "description": "Read depth.",
+          "minimum": 0
+        },
+        "gq": {
+          "type": "integer",
+          "description": "Genotype quality.",
+          "minimum": 0,
+          "maximum": 99
+        },
+        "ad": {
+          "type": "array",
+          "description": "Allelic depths.",
+          "items": { "type": "integer" }
+        }
+      }
+    },
+    "icd10_diagnoses": {
+      "type": "array",
+      "description": "ICD-10 diagnosis codes.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "pattern": "^[A-Z][0-9]{2}(\\.[0-9]+)?$",
+            "examples": ["I25.1", "E11", "C50.9"]
+          },
+          "meaning": {
+            "type": "string",
+            "examples": ["Atherosclerotic heart disease"]
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "source": {
+            "type": "string",
+            "enum": ["HES", "Death register", "Cancer register", "Primary care"]
+          }
+        }
+      }
+    },
+    "opcs4_procedures": {
+      "type": "array",
+      "description": "OPCS-4 procedure codes.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "pattern": "^[A-Z][0-9]{2}(\\.[0-9]+)?$"
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      }
+    }
+  },
+  "required": ["eid"],
+  "additionalProperties": true
+}

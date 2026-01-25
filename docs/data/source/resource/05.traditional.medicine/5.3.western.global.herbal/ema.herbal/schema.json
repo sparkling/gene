@@ -1,0 +1,137 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ema-herbal-schema.json",
+  "title": "EMA Herbal Monograph Record",
+  "description": "JSON Schema for EMA (European Medicines Agency) herbal monograph data.",
+  "type": "object",
+  "properties": {
+    "monograph_id": {
+      "type": "string",
+      "description": "EMA monograph reference identifier.",
+      "pattern": "^EMA/HMPC/[0-9]+(/[0-9]+)?$",
+      "examples": ["EMA/HMPC/150848/2006"]
+    },
+    "herbal_substance": {
+      "type": "string",
+      "description": "Latin binomial name of the herbal substance.",
+      "examples": ["Valeriana officinalis L."]
+    },
+    "plant_part": {
+      "type": "string",
+      "description": "Standardized plant part term.",
+      "examples": ["radix", "folium", "flos", "herba"]
+    },
+    "common_name": {
+      "type": "string",
+      "description": "Common English name.",
+      "examples": ["Valerian root"]
+    },
+    "pharmacopoeia_name": {
+      "type": "string",
+      "description": "European Pharmacopoeia name."
+    },
+    "status": {
+      "type": "string",
+      "description": "Regulatory status.",
+      "enum": ["well-established use", "traditional use", "under assessment"]
+    },
+    "therapeutic_area": {
+      "type": "array",
+      "description": "Therapeutic indication areas.",
+      "items": { "type": "string" }
+    },
+    "indications": {
+      "type": "array",
+      "description": "Approved therapeutic indications.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "indication": { "type": "string" },
+          "status": { "type": "string" },
+          "evidence_level": { "type": "string" }
+        }
+      }
+    },
+    "posology": {
+      "type": "object",
+      "description": "Dosage and administration information.",
+      "properties": {
+        "preparation": { "type": "string" },
+        "single_dose": { "type": "string" },
+        "daily_dose": { "type": "string" },
+        "duration": { "type": "string" },
+        "age_restriction": { "type": "string" }
+      }
+    },
+    "contraindications": {
+      "type": "array",
+      "description": "Contraindications.",
+      "items": { "type": "string" }
+    },
+    "special_warnings": {
+      "type": "array",
+      "description": "Special warnings and precautions.",
+      "items": { "type": "string" }
+    },
+    "interactions": {
+      "type": "array",
+      "description": "Known drug interactions.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "interacting_substance": { "type": "string" },
+          "effect": { "type": "string" },
+          "severity": { "type": "string" }
+        }
+      }
+    },
+    "pregnancy_lactation": {
+      "type": "object",
+      "description": "Pregnancy and lactation safety.",
+      "properties": {
+        "pregnancy": { "type": "string" },
+        "lactation": { "type": "string" }
+      }
+    },
+    "adverse_reactions": {
+      "type": "array",
+      "description": "Known adverse reactions.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "reaction": { "type": "string" },
+          "frequency": { "type": "string" }
+        }
+      }
+    },
+    "pharmacology": {
+      "type": "object",
+      "description": "Pharmacological properties.",
+      "properties": {
+        "mechanism": { "type": "string" },
+        "active_constituents": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "quality_standards": {
+      "type": "object",
+      "description": "Quality and standardization requirements.",
+      "properties": {
+        "marker_compounds": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "assay_requirements": { "type": "string" }
+      }
+    },
+    "publication_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Monograph publication date."
+    }
+  },
+  "required": ["herbal_substance", "plant_part"],
+  "additionalProperties": true
+}

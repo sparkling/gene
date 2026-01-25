@@ -168,6 +168,63 @@ Check against published statistics:
 | Status | Active |
 | License | CC BY-SA 4.0 |
 
+---
+
+## Dataset Versions
+
+### Current Release: KampoDB
+
+| Property | Value |
+|----------|-------|
+| Version | 1.0 |
+| Release Date | 2018-01-01 |
+| Total Size | ~500 MB (via API) |
+| Docking Simulations | 3,063,505 |
+
+### Version Contents
+
+| Component | Records | Description |
+|-----------|---------|-------------|
+| Kampo Formulas | 298 | Traditional prescriptions |
+| Crude Drugs | 180 | Medicinal materials |
+| Compounds | 3,002 | PubChem CIDs |
+| Proteins | 62,906 | NCBI Gene IDs |
+| Docking Simulations | 3,063,505 | Binding predictions |
+
+### Data Characteristics
+
+| Property | Value |
+|----------|-------|
+| Compound IDs | PubChem CIDs |
+| Protein IDs | NCBI Gene IDs |
+| Hierarchy | 4-layer (Formula > Drug > Compound > Protein) |
+
+---
+
+## API Access
+
+### Configuration
+
+| Property | Value |
+|----------|-------|
+| Base URL | `https://wakanmoview.inm.u-toyama.ac.jp/kampo/api` |
+| Authentication | None required |
+| Rate Limit | Use reasonable delays |
+| Response Format | JSON |
+
+### API Endpoints
+
+| Operation | Endpoint | Example |
+|-----------|----------|---------|
+| List Formulas | `/formula/` | List all formula IDs |
+| Formula Info | `/formula/{id}/info` | `/formula/KT/info` |
+| Formula Compounds | `/formula/{id}/compound` | `/formula/KT/compound` |
+| Compound Targets | `/compound/{id}/protein` | Get protein targets |
+| Protein Pathways | `/protein/{id}/pathway` | KEGG annotations |
+| Docking | `/docking/compound/{cid}/protein/{pid}` | Binding data |
+
+---
+
 ## Notes
 
 - No bulk download endpoint (query individual entities)

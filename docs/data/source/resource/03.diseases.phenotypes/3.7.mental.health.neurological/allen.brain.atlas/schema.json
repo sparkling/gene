@@ -1,0 +1,163 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "allen-brain-atlas-schema.json",
+  "title": "Allen Brain Atlas Expression Record",
+  "description": "JSON Schema for Allen Brain Atlas. Contains genome-wide expression data for 20,000+ genes across ~900 anatomically-defined brain structures from 6 human donors, plus 1M+ single-cell profiles and developmental data.",
+  "type": "object",
+  "properties": {
+    "gene_symbol": {
+      "type": "string",
+      "description": "HGNC gene symbol"
+    },
+    "entrez_id": {
+      "type": "integer",
+      "description": "NCBI Entrez Gene ID"
+    },
+    "ensembl_id": {
+      "type": "string",
+      "description": "Ensembl gene ID",
+      "pattern": "^ENSG[0-9]{11}$"
+    },
+    "probe_id": {
+      "type": "string",
+      "description": "Microarray probe ID"
+    },
+    "expression_data": {
+      "type": "array",
+      "description": "Expression across structures",
+      "items": {
+        "$ref": "#/$defs/structureExpression"
+      }
+    },
+    "developmental_expression": {
+      "type": "array",
+      "description": "Developmental time course",
+      "items": {
+        "$ref": "#/$defs/developmentalExpression"
+      }
+    },
+    "cell_type_expression": {
+      "type": "array",
+      "description": "Single-cell expression",
+      "items": {
+        "$ref": "#/$defs/cellTypeExpression"
+      }
+    }
+  },
+  "required": ["gene_symbol"],
+  "$defs": {
+    "structureExpression": {
+      "type": "object",
+      "description": "Expression in brain structure",
+      "properties": {
+        "structure_id": {
+          "type": "integer",
+          "description": "Allen structure ID"
+        },
+        "structure_acronym": {
+          "type": "string",
+          "description": "Structure abbreviation",
+          "examples": ["HIP", "AMY", "CTX"]
+        },
+        "structure_name": {
+          "type": "string",
+          "description": "Full structure name"
+        },
+        "ontology_level": {
+          "type": "integer",
+          "description": "Hierarchical level"
+        },
+        "parent_structure_id": {
+          "type": "integer",
+          "description": "Parent structure"
+        },
+        "expression_level": {
+          "type": "number",
+          "description": "Expression value"
+        },
+        "z_score": {
+          "type": "number",
+          "description": "Normalized z-score"
+        },
+        "donor_id": {
+          "type": "string",
+          "description": "Donor identifier",
+          "pattern": "^H[0-9]+\\.[0-9]+$",
+          "examples": ["H0351.2001"]
+        },
+        "hemisphere": {
+          "type": "string",
+          "description": "Brain hemisphere",
+          "enum": ["left", "right"]
+        }
+      },
+      "required": ["structure_id", "expression_level"]
+    },
+    "developmentalExpression": {
+      "type": "object",
+      "description": "Developmental expression",
+      "properties": {
+        "age": {
+          "type": "string",
+          "description": "Developmental age"
+        },
+        "age_days": {
+          "type": "number",
+          "description": "Post-conception days"
+        },
+        "structure_acronym": {
+          "type": "string",
+          "description": "Brain region"
+        },
+        "expression_level": {
+          "type": "number",
+          "description": "Expression value"
+        },
+        "data_source": {
+          "type": "string",
+          "description": "Data source",
+          "enum": ["BrainSpan", "Developing Human Brain"]
+        }
+      }
+    },
+    "cellTypeExpression": {
+      "type": "object",
+      "description": "Cell type expression",
+      "properties": {
+        "cell_type": {
+          "type": "string",
+          "description": "Cell type name"
+        },
+        "cell_class": {
+          "type": "string",
+          "description": "Major cell class",
+          "enum": ["Glutamatergic", "GABAergic", "Non-neuronal", "Astrocyte", "Oligodendrocyte", "Microglia"]
+        },
+        "cluster_id": {
+          "type": "string",
+          "description": "Cell cluster ID"
+        },
+        "expression_level": {
+          "type": "number",
+          "description": "Expression value"
+        },
+        "pct_expressed": {
+          "type": "number",
+          "description": "Percent cells expressing",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "brain_region": {
+          "type": "string",
+          "description": "Brain region sampled"
+        },
+        "species": {
+          "type": "string",
+          "description": "Species",
+          "enum": ["Human", "Mouse"]
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

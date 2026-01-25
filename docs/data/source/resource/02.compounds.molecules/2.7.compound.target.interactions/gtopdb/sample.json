@@ -1,0 +1,75 @@
+{
+  "source": "Guide to PHARMACOLOGY",
+  "version": "2024.1",
+  "description": "Sample ligand-target interaction records from IUPHAR/BPS Guide to PHARMACOLOGY",
+  "records": [
+    {
+      "ligand_id": 2954,
+      "ligand_name": "ibuprofen",
+      "ligand_type": "Synthetic organic",
+      "approved": true,
+      "inchikey": "HEFNNWSXXWATRW-UHFFFAOYSA-N",
+      "targets": [
+        {
+          "target_id": 1375,
+          "target_name": "COX-1",
+          "target_type": "Enzyme",
+          "species": "Human",
+          "affinity_type": "IC50",
+          "affinity_median_nm": 13000,
+          "action": "Inhibitor"
+        },
+        {
+          "target_id": 1376,
+          "target_name": "COX-2",
+          "target_type": "Enzyme",
+          "species": "Human",
+          "affinity_type": "IC50",
+          "affinity_median_nm": 2100,
+          "action": "Inhibitor"
+        }
+      ]
+    },
+    {
+      "ligand_id": 4865,
+      "ligand_name": "morphine",
+      "ligand_type": "Natural product",
+      "approved": true,
+      "inchikey": "BQJCRHHNABKAKU-KBQPJGBKSA-N",
+      "targets": [
+        {
+          "target_id": 319,
+          "target_name": "mu receptor",
+          "target_type": "GPCR",
+          "species": "Human",
+          "affinity_type": "Ki",
+          "affinity_median_nm": 1.8,
+          "action": "Agonist"
+        }
+      ]
+    },
+    {
+      "ligand_id": 7096,
+      "ligand_name": "atorvastatin",
+      "ligand_type": "Synthetic organic",
+      "approved": true,
+      "inchikey": "XUKUURHRXDUEBC-KAYWLYCHSA-N",
+      "targets": [
+        {
+          "target_id": 631,
+          "target_name": "HMG-CoA reductase",
+          "target_type": "Enzyme",
+          "affinity_type": "IC50",
+          "affinity_median_nm": 8,
+          "action": "Inhibitor"
+        }
+      ]
+    }
+  ],
+  "queries": {
+    "rest_ligand": "curl 'https://www.guidetopharmacology.org/services/ligands/2954' | jq",
+    "rest_target": "curl 'https://www.guidetopharmacology.org/services/targets/1375' | jq",
+    "rest_interactions": "curl 'https://www.guidetopharmacology.org/services/targets/1375/interactions' | jq",
+    "download": "wget https://www.guidetopharmacology.org/DATA/ligands.tsv"
+  }
+}

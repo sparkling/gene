@@ -1,0 +1,54 @@
+{
+  "source": "DGIdb",
+  "version": "5.0",
+  "description": "Sample drug-gene interaction records from DGIdb",
+  "records": [
+    {
+      "drug_name": "IMATINIB",
+      "drug_chembl_id": "CHEMBL941",
+      "gene_name": "ABL1",
+      "gene_entrez_id": 25,
+      "interaction_types": ["inhibitor"],
+      "interaction_score": 12.5,
+      "sources": ["ChEMBL", "DrugBank", "PharmGKB"],
+      "pmids": [10698507, 11287866],
+      "approved": true
+    },
+    {
+      "drug_name": "ERLOTINIB",
+      "drug_chembl_id": "CHEMBL553",
+      "gene_name": "EGFR",
+      "gene_entrez_id": 1956,
+      "interaction_types": ["inhibitor"],
+      "interaction_score": 15.2,
+      "sources": ["ChEMBL", "DrugBank", "TTD"],
+      "approved": true
+    },
+    {
+      "drug_name": "ASPIRIN",
+      "drug_chembl_id": "CHEMBL25",
+      "gene_name": "PTGS1",
+      "gene_entrez_id": 5742,
+      "interaction_types": ["inhibitor"],
+      "interaction_score": 8.7,
+      "sources": ["ChEMBL", "DrugBank"],
+      "approved": true
+    },
+    {
+      "drug_name": "ASPIRIN",
+      "drug_chembl_id": "CHEMBL25",
+      "gene_name": "PTGS2",
+      "gene_entrez_id": 5743,
+      "interaction_types": ["inhibitor"],
+      "interaction_score": 9.1,
+      "sources": ["ChEMBL", "DrugBank", "PharmGKB"],
+      "approved": true
+    }
+  ],
+  "queries": {
+    "rest_gene": "curl 'https://dgidb.org/api/v2/genes/ABL1' | jq",
+    "rest_drug": "curl 'https://dgidb.org/api/v2/drugs/IMATINIB' | jq",
+    "rest_interactions": "curl 'https://dgidb.org/api/v2/interactions?genes=ABL1,EGFR' | jq",
+    "download": "wget https://dgidb.org/data/monthly_tsvs/interactions.tsv"
+  }
+}

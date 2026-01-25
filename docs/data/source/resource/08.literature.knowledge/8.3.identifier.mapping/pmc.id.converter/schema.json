@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "pmc-id-converter-schema.json",
+  "title": "PMC ID Converter Record",
+  "description": "JSON Schema for NCBI PMC ID Converter mapping records.",
+  "type": "object",
+  "properties": {
+    "pmcid": {
+      "type": "string",
+      "description": "PubMed Central identifier.",
+      "pattern": "^PMC[0-9]+$",
+      "examples": ["PMC7654321"]
+    },
+    "pmid": {
+      "type": "string",
+      "description": "PubMed identifier.",
+      "pattern": "^[0-9]+$"
+    },
+    "doi": {
+      "type": "string",
+      "description": "Digital Object Identifier."
+    },
+    "versions": {
+      "type": "array",
+      "description": "Version history.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "pmcid": { "type": "string" },
+          "current": { "type": "boolean" },
+          "release_date": { "type": "string", "format": "date" }
+        }
+      }
+    },
+    "live": {
+      "type": "boolean",
+      "description": "Whether article is currently live in PMC."
+    },
+    "release_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date article was released in PMC."
+    },
+    "errmsg": {
+      "type": "string",
+      "description": "Error message if conversion failed."
+    }
+  },
+  "required": [],
+  "additionalProperties": true
+}

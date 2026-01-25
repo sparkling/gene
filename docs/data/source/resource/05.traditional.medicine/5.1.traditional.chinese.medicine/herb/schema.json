@@ -1,0 +1,172 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "herb-schema.json",
+  "title": "HERB 2.0 Record",
+  "description": "JSON Schema for HERB (High-throughput Experiment and Reference Database for TCM) data. Uniquely integrates gene expression data with TCM information.",
+  "type": "object",
+  "properties": {
+    "herb_id": {
+      "type": "string",
+      "description": "HERB internal herb identifier."
+    },
+    "herb_name_chinese": {
+      "type": "string",
+      "description": "Chinese herb name."
+    },
+    "herb_name_pinyin": {
+      "type": "string",
+      "description": "Pinyin romanization."
+    },
+    "herb_name_english": {
+      "type": "string",
+      "description": "English name."
+    },
+    "herb_name_latin": {
+      "type": "string",
+      "description": "Botanical Latin name."
+    },
+    "tcm_properties": {
+      "type": "object",
+      "description": "TCM property classification.",
+      "properties": {
+        "nature": {
+          "type": "string",
+          "enum": ["cold", "cool", "neutral", "warm", "hot"]
+        },
+        "flavor": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "meridian_tropism": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "ingredient_count": {
+      "type": "integer",
+      "description": "Number of ingredients/compounds."
+    },
+    "expression_experiments": {
+      "type": "array",
+      "description": "GEO accessions for expression experiments.",
+      "items": { "type": "string" }
+    },
+    "ingredient": {
+      "type": "object",
+      "description": "Ingredient/compound entity structure.",
+      "properties": {
+        "ingredient_id": { "type": "string" },
+        "compound_name": { "type": "string" },
+        "pubchem_cid": { "type": "integer" },
+        "smiles": { "type": "string" },
+        "inchi_key": { "type": "string" },
+        "molecular_formula": { "type": "string" },
+        "molecular_weight": { "type": "number" },
+        "source_herbs": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "target_genes": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "target": {
+      "type": "object",
+      "description": "Target gene entity structure.",
+      "properties": {
+        "target_id": { "type": "string" },
+        "gene_symbol": { "type": "string" },
+        "entrez_gene_id": { "type": "integer" },
+        "gene_name": { "type": "string" },
+        "uniprot_id": { "type": "string" },
+        "expression_data": {
+          "type": "object",
+          "properties": {
+            "upregulated_by": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "downregulated_by": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "expression_experiment": {
+      "type": "object",
+      "description": "Gene expression experiment structure.",
+      "properties": {
+        "experiment_id": { "type": "string" },
+        "geo_accession": {
+          "type": "string",
+          "pattern": "^GSE[0-9]+$"
+        },
+        "platform": {
+          "type": "string",
+          "pattern": "^GPL[0-9]+$"
+        },
+        "organism": { "type": "string" },
+        "herb_or_compound": { "type": "string" },
+        "treatment_description": { "type": "string" },
+        "differential_genes": {
+          "type": "object",
+          "properties": {
+            "upregulated": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "downregulated": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          }
+        },
+        "fold_change_threshold": { "type": "number" },
+        "significance_threshold": { "type": "number" }
+      }
+    },
+    "disease": {
+      "type": "object",
+      "description": "Disease entity with connectivity scores.",
+      "properties": {
+        "disease_id": { "type": "string" },
+        "disease_name": { "type": "string" },
+        "mesh_id": { "type": "string" },
+        "disease_signature": {
+          "type": "object",
+          "properties": {
+            "upregulated_genes": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "downregulated_genes": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          }
+        },
+        "connected_herbs": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "connectivity_scores": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "herb_id": { "type": "string" },
+              "score": { "type": "number" }
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": ["herb_id"],
+  "additionalProperties": true
+}

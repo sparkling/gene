@@ -1,0 +1,65 @@
+{
+  "source": "ChEBI",
+  "version": "2024",
+  "description": "Sample chemical entity records from ChEBI ontology",
+  "records": [
+    {
+      "chebi_id": "CHEBI:15365",
+      "name": "acetylsalicylic acid",
+      "definition": "An acetate ester that is the acetyl ester of salicylic acid.",
+      "star": 3,
+      "formula": "C9H8O4",
+      "mass": 180.15742,
+      "charge": 0,
+      "smiles": "CC(=O)Oc1ccccc1C(=O)O",
+      "inchikey": "BSYNRYMUTXBXSQ-UHFFFAOYSA-N",
+      "synonyms": ["aspirin", "2-acetoxybenzoic acid"],
+      "parents": [
+        {"chebi_id": "CHEBI:47622", "name": "acetate ester"},
+        {"chebi_id": "CHEBI:35348", "name": "salicylates"}
+      ],
+      "roles": [
+        {"chebi_id": "CHEBI:35475", "name": "EC 1.14.99.1 (prostaglandin-endoperoxide synthase) inhibitor"},
+        {"chebi_id": "CHEBI:35472", "name": "anti-inflammatory drug"}
+      ],
+      "xrefs": {
+        "pubchem_cid": "2244",
+        "drugbank": "DB00945",
+        "kegg_compound": "C01405"
+      }
+    },
+    {
+      "chebi_id": "CHEBI:16243",
+      "name": "quercetin",
+      "definition": "A pentahydroxyflavone having hydroxy substituents at the 3, 5, 7, 3' and 4' positions.",
+      "star": 3,
+      "formula": "C15H10O7",
+      "mass": 302.2357,
+      "smiles": "OC1=CC(O)=C2C(=O)C(O)=C(OC2=C1)C1=CC(O)=C(O)C=C1",
+      "inchikey": "REFJWTPEDVJJIY-UHFFFAOYSA-N",
+      "parents": [
+        {"chebi_id": "CHEBI:28897", "name": "flavonols"}
+      ],
+      "roles": [
+        {"chebi_id": "CHEBI:22586", "name": "antioxidant"}
+      ]
+    },
+    {
+      "chebi_id": "CHEBI:3962",
+      "name": "curcumin",
+      "definition": "A member of the class of curcuminoids.",
+      "star": 3,
+      "formula": "C21H20O6",
+      "mass": 368.3799,
+      "inchikey": "VFLDPWHFBUODDF-UHFFFAOYSA-N",
+      "parents": [
+        {"chebi_id": "CHEBI:67159", "name": "curcuminoid"}
+      ]
+    }
+  ],
+  "queries": {
+    "rest": "curl 'https://www.ebi.ac.uk/ols/api/ontologies/chebi/terms/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252FCHEBI_15365' | jq",
+    "search": "curl 'https://www.ebi.ac.uk/ols/api/search?q=aspirin&ontology=chebi' | jq",
+    "download": "wget ftp://ftp.ebi.ac.uk/pub/databases/chebi/ontology/chebi.obo"
+  }
+}

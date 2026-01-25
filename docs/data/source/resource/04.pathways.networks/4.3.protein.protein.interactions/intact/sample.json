@@ -1,0 +1,107 @@
+[
+  {
+    "interaction_id": "EBI-77734",
+    "interactor_a": {
+      "intact_id": "EBI-366083",
+      "uniprot_id": "P04637",
+      "gene_name": "TP53",
+      "organism": "9606"
+    },
+    "interactor_b": {
+      "intact_id": "EBI-390863",
+      "uniprot_id": "Q00987",
+      "gene_name": "MDM2",
+      "organism": "9606"
+    },
+    "detection_method": {
+      "mi_id": "MI:0018",
+      "name": "two hybrid"
+    },
+    "interaction_type": {
+      "mi_id": "MI:0915",
+      "name": "physical association"
+    },
+    "publication": {
+      "pubmed_id": "1535557",
+      "first_author": "Momand J (1992)"
+    },
+    "confidence_score": {
+      "mi_score": 0.73,
+      "confidence_level": "medium"
+    },
+    "metadata": {
+      "source_database": "MI:0469",
+      "release_date": "2025-06-15"
+    }
+  },
+  {
+    "interaction_id": "EBI-123456",
+    "interactor_a": {
+      "intact_id": "EBI-350432",
+      "uniprot_id": "P38398",
+      "gene_name": "BRCA1",
+      "organism": "9606"
+    },
+    "interactor_b": {
+      "intact_id": "EBI-352342",
+      "uniprot_id": "Q99728",
+      "gene_name": "BARD1",
+      "organism": "9606"
+    },
+    "detection_method": {
+      "mi_id": "MI:0019",
+      "name": "coimmunoprecipitation"
+    },
+    "interaction_type": {
+      "mi_id": "MI:0407",
+      "name": "direct interaction"
+    },
+    "publication": {
+      "pubmed_id": "9054499",
+      "first_author": "Wu LC (1996)"
+    },
+    "confidence_score": {
+      "mi_score": 0.89,
+      "confidence_level": "high"
+    },
+    "metadata": {
+      "source_database": "MI:0469",
+      "release_date": "2025-06-15"
+    }
+  },
+  {
+    "interaction_id": "EBI-789012",
+    "interactor_a": {
+      "intact_id": "EBI-450678",
+      "uniprot_id": "P10398",
+      "gene_name": "ARAF",
+      "organism": "9606"
+    },
+    "interactor_b": {
+      "intact_id": "EBI-451234",
+      "uniprot_id": "P04049",
+      "gene_name": "RAF1",
+      "organism": "9606"
+    },
+    "detection_method": {
+      "mi_id": "MI:0114",
+      "name": "x-ray crystallography"
+    },
+    "interaction_type": {
+      "mi_id": "MI:0407",
+      "name": "direct interaction"
+    },
+    "publication": {
+      "pubmed_id": "15611079",
+      "first_author": "Rajakulendran T (2009)"
+    },
+    "confidence_score": {
+      "mi_score": 0.95,
+      "confidence_level": "high"
+    },
+    "metadata": {
+      "source_database": "MI:0469",
+      "release_date": "2025-06-15"
+    }
+  }
+]

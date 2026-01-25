@@ -233,6 +233,31 @@ grep -c "EGFR" interactions.tsv
 grep -c "BRAF" interactions.tsv
 ```
 
+## Dataset Versions
+
+| Version | Release Date | Size | Status |
+|---------|--------------|------|--------|
+| DGIdb 5.0 | 2023-10 | ~100 MB | Current |
+| DGIdb 4.x | 2021-2023 | ~80 MB | Archived |
+
+### Version Notes
+
+DGIdb 5.0 contains comprehensive drug-gene interaction data:
+- 100,000+ drug-gene interactions
+- 40,000+ genes with druggability info
+- 10,000+ drugs
+- 40+ source databases integrated
+- GraphQL API for flexible queries
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | `https://dgidb.org/api/graphql` |
+| Rate Limit | Reasonable use |
+| Auth Required | No |
+| Documentation | https://dgidb.org/api/graphiql |
+
 ## Update Schedule
 
 | Release | Frequency |

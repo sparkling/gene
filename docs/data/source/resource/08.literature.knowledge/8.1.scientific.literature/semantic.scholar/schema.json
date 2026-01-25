@@ -1,0 +1,142 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "semantic-scholar-schema.json",
+  "title": "Semantic Scholar Paper Record",
+  "description": "JSON Schema for Semantic Scholar paper records.",
+  "type": "object",
+  "properties": {
+    "paperId": {
+      "type": "string",
+      "description": "Semantic Scholar unique identifier (40-char hex).",
+      "pattern": "^[a-f0-9]{40}$",
+      "examples": ["649def34f8be52c8b66281af98ae884c09aef38b"]
+    },
+    "corpusId": {
+      "type": "integer",
+      "description": "Semantic Scholar Corpus ID."
+    },
+    "externalIds": {
+      "type": "object",
+      "description": "External identifiers.",
+      "properties": {
+        "DOI": { "type": "string" },
+        "PubMed": { "type": "string" },
+        "PubMedCentral": { "type": "string" },
+        "ArXiv": { "type": "string" },
+        "MAG": { "type": "string" },
+        "ACL": { "type": "string" },
+        "DBLP": { "type": "string" }
+      }
+    },
+    "title": {
+      "type": "string",
+      "description": "Paper title."
+    },
+    "abstract": {
+      "type": "string",
+      "description": "Paper abstract."
+    },
+    "venue": {
+      "type": "string",
+      "description": "Publication venue name."
+    },
+    "year": {
+      "type": "integer",
+      "description": "Publication year."
+    },
+    "authors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "authorId": { "type": "string" },
+          "name": { "type": "string" },
+          "url": { "type": "string", "format": "uri" }
+        }
+      }
+    },
+    "citationCount": {
+      "type": "integer",
+      "description": "Number of citations."
+    },
+    "referenceCount": {
+      "type": "integer",
+      "description": "Number of references."
+    },
+    "influentialCitationCount": {
+      "type": "integer",
+      "description": "Number of influential citations."
+    },
+    "isOpenAccess": {
+      "type": "boolean",
+      "description": "Open access availability."
+    },
+    "openAccessPdf": {
+      "type": "object",
+      "properties": {
+        "url": { "type": "string", "format": "uri" },
+        "status": { "type": "string" }
+      }
+    },
+    "fieldsOfStudy": {
+      "type": "array",
+      "description": "Research field classifications.",
+      "items": { "type": "string" }
+    },
+    "s2FieldsOfStudy": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "category": { "type": "string" },
+          "source": { "type": "string" }
+        }
+      }
+    },
+    "publicationTypes": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "publicationDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Publication date."
+    },
+    "journal": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "volume": { "type": "string" },
+        "pages": { "type": "string" }
+      }
+    },
+    "citations": {
+      "type": "array",
+      "description": "List of citing papers.",
+      "items": { "type": "object" }
+    },
+    "references": {
+      "type": "array",
+      "description": "List of referenced papers.",
+      "items": { "type": "object" }
+    },
+    "tldr": {
+      "type": "object",
+      "description": "AI-generated summary.",
+      "properties": {
+        "model": { "type": "string" },
+        "text": { "type": "string" }
+      }
+    },
+    "embedding": {
+      "type": "object",
+      "description": "Paper embedding vector.",
+      "properties": {
+        "model": { "type": "string" },
+        "vector": { "type": "array", "items": { "type": "number" } }
+      }
+    }
+  },
+  "required": ["paperId", "title"],
+  "additionalProperties": true
+}

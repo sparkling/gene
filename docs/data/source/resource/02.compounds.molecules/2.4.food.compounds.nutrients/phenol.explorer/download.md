@@ -170,13 +170,38 @@ head -5 phenol_data.csv
 head -1 phenol_data.csv | tr ',' '\n' | wc -l
 ```
 
+## Dataset Versions
+
+| Version | Release Date | Size | Status |
+|---------|--------------|------|--------|
+| v3.6 | 2015-06 | ~50 MB | Current |
+| v3.0 | 2013 | ~40 MB | Archived |
+| v2.0 | 2012 | ~30 MB | Archived |
+
+### Version Notes
+
+Phenol-Explorer 3.6 contains:
+- 35,000+ content values for 500 polyphenols
+- 400+ foods with polyphenol data
+- Metabolism data for 375 metabolites
+- Effects of food processing on polyphenol content
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | `http://phenol-explorer.eu` |
+| Rate Limit | N/A (web interface) |
+| Auth Required | No |
+| Documentation | Contact phenol-explorer@inra.fr |
+
 ## Update Schedule
 
 | Release | Frequency |
 |---------|-----------|
 | Database updates | Periodic |
 | Major versions | Every few years |
-| Last major update | Version 3.6 |
+| Last major update | Version 3.6 (June 2015) |
 
 ## Common Issues
 

@@ -1,0 +1,198 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "topmed-schema.json",
+  "title": "TOPMed Variant Record",
+  "description": "JSON Schema for TOPMed (Trans-Omics for Precision Medicine) whole genome sequencing variant data via Bravo API.",
+  "type": "object",
+  "properties": {
+    "variant_id": {
+      "type": "string",
+      "description": "Unique variant identifier (chrom-pos-ref-alt format).",
+      "pattern": "^(chr)?[0-9XYM]+-[0-9]+-[ACGT]+-[ACGT]+$",
+      "examples": ["chr11-5227002-T-A", "22-16050115-A-G"]
+    },
+    "chrom": {
+      "type": "string",
+      "description": "Chromosome identifier.",
+      "enum": ["chr1", "chr2", "chr3", "chr4", "chr5", "chr6", "chr7", "chr8", "chr9", "chr10", "chr11", "chr12", "chr13", "chr14", "chr15", "chr16", "chr17", "chr18", "chr19", "chr20", "chr21", "chr22", "chrX", "chrY", "chrM"]
+    },
+    "pos": {
+      "type": "integer",
+      "description": "1-based genomic position (GRCh38).",
+      "examples": [5227002, 16050115]
+    },
+    "ref": {
+      "type": "string",
+      "description": "Reference allele.",
+      "pattern": "^[ACGT]+$",
+      "examples": ["T", "A", "CT"]
+    },
+    "alt": {
+      "type": "string",
+      "description": "Alternate allele.",
+      "pattern": "^[ACGT]+$",
+      "examples": ["A", "G", "C"]
+    },
+    "rsids": {
+      "type": "array",
+      "description": "dbSNP rsIDs associated with this variant.",
+      "items": {
+        "type": "string",
+        "pattern": "^rs[0-9]+$"
+      },
+      "examples": [["rs334"], ["rs121913279", "rs28934576"]]
+    },
+    "filter": {
+      "type": "string",
+      "description": "Filter status from variant calling.",
+      "enum": ["PASS", "SVM", "DISC", "EXHET"]
+    },
+    "allele_num": {
+      "type": "integer",
+      "description": "Total number of alleles in called genotypes.",
+      "examples": [264690, 125568]
+    },
+    "allele_count": {
+      "type": "integer",
+      "description": "Allele count for the alternate allele.",
+      "examples": [1, 50, 10000]
+    },
+    "allele_freq": {
+      "type": "number",
+      "description": "Global allele frequency.",
+      "minimum": 0,
+      "maximum": 1,
+      "examples": [0.0001, 0.05, 0.001]
+    },
+    "hom_count": {
+      "type": "integer",
+      "description": "Number of homozygous alternate individuals.",
+      "examples": [0, 5, 100]
+    },
+    "het_count": {
+      "type": "integer",
+      "description": "Number of heterozygous individuals.",
+      "examples": [1, 45, 500]
+    },
+    "site_quality": {
+      "type": "number",
+      "description": "Phred-scaled site quality score.",
+      "minimum": 0,
+      "examples": [999, 50, 100]
+    },
+    "avg_dp": {
+      "type": "number",
+      "description": "Average sequencing depth across samples.",
+      "minimum": 0,
+      "examples": [38.5, 25.0, 50.2]
+    },
+    "avg_dp_alt": {
+      "type": "number",
+      "description": "Average depth for alternate allele carriers.",
+      "minimum": 0,
+      "examples": [35.0, 20.5]
+    },
+    "avg_gq": {
+      "type": "number",
+      "description": "Average genotype quality.",
+      "minimum": 0,
+      "maximum": 99,
+      "examples": [95.5, 80.0]
+    },
+    "avg_gq_alt": {
+      "type": "number",
+      "description": "Average genotype quality for alternate carriers.",
+      "minimum": 0,
+      "maximum": 99,
+      "examples": [90.0, 75.5]
+    },
+    "vep_annotations": {
+      "type": "array",
+      "description": "VEP functional annotations.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "gene_symbol": {
+            "type": "string",
+            "examples": ["HBB", "BRCA1"]
+          },
+          "gene_id": {
+            "type": "string",
+            "pattern": "^ENSG[0-9]{11}$"
+          },
+          "transcript_id": {
+            "type": "string",
+            "pattern": "^ENST[0-9]{11}$"
+          },
+          "consequence": {
+            "type": "string",
+            "examples": ["missense_variant", "stop_gained", "synonymous_variant"]
+          },
+          "impact": {
+            "type": "string",
+            "enum": ["HIGH", "MODERATE", "LOW", "MODIFIER"]
+          },
+          "hgvsc": {
+            "type": "string",
+            "examples": ["c.20A>T"]
+          },
+          "hgvsp": {
+            "type": "string",
+            "examples": ["p.Glu7Val"]
+          },
+          "amino_acids": {
+            "type": "string",
+            "examples": ["E/V", "R/Q"]
+          },
+          "codons": {
+            "type": "string",
+            "examples": ["gAg/gTg"]
+          },
+          "sift": {
+            "type": "string",
+            "examples": ["deleterious(0.01)", "tolerated(0.5)"]
+          },
+          "polyphen": {
+            "type": "string",
+            "examples": ["probably_damaging(0.99)", "benign(0.1)"]
+          },
+          "lof": {
+            "type": "string",
+            "enum": ["HC", "LC", "OS"]
+          },
+          "lof_filter": {
+            "type": "string",
+            "examples": ["END_TRUNC", "SINGLE_EXON"]
+          }
+        }
+      }
+    },
+    "cadd_phred": {
+      "type": "number",
+      "description": "CADD Phred-scaled score.",
+      "minimum": 0,
+      "examples": [25.3, 15.0]
+    },
+    "is_lof": {
+      "type": "boolean",
+      "description": "Whether variant is predicted loss-of-function."
+    },
+    "lof_gene": {
+      "type": "string",
+      "description": "Gene symbol if LoF variant.",
+      "examples": ["BRCA1", "TP53"]
+    },
+    "n_studies": {
+      "type": "integer",
+      "description": "Number of TOPMed studies with this variant.",
+      "examples": [50, 10, 1]
+    },
+    "topmed_freeze": {
+      "type": "string",
+      "description": "TOPMed freeze version.",
+      "examples": ["freeze.8", "freeze.9"]
+    }
+  },
+  "required": ["chrom", "pos", "ref", "alt", "allele_freq"],
+  "additionalProperties": true
+}

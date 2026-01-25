@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "hpo-annotations-schema.json",
+  "title": "HPO Disease-Phenotype Annotation Record",
+  "description": "JSON Schema for HPO annotation files (phenotype.hpoa). Contains 156,000+ disease-phenotype associations linking ~9,500 diseases from OMIM, Orphanet, and DECIPHER to HPO terms with evidence codes, frequency data, and clinical modifiers.",
+  "type": "object",
+  "properties": {
+    "database_id": {
+      "type": "string",
+      "description": "Disease database identifier with prefix",
+      "pattern": "^(OMIM|ORPHA|DECIPHER|MONDO):[0-9]+$",
+      "examples": ["OMIM:154700", "ORPHA:558", "DECIPHER:1"]
+    },
+    "disease_name": {
+      "type": "string",
+      "description": "Disease name"
+    },
+    "qualifier": {
+      "type": ["string", "null"],
+      "description": "NOT if phenotype is excluded from disease",
+      "enum": ["NOT", null]
+    },
+    "hpo_id": {
+      "type": "string",
+      "description": "HPO phenotype term identifier",
+      "pattern": "^HP:[0-9]{7}$",
+      "examples": ["HP:0001166", "HP:0001250"]
+    },
+    "hpo_name": {
+      "type": ["string", "null"],
+      "description": "HPO term name (for convenience)"
+    },
+    "reference": {
+      "type": "string",
+      "description": "Evidence source reference",
+      "examples": ["PMID:12345678", "OMIM:154700", "ORPHA:558"]
+    },
+    "evidence": {
+      "type": "string",
+      "description": "Evidence code",
+      "enum": ["IEA", "TAS", "PCS"]
+    },
+    "onset": {
+      "type": ["string", "null"],
+      "description": "Age of onset (HPO term)",
+      "pattern": "^HP:[0-9]{7}$",
+      "examples": ["HP:0003577", "HP:0003581", "HP:0003593"]
+    },
+    "frequency": {
+      "type": ["string", "null"],
+      "description": "Phenotype frequency (HPO term, fraction, or percentage)",
+      "examples": ["HP:0040281", "HP:0040282", "HP:0040283", "12/45", "80%"]
+    },
+    "sex": {
+      "type": ["string", "null"],
+      "description": "Sex specificity of phenotype",
+      "enum": ["MALE", "FEMALE", null]
+    },
+    "modifier": {
+      "type": ["array", "null"],
+      "description": "Clinical modifiers (HPO terms)",
+      "items": {
+        "type": "string",
+        "pattern": "^HP:[0-9]{7}$"
+      }
+    },
+    "aspect": {
+      "type": "string",
+      "description": "HPO annotation branch",
+      "enum": ["P", "I", "C", "M", "H"]
+    },
+    "biocuration": {
+      "type": "string",
+      "description": "Curator identifier and timestamp",
+      "pattern": "^[A-Za-z]+:[A-Za-z0-9_]+\\[[0-9]{4}-[0-9]{2}-[0-9]{2}\\]$",
+      "examples": ["HPO:skoehler[2024-01-15]"]
+    },
+    "gene_id": {
+      "type": ["integer", "null"],
+      "description": "NCBI Gene ID (from genes_to_phenotype.txt)"
+    },
+    "gene_symbol": {
+      "type": ["string", "null"],
+      "description": "HGNC gene symbol (from genes_to_phenotype.txt)"
+    },
+    "frequency_hpo": {
+      "type": ["object", "null"],
+      "description": "Structured frequency using HPO terms",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^HP:[0-9]{7}$"
+        },
+        "name": {
+          "type": "string",
+          "enum": ["Obligate (100%)", "Very frequent (99-80%)", "Frequent (79-30%)", "Occasional (29-5%)", "Very rare (<4-1%)", "Excluded (0%)"]
+        }
+      }
+    }
+  },
+  "required": ["database_id", "disease_name", "hpo_id", "reference", "evidence", "aspect", "biocuration"],
+  "$defs": {
+    "onsetTerms": {
+      "description": "Common HPO onset terms",
+      "enum": [
+        "HP:0003577",
+        "HP:0030674",
+        "HP:0003623",
+        "HP:0003593",
+        "HP:0011463",
+        "HP:0003581",
+        "HP:0011462",
+        "HP:0003596",
+        "HP:0003584"
+      ]
+    },
+    "frequencyTerms": {
+      "description": "HPO frequency terms",
+      "enum": [
+        "HP:0040280",
+        "HP:0040281",
+        "HP:0040282",
+        "HP:0040283",
+        "HP:0040284",
+        "HP:0040285"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

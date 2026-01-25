@@ -1,0 +1,78 @@
+{
+  "source": "Psychiatric Genomics Consortium",
+  "version": "2024",
+  "description": "Sample psychiatric disorder GWAS records from PGC",
+  "records": [
+    {
+      "study": "PGC3-SCZ",
+      "disorder": "Schizophrenia",
+      "sample_size": {
+        "cases": 76755,
+        "controls": 243649
+      },
+      "significant_loci": 287,
+      "top_associations": [
+        {
+          "rsid": "rs2007044",
+          "chromosome": "6",
+          "position": 27243855,
+          "p_value": 2.3e-128,
+          "odds_ratio": 1.21,
+          "gene": "HIST1H2BD",
+          "region": "MHC"
+        },
+        {
+          "rsid": "rs4523957",
+          "chromosome": "3",
+          "position": 180815284,
+          "p_value": 4.1e-45,
+          "odds_ratio": 1.08,
+          "gene": "KCNQ2"
+        },
+        {
+          "rsid": "rs7432375",
+          "chromosome": "3",
+          "position": 52558148,
+          "p_value": 1.2e-38,
+          "odds_ratio": 1.07,
+          "gene": "CACNA1D"
+        }
+      ],
+      "heritability_snp": 0.24,
+      "pmid": 35396580
+    },
+    {
+      "study": "PGC-MDD3",
+      "disorder": "Major depressive disorder",
+      "sample_size": {
+        "cases": 246363,
+        "controls": 561190
+      },
+      "significant_loci": 178,
+      "top_associations": [
+        {
+          "rsid": "rs9462535",
+          "chromosome": "6",
+          "p_value": 3.2e-58,
+          "gene": "NEGR1"
+        }
+      ],
+      "heritability_snp": 0.089
+    },
+    {
+      "study": "PGC-BIP",
+      "disorder": "Bipolar disorder",
+      "sample_size": {
+        "cases": 41917,
+        "controls": 371549
+      },
+      "significant_loci": 64,
+      "heritability_snp": 0.18
+    }
+  ],
+  "queries": {
+    "web_portal": "https://www.med.unc.edu/pgc/",
+    "download_sumstats": "https://pgc.unc.edu/for-researchers/download-results/",
+    "gwas_catalog": "curl 'https://www.ebi.ac.uk/gwas/api/search?query=schizophrenia' | jq"
+  }
+}

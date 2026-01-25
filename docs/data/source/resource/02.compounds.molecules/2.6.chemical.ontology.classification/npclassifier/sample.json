@@ -1,0 +1,55 @@
+{
+  "source": "NPClassifier",
+  "version": "2024",
+  "description": "Sample natural product classification records from NPClassifier",
+  "records": [
+    {
+      "smiles": "CC1CCC2C(C)C(=O)OC3OC4(C)CCC1C23OO4",
+      "name": "Artemisinin",
+      "inchikey": "BLUAFEHZUWYNDE-NNWCWBAJSA-N",
+      "classification": {
+        "pathway": "Terpenoids",
+        "superclass": "Sesquiterpenoids",
+        "class": "Guaianolides",
+        "confidence": 0.95
+      },
+      "isglycoside": false
+    },
+    {
+      "smiles": "COC1=CC(=CC(=C1O)OC)C=CC(=O)CC(=O)C=CC2=CC(=C(C=C2)O)OC",
+      "name": "Curcumin",
+      "inchikey": "VFLDPWHFBUODDF-UHFFFAOYSA-N",
+      "classification": {
+        "pathway": "Polyketides",
+        "superclass": "Diarylheptanoids",
+        "class": "Linear diarylheptanoids",
+        "confidence": 0.98
+      }
+    },
+    {
+      "smiles": "OC1=CC(O)=C2C(=O)C(O)=C(OC2=C1)C1=CC(O)=C(O)C=C1",
+      "name": "Quercetin",
+      "inchikey": "REFJWTPEDVJJIY-UHFFFAOYSA-N",
+      "classification": {
+        "pathway": "Shikimates and Phenylpropanoids",
+        "superclass": "Flavonoids",
+        "class": "Flavonols",
+        "confidence": 0.99
+      }
+    },
+    {
+      "smiles": "CC1=C2C(C(=O)C3(C(CC4C(C3C(C(C2(C)C)(CC1OC(=O)C(C(C5=CC=CC=C5)NC(=O)C6=CC=CC=C6)O)O)OC(=O)C7=CC=CC=C7)(CO4)OC(=O)C)O)C)OC(=O)C",
+      "name": "Paclitaxel",
+      "classification": {
+        "pathway": "Terpenoids",
+        "superclass": "Diterpenoids",
+        "class": "Taxoids",
+        "confidence": 0.97
+      }
+    }
+  ],
+  "queries": {
+    "web_interface": "https://npclassifier.ucsd.edu/",
+    "api_classify": "curl -X POST 'https://npclassifier.ucsd.edu/classify' -d 'smiles=CC1CCC2C(C)C(=O)OC3OC4(C)CCC1C23OO4'"
+  }
+}

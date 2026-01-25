@@ -1,0 +1,230 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "pgc-schema.json",
+  "title": "PGC GWAS Summary Statistics Record",
+  "description": "JSON Schema for Psychiatric Genomics Consortium summary statistics. The largest psychiatric genetics collaboration with 800+ groups, 4M+ samples, 50+ GWAS, and 1,000+ genetic loci across schizophrenia, depression, bipolar, ADHD, and other disorders.",
+  "type": "object",
+  "properties": {
+    "study_id": {
+      "type": "string",
+      "description": "PGC study identifier",
+      "examples": ["PGC_SCZ3", "PGC_MDD3", "PGC_BIP3"]
+    },
+    "disorder": {
+      "type": "string",
+      "description": "Psychiatric disorder",
+      "enum": ["SCZ", "MDD", "BIP", "ADHD", "ASD", "AN", "OCD", "TS", "PTSD", "ALC", "CAN"]
+    },
+    "disorder_name": {
+      "type": "string",
+      "description": "Full disorder name"
+    },
+    "sample_size": {
+      "type": "object",
+      "description": "Sample sizes",
+      "properties": {
+        "cases": {
+          "type": "integer",
+          "description": "Number of cases"
+        },
+        "controls": {
+          "type": "integer",
+          "description": "Number of controls"
+        },
+        "total": {
+          "type": "integer",
+          "description": "Total sample size"
+        }
+      }
+    },
+    "ancestry": {
+      "type": "string",
+      "description": "Primary ancestry",
+      "enum": ["EUR", "EAS", "AFR", "AMR", "SAS", "Multi-ancestry"]
+    },
+    "genome_build": {
+      "type": "string",
+      "description": "Reference genome",
+      "enum": ["GRCh37", "GRCh38"]
+    },
+    "publication": {
+      "type": "object",
+      "description": "Publication info",
+      "properties": {
+        "pmid": {
+          "type": "integer",
+          "description": "PubMed ID"
+        },
+        "first_author": {
+          "type": "string",
+          "description": "First author"
+        },
+        "year": {
+          "type": "integer",
+          "description": "Publication year"
+        },
+        "journal": {
+          "type": "string",
+          "description": "Journal"
+        }
+      }
+    },
+    "summary_statistics": {
+      "type": "array",
+      "description": "Variant-level statistics",
+      "items": {
+        "$ref": "#/$defs/variantStats"
+      }
+    },
+    "genome_wide_significant_loci": {
+      "type": "array",
+      "description": "GWS loci",
+      "items": {
+        "$ref": "#/$defs/significantLocus"
+      }
+    },
+    "heritability": {
+      "type": "object",
+      "description": "Heritability estimates",
+      "properties": {
+        "h2_snp": {
+          "type": "number",
+          "description": "SNP heritability",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "h2_se": {
+          "type": "number",
+          "description": "Standard error"
+        },
+        "liability_scale": {
+          "type": "number",
+          "description": "Liability-scale h2"
+        }
+      }
+    },
+    "genetic_correlation": {
+      "type": "array",
+      "description": "Genetic correlations with other traits",
+      "items": {
+        "type": "object",
+        "properties": {
+          "trait": {
+            "type": "string"
+          },
+          "rg": {
+            "type": "number",
+            "minimum": -1,
+            "maximum": 1
+          },
+          "se": {
+            "type": "number"
+          },
+          "p_value": {
+            "type": "number"
+          }
+        }
+      }
+    }
+  },
+  "required": ["study_id", "disorder"],
+  "$defs": {
+    "variantStats": {
+      "type": "object",
+      "description": "Variant statistics",
+      "properties": {
+        "snp_id": {
+          "type": "string",
+          "description": "dbSNP ID",
+          "pattern": "^rs[0-9]+$"
+        },
+        "chromosome": {
+          "type": "string",
+          "description": "Chromosome"
+        },
+        "position": {
+          "type": "integer",
+          "description": "Genomic position"
+        },
+        "effect_allele": {
+          "type": "string",
+          "description": "Effect allele"
+        },
+        "other_allele": {
+          "type": "string",
+          "description": "Other allele"
+        },
+        "eaf": {
+          "type": "number",
+          "description": "Effect allele frequency",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "beta": {
+          "type": "number",
+          "description": "Effect size (log OR)"
+        },
+        "se": {
+          "type": "number",
+          "description": "Standard error"
+        },
+        "p_value": {
+          "type": "number",
+          "description": "P-value"
+        },
+        "n_eff": {
+          "type": "number",
+          "description": "Effective sample size"
+        }
+      },
+      "required": ["snp_id", "chromosome", "position", "p_value"]
+    },
+    "significantLocus": {
+      "type": "object",
+      "description": "Genome-wide significant locus",
+      "properties": {
+        "locus_id": {
+          "type": "integer",
+          "description": "Locus number"
+        },
+        "chromosome": {
+          "type": "string",
+          "description": "Chromosome"
+        },
+        "start": {
+          "type": "integer",
+          "description": "Locus start"
+        },
+        "end": {
+          "type": "integer",
+          "description": "Locus end"
+        },
+        "lead_snp": {
+          "type": "string",
+          "description": "Lead SNP",
+          "pattern": "^rs[0-9]+$"
+        },
+        "lead_p_value": {
+          "type": "number",
+          "description": "Lead SNP p-value"
+        },
+        "candidate_genes": {
+          "type": "array",
+          "description": "Candidate genes",
+          "items": {
+            "type": "string"
+          }
+        },
+        "credible_set_size": {
+          "type": "integer",
+          "description": "Number of variants in credible set"
+        },
+        "novel": {
+          "type": "boolean",
+          "description": "Novel in this study"
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

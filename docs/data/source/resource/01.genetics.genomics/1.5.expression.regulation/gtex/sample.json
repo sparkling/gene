@@ -1,0 +1,84 @@
+[
+  {
+    "subject": {
+      "subjectId": "GTEX-1117F",
+      "sex": 2,
+      "age": "60-69",
+      "deathHardy": "Ventilator case"
+    },
+    "sample": {
+      "sampleId": "GTEX-1117F-0226-SM-5GZXO",
+      "tissue": "Brain - Cortex",
+      "tissueType": "Brain",
+      "rin": 6.7,
+      "ischemicTime": 614
+    },
+    "expression": {
+      "gene": "ENSG00000157764.14",
+      "geneSymbol": "BRAF",
+      "tpm": 8.234,
+      "readCount": 1523
+    },
+    "eqtl": {
+      "variantId": "chr7_140753336_A_T_b38",
+      "rsId": "rs121913279",
+      "gene": "ENSG00000157764.14",
+      "pvalue": 1.2e-15,
+      "slope": -0.45,
+      "slopeStdErr": 0.05,
+      "maf": 0.012
+    }
+  },
+  {
+    "subject": {
+      "subjectId": "GTEX-12WSB",
+      "sex": 1,
+      "age": "50-59",
+      "deathHardy": "Fast death - natural causes"
+    },
+    "sample": {
+      "sampleId": "GTEX-12WSB-0626-SM-5GU5E",
+      "tissue": "Liver",
+      "tissueType": "Liver",
+      "rin": 7.8,
+      "ischemicTime": 380
+    },
+    "expression": {
+      "gene": "ENSG00000160868.12",
+      "geneSymbol": "CYP2D6",
+      "tpm": 234.56,
+      "readCount": 45678
+    },
+    "eqtl": {
+      "variantId": "chr22_42128174_G_A_b38",
+      "rsId": "rs3892097",
+      "gene": "ENSG00000160868.12",
+      "pvalue": 3.4e-28,
+      "slope": -0.89,
+      "slopeStdErr": 0.08,
+      "maf": 0.22
+    }
+  },
+  {
+    "subject": {
+      "subjectId": "GTEX-13N2G",
+      "sex": 1,
+      "age": "40-49",
+      "deathHardy": "Slow death"
+    },
+    "sample": {
+      "sampleId": "GTEX-13N2G-1126-SM-5MR4Q",
+      "tissue": "Whole Blood",
+      "tissueType": "Blood",
+      "rin": 8.2,
+      "ischemicTime": 245
+    },
+    "expression": {
+      "gene": "ENSG00000244734.4",
+      "geneSymbol": "HBB",
+      "tpm": 89456.78,
+      "readCount": 1234567
+    },
+    "eqtl": null
+  }
+]

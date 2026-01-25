@@ -200,6 +200,62 @@ cut -f11 clinical_annotations.tsv | sort | uniq -c
 cut -f2,4 var_drug_ann.tsv | sort -u | wc -l
 ```
 
+## Dataset Versions
+
+### Current Release
+
+| Property | Value |
+|----------|-------|
+| Version | Continuous (2026-01) |
+| Release Date | Weekly updates |
+| Total Size | ~2 GB (all downloads) |
+| Drugs | 750+ |
+| Genes | 1,800+ |
+| Annotations | 9,000+ curated |
+
+### Version Contents
+
+| Component | Size | Records | Description |
+|-----------|------|---------|-------------|
+| clinicalAnnotations.zip | ~20 MB | 2000+ | Clinical annotations |
+| variantAnnotations.zip | ~5 MB | 5000+ | Variant annotations |
+| drugLabels.zip | ~15 MB | 800+ | FDA/EMA drug labels |
+| relationships.zip | ~10 MB | 20K+ | Gene-drug relationships |
+| pathways-tsv.zip | ~50 MB | 200+ | PK/PD pathways |
+
+### Evidence Level Distribution
+
+| Level | Description | Count |
+|-------|-------------|-------|
+| 1A | CPIC/FDA guideline | 150+ |
+| 1B | Published clinical | 300+ |
+| 2A | VIP gene evidence | 200+ |
+| 2B | Moderate evidence | 500+ |
+| 3 | Low evidence | 800+ |
+| 4 | Functional only | 500+ |
+
+### Gene Coverage
+
+| Category | Genes | Description |
+|----------|-------|-------------|
+| VIP Genes | 55 | Very Important Pharmacogenes |
+| CYP450 | 12 | Drug metabolism enzymes |
+| Transporters | 20+ | Drug transporters |
+| Other | 1700+ | Additional pharmacogenes |
+
+---
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | https://api.pharmgkb.org/v1/ |
+| Rate Limit | 10 req/sec |
+| Auth Required | Yes (free account) |
+| Response Format | JSON |
+
+---
+
 ## Update Schedule
 
 | Release | Frequency |

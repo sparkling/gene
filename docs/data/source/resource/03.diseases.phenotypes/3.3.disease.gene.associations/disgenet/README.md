@@ -1,19 +1,21 @@
 ---
 id: disgenet
 title: "DisGeNET - Disease Gene Network"
-type: data-source
-category: diseases
-subcategory: disease.gene.associations
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 1
-last_updated: 2026-01-23
 status: active
-tags: [gene-disease, variant-disease, associations, scoring, text-mining]
+category: diseases.phenotypes
+subcategory: disease.gene.associations
+tags:
+  - gene-disease
+  - variant-disease
+  - associations
+  - scoring
+  - text-mining
 ---
 
 # DisGeNET - Disease Gene Network
-
-**Category:** [Diseases & Phenotypes](../../_index.md) > [Disease Gene Associations](../_index.md)
 
 ## Overview
 
@@ -77,17 +79,16 @@ DisGeNET uses UMLS Concept Unique Identifiers (CUIs) as the primary disease voca
 | DSI | 0-1 | Disease Specificity Index |
 | DPI | 0-1 | Disease Pleiotropy Index |
 
-## License
+## Limitations
 
-| Aspect | Value |
-|--------|-------|
-| License | CC BY-NC-SA 4.0 |
-| Commercial Use | Requires separate license |
-| Academic Use | Free |
-| Attribution | Required |
+- Commercial use requires separate license agreement
+- Text-mined associations may include false positives
+- Association scores are relative, not absolute confidence
+- UMLS CUI vocabulary may be unfamiliar to some users
 
 ## See Also
 
-- [Schema Documentation](./schema.md)
-- [Open Targets](../open.targets/_index.md) - Complementary target platform
-- [GWAS Catalog](../../../01.genetics.genomics/1.5.expression.regulation/gwas.catalog/_index.md) - GWAS data source
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [License Terms](./license.md) - Usage rights and restrictions
+- [Open Targets](../open.targets/README.md) - Complementary target platform

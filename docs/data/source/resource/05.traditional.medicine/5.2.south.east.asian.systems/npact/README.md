@@ -1,14 +1,18 @@
 ---
 id: npact
 title: "NPACT - Naturally Occurring Plant-based Anti-cancer Compound-Activity-Target"
-type: data-source
-category: traditional-medicine
-subcategory: south-east-asian-systems
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 2
-last_updated: 2026-01-23
 status: active
-tags: [natural-products, anti-cancer, indian-plants, bioactivity, drug-discovery]
+category: traditional.medicine
+subcategory: south.east.asian.systems
+tags:
+  - natural-products
+  - anti-cancer
+  - indian-plants
+  - bioactivity
+  - drug-discovery
 ---
 
 # NPACT - Naturally Occurring Plant-based Anti-cancer Compound-Activity-Target

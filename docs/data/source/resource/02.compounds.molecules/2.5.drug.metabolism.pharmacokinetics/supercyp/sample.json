@@ -1,0 +1,63 @@
+{
+  "source": "SuperCYP",
+  "version": "2.0",
+  "description": "Sample cytochrome P450 interaction records from SuperCYP",
+  "records": [
+    {
+      "drug_name": "Warfarin",
+      "drug_class": "Anticoagulant",
+      "cas_number": "81-81-2",
+      "cyp_interactions": [
+        {
+          "cyp_enzyme": "CYP2C9",
+          "interaction_type": "Substrate",
+          "metabolite": "7-Hydroxywarfarin",
+          "km_um": 4.5,
+          "reference_pmid": 12345678
+        },
+        {
+          "cyp_enzyme": "CYP3A4",
+          "interaction_type": "Substrate",
+          "metabolite": "10-Hydroxywarfarin",
+          "reference_pmid": 12345679
+        }
+      ]
+    },
+    {
+      "drug_name": "Ketoconazole",
+      "drug_class": "Antifungal",
+      "cas_number": "65277-42-1",
+      "cyp_interactions": [
+        {
+          "cyp_enzyme": "CYP3A4",
+          "interaction_type": "Inhibitor",
+          "inhibition_type": "Competitive",
+          "ki_um": 0.015,
+          "reference_pmid": 23456789
+        }
+      ]
+    },
+    {
+      "drug_name": "Rifampicin",
+      "drug_class": "Antibiotic",
+      "cas_number": "13292-46-1",
+      "cyp_interactions": [
+        {
+          "cyp_enzyme": "CYP3A4",
+          "interaction_type": "Inducer",
+          "fold_induction": 10.0,
+          "reference_pmid": 34567890
+        },
+        {
+          "cyp_enzyme": "CYP2C9",
+          "interaction_type": "Inducer",
+          "fold_induction": 3.0
+        }
+      ]
+    }
+  ],
+  "queries": {
+    "web_search": "http://bioinformatics.charite.de/supercyp/",
+    "cyp_search": "http://bioinformatics.charite.de/supercyp/index.php?site=cyp_search"
+  }
+}

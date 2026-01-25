@@ -1,0 +1,226 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "dbsnp-schema.json",
+  "title": "dbSNP Variant Record",
+  "description": "JSON Schema for dbSNP genetic variation records from NCBI's single nucleotide polymorphism database.",
+  "type": "object",
+  "properties": {
+    "rsid": {
+      "type": "string",
+      "description": "Reference SNP cluster identifier.",
+      "pattern": "^rs[0-9]+$",
+      "examples": ["rs12345", "rs121913279", "rs334"]
+    },
+    "refsnp_id": {
+      "type": "integer",
+      "description": "Numeric portion of the rsID.",
+      "examples": [12345, 121913279, 334]
+    },
+    "variant_type": {
+      "type": "string",
+      "description": "Type of genetic variation.",
+      "enum": ["snv", "mnv", "ins", "del", "delins", "identity"]
+    },
+    "create_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date the rsID was created.",
+      "examples": ["2000-09-19"]
+    },
+    "update_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of last update.",
+      "examples": ["2024-01-15"]
+    },
+    "primary_snapshot_data": {
+      "type": "object",
+      "description": "Primary placement and allele information.",
+      "properties": {
+        "placements_with_allele": {
+          "type": "array",
+          "description": "Genomic placements with allele information.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "seq_id": {
+                "type": "string",
+                "description": "RefSeq sequence accession.",
+                "examples": ["NC_000011.10", "NC_000017.11"]
+              },
+              "is_ptlp": {
+                "type": "boolean",
+                "description": "Is primary top-level placement."
+              },
+              "placement_annot": {
+                "type": "object",
+                "properties": {
+                  "seq_type": {
+                    "type": "string",
+                    "enum": ["refseq_chromosome", "refseq_genomic", "refseq_mrna"]
+                  },
+                  "mol_type": {
+                    "type": "string",
+                    "enum": ["genomic", "mRNA", "protein"]
+                  },
+                  "seq_id_traits_by_assembly": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "assembly_name": {
+                          "type": "string",
+                          "examples": ["GRCh38.p14", "GRCh37.p13"]
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "alleles": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "allele": {
+                      "type": "object",
+                      "properties": {
+                        "spdi": {
+                          "type": "object",
+                          "description": "SPDI notation components.",
+                          "properties": {
+                            "seq_id": { "type": "string" },
+                            "position": { "type": "integer" },
+                            "deleted_sequence": { "type": "string" },
+                            "inserted_sequence": { "type": "string" }
+                          }
+                        }
+                      }
+                    },
+                    "hgvs": {
+                      "type": "string",
+                      "description": "HGVS expression.",
+                      "examples": ["NC_000011.10:g.5227002T>A"]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "allele_annotations": {
+          "type": "array",
+          "description": "Functional annotations per allele.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "frequency": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "study_name": {
+                      "type": "string",
+                      "examples": ["1000Genomes", "gnomAD", "TOPMED"]
+                    },
+                    "allele_count": { "type": "integer" },
+                    "total_count": { "type": "integer" }
+                  }
+                }
+              },
+              "clinical": {
+                "type": "array",
+                "description": "Clinical annotations from ClinVar.",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "clinical_significances": {
+                      "type": "array",
+                      "items": { "type": "string" }
+                    },
+                    "disease_names": {
+                      "type": "array",
+                      "items": { "type": "string" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "chromosome": {
+      "type": "string",
+      "description": "Chromosome location.",
+      "enum": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "X", "Y", "MT"]
+    },
+    "position": {
+      "type": "integer",
+      "description": "1-based genomic position.",
+      "examples": [5227002, 43124027]
+    },
+    "ref_allele": {
+      "type": "string",
+      "description": "Reference allele sequence.",
+      "examples": ["A", "T", "AG"]
+    },
+    "alt_alleles": {
+      "type": "array",
+      "description": "Alternative allele sequences.",
+      "items": { "type": "string" },
+      "examples": [["G", "C"], ["A"]]
+    },
+    "gene_symbol": {
+      "type": "string",
+      "description": "Associated gene symbol.",
+      "examples": ["HBB", "BRCA1", "TP53"]
+    },
+    "gene_id": {
+      "type": "integer",
+      "description": "NCBI Gene ID.",
+      "examples": [3043, 672, 7157]
+    },
+    "functional_class": {
+      "type": "string",
+      "description": "Functional classification of the variant.",
+      "enum": ["coding-synon", "missense", "nonsense", "frameshift", "splice-3", "splice-5", "utr-3", "utr-5", "intron", "near-gene-3", "near-gene-5", "ncRNA", "reference"]
+    },
+    "global_maf": {
+      "type": "number",
+      "description": "Global minor allele frequency.",
+      "minimum": 0,
+      "maximum": 1,
+      "examples": [0.01, 0.15, 0.0001]
+    },
+    "minor_allele": {
+      "type": "string",
+      "description": "Minor allele.",
+      "examples": ["A", "G", "T"]
+    },
+    "validated": {
+      "type": "boolean",
+      "description": "Whether the variant has been validated."
+    },
+    "clinical_significance": {
+      "type": "array",
+      "description": "ClinVar clinical significance(s).",
+      "items": {
+        "type": "string",
+        "enum": ["pathogenic", "likely-pathogenic", "uncertain-significance", "likely-benign", "benign", "drug-response", "other"]
+      }
+    },
+    "merged_into": {
+      "type": "string",
+      "description": "rsID this record was merged into (if deprecated).",
+      "pattern": "^rs[0-9]+$"
+    },
+    "dbsnp_build": {
+      "type": "integer",
+      "description": "dbSNP build number when variant was added.",
+      "examples": [155, 156]
+    }
+  },
+  "required": ["rsid", "variant_type"],
+  "additionalProperties": true
+}

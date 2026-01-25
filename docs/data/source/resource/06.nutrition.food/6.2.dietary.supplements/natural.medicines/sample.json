@@ -1,0 +1,115 @@
+{
+  "_metadata": {
+    "source": "Natural Medicines Comprehensive Database",
+    "version": "2026-01",
+    "generated": "2026-01-25",
+    "record_count": 2,
+    "note": "Sample data for illustration. Actual data requires subscription.",
+    "query_examples": [
+      "Search: naturalmedicines.therapeuticresearch.com/search",
+      "Interaction checker: naturalmedicines.therapeuticresearch.com/interactions",
+      "Browse: naturalmedicines.therapeuticresearch.com/databases"
+    ]
+  },
+  "records": [
+    {
+      "monograph_id": "NM-001234",
+      "name": "Turmeric",
+      "scientific_names": ["Curcuma longa", "Curcuma domestica"],
+      "common_names": ["Curcumin", "Indian Saffron", "Haridra", "Haldi"],
+      "family": "Zingiberaceae",
+      "parts_used": ["Rhizome", "Root"],
+      "overview": "Turmeric is a plant native to South Asia, widely used as a spice and traditional medicine. The primary active compounds are curcuminoids, particularly curcumin.",
+      "safety_grade": "Likely Safe",
+      "pregnancy_lactation": {
+        "pregnancy": "Possibly Unsafe in medicinal amounts",
+        "lactation": "Insufficient Reliable Information"
+      },
+      "effectiveness_ratings": [
+        {
+          "condition": "Osteoarthritis",
+          "rating": "Possibly Effective",
+          "evidence_level": "B",
+          "summary": "Clinical evidence suggests curcumin 500 mg twice daily for 2-4 months can reduce pain.",
+          "typical_dose": "500-2000 mg curcumin daily"
+        },
+        {
+          "condition": "Hyperlipidemia",
+          "rating": "Possibly Effective",
+          "evidence_level": "B",
+          "summary": "May reduce total cholesterol and LDL cholesterol.",
+          "typical_dose": "1000-2000 mg daily"
+        },
+        {
+          "condition": "Inflammatory Bowel Disease",
+          "rating": "Insufficient Evidence",
+          "evidence_level": "C",
+          "summary": "Preliminary research shows mixed results.",
+          "typical_dose": "Variable"
+        }
+      ],
+      "mechanism_of_action": "Curcumin inhibits COX-2, LOX, NF-kB, and various cytokines. Exhibits antioxidant activity through free radical scavenging.",
+      "pharmacokinetics": {
+        "absorption": "Poor oral bioavailability (1-2%)",
+        "bioavailability": "Improved with piperine or lipid formulations",
+        "metabolism": "Extensive hepatic glucuronidation",
+        "half_life": "1-2 hours"
+      },
+      "adverse_effects": [
+        {
+          "effect": "GI upset",
+          "frequency": "Common at high doses",
+          "severity": "Mild"
+        },
+        {
+          "effect": "Increased bleeding risk",
+          "frequency": "Theoretical",
+          "severity": "Potentially significant with anticoagulants"
+        }
+      ],
+      "contraindications": ["Bile duct obstruction", "Gallstones"]
+    },
+    {
+      "monograph_id": "NM-002345",
+      "name": "St. John's Wort",
+      "scientific_names": ["Hypericum perforatum"],
+      "common_names": ["Hypericum", "Klamath Weed", "Goatweed"],
+      "family": "Hypericaceae",
+      "parts_used": ["Aerial parts", "Flowers"],
+      "safety_grade": "Possibly Safe",
+      "effectiveness_ratings": [
+        {
+          "condition": "Mild-Moderate Depression",
+          "rating": "Likely Effective",
+          "evidence_level": "A",
+          "summary": "Multiple RCTs show efficacy comparable to SSRIs for mild-moderate depression.",
+          "typical_dose": "300 mg three times daily (0.3% hypericin extract)"
+        }
+      ],
+      "drug_interactions": [
+        {
+          "drug": "Warfarin",
+          "severity": "Major",
+          "mechanism": "CYP3A4 and CYP2C9 induction",
+          "management": "Avoid combination; monitor INR if unavoidable"
+        },
+        {
+          "drug": "Oral contraceptives",
+          "severity": "Major",
+          "mechanism": "CYP3A4 induction",
+          "management": "Avoid combination or use backup contraception"
+        },
+        {
+          "drug": "SSRIs",
+          "severity": "Contraindicated",
+          "mechanism": "Additive serotonergic effects",
+          "management": "Do not combine; risk of serotonin syndrome"
+        }
+      ],
+      "pregnancy_lactation": {
+        "pregnancy": "Possibly Unsafe",
+        "lactation": "Possibly Unsafe"
+      }
+    }
+  ]
+}

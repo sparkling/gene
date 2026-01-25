@@ -166,6 +166,32 @@ grep -c "<drug type=" drugbank_full.xml
 xmllint --noout drugbank_full.xml
 ```
 
+## Dataset Versions
+
+| Version | Release Date | Size | Status |
+|---------|--------------|------|--------|
+| DrugBank 6.0 | 2024-01 | ~500 MB | Current |
+| DrugBank 5.1.x | 2018-2023 | ~400 MB | Archived |
+| DrugBank 5.0 | 2018-01 | ~350 MB | Archived |
+
+### Version Notes
+
+DrugBank 6.0 major statistics:
+- 4,563 FDA-approved drugs (72% increase from 5.0)
+- 6,231 investigational drugs (38% increase)
+- 1,413,413 drug-drug interactions (300% increase)
+- 2,475 drug-food interactions (200% increase)
+- 11,891 total drugs with comprehensive annotations
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | `https://api.drugbank.com/v1` |
+| Rate Limit | Commercial subscription limits |
+| Auth Required | Yes (API key required) |
+| Documentation | https://docs.drugbank.com |
+
 ## Update Schedule
 
 | Release | Frequency |

@@ -1,0 +1,234 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "gtex-schema.json",
+  "title": "GTEx Record",
+  "description": "JSON Schema for Genotype-Tissue Expression (GTEx) project data including expression and eQTL results.",
+  "type": "object",
+  "properties": {
+    "entity_type": {
+      "type": "string",
+      "description": "Type of GTEx entity.",
+      "enum": ["sample", "gene_expression", "eqtl", "sqtl", "subject"]
+    },
+    "subject": {
+      "type": "object",
+      "description": "Donor/subject information.",
+      "properties": {
+        "SUBJID": {
+          "type": "string",
+          "description": "GTEx subject identifier.",
+          "pattern": "^GTEX-[A-Z0-9]{4,5}$",
+          "examples": ["GTEX-1117F", "GTEX-NPJ8"]
+        },
+        "SEX": {
+          "type": "integer",
+          "description": "Sex (1=Male, 2=Female).",
+          "enum": [1, 2]
+        },
+        "AGE": {
+          "type": "string",
+          "description": "Age range.",
+          "enum": ["20-29", "30-39", "40-49", "50-59", "60-69", "70-79"]
+        },
+        "DTHHRDY": {
+          "type": "integer",
+          "description": "Hardy scale death classification.",
+          "enum": [0, 1, 2, 3, 4]
+        }
+      }
+    },
+    "sample": {
+      "type": "object",
+      "description": "Sample information.",
+      "properties": {
+        "SAMPID": {
+          "type": "string",
+          "description": "GTEx sample identifier.",
+          "pattern": "^GTEX-[A-Z0-9]{4,5}-[A-Z0-9]+-[A-Z0-9]+-[A-Z0-9]+$",
+          "examples": ["GTEX-1117F-0226-SM-5GZZ7"]
+        },
+        "SMTS": {
+          "type": "string",
+          "description": "Tissue site (broad category).",
+          "examples": ["Brain", "Heart", "Adipose Tissue"]
+        },
+        "SMTSD": {
+          "type": "string",
+          "description": "Tissue site detail.",
+          "examples": ["Brain - Cortex", "Heart - Left Ventricle", "Adipose - Subcutaneous"]
+        },
+        "SMAFRZE": {
+          "type": "string",
+          "description": "Analysis freeze (version).",
+          "enum": ["RNASEQ", "WGS", "WES", "OMNI", "EXCLUDE"]
+        },
+        "SMRIN": {
+          "type": "number",
+          "description": "RNA Integrity Number.",
+          "minimum": 0,
+          "maximum": 10,
+          "examples": [8.5, 7.2, 9.1]
+        },
+        "SMNABTCH": {
+          "type": "string",
+          "description": "Nucleic acid isolation batch."
+        },
+        "SMGEBTCH": {
+          "type": "string",
+          "description": "Genotype/expression batch."
+        }
+      }
+    },
+    "gene_expression": {
+      "type": "object",
+      "description": "Gene expression data.",
+      "properties": {
+        "gene_id": {
+          "type": "string",
+          "description": "Ensembl gene ID with version.",
+          "pattern": "^ENSG[0-9]{11}\\.[0-9]+$",
+          "examples": ["ENSG00000141510.16"]
+        },
+        "gene_symbol": {
+          "type": "string",
+          "description": "HGNC gene symbol.",
+          "examples": ["TP53", "BRCA1"]
+        },
+        "tissue": {
+          "type": "string",
+          "description": "Tissue type.",
+          "examples": ["Brain_Cortex", "Whole_Blood", "Liver"]
+        },
+        "TPM": {
+          "type": "number",
+          "description": "Transcripts Per Million.",
+          "minimum": 0,
+          "examples": [125.5, 0.5, 1000.2]
+        },
+        "read_count": {
+          "type": "integer",
+          "description": "Raw read count.",
+          "minimum": 0,
+          "examples": [5000, 100, 50000]
+        },
+        "median_TPM": {
+          "type": "number",
+          "description": "Median TPM across samples in tissue.",
+          "minimum": 0
+        },
+        "n_samples": {
+          "type": "integer",
+          "description": "Number of samples in tissue.",
+          "examples": [250, 500, 100]
+        }
+      }
+    },
+    "eqtl": {
+      "type": "object",
+      "description": "Expression quantitative trait locus data.",
+      "properties": {
+        "variant_id": {
+          "type": "string",
+          "description": "Variant identifier (chr_pos_ref_alt_build).",
+          "examples": ["chr11_5227002_T_A_b38"]
+        },
+        "gene_id": {
+          "type": "string",
+          "pattern": "^ENSG[0-9]{11}\\.[0-9]+$"
+        },
+        "gene_symbol": {
+          "type": "string"
+        },
+        "tissue": {
+          "type": "string",
+          "examples": ["Whole_Blood", "Liver"]
+        },
+        "rsid": {
+          "type": "string",
+          "pattern": "^rs[0-9]+$"
+        },
+        "tss_distance": {
+          "type": "integer",
+          "description": "Distance to transcription start site.",
+          "examples": [1000, -5000, 100000]
+        },
+        "ma_samples": {
+          "type": "integer",
+          "description": "Number of samples with minor allele."
+        },
+        "ma_count": {
+          "type": "integer",
+          "description": "Minor allele count."
+        },
+        "maf": {
+          "type": "number",
+          "description": "Minor allele frequency.",
+          "minimum": 0,
+          "maximum": 0.5
+        },
+        "pval_nominal": {
+          "type": "number",
+          "description": "Nominal p-value.",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "slope": {
+          "type": "number",
+          "description": "Effect size (slope).",
+          "examples": [0.5, -0.3]
+        },
+        "slope_se": {
+          "type": "number",
+          "description": "Standard error of slope.",
+          "minimum": 0
+        },
+        "pval_nominal_threshold": {
+          "type": "number",
+          "description": "Nominal p-value threshold for significance."
+        },
+        "min_pval_nominal": {
+          "type": "number",
+          "description": "Minimum nominal p-value across variants."
+        },
+        "pval_beta": {
+          "type": "number",
+          "description": "Beta-approximated permutation p-value."
+        },
+        "is_significant": {
+          "type": "boolean",
+          "description": "Whether eQTL is significant (FDR < 0.05)."
+        },
+        "qval": {
+          "type": "number",
+          "description": "Q-value (FDR-adjusted p-value).",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "sqtl": {
+      "type": "object",
+      "description": "Splicing quantitative trait locus data.",
+      "properties": {
+        "variant_id": { "type": "string" },
+        "phenotype_id": {
+          "type": "string",
+          "description": "Splicing phenotype identifier.",
+          "examples": ["chr1:100:200:clu_1234"]
+        },
+        "gene_id": { "type": "string" },
+        "tissue": { "type": "string" },
+        "pval_nominal": { "type": "number" },
+        "slope": { "type": "number" },
+        "slope_se": { "type": "number" }
+      }
+    },
+    "gtex_version": {
+      "type": "string",
+      "description": "GTEx data version.",
+      "examples": ["v8", "v9"]
+    }
+  },
+  "required": ["entity_type"],
+  "additionalProperties": true
+}

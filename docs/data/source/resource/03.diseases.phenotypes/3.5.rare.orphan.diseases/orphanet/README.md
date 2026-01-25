@@ -1,19 +1,21 @@
 ---
 id: orphanet
 title: "Orphanet - The Portal for Rare Diseases and Orphan Drugs"
-type: data-source
-category: diseases
-subcategory: rare.orphan.diseases
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 1
-last_updated: 2026-01-23
 status: active
-tags: [rare-diseases, orphan-drugs, clinical-resources, gene-disease, ordo]
+category: diseases.phenotypes
+subcategory: rare.orphan.diseases
+tags:
+  - rare-diseases
+  - orphan-drugs
+  - clinical-resources
+  - gene-disease
+  - ordo
 ---
 
 # Orphanet - The Portal for Rare Diseases and Orphan Drugs
-
-**Category:** [Diseases & Phenotypes](../../_index.md) > [Rare & Orphan Diseases](../_index.md)
 
 ## Overview
 
@@ -69,16 +71,17 @@ Orphanet data is made available through Orphadata for research use, including th
 | Epidemiology | en_product9.xml | Prevalence data |
 | Classifications | en_product3.xml | Disease hierarchy |
 
-## License
+## Limitations
 
-| Aspect | Value |
-|--------|-------|
-| License | CC BY 4.0 |
-| Commercial Use | Yes |
-| Attribution | Required - "Orphanet" |
+- Rare diseases only (prevalence < 1 in 2000)
+- Expert center information varies by country
+- English translations may lag native language updates
+- Orphan drug data focused on European market
 
 ## See Also
 
-- [Schema Documentation](./schema.md)
-- [OMIM](../../3.2.phenotype.databases/omim/_index.md) - Mendelian inheritance database
-- [HPO](../../3.2.phenotype.databases/hpo/_index.md) - Phenotype ontology
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [License Terms](./license.md) - Usage rights and restrictions
+- [OMIM](../../3.2.phenotype.databases/omim/README.md) - Mendelian inheritance database
+- [HPO](../../3.2.phenotype.databases/hpo/README.md) - Phenotype ontology

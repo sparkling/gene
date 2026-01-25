@@ -1,0 +1,54 @@
+[
+  {
+    "uri": "http://pathwaycommons.org/pc12/Pathway/reactome_R-HSA-109581",
+    "name": "Apoptosis",
+    "dataSource": "Reactome",
+    "organism": "Homo sapiens",
+    "numParticipants": 185,
+    "numProcesses": 47,
+    "pathwayType": "TopLevelPathway",
+    "metadata": {
+      "source_id": "R-HSA-109581",
+      "pc_version": "12"
+    }
+  },
+  {
+    "interactionType": "CONTROLS-PHOSPHORYLATION-OF",
+    "source": "TP53",
+    "target": "MDM2",
+    "sourceUri": "http://identifiers.org/uniprot/P04637",
+    "targetUri": "http://identifiers.org/uniprot/Q00987",
+    "dataSource": ["Reactome", "PhosphoSitePlus"],
+    "pubmedIds": [8242752, 10783165],
+    "metadata": {
+      "format": "SIF",
+      "organism": "9606"
+    }
+  },
+  {
+    "interactionType": "IN_COMPLEX_WITH",
+    "source": "BRCA1",
+    "target": "BARD1",
+    "sourceUri": "http://identifiers.org/uniprot/P38398",
+    "targetUri": "http://identifiers.org/uniprot/Q99728",
+    "dataSource": ["IntAct", "BioGRID"],
+    "pubmedIds": [9054499, 10373512],
+    "metadata": {
+      "format": "SIF",
+      "organism": "9606"
+    }
+  },
+  {
+    "uri": "http://pathwaycommons.org/pc12/Pathway/kegg_hsa04110",
+    "name": "Cell cycle",
+    "dataSource": "KEGG",
+    "organism": "Homo sapiens",
+    "numParticipants": 124,
+    "numProcesses": 35,
+    "pathwayType": "Pathway",
+    "metadata": {
+      "source_id": "hsa04110",
+      "pc_version": "12"
+    }
+  }
+]

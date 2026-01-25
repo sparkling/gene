@@ -189,6 +189,32 @@ wc -l genes_to_phenotype.txt
 head -1 genes_to_phenotype.txt
 ```
 
+## Dataset Versions
+
+| Version | Release Date | Size | Status |
+|---------|--------------|------|--------|
+| HPO 2025-01-13 | 2025-01-13 | ~100 MB | Current |
+| HPO 2024-12-12 | 2024-12-12 | ~95 MB | Archived |
+| Monthly releases | Second week | Varies | Rolling |
+
+### Version Notes
+
+HPO current release features:
+- 18,000+ phenotypic terms
+- 260,000+ phenotype annotations (diseases-HPO links)
+- 5,400+ genes with HPO annotations
+- Multiple languages supported
+- CC0 public domain license
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | `https://hpo.jax.org/api/hpo` |
+| Rate Limit | Reasonable use |
+| Auth Required | No |
+| Documentation | https://hpo.jax.org/app/help/annotations |
+
 ## Update Schedule
 
 | Release | Frequency |

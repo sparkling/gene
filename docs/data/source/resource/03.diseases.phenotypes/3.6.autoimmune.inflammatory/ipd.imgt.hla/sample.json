@@ -1,0 +1,61 @@
+{
+  "source": "IPD-IMGT/HLA",
+  "version": "3.55.0",
+  "description": "Sample HLA allele records from IPD-IMGT/HLA database",
+  "records": [
+    {
+      "allele_name": "HLA-A*02:01:01:01",
+      "gene": "HLA-A",
+      "allele_group": "02",
+      "protein": "01",
+      "synonymous_substitution": "01",
+      "non_coding_region": "01",
+      "sequence_length": 3503,
+      "molecular_characteristics": {
+        "class": "I",
+        "locus": "A",
+        "serotype": "A2"
+      },
+      "frequency": {
+        "global": 0.28,
+        "europe": 0.26,
+        "asia": 0.18,
+        "africa": 0.12
+      },
+      "disease_associations": [
+        {"disease": "Ankylosing spondylitis", "association": "protective"},
+        {"disease": "Type 1 diabetes", "association": "neutral"}
+      ]
+    },
+    {
+      "allele_name": "HLA-B*27:05:02",
+      "gene": "HLA-B",
+      "allele_group": "27",
+      "molecular_characteristics": {
+        "class": "I",
+        "locus": "B",
+        "serotype": "B27"
+      },
+      "disease_associations": [
+        {"disease": "Ankylosing spondylitis", "association": "risk", "odds_ratio": 90}
+      ]
+    },
+    {
+      "allele_name": "HLA-DRB1*04:01:01",
+      "gene": "HLA-DRB1",
+      "molecular_characteristics": {
+        "class": "II",
+        "locus": "DRB1",
+        "serotype": "DR4"
+      },
+      "disease_associations": [
+        {"disease": "Rheumatoid arthritis", "association": "risk", "odds_ratio": 3.2}
+      ]
+    }
+  ],
+  "queries": {
+    "web_search": "https://www.ebi.ac.uk/ipd/imgt/hla/",
+    "allele_lookup": "https://www.ebi.ac.uk/cgi-bin/ipd/imgt/hla/get_allele_hgvs.cgi?A*02:01:01:01",
+    "download": "wget https://github.com/ANHIG/IMGTHLA/archive/refs/heads/Latest.zip"
+  }
+}

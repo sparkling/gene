@@ -1,0 +1,70 @@
+{
+  "source": "SynGO",
+  "version": "1.2",
+  "description": "Sample synaptic gene ontology records from SynGO",
+  "records": [
+    {
+      "gene_symbol": "SYN1",
+      "gene_name": "synapsin I",
+      "uniprot_id": "P17600",
+      "hgnc_id": 11494,
+      "syngo_annotations": [
+        {
+          "syngo_id": "SYNGO:presynapse",
+          "go_id": "GO:0098793",
+          "term": "presynapse",
+          "evidence_code": "ECO:0005589",
+          "pmid": 23197736
+        },
+        {
+          "syngo_id": "SYNGO:synaptic_vesicle",
+          "go_id": "GO:0008021",
+          "term": "synaptic vesicle",
+          "evidence_code": "ECO:0007695"
+        }
+      ],
+      "cellular_component": "presynaptic",
+      "biological_process": "synaptic vesicle clustering",
+      "disease_associations": ["Epilepsy", "Autism spectrum disorder"]
+    },
+    {
+      "gene_symbol": "SHANK3",
+      "gene_name": "SH3 and multiple ankyrin repeat domains 3",
+      "uniprot_id": "Q9BYB0",
+      "syngo_annotations": [
+        {
+          "syngo_id": "SYNGO:postsynapse",
+          "go_id": "GO:0098794",
+          "term": "postsynapse"
+        },
+        {
+          "syngo_id": "SYNGO:postsynaptic_density",
+          "go_id": "GO:0014069",
+          "term": "postsynaptic density"
+        }
+      ],
+      "cellular_component": "postsynaptic",
+      "disease_associations": ["Phelan-McDermid syndrome", "Autism spectrum disorder", "Schizophrenia"]
+    },
+    {
+      "gene_symbol": "GRIN2B",
+      "gene_name": "glutamate ionotropic receptor NMDA type subunit 2B",
+      "uniprot_id": "Q13224",
+      "syngo_annotations": [
+        {
+          "syngo_id": "SYNGO:postsynaptic_membrane",
+          "go_id": "GO:0045211",
+          "term": "postsynaptic membrane"
+        }
+      ],
+      "cellular_component": "postsynaptic",
+      "biological_process": "synaptic transmission, glutamatergic",
+      "disease_associations": ["Epileptic encephalopathy", "Intellectual disability"]
+    }
+  ],
+  "queries": {
+    "web_portal": "https://syngoportal.org/",
+    "api_gene": "https://syngoportal.org/api/genes/SYN1",
+    "download": "https://syngoportal.org/download"
+  }
+}

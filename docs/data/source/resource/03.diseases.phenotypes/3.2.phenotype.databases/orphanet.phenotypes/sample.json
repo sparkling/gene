@@ -1,0 +1,63 @@
+{
+  "source": "Orphanet Phenotypes",
+  "version": "2024",
+  "description": "Sample disease-phenotype associations from Orphanet",
+  "records": [
+    {
+      "orpha_code": "ORPHA:558",
+      "disease_name": "Marfan syndrome",
+      "hpo_associations": [
+        {
+          "hpo_id": "HP:0001166",
+          "hpo_term": "Arachnodactyly",
+          "frequency": "Very frequent",
+          "frequency_id": "HP:0040281",
+          "diagnostic_criteria": "Diagnostic criterion"
+        },
+        {
+          "hpo_id": "HP:0000501",
+          "hpo_term": "Glaucoma",
+          "frequency": "Frequent",
+          "frequency_id": "HP:0040282"
+        },
+        {
+          "hpo_id": "HP:0001382",
+          "hpo_term": "Joint hypermobility",
+          "frequency": "Very frequent",
+          "diagnostic_criteria": "Pathognomonic sign"
+        },
+        {
+          "hpo_id": "HP:0001634",
+          "hpo_term": "Mitral valve prolapse",
+          "frequency": "Very frequent"
+        }
+      ]
+    },
+    {
+      "orpha_code": "ORPHA:586",
+      "disease_name": "Cystic fibrosis",
+      "hpo_associations": [
+        {
+          "hpo_id": "HP:0002110",
+          "hpo_term": "Bronchiectasis",
+          "frequency": "Very frequent"
+        },
+        {
+          "hpo_id": "HP:0001738",
+          "hpo_term": "Exocrine pancreatic insufficiency",
+          "frequency": "Very frequent"
+        },
+        {
+          "hpo_id": "HP:0012236",
+          "hpo_term": "Elevated sweat chloride",
+          "frequency": "Very frequent",
+          "diagnostic_criteria": "Diagnostic criterion"
+        }
+      ]
+    }
+  ],
+  "queries": {
+    "download_hpo": "wget https://www.orphadata.com/data/xml/en_product4_HPO.xml",
+    "download_full": "wget https://www.orphadata.com/data/xml/en_product4.xml"
+  }
+}

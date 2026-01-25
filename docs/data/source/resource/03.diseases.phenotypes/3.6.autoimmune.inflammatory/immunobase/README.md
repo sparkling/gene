@@ -1,19 +1,21 @@
 ---
 id: immunobase
 title: "ImmunoBase - Autoimmune Disease Genetics Resource"
-type: data-source
-category: diseases
-subcategory: autoimmune.inflammatory
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 2
-last_updated: 2026-01-23
 status: active
-tags: [autoimmune, gwas, genetic-associations, immune-diseases, snps]
+category: diseases.phenotypes
+subcategory: autoimmune.inflammatory
+tags:
+  - autoimmune
+  - gwas
+  - genetic-associations
+  - immune-diseases
+  - snps
 ---
 
 # ImmunoBase - Autoimmune Disease Genetics Resource
-
-**Category:** [Diseases & Phenotypes](../../_index.md) > [Autoimmune & Inflammatory](../_index.md)
 
 ## Overview
 
@@ -80,16 +82,16 @@ ImmunoBase enables researchers to explore associated regions, candidate genes, a
 | Gene Annotations | Candidate genes |
 | Cross-disease | Shared associations |
 
-## License
+## Limitations
 
-| Aspect | Value |
-|--------|-------|
-| License | Open Access |
-| Commercial Use | Yes |
-| Attribution | Recommended |
+- Limited to 12 autoimmune diseases; other immune conditions not covered
+- Data reflects primarily European ancestry populations
+- Fine-mapping credible sets not available for all regions
+- Updates may lag latest GWAS publications
 
 ## See Also
 
-- [Schema Documentation](./schema.md)
-- [GWAS Catalog](../../../01.genetics.genomics/1.5.expression.regulation/gwas.catalog/_index.md) - Broader GWAS data
-- [IPD-IMGT/HLA](../ipd.imgt.hla/_index.md) - HLA immunogenetics
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [License Terms](./license.md) - Usage rights and restrictions
+- [IPD-IMGT/HLA](../ipd.imgt.hla/README.md) - HLA immunogenetics

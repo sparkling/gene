@@ -1,0 +1,117 @@
+[
+  {
+    "pmid": 35922517,
+    "title": "Single-cell transcriptomics reveals heterogeneity in tumor microenvironment",
+    "abstract": "Understanding cellular heterogeneity in tumors is crucial for developing targeted therapies. Using single-cell RNA sequencing, we characterized 50,000 cells from primary tumors...",
+    "authors": [
+      {
+        "last_name": "Smith",
+        "fore_name": "John",
+        "initials": "JA",
+        "affiliation": "Department of Oncology, Harvard Medical School",
+        "orcid": "0000-0001-2345-6789"
+      },
+      {
+        "last_name": "Chen",
+        "fore_name": "Wei",
+        "initials": "W",
+        "affiliation": "Broad Institute of MIT and Harvard"
+      }
+    ],
+    "journal": {
+      "title": "Nature",
+      "iso_abbreviation": "Nature",
+      "issn": "0028-0836",
+      "volume": "608",
+      "issue": "7923",
+      "pub_date": {
+        "year": 2022,
+        "month": "Aug",
+        "day": 18
+      }
+    },
+    "pagination": "517-524",
+    "doi": "10.1038/s41586-022-05087-2",
+    "pmc_id": "PMC9876543",
+    "publication_types": ["Journal Article", "Research Support, N.I.H., Extramural"],
+    "mesh_terms": [
+      {
+        "descriptor_name": "Single-Cell Analysis",
+        "descriptor_ui": "D059010",
+        "major_topic": true,
+        "qualifiers": [
+          {
+            "qualifier_name": "methods",
+            "qualifier_ui": "Q000379"
+          }
+        ]
+      },
+      {
+        "descriptor_name": "Tumor Microenvironment",
+        "descriptor_ui": "D059016",
+        "major_topic": true,
+        "qualifiers": []
+      }
+    ],
+    "keywords": ["single-cell RNA-seq", "tumor heterogeneity", "cancer immunology"],
+    "grants": [
+      {
+        "grant_id": "R01 CA123456",
+        "agency": "NCI NIH HHS",
+        "country": "United States"
+      }
+    ],
+    "metadata": {
+      "date_created": "2022-08-04",
+      "date_revised": "2023-01-15",
+      "pub_status": "ppublish"
+    }
+  },
+  {
+    "pmid": 34876543,
+    "title": "CRISPR-Cas9 genome editing: therapeutic applications and delivery challenges",
+    "abstract": "CRISPR-Cas9 technology has revolutionized genome editing with potential therapeutic applications. This review summarizes current clinical trials and discusses delivery strategies...",
+    "authors": [
+      {
+        "last_name": "Garcia",
+        "fore_name": "Maria",
+        "initials": "ML",
+        "affiliation": "MIT Department of Biological Engineering"
+      }
+    ],
+    "journal": {
+      "title": "Nature Reviews Drug Discovery",
+      "iso_abbreviation": "Nat Rev Drug Discov",
+      "issn": "1474-1776",
+      "volume": "21",
+      "issue": "3",
+      "pub_date": {
+        "year": 2022,
+        "month": "Mar"
+      }
+    },
+    "pagination": "173-194",
+    "doi": "10.1038/s41573-021-00374-9",
+    "publication_types": ["Review", "Journal Article"],
+    "mesh_terms": [
+      {
+        "descriptor_name": "CRISPR-Cas Systems",
+        "descriptor_ui": "D064113",
+        "major_topic": true,
+        "qualifiers": []
+      },
+      {
+        "descriptor_name": "Gene Editing",
+        "descriptor_ui": "D000072669",
+        "major_topic": true,
+        "qualifiers": []
+      }
+    ],
+    "keywords": ["CRISPR", "gene therapy", "genome editing", "clinical trials"],
+    "metadata": {
+      "date_created": "2021-12-10",
+      "date_revised": "2022-06-20",
+      "pub_status": "ppublish"
+    }
+  }
+]

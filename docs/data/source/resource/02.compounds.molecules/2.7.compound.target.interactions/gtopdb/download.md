@@ -217,6 +217,32 @@ psql -d gtopdb -c "SELECT COUNT(*) FROM ligands;"
 psql -d gtopdb -c "SELECT COUNT(*) FROM interactions;"
 ```
 
+## Dataset Versions
+
+| Version | Release Date | Size | Status |
+|---------|--------------|------|--------|
+| 2024.3 | 2024-12 | ~300 MB | Current |
+| 2024.2 | 2024-09 | ~290 MB | Archived |
+| 2024.1 | 2024-03 | ~280 MB | Archived |
+
+### Version Notes
+
+GtoPdb 2024.3 (Guide to Pharmacology) contains:
+- 3,000+ human drug targets
+- 11,000+ ligands
+- 20,000+ quantitative interactions
+- Expert-curated pharmacology data
+- IUPHAR/BPS nomenclature standards
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | `https://www.guidetopharmacology.org/services` |
+| Rate Limit | Reasonable use |
+| Auth Required | No |
+| Documentation | https://www.guidetopharmacology.org/webServices.jsp |
+
 ## Update Schedule
 
 | Release | Frequency |

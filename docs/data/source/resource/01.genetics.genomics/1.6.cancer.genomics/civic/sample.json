@@ -1,0 +1,122 @@
+[
+  {
+    "evidence_id": 3017,
+    "gene": {
+      "id": 5,
+      "name": "BRAF",
+      "entrez_id": 673
+    },
+    "variant": {
+      "id": 12,
+      "name": "V600E",
+      "hgvs": "ENSP00000288602.7:p.Val600Glu",
+      "chromosome": "7",
+      "start": 140753336,
+      "stop": 140753336,
+      "reference_bases": "A",
+      "variant_bases": "T",
+      "variant_types": ["missense_variant"]
+    },
+    "disease": {
+      "id": 15,
+      "name": "Melanoma",
+      "doid": "1909",
+      "display_name": "Melanoma"
+    },
+    "drugs": [
+      {"id": 22, "name": "Vemurafenib", "ncit_id": "C64768"},
+      {"id": 23, "name": "Dabrafenib", "ncit_id": "C82386"}
+    ],
+    "evidence_type": "Predictive",
+    "evidence_direction": "Supports",
+    "evidence_level": "A",
+    "clinical_significance": "Sensitivity/Response",
+    "rating": 5,
+    "status": "accepted",
+    "source": {
+      "id": 123,
+      "citation": "Chapman PB et al., 2011, N Engl J Med",
+      "pubmed_id": "21639808"
+    },
+    "description": "BRAF V600E mutations predict response to vemurafenib in metastatic melanoma with significant improvement in overall survival."
+  },
+  {
+    "evidence_id": 4521,
+    "gene": {
+      "id": 19,
+      "name": "EGFR",
+      "entrez_id": 1956
+    },
+    "variant": {
+      "id": 33,
+      "name": "L858R",
+      "hgvs": "ENSP00000275493.3:p.Leu858Arg",
+      "chromosome": "7",
+      "start": 55259515,
+      "stop": 55259515,
+      "reference_bases": "T",
+      "variant_bases": "G",
+      "variant_types": ["missense_variant"]
+    },
+    "disease": {
+      "id": 30,
+      "name": "Lung Non-small Cell Carcinoma",
+      "doid": "3908",
+      "display_name": "Non-Small Cell Lung Cancer"
+    },
+    "drugs": [
+      {"id": 15, "name": "Erlotinib", "ncit_id": "C65530"},
+      {"id": 16, "name": "Gefitinib", "ncit_id": "C1855"}
+    ],
+    "evidence_type": "Predictive",
+    "evidence_direction": "Supports",
+    "evidence_level": "A",
+    "clinical_significance": "Sensitivity/Response",
+    "rating": 5,
+    "status": "accepted",
+    "source": {
+      "id": 456,
+      "citation": "Mok TS et al., 2009, N Engl J Med",
+      "pubmed_id": "19692680"
+    },
+    "description": "EGFR L858R mutations predict sensitivity to EGFR tyrosine kinase inhibitors in non-small cell lung cancer."
+  },
+  {
+    "evidence_id": 6789,
+    "gene": {
+      "id": 45,
+      "name": "TP53",
+      "entrez_id": 7157
+    },
+    "variant": {
+      "id": 78,
+      "name": "R175H",
+      "hgvs": "ENSP00000269305.5:p.Arg175His",
+      "chromosome": "17",
+      "start": 7673803,
+      "stop": 7673803,
+      "reference_bases": "G",
+      "variant_bases": "A",
+      "variant_types": ["missense_variant"]
+    },
+    "disease": {
+      "id": 50,
+      "name": "Cancer",
+      "doid": "162",
+      "display_name": "Cancer"
+    },
+    "drugs": [],
+    "evidence_type": "Prognostic",
+    "evidence_direction": "Supports",
+    "evidence_level": "B",
+    "clinical_significance": "Poor Outcome",
+    "rating": 4,
+    "status": "accepted",
+    "source": {
+      "id": 789,
+      "citation": "Olivier M et al., 2010, Hum Mutat",
+      "pubmed_id": "19847789"
+    },
+    "description": "TP53 R175H is a hotspot mutation associated with loss of tumor suppressor function and poor prognosis across multiple cancer types."
+  }
+]

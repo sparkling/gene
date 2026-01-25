@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "metahit-schema.json",
+  "title": "MetaHIT Gene Catalog Entry",
+  "description": "JSON Schema for MetaHIT Integrated Gene Catalog (IGC) entries.",
+  "type": "object",
+  "properties": {
+    "gene_id": { "type": "string", "pattern": "^MH[0-9]{4}_GL[0-9]{7}$", "description": "IGC gene identifier" },
+    "sequence": { "type": "string", "description": "Nucleotide sequence" },
+    "length": { "type": "integer", "minimum": 1, "description": "Gene length in bp" },
+    "taxonomy": {
+      "type": "object",
+      "properties": {
+        "kingdom": { "type": "string" },
+        "phylum": { "type": "string" },
+        "class": { "type": "string" },
+        "order": { "type": "string" },
+        "family": { "type": "string" },
+        "genus": { "type": "string" },
+        "species": { "type": "string" }
+      }
+    },
+    "functional_annotation": {
+      "type": "object",
+      "properties": {
+        "kegg_ko": { "type": "string", "pattern": "^K[0-9]{5}$", "description": "KEGG Ortholog ID" },
+        "eggnog": { "type": "string", "description": "eggNOG annotation" },
+        "cog": { "type": "string", "description": "COG category" },
+        "go_terms": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "sample_origin": { "type": "string", "description": "Source sample ID" }
+  },
+  "required": ["gene_id", "length"],
+  "additionalProperties": true
+}

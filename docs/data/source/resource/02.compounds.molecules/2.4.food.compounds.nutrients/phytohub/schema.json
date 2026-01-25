@@ -1,0 +1,200 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "phytohub-schema.json",
+  "title": "PhytoHub Phytochemical Record",
+  "description": "JSON Schema for PhytoHub dietary phytochemical metabolome database. Contains 1,800+ compounds including 600+ parent phytochemicals, 400+ human metabolites, 600+ microbial metabolites, and 1,200+ MS/MS reference spectra.",
+  "type": "object",
+  "properties": {
+    "phytohub_id": {
+      "type": "string",
+      "description": "PhytoHub identifier",
+      "pattern": "^PHUB[0-9]{6}$",
+      "examples": ["PHUB000001"]
+    },
+    "name": {
+      "type": "string",
+      "description": "Compound name"
+    },
+    "compound_type": {
+      "type": "string",
+      "description": "Compound category",
+      "enum": ["parent", "phase1", "phase2", "microbial"]
+    },
+    "parent_id": {
+      "type": "string",
+      "description": "Parent compound ID (for metabolites)",
+      "pattern": "^PHUB[0-9]{6}$"
+    },
+    "smiles": {
+      "type": "string",
+      "description": "SMILES structure"
+    },
+    "inchi": {
+      "type": "string",
+      "description": "InChI identifier"
+    },
+    "inchi_key": {
+      "type": "string",
+      "description": "InChI Key",
+      "pattern": "^[A-Z]{14}-[A-Z]{10}-[A-Z]$"
+    },
+    "molecular_formula": {
+      "type": "string",
+      "description": "Chemical formula"
+    },
+    "molecular_weight": {
+      "type": "number",
+      "description": "Exact mass"
+    },
+    "chemical_class": {
+      "type": "string",
+      "description": "Chemical class",
+      "enum": ["Polyphenol", "Terpene", "Alkaloid", "Glucosinolate", "Carotenoid", "Other"]
+    },
+    "metabolites": {
+      "type": "array",
+      "description": "Biotransformation products",
+      "items": {
+        "$ref": "#/$defs/metabolite"
+      }
+    },
+    "food_sources": {
+      "type": "array",
+      "description": "Dietary sources",
+      "items": {
+        "$ref": "#/$defs/foodSource"
+      }
+    },
+    "ms_spectra": {
+      "type": "array",
+      "description": "Reference MS/MS spectra",
+      "items": {
+        "$ref": "#/$defs/msSpectrum"
+      }
+    },
+    "external_ids": {
+      "type": "object",
+      "description": "Cross-references",
+      "properties": {
+        "pubchem_cid": {
+          "type": "integer"
+        },
+        "hmdb_id": {
+          "type": "string",
+          "pattern": "^HMDB[0-9]+$"
+        },
+        "chebi_id": {
+          "type": "string",
+          "pattern": "^CHEBI:[0-9]+$"
+        }
+      }
+    }
+  },
+  "required": ["phytohub_id", "name", "compound_type", "inchi_key"],
+  "$defs": {
+    "metabolite": {
+      "type": "object",
+      "description": "Metabolite information",
+      "properties": {
+        "metabolite_id": {
+          "type": "string",
+          "description": "PhytoHub ID"
+        },
+        "metabolite_name": {
+          "type": "string",
+          "description": "Metabolite name"
+        },
+        "transformation": {
+          "type": "string",
+          "description": "Chemical transformation",
+          "enum": ["Glucuronidation", "Sulfation", "Methylation", "Oxidation", "Reduction", "Ring fission", "Dehydroxylation", "Demethylation"]
+        },
+        "enzyme": {
+          "type": "string",
+          "description": "Metabolizing enzyme"
+        },
+        "location": {
+          "type": "string",
+          "description": "Metabolic location",
+          "enum": ["liver", "gut", "kidney", "plasma"]
+        },
+        "biofluid": {
+          "type": "string",
+          "description": "Detection matrix"
+        }
+      },
+      "required": ["metabolite_name", "transformation"]
+    },
+    "foodSource": {
+      "type": "object",
+      "description": "Food source",
+      "properties": {
+        "food_name": {
+          "type": "string",
+          "description": "Food name"
+        },
+        "food_group": {
+          "type": "string",
+          "description": "Food category",
+          "enum": ["Fruits", "Vegetables", "Cereals", "Legumes", "Nuts", "Beverages", "Spices", "Other"]
+        },
+        "typical_content": {
+          "type": "number",
+          "description": "Content amount"
+        },
+        "content_unit": {
+          "type": "string",
+          "description": "Unit",
+          "enum": ["mg/100g", "mg/100ml", "ug/100g"]
+        }
+      },
+      "required": ["food_name"]
+    },
+    "msSpectrum": {
+      "type": "object",
+      "description": "MS/MS spectrum",
+      "properties": {
+        "spectrum_id": {
+          "type": "integer",
+          "description": "Spectrum identifier"
+        },
+        "precursor_mz": {
+          "type": "number",
+          "description": "Precursor ion m/z"
+        },
+        "adduct": {
+          "type": "string",
+          "description": "Ion adduct",
+          "enum": ["[M+H]+", "[M-H]-", "[M+Na]+", "[M+K]+", "[M-H2O+H]+"]
+        },
+        "collision_energy": {
+          "type": "number",
+          "description": "Collision energy in eV"
+        },
+        "ionization_mode": {
+          "type": "string",
+          "description": "Ionization polarity",
+          "enum": ["positive", "negative"]
+        },
+        "instrument_type": {
+          "type": "string",
+          "description": "Mass spectrometer type"
+        },
+        "peaks": {
+          "type": "array",
+          "description": "m/z, intensity pairs",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 2,
+            "maxItems": 2
+          }
+        }
+      },
+      "required": ["precursor_mz", "adduct", "ionization_mode", "peaks"]
+    }
+  },
+  "additionalProperties": false
+}

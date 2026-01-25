@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "hmp-body-site-schema.json",
+  "title": "HMP Body Site Sample Record",
+  "description": "JSON Schema for Human Microbiome Project multi-body-site sample records.",
+  "type": "object",
+  "properties": {
+    "sample_id": { "type": "string", "description": "Unique sample identifier" },
+    "rand_subject_id": { "type": "string", "maxLength": 32, "description": "HIPAA-compliant subject ID" },
+    "fma_body_site": { "type": "string", "pattern": "^UBERON:[0-9]+$", "description": "FMA/UBERON ontology term" },
+    "body_site": { "type": "string", "description": "Specific anatomical location" },
+    "supersite": { "type": "string", "enum": ["Airways", "Gastrointestinal", "Oral", "Skin", "Urogenital"] },
+    "collection_date": { "type": "string", "format": "date" },
+    "visit_number": { "type": "integer", "minimum": 1 },
+    "study": { "type": "string", "enum": ["HMP1", "IBDMDB", "T2D", "MOMS-PI"] },
+    "mixs": {
+      "type": "object",
+      "properties": {
+        "biome": { "type": "string", "description": "ENVO biome term" },
+        "body_product": { "type": "string", "description": "UBERON body product" },
+        "env_package": { "type": "string", "description": "MIxS environmental package" },
+        "geo_loc_name": { "type": "string" },
+        "lat_lon": { "type": "string" },
+        "material": { "type": "string" }
+      }
+    },
+    "sequence_data": {
+      "type": "object",
+      "properties": {
+        "seq_type": { "type": "string", "enum": ["16S", "WGS"] },
+        "format": { "type": "string", "enum": ["fastq", "fasta"] },
+        "variable_region": { "type": "string" },
+        "seq_model": { "type": "string" }
+      }
+    },
+    "subtype": { "type": "string" },
+    "tags": { "type": "array", "items": { "type": "string" } }
+  },
+  "required": ["sample_id", "body_site", "supersite"],
+  "additionalProperties": true
+}

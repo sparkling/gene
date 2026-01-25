@@ -1,0 +1,149 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gene.taxonomy/schemas/hmdb",
+  "title": "HMDB Metabolite Record",
+  "description": "JSON Schema for Human Metabolome Database metabolite records",
+  "type": "object",
+  "properties": {
+    "accession": {
+      "type": "string",
+      "description": "HMDB accession number",
+      "pattern": "^HMDB[0-9]{7}$",
+      "examples": ["HMDB0000001", "HMDB0000122"]
+    },
+    "version": {
+      "type": "integer",
+      "description": "Record version number"
+    },
+    "name": {
+      "type": "string",
+      "description": "Primary metabolite name",
+      "examples": ["1-Methylhistidine", "Glucose"]
+    },
+    "description": {
+      "type": ["string", "null"],
+      "description": "Detailed description of the metabolite"
+    },
+    "chemical_formula": {
+      "type": ["string", "null"],
+      "description": "Molecular formula",
+      "examples": ["C7H11N3O2", "C6H12O6"]
+    },
+    "average_molecular_weight": {
+      "type": ["number", "null"],
+      "description": "Average molecular weight in Daltons"
+    },
+    "monoisotopic_molecular_weight": {
+      "type": ["number", "null"],
+      "description": "Monoisotopic molecular weight"
+    },
+    "iupac_name": {
+      "type": ["string", "null"],
+      "description": "IUPAC systematic name"
+    },
+    "cas_registry_number": {
+      "type": ["string", "null"],
+      "description": "CAS registry number"
+    },
+    "smiles": {
+      "type": ["string", "null"],
+      "description": "SMILES notation"
+    },
+    "inchi": {
+      "type": ["string", "null"],
+      "description": "InChI identifier"
+    },
+    "inchikey": {
+      "type": ["string", "null"],
+      "description": "InChI key"
+    },
+    "state": {
+      "type": ["string", "null"],
+      "enum": ["Solid", "Liquid", "Gas", null]
+    },
+    "taxonomy": {
+      "type": ["object", "null"],
+      "description": "Chemical taxonomy classification",
+      "properties": {
+        "kingdom": {"type": "string"},
+        "superclass": {"type": "string"},
+        "class": {"type": "string"},
+        "subclass": {"type": ["string", "null"]},
+        "direct_parent": {"type": "string"}
+      }
+    },
+    "biological_properties": {
+      "type": ["object", "null"],
+      "description": "Biological context information",
+      "properties": {
+        "cellular_locations": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "biofluid_locations": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "tissue_locations": {
+          "type": "array",
+          "items": {"type": "string"}
+        }
+      }
+    },
+    "concentrations": {
+      "type": "array",
+      "description": "Concentration measurements in biofluids",
+      "items": {
+        "type": "object",
+        "properties": {
+          "biofluid": {"type": "string"},
+          "concentration_value": {"type": ["number", "null"]},
+          "concentration_units": {"type": "string"},
+          "age": {"type": ["string", "null"]},
+          "sex": {"type": ["string", "null"]},
+          "condition": {"type": "string"},
+          "subject_count": {"type": ["integer", "null"]},
+          "pubmed_id": {"type": ["integer", "null"]}
+        }
+      }
+    },
+    "diseases": {
+      "type": "array",
+      "description": "Disease associations",
+      "items": {
+        "type": "object",
+        "properties": {
+          "disease_name": {"type": "string"},
+          "omim_id": {"type": ["string", "null"]},
+          "concentration_change": {"type": "string"},
+          "pubmed_id": {"type": ["integer", "null"]}
+        }
+      }
+    },
+    "pathways": {
+      "type": "array",
+      "description": "Metabolic pathways",
+      "items": {
+        "type": "object",
+        "properties": {
+          "pathway_name": {"type": "string"},
+          "kegg_id": {"type": ["string", "null"]},
+          "smpdb_id": {"type": ["string", "null"]}
+        }
+      }
+    },
+    "external_links": {
+      "type": "array",
+      "description": "Cross-references to external databases",
+      "items": {
+        "type": "object",
+        "properties": {
+          "resource": {"type": "string"},
+          "id": {"type": "string"}
+        }
+      }
+    }
+  },
+  "required": ["accession", "name"],
+  "additionalProperties": true
+}

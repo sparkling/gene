@@ -1,14 +1,18 @@
 ---
 id: symmap
 title: "SymMap 2.0"
-type: data-source
-category: traditional-medicine
-subcategory: traditional-chinese-medicine
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 1
-last_updated: 2026-01-23
 status: active
-tags: [tcm, traditional-chinese-medicine, symptom-mapping, phenotype, network-medicine]
+category: traditional.medicine
+subcategory: traditional.chinese.medicine
+tags:
+  - tcm
+  - traditional-chinese-medicine
+  - symptom-mapping
+  - phenotype
+  - network-medicine
 ---
 
 # SymMap 2.0

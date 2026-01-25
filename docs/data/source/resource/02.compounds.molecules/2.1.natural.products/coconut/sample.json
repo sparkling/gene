@@ -1,0 +1,66 @@
+{
+  "source": "COCONUT",
+  "version": "2024",
+  "description": "Sample natural product records from COCONUT database",
+  "records": [
+    {
+      "coconut_id": "CNP0228686",
+      "name": "Artemisinin",
+      "molecular_formula": "C15H22O5",
+      "molecular_weight": 282.33,
+      "canonical_smiles": "CC1CCC2C(C(=O)OC3OC4(C)CCC1C23OO4)C",
+      "inchi_key": "BLUAFEHZUWYNDE-NNWCWBAJSA-N",
+      "qed_drug_likeliness": 0.78,
+      "lipinski_rule_of_5": 0,
+      "sources": ["ZINC", "ChEMBL", "PubChem"],
+      "organisms": [
+        {
+          "name": "Artemisia annua",
+          "taxonomy_id": 35608,
+          "kingdom": "Plantae"
+        }
+      ]
+    },
+    {
+      "coconut_id": "CNP0331175",
+      "name": "Curcumin",
+      "molecular_formula": "C21H20O6",
+      "molecular_weight": 368.38,
+      "canonical_smiles": "COC1=CC(=CC(=C1O)OC)C=CC(=O)CC(=O)C=CC2=CC(=C(C=C2)O)OC",
+      "inchi_key": "VFLDPWHFBUODDF-UHFFFAOYSA-N",
+      "qed_drug_likeliness": 0.59,
+      "lipinski_rule_of_5": 0,
+      "sources": ["LOTUS", "NPASS"],
+      "organisms": [
+        {
+          "name": "Curcuma longa",
+          "taxonomy_id": 136217,
+          "kingdom": "Plantae"
+        }
+      ]
+    },
+    {
+      "coconut_id": "CNP0084215",
+      "name": "Resveratrol",
+      "molecular_formula": "C14H12O3",
+      "molecular_weight": 228.24,
+      "canonical_smiles": "OC1=CC=C(C=CC2=CC(O)=CC(O)=C2)C=C1",
+      "inchi_key": "LUKBXSAWLPMMSZ-OWOJBTEDSA-N",
+      "qed_drug_likeliness": 0.81,
+      "lipinski_rule_of_5": 0,
+      "sources": ["PubChem", "ChEBI"],
+      "organisms": [
+        {
+          "name": "Vitis vinifera",
+          "taxonomy_id": 29760,
+          "kingdom": "Plantae"
+        }
+      ]
+    }
+  ],
+  "queries": {
+    "rest": "curl 'https://coconut.naturalproducts.net/api/compound/CNP0228686' | jq",
+    "search": "curl 'https://coconut.naturalproducts.net/api/search?query=artemisinin' | jq",
+    "download": "wget https://coconut.naturalproducts.net/download/coconut_db.json.gz"
+  }
+}

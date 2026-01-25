@@ -67,6 +67,10 @@ Natural Medicines is widely used by healthcare professionals, researchers, and p
 
 ## See Also
 
-- [Schema Documentation](./schema.md)
-- [DSLD](../dsld/_index.md) - NIH supplement label database
-- [ConsumerLab](../consumerlab/_index.md) - Product testing
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [Sample Data](./sample.json) - Example records
+- [License Terms](./license.md) - Usage rights and restrictions
+- [Schema Mapping](./mapping.xslt) - Transform to unified schema
+- [DSLD](../dsld/README.md) - NIH supplement label database
+- [ConsumerLab](../consumerlab/README.md) - Product testing

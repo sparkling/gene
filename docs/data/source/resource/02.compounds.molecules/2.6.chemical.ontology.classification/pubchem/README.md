@@ -1,19 +1,21 @@
 ---
 id: pubchem
 title: "PubChem - Chemical Information Repository"
-type: data-source
-category: compounds
-subcategory: chemical-ontology
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 1
-last_updated: 2026-01-23
 status: active
-tags: [chemical-database, compound-repository, bioassay, structure, ncbi]
+category: compounds.molecules
+subcategory: chemical.ontology.classification
+tags:
+  - chemical-database
+  - compound-repository
+  - bioassay
+  - structure
+  - ncbi
 ---
 
 # PubChem - Chemical Information Repository
-
-**Category:** [Compounds & Molecules](../../_index.md) > [Chemical Ontology & Classification](../_index.md)
 
 ## Overview
 
@@ -73,13 +75,12 @@ With over 100 million compounds and billions of bioactivity data points, PubChem
 | Safety | Hazards, GHS classification |
 | Literature | Patents, publications |
 
-## License
+## Limitations
 
-| Aspect | Value |
-|--------|-------|
-| License | Public Domain (US Government) |
-| Commercial Use | Yes |
-| Attribution Required | No (but appreciated) |
+- Depositor-submitted data quality varies
+- Bioassay results not standardized across depositors
+- Large-scale downloads require FTP; API has rate limits
+- Some compound records may have incomplete data
 
 ## Related Resources
 
@@ -89,7 +90,9 @@ With over 100 million compounds and billions of bioactivity data points, PubChem
 
 ## See Also
 
-- [Schema Documentation](./schema.md)
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [License Terms](./license.md) - Usage rights and restrictions
 
 ## References
 

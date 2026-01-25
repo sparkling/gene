@@ -1,0 +1,54 @@
+{
+  "source": "USDA FoodData Central",
+  "version": "2024",
+  "description": "Sample food and nutrient records from USDA FoodData Central",
+  "records": [
+    {
+      "fdc_id": 170567,
+      "description": "Apples, raw, with skin",
+      "data_type": "SR Legacy",
+      "publication_date": "2019-04-01",
+      "food_category": "Fruits and Fruit Juices",
+      "nutrients": [
+        {"nutrient": "Energy", "amount": 52, "unit": "kcal"},
+        {"nutrient": "Protein", "amount": 0.26, "unit": "g"},
+        {"nutrient": "Total lipid (fat)", "amount": 0.17, "unit": "g"},
+        {"nutrient": "Carbohydrate, by difference", "amount": 13.81, "unit": "g"},
+        {"nutrient": "Fiber, total dietary", "amount": 2.4, "unit": "g"},
+        {"nutrient": "Vitamin C, total ascorbic acid", "amount": 4.6, "unit": "mg"},
+        {"nutrient": "Potassium, K", "amount": 107, "unit": "mg"}
+      ]
+    },
+    {
+      "fdc_id": 171705,
+      "description": "Salmon, Atlantic, wild, raw",
+      "data_type": "SR Legacy",
+      "food_category": "Finfish and Shellfish Products",
+      "nutrients": [
+        {"nutrient": "Energy", "amount": 142, "unit": "kcal"},
+        {"nutrient": "Protein", "amount": 19.84, "unit": "g"},
+        {"nutrient": "Total lipid (fat)", "amount": 6.34, "unit": "g"},
+        {"nutrient": "Fatty acids, total omega-3", "amount": 2.018, "unit": "g"},
+        {"nutrient": "Vitamin D (D2 + D3)", "amount": 11.0, "unit": "ug"}
+      ]
+    },
+    {
+      "fdc_id": 169738,
+      "description": "Spinach, raw",
+      "data_type": "SR Legacy",
+      "food_category": "Vegetables and Vegetable Products",
+      "nutrients": [
+        {"nutrient": "Energy", "amount": 23, "unit": "kcal"},
+        {"nutrient": "Protein", "amount": 2.86, "unit": "g"},
+        {"nutrient": "Iron, Fe", "amount": 2.71, "unit": "mg"},
+        {"nutrient": "Vitamin A, RAE", "amount": 469, "unit": "ug"},
+        {"nutrient": "Folate, total", "amount": 194, "unit": "ug"}
+      ]
+    }
+  ],
+  "queries": {
+    "rest": "curl 'https://api.nal.usda.gov/fdc/v1/food/170567?api_key=DEMO_KEY' | jq",
+    "search": "curl 'https://api.nal.usda.gov/fdc/v1/foods/search?query=apple&api_key=DEMO_KEY' | jq",
+    "download": "wget https://fdc.nal.usda.gov/fdc-datasets/FoodData_Central_csv_2024-04-18.zip"
+  }
+}

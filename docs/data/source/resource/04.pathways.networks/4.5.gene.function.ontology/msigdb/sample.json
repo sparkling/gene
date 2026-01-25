@@ -1,0 +1,60 @@
+[
+  {
+    "gene_set_name": "HALLMARK_APOPTOSIS",
+    "systematic_name": "M5930",
+    "collection": "H",
+    "description": "Genes mediating programmed cell death (apoptosis) by activation of caspases.",
+    "gene_count": 161,
+    "genes": ["CASP3", "CASP8", "CASP9", "BAX", "BCL2", "BID", "APAF1", "CYCS", "TP53"],
+    "url": "https://www.gsea-msigdb.org/gsea/msigdb/cards/HALLMARK_APOPTOSIS",
+    "metadata": {
+      "version": "2024.1",
+      "organism": "Homo sapiens",
+      "id_type": "gene_symbol"
+    }
+  },
+  {
+    "gene_set_name": "HALLMARK_P53_PATHWAY",
+    "systematic_name": "M5933",
+    "collection": "H",
+    "description": "Genes involved in p53 pathways and targets.",
+    "gene_count": 200,
+    "genes": ["TP53", "MDM2", "MDM4", "CDKN1A", "GADD45A", "BAX", "BBC3", "PMAIP1"],
+    "url": "https://www.gsea-msigdb.org/gsea/msigdb/cards/HALLMARK_P53_PATHWAY",
+    "metadata": {
+      "version": "2024.1",
+      "organism": "Homo sapiens",
+      "id_type": "gene_symbol"
+    }
+  },
+  {
+    "gene_set_name": "KEGG_CELL_CYCLE",
+    "systematic_name": "M688",
+    "collection": "C2:CP:KEGG",
+    "description": "Cell cycle - Homo sapiens (human)",
+    "gene_count": 124,
+    "genes": ["CDK1", "CDK2", "CCNA2", "CCNB1", "RB1", "E2F1", "TP53", "CDKN1A"],
+    "url": "https://www.gsea-msigdb.org/gsea/msigdb/cards/KEGG_CELL_CYCLE",
+    "metadata": {
+      "version": "2024.1",
+      "organism": "Homo sapiens",
+      "id_type": "gene_symbol",
+      "source": "KEGG"
+    }
+  },
+  {
+    "gene_set_name": "REACTOME_APOPTOSIS",
+    "systematic_name": "M1058",
+    "collection": "C2:CP:REACTOME",
+    "description": "Apoptosis",
+    "gene_count": 185,
+    "genes": ["APAF1", "CYCS", "CASP9", "CASP3", "CASP7", "XIAP", "DIABLO"],
+    "url": "https://www.gsea-msigdb.org/gsea/msigdb/cards/REACTOME_APOPTOSIS",
+    "metadata": {
+      "version": "2024.1",
+      "organism": "Homo sapiens",
+      "id_type": "gene_symbol",
+      "source": "Reactome"
+    }
+  }
+]

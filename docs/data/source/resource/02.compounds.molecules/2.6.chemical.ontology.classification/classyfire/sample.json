@@ -1,0 +1,79 @@
+{
+  "source": "ClassyFire",
+  "version": "2.0",
+  "description": "Sample chemical taxonomy classification records from ClassyFire",
+  "records": [
+    {
+      "inchikey": "BSYNRYMUTXBXSQ-UHFFFAOYSA-N",
+      "smiles": "CC(=O)Oc1ccccc1C(=O)O",
+      "name": "Aspirin",
+      "classification": {
+        "kingdom": {
+          "name": "Organic compounds",
+          "description": "Compounds that contain at least one carbon atom"
+        },
+        "superclass": {
+          "name": "Benzenoids",
+          "description": "Aromatic compounds containing one or more benzene rings"
+        },
+        "class": {
+          "name": "Benzene and substituted derivatives",
+          "description": "Aromatic compounds containing one monocyclic ring system"
+        },
+        "subclass": {
+          "name": "Benzoic acids and derivatives",
+          "description": "Compounds containing a benzoic acid or derivative"
+        },
+        "direct_parent": {
+          "name": "Salicylic acids",
+          "description": "Compounds containing 2-hydroxybenzoic acid"
+        }
+      },
+      "molecular_framework": "Aromatic homomonocyclic compounds"
+    },
+    {
+      "inchikey": "REFJWTPEDVJJIY-UHFFFAOYSA-N",
+      "name": "Quercetin",
+      "classification": {
+        "kingdom": {
+          "name": "Organic compounds"
+        },
+        "superclass": {
+          "name": "Phenylpropanoids and polyketides"
+        },
+        "class": {
+          "name": "Flavonoids"
+        },
+        "subclass": {
+          "name": "Flavones"
+        },
+        "direct_parent": {
+          "name": "Flavonols"
+        }
+      }
+    },
+    {
+      "inchikey": "VFLDPWHFBUODDF-UHFFFAOYSA-N",
+      "name": "Curcumin",
+      "classification": {
+        "kingdom": {
+          "name": "Organic compounds"
+        },
+        "superclass": {
+          "name": "Phenylpropanoids and polyketides"
+        },
+        "class": {
+          "name": "Diarylheptanoids"
+        },
+        "direct_parent": {
+          "name": "Linear diarylheptanoids"
+        }
+      }
+    }
+  ],
+  "queries": {
+    "rest": "curl 'http://classyfire.wishartlab.com/entities/BSYNRYMUTXBXSQ-UHFFFAOYSA-N.json' | jq",
+    "batch_submit": "curl -X POST 'http://classyfire.wishartlab.com/queries.json' -H 'Content-Type: application/json' -d '{\"label\": \"test\", \"query_input\": \"CC(=O)Oc1ccccc1C(=O)O\"}'",
+    "web_interface": "http://classyfire.wishartlab.com/"
+  }
+}

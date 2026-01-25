@@ -98,6 +98,40 @@ After download, verify against published statistics:
 | Update Frequency | Periodic |
 | Notification | Check website |
 
+---
+
+## Dataset Versions
+
+### Current Release: ETCM
+
+| Property | Value |
+|----------|-------|
+| Version | 1.0 |
+| Release Date | 2018-01-01 |
+| Total Size | ~100 MB |
+| Focus | TCM Properties |
+
+### Version Contents
+
+| Component | Records | Description |
+|-----------|---------|-------------|
+| Herbs | 403 | Herb metadata with TCM properties |
+| Formulas | 3,677 | Formula compositions |
+| Compounds | 7,274 | Chemical compounds |
+| Targets | 3,000+ | Predicted target proteins |
+| Diseases | 500+ | Disease associations |
+
+### Data Characteristics
+
+| Property | Description |
+|----------|-------------|
+| TCM Nature | Cold/Cool/Neutral/Warm/Hot |
+| TCM Flavor | Sweet/Bitter/Sour/Salty/Pungent |
+| Meridian | Organ system associations |
+| Curation | Expert-reviewed |
+
+---
+
 ## Notes
 
 - No public REST API available

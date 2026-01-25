@@ -69,6 +69,10 @@ Open Food Facts is particularly valuable for food product analysis, nutritional 
 
 ## See Also
 
-- [Schema Documentation](./schema.md)
-- [FooDB](../foodb/_index.md) - Food compound database
-- [USDA FoodData](../usda.fooddata/) - US nutrient database
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [Sample Data](./sample.json) - Example records
+- [License Terms](./license.md) - Usage rights and restrictions
+- [Schema Mapping](./mapping.xslt) - Transform to unified schema
+- [FooDB](../foodb/README.md) - Food compound database
+- [USDA FoodData](../usda.fooddata/README.md) - US nutrient database

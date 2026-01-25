@@ -1,0 +1,98 @@
+[
+  {
+    "monograph_id": "EMA/HMPC/150848/2006",
+    "herbal_substance": "Valeriana officinalis L.",
+    "plant_part": "radix",
+    "common_name": "Valerian root",
+    "pharmacopoeia_name": "Valerianae radix",
+    "status": "well-established use",
+    "therapeutic_area": ["central nervous system"],
+    "indications": [
+      {
+        "indication": "Relief of mild nervous tension and sleep disorders",
+        "status": "well-established use",
+        "evidence_level": "Clinical studies"
+      }
+    ],
+    "posology": {
+      "preparation": "Dry extract (ethanol 70% v/v)",
+      "single_dose": "400-600 mg",
+      "daily_dose": "400-600 mg",
+      "duration": "2-4 weeks",
+      "age_restriction": "Adults and adolescents over 12 years"
+    },
+    "contraindications": ["Hypersensitivity to the active substance"],
+    "special_warnings": ["May impair ability to drive"],
+    "interactions": [
+      {
+        "interacting_substance": "CNS depressants",
+        "effect": "Additive sedative effect",
+        "severity": "moderate"
+      }
+    ],
+    "pregnancy_lactation": {
+      "pregnancy": "Not recommended due to lack of data",
+      "lactation": "Not recommended due to lack of data"
+    },
+    "adverse_reactions": [
+      {
+        "reaction": "Gastrointestinal disturbances",
+        "frequency": "uncommon"
+      }
+    ],
+    "pharmacology": {
+      "mechanism": "GABAergic activity",
+      "active_constituents": ["valerenic acid", "isovaleric acid"]
+    },
+    "publication_date": "2016-01-26"
+  },
+  {
+    "monograph_id": "EMA/HMPC/321233/2012",
+    "herbal_substance": "Ginkgo biloba L.",
+    "plant_part": "folium",
+    "common_name": "Ginkgo leaf",
+    "status": "well-established use",
+    "therapeutic_area": ["cognitive function", "peripheral circulation"],
+    "indications": [
+      {
+        "indication": "Improvement of age-associated cognitive impairment",
+        "status": "well-established use",
+        "evidence_level": "Clinical trials"
+      }
+    ],
+    "posology": {
+      "preparation": "Dry extract (acetone-water)",
+      "single_dose": "120-240 mg daily",
+      "duration": "At least 8 weeks"
+    },
+    "contraindications": ["Hypersensitivity", "Pregnancy"],
+    "interactions": [
+      {
+        "interacting_substance": "Anticoagulants",
+        "effect": "Increased bleeding risk",
+        "severity": "serious"
+      }
+    ],
+    "quality_standards": {
+      "marker_compounds": ["ginkgolides A, B, C", "bilobalide", "flavonoid glycosides"],
+      "assay_requirements": "22-27% flavonoid glycosides, 5-7% terpene lactones"
+    }
+  },
+  {
+    "monograph_id": "EMA/HMPC/680615/2013",
+    "herbal_substance": "Hypericum perforatum L.",
+    "plant_part": "herba",
+    "common_name": "St. John's wort",
+    "status": "well-established use",
+    "therapeutic_area": ["mental health"],
+    "indications": [
+      {
+        "indication": "Treatment of mild to moderate depressive episodes",
+        "status": "well-established use",
+        "evidence_level": "Clinical trials"
+      }
+    ],
+    "contraindications": ["Known photosensitivity", "Concurrent use with many medications"],
+    "special_warnings": ["Significant drug interactions via CYP450"]
+  }
+]

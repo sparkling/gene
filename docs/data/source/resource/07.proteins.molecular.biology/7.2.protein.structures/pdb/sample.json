@@ -1,0 +1,112 @@
+{
+  "_metadata": {
+    "source": "RCSB PDB",
+    "version": "2026-01",
+    "generated": "2026-01-25",
+    "record_count": 2,
+    "query_examples": [
+      "REST: /rest/v1/core/entry/1TUP",
+      "GraphQL: /graphql (POST)",
+      "Search: /rcsbsearch/v2/query"
+    ]
+  },
+  "records": [
+    {
+      "entry_id": "1TUP",
+      "title": "CRYSTAL STRUCTURE OF THE TETRAMERIZATION DOMAIN OF P53",
+      "experimental_method": "X-RAY DIFFRACTION",
+      "resolution": 1.7,
+      "deposition_date": "1995-07-06",
+      "release_date": "1995-11-15",
+      "entities": [
+        {
+          "entity_id": 1,
+          "type": "polymer",
+          "description": "Cellular tumor antigen p53",
+          "polymer_type": "polypeptide(L)",
+          "sequence": "CSALNSSYIN",
+          "source_organism": "Homo sapiens",
+          "tax_id": 9606
+        }
+      ],
+      "assemblies": [
+        {
+          "assembly_id": "1",
+          "oligomeric_state": "tetramer",
+          "chain_ids": ["A", "B", "C", "D"]
+        }
+      ],
+      "refinement": {
+        "r_work": 0.194,
+        "r_free": 0.256,
+        "resolution_high": 1.7,
+        "resolution_low": 20.0
+      },
+      "ligands": [],
+      "citations": [
+        {
+          "title": "Crystal structure of the tetramerization domain of the p53 tumor suppressor at 1.7 angstroms",
+          "journal": "Nature",
+          "year": 1995,
+          "pubmed_id": 7477363,
+          "doi": "10.1038/377378a0"
+        }
+      ],
+      "validation": {
+        "clashscore": 3.2,
+        "ramachandran_outliers": 0.0,
+        "rsrz_outliers": 1.2
+      }
+    },
+    {
+      "entry_id": "6LU7",
+      "title": "THE CRYSTAL STRUCTURE OF COVID-19 MAIN PROTEASE IN COMPLEX WITH AN INHIBITOR N3",
+      "experimental_method": "X-RAY DIFFRACTION",
+      "resolution": 2.16,
+      "deposition_date": "2020-01-26",
+      "release_date": "2020-02-05",
+      "entities": [
+        {
+          "entity_id": 1,
+          "type": "polymer",
+          "description": "3C-like proteinase",
+          "polymer_type": "polypeptide(L)",
+          "source_organism": "SARS-CoV-2",
+          "tax_id": 2697049
+        },
+        {
+          "entity_id": 2,
+          "type": "non-polymer",
+          "description": "Inhibitor N3"
+        }
+      ],
+      "assemblies": [
+        {
+          "assembly_id": "1",
+          "oligomeric_state": "homodimer",
+          "chain_ids": ["A", "B"]
+        }
+      ],
+      "refinement": {
+        "r_work": 0.202,
+        "r_free": 0.245,
+        "resolution_high": 2.16
+      },
+      "ligands": [
+        {
+          "comp_id": "N3",
+          "name": "Inhibitor N3",
+          "formula": "C35H48N6O8"
+        }
+      ],
+      "citations": [
+        {
+          "title": "Structure of main protease from SARS-CoV-2",
+          "journal": "Nature",
+          "year": 2020,
+          "pubmed_id": 32198291
+        }
+      ]
+    }
+  ]
+}

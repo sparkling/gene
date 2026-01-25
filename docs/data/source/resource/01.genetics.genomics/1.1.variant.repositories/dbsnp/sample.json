@@ -1,0 +1,126 @@
+[
+  {
+    "refsnp_id": "334",
+    "create_date": "2000-09-19T17:02:00Z",
+    "last_update_date": "2025-01-15T10:30:00Z",
+    "variant_type": "snv",
+    "anchor": "NC_000011.10",
+    "mane_select_ids": ["NM_000518.5"],
+    "primary_snapshot_data": {
+      "placements_with_allele": [
+        {
+          "seq_id": "NC_000011.10",
+          "is_ptlp": true,
+          "alleles": [
+            {
+              "spdi": {
+                "seq_id": "NC_000011.10",
+                "position": 5227001,
+                "deleted_sequence": "T",
+                "inserted_sequence": "A"
+              },
+              "hgvs": "NC_000011.10:g.5227002T>A"
+            }
+          ]
+        }
+      ],
+      "allele_annotations": {
+        "frequency": [
+          {
+            "study_name": "1000Genomes",
+            "study_version": "Phase3",
+            "allele_count": 54,
+            "total_count": 5008
+          }
+        ],
+        "clinical": [
+          {
+            "accession_version": "RCV000018137.6",
+            "disease_names": ["Sickle cell anemia"],
+            "clinical_significances": ["Pathogenic"],
+            "review_status": "criteria provided, single submitter"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "refsnp_id": "7329174",
+    "create_date": "2004-03-15T08:00:00Z",
+    "last_update_date": "2024-12-01T12:00:00Z",
+    "variant_type": "snv",
+    "anchor": "NC_000013.11",
+    "mane_select_ids": ["NM_003820.4"],
+    "primary_snapshot_data": {
+      "placements_with_allele": [
+        {
+          "seq_id": "NC_000013.11",
+          "is_ptlp": true,
+          "alleles": [
+            {
+              "spdi": {
+                "seq_id": "NC_000013.11",
+                "position": 40983973,
+                "deleted_sequence": "G",
+                "inserted_sequence": "A"
+              },
+              "hgvs": "NC_000013.11:g.40983974G>A"
+            }
+          ]
+        }
+      ],
+      "allele_annotations": {
+        "frequency": [
+          {
+            "study_name": "gnomAD",
+            "allele_count": 1234,
+            "total_count": 152086
+          }
+        ]
+      }
+    }
+  },
+  {
+    "refsnp_id": "121913279",
+    "create_date": "2008-06-01T10:00:00Z",
+    "last_update_date": "2025-01-10T09:00:00Z",
+    "variant_type": "snv",
+    "anchor": "NC_000007.14",
+    "mane_select_ids": ["NM_004333.6"],
+    "primary_snapshot_data": {
+      "placements_with_allele": [
+        {
+          "seq_id": "NC_000007.14",
+          "is_ptlp": true,
+          "alleles": [
+            {
+              "spdi": {
+                "seq_id": "NC_000007.14",
+                "position": 140753335,
+                "deleted_sequence": "A",
+                "inserted_sequence": "T"
+              },
+              "hgvs": "NC_000007.14:g.140753336A>T"
+            }
+          ]
+        }
+      ],
+      "allele_annotations": {
+        "clinical": [
+          {
+            "accession_version": "RCV000013961.5",
+            "disease_names": ["Melanoma", "Lung cancer"],
+            "clinical_significances": ["Pathogenic"],
+            "review_status": "reviewed by expert panel"
+          }
+        ],
+        "sequence_ontology": [
+          {
+            "accession": "SO:0001583",
+            "name": "missense_variant"
+          }
+        ]
+      }
+    }
+  }
+]

@@ -216,6 +216,60 @@ head -20 hsa05200.kgml
 cut -f1 gene_pathway_map.txt | sort -u | wc -l
 ```
 
+---
+
+## Dataset Versions
+
+### Current Release: KEGG Release 109.0
+
+| Property | Value |
+|----------|-------|
+| Version | 109.0 |
+| Release Date | 2024-01-01 |
+| Total Size | ~500 MB (API accessible) |
+| Pathways (Human) | ~350 |
+
+### Version Contents
+
+| Component | Records | Description |
+|-----------|---------|-------------|
+| Human Pathways | ~350 | Metabolic and signaling pathways |
+| Compounds | ~19,000 | Chemical compounds |
+| Reactions | ~12,000 | Enzymatic reactions |
+| KO Entries | ~25,000 | KEGG Orthology |
+
+### Previous Versions
+
+| Version | Release | Status |
+|---------|---------|--------|
+| 108.0 | 2023-10-01 | Archived |
+| 107.0 | 2023-07-01 | Archived |
+
+---
+
+## API Access
+
+### Configuration
+
+| Property | Value |
+|----------|-------|
+| Base URL | `https://rest.kegg.jp` |
+| Authentication | None required |
+| Rate Limit | 1 request/second recommended |
+| Response Format | Plain text, KGML (XML) |
+
+### API Endpoints
+
+| Operation | Endpoint | Example |
+|-----------|----------|---------|
+| List | `/list/{database}` | `/list/pathway/hsa` |
+| Get | `/get/{entry}` | `/get/hsa05200` |
+| Find | `/find/{database}/{query}` | `/find/pathway/cancer` |
+| Link | `/link/{db1}/{db2}` | `/link/pathway/hsa` |
+| Conv | `/conv/{db1}/{db2}` | `/conv/ncbi-geneid/hsa` |
+
+---
+
 ## Update Schedule
 
 | Data Type | Frequency |

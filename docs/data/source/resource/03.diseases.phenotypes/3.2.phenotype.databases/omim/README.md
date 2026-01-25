@@ -1,19 +1,21 @@
 ---
 id: omim
 title: "Online Mendelian Inheritance in Man (OMIM)"
-type: data-source
-category: diseases
-subcategory: phenotype.databases
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 1
-last_updated: 2026-01-23
 status: active
-tags: [mendelian, genetics, rare-diseases, gene-disease, inheritance]
+category: diseases.phenotypes
+subcategory: phenotype.databases
+tags:
+  - mendelian
+  - genetics
+  - rare-diseases
+  - gene-disease
+  - inheritance
 ---
 
 # Online Mendelian Inheritance in Man (OMIM)
-
-**Category:** [Diseases & Phenotypes](../../_index.md) > [Phenotype Databases](../_index.md)
 
 ## Overview
 
@@ -68,17 +70,17 @@ OMIM uses a structured MIM number system where prefixes indicate entry type: ast
 | Text | mimTitles.txt | MIM titles |
 | JSON | API responses | Programmatic access |
 
-## License
+## Limitations
 
-| Aspect | Value |
-|--------|-------|
-| License | Custom OMIM License |
-| Commercial Use | Requires license |
-| Academic Use | Free with registration |
-| Attribution | Required |
+- Commercial use requires paid license agreement
+- API access requires registration and approval
+- Focuses on Mendelian; complex disease coverage limited
+- Full-text entries not available via bulk download
 
 ## See Also
 
-- [Schema Documentation](./schema.md)
-- [HPO](../hpo/_index.md) - Phenotype annotations linked to OMIM
-- [Orphanet](../../3.5.rare.orphan.diseases/orphanet/_index.md) - Rare disease database
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [License Terms](./license.md) - Usage rights and restrictions
+- [HPO](../hpo/README.md) - Phenotype annotations linked to OMIM
+- [Orphanet](../../3.5.rare.orphan.diseases/orphanet/README.md) - Rare disease database

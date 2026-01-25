@@ -1,19 +1,21 @@
 ---
 id: decipher
 title: "DECIPHER - Database of Chromosomal Imbalance and Phenotype in Humans using Ensembl Resources"
-type: data-source
-category: diseases
-subcategory: rare.orphan.diseases
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 2
-last_updated: 2026-01-23
 status: active
-tags: [rare-diseases, cnv, developmental-disorders, clinical-genetics, genomic-variants]
+category: diseases.phenotypes
+subcategory: rare.orphan.diseases
+tags:
+  - rare-diseases
+  - cnv
+  - developmental-disorders
+  - clinical-genetics
+  - genomic-variants
 ---
 
 # DECIPHER
-
-**Category:** [Diseases & Phenotypes](../../_index.md) > [Rare & Orphan Diseases](../_index.md)
 
 ## Overview
 
@@ -78,17 +80,17 @@ DECIPHER is particularly valuable for interpreting novel CNVs in developmental d
 | LOEUF | LoF observed/expected upper bound |
 | Pathogenicity | Variant classification |
 
-## License
+## Limitations
 
-| Aspect | Value |
-|--------|-------|
-| License | DECIPHER Data Sharing Agreement |
-| Public Data | Aggregate statistics, gene-level |
-| Controlled Data | Patient-level (requires agreement) |
-| Attribution | Required |
+- Patient-level data requires data sharing agreement
+- CNV interpretation focused on developmental disorders
+- Geographic coverage varies by contributing center
+- Phenotype depth depends on submitting clinician
 
 ## See Also
 
-- [Schema Documentation](./schema.md)
-- [Orphanet](../orphanet/_index.md) - Rare disease portal
-- [HPO](../../3.2.phenotype.databases/hpo/_index.md) - Phenotype terminology
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [License Terms](./license.md) - Usage rights and restrictions
+- [Orphanet](../orphanet/README.md) - Rare disease portal
+- [HPO](../../3.2.phenotype.databases/hpo/README.md) - Phenotype terminology

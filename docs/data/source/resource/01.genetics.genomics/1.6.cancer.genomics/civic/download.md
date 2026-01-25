@@ -113,6 +113,62 @@ cut -f10 nightly-ClinicalEvidenceSummaries.tsv | sort | uniq -c
 cut -f11 nightly-ClinicalEvidenceSummaries.tsv | sort | uniq -c
 ```
 
+## Dataset Versions
+
+### Current Release: Nightly (2026-01-25)
+
+| Property | Value |
+|----------|-------|
+| Version | Nightly build |
+| Release Date | Daily |
+| Total Size | ~35 MB |
+| Evidence Items | 8,000+ |
+| Variants | 3,500+ |
+| Genes | 500+ |
+
+### Version Contents
+
+| Component | Size | Records | Description |
+|-----------|------|---------|-------------|
+| nightly-ClinicalEvidenceSummaries.tsv | ~10 MB | 8,000+ | All evidence items |
+| nightly-VariantSummaries.tsv | ~2 MB | 3,500+ | Variant information |
+| nightly-GeneSummaries.tsv | ~500 KB | 500+ | Gene information |
+| nightly-AssertionSummaries.tsv | ~200 KB | 200+ | Expert assertions |
+| nightly-civic_all.tsv | ~20 MB | varies | Complete data dump |
+
+### Evidence Type Distribution
+
+| Type | Count | Description |
+|------|-------|-------------|
+| Predictive | 4,000+ | Drug response |
+| Diagnostic | 1,000+ | Disease diagnosis |
+| Prognostic | 1,500+ | Outcome prediction |
+| Predisposing | 500+ | Cancer susceptibility |
+| Oncogenic | 800+ | Functional evidence |
+
+### Evidence Levels
+
+| Level | Count | Description |
+|-------|-------|-------------|
+| A | 500+ | Validated association |
+| B | 2,000+ | Clinical evidence |
+| C | 1,500+ | Case study |
+| D | 2,000+ | Preclinical data |
+| E | 2,000+ | Inferential association |
+
+---
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | https://civicdb.org/api/graphql |
+| Rate Limit | 10 req/sec |
+| Auth Required | No |
+| Response Format | GraphQL (JSON) |
+
+---
+
 ## Update Schedule
 
 | Release | Frequency |

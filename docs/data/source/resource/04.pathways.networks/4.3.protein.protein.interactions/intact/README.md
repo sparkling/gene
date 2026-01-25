@@ -1,14 +1,19 @@
 ---
 id: intact
 title: "IntAct Molecular Interaction Database"
-type: data-source
-category: pathways
-subcategory: protein-protein-interactions
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 1
-last_updated: 2026-01-23
 status: active
-tags: [ppi, interactions, imex, psi-mi, embl-ebi, open-access]
+category: pathways.networks
+subcategory: protein.protein.interactions
+tags:
+  - ppi
+  - interactions
+  - imex
+  - psi-mi
+  - embl-ebi
+  - open-access
 ---
 
 # IntAct Molecular Interaction Database
@@ -142,6 +147,13 @@ curl "https://www.ebi.ac.uk/Tools/webservices/psicquic/intact/query/pubid:153555
 | Commercial Use | Yes |
 | Attribution | Required |
 | Software License | Apache 2.0 |
+
+## Limitations
+
+- Literature curation may lag behind recent publications
+- PSI-MI format requires specialized parsing
+- MI-scores depend on available annotation depth
+- Coverage biased toward well-studied proteins
 
 ## IMEx Consortium Partners
 

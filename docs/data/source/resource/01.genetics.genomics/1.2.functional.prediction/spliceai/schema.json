@@ -1,0 +1,149 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "spliceai-schema.json",
+  "title": "SpliceAI Prediction Record",
+  "description": "JSON Schema for SpliceAI deep learning splice site alteration predictions.",
+  "type": "object",
+  "properties": {
+    "CHROM": {
+      "type": "string",
+      "description": "Chromosome identifier.",
+      "enum": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "X", "Y"]
+    },
+    "POS": {
+      "type": "integer",
+      "description": "1-based genomic position.",
+      "examples": [69094, 11072534]
+    },
+    "REF": {
+      "type": "string",
+      "description": "Reference allele sequence.",
+      "pattern": "^[ACGT]+$",
+      "examples": ["A", "G", "CT"]
+    },
+    "ALT": {
+      "type": "string",
+      "description": "Alternate allele sequence.",
+      "pattern": "^[ACGT]+$",
+      "examples": ["G", "A", "C"]
+    },
+    "SYMBOL": {
+      "type": "string",
+      "description": "Gene symbol.",
+      "examples": ["OR4F5", "SAMD11", "BRCA1"]
+    },
+    "STRAND": {
+      "type": "string",
+      "description": "Gene strand orientation.",
+      "enum": ["+", "-"]
+    },
+    "TYPE": {
+      "type": "string",
+      "description": "Variant type.",
+      "enum": ["E", "D", "I"],
+      "examples": ["E"]
+    },
+    "DS_AG": {
+      "type": "number",
+      "description": "Delta score for acceptor gain (0-1).",
+      "minimum": 0,
+      "maximum": 1,
+      "examples": [0.0, 0.92, 0.15]
+    },
+    "DS_AL": {
+      "type": "number",
+      "description": "Delta score for acceptor loss (0-1).",
+      "minimum": 0,
+      "maximum": 1,
+      "examples": [0.0, 0.87, 0.23]
+    },
+    "DS_DG": {
+      "type": "number",
+      "description": "Delta score for donor gain (0-1).",
+      "minimum": 0,
+      "maximum": 1,
+      "examples": [0.0, 0.95, 0.08]
+    },
+    "DS_DL": {
+      "type": "number",
+      "description": "Delta score for donor loss (0-1).",
+      "minimum": 0,
+      "maximum": 1,
+      "examples": [0.0, 0.78, 0.31]
+    },
+    "DP_AG": {
+      "type": "integer",
+      "description": "Delta position for acceptor gain (distance from variant).",
+      "minimum": -50,
+      "maximum": 50,
+      "examples": [-2, 0, 15]
+    },
+    "DP_AL": {
+      "type": "integer",
+      "description": "Delta position for acceptor loss (distance from variant).",
+      "minimum": -50,
+      "maximum": 50,
+      "examples": [-1, 0, 8]
+    },
+    "DP_DG": {
+      "type": "integer",
+      "description": "Delta position for donor gain (distance from variant).",
+      "minimum": -50,
+      "maximum": 50,
+      "examples": [0, 5, -10]
+    },
+    "DP_DL": {
+      "type": "integer",
+      "description": "Delta position for donor loss (distance from variant).",
+      "minimum": -50,
+      "maximum": 50,
+      "examples": [0, 2, -5]
+    },
+    "MAX_DS": {
+      "type": "number",
+      "description": "Maximum delta score across all splice effects.",
+      "minimum": 0,
+      "maximum": 1,
+      "examples": [0.95, 0.12, 0.78]
+    },
+    "SpliceAI_pred": {
+      "type": "string",
+      "description": "Full SpliceAI VCF annotation string (ALLELE|SYMBOL|DS_AG|DS_AL|DS_DG|DS_DL|DP_AG|DP_AL|DP_DG|DP_DL).",
+      "examples": ["T|GENE1|0.00|0.00|0.91|0.08|-28|-2|-1|35"]
+    },
+    "gene_id": {
+      "type": "string",
+      "description": "Ensembl gene identifier.",
+      "pattern": "^ENSG[0-9]{11}$",
+      "examples": ["ENSG00000186092"]
+    },
+    "transcript_id": {
+      "type": "string",
+      "description": "Ensembl transcript identifier.",
+      "pattern": "^ENST[0-9]{11}$",
+      "examples": ["ENST00000335137"]
+    },
+    "exon_number": {
+      "type": "integer",
+      "description": "Exon number if variant is in an exon.",
+      "examples": [1, 5, 23]
+    },
+    "intron_number": {
+      "type": "integer",
+      "description": "Intron number if variant is in an intron.",
+      "examples": [1, 4, 22]
+    },
+    "effect_prediction": {
+      "type": "string",
+      "description": "Predicted splice effect category.",
+      "enum": ["splice_acceptor_gain", "splice_acceptor_loss", "splice_donor_gain", "splice_donor_loss", "no_effect"]
+    },
+    "confidence": {
+      "type": "string",
+      "description": "Confidence level based on MAX_DS threshold.",
+      "enum": ["high", "moderate", "low"]
+    }
+  },
+  "required": ["CHROM", "POS", "REF", "ALT", "DS_AG", "DS_AL", "DS_DG", "DS_DL"],
+  "additionalProperties": true
+}

@@ -1,0 +1,158 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chebi-schema.json",
+  "title": "ChEBI Chemical Entity Record",
+  "description": "JSON Schema for ChEBI (Chemical Entities of Biological Interest) records. ChEBI is the reference ontology for small molecules with 175,000+ entities, biological roles, and structural data.",
+  "type": "object",
+  "properties": {
+    "chebiId": {
+      "type": "string",
+      "description": "Primary ChEBI identifier",
+      "pattern": "^CHEBI:[0-9]+$",
+      "examples": ["CHEBI:17234", "CHEBI:27732"]
+    },
+    "chebiAsciiName": {
+      "type": "string",
+      "description": "Primary name in ASCII format",
+      "minLength": 1
+    },
+    "definition": {
+      "type": "string",
+      "description": "Textual definition of the entity"
+    },
+    "status": {
+      "type": "string",
+      "description": "Curation status",
+      "enum": ["CHECKED", "UNCHECKED", "SUBMITTED"]
+    },
+    "star": {
+      "type": "integer",
+      "description": "Curation level (1=automated, 2=partial, 3=fully curated)",
+      "minimum": 1,
+      "maximum": 3
+    },
+    "formulae": {
+      "type": "array",
+      "description": "Molecular formulae from different sources",
+      "items": {
+        "type": "object",
+        "properties": {
+          "source": { "type": "string" },
+          "data": { "type": "string" }
+        },
+        "required": ["data"]
+      }
+    },
+    "mass": {
+      "type": "number",
+      "description": "Average molecular mass in Daltons"
+    },
+    "monoisotopicMass": {
+      "type": "number",
+      "description": "Monoisotopic mass in Daltons"
+    },
+    "charge": {
+      "type": "integer",
+      "description": "Formal charge of the molecular entity"
+    },
+    "inchi": {
+      "type": "string",
+      "description": "IUPAC International Chemical Identifier",
+      "pattern": "^InChI=.*$"
+    },
+    "inchiKey": {
+      "type": "string",
+      "description": "Hashed InChI for fast lookup (27 characters)",
+      "pattern": "^[A-Z]{14}-[A-Z]{10}-[A-Z]$"
+    },
+    "smiles": {
+      "type": "string",
+      "description": "SMILES notation for chemical structure"
+    },
+    "synonyms": {
+      "type": "array",
+      "description": "Alternative names from various sources",
+      "items": {
+        "type": "object",
+        "properties": {
+          "source": { "type": "string" },
+          "type": { "type": "string" },
+          "data": { "type": "string" }
+        },
+        "required": ["data"]
+      }
+    },
+    "databaseLinks": {
+      "type": "array",
+      "description": "Cross-references to external databases",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Database type (CAS, DrugBank, KEGG, PubChem, etc.)"
+          },
+          "data": {
+            "type": "string",
+            "description": "External database identifier"
+          }
+        },
+        "required": ["type", "data"]
+      }
+    },
+    "ontologyParents": {
+      "type": "array",
+      "description": "Parent terms in ontology (is_a relationships)",
+      "items": {
+        "$ref": "#/$defs/ontologyRelation"
+      }
+    },
+    "ontologyChildren": {
+      "type": "array",
+      "description": "Child terms in ontology",
+      "items": {
+        "$ref": "#/$defs/ontologyRelation"
+      }
+    },
+    "roles": {
+      "type": "array",
+      "description": "Biological and chemical roles (has_role relationships)",
+      "items": {
+        "$ref": "#/$defs/ontologyRelation"
+      }
+    },
+    "compoundOrigins": {
+      "type": "array",
+      "description": "Species where compound is found",
+      "items": {
+        "type": "object",
+        "properties": {
+          "speciesText": { "type": "string" },
+          "speciesAccession": { "type": "string" },
+          "sourceType": { "type": "string" }
+        }
+      }
+    }
+  },
+  "required": ["chebiId", "chebiAsciiName"],
+  "$defs": {
+    "ontologyRelation": {
+      "type": "object",
+      "properties": {
+        "chebiId": {
+          "type": "string",
+          "pattern": "^CHEBI:[0-9]+$"
+        },
+        "chebiName": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "description": "Relationship type (is_a, has_role, has_part, etc.)"
+        }
+      },
+      "required": ["chebiId"]
+    }
+  },
+  "additionalProperties": false
+}

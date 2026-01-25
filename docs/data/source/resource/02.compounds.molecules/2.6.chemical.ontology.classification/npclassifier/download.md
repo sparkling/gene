@@ -452,6 +452,31 @@ for smiles, expected_pathway, name in test_cases:
     print(f"{name}: Expected '{expected_pathway}', Got '{actual}' [{status}]")
 ```
 
+## Dataset Versions
+
+| Version | Release Date | Size | Status |
+|---------|--------------|------|--------|
+| NPClassifier v1.0+ | 2021 | ~200 MB model | Current |
+| Updates | Ongoing | N/A | Active |
+
+### Version Notes
+
+NPClassifier is a deep neural network classifier for natural products:
+- 7 Pathways: Fatty acids, Polyketides, Shikimates, Terpenoids, Alkaloids, Amino acids, Carbohydrates
+- 70 Superclasses
+- 672 Classes
+- Trained on 73,607 NPs from PubChem, ChEBI, UNPD, etc.
+- Glycoside detection included
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | `https://npclassifier.ucsd.edu/classify` |
+| Rate Limit | 1-2 req/sec recommended |
+| Auth Required | No |
+| Documentation | https://github.com/mwang87/NP-Classifier |
+
 ## Update Schedule
 
 | Release | Frequency |

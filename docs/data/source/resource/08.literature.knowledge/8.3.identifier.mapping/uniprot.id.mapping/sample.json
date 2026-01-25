@@ -1,0 +1,46 @@
+[
+  {
+    "from": "672",
+    "to": {
+      "primaryAccession": "P38398",
+      "uniProtkbId": "BRCA1_HUMAN",
+      "entryType": "UniProtKB reviewed (Swiss-Prot)",
+      "organism": {
+        "scientificName": "Homo sapiens",
+        "taxonId": 9606
+      },
+      "proteinDescription": {
+        "recommendedName": {
+          "fullName": { "value": "Breast cancer type 1 susceptibility protein" }
+        }
+      },
+      "genes": [
+        {
+          "geneName": { "value": "BRCA1" }
+        }
+      ]
+    }
+  },
+  {
+    "from": "ENSG00000139618",
+    "to": {
+      "primaryAccession": "P51587",
+      "uniProtkbId": "BRCA2_HUMAN",
+      "entryType": "UniProtKB reviewed (Swiss-Prot)",
+      "organism": {
+        "scientificName": "Homo sapiens",
+        "taxonId": 9606
+      },
+      "proteinDescription": {
+        "recommendedName": {
+          "fullName": { "value": "Breast cancer type 2 susceptibility protein" }
+        }
+      },
+      "genes": [
+        {
+          "geneName": { "value": "BRCA2" }
+        }
+      ]
+    }
+  }
+]

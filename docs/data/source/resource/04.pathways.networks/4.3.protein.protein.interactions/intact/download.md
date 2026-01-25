@@ -318,6 +318,70 @@ curl "https://www.ebi.ac.uk/Tools/webservices/psicquic/imex/webservices/current/
 | Recommended | 1 request/second |
 | FTP | Unlimited |
 
+---
+
+## Dataset Versions
+
+### Current Release: IntAct 2024-01
+
+| Property | Value |
+|----------|-------|
+| Version | 2024-01 |
+| Release Date | 2024-01-15 |
+| Total Size | ~2 GB (all formats) |
+| Total Interactions | ~1.2 million |
+
+### Version Contents
+
+| Component | Size | Records | Description |
+|-----------|------|---------|-------------|
+| intact.txt | ~800 MB | ~1.2M | PSI-MITAB 2.7 |
+| intact_negative.txt | ~10 MB | ~10K | Negative interactions |
+| pmidMIF25.zip | ~1 GB | ~1.2M | PSI-MI XML |
+| human.txt | ~200 MB | ~400K | Human interactions |
+
+### Previous Versions
+
+| Version | Release | Interactions | Status |
+|---------|---------|--------------|--------|
+| 2023-12 | 2023-12-15 | ~1.1M | Archived |
+| 2023-11 | 2023-11-15 | ~1.1M | Archived |
+| 2023-10 | 2023-10-15 | ~1.1M | Archived |
+
+---
+
+## API Access
+
+### Configuration
+
+| Property | Value |
+|----------|-------|
+| PSICQUIC URL | `https://www.ebi.ac.uk/Tools/webservices/psicquic/intact/webservices/current/search` |
+| Complex Portal | `https://www.ebi.ac.uk/intact/complex-ws` |
+| Authentication | None required |
+| Rate Limit | 1 request/second recommended |
+| Response Format | MITAB 2.5/2.7, XML, JSON |
+
+### PSICQUIC Query Syntax
+
+| Field | Example |
+|-------|---------|
+| identifier | `identifier:P04637` |
+| alias | `alias:TP53` |
+| taxidA/taxidB | `taxidA:9606` |
+| detmethod | `detmethod:"MI:0018"` |
+| type | `type:"MI:0407"` |
+
+### API Endpoints
+
+| Operation | URL Pattern |
+|-----------|-------------|
+| Query | `/search/query/{query}?format=tab27` |
+| Count | `/search/query/{query}?format=count` |
+| Complex | `/complex-ws/export/{id}?format=json` |
+
+---
+
 ## Update Frequency
 
 | Release | Frequency |

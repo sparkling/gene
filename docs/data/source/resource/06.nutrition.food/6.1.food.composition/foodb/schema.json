@@ -1,0 +1,166 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gene.taxonomy/schemas/foodb",
+  "title": "FooDB Record",
+  "description": "JSON Schema for FooDB food and compound data records",
+  "type": "object",
+  "properties": {
+    "food_id": {
+      "type": "integer",
+      "description": "Internal numeric identifier for food item"
+    },
+    "public_id": {
+      "type": "string",
+      "description": "Public food identifier with FOOD prefix",
+      "pattern": "^FOOD[0-9]{5}$",
+      "examples": ["FOOD00001", "FOOD00234"]
+    },
+    "name": {
+      "type": "string",
+      "description": "Common food name",
+      "minLength": 1,
+      "maxLength": 255,
+      "examples": ["Apple", "Blueberry", "Angelica"]
+    },
+    "name_scientific": {
+      "type": ["string", "null"],
+      "description": "Scientific nomenclature (Latin binomial)",
+      "examples": ["Malus domestica", "Vaccinium corymbosum"]
+    },
+    "description": {
+      "type": ["string", "null"],
+      "description": "Manual documentation of the food item"
+    },
+    "food_group": {
+      "type": ["string", "null"],
+      "description": "High-level food category",
+      "examples": ["Herbs and Spices", "Fruits", "Vegetables"]
+    },
+    "food_subgroup": {
+      "type": ["string", "null"],
+      "description": "Secondary categorization within food group",
+      "examples": ["Herbs", "Berries", "Root vegetables"]
+    },
+    "food_type": {
+      "type": ["string", "null"],
+      "description": "Classification type"
+    },
+    "itis_id": {
+      "type": ["integer", "null"],
+      "description": "Integrated Taxonomic Information System ID"
+    },
+    "wikipedia_id": {
+      "type": ["string", "null"],
+      "description": "Wikipedia reference page"
+    },
+    "taxonomy": {
+      "type": ["object", "null"],
+      "description": "Taxonomic classification of the food source",
+      "properties": {
+        "superkingdom": {"type": "string"},
+        "kingdom": {"type": "string"},
+        "phylum": {"type": "string"},
+        "class": {"type": "string"},
+        "order": {"type": "string"},
+        "family": {"type": "string"},
+        "genus": {"type": "string"},
+        "species": {"type": "string"}
+      }
+    },
+    "compounds": {
+      "type": "array",
+      "description": "Chemical compounds found in this food",
+      "items": {
+        "type": "object",
+        "properties": {
+          "compound_id": {
+            "type": "string",
+            "pattern": "^FDB[0-9]{6}$",
+            "description": "FooDB compound identifier"
+          },
+          "name": {
+            "type": "string",
+            "description": "Compound name"
+          },
+          "cas_number": {
+            "type": ["string", "null"],
+            "description": "CAS registry number"
+          },
+          "moldb_formula": {
+            "type": ["string", "null"],
+            "description": "Molecular formula"
+          },
+          "moldb_smiles": {
+            "type": ["string", "null"],
+            "description": "SMILES notation"
+          },
+          "moldb_inchikey": {
+            "type": ["string", "null"],
+            "description": "InChI key"
+          },
+          "content": {
+            "type": ["number", "null"],
+            "description": "Concentration in food"
+          },
+          "content_unit": {
+            "type": ["string", "null"],
+            "description": "Unit of concentration",
+            "examples": ["mg/100g", "mcg/100g"]
+          },
+          "content_min": {
+            "type": ["number", "null"],
+            "description": "Minimum observed concentration"
+          },
+          "content_max": {
+            "type": ["number", "null"],
+            "description": "Maximum observed concentration"
+          }
+        }
+      }
+    },
+    "nutrients": {
+      "type": "array",
+      "description": "Nutrient content of the food",
+      "items": {
+        "type": "object",
+        "properties": {
+          "nutrient_id": {
+            "type": "string",
+            "description": "Nutrient identifier"
+          },
+          "name": {
+            "type": "string",
+            "description": "Nutrient name"
+          },
+          "content": {
+            "type": ["number", "null"],
+            "description": "Amount per 100g"
+          },
+          "unit": {
+            "type": "string",
+            "description": "Unit of measurement"
+          }
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Record metadata",
+      "properties": {
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "source_version": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "required": ["public_id", "name"],
+  "additionalProperties": true
+}

@@ -1,0 +1,67 @@
+{
+  "source": "FDA Orange Book",
+  "version": "2024",
+  "description": "Sample drug product records from FDA Orange Book",
+  "records": [
+    {
+      "appl_no": "008680",
+      "product_no": "001",
+      "trade_name": "ASPIRIN",
+      "ingredient": "ASPIRIN",
+      "df_route": "TABLET;ORAL",
+      "strength": "325MG",
+      "applicant": "BAYER HLTHCARE",
+      "type": "N",
+      "approval_date": "1939-08-01",
+      "te_code": "AA",
+      "rld": "Yes",
+      "rs": "Yes"
+    },
+    {
+      "appl_no": "019898",
+      "product_no": "001",
+      "trade_name": "LIPITOR",
+      "ingredient": "ATORVASTATIN CALCIUM",
+      "df_route": "TABLET;ORAL",
+      "strength": "10MG",
+      "applicant": "PFIZER INC",
+      "type": "N",
+      "approval_date": "1996-12-17",
+      "te_code": "AB",
+      "rld": "Yes",
+      "rs": "Yes"
+    },
+    {
+      "appl_no": "020357",
+      "product_no": "001",
+      "trade_name": "GLUCOPHAGE",
+      "ingredient": "METFORMIN HYDROCHLORIDE",
+      "df_route": "TABLET;ORAL",
+      "strength": "500MG",
+      "applicant": "BRISTOL-MYERS SQUIBB",
+      "type": "N",
+      "approval_date": "1995-03-03",
+      "te_code": "AB",
+      "rld": "Yes",
+      "rs": "Yes"
+    },
+    {
+      "appl_no": "091091",
+      "product_no": "001",
+      "trade_name": "METFORMIN HYDROCHLORIDE",
+      "ingredient": "METFORMIN HYDROCHLORIDE",
+      "df_route": "TABLET;ORAL",
+      "strength": "500MG",
+      "applicant": "MYLAN PHARMS INC",
+      "type": "A",
+      "approval_date": "2000-08-08",
+      "te_code": "AB",
+      "rld": "No",
+      "rs": "No"
+    }
+  ],
+  "queries": {
+    "web_search": "https://www.accessdata.fda.gov/scripts/cder/ob/index.cfm",
+    "download": "wget https://www.accessdata.fda.gov/CDER/OrangeBook/obdata.zip"
+  }
+}

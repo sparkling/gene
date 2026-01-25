@@ -1,0 +1,108 @@
+{
+  "_metadata": {
+    "source": "ConsumerLab",
+    "version": "2026-01",
+    "generated": "2026-01-25",
+    "record_count": 2,
+    "note": "Sample data for illustration only. Actual data requires subscription.",
+    "query_examples": [
+      "Browse: consumerlab.com/reviews/vitamins",
+      "Search: consumerlab.com/search?q=vitamin+d",
+      "Compare: consumerlab.com/compare/vitamin-d"
+    ]
+  },
+  "records": [
+    {
+      "review_id": "CL-2024-VIT-D-001",
+      "product_name": "Vitamin D3 5000 IU Softgels",
+      "brand": "Nature Made",
+      "upc": "031604027223",
+      "category": "Vitamins & Minerals",
+      "subcategory": "Vitamin D",
+      "test_date": "2024-01-15",
+      "approval_status": "Approved",
+      "test_results": {
+        "identity_test": {
+          "status": "Pass",
+          "notes": "Correct vitamin D3 form confirmed"
+        },
+        "potency_results": [
+          {
+            "ingredient": "Vitamin D3",
+            "claimed": "5000 IU",
+            "measured": "5120 IU",
+            "percent_claim": 102.4,
+            "status": "Pass"
+          }
+        ],
+        "heavy_metals": {
+          "lead_mcg_daily": {"value": 0.3, "limit": 0.5, "status": "Pass"},
+          "arsenic_mcg_daily": {"value": "ND", "limit": 10.0, "status": "Pass"},
+          "cadmium_mcg_daily": {"value": 0.1, "limit": 4.1, "status": "Pass"},
+          "mercury_mcg_daily": {"value": "ND", "limit": 2.0, "status": "Pass"}
+        },
+        "disintegration": {
+          "time_minutes": 18,
+          "limit_minutes": 30,
+          "status": "Pass"
+        }
+      },
+      "cost_analysis": {
+        "price_paid": 12.99,
+        "servings_per_container": 90,
+        "cost_per_serving": 0.14,
+        "cost_per_1000_iu": 0.03
+      },
+      "quality_seal": true,
+      "last_updated": "2024-06-15"
+    },
+    {
+      "review_id": "CL-2024-FISH-002",
+      "product_name": "Omega-3 Fish Oil 1000mg",
+      "brand": "Nordic Naturals",
+      "upc": "768990017285",
+      "category": "Omega Fatty Acids",
+      "subcategory": "Fish Oil",
+      "test_date": "2024-02-20",
+      "approval_status": "Approved",
+      "test_results": {
+        "identity_test": {
+          "status": "Pass",
+          "notes": "EPA and DHA confirmed"
+        },
+        "potency_results": [
+          {
+            "ingredient": "EPA",
+            "claimed": "650 mg",
+            "measured": "672 mg",
+            "percent_claim": 103.4,
+            "status": "Pass"
+          },
+          {
+            "ingredient": "DHA",
+            "claimed": "450 mg",
+            "measured": "445 mg",
+            "percent_claim": 98.9,
+            "status": "Pass"
+          }
+        ],
+        "heavy_metals": {
+          "lead_mcg_daily": {"value": 0.1, "limit": 0.5, "status": "Pass"},
+          "mercury_mcg_daily": {"value": "ND", "limit": 2.0, "status": "Pass"}
+        },
+        "oxidation": {
+          "peroxide_value": 3.2,
+          "limit": 5.0,
+          "status": "Pass"
+        }
+      },
+      "cost_analysis": {
+        "price_paid": 27.95,
+        "servings_per_container": 60,
+        "cost_per_serving": 0.47
+      },
+      "quality_seal": true,
+      "last_updated": "2024-07-01"
+    }
+  ]
+}

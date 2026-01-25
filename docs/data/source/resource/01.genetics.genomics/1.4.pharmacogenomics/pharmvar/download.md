@@ -102,6 +102,64 @@ cat cyp2d6_alleles.json | jq 'length'
 cat cyp2d6_alleles.json | jq '.[] | select(.alleleName == "*4")'
 ```
 
+## Dataset Versions
+
+### Current Release
+
+| Property | Value |
+|----------|-------|
+| Version | 6.1 |
+| Release Date | 2025-Q3 |
+| Total Size | ~50 MB (all genes) |
+| Genes | 45 PGx genes |
+| Alleles | 3,500+ star alleles |
+
+### Version Contents
+
+| Component | Size | Records | Description |
+|-----------|------|---------|-------------|
+| Gene_alleles.json | 50-500 KB each | varies | API response per gene |
+| Gene_allele_definitions.tsv | 20-200 KB each | varies | Tabular definitions |
+| Gene_reference.fasta | 10-100 KB each | varies | Reference sequences |
+| Gene.vcf | varies | varies | Variant positions |
+
+### Major Gene Coverage
+
+| Gene | Alleles | Function Categories |
+|------|---------|---------------------|
+| CYP2D6 | 200+ | NF, DF, NorF, IF, UF |
+| CYP2C19 | 70+ | NF, DF, NorF, IF, RF |
+| CYP2C9 | 80+ | NF, DF, NorF |
+| CYP2B6 | 60+ | NF, DF, NorF, IF |
+| CYP3A4 | 40+ | NF, DF, IF |
+| DPYD | 30+ | NF, DF, NorF |
+| TPMT | 50+ | NF, DF, NorF |
+| UGT1A1 | 150+ | NF, DF, NorF, IF |
+
+### Function Categories
+
+| Code | Meaning |
+|------|---------|
+| NF | Normal Function |
+| DF | Decreased Function |
+| NorF | No Function |
+| IF | Increased Function |
+| UF | Uncertain Function |
+| RF | Rapid Function |
+
+---
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | https://www.pharmvar.org/api-service/ |
+| Rate Limit | 10 req/sec |
+| Auth Required | No |
+| Response Format | JSON |
+
+---
+
 ## Update Schedule
 
 | Release | Frequency |

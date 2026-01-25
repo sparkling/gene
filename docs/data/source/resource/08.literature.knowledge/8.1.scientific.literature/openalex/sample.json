@@ -1,0 +1,114 @@
+[
+  {
+    "id": "https://openalex.org/W2741809807",
+    "doi": "https://doi.org/10.1038/s41586-022-05087-2",
+    "title": "Single-cell transcriptomics reveals heterogeneity in tumor microenvironment",
+    "display_name": "Single-cell transcriptomics reveals heterogeneity in tumor microenvironment",
+    "publication_year": 2022,
+    "publication_date": "2022-08-18",
+    "type": "article",
+    "authorships": [
+      {
+        "author_position": "first",
+        "author": {
+          "id": "https://openalex.org/A5023888391",
+          "display_name": "John A. Smith",
+          "orcid": "https://orcid.org/0000-0001-2345-6789"
+        },
+        "institutions": [
+          {
+            "id": "https://openalex.org/I136199984",
+            "display_name": "Harvard Medical School",
+            "country_code": "US"
+          }
+        ]
+      },
+      {
+        "author_position": "last",
+        "author": {
+          "id": "https://openalex.org/A5012345678",
+          "display_name": "Wei Chen"
+        },
+        "institutions": [
+          {
+            "id": "https://openalex.org/I205783295",
+            "display_name": "Broad Institute",
+            "country_code": "US"
+          }
+        ]
+      }
+    ],
+    "primary_location": {
+      "source": {
+        "id": "https://openalex.org/S137773608",
+        "display_name": "Nature",
+        "issn_l": "0028-0836",
+        "type": "journal"
+      },
+      "is_oa": true,
+      "license": "cc-by"
+    },
+    "open_access": {
+      "is_oa": true,
+      "oa_status": "gold",
+      "oa_url": "https://www.nature.com/articles/s41586-022-05087-2.pdf"
+    },
+    "cited_by_count": 245,
+    "concepts": [
+      {
+        "id": "https://openalex.org/C86803240",
+        "display_name": "Single-cell analysis",
+        "level": 2,
+        "score": 0.95
+      },
+      {
+        "id": "https://openalex.org/C71924100",
+        "display_name": "Medicine",
+        "level": 0,
+        "score": 0.75
+      }
+    ],
+    "referenced_works": [
+      "https://openalex.org/W2123456789",
+      "https://openalex.org/W2234567890"
+    ],
+    "counts_by_year": [
+      { "year": 2024, "cited_by_count": 120 },
+      { "year": 2023, "cited_by_count": 100 },
+      { "year": 2022, "cited_by_count": 25 }
+    ]
+  },
+  {
+    "id": "https://openalex.org/W3177828909",
+    "doi": "https://doi.org/10.1101/2024.01.15.575123",
+    "title": "Novel CRISPR approach for gene therapy",
+    "display_name": "Novel CRISPR approach for gene therapy",
+    "publication_year": 2024,
+    "publication_date": "2024-01-15",
+    "type": "preprint",
+    "authorships": [
+      {
+        "author_position": "first",
+        "author": {
+          "id": "https://openalex.org/A5098765432",
+          "display_name": "Michael Johnson"
+        },
+        "institutions": []
+      }
+    ],
+    "open_access": {
+      "is_oa": true,
+      "oa_status": "green",
+      "oa_url": "https://www.biorxiv.org/content/10.1101/2024.01.15.575123v1"
+    },
+    "cited_by_count": 15,
+    "concepts": [
+      {
+        "id": "https://openalex.org/C54355233",
+        "display_name": "Gene therapy",
+        "level": 2,
+        "score": 0.92
+      }
+    ]
+  }
+]

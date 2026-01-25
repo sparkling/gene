@@ -187,6 +187,32 @@ head -1 food_nutrient.csv
 cut -d',' -f1 food.csv | sort | uniq | wc -l
 ```
 
+## Dataset Versions
+
+| Version | Release Date | Size | Status |
+|---------|--------------|------|--------|
+| v13.6 | 2025-11-20 | ~5 GB | Current |
+| v13.5 | 2025-09-18 | ~5 GB | Archived |
+| v12.x | 2025-01-23 | ~5 GB | Archived |
+
+### Version Notes
+
+FoodData Central v13.6 (latest) includes:
+- Foundation Foods (high quality reference data)
+- SR Legacy (USDA Standard Reference)
+- FNDDS (What We Eat in America survey)
+- Branded Foods (USDA Global Branded Food Products Database)
+- FNS Child Nutrition Database now hosted on FDC
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | `https://api.nal.usda.gov/fdc/v1` |
+| Rate Limit | 1000 req/hour (registered) |
+| Auth Required | Yes (free API key) |
+| Documentation | https://fdc.nal.usda.gov/api-guide.html |
+
 ## Update Schedule
 
 | Release | Frequency |

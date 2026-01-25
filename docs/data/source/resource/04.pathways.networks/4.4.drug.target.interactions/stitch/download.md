@@ -309,6 +309,60 @@ gunzip -c 9606.protein_chemical.links.v5.0.tsv.gz | \
 # Expected: ~300,000-500,000
 ```
 
+---
+
+## Dataset Versions
+
+### Current Release: STITCH v5.0
+
+| Property | Value |
+|----------|-------|
+| Version | 5.0 |
+| Release Date | 2016-01-01 |
+| Total Size | ~100 GB (all species) |
+| Chemicals | ~500,000 |
+
+### Version Contents
+
+| Component | Size | Records | Description |
+|-----------|------|---------|-------------|
+| 9606.protein_chemical.links.v5.0.tsv.gz | ~200 MB | ~16M | Human interactions |
+| 9606.actions.v5.0.tsv.gz | ~50 MB | ~2M | Human actions |
+| chemicals.v5.0.tsv.gz | ~50 MB | ~500K | Chemical info |
+| chemical.aliases.v5.0.tsv.gz | ~500 MB | ~10M | ID mappings |
+
+### Previous Versions
+
+| Version | Release | Status |
+|---------|---------|--------|
+| 4.0 | 2014-01-01 | Archived |
+| 3.1 | 2012-06-01 | Archived |
+
+---
+
+## API Access
+
+### Configuration
+
+| Property | Value |
+|----------|-------|
+| Base URL | `http://stitch.embl.de/api` |
+| Authentication | None required |
+| Rate Limit | 1 request/second recommended |
+| Response Format | TSV, JSON, PNG, SVG |
+
+### API Endpoints
+
+| Operation | Endpoint | Example |
+|-----------|----------|---------|
+| Interactions | `/tsv/interactions` | `?identifier=aspirin&species=9606` |
+| Network | `/tsv/network` | `?identifiers=aspirin%0dTP53&species=9606` |
+| Resolve | `/json/resolve` | `?identifier=metformin` |
+| Enrichment | `/json/enrichment` | `?identifiers=CIDm00004091&species=9606` |
+| Image | `/image/network` | `?identifier=aspirin&species=9606` |
+
+---
+
 ## Update Schedule
 
 | Release | Frequency |

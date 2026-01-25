@@ -1,19 +1,21 @@
 ---
 id: dgidb
 title: "DGIdb - Drug Gene Interaction Database"
-type: data-source
-category: compounds
-subcategory: compound-target-interactions
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 1
-last_updated: 2026-01-23
 status: active
-tags: [drug-gene-interactions, druggable-genome, targets, pharmacogenomics, graphql]
+category: compounds.molecules
+subcategory: compound.target.interactions
+tags:
+  - drug-gene-interactions
+  - druggable-genome
+  - targets
+  - pharmacogenomics
+  - graphql
 ---
 
 # DGIdb - Drug Gene Interaction Database
-
-**Category:** [Compounds & Molecules](../../_index.md) > [Compound-Target Interactions](../_index.md)
 
 ## Overview
 
@@ -80,13 +82,12 @@ The database is particularly valuable for identifying existing drugs targeting g
 | CLINICALLY ACTIONABLE | Clinical relevance |
 | TUMOR SUPPRESSOR | Cancer suppressor genes |
 
-## License
+## Limitations
 
-| Aspect | Value |
-|--------|-------|
-| License | CC BY 4.0 |
-| Commercial Use | Yes |
-| Attribution Required | Yes |
+- Aggregated data may contain conflicting interaction types
+- Druggability categories are predictions, not experimental validation
+- Source database versions may lag behind primary sources
+- Gene nomenclature normalized but some ambiguities remain
 
 ## Related Resources
 
@@ -96,7 +97,9 @@ The database is particularly valuable for identifying existing drugs targeting g
 
 ## See Also
 
-- [Schema Documentation](./schema.md)
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [License Terms](./license.md) - Usage rights and restrictions
 
 ## References
 

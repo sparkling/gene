@@ -291,6 +291,68 @@ aws s3 ls s3://encode-public/2012/07/01/
 | Alignments | ~10 GB | >1 TB |
 | All processed data | - | ~150 TB |
 
+---
+
+## Dataset Versions
+
+### Current Release: Roadmap Epigenomics (Final)
+
+| Property | Value |
+|----------|-------|
+| Version | Final Release |
+| Release Date | 2015-02-18 |
+| Total Size | ~150 TB |
+| Epigenomes | 127 |
+
+### Version Contents
+
+| Component | Size | Records | Description |
+|-----------|------|---------|-------------|
+| chromhmmSegmentations (15-state) | ~600 MB | 127 | Chromatin states |
+| signal (bigWig) | ~250 GB | 127 x 5 marks | Histone signals |
+| dnamethylation (WGBS) | ~60 GB | ~40 | DNA methylation |
+| rna/expression | ~1 GB | 57 | RNA-seq RPKM |
+
+### Data Freeze Information
+
+| Aspect | Value |
+|--------|-------|
+| Freeze Date | 2015-02-18 |
+| Reference Genome | hg19 (primary), GRCh38 (converted) |
+| Publication | Nature 2015 |
+| Status | Final (no updates planned) |
+
+---
+
+## API Access
+
+### Configuration
+
+| Property | Value |
+|----------|-------|
+| Base URL | `https://egg2.wustl.edu/roadmap/data/` |
+| Authentication | None required |
+| Rate Limit | No limit |
+| Response Format | bigWig, BED, TSV |
+
+### UCSC Track Hub
+
+| Property | Value |
+|----------|-------|
+| Hub URL | `https://egg2.wustl.edu/roadmap/data/byFileType/trackhub/hub.txt` |
+| Genome | hg19 |
+
+### Directory Structure
+
+| Path | Content |
+|------|---------|
+| `/byFileType/chromhmmSegmentations/` | Chromatin state BED files |
+| `/byFileType/signal/` | Signal bigWig files |
+| `/byDataType/dnamethylation/` | DNA methylation data |
+| `/byDataType/rna/expression/` | RNA-seq expression |
+
+---
+
 ## See Also
 
 - [Schema Documentation](./schema.md)

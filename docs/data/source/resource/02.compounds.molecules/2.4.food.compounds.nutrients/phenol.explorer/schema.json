@@ -1,0 +1,188 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "phenol-explorer-schema.json",
+  "title": "Phenol-Explorer Polyphenol Record",
+  "description": "JSON Schema for Phenol-Explorer polyphenol database. Contains 500+ polyphenol compounds, 35,000+ composition data points across 450+ foods, 380+ metabolites, and 250+ pharmacokinetic studies with literature references.",
+  "type": "object",
+  "properties": {
+    "compound_id": {
+      "type": "integer",
+      "description": "Primary compound identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "Compound name"
+    },
+    "class": {
+      "type": "string",
+      "description": "Polyphenol class",
+      "enum": ["Flavonoids", "Phenolic acids", "Stilbenes", "Lignans", "Other polyphenols"]
+    },
+    "subclass": {
+      "type": "string",
+      "description": "Polyphenol subclass"
+    },
+    "pubchem_cid": {
+      "type": "integer",
+      "description": "PubChem compound ID"
+    },
+    "cas_number": {
+      "type": "string",
+      "description": "CAS registry number"
+    },
+    "molecular_formula": {
+      "type": "string",
+      "description": "Chemical formula"
+    },
+    "molecular_weight": {
+      "type": "number",
+      "description": "Molecular weight in Daltons"
+    },
+    "smiles": {
+      "type": "string",
+      "description": "SMILES structure"
+    },
+    "food_contents": {
+      "type": "array",
+      "description": "Content in foods",
+      "items": {
+        "$ref": "#/$defs/foodContent"
+      }
+    },
+    "metabolites": {
+      "type": "array",
+      "description": "Human metabolites",
+      "items": {
+        "$ref": "#/$defs/metabolite"
+      }
+    },
+    "pharmacokinetics": {
+      "type": "array",
+      "description": "PK parameters",
+      "items": {
+        "$ref": "#/$defs/pharmacokinetics"
+      }
+    }
+  },
+  "required": ["compound_id", "name", "class"],
+  "$defs": {
+    "foodContent": {
+      "type": "object",
+      "description": "Polyphenol content in food",
+      "properties": {
+        "food_id": {
+          "type": "integer",
+          "description": "Food identifier"
+        },
+        "food_name": {
+          "type": "string",
+          "description": "Food name"
+        },
+        "food_group": {
+          "type": "string",
+          "description": "Food category"
+        },
+        "content_value": {
+          "type": "number",
+          "description": "Content amount"
+        },
+        "content_unit": {
+          "type": "string",
+          "description": "Unit of measurement",
+          "enum": ["mg/100g", "mg/100ml"]
+        },
+        "min_value": {
+          "type": "number",
+          "description": "Minimum reported"
+        },
+        "max_value": {
+          "type": "number",
+          "description": "Maximum reported"
+        },
+        "data_points": {
+          "type": "integer",
+          "description": "Number of samples"
+        },
+        "analytical_method": {
+          "type": "string",
+          "description": "Analysis method",
+          "enum": ["HPLC", "HPLC-DAD", "LC-MS", "HPLC-MS/MS", "Spectrophotometry"]
+        }
+      },
+      "required": ["food_name", "content_value", "content_unit"]
+    },
+    "metabolite": {
+      "type": "object",
+      "description": "Polyphenol metabolite",
+      "properties": {
+        "metabolite_id": {
+          "type": "integer",
+          "description": "Metabolite identifier"
+        },
+        "metabolite_name": {
+          "type": "string",
+          "description": "Metabolite name"
+        },
+        "metabolite_type": {
+          "type": "string",
+          "description": "Metabolism type",
+          "enum": ["Phase I", "Phase II", "Microbial"]
+        },
+        "transformation": {
+          "type": "string",
+          "description": "Chemical transformation",
+          "enum": ["Glucuronidation", "Sulfation", "Methylation", "Oxidation", "Reduction", "Ring fission", "Dehydroxylation"]
+        },
+        "biofluid": {
+          "type": "string",
+          "description": "Detection matrix",
+          "enum": ["plasma", "urine", "feces"]
+        }
+      },
+      "required": ["metabolite_name", "metabolite_type"]
+    },
+    "pharmacokinetics": {
+      "type": "object",
+      "description": "PK parameters",
+      "properties": {
+        "dose": {
+          "type": "number",
+          "description": "Administered dose"
+        },
+        "dose_unit": {
+          "type": "string",
+          "description": "Dose unit"
+        },
+        "food_matrix": {
+          "type": "string",
+          "description": "Source food or pure compound"
+        },
+        "cmax": {
+          "type": "number",
+          "description": "Maximum concentration"
+        },
+        "cmax_unit": {
+          "type": "string",
+          "description": "Cmax unit"
+        },
+        "tmax": {
+          "type": "number",
+          "description": "Time to Cmax"
+        },
+        "tmax_unit": {
+          "type": "string",
+          "description": "Tmax unit"
+        },
+        "auc": {
+          "type": "number",
+          "description": "Area under curve"
+        },
+        "half_life": {
+          "type": "number",
+          "description": "Elimination half-life"
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

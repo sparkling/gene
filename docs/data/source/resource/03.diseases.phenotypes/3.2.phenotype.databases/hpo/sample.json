@@ -1,0 +1,67 @@
+{
+  "source": "HPO Annotations",
+  "version": "2024",
+  "description": "Sample disease-phenotype annotation records from HPO",
+  "records": [
+    {
+      "disease_id": "OMIM:154700",
+      "disease_name": "Marfan syndrome",
+      "phenotypes": [
+        {
+          "hpo_id": "HP:0001166",
+          "hpo_term": "Arachnodactyly",
+          "frequency": "Very frequent (99-80%)",
+          "onset": null
+        },
+        {
+          "hpo_id": "HP:0001519",
+          "hpo_term": "Disproportionate tall stature",
+          "frequency": "Frequent (79-30%)",
+          "onset": "Congenital"
+        },
+        {
+          "hpo_id": "HP:0001083",
+          "hpo_term": "Ectopia lentis",
+          "frequency": "Frequent (79-30%)",
+          "onset": "Childhood"
+        },
+        {
+          "hpo_id": "HP:0004933",
+          "hpo_term": "Ascending aortic dissection",
+          "frequency": "Frequent (79-30%)",
+          "onset": "Adult"
+        }
+      ],
+      "genes": ["FBN1"],
+      "inheritance": "Autosomal dominant"
+    },
+    {
+      "disease_id": "OMIM:219700",
+      "disease_name": "Cystic fibrosis",
+      "phenotypes": [
+        {
+          "hpo_id": "HP:0002110",
+          "hpo_term": "Bronchiectasis",
+          "frequency": "Very frequent (99-80%)"
+        },
+        {
+          "hpo_id": "HP:0001738",
+          "hpo_term": "Exocrine pancreatic insufficiency",
+          "frequency": "Very frequent (99-80%)"
+        },
+        {
+          "hpo_id": "HP:0002024",
+          "hpo_term": "Malabsorption",
+          "frequency": "Very frequent (99-80%)"
+        }
+      ],
+      "genes": ["CFTR"],
+      "inheritance": "Autosomal recessive"
+    }
+  ],
+  "queries": {
+    "annotations_download": "wget http://purl.obolibrary.org/obo/hp/hpoa/phenotype.hpoa",
+    "genes_to_phenotype": "wget http://purl.obolibrary.org/obo/hp/hpoa/genes_to_phenotype.txt",
+    "api_disease": "curl 'https://ontology.jax.org/api/hp/search?q=Marfan' | jq"
+  }
+}

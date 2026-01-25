@@ -1,0 +1,357 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "cbioportal-schema.json",
+  "title": "cBioPortal Record",
+  "description": "JSON Schema for cBioPortal cancer genomics data portal records.",
+  "type": "object",
+  "properties": {
+    "entity_type": {
+      "type": "string",
+      "description": "Type of cBioPortal entity.",
+      "enum": ["study", "sample", "patient", "mutation", "cna", "gene_panel", "molecular_profile", "clinical_attribute"]
+    },
+    "study": {
+      "type": "object",
+      "description": "Cancer study metadata.",
+      "properties": {
+        "studyId": {
+          "type": "string",
+          "description": "Unique study identifier.",
+          "pattern": "^[a-z0-9_]+$",
+          "examples": ["brca_tcga", "luad_tcga_pan_can_atlas_2018", "msk_impact_2017"]
+        },
+        "name": {
+          "type": "string",
+          "description": "Study name.",
+          "examples": ["Breast Invasive Carcinoma (TCGA, Firehose Legacy)"]
+        },
+        "description": {
+          "type": "string"
+        },
+        "publicStudy": {
+          "type": "boolean"
+        },
+        "pmid": {
+          "type": "string",
+          "description": "PubMed ID(s)."
+        },
+        "citation": {
+          "type": "string"
+        },
+        "groups": {
+          "type": "string",
+          "examples": ["PUBLIC", "PRIVATE"]
+        },
+        "status": {
+          "type": "integer",
+          "enum": [0, 1]
+        },
+        "cancerTypeId": {
+          "type": "string",
+          "description": "OncoTree cancer type code.",
+          "examples": ["brca", "luad", "coadread"]
+        },
+        "referenceGenome": {
+          "type": "string",
+          "enum": ["hg19", "hg38"]
+        },
+        "allSampleCount": {
+          "type": "integer"
+        },
+        "sequencedSampleCount": {
+          "type": "integer"
+        },
+        "cnaSampleCount": {
+          "type": "integer"
+        }
+      }
+    },
+    "sample": {
+      "type": "object",
+      "description": "Sample information.",
+      "properties": {
+        "sampleId": {
+          "type": "string",
+          "description": "Sample identifier.",
+          "examples": ["TCGA-A2-A0CM-01", "P-0000001-T01-IM3"]
+        },
+        "patientId": {
+          "type": "string",
+          "description": "Patient identifier.",
+          "examples": ["TCGA-A2-A0CM", "P-0000001"]
+        },
+        "studyId": {
+          "type": "string"
+        },
+        "sampleType": {
+          "type": "string",
+          "enum": ["Primary Solid Tumor", "Metastatic", "Blood Derived Normal", "Recurrent Solid Tumor", "Primary Blood Derived Cancer"]
+        },
+        "sequenced": {
+          "type": "boolean"
+        },
+        "copyNumberSegmentPresent": {
+          "type": "boolean"
+        }
+      }
+    },
+    "patient": {
+      "type": "object",
+      "description": "Patient information.",
+      "properties": {
+        "patientId": {
+          "type": "string"
+        },
+        "studyId": {
+          "type": "string"
+        }
+      }
+    },
+    "mutation": {
+      "type": "object",
+      "description": "Mutation record (MAF format).",
+      "properties": {
+        "uniqueSampleKey": {
+          "type": "string"
+        },
+        "uniquePatientKey": {
+          "type": "string"
+        },
+        "molecularProfileId": {
+          "type": "string",
+          "examples": ["brca_tcga_mutations"]
+        },
+        "sampleId": {
+          "type": "string"
+        },
+        "patientId": {
+          "type": "string"
+        },
+        "studyId": {
+          "type": "string"
+        },
+        "entrezGeneId": {
+          "type": "integer",
+          "description": "NCBI Entrez Gene ID.",
+          "examples": [7157, 672]
+        },
+        "gene": {
+          "type": "object",
+          "properties": {
+            "hugoGeneSymbol": {
+              "type": "string",
+              "examples": ["TP53", "BRCA1"]
+            },
+            "entrezGeneId": {
+              "type": "integer"
+            }
+          }
+        },
+        "center": {
+          "type": "string",
+          "examples": ["broad.mit.edu", "genome.wustl.edu"]
+        },
+        "mutationStatus": {
+          "type": "string",
+          "enum": ["Somatic", "Germline", "LOH", "None", "Unknown"]
+        },
+        "validationStatus": {
+          "type": "string",
+          "enum": ["Valid", "Invalid", "Untested", "Unknown"]
+        },
+        "startPosition": {
+          "type": "integer"
+        },
+        "endPosition": {
+          "type": "integer"
+        },
+        "referenceAllele": {
+          "type": "string"
+        },
+        "variantAllele": {
+          "type": "string"
+        },
+        "chr": {
+          "type": "string",
+          "enum": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "X", "Y", "MT"]
+        },
+        "proteinChange": {
+          "type": "string",
+          "examples": ["R248Q", "V600E"]
+        },
+        "mutationType": {
+          "type": "string",
+          "description": "Mutation type.",
+          "enum": ["Missense_Mutation", "Frame_Shift_Del", "Frame_Shift_Ins", "Nonsense_Mutation", "Splice_Site", "In_Frame_Del", "In_Frame_Ins", "Translation_Start_Site", "Nonstop_Mutation", "Silent", "3'UTR", "5'UTR", "Intron", "5'Flank", "3'Flank", "IGR"]
+        },
+        "functionalImpactScore": {
+          "type": "string",
+          "description": "Functional impact (MutationAssessor).",
+          "enum": ["high", "medium", "low", "neutral"]
+        },
+        "fisValue": {
+          "type": "number"
+        },
+        "linkXvar": {
+          "type": "string"
+        },
+        "linkPdb": {
+          "type": "string"
+        },
+        "linkMsa": {
+          "type": "string"
+        },
+        "ncbiBuild": {
+          "type": "string",
+          "enum": ["GRCh37", "GRCh38"]
+        },
+        "variantType": {
+          "type": "string",
+          "enum": ["SNP", "DNP", "TNP", "ONP", "INS", "DEL", "Consolidated"]
+        },
+        "keyword": {
+          "type": "string",
+          "description": "OncoKB keyword."
+        },
+        "alleleFreq": {
+          "type": "number",
+          "description": "Variant allele frequency.",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "t_depth": {
+          "type": "integer",
+          "description": "Tumor total depth."
+        },
+        "t_ref_count": {
+          "type": "integer",
+          "description": "Tumor reference count."
+        },
+        "t_alt_count": {
+          "type": "integer",
+          "description": "Tumor alternate count."
+        },
+        "n_depth": {
+          "type": "integer",
+          "description": "Normal total depth."
+        },
+        "n_ref_count": {
+          "type": "integer",
+          "description": "Normal reference count."
+        },
+        "n_alt_count": {
+          "type": "integer",
+          "description": "Normal alternate count."
+        }
+      }
+    },
+    "cna": {
+      "type": "object",
+      "description": "Copy number alteration.",
+      "properties": {
+        "uniqueSampleKey": {
+          "type": "string"
+        },
+        "uniquePatientKey": {
+          "type": "string"
+        },
+        "molecularProfileId": {
+          "type": "string"
+        },
+        "sampleId": {
+          "type": "string"
+        },
+        "patientId": {
+          "type": "string"
+        },
+        "studyId": {
+          "type": "string"
+        },
+        "entrezGeneId": {
+          "type": "integer"
+        },
+        "gene": {
+          "type": "object",
+          "properties": {
+            "hugoGeneSymbol": {
+              "type": "string"
+            },
+            "entrezGeneId": {
+              "type": "integer"
+            }
+          }
+        },
+        "alteration": {
+          "type": "integer",
+          "description": "Discrete CNA value (-2=homDel, -1=hemDel, 0=diploid, 1=gain, 2=amp).",
+          "enum": [-2, -1, 0, 1, 2]
+        },
+        "cytoband": {
+          "type": "string",
+          "examples": ["17p13.1", "17q21.31"]
+        }
+      }
+    },
+    "molecular_profile": {
+      "type": "object",
+      "description": "Molecular profile definition.",
+      "properties": {
+        "molecularProfileId": {
+          "type": "string",
+          "examples": ["brca_tcga_mutations", "brca_tcga_gistic"]
+        },
+        "studyId": {
+          "type": "string"
+        },
+        "molecularAlterationType": {
+          "type": "string",
+          "enum": ["MUTATION_EXTENDED", "COPY_NUMBER_ALTERATION", "MRNA_EXPRESSION", "PROTEIN_LEVEL", "STRUCTURAL_VARIANT", "METHYLATION"]
+        },
+        "datatype": {
+          "type": "string",
+          "enum": ["MAF", "DISCRETE", "CONTINUOUS", "LOG2-VALUE", "Z-SCORE", "FUSION", "SV", "METHYLATION"]
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "showProfileInAnalysisTab": {
+          "type": "boolean"
+        }
+      }
+    },
+    "clinical_attribute": {
+      "type": "object",
+      "description": "Clinical attribute definition.",
+      "properties": {
+        "clinicalAttributeId": {
+          "type": "string",
+          "examples": ["AGE", "SEX", "OS_STATUS", "OS_MONTHS"]
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "datatype": {
+          "type": "string",
+          "enum": ["STRING", "NUMBER"]
+        },
+        "priority": {
+          "type": "string"
+        },
+        "patientAttribute": {
+          "type": "boolean"
+        },
+        "studyId": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "required": ["entity_type"],
+  "additionalProperties": true
+}

@@ -1,0 +1,69 @@
+[
+  {
+    "ingredient_id": "BATMAN-TCM-ING-5679",
+    "ingredient_name": "Ginsenoside Rg1",
+    "cas_number": "22427-39-0",
+    "pubchem_cid": 441923,
+    "smiles": "CC(CCC=C(C)C)C1CCC2(C)C1C(O)CC1C3(C)CCC(O)C(C)(C)C3C(O)CC12C",
+    "source_herbs": [
+      {"herb_name": "Panax ginseng", "herb_id": "HB-001", "part_used": "root"}
+    ],
+    "known_targets": [
+      {
+        "target_id": "P35354",
+        "gene_symbol": "PTGS2",
+        "target_name": "Cyclooxygenase-2",
+        "interaction_type": "inhibition",
+        "confidence": "known",
+        "source": "ChEMBL"
+      }
+    ],
+    "predicted_targets": [
+      {
+        "target_id": "P04637",
+        "gene_symbol": "TP53",
+        "target_name": "Cellular tumor antigen p53",
+        "prediction_score": 0.85,
+        "confidence": "predicted"
+      }
+    ],
+    "metadata": {
+      "molecular_weight": 800.99,
+      "source_url": "http://bionet.ncpsb.org.cn/batman-tcm/"
+    }
+  },
+  {
+    "herb_id": "HB-001",
+    "herb_name": "Panax ginseng",
+    "chinese_name": "Ren Shen",
+    "pinyin": "renshen",
+    "category": "Qi-tonifying",
+    "nature": "Warm",
+    "flavor": "Sweet, Slightly Bitter",
+    "meridian_tropism": ["Lung", "Spleen", "Heart"],
+    "ingredient_count": 203,
+    "formula_count": 1245,
+    "metadata": {
+      "family": "Araliaceae",
+      "part_used": "root"
+    }
+  },
+  {
+    "formula_id": "FM-0001",
+    "formula_name": "Si Jun Zi Tang",
+    "english_name": "Four Gentlemen Decoction",
+    "composition": [
+      {"herb": "Panax ginseng", "chinese_name": "Ren Shen", "weight_ratio": 3},
+      {"herb": "Atractylodes macrocephala", "chinese_name": "Bai Zhu", "weight_ratio": 3},
+      {"herb": "Poria cocos", "chinese_name": "Fu Ling", "weight_ratio": 3},
+      {"herb": "Glycyrrhiza uralensis", "chinese_name": "Gan Cao", "weight_ratio": 1}
+    ],
+    "indications": ["Spleen Qi deficiency", "Fatigue", "Poor appetite"],
+    "target_count": 458,
+    "ingredient_count": 89,
+    "metadata": {
+      "source": "Taiping Huimin Heji Ju Fang",
+      "dynasty": "Song"
+    }
+  }
+]

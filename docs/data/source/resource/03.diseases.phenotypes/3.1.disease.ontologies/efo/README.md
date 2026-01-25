@@ -1,19 +1,22 @@
 ---
 id: efo
 title: "Experimental Factor Ontology (EFO)"
-type: data-source
-category: diseases
-subcategory: disease.ontologies
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 2
-last_updated: 2026-01-23
 status: active
-tags: [ontology, traits, diseases, experimental-factors, gwas, ebi]
+category: diseases.phenotypes
+subcategory: disease.ontologies
+tags:
+  - ontology
+  - traits
+  - diseases
+  - experimental-factors
+  - gwas
+  - ebi
 ---
 
 # Experimental Factor Ontology (EFO)
-
-**Category:** [Diseases & Phenotypes](../../_index.md) > [Disease Ontologies](../_index.md)
 
 ## Overview
 
@@ -66,16 +69,17 @@ As a central component of the GWAS Catalog annotation pipeline, EFO enables stan
 | OBO | efo.obo | ~50 MB |
 | JSON | efo.json | ~80 MB |
 
-## License
+## Limitations
 
-| Aspect | Value |
-|--------|-------|
-| License | Apache 2.0 |
-| Commercial Use | Yes |
-| Attribution | Required |
+- Term coverage reflects EBI database needs; may lack some clinical conditions
+- Cross-references to source ontologies may lag updates
+- Some experimental factor terms not relevant for clinical use
+- Large ontology size may affect processing performance
 
 ## See Also
 
-- [Schema Documentation](./schema.md)
-- [MONDO](../mondo/_index.md) - Related disease ontology
-- [HPO](../../3.2.phenotype.databases/hpo/_index.md) - Phenotype ontology
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [License Terms](./license.md) - Usage rights and restrictions
+- [MONDO](../mondo/README.md) - Related disease ontology
+- [HPO](../../3.2.phenotype.databases/hpo/README.md) - Phenotype ontology

@@ -1,14 +1,18 @@
 ---
 id: hit.2.0
 title: "HIT 2.0 - Herbal Ingredients' Targets"
-type: data-source
-category: traditional-medicine
-subcategory: multi-system-integration
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 1
-last_updated: 2026-01-23
 status: active
-tags: [herbal-medicine, validated-targets, multi-system, experimental, drug-targets]
+category: traditional.medicine
+subcategory: multi.system.integration
+tags:
+  - herbal-medicine
+  - validated-targets
+  - multi-system
+  - experimental
+  - drug-targets
 ---
 
 # HIT 2.0 - Herbal Ingredients' Targets

@@ -1,0 +1,129 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "msigdb-schema.json",
+  "title": "MSigDB Gene Set Record",
+  "description": "JSON Schema for MSigDB gene set data. Provides curated gene sets for enrichment analysis in GMT and related formats.",
+  "type": "object",
+  "properties": {
+    "geneSetName": {
+      "type": "string",
+      "description": "Gene set name.",
+      "examples": ["HALLMARK_APOPTOSIS", "KEGG_CELL_CYCLE"]
+    },
+    "systematicName": {
+      "type": "string",
+      "description": "MSigDB systematic identifier.",
+      "pattern": "^M[0-9]+$",
+      "examples": ["M5930"]
+    },
+    "geneSetCollection": {
+      "type": "string",
+      "description": "Collection identifier.",
+      "enum": ["H", "C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8"]
+    },
+    "geneSetSubcollection": {
+      "type": ["string", "null"],
+      "description": "Subcollection identifier.",
+      "examples": ["CP:KEGG", "CP:REACTOME", "GO:BP", "TFT:GTRD"]
+    },
+    "description": {
+      "type": "string",
+      "description": "Brief gene set description."
+    },
+    "fullDescription": {
+      "type": "string",
+      "description": "Detailed description from original source."
+    },
+    "contributor": {
+      "type": "string",
+      "description": "Gene set contributor."
+    },
+    "exactSource": {
+      "type": "string",
+      "description": "Original source URL or identifier."
+    },
+    "externalDetailsUrl": {
+      "type": "string",
+      "description": "URL for gene set details.",
+      "format": "uri"
+    },
+    "pmid": {
+      "type": ["integer", "null"],
+      "description": "PubMed ID if applicable."
+    },
+    "geoid": {
+      "type": ["string", "null"],
+      "description": "GEO dataset ID if applicable."
+    },
+    "geneSymbols": {
+      "type": "array",
+      "description": "Gene symbols in the set.",
+      "items": { "type": "string" },
+      "examples": [["CASP3", "CASP8", "BAX", "BCL2"]]
+    },
+    "entrezIds": {
+      "type": "array",
+      "description": "NCBI Entrez Gene IDs.",
+      "items": { "type": "integer" }
+    },
+    "numGenes": {
+      "type": "integer",
+      "description": "Number of genes in the set."
+    },
+    "organisms": {
+      "type": "array",
+      "description": "Applicable organisms.",
+      "items": { "type": "string" },
+      "examples": [["Homo sapiens"]]
+    },
+    "tags": {
+      "type": "array",
+      "description": "Classification tags.",
+      "items": { "type": "string" }
+    },
+    "gseaResults": {
+      "type": "object",
+      "description": "GSEA enrichment result structure.",
+      "properties": {
+        "ES": {
+          "type": "number",
+          "description": "Enrichment Score."
+        },
+        "NES": {
+          "type": "number",
+          "description": "Normalized Enrichment Score."
+        },
+        "nominalPValue": {
+          "type": "number",
+          "description": "Nominal p-value."
+        },
+        "fdrQValue": {
+          "type": "number",
+          "description": "False Discovery Rate q-value."
+        },
+        "fwerPValue": {
+          "type": "number",
+          "description": "Family-Wise Error Rate p-value."
+        },
+        "rankAtMax": {
+          "type": "integer",
+          "description": "Rank at maximum ES."
+        },
+        "leadingEdge": {
+          "type": "object",
+          "properties": {
+            "tags": { "type": "number" },
+            "list": { "type": "number" },
+            "signal": { "type": "number" },
+            "coreGenes": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": ["geneSetName", "geneSetCollection"],
+  "additionalProperties": true
+}

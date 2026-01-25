@@ -225,6 +225,31 @@ grep "rs2476601" immunobase_snps.tsv
 cut -f2 immunobase_regions.tsv | sort | uniq -c | sort -rn
 ```
 
+## Dataset Versions
+
+| Version | Release Date | Size | Status |
+|---------|--------------|------|--------|
+| ImmunoBase 2019 | 2019-Q4 | ~50 MB | Current |
+| Legacy versions | 2011-2018 | Varies | Archived |
+
+### Version Notes
+
+ImmunoBase current statistics:
+- 12 autoimmune/inflammatory diseases
+- 1,000+ associated genetic loci
+- Fine-mapping credible sets for major loci
+- Cross-disease shared region analysis
+- Integration with GWAS Catalog
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | `https://www.immunobase.org` |
+| Rate Limit | N/A (downloads) |
+| Auth Required | No |
+| Documentation | https://www.immunobase.org/about |
+
 ## Update Schedule
 
 | Data Type | Frequency |

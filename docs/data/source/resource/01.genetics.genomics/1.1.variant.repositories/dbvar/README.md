@@ -1,23 +1,35 @@
 ---
 id: dbvar
 title: "dbVar"
-type: data-source
-category: genetics
+type: source
+parent: ../README.md
+category: genetics.genomics
 subcategory: variant.repositories
-parent: ../_index.md
 tier: 1
-last_updated: 2026-01-23
 status: active
-tags: [variant, structural, cnv, ncbi, deletion, duplication]
+last_updated: 2026-01-25
+tags:
+  - variant
+  - structural
+  - cnv
+  - ncbi
+  - deletion
+  - duplication
 ---
 
 # dbVar
 
-**Category:** [Genetics & Genomics](../../_index.md) > [Variant Repositories](../_index.md)
+dbVar is NCBI's public database of human genomic structural variation, archiving variants greater than 50 base pairs including deletions, duplications, insertions, inversions, translocations, and complex rearrangements. It serves as the primary repository for structural variant (SV) data from research and clinical studies.
 
 ## Overview
 
-dbVar is NCBI's public database of human genomic structural variation, archiving variants greater than 50 base pairs including deletions, duplications, insertions, inversions, translocations, and complex rearrangements. It serves as the primary repository for structural variant (SV) data from research and clinical studies.
+| Property | Value |
+|----------|-------|
+| **Maintainer** | NCBI/NIH |
+| **Website** | https://www.ncbi.nlm.nih.gov/dbvar |
+| **Update Frequency** | Continuous |
+| **Records** | 6,000,000+ structural variants |
+| **Latest Release** | Current (continuous updates) |
 
 The database uses a hierarchical identifier system: studies (nstd/estd/dstd), variant regions (nsv/esv/dsv), and variant calls (nssv/essv/dssv). This structure captures both the genomic locations of structural variants and the individual experimental observations supporting them.
 
@@ -42,30 +54,31 @@ dbVar synchronizes with the European Variation Archive (EVA/DGVa) through monthl
 
 ## Key Identifiers
 
-| Identifier | Pattern | Example |
-|------------|---------|---------|
-| Variant Region | nsv/esv/dsv + integer | nsv1234567 |
-| Variant Call | nssv/essv/dssv + integer | nssv14580340 |
-| Study | nstd/estd/dstd + integer | nstd166 |
+| Identifier | Format | Example |
+|------------|--------|---------|
+| Variant Region | `nsv/esv/dsv + integer` | `nsv1234567` |
+| Variant Call | `nssv/essv/dssv + integer` | `nssv14580340` |
+| Study | `nstd/estd/dstd + integer` | `nstd166` |
 
-## Access Methods
+## Limitations
 
-| Method | URL | Notes |
-|--------|-----|-------|
-| FTP | ftp://ftp.ncbi.nlm.nih.gov/pub/dbVar/ | TSV, BED, VCF, GVF |
-| Web | https://www.ncbi.nlm.nih.gov/dbvar | Interactive search |
-| GitHub | https://github.com/ncbi/dbvar | Documentation, tools |
+- Breakpoint precision varies by detection method
+- Limited clinical interpretation for most SVs
+- Population frequencies less comprehensive than SNV databases
+- Complex rearrangements may be incompletely characterized
+- Different studies use varying SV calling thresholds
 
-## License
+## Data Quality Notes
 
-| Aspect | Value |
-|--------|-------|
-| License | Public Domain (US Government) |
-| Commercial Use | Yes |
-| Attribution | Recommended |
+dbVar applies quality filters based on submission validation status and supporting evidence. Variant regions represent consensus boundaries across multiple observations, while variant calls preserve original study-specific coordinates. Users should consider validation status and supporting read depth when interpreting SV calls.
 
 ## See Also
 
-- [Schema Documentation](./schema.md)
-- [ClinVar](../clinvar/_index.md) - Clinical SVs forwarded here
-- [gnomAD](../../1.3.population.genetics/gnomad/_index.md) - SV frequencies
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [Example Records](./sample.json) - Sample data for code generation
+- [Download Guide](./download.md) - Access methods and API configuration
+- [License Terms](./license.md) - Usage rights and restrictions
+- [Schema Mapping](./mapping.xslt) - XSLT 3.0 transformation to unified schema
+- [ClinVar](../clinvar/README.md) - Clinical SVs forwarded here
+- [gnomAD](../../1.3.population.genetics/gnomad/README.md) - SV frequencies

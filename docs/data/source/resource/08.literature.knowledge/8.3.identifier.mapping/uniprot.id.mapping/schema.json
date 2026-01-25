@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "uniprot-id-mapping-schema.json",
+  "title": "UniProt ID Mapping Record",
+  "description": "JSON Schema for UniProt ID mapping service records.",
+  "type": "object",
+  "properties": {
+    "from": {
+      "type": "string",
+      "description": "Source identifier value."
+    },
+    "to": {
+      "type": "object",
+      "description": "Mapped UniProt entry.",
+      "properties": {
+        "primaryAccession": { "type": "string", "pattern": "^[A-Z0-9]+$" },
+        "uniProtkbId": { "type": "string" },
+        "entryType": { "type": "string" },
+        "organism": {
+          "type": "object",
+          "properties": {
+            "scientificName": { "type": "string" },
+            "taxonId": { "type": "integer" }
+          }
+        },
+        "proteinDescription": {
+          "type": "object",
+          "properties": {
+            "recommendedName": {
+              "type": "object",
+              "properties": {
+                "fullName": { "type": "object", "properties": { "value": { "type": "string" } } }
+              }
+            }
+          }
+        },
+        "genes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "geneName": { "type": "object", "properties": { "value": { "type": "string" } } }
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": ["from"],
+  "additionalProperties": true
+}

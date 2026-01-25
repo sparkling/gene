@@ -228,6 +228,32 @@ cut -f2 all_gda.tsv | sort -u | wc -l
 awk -F'\t' 'NR>1 {print int($5*10)/10}' all_gda.tsv | sort -n | uniq -c
 ```
 
+## Dataset Versions
+
+| Version | Release Date | Size | Status |
+|---------|--------------|------|--------|
+| DisGeNET v7.0 | 2020-05 | ~1.5 GB | Current |
+| DisGeNET v8.0 | 2024-Q4 (planned) | TBD | In Development |
+| v6.0 | 2019-05 | ~1 GB | Archived |
+
+### Version Notes
+
+DisGeNET v7.0 current statistics:
+- 1.1M+ gene-disease associations
+- 30,000+ genes
+- 24,000+ diseases (UMLS concepts)
+- 117,000+ variant-disease associations
+- 14 source databases integrated
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | `https://www.disgenet.org/api` |
+| Rate Limit | Account-based |
+| Auth Required | Yes (API key required) |
+| Documentation | https://www.disgenet.org/api |
+
 ## Update Schedule
 
 | Release | Frequency |

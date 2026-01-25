@@ -1,0 +1,236 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "cpic-schema.json",
+  "title": "CPIC Guideline Record",
+  "description": "JSON Schema for Clinical Pharmacogenetics Implementation Consortium (CPIC) guidelines and allele definitions.",
+  "type": "object",
+  "properties": {
+    "guideline_id": {
+      "type": "string",
+      "description": "CPIC guideline identifier.",
+      "pattern": "^[a-z]+-[a-z0-9]+(-[a-z0-9]+)*$",
+      "examples": ["codeine-cyp2d6", "warfarin-cyp2c9-vkorc1-cyp4f2"]
+    },
+    "guideline_name": {
+      "type": "string",
+      "description": "Full guideline name.",
+      "examples": ["CPIC Guideline for Codeine and CYP2D6"]
+    },
+    "genes": {
+      "type": "array",
+      "description": "Genes covered by the guideline.",
+      "items": { "type": "string" },
+      "examples": [["CYP2D6"], ["CYP2C9", "VKORC1", "CYP4F2"]]
+    },
+    "drugs": {
+      "type": "array",
+      "description": "Drugs covered by the guideline.",
+      "items": { "type": "string" },
+      "examples": [["codeine"], ["warfarin"]]
+    },
+    "cpic_level": {
+      "type": "string",
+      "description": "CPIC evidence level for gene-drug pair.",
+      "enum": ["A", "A/B", "B", "B/C", "C", "C/D", "D"]
+    },
+    "cpic_level_status": {
+      "type": "string",
+      "description": "Status of CPIC level assignment.",
+      "enum": ["Prescribing info", "Dosing", "Other", "No action"]
+    },
+    "version": {
+      "type": "string",
+      "description": "Guideline version.",
+      "examples": ["1.0", "2.0", "3.0"]
+    },
+    "publication_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Publication date.",
+      "examples": ["2023-01-15"]
+    },
+    "pmid": {
+      "type": "integer",
+      "description": "PubMed ID of the guideline publication.",
+      "examples": [24458010, 30801677]
+    },
+    "doi": {
+      "type": "string",
+      "description": "DOI of the publication.",
+      "pattern": "^10\\.[0-9]+/.*$",
+      "examples": ["10.1002/cpt.2331"]
+    },
+    "allele_definition_table": {
+      "type": "array",
+      "description": "Star allele definitions.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "gene": {
+            "type": "string",
+            "examples": ["CYP2D6"]
+          },
+          "allele": {
+            "type": "string",
+            "description": "Star allele designation.",
+            "pattern": "^\\*[0-9]+[A-Z]*$",
+            "examples": ["*1", "*4", "*17", "*2A"]
+          },
+          "defining_variants": {
+            "type": "array",
+            "description": "Variants that define this allele.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "rsid": {
+                  "type": "string",
+                  "pattern": "^rs[0-9]+$"
+                },
+                "position_hg38": {
+                  "type": "string",
+                  "examples": ["chr22:42128174"]
+                },
+                "ref": { "type": "string" },
+                "alt": { "type": "string" },
+                "hgvs": { "type": "string" }
+              }
+            }
+          },
+          "function": {
+            "type": "string",
+            "description": "Allele function.",
+            "enum": ["Normal function", "Decreased function", "No function", "Increased function", "Uncertain function", "Unknown function"]
+          },
+          "activity_value": {
+            "type": "number",
+            "description": "Activity value for scoring.",
+            "examples": [1.0, 0.5, 0.0, 1.5, 2.0]
+          },
+          "clinical_function": {
+            "type": "string",
+            "description": "Clinical functional status.",
+            "examples": ["Fully functional", "Decreased activity", "Non-functional"]
+          },
+          "frequency": {
+            "type": "object",
+            "description": "Population frequencies.",
+            "properties": {
+              "African": { "type": "number", "minimum": 0, "maximum": 1 },
+              "African_American": { "type": "number", "minimum": 0, "maximum": 1 },
+              "Caucasian": { "type": "number", "minimum": 0, "maximum": 1 },
+              "East_Asian": { "type": "number", "minimum": 0, "maximum": 1 },
+              "Latino": { "type": "number", "minimum": 0, "maximum": 1 },
+              "Middle_Eastern": { "type": "number", "minimum": 0, "maximum": 1 },
+              "South_Asian": { "type": "number", "minimum": 0, "maximum": 1 }
+            }
+          }
+        }
+      }
+    },
+    "allele_functionality_table": {
+      "type": "array",
+      "description": "Allele function assignments.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "allele": { "type": "string" },
+          "function_status": { "type": "string" },
+          "activity_score": { "type": "number" },
+          "evidence": { "type": "string" },
+          "citations": {
+            "type": "array",
+            "items": { "type": "integer" }
+          }
+        }
+      }
+    },
+    "diplotype_phenotype_table": {
+      "type": "array",
+      "description": "Diplotype to phenotype mapping.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "diplotype": {
+            "type": "string",
+            "description": "Diplotype (e.g., *1/*4).",
+            "examples": ["*1/*1", "*1/*4", "*4/*4"]
+          },
+          "activity_score": {
+            "type": "number",
+            "description": "Total activity score.",
+            "examples": [2.0, 1.0, 0.0]
+          },
+          "phenotype": {
+            "type": "string",
+            "description": "Metabolizer phenotype.",
+            "enum": [
+              "Ultrarapid Metabolizer",
+              "Rapid Metabolizer",
+              "Normal Metabolizer",
+              "Intermediate Metabolizer",
+              "Poor Metabolizer",
+              "Indeterminate"
+            ]
+          },
+          "ehr_priority": {
+            "type": "string",
+            "description": "EHR priority result.",
+            "examples": ["Normal Metabolizer", "Poor Metabolizer"]
+          }
+        }
+      }
+    },
+    "recommendations": {
+      "type": "array",
+      "description": "Clinical recommendations by phenotype.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "phenotype": {
+            "type": "string",
+            "description": "Metabolizer phenotype."
+          },
+          "activity_score_range": {
+            "type": "string",
+            "description": "Activity score range if applicable.",
+            "examples": ["0", "0.25-1", "1.25-2.25", ">2.25"]
+          },
+          "implication": {
+            "type": "string",
+            "description": "Clinical implication.",
+            "examples": ["Greatly reduced morphine formation following codeine administration"]
+          },
+          "recommendation": {
+            "type": "string",
+            "description": "Therapeutic recommendation.",
+            "examples": ["Avoid codeine use; consider alternative analgesics"]
+          },
+          "strength": {
+            "type": "string",
+            "description": "Recommendation strength.",
+            "enum": ["Strong", "Moderate", "Optional"]
+          },
+          "classification": {
+            "type": "string",
+            "description": "Recommendation classification.",
+            "examples": ["Actionable PGx", "Informative PGx"]
+          }
+        }
+      }
+    },
+    "pharmgkb_id": {
+      "type": "string",
+      "description": "PharmGKB guideline accession.",
+      "pattern": "^PA[0-9]+$",
+      "examples": ["PA166104938"]
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "CPIC guideline URL.",
+      "examples": ["https://cpicpgx.org/guidelines/cpic-guideline-for-codeine-and-cyp2d6/"]
+    }
+  },
+  "required": ["guideline_id", "genes", "drugs", "cpic_level"],
+  "additionalProperties": true
+}

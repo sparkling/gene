@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "masi-schema.json",
+  "title": "MASI Signaling Interaction Record",
+  "description": "JSON Schema for MASI microbiome-associated signaling interaction entries.",
+  "type": "object",
+  "properties": {
+    "interaction_id": { "type": "integer", "description": "Unique interaction identifier" },
+    "metabolite": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "Metabolite name" },
+        "pubchem_cid": { "type": "integer", "description": "PubChem compound ID" },
+        "hmdb_id": { "type": "string", "pattern": "^HMDB[0-9]+$" },
+        "chebi_id": { "type": "integer" },
+        "smiles": { "type": "string", "description": "Chemical structure" },
+        "class": { "type": "string", "description": "Chemical class" },
+        "microbe_sources": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["name"]
+    },
+    "target": {
+      "type": "object",
+      "properties": {
+        "symbol": { "type": "string", "description": "Gene/protein symbol" },
+        "name": { "type": "string", "description": "Full name" },
+        "uniprot_id": { "type": "string" },
+        "type": { "type": "string", "enum": ["GPCR", "Nuclear receptor", "Enzyme", "Pattern recognition", "Ion channel", "Transporter", "Kinase", "Other"] },
+        "tissue_expression": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["symbol", "type"]
+    },
+    "interaction": {
+      "type": "object",
+      "properties": {
+        "effect": { "type": "string", "enum": ["activate", "inhibit", "modulate", "substrate", "induce", "suppress"] },
+        "mechanism": { "type": "string" },
+        "kd": { "type": "string", "description": "Dissociation constant" },
+        "tissue": { "type": "string" }
+      },
+      "required": ["effect"]
+    },
+    "pathway": {
+      "type": "object",
+      "properties": {
+        "kegg_id": { "type": "string" },
+        "reactome_id": { "type": "string" },
+        "name": { "type": "string" },
+        "downstream": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "properties": {
+        "pmid": { "type": "integer" },
+        "experiment_type": { "type": "string" }
+      },
+      "required": ["pmid"]
+    }
+  },
+  "required": ["interaction_id", "metabolite", "target", "interaction", "evidence"],
+  "additionalProperties": true
+}

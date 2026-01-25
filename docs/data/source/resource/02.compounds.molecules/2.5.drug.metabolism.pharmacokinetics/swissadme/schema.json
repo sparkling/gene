@@ -1,0 +1,271 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "swissadme-schema.json",
+  "title": "SwissADME Prediction Record",
+  "description": "JSON Schema for SwissADME ADME property predictions. Provides 20+ physicochemical descriptors, 5 drug-likeness filters (Lipinski, Veber, Egan, Ghose, Muegge), CYP inhibition predictions for 5 isoforms, and PAINS alerts for up to 100 compounds.",
+  "type": "object",
+  "properties": {
+    "molecule": {
+      "type": "string",
+      "description": "Molecule name or index"
+    },
+    "canonical_smiles": {
+      "type": "string",
+      "description": "Standardized SMILES notation"
+    },
+    "inchi_key": {
+      "type": "string",
+      "description": "InChI key identifier",
+      "pattern": "^[A-Z]{14}-[A-Z]{10}-[A-Z]$"
+    },
+    "formula": {
+      "type": "string",
+      "description": "Molecular formula"
+    },
+    "physicochemical": {
+      "$ref": "#/$defs/physicochemical"
+    },
+    "lipophilicity": {
+      "$ref": "#/$defs/lipophilicity"
+    },
+    "water_solubility": {
+      "$ref": "#/$defs/waterSolubility"
+    },
+    "drug_likeness": {
+      "$ref": "#/$defs/drugLikeness"
+    },
+    "pharmacokinetics": {
+      "$ref": "#/$defs/pharmacokinetics"
+    },
+    "medicinal_chemistry": {
+      "$ref": "#/$defs/medicinalChemistry"
+    }
+  },
+  "required": ["molecule", "canonical_smiles"],
+  "$defs": {
+    "physicochemical": {
+      "type": "object",
+      "description": "Physicochemical properties",
+      "properties": {
+        "mw": {
+          "type": "number",
+          "description": "Molecular weight (Da)",
+          "minimum": 0
+        },
+        "heavy_atoms": {
+          "type": "integer",
+          "description": "Non-hydrogen atom count",
+          "minimum": 0
+        },
+        "aromatic_heavy_atoms": {
+          "type": "integer",
+          "description": "Aromatic heavy atoms",
+          "minimum": 0
+        },
+        "fraction_csp3": {
+          "type": "number",
+          "description": "Fraction sp3 carbons",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "rotatable_bonds": {
+          "type": "integer",
+          "description": "Rotatable bond count",
+          "minimum": 0
+        },
+        "hbd": {
+          "type": "integer",
+          "description": "H-bond donors",
+          "minimum": 0
+        },
+        "hba": {
+          "type": "integer",
+          "description": "H-bond acceptors",
+          "minimum": 0
+        },
+        "mr": {
+          "type": "number",
+          "description": "Molar refractivity"
+        },
+        "tpsa": {
+          "type": "number",
+          "description": "Topological polar surface area (A^2)",
+          "minimum": 0
+        }
+      }
+    },
+    "lipophilicity": {
+      "type": "object",
+      "description": "LogP predictions",
+      "properties": {
+        "ilogp": {
+          "type": "number",
+          "description": "In-house physics-based LogP"
+        },
+        "xlogp3": {
+          "type": "number",
+          "description": "Atomistic LogP"
+        },
+        "wlogp": {
+          "type": "number",
+          "description": "Wildman-Crippen LogP"
+        },
+        "mlogp": {
+          "type": "number",
+          "description": "Moriguchi LogP"
+        },
+        "silicos_it_logp": {
+          "type": "number",
+          "description": "SILICOS-IT LogP"
+        },
+        "consensus_logp": {
+          "type": "number",
+          "description": "Average of 5 methods"
+        }
+      }
+    },
+    "waterSolubility": {
+      "type": "object",
+      "description": "Solubility predictions",
+      "properties": {
+        "esol_logs": {
+          "type": "number",
+          "description": "ESOL log S"
+        },
+        "esol_solubility": {
+          "type": "number",
+          "description": "ESOL solubility (mg/mL)"
+        },
+        "esol_class": {
+          "type": "string",
+          "description": "ESOL solubility class",
+          "enum": ["Insoluble", "Poorly soluble", "Moderately soluble", "Soluble", "Very soluble", "Highly soluble"]
+        },
+        "ali_logs": {
+          "type": "number",
+          "description": "Ali method log S"
+        },
+        "ali_class": {
+          "type": "string",
+          "description": "Ali solubility class"
+        }
+      }
+    },
+    "drugLikeness": {
+      "type": "object",
+      "description": "Drug-likeness assessment",
+      "properties": {
+        "lipinski_violations": {
+          "type": "integer",
+          "description": "Lipinski Rule of 5 violations",
+          "minimum": 0,
+          "maximum": 4
+        },
+        "ghose_violations": {
+          "type": "integer",
+          "description": "Ghose filter violations",
+          "minimum": 0
+        },
+        "veber_violations": {
+          "type": "integer",
+          "description": "Veber filter violations",
+          "minimum": 0
+        },
+        "egan_violations": {
+          "type": "integer",
+          "description": "Egan filter violations",
+          "minimum": 0
+        },
+        "muegge_violations": {
+          "type": "integer",
+          "description": "Muegge filter violations",
+          "minimum": 0
+        },
+        "bioavailability_score": {
+          "type": "number",
+          "description": "Abbott bioavailability score",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "leadlikeness_violations": {
+          "type": "integer",
+          "description": "Lead-likeness violations",
+          "minimum": 0
+        }
+      }
+    },
+    "pharmacokinetics": {
+      "type": "object",
+      "description": "ADME predictions",
+      "properties": {
+        "gi_absorption": {
+          "type": "string",
+          "description": "GI absorption",
+          "enum": ["High", "Low"]
+        },
+        "bbb_permeant": {
+          "type": "string",
+          "description": "BBB permeation",
+          "enum": ["Yes", "No"]
+        },
+        "pgp_substrate": {
+          "type": "string",
+          "description": "P-glycoprotein substrate",
+          "enum": ["Yes", "No"]
+        },
+        "cyp1a2_inhibitor": {
+          "type": "string",
+          "description": "CYP1A2 inhibition",
+          "enum": ["Yes", "No"]
+        },
+        "cyp2c19_inhibitor": {
+          "type": "string",
+          "description": "CYP2C19 inhibition",
+          "enum": ["Yes", "No"]
+        },
+        "cyp2c9_inhibitor": {
+          "type": "string",
+          "description": "CYP2C9 inhibition",
+          "enum": ["Yes", "No"]
+        },
+        "cyp2d6_inhibitor": {
+          "type": "string",
+          "description": "CYP2D6 inhibition",
+          "enum": ["Yes", "No"]
+        },
+        "cyp3a4_inhibitor": {
+          "type": "string",
+          "description": "CYP3A4 inhibition",
+          "enum": ["Yes", "No"]
+        },
+        "log_kp": {
+          "type": "number",
+          "description": "Skin permeation log Kp (cm/s)"
+        }
+      }
+    },
+    "medicinalChemistry": {
+      "type": "object",
+      "description": "Medicinal chemistry alerts",
+      "properties": {
+        "pains_alerts": {
+          "type": "integer",
+          "description": "PAINS pattern matches",
+          "minimum": 0
+        },
+        "brenk_alerts": {
+          "type": "integer",
+          "description": "Brenk structural alerts",
+          "minimum": 0
+        },
+        "synthetic_accessibility": {
+          "type": "number",
+          "description": "SA score (1-10, lower=easier)",
+          "minimum": 1,
+          "maximum": 10
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

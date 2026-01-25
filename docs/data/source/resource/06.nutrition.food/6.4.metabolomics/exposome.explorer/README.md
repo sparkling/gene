@@ -68,6 +68,10 @@ Exposome-Explorer is essential for exposure assessment research, biomarker disco
 
 ## See Also
 
-- [Schema Documentation](./schema.md)
-- [HMDB](../hmdb/_index.md) - Human Metabolome Database
-- [FooDB](../../6.1.food.composition/foodb/_index.md) - Food compound database
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [Sample Data](./sample.json) - Example records
+- [License Terms](./license.md) - Usage rights and restrictions
+- [Schema Mapping](./mapping.xslt) - Transform to unified schema
+- [HMDB](../hmdb/README.md) - Human Metabolome Database
+- [FooDB](../../6.1.food.composition/foodb/README.md) - Food compound database

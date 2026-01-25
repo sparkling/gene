@@ -1,0 +1,82 @@
+[
+  {
+    "pageid": 1088547,
+    "title": "BRCA1",
+    "wikidata_id": "Q227339",
+    "extract": "BRCA1, DNA repair associated is a human tumor suppressor gene that produces a protein called breast cancer type 1 susceptibility protein, responsible for repairing DNA...",
+    "categories": [
+      "Genes on human chromosome 17",
+      "Tumor suppressor genes",
+      "DNA repair",
+      "Breast cancer"
+    ],
+    "infobox": {
+      "Name": "BRCA1 DNA repair associated",
+      "Symbol": "BRCA1",
+      "HGNC": "1100",
+      "EntrezGene": "672",
+      "RefSeq": "NM_007294",
+      "UniProt": "P38398",
+      "Chromosome": "17",
+      "Band": "q21.31"
+    },
+    "links": [
+      "Tumor suppressor gene",
+      "DNA repair",
+      "Breast cancer",
+      "BRCA2",
+      "Hereditary breast-ovarian cancer syndrome"
+    ],
+    "external_links": [
+      "https://www.ncbi.nlm.nih.gov/gene/672",
+      "https://www.uniprot.org/uniprot/P38398"
+    ],
+    "references": [
+      {
+        "text": "Miki Y, et al. (1994). A strong candidate for the breast and ovarian cancer susceptibility gene BRCA1. Science.",
+        "pmid": "7545954",
+        "doi": "10.1126/science.7545954"
+      }
+    ],
+    "revision": {
+      "revid": 1234567890,
+      "timestamp": "2024-01-15T10:30:00Z",
+      "user": "ExampleEditor"
+    }
+  },
+  {
+    "pageid": 7890123,
+    "title": "Type 2 diabetes",
+    "wikidata_id": "Q3025883",
+    "extract": "Type 2 diabetes (T2D), formerly known as adult-onset diabetes, is a form of diabetes mellitus that is characterized by high blood sugar, insulin resistance, and relative lack of insulin...",
+    "categories": [
+      "Diabetes",
+      "Metabolic disorders",
+      "Obesity-related diseases"
+    ],
+    "infobox": {
+      "Name": "Type 2 diabetes",
+      "ICD-10": "E11",
+      "ICD-9": "250.00",
+      "MeSH": "D003924",
+      "DiseasesDB": "3661"
+    },
+    "links": [
+      "Diabetes mellitus",
+      "Insulin resistance",
+      "Obesity",
+      "Metformin"
+    ],
+    "references": [
+      {
+        "text": "American Diabetes Association. Standards of Medical Care in Diabetes-2024.",
+        "doi": "10.2337/dc24-SINT"
+      }
+    ],
+    "revision": {
+      "revid": 9876543210,
+      "timestamp": "2024-02-20T14:45:00Z",
+      "user": "MedEditor"
+    }
+  }
+]

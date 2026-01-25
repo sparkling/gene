@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "wikidata-schema.json",
+  "title": "Wikidata Item Record",
+  "description": "JSON Schema for Wikidata entity records.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Wikidata item identifier.",
+      "pattern": "^Q[0-9]+$",
+      "examples": ["Q227339", "Q14883734"]
+    },
+    "type": {
+      "type": "string",
+      "description": "Entity type.",
+      "enum": ["item", "property"]
+    },
+    "labels": {
+      "type": "object",
+      "description": "Labels in different languages.",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "language": { "type": "string" },
+          "value": { "type": "string" }
+        }
+      }
+    },
+    "descriptions": {
+      "type": "object",
+      "description": "Descriptions in different languages.",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "language": { "type": "string" },
+          "value": { "type": "string" }
+        }
+      }
+    },
+    "aliases": {
+      "type": "object",
+      "description": "Alternative names in different languages.",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "language": { "type": "string" },
+            "value": { "type": "string" }
+          }
+        }
+      }
+    },
+    "claims": {
+      "type": "object",
+      "description": "Property claims/statements.",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "mainsnak": {
+              "type": "object",
+              "properties": {
+                "snaktype": { "type": "string" },
+                "property": { "type": "string" },
+                "datavalue": { "type": "object" }
+              }
+            },
+            "rank": { "type": "string", "enum": ["preferred", "normal", "deprecated"] },
+            "references": { "type": "array" },
+            "qualifiers": { "type": "object" }
+          }
+        }
+      }
+    },
+    "sitelinks": {
+      "type": "object",
+      "description": "Links to Wikipedia articles.",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "site": { "type": "string" },
+          "title": { "type": "string" },
+          "badges": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "modified": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last modification timestamp."
+    }
+  },
+  "required": ["id", "type"],
+  "additionalProperties": true
+}

@@ -195,6 +195,61 @@ cut -f3 ReactomePathways.txt | sort | uniq -c | sort -rn | head
 grep "Homo sapiens" NCBI2Reactome.txt | wc -l
 ```
 
+---
+
+## Dataset Versions
+
+### Current Release: Version 88
+
+| Property | Value |
+|----------|-------|
+| Version | 88 |
+| Release Date | 2024-03-13 |
+| Total Size | ~15 GB (all formats) |
+| Checksum | See release notes |
+
+### Version Contents
+
+| Component | Size | Records | Description |
+|-----------|------|---------|-------------|
+| ReactomePathways.txt | ~5 MB | 2,700+ | Pathway hierarchy |
+| biopax.zip | ~2 GB | 2,700+ | BioPAX Level 3 |
+| homo_sapiens.sbml.tar.bz2 | ~500 MB | 2,700+ | SBML format |
+| ReactomePathways.gmt.zip | ~10 MB | 2,700+ | GSEA format |
+
+### Previous Versions
+
+| Version | Release | Size | Status |
+|---------|---------|------|--------|
+| 87 | 2023-12-06 | ~15 GB | Archived |
+| 86 | 2023-09-13 | ~14 GB | Archived |
+| 85 | 2023-06-14 | ~14 GB | Archived |
+
+---
+
+## API Access
+
+### Configuration
+
+| Property | Value |
+|----------|-------|
+| Base URL | `https://reactome.org/ContentService` |
+| Authentication | None required |
+| Rate Limit | No strict limit |
+| Response Format | JSON, XML, BioPAX, SBML |
+
+### API Endpoints
+
+| Operation | Endpoint | Example |
+|-----------|----------|---------|
+| Search | `/search/query` | `?query=apoptosis&species=Homo sapiens` |
+| Get Pathway | `/data/pathway/{id}` | `/data/pathway/R-HSA-109582` |
+| Events Hierarchy | `/data/eventsHierarchy/{species}` | `/data/eventsHierarchy/9606` |
+| Export Diagram | `/exporter/diagram/{id}.png` | `/exporter/diagram/R-HSA-109582.png` |
+| Analysis | `/AnalysisService/identifiers/projection` | POST gene list |
+
+---
+
 ## Update Schedule
 
 | Release | Frequency |

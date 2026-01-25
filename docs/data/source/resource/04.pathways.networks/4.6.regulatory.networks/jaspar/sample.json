@@ -1,0 +1,77 @@
+[
+  {
+    "matrix_id": "MA0106.3",
+    "name": "TP53",
+    "class": "Zinc-coordinating",
+    "family": "C2H2 zinc finger",
+    "species": ["Homo sapiens"],
+    "tax_group": "vertebrates",
+    "collection": "CORE",
+    "uniprot_ids": ["P04637"],
+    "pfm": {
+      "A": [286, 684, 660, 2, 704, 724, 70, 118, 18, 667, 295],
+      "C": [148, 58, 56, 739, 61, 0, 601, 606, 127, 34, 262],
+      "G": [283, 187, 78, 5, 3, 2, 31, 11, 15, 202, 183],
+      "T": [137, 37, 32, 93, 70, 64, 84, 49, 664, 57, 115]
+    },
+    "consensus": "RRRCWWGYYY",
+    "length": 11,
+    "information_content": 12.45,
+    "metadata": {
+      "version": 3,
+      "source_pmid": "1531086",
+      "validation": "ChIP-seq",
+      "url": "https://jaspar.genereg.net/matrix/MA0106.3/"
+    }
+  },
+  {
+    "matrix_id": "MA0139.1",
+    "name": "CTCF",
+    "class": "Zinc-coordinating",
+    "family": "C2H2 zinc finger",
+    "species": ["Homo sapiens"],
+    "tax_group": "vertebrates",
+    "collection": "CORE",
+    "uniprot_ids": ["P49711"],
+    "pfm": {
+      "A": [87, 167, 281, 56, 8, 744, 40, 107, 851, 5, 333, 54, 12, 56, 104, 372, 82, 117, 402],
+      "C": [291, 145, 49, 800, 903, 13, 528, 433, 11, 0, 3, 12, 0, 8, 733, 13, 482, 322, 181],
+      "G": [76, 414, 449, 21, 0, 52, 334, 48, 32, 903, 566, 504, 890, 775, 5, 507, 307, 73, 266],
+      "T": [459, 187, 134, 36, 2, 104, 11, 325, 19, 5, 11, 343, 11, 74, 71, 21, 42, 401, 64]
+    },
+    "consensus": "CCGCGNGGNGGCAG",
+    "length": 19,
+    "information_content": 18.73,
+    "metadata": {
+      "version": 1,
+      "source_pmid": "17512414",
+      "validation": "ChIP-seq",
+      "url": "https://jaspar.genereg.net/matrix/MA0139.1/"
+    }
+  },
+  {
+    "matrix_id": "MA0002.2",
+    "name": "RUNX1",
+    "class": "Runt",
+    "family": "Runt",
+    "species": ["Homo sapiens"],
+    "tax_group": "vertebrates",
+    "collection": "CORE",
+    "uniprot_ids": ["Q01196"],
+    "pfm": {
+      "A": [10, 12, 4, 1, 2, 2, 0, 8, 13],
+      "C": [2, 1, 2, 0, 1, 13, 0, 2, 2],
+      "G": [3, 0, 7, 0, 0, 0, 15, 0, 0],
+      "T": [0, 2, 2, 14, 12, 0, 0, 5, 0]
+    },
+    "consensus": "TGTGGT",
+    "length": 9,
+    "information_content": 8.92,
+    "metadata": {
+      "version": 2,
+      "source_pmid": "15652097",
+      "validation": "SELEX",
+      "url": "https://jaspar.genereg.net/matrix/MA0002.2/"
+    }
+  }
+]

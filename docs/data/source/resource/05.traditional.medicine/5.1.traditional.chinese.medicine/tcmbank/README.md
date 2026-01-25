@@ -1,14 +1,18 @@
 ---
 id: tcmbank
 title: "TCMBank"
-type: data-source
-category: traditional-medicine
-subcategory: traditional-chinese-medicine
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 2
-last_updated: 2026-01-23
 status: active
-tags: [tcm, traditional-chinese-medicine, compound-library, drug-discovery, database]
+category: traditional.medicine
+subcategory: traditional.chinese.medicine
+tags:
+  - tcm
+  - traditional-chinese-medicine
+  - compound-library
+  - drug-discovery
+  - database
 ---
 
 # TCMBank

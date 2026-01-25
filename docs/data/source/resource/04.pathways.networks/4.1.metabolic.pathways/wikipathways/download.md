@@ -326,6 +326,62 @@ for r in results:
 | SPARQL | Timeout at 60 seconds |
 | Bulk download | Unlimited |
 
+---
+
+## Dataset Versions
+
+### Current Release: January 2024
+
+| Property | Value |
+|----------|-------|
+| Version | 20240110 |
+| Release Date | 2024-01-10 |
+| Total Size | ~500 MB (all formats) |
+| Human Pathways | ~800 |
+
+### Version Contents
+
+| Component | Size | Records | Description |
+|-----------|------|---------|-------------|
+| wikipathways-*-gmt-Homo_sapiens.gmt | ~2 MB | ~800 | GSEA gene sets |
+| wikipathways-*-gpml-Homo_sapiens.zip | ~50 MB | ~800 | GPML pathway files |
+| wikipathways-*-rdf-wp.zip | ~200 MB | All | RDF/Turtle data |
+| wikipathways-*-biopax3-Homo_sapiens.zip | ~100 MB | ~800 | BioPAX Level 3 |
+
+### Previous Versions
+
+| Version | Release | Status |
+|---------|---------|--------|
+| 20231210 | 2023-12-10 | Archived |
+| 20231110 | 2023-11-10 | Archived |
+| 20231010 | 2023-10-10 | Archived |
+
+---
+
+## API Access
+
+### Configuration
+
+| Property | Value |
+|----------|-------|
+| REST Base URL | `https://webservice.wikipathways.org` |
+| SPARQL Endpoint | `https://sparql.wikipathways.org/sparql` |
+| Authentication | None required |
+| Rate Limit | No strict limit (60s SPARQL timeout) |
+| Response Format | JSON, XML, PNG, SVG, PDF |
+
+### REST API Endpoints
+
+| Operation | Endpoint | Example |
+|-----------|----------|---------|
+| Get Pathway | `/getPathway` | `?pwId=WP254&format=json` |
+| Search | `/findPathwaysByText` | `?query=apoptosis&species=Homo%20sapiens` |
+| List Pathways | `/listPathways` | `?organism=Homo%20sapiens&format=json` |
+| Get Genes | `/getXrefList` | `?pwId=WP254&code=En&format=json` |
+| Export Image | `/getColoredPathway` | `?pwId=WP254&fileType=png` |
+
+---
+
 ## Update Frequency
 
 | Type | Frequency |

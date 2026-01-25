@@ -1,0 +1,144 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "orange-book-schema.json",
+  "title": "FDA Orange Book Product Record",
+  "description": "JSON Schema for FDA Orange Book records. Contains 34,000+ approved drug products with therapeutic equivalence evaluations (TE codes), 45,000+ patent listings, and 8,000+ exclusivity records. Updated monthly.",
+  "type": "object",
+  "properties": {
+    "appl_no": {
+      "type": "string",
+      "description": "NDA/ANDA/BLA number",
+      "pattern": "^(NDA|ANDA|BLA)[0-9]{6}$",
+      "examples": ["NDA020702", "ANDA076183"]
+    },
+    "product_no": {
+      "type": "string",
+      "description": "Product number within application"
+    },
+    "form": {
+      "type": "string",
+      "description": "Dosage form"
+    },
+    "strength": {
+      "type": "string",
+      "description": "Strength/concentration"
+    },
+    "reference_drug": {
+      "type": "string",
+      "description": "Reference listed drug flag",
+      "enum": ["Y", "N"]
+    },
+    "drug_name": {
+      "type": "string",
+      "description": "Trade name"
+    },
+    "active_ingredient": {
+      "type": "string",
+      "description": "Active substance"
+    },
+    "reference_standard": {
+      "type": "string",
+      "description": "Reference Standard designation",
+      "enum": ["Y", "N"]
+    },
+    "te_code": {
+      "type": "string",
+      "description": "Therapeutic equivalence code",
+      "enum": ["AA", "AB", "AN", "AO", "AP", "AT", "BC", "BD", "BE", "BN", "BP", "BR", "BS", "BT", "BX"]
+    },
+    "approval_date": {
+      "type": "string",
+      "description": "FDA approval date",
+      "format": "date"
+    },
+    "rld": {
+      "type": "string",
+      "description": "Reference Listed Drug flag",
+      "enum": ["Y", "N"]
+    },
+    "rs": {
+      "type": "string",
+      "description": "Reference Standard flag",
+      "enum": ["Y", "N"]
+    },
+    "type": {
+      "type": "string",
+      "description": "Product type",
+      "enum": ["RX", "OTC", "DISCN"]
+    },
+    "applicant": {
+      "type": "string",
+      "description": "Company name"
+    },
+    "patents": {
+      "type": "array",
+      "description": "Patent listings",
+      "items": {
+        "$ref": "#/$defs/patent"
+      }
+    },
+    "exclusivities": {
+      "type": "array",
+      "description": "Exclusivity records",
+      "items": {
+        "$ref": "#/$defs/exclusivity"
+      }
+    }
+  },
+  "required": ["appl_no", "product_no", "drug_name", "active_ingredient"],
+  "$defs": {
+    "patent": {
+      "type": "object",
+      "description": "Patent information",
+      "properties": {
+        "patent_no": {
+          "type": "string",
+          "description": "Patent number"
+        },
+        "patent_expire_date": {
+          "type": "string",
+          "description": "Expiration date",
+          "format": "date"
+        },
+        "drug_substance_flag": {
+          "type": "string",
+          "description": "Covers drug substance",
+          "enum": ["Y", "N"]
+        },
+        "drug_product_flag": {
+          "type": "string",
+          "description": "Covers drug product",
+          "enum": ["Y", "N"]
+        },
+        "patent_use_code": {
+          "type": "string",
+          "description": "Patent use code"
+        },
+        "delist_flag": {
+          "type": "string",
+          "description": "Delist request flag",
+          "enum": ["Y", "N"]
+        }
+      },
+      "required": ["patent_no", "patent_expire_date"]
+    },
+    "exclusivity": {
+      "type": "object",
+      "description": "Market exclusivity",
+      "properties": {
+        "exclusivity_code": {
+          "type": "string",
+          "description": "Exclusivity type code",
+          "enum": ["NCE", "NP", "I", "ODE", "PED", "M", "PC"]
+        },
+        "exclusivity_date": {
+          "type": "string",
+          "description": "Expiration date",
+          "format": "date"
+        }
+      },
+      "required": ["exclusivity_code", "exclusivity_date"]
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,161 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "coconut-schema.json",
+  "title": "COCONUT Natural Product Record",
+  "description": "JSON Schema for COCONUT (COlleCtion of Open Natural prodUcTs) records. Comprehensive database with 450,000 natural products from 52 sources with physicochemical properties, organisms, and drug-likeness scores.",
+  "type": "object",
+  "properties": {
+    "coconut_id": {
+      "type": "string",
+      "description": "Unique COCONUT identifier",
+      "pattern": "^CNP[0-9]+$",
+      "examples": ["CNP0123456"]
+    },
+    "name": {
+      "type": "string",
+      "description": "Common or trivial name"
+    },
+    "iupac_name": {
+      "type": "string",
+      "description": "IUPAC systematic name"
+    },
+    "molecular_formula": {
+      "type": "string",
+      "description": "Chemical formula"
+    },
+    "molecular_weight": {
+      "type": "number",
+      "description": "Molecular weight in Daltons"
+    },
+    "canonical_smiles": {
+      "type": "string",
+      "description": "Canonical SMILES notation"
+    },
+    "isomeric_smiles": {
+      "type": "string",
+      "description": "Isomeric SMILES with stereochemistry"
+    },
+    "inchi": {
+      "type": "string",
+      "description": "Standard InChI string"
+    },
+    "inchi_key": {
+      "type": "string",
+      "description": "InChI key (27 characters)",
+      "pattern": "^[A-Z]{14}-[A-Z]{10}-[A-Z]$"
+    },
+    "sugar_free_smiles": {
+      "type": "string",
+      "description": "SMILES without glycosidic moieties"
+    },
+    "properties": {
+      "$ref": "#/$defs/physicochemicalProperties"
+    },
+    "sources": {
+      "type": "array",
+      "description": "Data sources where compound was found",
+      "items": {
+        "type": "string"
+      }
+    },
+    "organisms": {
+      "type": "array",
+      "description": "Source organisms",
+      "items": {
+        "$ref": "#/$defs/organism"
+      }
+    },
+    "biological_activities": {
+      "type": "array",
+      "description": "Biological activity annotations",
+      "items": {
+        "$ref": "#/$defs/biologicalActivity"
+      }
+    },
+    "citations": {
+      "type": "array",
+      "description": "Literature references",
+      "items": {
+        "$ref": "#/$defs/citation"
+      }
+    }
+  },
+  "required": ["coconut_id"],
+  "$defs": {
+    "physicochemicalProperties": {
+      "type": "object",
+      "description": "Computed physicochemical properties",
+      "properties": {
+        "total_atom_number": { "type": "integer" },
+        "heavy_atom_number": { "type": "integer" },
+        "aromatic_heavy_atom_number": { "type": "integer" },
+        "rotatable_bond_number": { "type": "integer" },
+        "hbond_acceptor": { "type": "integer" },
+        "hbond_donor": { "type": "integer" },
+        "murko_framework": { "type": "string" },
+        "number_of_rings": { "type": "integer" },
+        "aromatic_rings_count": { "type": "integer" },
+        "qed_drug_likeliness": {
+          "type": "number",
+          "description": "QED score (0-1)",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "lipinski_rule_of_5": {
+          "type": "integer",
+          "description": "Number of Lipinski violations (0-4)",
+          "minimum": 0,
+          "maximum": 4
+        },
+        "topological_polar_surface_area": { "type": "number" },
+        "alogp": { "type": "number" },
+        "xlogp": { "type": "number" }
+      }
+    },
+    "organism": {
+      "type": "object",
+      "description": "Source organism",
+      "properties": {
+        "name": { "type": "string" },
+        "taxonomic_rank": { "type": "string" },
+        "ncbi_taxonomy_id": { "type": "integer" },
+        "kingdom": { "type": "string" },
+        "phylum": { "type": "string" },
+        "class": { "type": "string" },
+        "order_name": { "type": "string" },
+        "family": { "type": "string" },
+        "genus": { "type": "string" },
+        "species": { "type": "string" }
+      },
+      "required": ["name"]
+    },
+    "biologicalActivity": {
+      "type": "object",
+      "description": "Biological activity annotation",
+      "properties": {
+        "activity_type": {
+          "type": "string",
+          "enum": ["IC50", "EC50", "Ki", "MIC", "LD50", "ED50"]
+        },
+        "target": { "type": "string" },
+        "organism": { "type": "string" },
+        "value": { "type": "number" },
+        "unit": { "type": "string" },
+        "reference": { "type": "string" }
+      }
+    },
+    "citation": {
+      "type": "object",
+      "description": "Literature reference",
+      "properties": {
+        "doi": { "type": "string" },
+        "pmid": { "type": "integer" },
+        "title": { "type": "string" },
+        "authors": { "type": "string" },
+        "journal": { "type": "string" },
+        "year": { "type": "integer" }
+      }
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,125 @@
+[
+  {
+    "id": "Q227339",
+    "type": "item",
+    "labels": {
+      "en": { "language": "en", "value": "BRCA1" },
+      "de": { "language": "de", "value": "BRCA1" },
+      "fr": { "language": "fr", "value": "BRCA1" }
+    },
+    "descriptions": {
+      "en": { "language": "en", "value": "human gene" },
+      "de": { "language": "de", "value": "menschliches Gen" }
+    },
+    "aliases": {
+      "en": [
+        { "language": "en", "value": "breast cancer 1" },
+        { "language": "en", "value": "BRCA1 DNA repair associated" }
+      ]
+    },
+    "claims": {
+      "P31": [{
+        "mainsnak": {
+          "snaktype": "value",
+          "property": "P31",
+          "datavalue": {
+            "value": { "entity-type": "item", "id": "Q7187" },
+            "type": "wikibase-entityid"
+          }
+        },
+        "rank": "normal"
+      }],
+      "P351": [{
+        "mainsnak": {
+          "snaktype": "value",
+          "property": "P351",
+          "datavalue": { "value": "672", "type": "string" }
+        },
+        "rank": "normal"
+      }],
+      "P352": [{
+        "mainsnak": {
+          "snaktype": "value",
+          "property": "P352",
+          "datavalue": { "value": "P38398", "type": "string" }
+        },
+        "rank": "normal"
+      }],
+      "P353": [{
+        "mainsnak": {
+          "snaktype": "value",
+          "property": "P353",
+          "datavalue": { "value": "BRCA1", "type": "string" }
+        },
+        "rank": "normal"
+      }],
+      "P354": [{
+        "mainsnak": {
+          "snaktype": "value",
+          "property": "P354",
+          "datavalue": { "value": "1100", "type": "string" }
+        },
+        "rank": "normal"
+      }],
+      "P703": [{
+        "mainsnak": {
+          "snaktype": "value",
+          "property": "P703",
+          "datavalue": {
+            "value": { "entity-type": "item", "id": "Q15978631" },
+            "type": "wikibase-entityid"
+          }
+        },
+        "rank": "normal"
+      }]
+    },
+    "sitelinks": {
+      "enwiki": { "site": "enwiki", "title": "BRCA1", "badges": [] },
+      "dewiki": { "site": "dewiki", "title": "BRCA1", "badges": [] }
+    },
+    "modified": "2024-01-15T10:30:00Z"
+  },
+  {
+    "id": "Q3025883",
+    "type": "item",
+    "labels": {
+      "en": { "language": "en", "value": "type 2 diabetes mellitus" }
+    },
+    "descriptions": {
+      "en": { "language": "en", "value": "type of diabetes mellitus" }
+    },
+    "claims": {
+      "P31": [{
+        "mainsnak": {
+          "snaktype": "value",
+          "property": "P31",
+          "datavalue": {
+            "value": { "entity-type": "item", "id": "Q112193867" },
+            "type": "wikibase-entityid"
+          }
+        },
+        "rank": "normal"
+      }],
+      "P486": [{
+        "mainsnak": {
+          "snaktype": "value",
+          "property": "P486",
+          "datavalue": { "value": "D003924", "type": "string" }
+        },
+        "rank": "normal"
+      }],
+      "P494": [{
+        "mainsnak": {
+          "snaktype": "value",
+          "property": "P494",
+          "datavalue": { "value": "E11", "type": "string" }
+        },
+        "rank": "normal"
+      }]
+    },
+    "sitelinks": {
+      "enwiki": { "site": "enwiki", "title": "Type 2 diabetes", "badges": [] }
+    },
+    "modified": "2024-02-20T14:45:00Z"
+  }
+]

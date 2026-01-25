@@ -132,6 +132,44 @@ Check against published statistics:
 | Update Frequency | Periodic major updates |
 | License | CC BY-NC 4.0 |
 
+---
+
+## Dataset Versions
+
+### Current Release: IMPPAT 2.0
+
+| Property | Value |
+|----------|-------|
+| Version | 2.0 |
+| Release Date | 2022-06-01 |
+| Total Size | ~200 MB |
+| Descriptors | 1,875 per compound |
+
+### Version Contents
+
+| Component | Records | Description |
+|-----------|---------|-------------|
+| Indian Medicinal Plants | 4,010 | Plant metadata |
+| Phytochemicals | 17,967 | Compounds with 1,875 descriptors |
+| Therapeutic Uses | 1,095 | Traditional indications |
+| Plant-Phytochemical Links | 189,386 | Part-specific associations |
+| Plant-Therapeutic Links | 89,733 | Usage associations |
+| Predicted Targets | 5,042 | Human proteins (STITCH) |
+
+### Previous Versions
+
+| Version | Release | Status |
+|---------|---------|--------|
+| IMPPAT 1.0 | 2018-01-01 | Archived |
+
+### Drug-Likeness Subset
+
+| Criteria | Compounds Passing |
+|----------|-------------------|
+| All 6 filters (Lipinski, Ghose, Veber, Egan, Pfizer, GSK) | 1,335 |
+
+---
+
 ## Notes
 
 - No public REST API (manual export required)

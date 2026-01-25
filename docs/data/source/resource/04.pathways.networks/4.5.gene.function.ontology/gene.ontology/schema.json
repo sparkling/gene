@@ -1,0 +1,183 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "gene-ontology-schema.json",
+  "title": "Gene Ontology Record",
+  "description": "JSON Schema for Gene Ontology (GO) term and annotation data. Structured vocabulary for gene product functions across species.",
+  "type": "object",
+  "properties": {
+    "goid": {
+      "type": "string",
+      "description": "Gene Ontology term identifier.",
+      "pattern": "^GO:[0-9]{7}$",
+      "examples": ["GO:0008152", "GO:0006915"]
+    },
+    "label": {
+      "type": "string",
+      "description": "GO term name.",
+      "examples": ["metabolic process", "apoptotic process"]
+    },
+    "namespace": {
+      "type": "string",
+      "description": "GO ontology aspect.",
+      "enum": ["biological_process", "molecular_function", "cellular_component"]
+    },
+    "aspect": {
+      "type": "string",
+      "description": "Single-letter aspect code.",
+      "enum": ["P", "F", "C"]
+    },
+    "definition": {
+      "type": "string",
+      "description": "Full definition of the term."
+    },
+    "comment": {
+      "type": "string",
+      "description": "Additional notes about the term."
+    },
+    "synonyms": {
+      "type": "array",
+      "description": "Alternative names.",
+      "items": { "type": "string" }
+    },
+    "alt_ids": {
+      "type": "array",
+      "description": "Alternative GO IDs (merged terms).",
+      "items": { "type": "string" }
+    },
+    "xrefs": {
+      "type": "array",
+      "description": "Cross-references to external databases.",
+      "items": { "type": "string" }
+    },
+    "subsets": {
+      "type": "array",
+      "description": "GO Slim memberships.",
+      "items": { "type": "string" },
+      "examples": [["goslim_generic", "goslim_chembl"]]
+    },
+    "is_obsolete": {
+      "type": "boolean",
+      "description": "Whether term is obsolete."
+    },
+    "replaced_by": {
+      "type": "array",
+      "description": "Replacement terms if obsolete.",
+      "items": { "type": "string" }
+    },
+    "relationships": {
+      "type": "object",
+      "description": "Ontology relationships.",
+      "properties": {
+        "is_a": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "part_of": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "has_part": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "regulates": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "positively_regulates": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "negatively_regulates": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "annotation": {
+      "type": "object",
+      "description": "GAF 2.2 annotation structure.",
+      "properties": {
+        "DB": {
+          "type": "string",
+          "description": "Database contributing annotation.",
+          "examples": ["UniProtKB", "MGI"]
+        },
+        "DB_Object_ID": {
+          "type": "string",
+          "description": "Unique identifier in source database."
+        },
+        "DB_Object_Symbol": {
+          "type": "string",
+          "description": "Gene/protein symbol."
+        },
+        "Qualifier": {
+          "type": "string",
+          "description": "Annotation qualifier (enables, part_of, NOT)."
+        },
+        "Evidence_Code": {
+          "type": "string",
+          "description": "Evidence code.",
+          "enum": ["EXP", "IDA", "IPI", "IMP", "IGI", "IEP", "HTP", "HDA", "HMP", "HGI", "HEP", "ISS", "ISO", "ISA", "ISM", "IGC", "IBA", "IBD", "IKR", "IRD", "RCA", "TAS", "NAS", "IC", "ND", "IEA"]
+        },
+        "With_From": {
+          "type": "string",
+          "description": "Supporting identifiers."
+        },
+        "DB_Object_Type": {
+          "type": "string",
+          "enum": ["gene", "protein", "transcript", "complex"]
+        },
+        "Taxon": {
+          "type": "string",
+          "description": "NCBI Taxonomy ID.",
+          "pattern": "^taxon:[0-9]+$"
+        },
+        "Date": {
+          "type": "string",
+          "description": "Annotation date (YYYYMMDD).",
+          "pattern": "^[0-9]{8}$"
+        },
+        "Assigned_By": {
+          "type": "string",
+          "description": "Annotating group."
+        }
+      }
+    },
+    "gocam": {
+      "type": "object",
+      "description": "GO-CAM causal activity model structure.",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "state": { "type": "string" },
+        "activities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "gene_product": { "type": "string" },
+              "molecular_function": { "type": "string" },
+              "biological_process": { "type": "string" },
+              "cellular_component": { "type": "string" }
+            }
+          }
+        },
+        "causal_relations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "subject": { "type": "string" },
+              "predicate": { "type": "string" },
+              "object": { "type": "string" }
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": ["goid", "label", "namespace"],
+  "additionalProperties": true
+}

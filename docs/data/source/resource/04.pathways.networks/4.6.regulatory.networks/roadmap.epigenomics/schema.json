@@ -1,0 +1,138 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "roadmap-epigenomics-schema.json",
+  "title": "Roadmap Epigenomics Record",
+  "description": "JSON Schema for Roadmap Epigenomics data. Provides genome-wide epigenomic maps including chromatin states, histone modifications, and DNA methylation across 127 human cell types.",
+  "type": "object",
+  "properties": {
+    "eid": {
+      "type": "string",
+      "description": "Epigenome identifier.",
+      "pattern": "^E[0-9]{3}$",
+      "examples": ["E003", "E017"]
+    },
+    "standardName": {
+      "type": "string",
+      "description": "Standard epigenome name.",
+      "examples": ["H1 Cells", "IMR90 fetal lung fibroblasts"]
+    },
+    "group": {
+      "type": "string",
+      "description": "Epigenome group classification.",
+      "enum": ["ESC", "iPSC", "ES-deriv", "Blood & T-cell", "HSC & B-cell", "Mesench", "Epithelial", "Myosat", "Brain", "Adipose", "Heart", "Sm. Muscle", "Digestive", "Thymus", "Other"]
+    },
+    "anatomy": {
+      "type": "string",
+      "description": "Anatomical source."
+    },
+    "type": {
+      "type": "string",
+      "description": "Sample type.",
+      "examples": ["Cell Line", "Primary Cell", "Primary Tissue"]
+    },
+    "age": {
+      "type": "string",
+      "description": "Donor age."
+    },
+    "sex": {
+      "type": "string",
+      "description": "Donor sex.",
+      "enum": ["Male", "Female", "Unknown"]
+    },
+    "description": {
+      "type": "string",
+      "description": "Detailed description."
+    },
+    "histone_marks": {
+      "type": "object",
+      "description": "Available histone modification data.",
+      "properties": {
+        "H3K4me1": { "type": "string", "enum": ["available", "not_available"] },
+        "H3K4me3": { "type": "string", "enum": ["available", "not_available"] },
+        "H3K27ac": { "type": "string", "enum": ["available", "not_available"] },
+        "H3K27me3": { "type": "string", "enum": ["available", "not_available"] },
+        "H3K36me3": { "type": "string", "enum": ["available", "not_available"] },
+        "H3K9me3": { "type": "string", "enum": ["available", "not_available"] }
+      }
+    },
+    "dna_methylation": {
+      "type": "string",
+      "description": "DNA methylation data type.",
+      "enum": ["WGBS", "RRBS", "not_available"]
+    },
+    "rna_seq": {
+      "type": "string",
+      "description": "RNA-seq availability.",
+      "enum": ["available", "not_available"]
+    },
+    "chromatinState": {
+      "type": "object",
+      "description": "Chromatin state annotation (15-state model).",
+      "properties": {
+        "chrom": { "type": "string" },
+        "chromStart": { "type": "integer" },
+        "chromEnd": { "type": "integer" },
+        "state": {
+          "type": "string",
+          "description": "Chromatin state code.",
+          "enum": ["1_TssA", "2_TssAFlnk", "3_TxFlnk", "4_Tx", "5_TxWk", "6_EnhG", "7_Enh", "8_ZNF/Rpts", "9_Het", "10_TssBiv", "11_BivFlnk", "12_EnhBiv", "13_ReprPC", "14_ReprPCWk", "15_Quies"]
+        }
+      }
+    },
+    "signalTrack": {
+      "type": "object",
+      "description": "Signal track information.",
+      "properties": {
+        "mark": { "type": "string" },
+        "signalType": {
+          "type": "string",
+          "enum": ["pval", "fc", "tagAlign"]
+        },
+        "fileFormat": { "type": "string", "const": "bigWig" }
+      }
+    },
+    "dnaMethylation": {
+      "type": "object",
+      "description": "DNA methylation data point.",
+      "properties": {
+        "chrom": { "type": "string" },
+        "start": { "type": "integer" },
+        "end": { "type": "integer" },
+        "methylation_fraction": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "total_reads": { "type": "integer" },
+        "methylated_reads": { "type": "integer" }
+      }
+    },
+    "peak": {
+      "type": "object",
+      "description": "Peak call (narrowPeak format).",
+      "properties": {
+        "chrom": { "type": "string" },
+        "start": { "type": "integer" },
+        "end": { "type": "integer" },
+        "name": { "type": "string" },
+        "score": { "type": "integer", "minimum": 0, "maximum": 1000 },
+        "strand": { "type": "string", "enum": ["+", "-", "."] },
+        "signalValue": { "type": "number" },
+        "pValue": { "type": "number" },
+        "qValue": { "type": "number" },
+        "peak": { "type": "integer" }
+      }
+    },
+    "expression": {
+      "type": "object",
+      "description": "Gene expression data.",
+      "properties": {
+        "gene_id": { "type": "string" },
+        "rpkm": { "type": "number" },
+        "tpm": { "type": "number" }
+      }
+    }
+  },
+  "required": ["eid", "standardName"],
+  "additionalProperties": true
+}

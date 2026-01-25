@@ -1,0 +1,188 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chembl-schema.json",
+  "title": "ChEMBL Molecule Record",
+  "description": "JSON Schema for ChEMBL molecule records. Contains 24.3M bioactivity records for 2.9M compounds across 17,803 targets from 99,142 publications with drug-likeness properties and clinical phase information.",
+  "type": "object",
+  "properties": {
+    "molecule_chembl_id": {
+      "type": "string",
+      "description": "ChEMBL molecule identifier",
+      "pattern": "^CHEMBL[0-9]+$",
+      "examples": ["CHEMBL25", "CHEMBL210"]
+    },
+    "pref_name": {
+      "type": "string",
+      "description": "Preferred compound name"
+    },
+    "molecule_type": {
+      "type": "string",
+      "description": "Molecule type",
+      "enum": ["Small molecule", "Antibody", "Protein", "Oligosaccharide", "Oligonucleotide", "Cell", "Unknown", "Enzyme", "Unclassified"]
+    },
+    "max_phase": {
+      "type": "number",
+      "description": "Highest clinical phase (0-4)",
+      "minimum": 0,
+      "maximum": 4
+    },
+    "first_approval": {
+      "type": "integer",
+      "description": "Year of first approval"
+    },
+    "oral": {
+      "type": "boolean",
+      "description": "Oral bioavailability"
+    },
+    "parenteral": {
+      "type": "boolean",
+      "description": "Parenteral administration"
+    },
+    "topical": {
+      "type": "boolean",
+      "description": "Topical administration"
+    },
+    "black_box_warning": {
+      "type": "boolean",
+      "description": "Black box warning flag"
+    },
+    "natural_product": {
+      "type": "integer",
+      "description": "Natural product flag (0 or 1)",
+      "enum": [0, 1]
+    },
+    "therapeutic_flag": {
+      "type": "boolean",
+      "description": "Is therapeutic"
+    },
+    "withdrawn_flag": {
+      "type": "boolean",
+      "description": "Withdrawn from market"
+    },
+    "prodrug": {
+      "type": "boolean",
+      "description": "Is prodrug"
+    },
+    "first_in_class": {
+      "type": "boolean",
+      "description": "First in class drug"
+    },
+    "molecule_structures": {
+      "$ref": "#/$defs/moleculeStructures"
+    },
+    "molecule_properties": {
+      "$ref": "#/$defs/moleculeProperties"
+    },
+    "molecule_synonyms": {
+      "type": "array",
+      "description": "Alternative names",
+      "items": {
+        "type": "object",
+        "properties": {
+          "synonym": { "type": "string" },
+          "syn_type": { "type": "string" }
+        }
+      }
+    },
+    "atc_classifications": {
+      "type": "array",
+      "description": "WHO ATC codes",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": ["molecule_chembl_id"],
+  "$defs": {
+    "moleculeStructures": {
+      "type": "object",
+      "description": "Chemical structure representations",
+      "properties": {
+        "canonical_smiles": {
+          "type": "string",
+          "description": "Canonical SMILES notation"
+        },
+        "standard_inchi": {
+          "type": "string",
+          "description": "Standard InChI string"
+        },
+        "standard_inchi_key": {
+          "type": "string",
+          "description": "InChI key (27 characters)",
+          "pattern": "^[A-Z]{14}-[A-Z]{10}-[A-Z]$"
+        },
+        "molfile": {
+          "type": "string",
+          "description": "MDL MOL file format"
+        }
+      }
+    },
+    "moleculeProperties": {
+      "type": "object",
+      "description": "Physicochemical properties",
+      "properties": {
+        "mw_freebase": {
+          "type": "number",
+          "description": "Molecular weight (freebase)"
+        },
+        "full_mwt": {
+          "type": "number",
+          "description": "Full molecular weight"
+        },
+        "full_molformula": {
+          "type": "string",
+          "description": "Molecular formula"
+        },
+        "alogp": {
+          "type": "number",
+          "description": "Calculated LogP (Wildman-Crippen)"
+        },
+        "cx_logp": {
+          "type": "number",
+          "description": "Calculated LogP (ChemAxon)"
+        },
+        "hba": {
+          "type": "integer",
+          "description": "Hydrogen bond acceptors"
+        },
+        "hbd": {
+          "type": "integer",
+          "description": "Hydrogen bond donors"
+        },
+        "psa": {
+          "type": "number",
+          "description": "Polar surface area"
+        },
+        "rtb": {
+          "type": "integer",
+          "description": "Rotatable bonds"
+        },
+        "heavy_atoms": {
+          "type": "integer",
+          "description": "Heavy atom count"
+        },
+        "aromatic_rings": {
+          "type": "integer",
+          "description": "Number of aromatic rings"
+        },
+        "num_ro5_violations": {
+          "type": "integer",
+          "description": "Lipinski rule violations"
+        },
+        "ro3_pass": {
+          "type": "string",
+          "description": "Rule of 3 compliance"
+        },
+        "qed_weighted": {
+          "type": "number",
+          "description": "QED drug-likeness score"
+        },
+        "np_likeness_score": {
+          "type": "number",
+          "description": "Natural product likeness score"
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

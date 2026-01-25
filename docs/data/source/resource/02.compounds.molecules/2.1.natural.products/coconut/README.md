@@ -1,19 +1,21 @@
 ---
 id: coconut
 title: "COCONUT - COlleCtion of Open Natural prodUcTs"
-type: data-source
-category: compounds
-subcategory: natural-products
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 1
-last_updated: 2026-01-23
 status: active
-tags: [natural-products, compounds, chemistry, drug-discovery, phytochemicals]
+category: compounds.molecules
+subcategory: natural.products
+tags:
+  - natural-products
+  - compounds
+  - chemistry
+  - drug-discovery
+  - phytochemicals
 ---
 
 # COCONUT - COlleCtion of Open Natural prodUcTs
-
-**Category:** [Compounds & Molecules](../../_index.md) > [Natural Products](../_index.md)
 
 ## Overview
 
@@ -69,13 +71,12 @@ COCONUT integrates with major chemistry databases including PubChem, ChEMBL, ZIN
 | JSON | ~600 MB | Full metadata |
 | SMILES | ~200 MB | Structure strings only |
 
-## License
+## Limitations
 
-| Aspect | Value |
-|--------|-------|
-| License | CC BY 4.0 |
-| Commercial Use | Yes |
-| Attribution Required | Yes |
+- Aggregated data quality varies across source databases
+- Some entries may lack complete structural validation
+- Organism-compound links not always experimentally verified
+- Updates may lag behind primary literature
 
 ## Related Resources
 
@@ -86,7 +87,9 @@ COCONUT integrates with major chemistry databases including PubChem, ChEMBL, ZIN
 
 ## See Also
 
-- [Schema Documentation](./schema.md)
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [License Terms](./license.md) - Usage rights and restrictions
 
 ## References
 

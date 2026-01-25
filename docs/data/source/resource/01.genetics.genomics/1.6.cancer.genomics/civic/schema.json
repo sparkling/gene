@@ -1,0 +1,257 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "civic-schema.json",
+  "title": "CIViC Record",
+  "description": "JSON Schema for Clinical Interpretation of Variants in Cancer (CIViC) evidence and assertions.",
+  "type": "object",
+  "properties": {
+    "entity_type": {
+      "type": "string",
+      "description": "Type of CIViC entity.",
+      "enum": ["gene", "variant", "evidence_item", "assertion", "molecular_profile"]
+    },
+    "gene": {
+      "type": "object",
+      "description": "Gene information.",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "CIViC gene ID.",
+          "examples": [1, 19, 5]
+        },
+        "name": {
+          "type": "string",
+          "description": "Gene symbol.",
+          "examples": ["BRAF", "EGFR", "TP53"]
+        },
+        "entrez_id": {
+          "type": "integer",
+          "description": "NCBI Entrez Gene ID.",
+          "examples": [673, 1956, 7157]
+        },
+        "description": {
+          "type": "string",
+          "description": "Gene description."
+        },
+        "aliases": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "variant": {
+      "type": "object",
+      "description": "Variant information.",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "CIViC variant ID.",
+          "examples": [12, 33, 17]
+        },
+        "name": {
+          "type": "string",
+          "description": "Variant name.",
+          "examples": ["V600E", "AMPLIFICATION", "L858R"]
+        },
+        "gene_id": {
+          "type": "integer"
+        },
+        "entrez_name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "variant_types": {
+          "type": "array",
+          "description": "Variant type classifications.",
+          "items": {
+            "type": "string",
+            "enum": ["missense_variant", "stop_gained", "frameshift_variant", "gene_amplification", "loss_of_function", "gain_of_function", "fusion", "splice_region_variant", "transcript_amplification"]
+          }
+        },
+        "hgvs_expressions": {
+          "type": "array",
+          "description": "HGVS nomenclature.",
+          "items": { "type": "string" }
+        },
+        "coordinates": {
+          "type": "object",
+          "properties": {
+            "chromosome": { "type": "string" },
+            "start": { "type": "integer" },
+            "stop": { "type": "integer" },
+            "reference_build": {
+              "type": "string",
+              "enum": ["GRCh37", "GRCh38"]
+            },
+            "reference_bases": { "type": "string" },
+            "variant_bases": { "type": "string" }
+          }
+        },
+        "clinvar_entries": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "allele_registry_id": {
+          "type": "string"
+        }
+      }
+    },
+    "evidence_item": {
+      "type": "object",
+      "description": "Evidence item (EID).",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Evidence ID (EID).",
+          "examples": [1, 100, 5000]
+        },
+        "name": {
+          "type": "string",
+          "description": "Evidence name (EIDxxxx).",
+          "pattern": "^EID[0-9]+$",
+          "examples": ["EID1", "EID100"]
+        },
+        "status": {
+          "type": "string",
+          "enum": ["accepted", "submitted", "rejected"]
+        },
+        "evidence_type": {
+          "type": "string",
+          "description": "Type of evidence.",
+          "enum": ["Predictive", "Diagnostic", "Prognostic", "Predisposing", "Oncogenic", "Functional"]
+        },
+        "evidence_direction": {
+          "type": "string",
+          "enum": ["Supports", "Does Not Support"]
+        },
+        "evidence_level": {
+          "type": "string",
+          "description": "Level of evidence.",
+          "enum": ["A", "B", "C", "D", "E"]
+        },
+        "clinical_significance": {
+          "type": "string",
+          "enum": ["Sensitivity/Response", "Resistance", "Adverse Response", "Reduced Sensitivity", "Positive", "Negative", "Better Outcome", "Poor Outcome", "Pathogenic", "Likely Pathogenic", "Benign", "Likely Benign", "Uncertain Significance", "Gain of Function", "Loss of Function", "Unaltered Function", "Neomorphic", "Dominant Negative", "Unknown"]
+        },
+        "disease": {
+          "type": "object",
+          "properties": {
+            "id": { "type": "integer" },
+            "name": { "type": "string" },
+            "doid": { "type": "string", "pattern": "^DOID:[0-9]+$" }
+          }
+        },
+        "therapies": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "integer" },
+              "name": { "type": "string" },
+              "ncit_id": { "type": "string" }
+            }
+          }
+        },
+        "phenotypes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "integer" },
+              "hpo_id": { "type": "string", "pattern": "^HP:[0-9]{7}$" }
+            }
+          }
+        },
+        "source": {
+          "type": "object",
+          "properties": {
+            "citation_id": { "type": "string" },
+            "source_type": { "type": "string", "enum": ["PubMed", "ASCO", "ASH"] },
+            "pubmed_id": { "type": "integer" }
+          }
+        },
+        "rating": {
+          "type": "integer",
+          "description": "Evidence rating (1-5 stars).",
+          "minimum": 1,
+          "maximum": 5
+        },
+        "variant_origin": {
+          "type": "string",
+          "enum": ["Somatic", "Rare Germline", "Common Germline", "N/A", "Unknown"]
+        }
+      }
+    },
+    "assertion": {
+      "type": "object",
+      "description": "Clinical assertion (AID).",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Assertion ID (AID).",
+          "examples": [1, 50, 100]
+        },
+        "name": {
+          "type": "string",
+          "pattern": "^AID[0-9]+$"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["accepted", "submitted", "rejected"]
+        },
+        "summary": {
+          "type": "string"
+        },
+        "assertion_type": {
+          "type": "string",
+          "enum": ["Predictive", "Diagnostic", "Prognostic", "Predisposing", "Oncogenic"]
+        },
+        "assertion_direction": {
+          "type": "string",
+          "enum": ["Supports", "Does Not Support"]
+        },
+        "amp_level": {
+          "type": "string",
+          "description": "AMP/ASCO/CAP tier level.",
+          "enum": ["Tier I - Level A", "Tier I - Level B", "Tier II - Level C", "Tier II - Level D", "Tier III", "Tier IV"]
+        },
+        "acmg_codes": {
+          "type": "array",
+          "description": "ACMG evidence codes.",
+          "items": {
+            "type": "string",
+            "pattern": "^(PVS|PS|PM|PP|BA|BS|BP)[0-9]+(_[A-Za-z]+)?$"
+          }
+        },
+        "evidence_items": {
+          "type": "array",
+          "items": { "type": "integer" }
+        },
+        "nccn_guideline": {
+          "type": "string"
+        },
+        "fda_companion_test": {
+          "type": "boolean"
+        }
+      }
+    },
+    "molecular_profile": {
+      "type": "object",
+      "description": "Molecular profile (complex variant combinations).",
+      "properties": {
+        "id": { "type": "integer" },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "variants": {
+          "type": "array",
+          "items": { "type": "integer" }
+        },
+        "parsed_name": { "type": "string" }
+      }
+    }
+  },
+  "required": ["entity_type"],
+  "additionalProperties": true
+}

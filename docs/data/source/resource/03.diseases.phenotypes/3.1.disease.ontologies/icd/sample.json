@@ -1,0 +1,52 @@
+{
+  "source": "ICD",
+  "version": "ICD-10-CM 2024",
+  "description": "Sample disease classification records from ICD-10",
+  "records": [
+    {
+      "code": "E11",
+      "description": "Type 2 diabetes mellitus",
+      "category": "Endocrine, nutritional and metabolic diseases",
+      "chapter": 4,
+      "parent_code": "E10-E14",
+      "children": [
+        {"code": "E11.0", "description": "Type 2 diabetes mellitus with hyperosmolarity"},
+        {"code": "E11.1", "description": "Type 2 diabetes mellitus with ketoacidosis"},
+        {"code": "E11.2", "description": "Type 2 diabetes mellitus with kidney complications"},
+        {"code": "E11.9", "description": "Type 2 diabetes mellitus without complications"}
+      ],
+      "includes": ["adult-onset diabetes mellitus", "non-insulin-dependent diabetes"],
+      "excludes1": ["diabetes mellitus due to underlying condition (E08.-)"]
+    },
+    {
+      "code": "I21",
+      "description": "Acute myocardial infarction",
+      "category": "Diseases of the circulatory system",
+      "chapter": 9,
+      "parent_code": "I20-I25",
+      "children": [
+        {"code": "I21.0", "description": "ST elevation (STEMI) myocardial infarction of anterior wall"},
+        {"code": "I21.1", "description": "ST elevation (STEMI) myocardial infarction of inferior wall"},
+        {"code": "I21.4", "description": "Non-ST elevation (NSTEMI) myocardial infarction"}
+      ],
+      "includes": ["heart attack", "myocardial infarction specified as acute"]
+    },
+    {
+      "code": "C50",
+      "description": "Malignant neoplasm of breast",
+      "category": "Neoplasms",
+      "chapter": 2,
+      "parent_code": "C50-C50",
+      "children": [
+        {"code": "C50.0", "description": "Malignant neoplasm of nipple and areola"},
+        {"code": "C50.1", "description": "Malignant neoplasm of central portion of breast"},
+        {"code": "C50.9", "description": "Malignant neoplasm of breast, unspecified"}
+      ]
+    }
+  ],
+  "queries": {
+    "web_browser": "https://icd.who.int/browse10/2019/en",
+    "api_search": "https://id.who.int/icd/entity/search?q=diabetes",
+    "download": "https://www.cms.gov/Medicare/Coding/ICD10/Downloads/2024-ICD-10-CM-Code-Descriptions.zip"
+  }
+}

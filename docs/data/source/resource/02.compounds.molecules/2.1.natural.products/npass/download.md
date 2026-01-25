@@ -131,13 +131,39 @@ cut -f1 npass_activities.tsv | sort | uniq | wc -l
 cut -f1 npass_species.tsv | sort | uniq | wc -l
 ```
 
+## Dataset Versions
+
+| Version | Release Date | Size | Status |
+|---------|--------------|------|--------|
+| NPASS 3.0 | 2025-10-13 | ~500 MB | Current |
+| NPASS 2.0 | 2023-01 | ~350 MB | Archived |
+| NPASS 1.0 | 2017-08 | ~150 MB | Archived |
+
+### Version Notes
+
+NPASS 3.0 contains comprehensive quantitative data:
+- 204,023 natural products from 48,940 organisms
+- 1,048,756 experimental activity records
+- 34,975 toxicity records and 9,713 ADME records
+- 208,415 NP composition records
+- 9.37%-206.30% data expansion over NPASS 2.0
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | `https://bidd.group/NPASS` |
+| Rate Limit | Contact maintainers |
+| Auth Required | Free for academic use |
+| Documentation | https://bidd.group/NPASS/index.php |
+
 ## Update Schedule
 
 | Release | Frequency |
 |---------|-----------|
 | Major updates | Annual |
 | Data additions | Periodic |
-| Last major update | 2023 |
+| Last major update | 2025-10 |
 
 ## Common Issues
 

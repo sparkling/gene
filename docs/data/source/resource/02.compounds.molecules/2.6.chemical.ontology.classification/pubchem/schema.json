@@ -1,0 +1,270 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "pubchem-schema.json",
+  "title": "PubChem Compound Record",
+  "description": "JSON Schema for PubChem compound database. Contains 115M+ compounds, 300M+ substances, 2M+ bioassays, with comprehensive chemical properties, 3D structures, bioactivity data, and cross-references to patents and literature.",
+  "type": "object",
+  "properties": {
+    "cid": {
+      "type": "integer",
+      "description": "PubChem Compound Identifier"
+    },
+    "iupac_name": {
+      "type": "string",
+      "description": "IUPAC systematic name"
+    },
+    "molecular_formula": {
+      "type": "string",
+      "description": "Molecular formula"
+    },
+    "molecular_weight": {
+      "type": "number",
+      "description": "Molecular weight in Daltons"
+    },
+    "canonical_smiles": {
+      "type": "string",
+      "description": "Canonical SMILES notation"
+    },
+    "isomeric_smiles": {
+      "type": "string",
+      "description": "Isomeric SMILES with stereochemistry"
+    },
+    "inchi": {
+      "type": "string",
+      "description": "InChI identifier"
+    },
+    "inchi_key": {
+      "type": "string",
+      "description": "InChI key (27 characters)",
+      "pattern": "^[A-Z]{14}-[A-Z]{10}-[A-Z]$"
+    },
+    "synonyms": {
+      "type": "array",
+      "description": "Alternative names",
+      "items": {
+        "type": "string"
+      }
+    },
+    "properties": {
+      "$ref": "#/$defs/properties"
+    },
+    "bioactivity": {
+      "type": "array",
+      "description": "Bioassay data",
+      "items": {
+        "$ref": "#/$defs/bioactivity"
+      }
+    },
+    "patents": {
+      "type": "array",
+      "description": "Patent references",
+      "items": {
+        "$ref": "#/$defs/patent"
+      }
+    },
+    "literature": {
+      "type": "array",
+      "description": "PubMed references",
+      "items": {
+        "$ref": "#/$defs/literature"
+      }
+    },
+    "safety": {
+      "$ref": "#/$defs/safety"
+    }
+  },
+  "required": ["cid"],
+  "$defs": {
+    "properties": {
+      "type": "object",
+      "description": "Physicochemical properties",
+      "properties": {
+        "xlogp": {
+          "type": "number",
+          "description": "Computed LogP"
+        },
+        "exact_mass": {
+          "type": "number",
+          "description": "Exact monoisotopic mass"
+        },
+        "tpsa": {
+          "type": "number",
+          "description": "Topological polar surface area"
+        },
+        "complexity": {
+          "type": "number",
+          "description": "Molecular complexity score"
+        },
+        "charge": {
+          "type": "integer",
+          "description": "Formal charge"
+        },
+        "hbond_donor_count": {
+          "type": "integer",
+          "description": "H-bond donors"
+        },
+        "hbond_acceptor_count": {
+          "type": "integer",
+          "description": "H-bond acceptors"
+        },
+        "rotatable_bond_count": {
+          "type": "integer",
+          "description": "Rotatable bonds"
+        },
+        "heavy_atom_count": {
+          "type": "integer",
+          "description": "Heavy atom count"
+        },
+        "atom_stereo_count": {
+          "type": "integer",
+          "description": "Stereocenters"
+        },
+        "fingerprint2d": {
+          "type": "string",
+          "description": "2D fingerprint"
+        }
+      }
+    },
+    "bioactivity": {
+      "type": "object",
+      "description": "Bioassay data",
+      "properties": {
+        "aid": {
+          "type": "integer",
+          "description": "Assay identifier"
+        },
+        "source_name": {
+          "type": "string",
+          "description": "Data source"
+        },
+        "assay_type": {
+          "type": "string",
+          "description": "Assay type"
+        },
+        "target": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Target name"
+            },
+            "gene_id": {
+              "type": "integer",
+              "description": "NCBI Gene ID"
+            },
+            "accession": {
+              "type": "string",
+              "description": "Protein accession"
+            }
+          }
+        },
+        "activity": {
+          "type": "string",
+          "description": "Activity outcome",
+          "enum": ["Active", "Inactive", "Inconclusive"]
+        },
+        "value": {
+          "type": "number",
+          "description": "Activity value"
+        },
+        "unit": {
+          "type": "string",
+          "description": "Value unit"
+        }
+      }
+    },
+    "patent": {
+      "type": "object",
+      "description": "Patent reference",
+      "properties": {
+        "patent_id": {
+          "type": "string",
+          "description": "Patent number"
+        },
+        "country": {
+          "type": "string",
+          "description": "Patent country"
+        },
+        "date": {
+          "type": "string",
+          "description": "Filing date",
+          "format": "date"
+        },
+        "title": {
+          "type": "string",
+          "description": "Patent title"
+        }
+      }
+    },
+    "literature": {
+      "type": "object",
+      "description": "PubMed reference",
+      "properties": {
+        "pmid": {
+          "type": "integer",
+          "description": "PubMed ID"
+        },
+        "title": {
+          "type": "string",
+          "description": "Article title"
+        },
+        "authors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "journal": {
+          "type": "string",
+          "description": "Journal name"
+        },
+        "year": {
+          "type": "integer",
+          "description": "Publication year"
+        },
+        "doi": {
+          "type": "string",
+          "description": "DOI"
+        }
+      }
+    },
+    "safety": {
+      "type": "object",
+      "description": "Safety and toxicity",
+      "properties": {
+        "ghs_hazards": {
+          "type": "array",
+          "description": "GHS hazard classifications",
+          "items": {
+            "type": "string"
+          }
+        },
+        "precautionary_statements": {
+          "type": "array",
+          "description": "Safety statements",
+          "items": {
+            "type": "string"
+          }
+        },
+        "ld50": {
+          "type": "object",
+          "properties": {
+            "species": {
+              "type": "string"
+            },
+            "route": {
+              "type": "string"
+            },
+            "value": {
+              "type": "number"
+            },
+            "unit": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,19 +1,21 @@
 ---
 id: supercyp
 title: "SuperCYP - Cytochrome P450 Database"
-type: data-source
-category: compounds
-subcategory: drug-metabolism
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 2
-last_updated: 2026-01-23
 status: active
-tags: [cytochrome-p450, drug-metabolism, cyp-enzymes, drug-interactions, pharmacokinetics]
+category: compounds.molecules
+subcategory: drug.metabolism.pharmacokinetics
+tags:
+  - cytochrome-p450
+  - drug-metabolism
+  - cyp-enzymes
+  - drug-interactions
+  - pharmacokinetics
 ---
 
 # SuperCYP - Cytochrome P450 Database
-
-**Category:** [Compounds & Molecules](../../_index.md) > [Drug Metabolism & Pharmacokinetics](../_index.md)
 
 ## Overview
 
@@ -79,13 +81,18 @@ SuperCYP supports drug development by providing early assessment of metabolic li
 | Inhibitor | Drug reduces CYP activity |
 | Inducer | Drug increases CYP expression |
 
-## License
+## Limitations
 
-| Aspect | Value |
-|--------|-------|
-| License | Free for academic use |
-| Commercial Use | Contact required |
-| Attribution Required | Yes |
+- Commercial use requires contacting database maintainers
+- In vitro CYP data may not predict in vivo interactions
+- Some older literature data uses superseded nomenclature
+- Genetic polymorphism effects not comprehensively covered
+
+## See Also
+
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [License Terms](./license.md) - Usage rights and restrictions
 
 ## Related Resources
 

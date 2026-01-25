@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "stitch-schema.json",
+  "title": "STITCH Chemical-Protein Interaction Record",
+  "description": "JSON Schema for STITCH chemical-protein interaction data with confidence scores from multiple evidence channels.",
+  "type": "object",
+  "properties": {
+    "chemical": {
+      "type": "string",
+      "description": "STITCH chemical ID (CIDm/CIDs format based on PubChem CID).",
+      "pattern": "^CID[ms0][0-9]+$",
+      "examples": ["CIDm00002244", "CIDs00005090"]
+    },
+    "protein": {
+      "type": "string",
+      "description": "STRING protein ID (taxid.ENSP format).",
+      "pattern": "^[0-9]+\\.ENSP[0-9]+$",
+      "examples": ["9606.ENSP00000269305"]
+    },
+    "preferredName_chemical": {
+      "type": "string",
+      "description": "Chemical common name.",
+      "examples": ["aspirin", "ibuprofen"]
+    },
+    "preferredName_protein": {
+      "type": "string",
+      "description": "Gene symbol.",
+      "examples": ["PTGS2", "TP53"]
+    },
+    "ncbiTaxonId": {
+      "type": "integer",
+      "description": "NCBI taxonomy ID.",
+      "examples": [9606, 10090]
+    },
+    "combined_score": {
+      "type": "integer",
+      "description": "Combined confidence score (0-1000).",
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "experimental": {
+      "type": "integer",
+      "description": "Experimental evidence score (binding assays, crystal structures).",
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "prediction": {
+      "type": "integer",
+      "description": "Computational prediction score (binding site similarity, docking).",
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "database": {
+      "type": "integer",
+      "description": "Database annotation score (DrugBank, KEGG, pathway DBs).",
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "textmining": {
+      "type": "integer",
+      "description": "Text-mining score (literature co-occurrence).",
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "experimental_direct": {
+      "type": "integer",
+      "description": "Direct experimental evidence score."
+    },
+    "experimental_transferred": {
+      "type": "integer",
+      "description": "Experimental evidence transferred from homologs."
+    },
+    "database_direct": {
+      "type": "integer",
+      "description": "Direct database annotation score."
+    },
+    "database_transferred": {
+      "type": "integer",
+      "description": "Transferred database annotation score."
+    },
+    "textmining_direct": {
+      "type": "integer",
+      "description": "Direct text mining score."
+    },
+    "textmining_transferred": {
+      "type": "integer",
+      "description": "Transferred text mining score."
+    },
+    "actions": {
+      "type": "array",
+      "description": "Interaction mode/mechanism annotations.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "mode": {
+            "type": "string",
+            "enum": ["activation", "inhibition", "binding", "catalysis", "reaction", "expression", "ptmod"]
+          },
+          "action": { "type": "string" },
+          "is_directional": { "type": "boolean" },
+          "a_is_acting": { "type": "boolean" },
+          "score": { "type": "integer" }
+        }
+      }
+    },
+    "chemicalInfo": {
+      "type": "object",
+      "description": "Chemical compound annotations.",
+      "properties": {
+        "name": { "type": "string" },
+        "molecular_weight": { "type": "number" },
+        "SMILES_string": { "type": "string" },
+        "InChIKey": { "type": "string" }
+      }
+    }
+  },
+  "required": ["chemical", "protein", "combined_score"],
+  "additionalProperties": true
+}

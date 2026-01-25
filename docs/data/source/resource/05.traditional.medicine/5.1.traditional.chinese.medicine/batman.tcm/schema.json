@@ -1,0 +1,188 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "batman-tcm-schema.json",
+  "title": "BATMAN-TCM 2.0 Record",
+  "description": "JSON Schema for BATMAN-TCM 2.0 data. Comprehensive TCM database with API access providing known and predicted target-TCM interactions.",
+  "type": "object",
+  "properties": {
+    "tti_id": {
+      "type": "string",
+      "description": "Unique Target-TCM Interaction identifier.",
+      "examples": ["BATMAN-TCM-2024-001234"]
+    },
+    "ingredient_id": {
+      "type": "string",
+      "description": "Ingredient/compound identifier.",
+      "examples": ["BATMAN-TCM-ING-5679"]
+    },
+    "compound_name": {
+      "type": "string",
+      "description": "Compound name."
+    },
+    "compound_name_chinese": {
+      "type": "string",
+      "description": "Chinese compound name if applicable."
+    },
+    "target_id": {
+      "type": "string",
+      "description": "Target protein identifier (UniProt or gene symbol)."
+    },
+    "gene_symbol": {
+      "type": "string",
+      "description": "Target gene symbol.",
+      "examples": ["TP53", "EGFR"]
+    },
+    "interaction_type": {
+      "type": "string",
+      "description": "Whether interaction is known or predicted.",
+      "enum": ["known", "predicted"]
+    },
+    "confidence_score": {
+      "type": "number",
+      "description": "Interaction confidence score (0-1).",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "evidence_sources": {
+      "type": "object",
+      "description": "Evidence source details.",
+      "properties": {
+        "chembl": {
+          "type": "object",
+          "properties": {
+            "assay_count": { "type": "integer" },
+            "activity_data": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "activity_type": { "type": "string" },
+                  "activity_value": { "type": "number" },
+                  "activity_unit": { "type": "string" },
+                  "assay_id": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "ctd": {
+          "type": "object",
+          "properties": {
+            "interaction_types": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "pubmed_refs": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          }
+        },
+        "stitch": {
+          "type": "object",
+          "properties": {
+            "combined_score": { "type": "integer" }
+          }
+        },
+        "dgidb": {
+          "type": "object",
+          "properties": {
+            "interaction_types": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "source_dbs": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          }
+        },
+        "literature": {
+          "type": "object",
+          "properties": {
+            "pubmed_ids": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "extraction_confidence": { "type": "number" }
+          }
+        }
+      }
+    },
+    "formula": {
+      "type": "object",
+      "description": "TCM formula information.",
+      "properties": {
+        "formula_id": { "type": "string" },
+        "formula_name_chinese": { "type": "string" },
+        "formula_name_pinyin": { "type": "string" },
+        "source_text": { "type": "string" },
+        "herb_composition": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "herb_id": { "type": "string" },
+              "herb_name": { "type": "string" },
+              "dosage": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "herb": {
+      "type": "object",
+      "description": "TCM herb information.",
+      "properties": {
+        "herb_id": { "type": "string" },
+        "herb_name_chinese": { "type": "string" },
+        "herb_name_pinyin": { "type": "string" },
+        "herb_name_latin": { "type": "string" },
+        "pharmacopoeia_status": { "type": "string" },
+        "properties_tcm": {
+          "type": "object",
+          "properties": {
+            "nature": {
+              "type": "string",
+              "enum": ["cold", "cool", "neutral", "warm", "hot"]
+            },
+            "flavor": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "meridian_tropism": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "enrichment": {
+      "type": "object",
+      "description": "Enrichment analysis results.",
+      "properties": {
+        "kegg_pathways": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "pathway_id": { "type": "string" },
+              "pathway_name": { "type": "string" }
+            }
+          }
+        },
+        "go_terms": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "diseases": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    }
+  },
+  "required": ["ingredient_id", "target_id", "interaction_type"],
+  "additionalProperties": true
+}

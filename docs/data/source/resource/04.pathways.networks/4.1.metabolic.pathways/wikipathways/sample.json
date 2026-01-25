@@ -1,0 +1,95 @@
+[
+  {
+    "id": "WP254",
+    "name": "Apoptosis",
+    "organism": "Homo sapiens",
+    "revision": "r129662",
+    "url": "https://www.wikipathways.org/pathways/WP254",
+    "description": "Apoptosis is a form of programmed cell death",
+    "dataNodes": [
+      {
+        "graphId": "abc123",
+        "textLabel": "TP53",
+        "type": "GeneProduct",
+        "xref": {"database": "Entrez Gene", "id": "7157"}
+      },
+      {
+        "graphId": "def456",
+        "textLabel": "BCL2",
+        "type": "GeneProduct",
+        "xref": {"database": "Entrez Gene", "id": "596"}
+      },
+      {
+        "graphId": "ghi789",
+        "textLabel": "ATP",
+        "type": "Metabolite",
+        "xref": {"database": "ChEBI", "id": "30616"}
+      }
+    ],
+    "interactions": [
+      {
+        "source": "abc123",
+        "target": "def456",
+        "arrowHead": "mim-inhibition"
+      }
+    ],
+    "metadata": {
+      "last_modified": "2025-10-15T14:30:00Z",
+      "license": "CC0"
+    }
+  },
+  {
+    "id": "WP706",
+    "name": "Sudden Infant Death Syndrome (SIDS) Susceptibility Pathways",
+    "organism": "Homo sapiens",
+    "revision": "r124532",
+    "url": "https://www.wikipathways.org/pathways/WP706",
+    "description": "Pathways implicated in SIDS susceptibility",
+    "dataNodes": [
+      {
+        "graphId": "node1",
+        "textLabel": "HTR1A",
+        "type": "GeneProduct",
+        "xref": {"database": "Ensembl", "id": "ENSG00000178394"}
+      }
+    ],
+    "interactions": [],
+    "metadata": {
+      "last_modified": "2025-09-20T10:15:00Z",
+      "license": "CC0"
+    }
+  },
+  {
+    "id": "WP4",
+    "name": "Sandbox Pathway Test",
+    "organism": "Homo sapiens",
+    "revision": "r130001",
+    "url": "https://www.wikipathways.org/pathways/WP4",
+    "description": "Test pathway for WikiPathways development",
+    "dataNodes": [
+      {
+        "graphId": "node_a",
+        "textLabel": "EGFR",
+        "type": "GeneProduct",
+        "xref": {"database": "Entrez Gene", "id": "1956"}
+      },
+      {
+        "graphId": "node_b",
+        "textLabel": "Erlotinib",
+        "type": "Metabolite",
+        "xref": {"database": "ChEBI", "id": "114785"}
+      }
+    ],
+    "interactions": [
+      {
+        "source": "node_b",
+        "target": "node_a",
+        "arrowHead": "mim-inhibition"
+      }
+    ],
+    "metadata": {
+      "last_modified": "2025-11-01T08:00:00Z",
+      "license": "CC0"
+    }
+  }
+]

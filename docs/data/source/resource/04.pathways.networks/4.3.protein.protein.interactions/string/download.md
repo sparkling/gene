@@ -194,6 +194,61 @@ zcat 9606.protein.links.v12.0.txt.gz | awk '{print $1"\n"$2}' | sort -u | wc -l
 zcat 9606.protein.links.v12.0.txt.gz | awk '{print int($3/100)*100}' | sort -n | uniq -c
 ```
 
+---
+
+## Dataset Versions
+
+### Current Release: STRING v12.0
+
+| Property | Value |
+|----------|-------|
+| Version | 12.0 |
+| Release Date | 2023-08-21 |
+| Total Size | ~50 GB (all species) |
+| Organisms | 14,094 |
+
+### Version Contents
+
+| Component | Size | Records | Description |
+|-----------|------|---------|-------------|
+| 9606.protein.links.v12.0.txt.gz | ~100 MB | ~12M | Human combined scores |
+| 9606.protein.links.full.v12.0.txt.gz | ~300 MB | ~12M | Human all channels |
+| 9606.protein.aliases.v12.0.txt.gz | ~50 MB | ~20K proteins | ID mapping |
+| protein.links.v12.0.txt.gz | ~50 GB | All | All species |
+
+### Previous Versions
+
+| Version | Release | Organisms | Status |
+|---------|---------|-----------|--------|
+| 11.5 | 2021-08-12 | 14,094 | Archived |
+| 11.0 | 2020-12-08 | 5,090 | Archived |
+| 10.5 | 2017-05-14 | 2,031 | Archived |
+
+---
+
+## API Access
+
+### Configuration
+
+| Property | Value |
+|----------|-------|
+| Base URL | `https://string-db.org/api` |
+| Authentication | None required |
+| Rate Limit | 1 request/second recommended |
+| Response Format | TSV, JSON, PNG, SVG |
+
+### API Endpoints
+
+| Operation | Endpoint | Example |
+|-----------|----------|---------|
+| Network | `/tsv/network` | `?identifiers=TP53%0ABRCA1&species=9606` |
+| Partners | `/tsv/interaction_partners` | `?identifiers=TP53&species=9606&limit=100` |
+| Enrichment | `/tsv/enrichment` | `?identifiers=TP53%0ABRCA1%0ABRCA2&species=9606` |
+| Map IDs | `/tsv/get_string_ids` | `?identifiers=p53&species=9606` |
+| Image | `/image/network` | `?identifiers=TP53&species=9606` |
+
+---
+
 ## Update Schedule
 
 | Release | Frequency |

@@ -1,0 +1,73 @@
+[
+  {
+    "compound_id": "TCM001234",
+    "compound_name": "Quercetin",
+    "pubchem_cid": 5280343,
+    "smiles": "OC1=CC(O)=C2C(=O)C(O)=C(OC2=C1)C3=CC(O)=C(O)C=C3",
+    "inchikey": "REFJWTPEDVJJIY-UHFFFAOYSA-N",
+    "molecular_weight": 302.24,
+    "physicochemical": {
+      "logP": 1.54,
+      "hbd": 5,
+      "hba": 7,
+      "tpsa": 131.36,
+      "rotatable_bonds": 1
+    },
+    "drug_likeness": {
+      "lipinski_pass": true,
+      "veber_pass": true,
+      "pains_alert": false,
+      "qed_score": 0.42
+    },
+    "admet": {
+      "gi_absorption": "High",
+      "bbb_permeant": false,
+      "pgp_substrate": false,
+      "cyp2d6_inhibitor": false
+    },
+    "source_herbs": [
+      {"herb_id": "HERB001", "herb_name": "Sophora japonica"},
+      {"herb_id": "HERB002", "herb_name": "Crataegus pinnatifida"}
+    ],
+    "predicted_targets": [
+      {"gene_symbol": "PTGS2", "uniprot_id": "P35354", "probability": 0.92},
+      {"gene_symbol": "PIK3CG", "uniprot_id": "P48736", "probability": 0.85}
+    ],
+    "metadata": {
+      "cas_number": "117-39-5"
+    }
+  },
+  {
+    "herb_id": "HERB001",
+    "herb_name": "Sophora japonica",
+    "chinese_name": "Huai Hua",
+    "compound_count": 156,
+    "prescription_count": 89,
+    "drug_like_compounds": 45,
+    "top_compounds": [
+      {"compound_id": "TCM001234", "name": "Quercetin", "drug_likeness": 0.42},
+      {"compound_id": "TCM001235", "name": "Rutin", "drug_likeness": 0.38}
+    ],
+    "metadata": {
+      "family": "Leguminosae",
+      "part_used": "Flower"
+    }
+  },
+  {
+    "prescription_id": "PRESC001",
+    "prescription_name": "Huai Hua San",
+    "english_name": "Sophora Flower Powder",
+    "composition": [
+      {"herb_name": "Huai Hua", "weight": 12},
+      {"herb_name": "Ce Bai Ye", "weight": 12},
+      {"herb_name": "Jing Jie Sui", "weight": 6},
+      {"herb_name": "Zhi Ke", "weight": 6}
+    ],
+    "total_compounds": 234,
+    "unique_targets": 178,
+    "indications": ["Hemorrhoids", "Rectal bleeding"],
+    "metadata": {
+      "source": "Pu Ji Ben Shi Fang"
+    }
+  }
+]

@@ -1,19 +1,22 @@
 ---
 id: mesh
 title: "Medical Subject Headings (MeSH)"
-type: data-source
-category: diseases
-subcategory: disease.ontologies
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 1
-last_updated: 2026-01-23
 status: active
-tags: [vocabulary, medical-terms, nlm, pubmed, indexing, diseases]
+category: diseases.phenotypes
+subcategory: disease.ontologies
+tags:
+  - vocabulary
+  - medical-terms
+  - nlm
+  - pubmed
+  - indexing
+  - diseases
 ---
 
 # Medical Subject Headings (MeSH)
-
-**Category:** [Diseases & Phenotypes](../../_index.md) > [Disease Ontologies](../_index.md)
 
 ## Overview
 
@@ -68,17 +71,17 @@ For disease research, MeSH provides standardized disease terminology that enable
 | RDF/N-Triples | mesh.nt | Linked data |
 | JSON-LD | Available via API | Web-friendly |
 
-## License
+## Limitations
 
-| Aspect | Value |
-|--------|-------|
-| License | Public Domain |
-| Commercial Use | Yes |
-| Attribution | Recommended |
-| Restrictions | None |
+- Designed for literature indexing; may not map to clinical terminologies
+- Annual update cycle means new terms lag publications
+- Non-English language support limited
+- Supplementary concepts less structured than descriptors
 
 ## See Also
 
-- [Schema Documentation](./schema.md)
-- [ICD](../icd/_index.md) - Clinical classification system
-- [MONDO](../mondo/_index.md) - Disease ontology with MeSH mappings
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [License Terms](./license.md) - Usage rights and restrictions
+- [ICD](../icd/README.md) - Clinical classification system
+- [MONDO](../mondo/README.md) - Disease ontology with MeSH mappings

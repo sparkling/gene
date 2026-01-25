@@ -1,14 +1,19 @@
 ---
 id: kegg
 title: "KEGG - Kyoto Encyclopedia of Genes and Genomes"
-type: data-source
-category: pathways
-subcategory: metabolic-pathways
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 1
-last_updated: 2026-01-23
 status: active
-tags: [pathways, metabolic, kegg, kgml, licensed, reference-genome]
+category: pathways.networks
+subcategory: metabolic.pathways
+tags:
+  - pathways
+  - metabolic
+  - kegg
+  - kgml
+  - licensed
+  - reference-genome
 ---
 
 # KEGG - Kyoto Encyclopedia of Genes and Genomes
@@ -93,6 +98,13 @@ curl "https://rest.kegg.jp/link/pathway/hsa:7157"
 | Academic Use | Limited free API access |
 | Commercial Use | Paid license from Kanehisa Laboratories |
 | Attribution | Required |
+
+## Limitations
+
+- Requires commercial license for commercial use and bulk downloads
+- API rate limits may restrict high-throughput queries
+- Pathway updates may lag behind primary literature
+- Organism-specific identifiers require cross-referencing
 
 ## Open Alternatives
 

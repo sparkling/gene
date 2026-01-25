@@ -1,23 +1,34 @@
 ---
 id: gtex
 title: "GTEx"
-type: data-source
-category: genetics
+type: source
+parent: ../README.md
+category: genetics.genomics
 subcategory: expression.regulation
-parent: ../_index.md
 tier: 1
-last_updated: 2026-01-23
 status: active
-tags: [expression, eqtl, tissue, rna-seq, splicing]
+last_updated: 2026-01-25
+tags:
+  - expression
+  - eqtl
+  - tissue
+  - rna-seq
+  - splicing
 ---
 
 # GTEx
 
-**Category:** [Genetics & Genomics](../../_index.md) > [Expression & Regulation](../_index.md)
+GTEx (Genotype-Tissue Expression) is a comprehensive resource of gene expression and genetic regulation data from 54 non-diseased human tissues collected from nearly 1,000 individuals. It provides expression quantitative trait loci (eQTLs) and splicing QTLs (sQTLs) linking genetic variants to gene expression changes across tissues.
 
 ## Overview
 
-GTEx (Genotype-Tissue Expression) is a comprehensive resource of gene expression and genetic regulation data from 54 non-diseased human tissues collected from nearly 1,000 individuals. It provides expression quantitative trait loci (eQTLs) and splicing QTLs (sQTLs) linking genetic variants to gene expression changes across tissues.
+| Property | Value |
+|----------|-------|
+| **Maintainer** | GTEx Consortium / Broad Institute |
+| **Website** | https://gtexportal.org/ |
+| **Update Frequency** | Major releases |
+| **Records** | 3,300,000+ eQTLs |
+| **Latest Release** | V8 (August 2019) |
 
 The V8 release includes RNA-seq data from 17,382 samples across 54 tissues with matched whole genome sequencing, enabling identification of tissue-specific regulatory effects. GTEx data is essential for interpreting GWAS signals and understanding tissue-specific disease mechanisms.
 
@@ -42,31 +53,32 @@ GTEx also provides gene expression levels (TPM values) for each tissue, enabling
 
 ## Key Identifiers
 
-| Identifier | Pattern | Example |
-|------------|---------|---------|
-| Sample | GTEX-prefix | GTEX-1117F |
-| Gene | Ensembl ID | ENSG00000012048 |
-| Tissue | Standardized name | Liver |
+| Identifier | Format | Example |
+|------------|--------|---------|
+| Sample | `GTEX-prefix` | `GTEX-1117F` |
+| Gene | `Ensembl ID` | `ENSG00000012048` |
+| Tissue | `Standardized name` | `Liver` |
 
-## Access Methods
+## Limitations
 
-| Method | URL | Notes |
-|--------|-----|-------|
-| Portal | https://gtexportal.org/ | Interactive browser |
-| API | REST endpoints | Programmatic access |
-| Downloads | Portal/dbGaP | Protected data via dbGaP |
-| Google Cloud | BigQuery | Bulk analysis |
+- Non-diseased tissues only (no tumor samples)
+- Deceased donors (postmortem ischemia effects)
+- Sample sizes vary greatly by tissue
+- European ancestry dominant
+- Individual-level data requires dbGaP access
 
-## License
+## Data Quality Notes
 
-| Aspect | Value |
-|--------|-------|
-| License | dbGaP agreement (individual) |
-| Aggregate Data | Open access |
-| Commercial Use | Per dbGaP terms |
+GTEx implements extensive quality control including RNA quality assessment (RIN > 6.0), sample identity verification, and expression outlier detection. eQTLs are reported at FDR < 0.05 with permutation-based significance testing. Aggregate data (eQTL summary statistics, median TPM) is freely available, while individual-level data requires dbGaP authorization.
 
 ## See Also
 
-- [ENCODE](../encode/_index.md) - Regulatory elements
-- [eQTLGen](../eqtlgen/_index.md) - Blood eQTLs
-- [GWAS Catalog](../gwas.catalog/_index.md) - GWAS colocalization
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [Example Records](./sample.json) - Sample data for code generation
+- [Download Guide](./download.md) - Access methods and API configuration
+- [License Terms](./license.md) - Usage rights and restrictions
+- [Schema Mapping](./mapping.xslt) - XSLT 3.0 transformation to unified schema
+- [ENCODE](../encode/README.md) - Regulatory elements
+- [eQTLGen](../eqtlgen/README.md) - Blood eQTLs
+- [GWAS Catalog](../gwas.catalog/README.md) - GWAS colocalization

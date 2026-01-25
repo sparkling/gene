@@ -1,19 +1,21 @@
 ---
 id: orphanet.phenotypes
 title: "Orphanet Phenotype Annotations"
-type: data-source
-category: diseases
-subcategory: phenotype.databases
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 1
-last_updated: 2026-01-23
 status: active
-tags: [phenotypes, rare-diseases, hpo, clinical-features, orphanet]
+category: diseases.phenotypes
+subcategory: phenotype.databases
+tags:
+  - phenotypes
+  - rare-diseases
+  - hpo
+  - clinical-features
+  - orphanet
 ---
 
 # Orphanet Phenotype Annotations
-
-**Category:** [Diseases & Phenotypes](../../_index.md) > [Phenotype Databases](../_index.md)
 
 ## Overview
 
@@ -78,16 +80,17 @@ The phenotype data integrates with Orphanet's broader rare disease knowledge bas
 | Very rare | HP:0040284 | 1-4% |
 | Excluded | HP:0040285 | 0% |
 
-## License
+## Limitations
 
-| Aspect | Value |
-|--------|-------|
-| License | CC BY 4.0 |
-| Commercial Use | Yes |
-| Attribution | Required - "Orphanet" |
+- Rare diseases only; common conditions not covered
+- Frequency estimates based on literature reports
+- Not all diseases have complete phenotype annotation
+- Expert center coverage varies by country
 
 ## See Also
 
-- [Schema Documentation](./schema.md)
-- [HPO](../hpo/_index.md) - Human Phenotype Ontology
-- [Orphanet](../../3.5.rare.orphan.diseases/orphanet/_index.md) - Main Orphanet database
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [License Terms](./license.md) - Usage rights and restrictions
+- [HPO](../hpo/README.md) - Human Phenotype Ontology
+- [Orphanet](../../3.5.rare.orphan.diseases/orphanet/README.md) - Main Orphanet database

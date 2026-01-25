@@ -1,0 +1,105 @@
+[
+  {
+    "pmc_id": "PMC9876543",
+    "pmid": 35922517,
+    "doi": "10.1038/s41586-022-05087-2",
+    "title": "Single-cell transcriptomics reveals heterogeneity in tumor microenvironment",
+    "abstract": "Understanding cellular heterogeneity in tumors is crucial for developing targeted therapies...",
+    "body": {
+      "sections": [
+        {
+          "title": "Introduction",
+          "content": "Cancer is characterized by cellular heterogeneity that impacts treatment response..."
+        },
+        {
+          "title": "Results",
+          "content": "We performed single-cell RNA sequencing on 50,000 cells from 15 primary tumors..."
+        },
+        {
+          "title": "Discussion",
+          "content": "Our findings reveal unprecedented heterogeneity in the tumor microenvironment..."
+        }
+      ]
+    },
+    "authors": [
+      {
+        "surname": "Smith",
+        "given_names": "John A",
+        "affiliations": ["Department of Oncology, Harvard Medical School"],
+        "orcid": "0000-0001-2345-6789"
+      },
+      {
+        "surname": "Chen",
+        "given_names": "Wei",
+        "affiliations": ["Broad Institute of MIT and Harvard"]
+      }
+    ],
+    "journal": {
+      "title": "Nature",
+      "issn": "0028-0836",
+      "publisher": "Springer Nature"
+    },
+    "pub_date": {
+      "year": 2022,
+      "month": 8,
+      "day": 18
+    },
+    "license": {
+      "type": "CC-BY-4.0",
+      "text": "This article is licensed under a Creative Commons Attribution 4.0 International License",
+      "url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    "figures": [
+      {
+        "id": "fig1",
+        "label": "Figure 1",
+        "caption": "Single-cell clustering reveals distinct cell populations",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9876543/bin/fig1.jpg"
+      }
+    ],
+    "references": [
+      {
+        "citation_text": "Tirosh I, et al. Dissecting the multicellular ecosystem of metastatic melanoma. Science. 2016;352:189-196.",
+        "pmid": 27124452,
+        "doi": "10.1126/science.aad0501"
+      }
+    ]
+  },
+  {
+    "pmc_id": "PMC8765432",
+    "pmid": 34123456,
+    "doi": "10.1371/journal.pgen.1009876",
+    "title": "Genome-wide association study identifies novel loci for inflammatory bowel disease",
+    "abstract": "Inflammatory bowel disease (IBD) has a strong genetic component. We conducted a GWAS...",
+    "authors": [
+      {
+        "surname": "Williams",
+        "given_names": "Sarah B",
+        "affiliations": ["Wellcome Trust Sanger Institute"]
+      }
+    ],
+    "journal": {
+      "title": "PLOS Genetics",
+      "issn": "1553-7404",
+      "publisher": "Public Library of Science"
+    },
+    "pub_date": {
+      "year": 2022,
+      "month": 3,
+      "day": 15
+    },
+    "license": {
+      "type": "CC-BY-4.0",
+      "text": "This is an open access article distributed under the terms of the Creative Commons Attribution License",
+      "url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    "supplementary_materials": [
+      {
+        "id": "S1",
+        "label": "Table S1",
+        "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        "url": "https://journals.plos.org/plosgenetics/article/file?id=10.1371/journal.pgen.1009876.s001"
+      }
+    ]
+  }
+]

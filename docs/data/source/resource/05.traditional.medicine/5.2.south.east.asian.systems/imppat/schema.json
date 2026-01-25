@@ -1,0 +1,164 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "imppat-schema.json",
+  "title": "IMPPAT 2.0 Record",
+  "description": "JSON Schema for IMPPAT 2.0 (Indian Medicinal Plants, Phytochemistry And Therapeutics) data records.",
+  "type": "object",
+  "properties": {
+    "plant_id": {
+      "type": "string",
+      "description": "IMPPAT plant identifier.",
+      "pattern": "^IMPPAT_PLANT_[0-9]+$",
+      "examples": ["IMPPAT_PLANT_03985"]
+    },
+    "scientific_name": {
+      "type": "string",
+      "description": "Botanical Latin binomial name.",
+      "examples": ["Withania somnifera"]
+    },
+    "family": {
+      "type": "string",
+      "description": "Botanical family classification.",
+      "examples": ["Solanaceae"]
+    },
+    "vernacular_names": {
+      "type": "object",
+      "description": "Names in 10 Indian languages.",
+      "properties": {
+        "hindi": { "type": "string" },
+        "tamil": { "type": "string" },
+        "telugu": { "type": "string" },
+        "kannada": { "type": "string" },
+        "malayalam": { "type": "string" },
+        "bengali": { "type": "string" },
+        "gujarati": { "type": "string" },
+        "marathi": { "type": "string" },
+        "punjabi": { "type": "string" },
+        "oriya": { "type": "string" }
+      }
+    },
+    "compound_id": {
+      "type": "string",
+      "description": "IMPPAT phytochemical identifier.",
+      "pattern": "^IMPPAT_CHEM_[0-9]+$",
+      "examples": ["IMPPAT_CHEM_15234"]
+    },
+    "compound_name": {
+      "type": "string",
+      "description": "Chemical compound name.",
+      "examples": ["Withanolide A"]
+    },
+    "pubchem_cid": {
+      "type": "integer",
+      "description": "PubChem Compound Identifier."
+    },
+    "smiles": {
+      "type": "string",
+      "description": "SMILES molecular notation."
+    },
+    "inchi": {
+      "type": "string",
+      "description": "InChI chemical identifier."
+    },
+    "inchi_key": {
+      "type": "string",
+      "description": "InChIKey hash (27 characters).",
+      "pattern": "^[A-Z]{14}-[A-Z]{10}-[A-Z]$"
+    },
+    "molecular_formula": {
+      "type": "string",
+      "description": "Chemical formula."
+    },
+    "molecular_weight": {
+      "type": "number",
+      "description": "Molecular weight in Daltons."
+    },
+    "plant_part": {
+      "type": "array",
+      "description": "Plant parts where compound was isolated.",
+      "items": { "type": "string" },
+      "examples": [["root", "leaf", "seed"]]
+    },
+    "traditional_system": {
+      "type": "array",
+      "description": "Traditional medicine systems (Ayurveda, Siddha, Unani, Homeopathy).",
+      "items": { "type": "string" }
+    },
+    "therapeutic_use": {
+      "type": "array",
+      "description": "Traditional therapeutic applications.",
+      "items": { "type": "string" }
+    },
+    "lipinski_rule_of_five": {
+      "type": "object",
+      "description": "Lipinski drug-likeness assessment.",
+      "properties": {
+        "passes": { "type": "boolean" },
+        "violations": { "type": "integer" },
+        "mw_ok": { "type": "boolean" },
+        "logp_ok": { "type": "boolean" },
+        "hbd_ok": { "type": "boolean" },
+        "hba_ok": { "type": "boolean" }
+      }
+    },
+    "qed_score": {
+      "type": "number",
+      "description": "Quantitative Estimate of Drug-likeness (0-1).",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "admet_absorption": {
+      "type": "object",
+      "description": "ADMET absorption properties.",
+      "properties": {
+        "gi_absorption": { "type": "string" },
+        "pgp_substrate": { "type": "string" },
+        "water_solubility": { "type": "string" },
+        "caco2_permeability": { "type": "number" }
+      }
+    },
+    "admet_metabolism": {
+      "type": "object",
+      "description": "CYP450 inhibition predictions.",
+      "properties": {
+        "cyp1a2_inhibitor": { "type": "string" },
+        "cyp2c19_inhibitor": { "type": "string" },
+        "cyp2c9_inhibitor": { "type": "string" },
+        "cyp2d6_inhibitor": { "type": "string" },
+        "cyp3a4_inhibitor": { "type": "string" }
+      }
+    },
+    "admet_toxicity": {
+      "type": "object",
+      "description": "Predicted toxicity properties.",
+      "properties": {
+        "ames_mutagenicity": { "type": "string" },
+        "hepatotoxicity": { "type": "string" },
+        "herg_inhibition": { "type": "string" },
+        "skin_sensitization": { "type": "string" }
+      }
+    },
+    "target_id": {
+      "type": "string",
+      "description": "Target protein identifier (UniProt or Gene ID)."
+    },
+    "gene_symbol": {
+      "type": "string",
+      "description": "HGNC gene symbol.",
+      "examples": ["TP53", "EGFR"]
+    },
+    "stitch_score": {
+      "type": "integer",
+      "description": "STITCH combined confidence score (0-1000).",
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "iucn_conservation_status": {
+      "type": "string",
+      "description": "IUCN Red List conservation status.",
+      "enum": ["LC", "NT", "VU", "EN", "CR", "EW", "EX", "DD", "NE"]
+    }
+  },
+  "required": ["plant_id"],
+  "additionalProperties": true
+}

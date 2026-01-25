@@ -68,6 +68,10 @@ eBASIS is particularly valuable for exposure assessment, dietary intake calculat
 
 ## See Also
 
-- [Schema Documentation](./schema.md)
-- [FooDB](../../6.1.food.composition/foodb/_index.md) - Food compound database
-- [Phenol-Explorer](../phenol.explorer/) - Polyphenol database
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [Sample Data](./sample.json) - Example records
+- [License Terms](./license.md) - Usage rights and restrictions
+- [Schema Mapping](./mapping.xslt) - Transform to unified schema
+- [FooDB](../../6.1.food.composition/foodb/README.md) - Food compound database
+- [Phenol-Explorer](../phenol.explorer/README.md) - Polyphenol database

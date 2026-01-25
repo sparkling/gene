@@ -1,0 +1,189 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "dr-dukes-schema.json",
+  "title": "Dr. Duke's Phytochemical Record",
+  "description": "JSON Schema for Dr. Duke's Phytochemical and Ethnobotanical Databases. Contains ~49,788 entries covering plants, chemicals, biological activities, and ethnobotanical uses from USDA Agricultural Research Service. CC0 licensed.",
+  "type": "object",
+  "properties": {
+    "plant_id": {
+      "type": "integer",
+      "description": "Primary plant identifier"
+    },
+    "scientific_name": {
+      "type": "string",
+      "description": "Binomial nomenclature"
+    },
+    "common_name": {
+      "type": "string",
+      "description": "Common English name"
+    },
+    "family": {
+      "type": "string",
+      "description": "Botanical family"
+    },
+    "genus": {
+      "type": "string",
+      "description": "Genus name"
+    },
+    "species": {
+      "type": "string",
+      "description": "Species epithet"
+    },
+    "synonyms": {
+      "type": "array",
+      "description": "Alternative scientific names",
+      "items": {
+        "type": "string"
+      }
+    },
+    "chemicals": {
+      "type": "array",
+      "description": "Phytochemicals found in this plant",
+      "items": {
+        "$ref": "#/$defs/plantChemical"
+      }
+    },
+    "ethnobotany": {
+      "type": "array",
+      "description": "Traditional uses",
+      "items": {
+        "$ref": "#/$defs/ethnobotanicalUse"
+      }
+    }
+  },
+  "required": ["scientific_name"],
+  "$defs": {
+    "chemical": {
+      "type": "object",
+      "description": "Phytochemical compound",
+      "properties": {
+        "chemical_id": {
+          "type": "integer",
+          "description": "Primary identifier"
+        },
+        "chemical_name": {
+          "type": "string",
+          "description": "Chemical/compound name"
+        },
+        "cas_number": {
+          "type": "string",
+          "description": "CAS Registry Number",
+          "pattern": "^[0-9]+-[0-9]+-[0-9]+$"
+        },
+        "formula": {
+          "type": "string",
+          "description": "Molecular formula"
+        },
+        "molecular_weight": {
+          "type": "number",
+          "description": "Molecular weight"
+        },
+        "smiles": {
+          "type": "string",
+          "description": "SMILES notation"
+        },
+        "inchikey": {
+          "type": "string",
+          "description": "InChI Key",
+          "pattern": "^[A-Z]{14}-[A-Z]{10}-[A-Z]$"
+        },
+        "chemical_class": {
+          "type": "string",
+          "description": "Chemical classification"
+        }
+      },
+      "required": ["chemical_name"]
+    },
+    "plantChemical": {
+      "type": "object",
+      "description": "Chemical content in plant",
+      "properties": {
+        "chemical_name": {
+          "type": "string",
+          "description": "Chemical name"
+        },
+        "cas_number": {
+          "type": "string",
+          "description": "CAS number"
+        },
+        "plant_part": {
+          "type": "string",
+          "description": "Part of plant",
+          "enum": ["root", "leaf", "flower", "seed", "bark", "fruit", "rhizome", "stem", "bulb", "whole plant"]
+        },
+        "concentration_low": {
+          "type": "number",
+          "description": "Minimum concentration"
+        },
+        "concentration_high": {
+          "type": "number",
+          "description": "Maximum concentration"
+        },
+        "concentration_units": {
+          "type": "string",
+          "description": "Units",
+          "enum": ["ppm", "%", "mg/kg", "ug/g"]
+        },
+        "activities": {
+          "type": "array",
+          "description": "Biological activities",
+          "items": {
+            "$ref": "#/$defs/activity"
+          }
+        },
+        "reference": {
+          "type": "string",
+          "description": "Literature reference"
+        }
+      },
+      "required": ["chemical_name"]
+    },
+    "activity": {
+      "type": "object",
+      "description": "Biological activity",
+      "properties": {
+        "activity_name": {
+          "type": "string",
+          "description": "Activity type"
+        },
+        "dosage": {
+          "type": "string",
+          "description": "Effective dosage"
+        },
+        "reference": {
+          "type": "string",
+          "description": "Literature citation"
+        }
+      },
+      "required": ["activity_name"]
+    },
+    "ethnobotanicalUse": {
+      "type": "object",
+      "description": "Traditional use",
+      "properties": {
+        "use": {
+          "type": "string",
+          "description": "Traditional use"
+        },
+        "culture": {
+          "type": "string",
+          "description": "Cultural origin"
+        },
+        "region": {
+          "type": "string",
+          "description": "Geographic region"
+        },
+        "preparation": {
+          "type": "string",
+          "description": "How prepared/administered"
+        },
+        "reference": {
+          "type": "string",
+          "description": "Literature/ethnographic source"
+        }
+      },
+      "required": ["use"]
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,96 @@
+[
+  {
+    "interaction_id": 1234,
+    "metabolite": {
+      "name": "Butyrate",
+      "pubchem_cid": 264,
+      "hmdb_id": "HMDB0000039",
+      "chebi_id": 17968,
+      "class": "Short-chain fatty acid",
+      "microbe_sources": ["Faecalibacterium prausnitzii", "Roseburia intestinalis", "Eubacterium rectale"]
+    },
+    "target": {
+      "symbol": "GPR43",
+      "name": "Free fatty acid receptor 2",
+      "uniprot_id": "O15552",
+      "type": "GPCR",
+      "tissue_expression": ["colon", "intestine", "immune cells"]
+    },
+    "interaction": {
+      "effect": "activate",
+      "mechanism": "Agonist binding",
+      "kd": "1.4 mM",
+      "tissue": "Colon epithelium"
+    },
+    "pathway": {
+      "kegg_id": "hsa04917",
+      "name": "Prolactin signaling pathway",
+      "downstream": ["Anti-inflammatory response", "Gut barrier function"]
+    },
+    "evidence": {
+      "pmid": 28123456,
+      "experiment_type": "Receptor binding assay"
+    }
+  },
+  {
+    "interaction_id": 1235,
+    "metabolite": {
+      "name": "Indole",
+      "pubchem_cid": 798,
+      "hmdb_id": "HMDB0000738",
+      "class": "Indole derivative",
+      "microbe_sources": ["Escherichia coli", "Bacteroides fragilis"]
+    },
+    "target": {
+      "symbol": "AHR",
+      "name": "Aryl hydrocarbon receptor",
+      "uniprot_id": "P35869",
+      "type": "Nuclear receptor",
+      "tissue_expression": ["intestine", "liver", "lung"]
+    },
+    "interaction": {
+      "effect": "activate",
+      "mechanism": "Ligand binding and nuclear translocation",
+      "tissue": "Intestinal epithelium"
+    },
+    "pathway": {
+      "kegg_id": "hsa04934",
+      "name": "Xenobiotic metabolism",
+      "downstream": ["Barrier function", "Immune regulation", "IL-22 production"]
+    },
+    "evidence": {
+      "pmid": 29234567,
+      "experiment_type": "Reporter gene assay"
+    }
+  },
+  {
+    "interaction_id": 1236,
+    "metabolite": {
+      "name": "Trimethylamine",
+      "pubchem_cid": 1146,
+      "hmdb_id": "HMDB0000906",
+      "class": "Amine",
+      "microbe_sources": ["Clostridium", "Anaerococcus"]
+    },
+    "target": {
+      "symbol": "FMO3",
+      "name": "Flavin-containing monooxygenase 3",
+      "uniprot_id": "P31513",
+      "type": "Enzyme",
+      "tissue_expression": ["liver"]
+    },
+    "interaction": {
+      "effect": "substrate",
+      "mechanism": "Oxidation to TMAO",
+      "tissue": "Liver"
+    },
+    "pathway": {
+      "name": "TMAO pathway",
+      "downstream": ["Cardiovascular risk", "Atherosclerosis"]
+    },
+    "evidence": {
+      "pmid": 30345678,
+      "experiment_type": "Metabolomics"
+    }
+  }
+]

@@ -1,19 +1,21 @@
 ---
 id: batman.tcm
 title: "BATMAN-TCM 2.0"
-type: data-source
-category: traditional-medicine
-subcategory: traditional-chinese-medicine
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 1
-last_updated: 2026-01-23
 status: active
-tags: [tcm, traditional-chinese-medicine, herb-target, network-pharmacology, api]
+category: traditional.medicine
+subcategory: traditional.chinese.medicine
+tags:
+  - tcm
+  - traditional-chinese-medicine
+  - herb-target
+  - network-pharmacology
+  - api
 ---
 
 # BATMAN-TCM 2.0
-
-**Category:** [Traditional Medicine](../../_index.md) > [Traditional Chinese Medicine](../_index.md)
 
 ## Overview
 
@@ -83,14 +85,6 @@ curl "http://bionet.ncpsb.org.cn/batman-tcm/api?query_type=compound&query=ginsen
 curl "http://bionet.ncpsb.org.cn/batman-tcm/api?query_type=genes&genes=TP53,EGFR,MTOR&output=json"
 ```
 
-## License
-
-| Aspect | Value |
-|--------|-------|
-| License | CC BY-NC 4.0 |
-| Commercial Use | Requires separate agreement |
-| Attribution | Required |
-
 ## Limitations
 
 - Server may have connectivity issues; implement retry logic
@@ -99,7 +93,6 @@ curl "http://bionet.ncpsb.org.cn/batman-tcm/api?query_type=genes&genes=TP53,EGFR
 
 ## See Also
 
-- [Schema Documentation](./schema.md)
-- [HERB Database](../herb/_index.md)
-- [SymMap](../symmap/_index.md)
-- [HIT 2.0](../../5.4.multi.system.integration/{hit.2.0}/_index.md)
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [License Terms](./license.md) - Usage rights and restrictions

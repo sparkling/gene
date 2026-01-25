@@ -280,6 +280,33 @@ grep "A\*02:01:01:01" hla_prot.fasta
 grep "^>" hla_prot.fasta | cut -d'*' -f1 | cut -d' ' -f2 | sort | uniq -c | sort -rn
 ```
 
+## Dataset Versions
+
+| Version | Release Date | Size | Status |
+|---------|--------------|------|--------|
+| IPD-IMGT/HLA 3.56.0 | 2025-01-20 | ~500 MB | Current |
+| 3.55.0 | 2024-10 | ~480 MB | Archived |
+| Quarterly releases | Every 3 months | Varies | Rolling |
+
+### Version Notes
+
+IPD-IMGT/HLA 3.56.0 current statistics:
+- 38,000+ HLA alleles named
+- 13,500+ HLA-A alleles
+- 16,500+ HLA-B alleles
+- 9,600+ HLA-C alleles
+- 4,000+ HLA-DRB1 alleles
+- WHO nomenclature compliant
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | `https://www.ebi.ac.uk/ipd/imgt/hla/api` |
+| Rate Limit | Reasonable use |
+| Auth Required | No |
+| Documentation | https://www.ebi.ac.uk/ipd/imgt/hla |
+
 ## Update Schedule
 
 | Release | Frequency |

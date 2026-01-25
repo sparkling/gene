@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "mesh-schema.json",
+  "title": "Medical Subject Headings (MeSH) Descriptor Record",
+  "description": "JSON Schema for MeSH descriptors. NLM controlled vocabulary thesaurus with 30,000+ descriptors in hierarchical tree structure for PubMed indexing and medical terminology standardization.",
+  "type": "object",
+  "properties": {
+    "descriptor_ui": {
+      "type": "string",
+      "description": "MeSH Unique Identifier",
+      "pattern": "^D[0-9]{6}$",
+      "examples": ["D003920", "D002318"]
+    },
+    "descriptor_name": {
+      "type": "string",
+      "description": "Preferred term name",
+      "minLength": 1
+    },
+    "tree_numbers": {
+      "type": "array",
+      "description": "Hierarchical tree location codes",
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Z][0-9]{2}(\\.[0-9]{3})*$",
+        "examples": ["C18.452.394.750", "C14.280.647"]
+      }
+    },
+    "scope_note": {
+      "type": "string",
+      "description": "Definition and usage guidance"
+    },
+    "annotation": {
+      "type": "string",
+      "description": "Indexer instructions"
+    },
+    "entry_terms": {
+      "type": "array",
+      "description": "Entry vocabulary (synonyms)",
+      "items": {
+        "type": "string"
+      }
+    },
+    "concepts": {
+      "type": "array",
+      "description": "Related concepts",
+      "items": {
+        "type": "object",
+        "properties": {
+          "concept_ui": {
+            "type": "string",
+            "description": "Concept identifier"
+          },
+          "concept_name": {
+            "type": "string",
+            "description": "Concept name"
+          },
+          "preferred": {
+            "type": "boolean",
+            "description": "Is preferred concept"
+          },
+          "terms": {
+            "type": "array",
+            "description": "Terms under this concept",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "see_also": {
+      "type": "array",
+      "description": "Related descriptors",
+      "items": {
+        "type": "string",
+        "pattern": "^D[0-9]{6}$"
+      }
+    },
+    "pharmacological_action": {
+      "type": "array",
+      "description": "Pharmacological actions (for drugs)",
+      "items": {
+        "type": "string"
+      }
+    },
+    "nlm_classification": {
+      "type": "string",
+      "description": "NLM Classification number"
+    },
+    "allowable_qualifiers": {
+      "type": "array",
+      "description": "Qualifiers that can be used with this descriptor",
+      "items": {
+        "type": "string"
+      }
+    },
+    "date_created": {
+      "type": "string",
+      "format": "date",
+      "description": "Date descriptor was created"
+    },
+    "date_revised": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of last revision"
+    }
+  },
+  "required": ["descriptor_ui", "descriptor_name"],
+  "additionalProperties": false
+}

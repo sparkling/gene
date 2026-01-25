@@ -1,14 +1,20 @@
 ---
 id: wikipathways
 title: "WikiPathways"
-type: data-source
-category: pathways
-subcategory: metabolic-pathways
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 2
-last_updated: 2026-01-23
 status: active
-tags: [pathways, metabolic, wikipathways, gpml, community, open-access, cc0]
+category: pathways.networks
+subcategory: metabolic.pathways
+tags:
+  - pathways
+  - metabolic
+  - wikipathways
+  - gpml
+  - community
+  - open-access
+  - cc0
 ---
 
 # WikiPathways
@@ -118,6 +124,13 @@ curl "https://webservice.wikipathways.org/getPathwayInfo?pwId=WP254&format=json"
 | Rna | RNA molecules | Ensembl, miRBase |
 | Complex | Protein complexes | Complex Portal |
 | Pathway | Linked pathways | WikiPathways, Reactome |
+
+## Limitations
+
+- Community-curated content varies in quality and completeness
+- Less comprehensive than expert-curated databases for some pathways
+- GPML format requires specialized parsing tools
+- Some pathways may lack recent updates
 
 ## Interaction Arrow Types (MIM Notation)
 

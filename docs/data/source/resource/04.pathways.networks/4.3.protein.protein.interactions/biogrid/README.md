@@ -1,14 +1,18 @@
 ---
 id: biogrid
 title: "BioGRID - Biological General Repository for Interaction Datasets"
-type: data-source
-category: pathways
-subcategory: protein-protein-interactions
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 1
-last_updated: 2026-01-23
 status: active
-tags: [ppi, interactions, genetic, physical, open-access]
+category: pathways.networks
+subcategory: protein.protein.interactions
+tags:
+  - ppi
+  - interactions
+  - genetic
+  - physical
+  - open-access
 ---
 
 # BioGRID - Biological General Repository for Interaction Datasets
@@ -156,6 +160,13 @@ curl "https://webservice.thebiogrid.org/interactions/?geneList=TP53|MDM2|BRCA1&t
 | SGD | Yeast systematic names |
 | FlyBase | Drosophila IDs |
 | WormBase | C. elegans IDs |
+
+## Limitations
+
+- API access requires registration and access key
+- High-throughput studies may include false positives
+- Genetic interactions may not reflect physical binding
+- Coverage varies significantly across organisms
 
 ## Organisms (Selected)
 

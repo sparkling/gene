@@ -1,0 +1,49 @@
+[
+  {
+    "gene_id": "MH0001_GL0000001",
+    "length": 843,
+    "taxonomy": {
+      "kingdom": "Bacteria",
+      "phylum": "Bacteroidetes",
+      "genus": "Bacteroides",
+      "species": "Bacteroides vulgatus"
+    },
+    "functional_annotation": {
+      "kegg_ko": "K00001",
+      "eggnog": "COG0001",
+      "cog": "G",
+      "go_terms": ["GO:0008150", "GO:0003674"]
+    },
+    "sample_origin": "MH0001"
+  },
+  {
+    "gene_id": "MH0001_GL0000002",
+    "length": 1256,
+    "taxonomy": {
+      "kingdom": "Bacteria",
+      "phylum": "Firmicutes",
+      "genus": "Faecalibacterium",
+      "species": "Faecalibacterium prausnitzii"
+    },
+    "functional_annotation": {
+      "kegg_ko": "K00134",
+      "eggnog": "COG0057",
+      "cog": "C"
+    },
+    "sample_origin": "MH0001"
+  },
+  {
+    "gene_id": "MH0025_GL0001234",
+    "length": 567,
+    "taxonomy": {
+      "kingdom": "Bacteria",
+      "phylum": "Bacteroidetes",
+      "genus": "Prevotella"
+    },
+    "functional_annotation": {
+      "kegg_ko": "K01190",
+      "cog": "G"
+    },
+    "sample_origin": "MH0025"
+  }
+]

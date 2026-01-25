@@ -346,6 +346,69 @@ wget http://current.geneontology.org/ontology/subsets/goslim_chembl.obo
 wget http://current.geneontology.org/ontology/subsets/goslim_plant.obo
 ```
 
+---
+
+## Dataset Versions
+
+### Current Release: 2024-01-17
+
+| Property | Value |
+|----------|-------|
+| Version | 2024-01-17 |
+| Release Date | 2024-01-17 |
+| GO Terms | ~45,000 |
+| Annotations (Human) | ~700,000 |
+
+### Version Contents
+
+| Component | Size | Records | Description |
+|-----------|------|---------|-------------|
+| go-basic.obo | ~35 MB | ~45K terms | Standard ontology |
+| go.owl | ~150 MB | ~45K terms | OWL format |
+| goa_human.gaf.gz | ~20 MB | ~700K | Human annotations |
+| goa_uniprot_all.gaf.gz | ~5 GB | ~400M | All species |
+
+### Previous Versions
+
+| Version | Release | GO Terms | Status |
+|---------|---------|----------|--------|
+| 2023-12-15 | 2023-12-15 | ~44,800 | Archived |
+| 2023-11-15 | 2023-11-15 | ~44,700 | Archived |
+| 2023-10-15 | 2023-10-15 | ~44,600 | Archived |
+
+---
+
+## API Access
+
+### Configuration
+
+| Property | Value |
+|----------|-------|
+| GO API | `https://api.geneontology.org/api` |
+| QuickGO | `https://www.ebi.ac.uk/QuickGO/services` |
+| SPARQL | `http://rdf.geneontology.org/sparql` |
+| Authentication | None required |
+| Rate Limit | No strict limit |
+
+### GO API Endpoints
+
+| Operation | Endpoint | Example |
+|-----------|----------|---------|
+| Get Term | `/ontology/term/{id}` | `/ontology/term/GO:0008150` |
+| Search | `/search/entity` | `?q=apoptosis&category=ontology_class` |
+| Gene Annotations | `/bioentity/gene/{id}/function` | `/bioentity/gene/UniProtKB:P04637/function` |
+| Genes for Term | `/bioentity/function/{id}/genes` | `/bioentity/function/GO:0006915/genes` |
+
+### QuickGO Endpoints
+
+| Operation | Endpoint | Example |
+|-----------|----------|---------|
+| Term Info | `/ontology/go/terms/{id}` | `/ontology/go/terms/GO:0006915` |
+| Annotations | `/annotation/search` | `?geneProductId=P04637` |
+| Download TSV | `/annotation/downloadSearch` | `?geneProductId=P04637` |
+
+---
+
 ## Update Frequency
 
 | Resource | Frequency |

@@ -1,23 +1,34 @@
 ---
 id: dbsnp
 title: "dbSNP"
-type: data-source
-category: genetics
+type: source
+parent: ../README.md
+category: genetics.genomics
 subcategory: variant.repositories
-parent: ../_index.md
 tier: 1
-last_updated: 2026-01-23
 status: active
-tags: [variant, snp, polymorphism, ncbi, population]
+last_updated: 2026-01-25
+tags:
+  - variant
+  - snp
+  - polymorphism
+  - ncbi
+  - population
 ---
 
 # dbSNP
 
-**Category:** [Genetics & Genomics](../../_index.md) > [Variant Repositories](../_index.md)
+dbSNP (Database of Single Nucleotide Polymorphisms) is NCBI's public archive for genetic variation data. It serves as the central repository for short genetic variations including single nucleotide variants (SNVs), small insertions/deletions, and microsatellites discovered across all organisms.
 
 ## Overview
 
-dbSNP (Database of Single Nucleotide Polymorphisms) is NCBI's public archive for genetic variation data. It serves as the central repository for short genetic variations including single nucleotide variants (SNVs), small insertions/deletions, and microsatellites discovered across all organisms.
+| Property | Value |
+|----------|-------|
+| **Maintainer** | NCBI/NIH |
+| **Website** | https://www.ncbi.nlm.nih.gov/snp/ |
+| **Update Frequency** | Continuous |
+| **Records** | 1,000,000,000+ variants |
+| **Latest Release** | Build 156 (GRCh38.p14) |
 
 The database provides the canonical RS identifier system used universally in genetic research and clinical practice. dbSNP integrates with the NCBI Variation Services API, supporting modern variant notation standards including SPDI (Sequence-Position-Deletion-Insertion), HGVS, and GA4GH VR formats.
 
@@ -42,30 +53,31 @@ The ALFA (Allele Frequency Aggregator) component provides population-level allel
 
 ## Key Identifiers
 
-| Identifier | Pattern | Example |
-|------------|---------|---------|
-| RS ID | rs + integer | rs334 |
-| RefSNP ID | Integer (no prefix) | 334 |
-| SPDI | seq:pos:del:ins | NC_000011.10:5227001:T:A |
+| Identifier | Format | Example |
+|------------|--------|---------|
+| RS ID | `rs + integer` | `rs334` |
+| RefSNP ID | `Integer (no prefix)` | `334` |
+| SPDI | `seq:pos:del:ins` | `NC_000011.10:5227001:T:A` |
 
-## Access Methods
+## Limitations
 
-| Method | URL | Notes |
-|--------|-----|-------|
-| REST API | https://api.ncbi.nlm.nih.gov/variation/v0 | JSON responses |
-| FTP | ftp://ftp.ncbi.nlm.nih.gov/snp/ | VCF, frequency files |
-| Web | https://www.ncbi.nlm.nih.gov/snp/ | Interactive search |
+- Limited clinical interpretation (use ClinVar for pathogenicity)
+- Some legacy RS IDs have been merged or withdrawn
+- Population frequency data limited to ALFA-included studies
+- Rate limits apply to API access (1 req/sec recommended)
+- Complex variants may have multiple RS IDs
 
-## License
+## Data Quality Notes
 
-| Aspect | Value |
-|--------|-------|
-| License | Public Domain (NCBI) |
-| Commercial Use | Yes |
-| Rate Limit | 1 request/second recommended |
+dbSNP undergoes continuous quality control including validation status tracking, allele frequency verification, and mapping accuracy assessment. Variants are flagged for clinical significance when available from ClinVar. Users should verify variant mapping on current reference assemblies as coordinates may shift between builds.
 
 ## See Also
 
-- [Schema Documentation](./schema.md)
-- [ClinVar](../clinvar/_index.md) - Clinical interpretations
-- [gnomAD](../../1.3.population.genetics/gnomad/_index.md) - Population frequencies
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [Example Records](./sample.json) - Sample data for code generation
+- [Download Guide](./download.md) - Access methods and API configuration
+- [License Terms](./license.md) - Usage rights and restrictions
+- [Schema Mapping](./mapping.xslt) - XSLT 3.0 transformation to unified schema
+- [ClinVar](../clinvar/README.md) - Clinical interpretations
+- [gnomAD](../../1.3.population.genetics/gnomad/README.md) - Population frequencies

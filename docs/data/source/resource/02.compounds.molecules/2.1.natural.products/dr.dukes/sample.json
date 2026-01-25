@@ -1,0 +1,72 @@
+{
+  "source": "Dr. Duke's Phytochemical Database",
+  "version": "2016",
+  "description": "Sample phytochemical records from Dr. Duke's database",
+  "records": [
+    {
+      "plant": {
+        "scientific_name": "Curcuma longa",
+        "common_name": "Turmeric",
+        "family": "Zingiberaceae",
+        "part": "Rhizome"
+      },
+      "chemical": {
+        "name": "Curcumin",
+        "cas_number": "458-37-7",
+        "formula": "C21H20O6",
+        "molecular_weight": 368.38
+      },
+      "concentration": {
+        "low": 1000,
+        "high": 6000,
+        "units": "ppm"
+      },
+      "activities": ["Anti-inflammatory", "Antioxidant", "Anticancer"]
+    },
+    {
+      "plant": {
+        "scientific_name": "Zingiber officinale",
+        "common_name": "Ginger",
+        "family": "Zingiberaceae",
+        "part": "Rhizome"
+      },
+      "chemical": {
+        "name": "6-Gingerol",
+        "cas_number": "23513-14-6",
+        "formula": "C17H26O4",
+        "molecular_weight": 294.39
+      },
+      "concentration": {
+        "low": 3000,
+        "high": 5000,
+        "units": "ppm"
+      },
+      "activities": ["Carminative", "Antiemetic", "Anti-inflammatory"]
+    },
+    {
+      "plant": {
+        "scientific_name": "Allium sativum",
+        "common_name": "Garlic",
+        "family": "Liliaceae",
+        "part": "Bulb"
+      },
+      "chemical": {
+        "name": "Allicin",
+        "cas_number": "539-86-6",
+        "formula": "C6H10OS2",
+        "molecular_weight": 162.27
+      },
+      "concentration": {
+        "low": 2000,
+        "high": 6000,
+        "units": "ppm"
+      },
+      "activities": ["Antibacterial", "Antifungal", "Hypotensive"]
+    }
+  ],
+  "queries": {
+    "web_search": "https://phytochem.nal.usda.gov/phytochem/plants/list?q=Curcuma",
+    "chemical_search": "https://phytochem.nal.usda.gov/phytochem/chemicals/list?q=curcumin",
+    "download": "wget https://ndownloader.figshare.com/files/43363335 -O dukes_phytochem.csv"
+  }
+}

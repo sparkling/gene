@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "npatlas-schema.json",
+  "title": "NPAtlas Microbial Natural Product Record",
+  "description": "JSON Schema for NPAtlas (Natural Products Atlas) records. Curated database of 33,000+ microbial natural products from bacteria and fungi with validated structures, NCBI taxonomy links, and original literature citations.",
+  "type": "object",
+  "properties": {
+    "npa_id": {
+      "type": "string",
+      "description": "NPAtlas identifier",
+      "pattern": "^NPA[0-9]+$",
+      "examples": ["NPA012345"]
+    },
+    "name": {
+      "type": "string",
+      "description": "Compound name",
+      "minLength": 1
+    },
+    "canonical_smiles": {
+      "type": "string",
+      "description": "Canonical SMILES notation"
+    },
+    "inchi": {
+      "type": "string",
+      "description": "InChI identifier"
+    },
+    "inchi_key": {
+      "type": "string",
+      "description": "InChI Key",
+      "pattern": "^[A-Z]{14}-[A-Z]{10}-[A-Z]$"
+    },
+    "molecular_formula": {
+      "type": "string",
+      "description": "Molecular formula"
+    },
+    "molecular_weight": {
+      "type": "number",
+      "description": "Molecular weight in Daltons"
+    },
+    "exact_mass": {
+      "type": "number",
+      "description": "Exact monoisotopic mass"
+    },
+    "compound_class": {
+      "type": "string",
+      "description": "Natural product class",
+      "enum": ["Polyketide", "Peptide/NRP", "Terpene", "Alkaloid", "Aminoglycoside", "Saccharide", "Lipid", "Hybrid", "Other"]
+    },
+    "cluster_type": {
+      "type": "string",
+      "description": "Biosynthetic gene cluster type if known"
+    },
+    "origin_type": {
+      "type": "string",
+      "description": "Origin classification",
+      "enum": ["bacterial", "fungal", "marine"]
+    },
+    "organisms": {
+      "type": "array",
+      "description": "Source organisms producing this compound",
+      "items": {
+        "$ref": "#/$defs/organism"
+      }
+    },
+    "references": {
+      "type": "array",
+      "description": "Literature citations",
+      "items": {
+        "$ref": "#/$defs/reference"
+      }
+    }
+  },
+  "required": ["npa_id", "name", "canonical_smiles", "inchi_key"],
+  "$defs": {
+    "organism": {
+      "type": "object",
+      "description": "Source organism",
+      "properties": {
+        "organism_id": {
+          "type": "integer",
+          "description": "NPAtlas organism ID"
+        },
+        "scientific_name": {
+          "type": "string",
+          "description": "Species name"
+        },
+        "ncbi_taxon_id": {
+          "type": "integer",
+          "description": "NCBI Taxonomy ID"
+        },
+        "superkingdom": {
+          "type": "string",
+          "enum": ["Bacteria", "Eukaryota", "Archaea"]
+        },
+        "phylum": { "type": "string" },
+        "class": { "type": "string" },
+        "order": { "type": "string" },
+        "family": { "type": "string" },
+        "genus": { "type": "string" },
+        "isolation_source": {
+          "type": "string",
+          "description": "Environment (marine, soil, etc.)"
+        },
+        "geographic_origin": {
+          "type": "string",
+          "description": "Collection location"
+        }
+      },
+      "required": ["scientific_name"]
+    },
+    "reference": {
+      "type": "object",
+      "description": "Literature citation",
+      "properties": {
+        "reference_id": { "type": "integer" },
+        "doi": { "type": "string" },
+        "pmid": { "type": "integer" },
+        "title": { "type": "string" },
+        "authors": { "type": "string" },
+        "journal": { "type": "string" },
+        "year": { "type": "integer" },
+        "reference_type": {
+          "type": "string",
+          "enum": ["isolation", "synthesis", "activity"]
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,19 +1,21 @@
 ---
 id: usda.fooddata
 title: "USDA FoodData Central"
-type: data-source
-category: compounds
-subcategory: food-compounds
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 1
-last_updated: 2026-01-23
 status: active
-tags: [food-composition, nutrients, usda, dietary-reference, nutrition]
+category: compounds.molecules
+subcategory: food.compounds.nutrients
+tags:
+  - food-composition
+  - nutrients
+  - usda
+  - dietary-reference
+  - nutrition
 ---
 
 # USDA FoodData Central
-
-**Category:** [Compounds & Molecules](../../_index.md) > [Food Compounds & Nutrients](../_index.md)
 
 ## Overview
 
@@ -70,13 +72,18 @@ The database provides extensive API access and bulk download options, making it 
 | FNDDS | Survey foods for NHANES |
 | Experimental Foods | Research data |
 
-## License
+## Limitations
 
-| Aspect | Value |
-|--------|-------|
-| License | Public Domain (US Government) |
-| Commercial Use | Yes |
-| Attribution Required | No |
+- Branded food data quality depends on manufacturer submissions
+- Nutrient values represent averages; individual products vary
+- Some micronutrients not analyzed for all foods
+- Non-US foods less represented in database
+
+## See Also
+
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [License Terms](./license.md) - Usage rights and restrictions
 
 ## Related Resources
 

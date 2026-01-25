@@ -1,0 +1,62 @@
+{
+  "source": "OMIM",
+  "version": "2024",
+  "description": "Sample Mendelian disease records from OMIM",
+  "records": [
+    {
+      "mim_number": 154700,
+      "prefix": "#",
+      "title": "MARFAN SYNDROME; MFS",
+      "alternative_titles": ["MFS1"],
+      "symbols": [],
+      "inheritance": "Autosomal dominant",
+      "gene_map": {
+        "gene_mim": 134797,
+        "gene_symbol": "FBN1",
+        "chromosome": "15q21.1",
+        "phenotype_mapping_key": 3
+      },
+      "text_sections": {
+        "description": "Marfan syndrome is a systemic disorder of connective tissue with a high degree of clinical variability.",
+        "clinical_features": "Skeletal manifestations include disproportionately long limbs, arachnodactyly, pectus deformity...",
+        "molecular_genetics": "Mutations in the FBN1 gene cause Marfan syndrome."
+      },
+      "clinical_synopsis": {
+        "skeletal": ["Tall stature", "Arachnodactyly", "Scoliosis"],
+        "cardiovascular": ["Aortic root dilatation", "Mitral valve prolapse"],
+        "ocular": ["Ectopia lentis", "Myopia"]
+      }
+    },
+    {
+      "mim_number": 219700,
+      "prefix": "#",
+      "title": "CYSTIC FIBROSIS; CF",
+      "inheritance": "Autosomal recessive",
+      "gene_map": {
+        "gene_mim": 602421,
+        "gene_symbol": "CFTR",
+        "chromosome": "7q31.2"
+      },
+      "clinical_synopsis": {
+        "respiratory": ["Bronchiectasis", "Chronic pulmonary infections"],
+        "gastrointestinal": ["Pancreatic insufficiency", "Meconium ileus"]
+      }
+    },
+    {
+      "mim_number": 143100,
+      "prefix": "#",
+      "title": "HUNTINGTON DISEASE; HD",
+      "inheritance": "Autosomal dominant",
+      "gene_map": {
+        "gene_mim": 613004,
+        "gene_symbol": "HTT",
+        "chromosome": "4p16.3"
+      }
+    }
+  ],
+  "queries": {
+    "web_entry": "https://omim.org/entry/154700",
+    "api_entry": "curl 'https://api.omim.org/api/entry?mimNumber=154700&apiKey=YOUR_API_KEY'",
+    "download": "https://omim.org/downloads (requires registration)"
+  }
+}

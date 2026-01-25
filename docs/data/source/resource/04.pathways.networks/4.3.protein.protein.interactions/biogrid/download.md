@@ -259,6 +259,67 @@ def build_ppi_network(interactions_df):
 | All organisms | ~2,200,000 |
 | File size (all) | ~500 MB zipped |
 
+---
+
+## Dataset Versions
+
+### Current Release: BioGRID 4.4.xxx
+
+| Property | Value |
+|----------|-------|
+| Version | 4.4.230 (example) |
+| Release Date | 2024-01-15 |
+| Total Size | ~500 MB (zipped) |
+| Total Interactions | ~2.2 million |
+
+### Version Contents
+
+| Component | Size | Records | Description |
+|-----------|------|---------|-------------|
+| BIOGRID-ALL-*.tab2.zip | ~200 MB | ~2.2M | All organisms TAB 2.0 |
+| BIOGRID-ALL-*.tab3.zip | ~250 MB | ~2.2M | All organisms TAB 3.0 |
+| BIOGRID-ALL-*.mitab.zip | ~150 MB | ~2.2M | PSI-MI TAB 2.5 |
+| BIOGRID-ORGANISM-Homo_sapiens-*.tab2.zip | ~50 MB | ~700K | Human only |
+
+### Previous Versions
+
+| Version | Release | Interactions | Status |
+|---------|---------|--------------|--------|
+| 4.4.229 | 2024-01-01 | ~2.2M | Archived |
+| 4.4.228 | 2023-12-01 | ~2.2M | Archived |
+| 4.4.227 | 2023-11-01 | ~2.1M | Archived |
+
+---
+
+## API Access
+
+### Configuration
+
+| Property | Value |
+|----------|-------|
+| Base URL | `https://webservice.thebiogrid.org` |
+| Authentication | API key required (free) |
+| Rate Limit | 1 request/second recommended |
+| Response Format | JSON, TAB2, TAB3 |
+
+### API Endpoints
+
+| Operation | Endpoint | Parameters |
+|-----------|----------|------------|
+| Interactions | `/interactions/` | `geneList`, `taxId`, `evidenceList` |
+| By Gene | `/interactions/` | `geneList=TP53&taxId=9606` |
+| By PubMed | `/interactions/` | `pubmedList=1535557` |
+| By BioGRID ID | `/interactions/` | `interactorList=112315` |
+
+### Required Parameters
+
+| Parameter | Description |
+|-----------|-------------|
+| accesskey | Your API key (required) |
+| format | Output format (json, tab2, tab3) |
+
+---
+
 ## Update Frequency
 
 | Release Type | Frequency |

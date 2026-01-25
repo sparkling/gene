@@ -1,0 +1,137 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "syngo-schema.json",
+  "title": "SynGO Synaptic Annotation Record",
+  "description": "JSON Schema for SynGO synaptic gene ontology. Expert-curated database with 1,200+ annotated synaptic genes, 5,800+ annotations, and 180+ ontology terms for synaptic protein localization and function.",
+  "type": "object",
+  "properties": {
+    "gene_symbol": {
+      "type": "string",
+      "description": "HGNC gene symbol"
+    },
+    "hgnc_id": {
+      "type": "string",
+      "description": "HGNC identifier",
+      "pattern": "^HGNC:[0-9]+$"
+    },
+    "uniprot_id": {
+      "type": "string",
+      "description": "UniProt accession",
+      "pattern": "^[A-Z0-9]{6,10}$",
+      "examples": ["P17600"]
+    },
+    "ensembl_id": {
+      "type": "string",
+      "description": "Ensembl gene ID",
+      "pattern": "^ENSG[0-9]{11}$"
+    },
+    "annotations": {
+      "type": "array",
+      "description": "Synaptic annotations",
+      "items": {
+        "$ref": "#/$defs/annotation"
+      }
+    },
+    "cellular_component_annotations": {
+      "type": "array",
+      "description": "Synaptic localization",
+      "items": {
+        "$ref": "#/$defs/annotation"
+      }
+    },
+    "biological_process_annotations": {
+      "type": "array",
+      "description": "Synaptic function",
+      "items": {
+        "$ref": "#/$defs/annotation"
+      }
+    },
+    "disease_associations": {
+      "type": "array",
+      "description": "Brain disorder associations",
+      "items": {
+        "type": "object",
+        "properties": {
+          "disease": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "required": ["gene_symbol"],
+  "$defs": {
+    "annotation": {
+      "type": "object",
+      "description": "SynGO annotation",
+      "properties": {
+        "syngo_term_id": {
+          "type": "string",
+          "description": "SynGO term ID",
+          "pattern": "^SYNGO:[0-9]+$"
+        },
+        "syngo_term_name": {
+          "type": "string",
+          "description": "Term name"
+        },
+        "go_term_id": {
+          "type": "string",
+          "description": "Mapped GO term",
+          "pattern": "^GO:[0-9]{7}$",
+          "examples": ["GO:0045202"]
+        },
+        "ontology_branch": {
+          "type": "string",
+          "description": "Ontology branch",
+          "enum": ["cellular_component", "biological_process"]
+        },
+        "synaptic_compartment": {
+          "type": "string",
+          "description": "Synaptic compartment",
+          "enum": ["presynapse", "postsynapse", "synaptic_cleft", "perisynapse"]
+        },
+        "evidence_code": {
+          "type": "string",
+          "description": "ECO evidence code",
+          "examples": ["ECO:0005593", "ECO:0005589", "ECO:0005644", "ECO:0006063"]
+        },
+        "evidence_type": {
+          "type": "string",
+          "description": "Evidence type",
+          "enum": ["biological_assay", "immunolocalization", "electron_microscopy", "biochemical_assay", "electrophysiology", "imaging"]
+        },
+        "supporting_pmids": {
+          "type": "array",
+          "description": "Supporting publications",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "species": {
+          "type": "string",
+          "description": "Species of evidence",
+          "enum": ["Homo sapiens", "Mus musculus", "Rattus norvegicus"]
+        },
+        "confidence": {
+          "type": "string",
+          "description": "Annotation confidence",
+          "enum": ["high", "medium", "low"]
+        },
+        "curator": {
+          "type": "string",
+          "description": "Curator identifier"
+        },
+        "date_annotated": {
+          "type": "string",
+          "description": "Annotation date",
+          "format": "date"
+        }
+      },
+      "required": ["syngo_term_id", "syngo_term_name", "evidence_code"]
+    }
+  },
+  "additionalProperties": false
+}

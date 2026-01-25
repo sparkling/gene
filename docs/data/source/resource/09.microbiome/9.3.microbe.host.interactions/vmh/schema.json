@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "vmh-schema.json",
+  "title": "VMH Metabolic Model Record",
+  "description": "JSON Schema for Virtual Metabolic Human database entries.",
+  "type": "object",
+  "properties": {
+    "model_id": { "type": "string", "description": "Model identifier" },
+    "model_type": { "type": "string", "enum": ["human", "microbe"] },
+    "organism_name": { "type": "string", "description": "Species name" },
+    "ncbi_taxid": { "type": "integer", "description": "NCBI Taxonomy ID" },
+    "reactions_count": { "type": "integer", "minimum": 0 },
+    "metabolites_count": { "type": "integer", "minimum": 0 },
+    "genes_count": { "type": "integer", "minimum": 0 },
+    "reaction": {
+      "type": "object",
+      "properties": {
+        "rxn_id": { "type": "string", "description": "Reaction identifier" },
+        "name": { "type": "string" },
+        "equation": { "type": "string", "description": "Human-readable equation" },
+        "formula": { "type": "string", "description": "Stoichiometric formula" },
+        "subsystem": { "type": "string", "description": "Metabolic subsystem" },
+        "gpr": { "type": "string", "description": "Gene-Protein-Reaction rule" },
+        "lb": { "type": "number", "description": "Lower flux bound" },
+        "ub": { "type": "number", "description": "Upper flux bound" },
+        "reversibility": { "type": "boolean" },
+        "ec_number": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+$" }
+      }
+    },
+    "metabolite": {
+      "type": "object",
+      "properties": {
+        "met_id": { "type": "string", "description": "Metabolite ID with compartment" },
+        "name": { "type": "string" },
+        "formula": { "type": "string", "description": "Chemical formula" },
+        "charge": { "type": "integer" },
+        "compartment": { "type": "string", "enum": ["c", "e", "m", "n", "r", "l", "x", "g"] },
+        "kegg_id": { "type": "string" },
+        "chebi_id": { "type": "string" },
+        "hmdb_id": { "type": "string" },
+        "pubchem_id": { "type": "string" },
+        "inchi": { "type": "string" }
+      }
+    }
+  },
+  "required": ["model_id"],
+  "additionalProperties": true
+}

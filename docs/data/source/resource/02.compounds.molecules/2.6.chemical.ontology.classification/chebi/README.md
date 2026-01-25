@@ -1,19 +1,21 @@
 ---
 id: chebi
 title: "ChEBI - Chemical Entities of Biological Interest"
-type: data-source
-category: compounds
-subcategory: chemical-ontology
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 1
-last_updated: 2026-01-23
 status: active
-tags: [ontology, chemical-classification, biological-roles, molecular-entities, obo]
+category: compounds.molecules
+subcategory: chemical.ontology.classification
+tags:
+  - ontology
+  - chemical-classification
+  - biological-roles
+  - molecular-entities
+  - obo
 ---
 
 # ChEBI - Chemical Entities of Biological Interest
-
-**Category:** [Compounds & Molecules](../../_index.md) > [Chemical Ontology & Classification](../_index.md)
 
 ## Overview
 
@@ -80,13 +82,12 @@ ChEBI is a key component of the Open Biomedical Ontologies (OBO) Foundry and int
 | 2 | Automatically derived, expert reviewed |
 | 1 | Automatically derived |
 
-## License
+## Limitations
 
-| Aspect | Value |
-|--------|-------|
-| License | CC BY 4.0 |
-| Commercial Use | Yes |
-| Attribution Required | Yes |
+- Manual curation means some compounds not yet covered
+- Three-star quality varies across entries
+- Biological role annotations may not be exhaustive
+- Large polymers and complex biologics less represented
 
 ## Related Resources
 
@@ -96,7 +97,9 @@ ChEBI is a key component of the Open Biomedical Ontologies (OBO) Foundry and int
 
 ## See Also
 
-- [Schema Documentation](./schema.md)
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [License Terms](./license.md) - Usage rights and restrictions
 
 ## References
 

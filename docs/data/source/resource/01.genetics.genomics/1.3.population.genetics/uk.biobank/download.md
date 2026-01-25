@@ -169,6 +169,59 @@ head ukb12345_imp_chr1_v3.sample
 wc -l ukb12345_imp_chr1_v3.sample
 ```
 
+## Dataset Versions
+
+### Current Release
+
+| Property | Value |
+|----------|-------|
+| Version | 2025 Release |
+| Release Date | 2025-Q3 |
+| Total Size | ~55 TB (all data types) |
+| Participants | 502,000 |
+| Phenotype Fields | 7,000+ |
+
+### Version Contents
+
+| Component | Size | Records | Description |
+|-----------|------|---------|-------------|
+| Imputed genotypes (BGEN) | ~2 TB | 97M variants | 500K samples |
+| Exome sequencing | ~500 GB | 26M variants | 470K samples |
+| WGS (CRAM) | ~50 TB | - | 200K samples |
+| Phenotype data | ~20 GB | 7K fields | 500K participants |
+
+### Genetic Data Releases
+
+| Data Type | Samples | Variants | Format |
+|-----------|---------|----------|--------|
+| Imputed array | 502,000 | 97M | BGEN |
+| WES (200K) | 200,000 | 26M | PLINK |
+| WGS (200K) | 200,000 | 600M | CRAM |
+| CNV calls | 200,000 | varies | BED |
+
+### Phenotype Categories
+
+| Category | Fields | Description |
+|----------|--------|-------------|
+| Demographics | 100+ | Age, sex, ethnicity |
+| Health records | 2000+ | HES, GP linkage |
+| Biomarkers | 500+ | Blood, urine tests |
+| Imaging | 1000+ | MRI, DXA measures |
+| Lifestyle | 500+ | Diet, activity, smoking |
+
+---
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | RAP/DNAnexus platform |
+| Rate Limit | Varies by access tier |
+| Auth Required | Yes (approved application) |
+| Response Format | BGEN, PLINK, CRAM |
+
+---
+
 ## Update Schedule
 
 | Release | Frequency |

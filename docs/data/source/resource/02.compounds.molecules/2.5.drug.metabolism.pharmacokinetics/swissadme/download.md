@@ -319,6 +319,32 @@ head -5 swissadme_results.csv
 head -1 swissadme_results.csv | tr ',' '\n' | wc -l
 ```
 
+## Dataset Versions
+
+| Version | Release Date | Size | Status |
+|---------|--------------|------|--------|
+| SwissADME 2017+ | 2017 (initial) | Web tool | Current |
+| Updates | Ongoing | N/A | Active |
+
+### Version Notes
+
+SwissADME is a web-based ADME prediction tool:
+- Physicochemical properties (MW, LogP, TPSA, etc.)
+- Lipinski/Veber/Egan druglikeness rules
+- BOILED-Egg permeability model
+- P-glycoprotein substrate prediction
+- CYP450 inhibition prediction
+- PAINS/Brenk structural alerts
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | `http://www.swissadme.ch` |
+| Rate Limit | 100 compounds/batch |
+| Auth Required | No |
+| Documentation | http://www.swissadme.ch |
+
 ## Update Schedule
 
 | Release | Frequency |

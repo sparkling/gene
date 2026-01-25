@@ -1,19 +1,21 @@
 ---
 id: lotus
 title: "LOTUS - Linked Open Total Unified Structure-organism"
-type: data-source
-category: compounds
-subcategory: natural-products
-parent: ../_index.md
+type: source
+parent: ../README.md
 tier: 1
-last_updated: 2026-01-23
 status: active
-tags: [natural-products, wikidata, sparql, structure-organism, linked-data]
+category: compounds.molecules
+subcategory: natural.products
+tags:
+  - natural-products
+  - wikidata
+  - sparql
+  - structure-organism
+  - linked-data
 ---
 
 # LOTUS - Linked Open Total Unified Structure-organism
-
-**Category:** [Compounds & Molecules](../../_index.md) > [Natural Products](../_index.md)
 
 ## Overview
 
@@ -70,13 +72,12 @@ LOTUS follows a single-source-of-truth model with PostgreSQL as the canonical da
 | stated in | P248 | Literature reference |
 | NCBI taxon ID | P685 | Organism taxonomy |
 
-## License
+## Limitations
 
-| Aspect | Value |
-|--------|-------|
-| License | CC0 (Public Domain) |
-| Commercial Use | Yes (unrestricted) |
-| Attribution Required | No (but appreciated) |
+- Data inherited from source databases may contain errors
+- Some structure-organism pairs may be computationally inferred
+- Wikidata query interface has rate limits for large queries
+- Not all entries have validated taxonomic identifiers
 
 ## Related Resources
 
@@ -86,7 +87,9 @@ LOTUS follows a single-source-of-truth model with PostgreSQL as the canonical da
 
 ## See Also
 
-- [Schema Documentation](./schema.md)
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [License Terms](./license.md) - Usage rights and restrictions
 
 ## References
 

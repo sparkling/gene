@@ -1,23 +1,34 @@
 ---
 id: pharmvar
 title: "PharmVar"
-type: data-source
-category: genetics
+type: source
+parent: ../README.md
+category: genetics.genomics
 subcategory: pharmacogenomics
-parent: ../_index.md
 tier: 2
-last_updated: 2026-01-23
 status: active
-tags: [pharmacogenomics, haplotype, star-allele, nomenclature, cyp]
+last_updated: 2026-01-25
+tags:
+  - pharmacogenomics
+  - haplotype
+  - star-allele
+  - nomenclature
+  - cyp
 ---
 
 # PharmVar
 
-**Category:** [Genetics & Genomics](../../_index.md) > [Pharmacogenomics](../_index.md)
+PharmVar (Pharmacogene Variation Consortium) is the central repository for pharmacogene haplotype (star allele) definitions and nomenclature. It standardizes the naming and definition of pharmacogene alleles, ensuring consistent interpretation of pharmacogenomic test results worldwide.
 
 ## Overview
 
-PharmVar (Pharmacogene Variation Consortium) is the central repository for pharmacogene haplotype (star allele) definitions and nomenclature. It standardizes the naming and definition of pharmacogene alleles, ensuring consistent interpretation of pharmacogenomic test results worldwide.
+| Property | Value |
+|----------|-------|
+| **Maintainer** | PharmVar Consortium |
+| **Website** | https://www.pharmvar.org/ |
+| **Update Frequency** | Continuous |
+| **Records** | 3,000+ alleles |
+| **Latest Release** | Current (continuous) |
 
 PharmVar maintains the official nomenclature for key pharmacogenes including CYP2D6, CYP2C19, CYP2C9, CYP3A4, CYP3A5, and other genes involved in drug metabolism and response. Each allele definition includes the defining variants, their positions on reference sequences, and functional status when known.
 
@@ -42,30 +53,32 @@ The database evolved from the CYP Allele Nomenclature Database and now provides 
 
 ## Key Identifiers
 
-| Identifier | Pattern | Example |
-|------------|---------|---------|
-| Allele | Gene*number | CYP2D6*4 |
-| Core Allele | Base definition | CYP2D6*4.001 |
-| Sub-allele | With variants | CYP2D6*4.013 |
+| Identifier | Format | Example |
+|------------|--------|---------|
+| Allele | `Gene*number` | `CYP2D6*4` |
+| Core Allele | `Base definition` | `CYP2D6*4.001` |
+| Sub-allele | `With variants` | `CYP2D6*4.013` |
 
-## Access Methods
+## Limitations
 
-| Method | URL | Notes |
-|--------|-----|-------|
-| Web | https://www.pharmvar.org/ | Interactive search |
-| API | REST endpoints | Programmatic access |
-| Downloads | Gene-specific files | TSV, FASTA |
+- Allele function not always established
+- Some alleles population-specific (rare in other groups)
+- Complex rearrangements difficult to represent
+- Gene conversion events may complicate calling
+- Historical nomenclature inconsistencies exist
 
-## License
+## Data Quality Notes
 
-| Aspect | Value |
-|--------|-------|
-| License | Open Access |
-| Commercial Use | Yes |
-| Citation | Required |
+PharmVar allele definitions are curated by expert working groups with variant validation and reference sequence alignment. Function assignments are based on published literature and consensus expert opinion. The sub-allele system captures additional variants on core haplotype backgrounds, enabling precise genotype reporting.
 
 ## See Also
 
-- [PharmGKB](../pharmgkb/_index.md) - Clinical annotations
-- [CPIC](../cpic/_index.md) - Prescribing guidelines
-- [DPWG](../dpwg/_index.md) - Dutch guidelines
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [Example Records](./sample.json) - Sample data for code generation
+- [Download Guide](./download.md) - Access methods and API configuration
+- [License Terms](./license.md) - Usage rights and restrictions
+- [Schema Mapping](./mapping.xslt) - XSLT 3.0 transformation to unified schema
+- [PharmGKB](../pharmgkb/README.md) - Clinical annotations
+- [CPIC](../cpic/README.md) - Prescribing guidelines
+- [DPWG](../dpwg/README.md) - Dutch guidelines

@@ -1,0 +1,42 @@
+[
+  {
+    "Chrom": "1",
+    "Pos": 10001,
+    "Ref": "T",
+    "Alt": "A",
+    "RawScore": 0.234567,
+    "PHRED": 8.123
+  },
+  {
+    "Chrom": "7",
+    "Pos": 140753336,
+    "Ref": "A",
+    "Alt": "T",
+    "RawScore": 7.234567,
+    "PHRED": 34.0
+  },
+  {
+    "Chrom": "17",
+    "Pos": 7673803,
+    "Ref": "G",
+    "Alt": "A",
+    "RawScore": 6.123456,
+    "PHRED": 29.5
+  },
+  {
+    "Chrom": "11",
+    "Pos": 5227002,
+    "Ref": "T",
+    "Alt": "A",
+    "RawScore": 5.567890,
+    "PHRED": 26.1
+  },
+  {
+    "Chrom": "13",
+    "Pos": 32398489,
+    "Ref": "A",
+    "Alt": "G",
+    "RawScore": 2.345678,
+    "PHRED": 15.4
+  }
+]

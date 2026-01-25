@@ -1,0 +1,50 @@
+[
+  {
+    "gene": "CYP2D6",
+    "drug": "codeine",
+    "diplotype": "*1/*4",
+    "phenotype": "CYP2D6 Intermediate Metabolizer",
+    "activity_score": 1.0,
+    "recommendation": "Use label recommended age- or weight-specific dosing. If no response and opioid use is warranted, consider non-codeine opioid.",
+    "strength": "Strong",
+    "level": "A",
+    "guideline": "CPIC Guideline for Codeine and CYP2D6",
+    "guideline_url": "https://cpicpgx.org/guidelines/guideline-for-codeine-and-cyp2d6/"
+  },
+  {
+    "gene": "CYP2C19",
+    "drug": "clopidogrel",
+    "diplotype": "*1/*2",
+    "phenotype": "CYP2C19 Intermediate Metabolizer",
+    "activity_score": 1.0,
+    "recommendation": "Alternative antiplatelet therapy if no contraindication (e.g., prasugrel, ticagrelor).",
+    "strength": "Strong",
+    "level": "A",
+    "guideline": "CPIC Guideline for Clopidogrel and CYP2C19",
+    "guideline_url": "https://cpicpgx.org/guidelines/guideline-for-clopidogrel-and-cyp2c19/"
+  },
+  {
+    "gene": "TPMT",
+    "drug": "azathioprine",
+    "diplotype": "*1/*3A",
+    "phenotype": "TPMT Intermediate Metabolizer",
+    "activity_score": 1.0,
+    "recommendation": "Start with reduced doses (30-80% of full dose). Titrate based on tolerance.",
+    "strength": "Strong",
+    "level": "A",
+    "guideline": "CPIC Guideline for Thiopurines and TPMT/NUDT15",
+    "guideline_url": "https://cpicpgx.org/guidelines/guideline-for-thiopurines-and-tpmt/"
+  },
+  {
+    "gene": "CYP2D6",
+    "drug": "codeine",
+    "diplotype": "*4/*4",
+    "phenotype": "CYP2D6 Poor Metabolizer",
+    "activity_score": 0.0,
+    "recommendation": "Avoid codeine use due to lack of efficacy. Consider non-codeine opioid.",
+    "strength": "Strong",
+    "level": "A",
+    "guideline": "CPIC Guideline for Codeine and CYP2D6",
+    "guideline_url": "https://cpicpgx.org/guidelines/guideline-for-codeine-and-cyp2d6/"
+  }
+]

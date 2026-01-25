@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "mbodymap-schema.json",
+  "title": "mBodyMap Sample Record",
+  "description": "JSON Schema for mBodyMap body site microbiome atlas records.",
+  "type": "object",
+  "properties": {
+    "sample_id": { "type": "string", "pattern": "^MBMAP_S[0-9]+$", "description": "mBodyMap sample identifier" },
+    "site_code": { "type": "string", "description": "Hierarchical body site code" },
+    "site_name": { "type": "string", "description": "Body site common name" },
+    "site_category": { "type": "string", "enum": ["GI", "ORAL", "SKIN", "URO", "RESP", "OTHER"] },
+    "anatomy_term": { "type": "string", "pattern": "^UBERON:[0-9]+$" },
+    "study_id": { "type": "string", "description": "Source study accession" },
+    "subject_id": { "type": "string" },
+    "age": { "type": ["integer", "null"] },
+    "sex": { "type": ["string", "null"], "enum": ["male", "female", null] },
+    "health_status": { "type": "string", "enum": ["healthy", "disease", "unknown"] },
+    "sequencing_method": { "type": "string", "enum": ["16S_V1V3", "16S_V3V4", "16S_V4", "WGS"] },
+    "taxonomic_profile": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "taxon_name": { "type": "string" },
+          "taxon_id": { "type": "integer" },
+          "abundance": { "type": "number", "minimum": 0, "maximum": 1 }
+        },
+        "required": ["taxon_name", "abundance"]
+      }
+    },
+    "diversity": {
+      "type": "object",
+      "properties": {
+        "shannon": { "type": "number" },
+        "simpson": { "type": "number" },
+        "observed_species": { "type": "integer" },
+        "chao1": { "type": "number" },
+        "evenness": { "type": "number" }
+      }
+    }
+  },
+  "required": ["sample_id", "site_code", "site_category"],
+  "additionalProperties": true
+}

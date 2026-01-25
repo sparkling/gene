@@ -67,6 +67,10 @@ ConsumerLab is particularly valuable for quality assurance research, supplement 
 
 ## See Also
 
-- [Schema Documentation](./schema.md)
-- [DSLD](../dsld/_index.md) - NIH Dietary Supplement Label Database
-- [Natural Medicines](../natural.medicines/_index.md) - Evidence-based database
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [Sample Data](./sample.json) - Example records
+- [License Terms](./license.md) - Usage rights and restrictions
+- [Schema Mapping](./mapping.xslt) - Transform to unified schema
+- [DSLD](../dsld/README.md) - NIH Dietary Supplement Label Database
+- [Natural Medicines](../natural.medicines/README.md) - Evidence-based database

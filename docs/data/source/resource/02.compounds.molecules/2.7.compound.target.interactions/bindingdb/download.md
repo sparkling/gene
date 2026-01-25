@@ -184,6 +184,31 @@ head -1 BindingDB_All.tsv | tr '\t' '\n' | wc -l
 head -1 BindingDB_All.tsv | grep -o "Ki\|IC50\|Kd\|EC50"
 ```
 
+## Dataset Versions
+
+| Version | Release Date | Size | Status |
+|---------|--------------|------|--------|
+| Jan 2025 | 2025-01 | ~10 GB | Current |
+| Monthly releases | Weekly | Varies | Rolling |
+
+### Version Notes
+
+BindingDB current release contains:
+- 2.9M+ binding data entries
+- 1.3M+ compounds
+- 9,500+ protein targets
+- Links to PDB, UniProt, ChEMBL, PubChem
+- Patent and publication-derived data
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | `https://www.bindingdb.org/axis2/services/BDBService` |
+| Rate Limit | 60 req/min |
+| Auth Required | No |
+| Documentation | https://www.bindingdb.org/bind/BindingDBRESTfulAPI.jsp |
+
 ## Update Schedule
 
 | Release | Frequency |

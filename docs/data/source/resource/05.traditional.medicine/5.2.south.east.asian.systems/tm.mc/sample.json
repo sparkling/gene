@@ -1,0 +1,83 @@
+[
+  {
+    "plant_id": "TMMC_P_001234",
+    "scientific_name": "Curcuma longa",
+    "family": "Zingiberaceae",
+    "system_code": "AYU",
+    "local_name": "Haridra",
+    "traditional_system": ["Ayurveda", "TCM", "Unani"],
+    "compound_id": "TMMC_C_000123",
+    "compound_name": "Curcumin",
+    "pubchem_cid": 969516,
+    "smiles": "COC1=CC(=CC(=C1O)OC)C=CC(=O)CC(=O)C=CC2=CC(=C(C=C2)O)OC",
+    "molecular_formula": "C21H20O6",
+    "molecular_weight": 368.38,
+    "convergent_uses": [
+      {
+        "indication": "inflammation",
+        "systems_agreeing": ["Ayurveda", "TCM", "Unani"],
+        "confidence": "high"
+      },
+      {
+        "indication": "liver disorders",
+        "systems_agreeing": ["Ayurveda", "TCM"],
+        "confidence": "medium"
+      }
+    ],
+    "ayurveda_properties": {
+      "rasa": ["tikta", "katu"],
+      "guna": ["laghu", "ruksha"],
+      "vipaka": "katu",
+      "virya": "ushna",
+      "dosha_effect": ["kapha-vata shamaka"]
+    },
+    "cross_system_validation": {
+      "systems_present": ["Ayurveda", "TCM", "Unani"],
+      "shared_compounds": 15,
+      "shared_uses": ["anti-inflammatory", "hepatoprotective", "wound healing"]
+    }
+  },
+  {
+    "plant_id": "TMMC_P_002345",
+    "scientific_name": "Zingiber officinale",
+    "family": "Zingiberaceae",
+    "system_code": "TCM",
+    "local_name": "Sheng Jiang",
+    "traditional_system": ["TCM", "Ayurveda", "Kampo"],
+    "compound_id": "TMMC_C_000456",
+    "compound_name": "Gingerol",
+    "pubchem_cid": 442793,
+    "convergent_uses": [
+      {
+        "indication": "digestive disorders",
+        "systems_agreeing": ["TCM", "Ayurveda", "Kampo"],
+        "confidence": "high"
+      },
+      {
+        "indication": "nausea",
+        "systems_agreeing": ["TCM", "Ayurveda"],
+        "confidence": "high"
+      }
+    ],
+    "traditional_terms": [
+      {"system": "Ayurveda", "term": "Deepana"},
+      {"system": "TCM", "term": "Wen Zhong"}
+    ]
+  },
+  {
+    "plant_id": "TMMC_P_003456",
+    "scientific_name": "Glycyrrhiza glabra",
+    "family": "Fabaceae",
+    "system_code": "UNA",
+    "local_name": "Asl-us-soos",
+    "traditional_system": ["Unani", "Ayurveda", "TCM"],
+    "compound_name": "Glycyrrhizin",
+    "convergent_uses": [
+      {
+        "indication": "respiratory conditions",
+        "systems_agreeing": ["Unani", "Ayurveda", "TCM"],
+        "confidence": "high"
+      }
+    ]
+  }
+]

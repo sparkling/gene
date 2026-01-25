@@ -1,0 +1,215 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "pharmvar-schema.json",
+  "title": "PharmVar Allele Record",
+  "description": "JSON Schema for Pharmacogene Variation Consortium (PharmVar) star allele nomenclature and definitions.",
+  "type": "object",
+  "properties": {
+    "allele_id": {
+      "type": "string",
+      "description": "PharmVar allele identifier.",
+      "pattern": "^PV[0-9]+$",
+      "examples": ["PV00001", "PV01234"]
+    },
+    "gene": {
+      "type": "string",
+      "description": "Gene symbol.",
+      "examples": ["CYP2D6", "CYP2C19", "CYP2C9", "TPMT", "DPYD"]
+    },
+    "allele_name": {
+      "type": "string",
+      "description": "Star allele designation.",
+      "pattern": "^\\*[0-9]+(\\.?[0-9]*[A-Z]?)?$",
+      "examples": ["*1", "*4", "*4.001", "*17", "*2A"]
+    },
+    "haplotype_name": {
+      "type": "string",
+      "description": "Full haplotype name.",
+      "examples": ["CYP2D6*4", "CYP2C19*17"]
+    },
+    "type": {
+      "type": "string",
+      "description": "Allele type classification.",
+      "enum": ["Core", "Sub", "Reference"]
+    },
+    "activity": {
+      "type": "string",
+      "description": "Functional activity classification.",
+      "enum": ["Normal", "Decreased", "No function", "Increased", "Uncertain", "Unknown"]
+    },
+    "activity_value": {
+      "type": "number",
+      "description": "Numeric activity value for scoring.",
+      "examples": [1.0, 0.5, 0.0, 1.5, 2.0]
+    },
+    "defining_variants": {
+      "type": "array",
+      "description": "Variants that define this allele.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "rsid": {
+            "type": "string",
+            "pattern": "^rs[0-9]+$",
+            "examples": ["rs3892097", "rs1800460"]
+          },
+          "hgvs_g_hg38": {
+            "type": "string",
+            "description": "Genomic HGVS (GRCh38).",
+            "examples": ["NC_000022.11:g.42128174C>T"]
+          },
+          "hgvs_g_hg19": {
+            "type": "string",
+            "description": "Genomic HGVS (GRCh37).",
+            "examples": ["NC_000022.10:g.42526694C>T"]
+          },
+          "hgvs_c": {
+            "type": "string",
+            "description": "Coding HGVS.",
+            "examples": ["NM_000106.6:c.506-1G>A"]
+          },
+          "hgvs_p": {
+            "type": "string",
+            "description": "Protein HGVS.",
+            "examples": ["NP_000097.3:p.Pro34Ser"]
+          },
+          "position_hg38": {
+            "type": "integer",
+            "description": "GRCh38 position.",
+            "examples": [42128174]
+          },
+          "position_hg19": {
+            "type": "integer",
+            "description": "GRCh37 position.",
+            "examples": [42526694]
+          },
+          "ref": {
+            "type": "string",
+            "pattern": "^[ACGT]+$"
+          },
+          "alt": {
+            "type": "string",
+            "pattern": "^[ACGT]+$"
+          },
+          "impact": {
+            "type": "string",
+            "description": "Variant impact type.",
+            "enum": ["splice", "frameshift", "nonsense", "missense", "synonymous", "intronic", "promoter", "3UTR", "5UTR", "CNV"]
+          }
+        }
+      }
+    },
+    "structural_variants": {
+      "type": "array",
+      "description": "Structural variants (CNVs, gene deletions, duplications).",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["deletion", "duplication", "gene_conversion", "tandem_arrangement", "hybrid"]
+          },
+          "description": {
+            "type": "string",
+            "examples": ["Gene deletion", "Gene duplication x2", "CYP2D6/CYP2D7 hybrid"]
+          },
+          "copy_number": {
+            "type": "integer",
+            "examples": [0, 1, 2, 3]
+          }
+        }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "description": "Evidence supporting the allele definition.",
+      "properties": {
+        "publications": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "pmid": { "type": "integer" },
+              "year": { "type": "integer" },
+              "reference": { "type": "string" }
+            }
+          }
+        },
+        "functional_data": {
+          "type": "boolean",
+          "description": "Whether functional data exists."
+        },
+        "clinical_data": {
+          "type": "boolean",
+          "description": "Whether clinical data exists."
+        }
+      }
+    },
+    "population_frequency": {
+      "type": "object",
+      "description": "Population frequency data.",
+      "properties": {
+        "African": { "type": "number", "minimum": 0, "maximum": 1 },
+        "African_American": { "type": "number", "minimum": 0, "maximum": 1 },
+        "Americas": { "type": "number", "minimum": 0, "maximum": 1 },
+        "Caucasian": { "type": "number", "minimum": 0, "maximum": 1 },
+        "East_Asian": { "type": "number", "minimum": 0, "maximum": 1 },
+        "European": { "type": "number", "minimum": 0, "maximum": 1 },
+        "Middle_Eastern": { "type": "number", "minimum": 0, "maximum": 1 },
+        "Near_Eastern": { "type": "number", "minimum": 0, "maximum": 1 },
+        "Oceanian": { "type": "number", "minimum": 0, "maximum": 1 },
+        "South_Asian": { "type": "number", "minimum": 0, "maximum": 1 },
+        "South_Central_Asian": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    },
+    "reference_sequence": {
+      "type": "object",
+      "description": "Reference sequences used.",
+      "properties": {
+        "chromosome": {
+          "type": "string",
+          "examples": ["NC_000022.11", "NC_000022.10"]
+        },
+        "gene_refseq": {
+          "type": "string",
+          "examples": ["NG_008376.4"]
+        },
+        "transcript": {
+          "type": "string",
+          "examples": ["NM_000106.6", "NM_000106.5"]
+        },
+        "protein": {
+          "type": "string",
+          "examples": ["NP_000097.3"]
+        }
+      }
+    },
+    "cpic_allele_status": {
+      "type": "string",
+      "description": "Status in CPIC allele tables.",
+      "enum": ["core", "extended", "not_included"]
+    },
+    "dpwg_allele_status": {
+      "type": "string",
+      "description": "Status in DPWG tables.",
+      "enum": ["included", "not_included"]
+    },
+    "created_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date allele was created in PharmVar."
+    },
+    "updated_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of last update."
+    },
+    "version": {
+      "type": "string",
+      "description": "PharmVar database version.",
+      "examples": ["5.2", "6.0"]
+    }
+  },
+  "required": ["gene", "allele_name", "defining_variants"],
+  "additionalProperties": true
+}

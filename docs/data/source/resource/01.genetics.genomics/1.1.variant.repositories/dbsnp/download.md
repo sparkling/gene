@@ -177,6 +177,48 @@ bcftools view -i 'ID="rs334"' GCF_000001405.40.gz
 bcftools view -h freq.vcf.gz | grep "##SAMPLE"
 ```
 
+## Dataset Versions
+
+### Current Release: Build 157
+
+| Property | Value |
+|----------|-------|
+| Version | Build 157 |
+| Release Date | 2025-03-18 |
+| Total Size | ~50 GB (GRCh38 VCF) |
+| RS Records | 1.2 billion |
+| SS Records | 3.3 billion |
+
+### Version Contents
+
+| Component | Size | Records | Description |
+|-----------|------|---------|-------------|
+| GCF_000001405.40.gz | ~50 GB | 1.2B | All dbSNP (GRCh38) |
+| GCF_000001405.25.gz | ~45 GB | 1.1B | All dbSNP (GRCh37) |
+| freq.vcf.gz | ~15 GB | 900M | ALFA frequencies |
+| refsnp-merged.json.bz2 | ~5 GB | varies | Merged RS records |
+
+### Previous Versions
+
+| Version | Release | Size | Status |
+|---------|---------|------|--------|
+| Build 156 | 2023-08 | ~45 GB | Archived |
+| Build 155 | 2021-05 | ~40 GB | Archived |
+| Build 154 | 2020-04 | ~35 GB | Archived |
+
+---
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | https://api.ncbi.nlm.nih.gov/variation/v0/ |
+| Rate Limit | 3 req/sec (10 with API key) |
+| Auth Required | No (API key recommended) |
+| Response Format | JSON |
+
+---
+
 ## Update Schedule
 
 | Release | Frequency |

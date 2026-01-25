@@ -1,23 +1,34 @@
 ---
 id: topmed
 title: "TOPMed"
-type: data-source
-category: genetics
+type: source
+parent: ../README.md
+category: genetics.genomics
 subcategory: population.genetics
-parent: ../_index.md
 tier: 2
-last_updated: 2026-01-23
 status: active
-tags: [population, frequency, deep-sequencing, rare-variants, nhlbi]
+last_updated: 2026-01-25
+tags:
+  - population
+  - frequency
+  - deep-sequencing
+  - rare-variants
+  - nhlbi
 ---
 
 # TOPMed
 
-**Category:** [Genetics & Genomics](../../_index.md) > [Population Genetics](../_index.md)
+TOPMed (Trans-Omics for Precision Medicine) is an NHLBI program providing deep whole genome sequencing (~30x coverage) of over 180,000 individuals from diverse ancestral backgrounds. It was designed specifically to discover rare genetic variants associated with heart, lung, blood, and sleep disorders.
 
 ## Overview
 
-TOPMed (Trans-Omics for Precision Medicine) is an NHLBI program providing deep whole genome sequencing (~30x coverage) of over 180,000 individuals from diverse ancestral backgrounds. It was designed specifically to discover rare genetic variants associated with heart, lung, blood, and sleep disorders.
+| Property | Value |
+|----------|-------|
+| **Maintainer** | NHLBI / University of Michigan |
+| **Website** | https://topmed.nhlbi.nih.gov/ |
+| **Update Frequency** | Periodic freezes |
+| **Records** | 400,000,000+ variants |
+| **Latest Release** | Freeze 10 |
 
 The program integrates genomic data with phenotypic information from multiple NIH-funded cohort studies, enabling genotype-phenotype association studies at unprecedented scale. TOPMed's imputation server provides free imputation services using the TOPMed reference panel, which captures rare variants better than previous panels.
 
@@ -42,31 +53,32 @@ The Bravo browser provides public access to allele frequencies for variants disc
 
 ## Key Identifiers
 
-| Identifier | Pattern | Example |
-|------------|---------|---------|
-| Sample | NWD prefix | NWD123456 |
-| Study | phs accession | phs000956 |
-| Freeze | Numbered version | Freeze 8 |
+| Identifier | Format | Example |
+|------------|--------|---------|
+| Sample | `NWD prefix` | `NWD123456` |
+| Study | `phs accession` | `phs000956` |
+| Freeze | `Numbered version` | `Freeze 8` |
 
-## Access Methods
+## Limitations
 
-| Method | URL | Notes |
-|--------|-----|-------|
-| Bravo | https://bravo.sph.umich.edu/ | Public frequencies |
-| Imputation Server | https://imputation.biodatacatalyst.nhlbi.nih.gov/ | Free imputation |
-| dbGaP | https://www.ncbi.nlm.nih.gov/gap/ | Individual data |
-| BioData Catalyst | NHLBI platform | Analysis platform |
+- Individual-level data requires dbGaP approval (months-long process)
+- Phenotype access varies by contributing study
+- Primarily US-based cohorts
+- Complex data use agreements for some studies
+- Large file sizes require substantial storage
 
-## License
+## Data Quality Notes
 
-| Aspect | Value |
-|--------|-------|
-| License | dbGaP Data Use Agreement |
-| Commercial Use | Varies by study |
-| Public Frequencies | Freely available |
+TOPMed variant calls undergo extensive quality control including sample QC, variant QC, and batch effect assessment. The deep sequencing enables confident calling of rare variants (MAF < 0.1%). Bravo browser provides aggregate frequencies without individual-level data, suitable for most annotation needs.
 
 ## See Also
 
-- [gnomAD](../gnomad/_index.md) - Aggregated frequencies
-- [1000 Genomes](../1000.genomes/_index.md) - Reference panel
-- [UK Biobank](../uk.biobank/_index.md) - Large cohort
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [Example Records](./sample.json) - Sample data for code generation
+- [Download Guide](./download.md) - Access methods and API configuration
+- [License Terms](./license.md) - Usage rights and restrictions
+- [Schema Mapping](./mapping.xslt) - XSLT 3.0 transformation to unified schema
+- [gnomAD](../gnomad/README.md) - Aggregated frequencies
+- [1000 Genomes](../1000.genomes/README.md) - Reference panel
+- [UK Biobank](../uk.biobank/README.md) - Large cohort

@@ -268,6 +268,33 @@ wc -l human_brain_data/SampleAnnot.csv
 head human_brain_data/Probes.csv
 ```
 
+## Dataset Versions
+
+| Version | Release Date | Size | Status |
+|---------|--------------|------|--------|
+| Allen Brain Atlas 2024 | 2024 | ~100 GB | Current |
+| BrainSpan | 2013 (updated) | ~5 GB | Stable |
+| Human Cell Types | 2023 | ~50 GB | Current |
+| Mouse Brain Atlas | Continuous | ~200 GB | Active |
+
+### Version Notes
+
+Allen Brain Atlas current resources:
+- 6 human brain donors with microarray data
+- 50,000+ gene expression profiles per brain
+- 3,700+ sampling sites across brain regions
+- BrainSpan: prenatal to adult development
+- Single-cell datasets: 1M+ cells profiled
+
+## API Access
+
+| Property | Value |
+|----------|-------|
+| Base URL | `https://api.brain-map.org/api/v2` |
+| Rate Limit | Reasonable use |
+| Auth Required | No |
+| Documentation | https://help.brain-map.org/display/api |
+
 ## Update Schedule
 
 | Resource | Frequency |

@@ -1,0 +1,109 @@
+{
+  "_metadata": {
+    "source": "eBASIS",
+    "version": "2024",
+    "generated": "2026-01-25",
+    "record_count": 2,
+    "query_examples": [
+      "Browse foods: ebasis.eurofir.org/foods",
+      "Browse compounds: ebasis.eurofir.org/components",
+      "Query composition: ebasis.eurofir.org/composition"
+    ]
+  },
+  "records": [
+    {
+      "composition_id": 12345,
+      "food": {
+        "food_id": 101,
+        "food_name": "Apple, raw, with skin",
+        "scientific_name": "Malus domestica",
+        "food_group": "Fruits",
+        "food_subgroup": "Pome fruits",
+        "langual_codes": ["A0148", "B1001", "C0131"],
+        "eurofir_code": "FR001234",
+        "edible_portion_percent": 95.0
+      },
+      "component": {
+        "component_id": 1234,
+        "component_name": "Quercetin",
+        "component_group": "Flavonoids",
+        "component_subgroup": "Flavonols",
+        "cas_number": "117-39-5",
+        "pubchem_cid": 5280343,
+        "molecular_formula": "C15H10O7",
+        "molecular_weight": 302.236,
+        "inchikey": "REFJWTPEDVJJIY-UHFFFAOYSA-N"
+      },
+      "composition_data": {
+        "value": 4.01,
+        "unit": "mg/100g",
+        "basis": "Fresh weight, edible portion",
+        "value_type": "mean",
+        "min_value": 2.10,
+        "max_value": 6.45,
+        "n_samples": 12,
+        "std_dev": 1.23
+      },
+      "quality_assessment": {
+        "overall_score": 4,
+        "food_description_score": 5,
+        "sampling_plan_score": 4,
+        "analytical_method_score": 4,
+        "component_id_score": 5
+      },
+      "analytical_details": {
+        "method": "HPLC-DAD",
+        "method_reference": "AOAC 2005.02",
+        "detection_limit": 0.1,
+        "extraction_solvent": "Methanol/water 70:30"
+      },
+      "reference": {
+        "reference_id": 5678,
+        "authors": "Smith J, Jones M, Williams K",
+        "year": 2020,
+        "title": "Flavonoid content of apple cultivars",
+        "journal": "Journal of Food Composition and Analysis",
+        "doi": "10.1016/j.jfca.2020.103567",
+        "pubmed_id": 32145678
+      }
+    },
+    {
+      "composition_id": 23456,
+      "food": {
+        "food_id": 205,
+        "food_name": "Blueberry, raw",
+        "scientific_name": "Vaccinium corymbosum",
+        "food_group": "Fruits",
+        "food_subgroup": "Berries"
+      },
+      "component": {
+        "component_id": 2345,
+        "component_name": "Cyanidin-3-glucoside",
+        "component_group": "Flavonoids",
+        "component_subgroup": "Anthocyanins",
+        "cas_number": "7084-24-4",
+        "pubchem_cid": 441667,
+        "molecular_formula": "C21H21O11+"
+      },
+      "composition_data": {
+        "value": 25.3,
+        "unit": "mg/100g",
+        "basis": "Fresh weight",
+        "value_type": "mean",
+        "min_value": 15.2,
+        "max_value": 42.8,
+        "n_samples": 8
+      },
+      "quality_assessment": {
+        "overall_score": 3,
+        "analytical_method_score": 4
+      },
+      "reference": {
+        "reference_id": 6789,
+        "authors": "Anderson L et al.",
+        "year": 2019,
+        "title": "Anthocyanin content in berry fruits"
+      }
+    }
+  ]
+}

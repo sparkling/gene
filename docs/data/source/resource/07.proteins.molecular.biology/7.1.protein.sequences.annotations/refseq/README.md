@@ -70,6 +70,10 @@ RefSeq is essential for genome annotation, sequence comparison, primer design, a
 
 ## See Also
 
-- [Schema Documentation](./schema.md)
-- [UniProt](../uniprot/_index.md) - Universal Protein Resource
-- [NCBI Gene](../../../../01.genetics.genomics/1.2.gene.databases/ncbi.gene/) - Gene records
+- [Schema Definition](./schema.json) - Data structure and field types
+- [Field Dictionary](./dictionary.md) - Field semantics and definitions
+- [Sample Data](./sample.json) - Example records
+- [License Terms](./license.md) - Usage rights and restrictions
+- [Schema Mapping](./mapping.xslt) - Transform to unified schema
+- [UniProt](../uniprot/README.md) - Universal Protein Resource
+- [NCBI Gene](../../../../01.genetics.genomics/1.2.gene.databases/ncbi.gene/README.md) - Gene records

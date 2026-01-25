@@ -1,0 +1,72 @@
+{
+  "source": "SwissADME",
+  "version": "2024",
+  "description": "Sample ADME prediction records from SwissADME",
+  "records": [
+    {
+      "molecule": "Aspirin",
+      "smiles": "CC(=O)Oc1ccccc1C(=O)O",
+      "physicochemical": {
+        "molecular_weight": 180.16,
+        "num_heavy_atoms": 13,
+        "num_arom_heavy_atoms": 6,
+        "fraction_csp3": 0.11,
+        "num_rotatable_bonds": 3,
+        "num_h_bond_acceptors": 4,
+        "num_h_bond_donors": 1,
+        "molar_refractivity": 44.41,
+        "tpsa": 63.60
+      },
+      "lipophilicity": {
+        "log_po_w_ilogp": 1.13,
+        "log_po_w_xlogp3": 1.19,
+        "log_po_w_wlogp": 1.31,
+        "consensus_log_po_w": 1.21
+      },
+      "water_solubility": {
+        "log_s_esol": -2.07,
+        "solubility_class": "Soluble"
+      },
+      "druglikeness": {
+        "lipinski": "Yes",
+        "ghose": "Yes",
+        "veber": "Yes",
+        "egan": "Yes",
+        "muegge": "Yes",
+        "bioavailability_score": 0.85
+      },
+      "pharmacokinetics": {
+        "gi_absorption": "High",
+        "bbb_permeant": "Yes",
+        "pgp_substrate": "No",
+        "cyp1a2_inhibitor": "No",
+        "cyp2c19_inhibitor": "No",
+        "cyp2c9_inhibitor": "No",
+        "cyp2d6_inhibitor": "No",
+        "cyp3a4_inhibitor": "No"
+      }
+    },
+    {
+      "molecule": "Ibuprofen",
+      "smiles": "CC(C)Cc1ccc(cc1)C(C)C(=O)O",
+      "physicochemical": {
+        "molecular_weight": 206.28,
+        "num_heavy_atoms": 15,
+        "tpsa": 37.30
+      },
+      "druglikeness": {
+        "lipinski": "Yes",
+        "bioavailability_score": 0.85
+      },
+      "pharmacokinetics": {
+        "gi_absorption": "High",
+        "bbb_permeant": "Yes"
+      }
+    }
+  ],
+  "queries": {
+    "web_interface": "http://www.swissadme.ch/",
+    "batch_processing": "Submit SMILES list via web form",
+    "api_note": "No public REST API; use web interface"
+  }
+}

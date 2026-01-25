@@ -1,0 +1,27 @@
+[
+  {
+    "pmcid": "PMC9876543",
+    "pmid": "35922517",
+    "doi": "10.1038/s41586-022-05087-2",
+    "versions": [
+      {
+        "pmcid": "PMC9876543.1",
+        "current": true,
+        "release_date": "2022-08-18"
+      }
+    ],
+    "live": true,
+    "release_date": "2022-08-18"
+  },
+  {
+    "pmcid": "PMC8765432",
+    "pmid": "34123456",
+    "doi": "10.1371/journal.pgen.1009876",
+    "live": true,
+    "release_date": "2022-03-15"
+  },
+  {
+    "pmid": "99999999",
+    "errmsg": "PMID 99999999 not found in PMC"
+  }
+]

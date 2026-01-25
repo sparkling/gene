@@ -1,0 +1,249 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "open-targets-schema.json",
+  "title": "Open Targets Association Record",
+  "description": "JSON Schema for Open Targets Platform. Integrates 20+ data sources providing 14M+ target-disease associations with 17M+ evidence strings for 62,000+ targets and 20,000+ diseases. Accessible via GraphQL API.",
+  "type": "object",
+  "properties": {
+    "target": {
+      "$ref": "#/$defs/target"
+    },
+    "disease": {
+      "$ref": "#/$defs/disease"
+    },
+    "association": {
+      "$ref": "#/$defs/association"
+    },
+    "evidence": {
+      "type": "array",
+      "description": "Supporting evidence",
+      "items": {
+        "$ref": "#/$defs/evidence"
+      }
+    }
+  },
+  "required": ["target", "disease"],
+  "$defs": {
+    "target": {
+      "type": "object",
+      "description": "Gene/protein target",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Ensembl gene ID",
+          "pattern": "^ENSG[0-9]{11}$",
+          "examples": ["ENSG00000146648"]
+        },
+        "approved_symbol": {
+          "type": "string",
+          "description": "HGNC approved symbol"
+        },
+        "approved_name": {
+          "type": "string",
+          "description": "Full gene name"
+        },
+        "biotype": {
+          "type": "string",
+          "description": "Gene biotype",
+          "enum": ["protein_coding", "lncRNA", "miRNA", "pseudogene", "other"]
+        },
+        "uniprot_ids": {
+          "type": "array",
+          "description": "UniProt accessions",
+          "items": {
+            "type": "string"
+          }
+        },
+        "tractability": {
+          "type": "object",
+          "description": "Druggability assessment",
+          "properties": {
+            "smallmolecule": {
+              "type": "object",
+              "properties": {
+                "top_category": {
+                  "type": "string"
+                },
+                "categories": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "antibody": {
+              "type": "object",
+              "properties": {
+                "top_category": {
+                  "type": "string"
+                },
+                "categories": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "required": ["id", "approved_symbol"]
+    },
+    "disease": {
+      "type": "object",
+      "description": "Disease or phenotype",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "EFO disease ID",
+          "pattern": "^EFO_[0-9]{7}$",
+          "examples": ["EFO_0000311"]
+        },
+        "name": {
+          "type": "string",
+          "description": "Disease name"
+        },
+        "description": {
+          "type": "string",
+          "description": "Disease definition"
+        },
+        "therapeutic_areas": {
+          "type": "array",
+          "description": "Therapeutic categories",
+          "items": {
+            "type": "string"
+          }
+        },
+        "synonyms": {
+          "type": "array",
+          "description": "Alternative names",
+          "items": {
+            "type": "string"
+          }
+        },
+        "db_xrefs": {
+          "type": "object",
+          "description": "Cross-references",
+          "properties": {
+            "mondo": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "omim": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "orphanet": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "required": ["id", "name"]
+    },
+    "association": {
+      "type": "object",
+      "description": "Aggregated target-disease relationship",
+      "properties": {
+        "score": {
+          "type": "number",
+          "description": "Overall association score (0-1)",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "datatype_scores": {
+          "type": "array",
+          "description": "Scores by data type",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "enum": ["genetic_association", "somatic_mutation", "known_drug", "affected_pathway", "rna_expression", "literature", "animal_model"]
+              },
+              "score": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              }
+            }
+          }
+        },
+        "evidence_count": {
+          "type": "integer",
+          "description": "Total evidence count"
+        }
+      },
+      "required": ["score"]
+    },
+    "evidence": {
+      "type": "object",
+      "description": "Individual evidence record",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Evidence ID"
+        },
+        "datasource_id": {
+          "type": "string",
+          "description": "Source identifier",
+          "enum": ["gwas_catalog", "gene2phenotype", "clingen", "clinvar", "eva", "orphanet", "uniprot", "chembl", "reactome", "expression_atlas", "europepmc", "impc"]
+        },
+        "datatype_id": {
+          "type": "string",
+          "description": "Data type category",
+          "enum": ["genetic_association", "somatic_mutation", "known_drug", "affected_pathway", "rna_expression", "literature", "animal_model"]
+        },
+        "score": {
+          "type": "number",
+          "description": "Evidence score (0-1)",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "literature": {
+          "type": "array",
+          "description": "PubMed references",
+          "items": {
+            "type": "string"
+          }
+        },
+        "variant_id": {
+          "type": "string",
+          "description": "Variant identifier"
+        },
+        "drug": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "ChEMBL ID"
+            },
+            "name": {
+              "type": "string"
+            },
+            "drug_type": {
+              "type": "string"
+            }
+          }
+        },
+        "clinical_phase": {
+          "type": "integer",
+          "description": "Clinical trial phase",
+          "minimum": 0,
+          "maximum": 4
+        }
+      },
+      "required": ["datasource_id", "datatype_id", "score"]
+    }
+  },
+  "additionalProperties": false
+}

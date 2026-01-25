@@ -1,0 +1,86 @@
+[
+  {
+    "gene": "CYP2D6",
+    "allele": "*4",
+    "name": "CYP2D6*4",
+    "activity_value": 0.0,
+    "function": "No function",
+    "clinical_function": "Poor Metabolizer allele",
+    "defining_variants": [
+      {
+        "rsID": "rs3892097",
+        "hgvs_c": "c.506-1G>A",
+        "hgvs_g": "NC_000022.11:g.42128174G>A",
+        "position": 42128174,
+        "consequence": "splice acceptor variant"
+      }
+    ],
+    "frequency": {
+      "European": 0.22,
+      "African": 0.06,
+      "East_Asian": 0.01
+    },
+    "reference_sequence": "NG_008376.4"
+  },
+  {
+    "gene": "CYP2D6",
+    "allele": "*1",
+    "name": "CYP2D6*1",
+    "activity_value": 1.0,
+    "function": "Normal function",
+    "clinical_function": "Normal Metabolizer allele",
+    "defining_variants": [],
+    "frequency": {
+      "European": 0.35,
+      "African": 0.32,
+      "East_Asian": 0.28
+    },
+    "reference_sequence": "NG_008376.4"
+  },
+  {
+    "gene": "CYP2C19",
+    "allele": "*2",
+    "name": "CYP2C19*2",
+    "activity_value": 0.0,
+    "function": "No function",
+    "clinical_function": "Poor Metabolizer allele",
+    "defining_variants": [
+      {
+        "rsID": "rs4244285",
+        "hgvs_c": "c.681G>A",
+        "hgvs_g": "NC_000010.11:g.94762706G>A",
+        "position": 94762706,
+        "consequence": "splice defect"
+      }
+    ],
+    "frequency": {
+      "European": 0.15,
+      "African": 0.17,
+      "East_Asian": 0.30
+    },
+    "reference_sequence": "NG_008384.3"
+  },
+  {
+    "gene": "CYP2D6",
+    "allele": "*10",
+    "name": "CYP2D6*10",
+    "activity_value": 0.25,
+    "function": "Decreased function",
+    "clinical_function": "Intermediate Metabolizer allele",
+    "defining_variants": [
+      {
+        "rsID": "rs1065852",
+        "hgvs_c": "c.100C>T",
+        "hgvs_g": "NC_000022.11:g.42130692C>T",
+        "position": 42130692,
+        "consequence": "missense variant"
+      }
+    ],
+    "frequency": {
+      "European": 0.02,
+      "African": 0.05,
+      "East_Asian": 0.45
+    },
+    "reference_sequence": "NG_008376.4"
+  }
+]

@@ -1,0 +1,206 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "gwas-catalog-schema.json",
+  "title": "GWAS Catalog Association Record",
+  "description": "JSON Schema for NHGRI-EBI GWAS Catalog genome-wide association study records.",
+  "type": "object",
+  "properties": {
+    "STUDY_ACCESSION": {
+      "type": "string",
+      "description": "GWAS Catalog study accession.",
+      "pattern": "^GCST[0-9]{6,}$",
+      "examples": ["GCST000854", "GCST90002357"]
+    },
+    "PUBMED_ID": {
+      "type": "integer",
+      "description": "PubMed ID of the publication.",
+      "examples": [17554300, 30305743]
+    },
+    "FIRST_AUTHOR": {
+      "type": "string",
+      "description": "First author of the study.",
+      "examples": ["Smith J", "Jones A"]
+    },
+    "DATE": {
+      "type": "string",
+      "format": "date",
+      "description": "Publication date.",
+      "examples": ["2020-01-15"]
+    },
+    "JOURNAL": {
+      "type": "string",
+      "description": "Journal name.",
+      "examples": ["Nature", "Nature Genetics", "PLOS Genetics"]
+    },
+    "STUDY": {
+      "type": "string",
+      "description": "Study title.",
+      "examples": ["Genome-wide association study identifies loci for type 2 diabetes"]
+    },
+    "DISEASE_TRAIT": {
+      "type": "string",
+      "description": "Reported trait or disease.",
+      "examples": ["Type 2 diabetes", "Body mass index", "Coronary artery disease"]
+    },
+    "MAPPED_TRAIT": {
+      "type": "string",
+      "description": "EFO-mapped trait.",
+      "examples": ["type II diabetes mellitus", "body mass index"]
+    },
+    "MAPPED_TRAIT_URI": {
+      "type": "string",
+      "format": "uri",
+      "description": "EFO trait URI.",
+      "examples": ["http://www.ebi.ac.uk/efo/EFO_0001360"]
+    },
+    "EFO_TRAIT_ID": {
+      "type": "string",
+      "description": "EFO trait identifier.",
+      "pattern": "^EFO_[0-9]+$",
+      "examples": ["EFO_0001360", "EFO_0004340"]
+    },
+    "INITIAL_SAMPLE_SIZE": {
+      "type": "string",
+      "description": "Initial study sample description.",
+      "examples": ["10,000 European ancestry cases, 20,000 European ancestry controls"]
+    },
+    "REPLICATION_SAMPLE_SIZE": {
+      "type": "string",
+      "description": "Replication sample description.",
+      "examples": ["5,000 European ancestry cases, 10,000 European ancestry controls"]
+    },
+    "REGION": {
+      "type": "string",
+      "description": "Cytogenetic region.",
+      "examples": ["10q25.3", "6p21.33"]
+    },
+    "CHR_ID": {
+      "type": "string",
+      "description": "Chromosome identifier.",
+      "enum": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "X", "Y", "MT"]
+    },
+    "CHR_POS": {
+      "type": "integer",
+      "description": "Chromosome position (GRCh38).",
+      "examples": [114758349, 32662867]
+    },
+    "REPORTED_GENE": {
+      "type": "string",
+      "description": "Gene(s) reported by authors.",
+      "examples": ["TCF7L2", "HLA-DRB1, HLA-DQA1"]
+    },
+    "MAPPED_GENE": {
+      "type": "string",
+      "description": "Gene(s) mapped by GWAS Catalog.",
+      "examples": ["TCF7L2", "LINC00243 - HLA-DRB1"]
+    },
+    "UPSTREAM_GENE_ID": {
+      "type": "string",
+      "description": "Ensembl ID of upstream gene.",
+      "pattern": "^ENSG[0-9]{11}$"
+    },
+    "DOWNSTREAM_GENE_ID": {
+      "type": "string",
+      "description": "Ensembl ID of downstream gene.",
+      "pattern": "^ENSG[0-9]{11}$"
+    },
+    "SNP_GENE_IDS": {
+      "type": "string",
+      "description": "Ensembl gene IDs for SNP location.",
+      "examples": ["ENSG00000148737"]
+    },
+    "UPSTREAM_GENE_DISTANCE": {
+      "type": "integer",
+      "description": "Distance to upstream gene (bp).",
+      "examples": [5000, 100000]
+    },
+    "DOWNSTREAM_GENE_DISTANCE": {
+      "type": "integer",
+      "description": "Distance to downstream gene (bp).",
+      "examples": [10000, 50000]
+    },
+    "SNPS": {
+      "type": "string",
+      "description": "Reported SNP(s).",
+      "examples": ["rs7903146", "rs9272346"]
+    },
+    "MERGED": {
+      "type": "integer",
+      "description": "Whether rsID was merged (0=no, 1=yes).",
+      "enum": [0, 1]
+    },
+    "SNP_ID_CURRENT": {
+      "type": "string",
+      "description": "Current rsID if merged.",
+      "pattern": "^rs[0-9]+$"
+    },
+    "CONTEXT": {
+      "type": "string",
+      "description": "Functional context of the variant.",
+      "examples": ["intron_variant", "missense_variant", "intergenic_variant"]
+    },
+    "INTERGENIC": {
+      "type": "integer",
+      "description": "Whether variant is intergenic (0=no, 1=yes).",
+      "enum": [0, 1]
+    },
+    "RISK_ALLELE_FREQUENCY": {
+      "type": "number",
+      "description": "Risk/effect allele frequency.",
+      "minimum": 0,
+      "maximum": 1,
+      "examples": [0.30, 0.05, 0.50]
+    },
+    "P-VALUE": {
+      "type": "number",
+      "description": "Reported p-value.",
+      "examples": [1e-15, 5e-8, 1e-50]
+    },
+    "PVALUE_MLOG": {
+      "type": "number",
+      "description": "-log10 of p-value.",
+      "examples": [15, 7.3, 50]
+    },
+    "P-VALUE_TEXT": {
+      "type": "string",
+      "description": "P-value context (e.g., conditional analysis).",
+      "examples": ["(EA)", "(conditional on rs123)"]
+    },
+    "OR_or_BETA": {
+      "type": "number",
+      "description": "Odds ratio or beta coefficient.",
+      "examples": [1.25, 0.85, 0.5]
+    },
+    "95%_CI_TEXT": {
+      "type": "string",
+      "description": "95% confidence interval as text.",
+      "examples": ["[1.15-1.35]", "[0.80-0.90]"]
+    },
+    "PLATFORM_SNPS_PASSING_QC": {
+      "type": "string",
+      "description": "Genotyping platform and SNP count.",
+      "examples": ["Illumina [2000000]", "Affymetrix [800000]"]
+    },
+    "CNV": {
+      "type": "string",
+      "description": "CNV indicator.",
+      "enum": ["Y", "N"]
+    },
+    "ASSOCIATION_COUNT": {
+      "type": "integer",
+      "description": "Number of associations in this study.",
+      "examples": [1, 50, 200]
+    },
+    "summary_statistics": {
+      "type": "object",
+      "description": "Link to full summary statistics if available.",
+      "properties": {
+        "available": { "type": "boolean" },
+        "harmonised": { "type": "boolean" },
+        "ftp_link": { "type": "string", "format": "uri" }
+      }
+    }
+  },
+  "required": ["STUDY_ACCESSION", "DISEASE_TRAIT", "SNPS", "P-VALUE"],
+  "additionalProperties": true
+}

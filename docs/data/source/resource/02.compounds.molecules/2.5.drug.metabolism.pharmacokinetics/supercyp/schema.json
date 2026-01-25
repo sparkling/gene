@@ -1,0 +1,131 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "supercyp-schema.json",
+  "title": "SuperCYP Drug-CYP Interaction Record",
+  "description": "JSON Schema for SuperCYP cytochrome P450 database. Contains 6,000+ compounds with 50,000+ CYP-drug relationships across 17 CYP isoforms, including substrates, inhibitors, and inducers with Ki/IC50 values and literature evidence.",
+  "type": "object",
+  "properties": {
+    "compound_id": {
+      "type": "integer",
+      "description": "Primary compound identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "Drug name"
+    },
+    "cas_number": {
+      "type": "string",
+      "description": "CAS registry number",
+      "pattern": "^[0-9]+-[0-9]+-[0-9]+$"
+    },
+    "drugbank_id": {
+      "type": "string",
+      "description": "DrugBank identifier",
+      "pattern": "^DB[0-9]{5}$"
+    },
+    "pubchem_cid": {
+      "type": "integer",
+      "description": "PubChem compound ID"
+    },
+    "smiles": {
+      "type": "string",
+      "description": "Chemical structure"
+    },
+    "molecular_weight": {
+      "type": "number",
+      "description": "Molecular weight in Daltons"
+    },
+    "drug_class": {
+      "type": "string",
+      "description": "Therapeutic class"
+    },
+    "cyp_interactions": {
+      "type": "array",
+      "description": "CYP enzyme interactions",
+      "items": {
+        "$ref": "#/$defs/cypInteraction"
+      }
+    },
+    "metabolic_pathways": {
+      "type": "array",
+      "description": "Metabolic transformations",
+      "items": {
+        "$ref": "#/$defs/metabolicPathway"
+      }
+    }
+  },
+  "required": ["compound_id", "name"],
+  "$defs": {
+    "cypInteraction": {
+      "type": "object",
+      "description": "Drug-CYP interaction",
+      "properties": {
+        "cyp_id": {
+          "type": "string",
+          "description": "CYP enzyme identifier",
+          "enum": ["CYP1A1", "CYP1A2", "CYP1B1", "CYP2A6", "CYP2B6", "CYP2C8", "CYP2C9", "CYP2C19", "CYP2D6", "CYP2E1", "CYP3A4", "CYP3A5", "CYP3A7", "CYP4A11", "CYP4F2", "CYP2J2", "CYP2R1"]
+        },
+        "interaction_type": {
+          "type": "string",
+          "description": "Type of interaction",
+          "enum": ["substrate", "inhibitor", "inducer", "activator"]
+        },
+        "strength": {
+          "type": "string",
+          "description": "Interaction strength",
+          "enum": ["strong", "moderate", "weak"]
+        },
+        "ki_value": {
+          "type": "number",
+          "description": "Inhibition constant (uM)"
+        },
+        "ic50_value": {
+          "type": "number",
+          "description": "IC50 (uM)"
+        },
+        "induction_fold": {
+          "type": "number",
+          "description": "Fold induction"
+        },
+        "evidence_level": {
+          "type": "string",
+          "description": "Evidence type",
+          "enum": ["in_vitro", "in_vivo", "clinical"]
+        },
+        "reference_ids": {
+          "type": "array",
+          "description": "PubMed IDs",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": ["cyp_id", "interaction_type"]
+    },
+    "metabolicPathway": {
+      "type": "object",
+      "description": "Metabolic transformation",
+      "properties": {
+        "cyp_id": {
+          "type": "string",
+          "description": "Metabolizing enzyme"
+        },
+        "metabolite_name": {
+          "type": "string",
+          "description": "Product name"
+        },
+        "reaction_type": {
+          "type": "string",
+          "description": "Reaction type",
+          "enum": ["Oxidation", "Hydroxylation", "N-dealkylation", "O-dealkylation", "Epoxidation", "Deamination"]
+        },
+        "site_of_metabolism": {
+          "type": "string",
+          "description": "Position on molecule"
+        }
+      },
+      "required": ["cyp_id"]
+    }
+  },
+  "additionalProperties": false
+}

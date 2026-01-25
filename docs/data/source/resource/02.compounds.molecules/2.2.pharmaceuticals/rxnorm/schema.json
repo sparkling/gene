@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "rxnorm-schema.json",
+  "title": "RxNorm Drug Concept Record",
+  "description": "JSON Schema for RxNorm normalized drug nomenclature. Contains 300,000+ drug concepts (RXCUIs) with standardized names, 2M+ relationships, and mappings to 12+ source vocabularies enabling medication interoperability.",
+  "type": "object",
+  "properties": {
+    "rxcui": {
+      "type": "string",
+      "description": "RxNorm Concept Unique Identifier",
+      "pattern": "^[0-9]+$"
+    },
+    "name": {
+      "type": "string",
+      "description": "Drug name string"
+    },
+    "tty": {
+      "type": "string",
+      "description": "Term type",
+      "enum": ["IN", "MIN", "PIN", "BN", "DF", "DFG", "SCDC", "SCDF", "SCDG", "SCD", "SBDC", "SBDF", "SBDG", "SBD", "GPCK", "BPCK"]
+    },
+    "suppress": {
+      "type": "string",
+      "description": "Suppressible flag"
+    },
+    "rxaui": {
+      "type": "string",
+      "description": "RxNorm Atom Unique Identifier"
+    },
+    "sab": {
+      "type": "string",
+      "description": "Source abbreviation"
+    },
+    "ingredients": {
+      "type": "array",
+      "description": "Active ingredients",
+      "items": {
+        "$ref": "#/$defs/ingredient"
+      }
+    },
+    "dose_form": {
+      "type": "string",
+      "description": "Dosage form"
+    },
+    "strength": {
+      "type": "string",
+      "description": "Drug strength"
+    },
+    "brand_name": {
+      "type": "string",
+      "description": "Brand name if applicable"
+    },
+    "relationships": {
+      "type": "array",
+      "description": "Related concepts",
+      "items": {
+        "$ref": "#/$defs/relationship"
+      }
+    },
+    "ndc_codes": {
+      "type": "array",
+      "description": "Associated NDC codes",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": ["rxcui", "name", "tty"],
+  "$defs": {
+    "ingredient": {
+      "type": "object",
+      "description": "Ingredient concept",
+      "properties": {
+        "rxcui": {
+          "type": "string",
+          "description": "Ingredient RXCUI"
+        },
+        "name": {
+          "type": "string",
+          "description": "Ingredient name"
+        },
+        "tty": {
+          "type": "string",
+          "description": "Term type",
+          "enum": ["IN", "MIN", "PIN"]
+        }
+      },
+      "required": ["rxcui", "name"]
+    },
+    "relationship": {
+      "type": "object",
+      "description": "Concept relationship",
+      "properties": {
+        "rxcui": {
+          "type": "string",
+          "description": "Related concept RXCUI"
+        },
+        "name": {
+          "type": "string",
+          "description": "Related concept name"
+        },
+        "rela": {
+          "type": "string",
+          "description": "Relationship attribute",
+          "enum": ["consists_of", "contains", "dose_form_of", "has_dose_form", "has_ingredient", "has_quantified_form", "ingredient_of", "isa", "tradename_of"]
+        },
+        "sab": {
+          "type": "string",
+          "description": "Source abbreviation"
+        }
+      },
+      "required": ["rxcui", "rela"]
+    }
+  },
+  "additionalProperties": false
+}
