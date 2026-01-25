@@ -712,6 +712,41 @@ ALWAYS prefer editing an existing file to creating a new one.
 NEVER proactively create documentation files (*.md) or README files. Only create documentation files if explicitly requested by the User.
 Never save working files, text/mds and tests to the root folder.
 
+## 🔒 ALWAYS COMMIT AFTER ACTIONS (CRITICAL)
+
+**After completing ANY file modification action, IMMEDIATELY commit the changes:**
+
+1. **After EVERY file operation** (Write, Edit, MultiEdit) - commit
+2. **After EVERY batch of related changes** - commit with descriptive message
+3. **After EVERY agent completes work** - commit their changes
+4. **Before starting new tasks** - ensure previous work is committed
+
+**Commit Pattern:**
+```bash
+git add <specific-files-or-paths>
+git commit -m "$(cat <<'EOF'
+<type>: <short description>
+
+<optional body>
+
+Co-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>
+EOF
+)"
+```
+
+**Commit Types:**
+- `feat:` - New feature or capability
+- `fix:` - Bug fix or correction
+- `refactor:` - Code restructuring
+- `docs:` - Documentation changes
+- `chore:` - Maintenance tasks
+
+**Why this matters:**
+- Prevents lost work if session ends
+- Creates clear checkpoints for rollback
+- Documents progress incrementally
+- Enables safe experimentation
+
 ## 🚨 SWARM EXECUTION RULES (CRITICAL)
 1. **SPAWN IN BACKGROUND**: Use `run_in_background: true` for all agent Task calls
 2. **SPAWN ALL AT ONCE**: Put ALL agent Task calls in ONE message for parallel execution
