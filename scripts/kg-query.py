@@ -13,6 +13,7 @@ Usage:
     ./scripts/kg-query.py tier1              # List Tier 1 sources
     ./scripts/kg-query.py api                # List sources with APIs
     ./scripts/kg-query.py category <name>    # Find by category
+    ./scripts/kg-query.py query '<question>' # Natural language query
 """
 
 import sys
@@ -23,6 +24,11 @@ import os
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from scripts.kg.sparql_client import SparqlClient
+from scripts.kg.router import detect_intent, route_to_function
+from scripts.kg.api import (
+    search_sources, list_sources, get_source,
+    find_connections, compare_sources, find_by_size, find_with_api
+)
 
 
 def print_json(data):
@@ -80,6 +86,7 @@ def main():
         print("  tier1             - List Tier 1 sources")
         print("  api               - List sources with REST APIs")
         print("  category <name>   - Find by category")
+        print("  query '<question>'- Natural language query")
         return 0
 
     command = sys.argv[1].lower()
@@ -184,9 +191,48 @@ def main():
             print("  skos:  http://www.w3.org/2004/02/skos/core#")
             print("  dct:   http://purl.org/dc/terms/")
 
+        elif command == "query":
+            if len(sys.argv) < 3:
+                print("Usage: kg-query.py query '<natural language question>'")
+                return 1
+
+            question = " ".join(sys.argv[2:])
+            intent, params = detect_intent(question)
+
+            # Route to appropriate function
+            if intent == 'size':
+                results = find_by_size(params.get('limit', 10))
+            elif intent == 'tier':
+                results = list_sources(tier=params.get('tier', 1))
+            elif intent == 'api':
+                results = find_with_api()
+            elif intent == 'category':
+                results = list_sources(category=params.get('category'))
+            elif intent == 'detail':
+                results = get_source(params.get('source_id', ''))
+            elif intent == 'relationship':
+                results = find_connections(params.get('source_id', ''))
+            elif intent == 'compare':
+                sources = params.get('sources', [])
+                if len(sources) >= 2:
+                    results = compare_sources(sources[0], sources[1])
+                else:
+                    results = {"error": "Need two sources to compare"}
+            elif intent == 'list':
+                results = list_sources(limit=params.get('limit', 20))
+            else:  # 'search' - semantic search
+                results = search_sources(params.get('query', question))
+
+            # Output clean JSON for Claude to format
+            print(json.dumps({
+                "intent": intent,
+                "params": params,
+                "results": results
+            }, indent=2))
+
         else:
             print(f"Unknown command: {command}")
-            print("Use: list, search, source, sparql, tier1, api, category")
+            print("Use: list, search, source, sparql, tier1, api, category, query")
             return 1
 
     except Exception as e:
