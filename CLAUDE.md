@@ -681,6 +681,215 @@ npx @claude-flow/cli@latest memory init --force --verbose
 
 **KEY**: CLI coordinates the strategy via Bash, Claude Code's Task tool executes with real agents.
 
+---
+
+## 🧬 Gene Knowledge Graph (Biomedical Data Sources)
+
+The project includes a linked data knowledge graph containing **145 biomedical data sources** across **9 categories** with **12,098 RDF triples**. This serves as the authoritative reference for data source selection during development.
+
+### 📊 When to Use the Knowledge Graph
+
+**ALWAYS query the KG when:**
+- User asks about data sources, databases, or APIs
+- Planning data integration or ETL pipelines
+- Choosing between similar databases
+- Looking for sources with specific access methods (REST API, SPARQL, download)
+- Finding data sources by category, tier, or license
+- Understanding cross-references between databases
+
+**Example triggers:**
+- "What variant databases should we use?"
+- "Find me sources with REST APIs"
+- "Which databases have gnomAD cross-references?"
+- "What are the Tier 1 production-ready sources?"
+
+### 🏗️ Ontology Architecture (Kurt Cagle's Approach)
+
+The KG follows semantic web best practices with three layers:
+
+| Layer | File | Purpose |
+|-------|------|---------|
+| **SKOS Taxonomy** | `docs/data/source/ontology/skos/datasource-taxonomy.ttl` | Categories, tiers, status concepts |
+| **OWL Ontology** | `docs/data/source/ontology/owl/datasource-ontology.ttl` | Classes, properties, relationships |
+| **SHACL Shapes** | `docs/data/source/ontology/shacl/datasource-shapes.ttl` | Validation constraints |
+
+**Namespace:** `https://gene.ai/`
+
+| Prefix | URI | Use |
+|--------|-----|-----|
+| `ds:` | `https://gene.ai/ontology/datasource#` | Ontology classes/properties |
+| `data:` | `https://gene.ai/data/` | Data source instances |
+| `tax:` | `https://gene.ai/taxonomy/` | SKOS taxonomy concepts |
+
+### 🔮 Natural Language → SPARQL Translation
+
+**As a linked data scientist (Kurt Cagle approach), translate user questions to SPARQL:**
+
+| User Question | SPARQL Pattern |
+|---------------|----------------|
+| "What variant databases exist?" | `?s a ds:DataSource ; ds:category ?c . ?c rdfs:label "Genetics"` |
+| "Which sources have REST APIs?" | `?a ds:methodType ?m . FILTER(CONTAINS(LCASE(?m), "api"))` |
+| "Find Tier 1 sources" | `?s ds:tier tax:Tier1` |
+| "What can link to ClinVar?" | `?x ds:targetDatabase "ClinVar"` |
+| "Large datasets over 10GB" | `?v ds:totalSize ?size . FILTER(?size > 10)` |
+| "Sources with open licenses" | `?l ds:commercialUse true` |
+
+**Translation Process:**
+1. Identify the **entity type** (DataSource, AccessMethod, License, etc.)
+2. Identify **properties** mentioned (category, tier, size, access method)
+3. Identify **filters** (text matching, numeric comparisons)
+4. Construct SPARQL with appropriate prefixes
+
+### 🚀 Quick Commands
+
+```bash
+# Start SPARQL server (required before queries)
+./scripts/start-fuseki.sh
+
+# Stop server
+./scripts/stop-fuseki.sh
+
+# CLI queries
+python3 scripts/kg-query.py                    # Show stats
+python3 scripts/kg-query.py list               # List all sources
+python3 scripts/kg-query.py tier1              # Tier 1 sources
+python3 scripts/kg-query.py api                # Sources with APIs
+python3 scripts/kg-query.py search <term>      # Search by label
+python3 scripts/kg-query.py source <id>        # Get source details
+python3 scripts/kg-query.py category genetics  # By category
+python3 scripts/kg-query.py sparql '<SPARQL>'  # Raw SPARQL
+```
+
+### 📋 Entity Types
+
+| Type | Count | Description |
+|------|-------|-------------|
+| `ds:DataSource` | 145 | Biomedical databases (ClinVar, gnomAD, DrugBank, etc.) |
+| `ds:Category` | 9 | Top-level categories |
+| `ds:Subcategory` | 44 | Detailed classifications |
+| `ds:AccessMethod` | 261 | REST API, SPARQL, FTP, S3, etc. |
+| `ds:Version` | 58 | Release versions with dates/sizes |
+| `ds:License` | 101 | License terms and restrictions |
+| `ds:CrossReference` | 134 | Links between databases |
+| `ds:Field` | 232 | Data fields and identifiers |
+
+### 🎯 Common SPARQL Patterns
+
+**Find sources by category:**
+```sparql
+SELECT ?source ?label WHERE {
+    ?source a ds:DataSource ; rdfs:label ?label ; ds:category ?cat .
+    ?cat rdfs:label "Genetics & Genomics" .
+}
+```
+
+**Find sources with specific access method:**
+```sparql
+SELECT ?source ?label ?url WHERE {
+    ?access ds:forSource ?source ; ds:methodType ?method ; ds:baseUrl ?url .
+    ?source rdfs:label ?label .
+    FILTER (CONTAINS(LCASE(?method), "rest"))
+}
+```
+
+**Find cross-references:**
+```sparql
+SELECT ?source ?target WHERE {
+    ?xref ds:forSource ?source ; ds:targetDatabase ?target .
+    ?source rdfs:label ?sourceLabel .
+}
+```
+
+**Get full source details:**
+```sparql
+SELECT ?p ?o WHERE { data:clinvar ?p ?o }
+```
+
+### 🐍 Python API
+
+```python
+from scripts.kg.sparql_client import SparqlClient
+
+client = SparqlClient()
+
+# Pre-built queries
+sources = client.list_sources()
+tier1 = client.find_by_tier(1)
+with_api = client.find_with_api()
+details = client.get_source("clinvar")
+
+# Custom SPARQL
+results = client.query_simple("""
+    SELECT ?s ?label WHERE {
+        ?s a ds:DataSource ; rdfs:label ?label ; ds:tier tax:Tier1 .
+    }
+""")
+```
+
+### 📂 Data Categories
+
+| Category | Sources | Examples |
+|----------|---------|----------|
+| Genetics & Genomics | 25 | ClinVar, gnomAD, dbSNP |
+| Compounds & Molecules | 20 | DrugBank, ChEMBL, PubChem |
+| Diseases & Phenotypes | 18 | OMIM, HPO, DisGeNET |
+| Pathways & Networks | 15 | KEGG, Reactome, STRING |
+| Traditional Medicine | 12 | TCMSP, ETCM, HerbMed |
+| Nutrition & Food | 10 | FooDB, USDA, Phenol-Explorer |
+| Proteins & Molecular | 15 | UniProt, PDB, InterPro |
+| Literature & Knowledge | 10 | PubMed, Semantic Scholar |
+| Microbiome | 8 | HMDB, gutMGene |
+
+### 🔗 Hybrid Search (SPARQL + RuVector)
+
+For semantic similarity combined with structured queries:
+
+```python
+from scripts.kg.hybrid import HybridKnowledgeService
+
+kg = HybridKnowledgeService()
+
+# Semantic search (finds similar by meaning)
+results = await kg.semantic_search("clinical variant databases")
+
+# Hybrid (semantic + SPARQL enrichment)
+results = await kg.hybrid_search("pharmacogenomics drug interactions")
+```
+
+### 💡 Linked Data Principles (Cagle's Approach)
+
+When working with the KG, follow these principles:
+
+1. **Shapes over Classes**: Use SHACL shapes to validate data structure, not just OWL classes
+2. **SPARQL is Central**: "Learn SPARQL. SHACL can be thought of as a dedicated wrapper around SPARQL"
+3. **URIs as Identity**: Every entity has a dereferenceable URI (`https://gene.ai/data/<id>`)
+4. **Taxonomy Qualifies Instances**: SKOS concepts (tiers, categories) qualify the data sources
+5. **Closed World for Validation**: SHACL validates what IS present, not what COULD be
+
+### 🛠️ Server Management
+
+```bash
+# Check if server is running
+curl -s http://localhost:3030/gene/sparql \
+  -H "Accept: application/json" \
+  --data-urlencode 'query=SELECT (COUNT(*) AS ?c) WHERE { ?s ?p ?o }'
+
+# View logs
+cat /tmp/fuseki-gene.log
+
+# Reload after data changes
+./scripts/stop-fuseki.sh && ./scripts/start-fuseki.sh
+```
+
+### ⚠️ Important Notes
+
+- **Localhost only**: Fuseki binds to 127.0.0.1 (not exposed to internet)
+- **Start before queries**: Run `./scripts/start-fuseki.sh` before any KG queries
+- **Use prefixes**: All queries auto-add standard prefixes (ds:, data:, tax:, rdfs:)
+- **Prefer structured queries**: Use SPARQL for precise queries, semantic search for discovery
+
+---
+
 ## 📚 Full Capabilities Reference
 
 For a comprehensive overview of all Claude Flow V3 features, agents, commands, and integrations, see:
