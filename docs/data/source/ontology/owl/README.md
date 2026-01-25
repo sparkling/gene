@@ -30,7 +30,7 @@ OWL 2 (Web Ontology Language) definitions for formal class hierarchies, object p
 ## Namespace
 
 ```turtle
-@prefix ds: <https://gene.example.org/ontology/datasource#> .
+@prefix ds: <https://gene.ai/ontology/datasource#> .
 ```
 
 ## Classes

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://gene.example.org/schemas/2.4-food-compounds-nutrients.json",
+  "$id": "https://gene.ai/schemas/2.4-food-compounds-nutrients.json",
   "title": "Food Compounds and Nutrients Unified Schema",
   "description": "Unified schema for food compound data from Phenol-Explorer, PhytoHub, and USDA FoodData",
   "type": "object",

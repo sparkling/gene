@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://gene.example.org/schemas/4.3-protein-protein-interactions.json",
+  "$id": "https://gene.ai/schemas/4.3-protein-protein-interactions.json",
   "title": "Protein-Protein Interactions Unified Schema",
   "description": "Unified schema for protein-protein interaction data from BioGRID, IntAct, and STRING",
   "type": "object",

@@ -7,7 +7,7 @@
 | Subcategory ID | 1.2 |
 | Subcategory Name | Functional Prediction |
 | Data Sources | AlphaMissense, CADD, dbNSFP, SpliceAI |
-| Schema ID | https://gene.example.org/schemas/1.2-functional-prediction.json |
+| Schema ID | https://gene.ai/schemas/1.2-functional-prediction.json |
 
 ---
 

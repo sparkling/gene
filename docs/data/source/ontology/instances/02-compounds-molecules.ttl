@@ -2,9 +2,9 @@
 # Generated from documentation in /docs/data/source/resource/02.compounds.molecules/
 # Category: compounds.molecules
 
-@prefix ds: <https://gene.example.org/ontology/datasource#> .
-@prefix data: <https://gene.example.org/data/source/> .
-@prefix tax: <https://gene.example.org/taxonomy/> .
+@prefix ds: <https://gene.ai/ontology/datasource#> .
+@prefix data: <https://gene.ai/data/source/> .
+@prefix tax: <https://gene.ai/taxonomy/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .

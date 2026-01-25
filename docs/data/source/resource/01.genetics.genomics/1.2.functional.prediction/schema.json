@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://gene.example.org/schemas/1.2-functional-prediction.json",
+  "$id": "https://gene.ai/schemas/1.2-functional-prediction.json",
   "title": "Functional Prediction Unified Schema",
   "description": "Unified schema for functional prediction data from AlphaMissense, CADD, dbNSFP, and SpliceAI",
   "type": "object",

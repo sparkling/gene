@@ -7,7 +7,7 @@
 | Subcategory ID | 1.5 |
 | Subcategory Name | Expression & Regulation |
 | Data Sources | ENCODE, eQTLGen, GTEx, GWAS Catalog |
-| Schema ID | https://gene.example.org/schemas/1.5-expression-regulation.json |
+| Schema ID | https://gene.ai/schemas/1.5-expression-regulation.json |
 
 ---
 

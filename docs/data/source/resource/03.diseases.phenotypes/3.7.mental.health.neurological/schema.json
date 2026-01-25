@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://gene.example.org/schemas/3.7-mental-health-neurological.json",
+  "$id": "https://gene.ai/schemas/3.7-mental-health-neurological.json",
   "title": "Mental Health/Neurological Unified Schema",
   "description": "Unified schema for mental health/neurological data from Allen Brain Atlas, PGC, and SynGO",
   "type": "object",

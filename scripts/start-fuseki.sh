@@ -6,7 +6,8 @@
 # UI (optional): http://localhost:3030
 
 FUSEKI_HOME="${HOME}/.local/jena/apache-jena-fuseki-5.3.0"
-DATA_FILE="$(dirname "$0")/../data/qlever/gene-knowledge-graph.ttl"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+DATA_FILE="$(cd "$SCRIPT_DIR/../data/qlever" && pwd)/gene-knowledge-graph.ttl"
 LOG_FILE="/tmp/fuseki-gene.log"
 PID_FILE="/tmp/fuseki-gene.pid"
 

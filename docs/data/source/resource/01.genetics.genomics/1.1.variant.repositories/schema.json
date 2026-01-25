@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://gene.example.org/schemas/1.1-variant-repositories.json",
+  "$id": "https://gene.ai/schemas/1.1-variant-repositories.json",
   "title": "Variant Repositories Unified Schema",
   "description": "Unified schema for variant repository data from ClinVar, dbSNP, and dbVar",
   "type": "object",

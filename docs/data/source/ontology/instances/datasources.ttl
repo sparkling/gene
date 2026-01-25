@@ -9,11 +9,11 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix ds: <https://gene.example.org/ontology/datasource#> .
-@prefix tax: <https://gene.example.org/taxonomy/> .
-@prefix data: <https://gene.example.org/data/source/> .
-@prefix cat: <https://gene.example.org/data/category/> .
-@prefix subcat: <https://gene.example.org/data/subcategory/> .
+@prefix ds: <https://gene.ai/ontology/datasource#> .
+@prefix tax: <https://gene.ai/taxonomy/> .
+@prefix data: <https://gene.ai/data/source/> .
+@prefix cat: <https://gene.ai/data/category/> .
+@prefix subcat: <https://gene.ai/data/subcategory/> .
 
 # =============================================================================
 # CATEGORIES

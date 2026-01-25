@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://gene.example.org/schemas/5.2-south-east-asian-systems.json",
+  "$id": "https://gene.ai/schemas/5.2-south-east-asian-systems.json",
   "title": "South/East Asian Traditional Medicine Systems Unified Schema",
   "description": "Unified schema for South/East Asian traditional medicine data from NPACT, TM-MC, IMPPAT, and KampoDB",
   "type": "object",

@@ -30,7 +30,7 @@ SHACL (Shapes Constraint Language) definitions for data validation, quality cons
 ## Namespace
 
 ```turtle
-@prefix shapes: <https://gene.example.org/shapes/datasource#> .
+@prefix shapes: <https://gene.ai/shapes/datasource#> .
 ```
 
 ## Shapes

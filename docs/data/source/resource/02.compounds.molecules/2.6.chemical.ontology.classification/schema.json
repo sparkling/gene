@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://gene.example.org/schemas/2.6-chemical-ontology-classification.json",
+  "$id": "https://gene.ai/schemas/2.6-chemical-ontology-classification.json",
   "title": "Chemical Ontology and Classification Unified Schema",
   "description": "Unified schema for chemical classification data from ChEBI, ClassyFire, NPClassifier, and PubChem",
   "type": "object",

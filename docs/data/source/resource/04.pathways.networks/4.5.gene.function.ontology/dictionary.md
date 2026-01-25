@@ -7,7 +7,7 @@
 | Subcategory ID | 4.5 |
 | Subcategory Name | Gene Function & Ontology |
 | Data Sources | Gene Ontology, MSigDB |
-| Schema ID | `https://gene.example.org/schemas/4.5-gene-function-ontology.json` |
+| Schema ID | `https://gene.ai/schemas/4.5-gene-function-ontology.json` |
 
 ## Unified Fields
 

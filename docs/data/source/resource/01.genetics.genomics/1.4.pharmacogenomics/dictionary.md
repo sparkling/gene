@@ -7,7 +7,7 @@
 | Subcategory ID | 1.4 |
 | Subcategory Name | Pharmacogenomics |
 | Data Sources | CPIC, DPWG, PharmGKB, PharmVar |
-| Schema ID | https://gene.example.org/schemas/1.4-pharmacogenomics.json |
+| Schema ID | https://gene.ai/schemas/1.4-pharmacogenomics.json |
 
 ---
 

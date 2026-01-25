@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://gene.example.org/schemas/2.5-drug-metabolism-pharmacokinetics.json",
+  "$id": "https://gene.ai/schemas/2.5-drug-metabolism-pharmacokinetics.json",
   "title": "Drug Metabolism and Pharmacokinetics Unified Schema",
   "description": "Unified schema for drug metabolism data from SuperCYP and SwissADME",
   "type": "object",

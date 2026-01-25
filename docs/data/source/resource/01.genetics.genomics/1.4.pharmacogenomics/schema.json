@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://gene.example.org/schemas/1.4-pharmacogenomics.json",
+  "$id": "https://gene.ai/schemas/1.4-pharmacogenomics.json",
   "title": "Pharmacogenomics Unified Schema",
   "description": "Unified schema for pharmacogenomics data from CPIC, DPWG, PharmGKB, and PharmVar",
   "type": "object",

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://gene.example.org/schemas/2.2-pharmaceuticals.json",
+  "$id": "https://gene.ai/schemas/2.2-pharmaceuticals.json",
   "title": "Pharmaceuticals Unified Schema",
   "description": "Unified schema for pharmaceutical data from ChEMBL, DailyMed, DrugBank, Orange Book, and RxNorm",
   "type": "object",

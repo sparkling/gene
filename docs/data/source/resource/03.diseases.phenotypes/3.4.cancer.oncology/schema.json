@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://gene.example.org/schemas/3.4-cancer-oncology-drug-targets.json",
+  "$id": "https://gene.ai/schemas/3.4-cancer-oncology-drug-targets.json",
   "title": "Cancer/Oncology and Drug-Disease Targets Unified Schema",
   "description": "Unified schema for cancer genomics data from GDC/TCGA and DGIdb",
   "type": "object",

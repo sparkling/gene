@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://gene.example.org/schemas/3.5-rare-orphan-diseases.json",
+  "$id": "https://gene.ai/schemas/3.5-rare-orphan-diseases.json",
   "title": "Rare/Orphan Diseases Unified Schema",
   "description": "Unified schema for rare disease data from DECIPHER, Orphanet, and PanelApp",
   "type": "object",

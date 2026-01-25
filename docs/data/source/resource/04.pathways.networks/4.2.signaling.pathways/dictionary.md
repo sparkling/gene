@@ -7,7 +7,7 @@
 | Subcategory ID | 4.2 |
 | Subcategory Name | Signaling Pathways |
 | Data Sources | Pathway Commons |
-| Schema ID | `https://gene.example.org/schemas/4.2-signaling-pathways.json` |
+| Schema ID | `https://gene.ai/schemas/4.2-signaling-pathways.json` |
 
 ## Unified Fields
 

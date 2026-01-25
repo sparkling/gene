@@ -1,29 +1,29 @@
-@prefix access: <https://gene.example.org/data/access/> .
-@prefix access1: <https://gene.example.org/access/> .
-@prefix cat: <https://gene.example.org/data/category/> .
-@prefix data1: <https://gene.example.org/data/source/> .
+@prefix access: <https://gene.ai/data/access/> .
+@prefix access1: <https://gene.ai/access/> .
+@prefix cat: <https://gene.ai/data/category/> .
+@prefix data1: <https://gene.ai/data/source/> .
 @prefix dct: <http://purl.org/dc/terms/> .
-@prefix ds: <https://gene.example.org/ontology/datasource#> .
+@prefix ds: <https://gene.ai/ontology/datasource#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
-@prefix ident: <https://gene.example.org/data/identifier/> .
-@prefix ident1: <https://gene.example.org/identifier/> .
-@prefix license: <https://gene.example.org/data/license/> .
-@prefix license1: <https://gene.example.org/license/> .
-@prefix limit: <https://gene.example.org/data/limitation/> .
-@prefix limitation: <https://gene.example.org/limitation/> .
+@prefix ident: <https://gene.ai/data/identifier/> .
+@prefix ident1: <https://gene.ai/identifier/> .
+@prefix license: <https://gene.ai/data/license/> .
+@prefix license1: <https://gene.ai/license/> .
+@prefix limit: <https://gene.ai/data/limitation/> .
+@prefix limitation: <https://gene.ai/limitation/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
-@prefix shapes: <https://gene.example.org/shapes/datasource#> .
+@prefix shapes: <https://gene.ai/shapes/datasource#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
-@prefix subcat: <https://gene.example.org/data/subcategory/> .
-@prefix tax: <https://gene.example.org/taxonomy/> .
-@prefix usecase: <https://gene.example.org/data/usecase/> .
-@prefix usecase1: <https://gene.example.org/usecase/> .
-@prefix version: <https://gene.example.org/data/version/> .
-@prefix version1: <https://gene.example.org/version/> .
-@prefix xref: <https://gene.example.org/data/xref/> .
+@prefix subcat: <https://gene.ai/data/subcategory/> .
+@prefix tax: <https://gene.ai/taxonomy/> .
+@prefix usecase: <https://gene.ai/data/usecase/> .
+@prefix usecase1: <https://gene.ai/usecase/> .
+@prefix version: <https://gene.ai/data/version/> .
+@prefix version1: <https://gene.ai/version/> .
+@prefix xref: <https://gene.ai/data/xref/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 access:batman-tcm-api a ds:AccessMethod ;
@@ -4808,7 +4808,7 @@ xref:symmap-hpo a ds:CrossReference ;
     ds:linkType "phenotype mapping" ;
     ds:targetDatabase "Human Phenotype Ontology" .
 
-<https://gene.example.org/ontology/datasource> a owl:Ontology ;
+<https://gene.ai/ontology/datasource> a owl:Ontology ;
     rdfs:label "Gene Data Source Ontology" ;
     dct:created "2026-01-25"^^xsd:date ;
     dct:creator "Kurt Cagle" ;
@@ -5271,8 +5271,8 @@ shapes:DataSourceShape a sh:NodeShape ;
             sh:severity sh:Warning ] ;
     sh:sparql [ sh:message "Data source must have at least one version OR be in draft status." ;
             sh:select """
-        PREFIX ds: <https://gene.example.org/ontology/datasource#>
-        PREFIX tax: <https://gene.example.org/taxonomy/>
+        PREFIX ds: <https://gene.ai/ontology/datasource#>
+        PREFIX tax: <https://gene.ai/taxonomy/>
 
         SELECT $this
         WHERE {
@@ -5284,8 +5284,8 @@ shapes:DataSourceShape a sh:NodeShape ;
             sh:severity sh:Warning ],
         [ sh:message "Active data source should have license information." ;
             sh:select """
-        PREFIX ds: <https://gene.example.org/ontology/datasource#>
-        PREFIX tax: <https://gene.example.org/taxonomy/>
+        PREFIX ds: <https://gene.ai/ontology/datasource#>
+        PREFIX tax: <https://gene.ai/taxonomy/>
 
         SELECT $this
         WHERE {
@@ -5363,7 +5363,7 @@ shapes:SubcategoryShape a sh:NodeShape ;
             sh:pattern "^[0-9]+\\.[0-9]+$" ] ;
     sh:sparql [ sh:message "Subcategory must have at least one data source." ;
             sh:select """
-        PREFIX ds: <https://gene.example.org/ontology/datasource#>
+        PREFIX ds: <https://gene.ai/ontology/datasource#>
 
         SELECT $this
         WHERE {

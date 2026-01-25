@@ -7,7 +7,7 @@
 | Subcategory ID | 1.3 |
 | Subcategory Name | Population Genetics |
 | Data Sources | 1000 Genomes, gnomAD, TOPMed, UK Biobank |
-| Schema ID | https://gene.example.org/schemas/1.3-population-genetics.json |
+| Schema ID | https://gene.ai/schemas/1.3-population-genetics.json |
 
 ---
 

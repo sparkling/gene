@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://gene.example.org/schemas/5.1-traditional-chinese-medicine.json",
+  "$id": "https://gene.ai/schemas/5.1-traditional-chinese-medicine.json",
   "title": "Traditional Chinese Medicine Unified Schema",
   "description": "Unified schema for TCM data from HERB, ETCM, TCMBank, TCMSID, SymMap, and BATMAN-TCM",
   "type": "object",

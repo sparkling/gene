@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://gene.example.org/schemas/2.1-natural-products.json",
+  "$id": "https://gene.ai/schemas/2.1-natural-products.json",
   "title": "Natural Products Unified Schema",
   "description": "Unified schema for natural product data from COCONUT, Dr. Duke's, LOTUS, NPASS, and NPAtlas",
   "type": "object",

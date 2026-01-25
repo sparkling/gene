@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://gene.example.org/schemas/4.6-regulatory-networks.json",
+  "$id": "https://gene.ai/schemas/4.6-regulatory-networks.json",
   "title": "Regulatory Networks Unified Schema",
   "description": "Unified schema for regulatory network data from ENCODE, JASPAR, and ChIP-Atlas",
   "type": "object",

@@ -7,7 +7,7 @@
 | Subcategory ID | 4.6 |
 | Subcategory Name | Regulatory Networks |
 | Data Sources | JASPAR, Roadmap Epigenomics |
-| Schema ID | `https://gene.example.org/schemas/4.6-regulatory-networks.json` |
+| Schema ID | `https://gene.ai/schemas/4.6-regulatory-networks.json` |
 
 ## Unified Fields
 

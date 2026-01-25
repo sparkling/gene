@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://gene.example.org/schemas/5.4-multi-system-integration.json",
+  "$id": "https://gene.ai/schemas/5.4-multi-system-integration.json",
   "title": "Multi-System Traditional Medicine Integration Unified Schema",
   "description": "Unified schema for multi-system traditional medicine integration data from HIT 2.0",
   "type": "object",

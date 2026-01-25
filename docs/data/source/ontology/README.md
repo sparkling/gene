@@ -35,9 +35,9 @@ Formal ontology definitions for the Gene Platform data catalog using semantic we
 
 | Prefix | URI | Description |
 |--------|-----|-------------|
-| `tax:` | `https://gene.example.org/taxonomy/` | SKOS taxonomy concepts |
-| `ds:` | `https://gene.example.org/ontology/datasource#` | OWL classes and properties |
-| `shapes:` | `https://gene.example.org/shapes/datasource#` | SHACL validation shapes |
+| `tax:` | `https://gene.ai/taxonomy/` | SKOS taxonomy concepts |
+| `ds:` | `https://gene.ai/ontology/datasource#` | OWL classes and properties |
+| `shapes:` | `https://gene.ai/shapes/datasource#` | SHACL validation shapes |
 
 ## Data Source Ontology
 

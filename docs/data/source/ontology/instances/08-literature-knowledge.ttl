@@ -13,18 +13,18 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
-@prefix ds: <https://gene.example.org/ontology/datasource#> .
-@prefix tax: <https://gene.example.org/taxonomy/> .
-@prefix data: <https://gene.example.org/data/source/> .
-@prefix cat: <https://gene.example.org/data/category/> .
-@prefix subcat: <https://gene.example.org/data/subcategory/> .
-@prefix license: <https://gene.example.org/data/license/> .
-@prefix version: <https://gene.example.org/data/version/> .
-@prefix access: <https://gene.example.org/data/access/> .
-@prefix xref: <https://gene.example.org/data/xref/> .
-@prefix ident: <https://gene.example.org/data/identifier/> .
-@prefix usecase: <https://gene.example.org/data/usecase/> .
-@prefix limit: <https://gene.example.org/data/limitation/> .
+@prefix ds: <https://gene.ai/ontology/datasource#> .
+@prefix tax: <https://gene.ai/taxonomy/> .
+@prefix data: <https://gene.ai/data/source/> .
+@prefix cat: <https://gene.ai/data/category/> .
+@prefix subcat: <https://gene.ai/data/subcategory/> .
+@prefix license: <https://gene.ai/data/license/> .
+@prefix version: <https://gene.ai/data/version/> .
+@prefix access: <https://gene.ai/data/access/> .
+@prefix xref: <https://gene.ai/data/xref/> .
+@prefix ident: <https://gene.ai/data/identifier/> .
+@prefix usecase: <https://gene.ai/data/usecase/> .
+@prefix limit: <https://gene.ai/data/limitation/> .
 
 # =============================================================================
 # LICENSE INSTANCES

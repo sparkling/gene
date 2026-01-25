@@ -12,7 +12,7 @@ if [ -z "$1" ]; then
     echo ""
     echo "Example queries:"
     echo "  $0 'SELECT (COUNT(*) AS ?c) WHERE { ?s ?p ?o }'"
-    echo "  $0 'PREFIX ds: <https://gene.example.org/ontology/datasource#>"
+    echo "  $0 'PREFIX ds: <https://gene.ai/ontology/datasource#>"
     echo "       SELECT ?source ?label WHERE { ?source a ds:DataSource ; rdfs:label ?label } LIMIT 10'"
     exit 1
 fi

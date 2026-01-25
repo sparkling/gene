@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://gene.example.org/schemas/5.3-western-global-herbal.json",
+  "$id": "https://gene.ai/schemas/5.3-western-global-herbal.json",
   "title": "Western/Global Herbal Medicine Unified Schema",
   "description": "Unified schema for Western/global herbal medicine data from NAPRALERT and EMA Herbal",
   "type": "object",

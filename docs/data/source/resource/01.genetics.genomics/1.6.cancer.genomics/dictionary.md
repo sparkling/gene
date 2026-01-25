@@ -7,7 +7,7 @@
 | Subcategory ID | 1.6 |
 | Subcategory Name | Cancer Genomics |
 | Data Sources | BRCA Exchange, Cancer Gene Census, cBioPortal, CIViC, COSMIC, OncoKB |
-| Schema ID | https://gene.example.org/schemas/1.6-cancer-genomics.json |
+| Schema ID | https://gene.ai/schemas/1.6-cancer-genomics.json |
 
 ---
 

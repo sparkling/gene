@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://gene.example.org/schemas/4.4-drug-target-interactions.json",
+  "$id": "https://gene.ai/schemas/4.4-drug-target-interactions.json",
   "title": "Drug-Target Interactions Unified Schema",
   "description": "Unified schema for drug-target interaction data from STITCH",
   "type": "object",

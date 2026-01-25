@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://gene.example.org/schemas/2.7-compound-target-interactions.json",
+  "$id": "https://gene.ai/schemas/2.7-compound-target-interactions.json",
   "title": "Compound-Target Interactions Unified Schema",
   "description": "Unified schema for compound-target interaction data from BindingDB, DGIdb, GtoPdb, and TTD",
   "type": "object",

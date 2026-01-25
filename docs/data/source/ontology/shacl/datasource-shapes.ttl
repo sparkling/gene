@@ -3,9 +3,9 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
-@prefix ds: <https://gene.example.org/ontology/datasource#> .
-@prefix tax: <https://gene.example.org/taxonomy/> .
-@prefix shapes: <https://gene.example.org/shapes/datasource#> .
+@prefix ds: <https://gene.ai/ontology/datasource#> .
+@prefix tax: <https://gene.ai/taxonomy/> .
+@prefix shapes: <https://gene.ai/shapes/datasource#> .
 
 # =============================================================================
 # Gene Data Source SHACL Shapes
@@ -901,8 +901,8 @@ shapes:DataSourceShape sh:sparql [
     sh:message "Data source must have at least one version OR be in draft status." ;
     sh:severity sh:Warning ;
     sh:select """
-        PREFIX ds: <https://gene.example.org/ontology/datasource#>
-        PREFIX tax: <https://gene.example.org/taxonomy/>
+        PREFIX ds: <https://gene.ai/ontology/datasource#>
+        PREFIX tax: <https://gene.ai/taxonomy/>
 
         SELECT $this
         WHERE {
@@ -917,8 +917,8 @@ shapes:DataSourceShape sh:sparql [
     sh:message "Active data source should have license information." ;
     sh:severity sh:Warning ;
     sh:select """
-        PREFIX ds: <https://gene.example.org/ontology/datasource#>
-        PREFIX tax: <https://gene.example.org/taxonomy/>
+        PREFIX ds: <https://gene.ai/ontology/datasource#>
+        PREFIX tax: <https://gene.ai/taxonomy/>
 
         SELECT $this
         WHERE {
@@ -933,7 +933,7 @@ shapes:SubcategoryShape sh:sparql [
     sh:message "Subcategory must have at least one data source." ;
     sh:severity sh:Info ;
     sh:select """
-        PREFIX ds: <https://gene.example.org/ontology/datasource#>
+        PREFIX ds: <https://gene.ai/ontology/datasource#>
 
         SELECT $this
         WHERE {

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://gene.example.org/schemas/4.5-gene-function-ontology.json",
+  "$id": "https://gene.ai/schemas/4.5-gene-function-ontology.json",
   "title": "Gene Function and Ontology Unified Schema",
   "description": "Unified schema for gene function and ontology data from Gene Ontology and MSigDB",
   "type": "object",

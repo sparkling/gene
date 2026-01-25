@@ -52,14 +52,14 @@ Main 3-level hierarchy: Category > Subcategory > Source
 ## Namespace
 
 ```turtle
-@prefix tax: <https://gene.example.org/taxonomy/> .
+@prefix tax: <https://gene.ai/taxonomy/> .
 ```
 
 ## Example Query
 
 ```sparql
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-PREFIX tax: <https://gene.example.org/taxonomy/>
+PREFIX tax: <https://gene.ai/taxonomy/>
 
 SELECT ?subcategory ?label
 WHERE {

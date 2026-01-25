@@ -19,8 +19,8 @@ ENDPOINT = "http://localhost:3030/gene/sparql"
 
 # Common prefixes
 PREFIXES = """
-PREFIX ds: <https://gene.example.org/ontology/datasource#>
-PREFIX data: <https://gene.example.org/data/>
+PREFIX ds: <https://gene.ai/ontology/datasource#>
+PREFIX data: <https://gene.ai/data/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
@@ -156,7 +156,7 @@ def get_entity_counts() -> Dict[str, int]:
     results = query_simple("""
         SELECT ?type (COUNT(?s) AS ?count) WHERE {
             ?s a ?type .
-            FILTER(STRSTARTS(STR(?type), "https://gene.example.org"))
+            FILTER(STRSTARTS(STR(?type), "https://gene.ai"))
         }
         GROUP BY ?type
         ORDER BY DESC(?count)

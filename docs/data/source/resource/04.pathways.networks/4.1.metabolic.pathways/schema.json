@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://gene.example.org/schemas/4.1-metabolic-pathways.json",
+  "$id": "https://gene.ai/schemas/4.1-metabolic-pathways.json",
   "title": "Metabolic Pathways Unified Schema",
   "description": "Unified schema for metabolic pathway data from KEGG, Reactome, and WikiPathways",
   "type": "object",

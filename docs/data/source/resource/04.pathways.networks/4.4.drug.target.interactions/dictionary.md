@@ -7,7 +7,7 @@
 | Subcategory ID | 4.4 |
 | Subcategory Name | Drug-Target Interactions |
 | Data Sources | STITCH |
-| Schema ID | `https://gene.example.org/schemas/4.4-drug-target-interactions.json` |
+| Schema ID | `https://gene.ai/schemas/4.4-drug-target-interactions.json` |
 
 ## Unified Fields
 

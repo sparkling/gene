@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://gene.example.org/schemas/3.3-disease-gene-associations.json",
+  "$id": "https://gene.ai/schemas/3.3-disease-gene-associations.json",
   "title": "Disease-Gene Associations and Pharmacogenomics Unified Schema",
   "description": "Unified schema for disease-gene association data from DisGeNET, Open Targets, and PharmGKB",
   "type": "object",

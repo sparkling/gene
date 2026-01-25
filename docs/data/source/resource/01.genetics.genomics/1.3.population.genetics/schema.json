@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://gene.example.org/schemas/1.3-population-genetics.json",
+  "$id": "https://gene.ai/schemas/1.3-population-genetics.json",
   "title": "Population Genetics Unified Schema",
   "description": "Unified schema for population genetics data from 1000 Genomes, gnomAD, TOPMed, and UK Biobank",
   "type": "object",

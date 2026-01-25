@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://gene.example.org/schemas/1.5-expression-regulation.json",
+  "$id": "https://gene.ai/schemas/1.5-expression-regulation.json",
   "title": "Expression & Regulation Unified Schema",
   "description": "Unified schema for expression and regulation data from ENCODE, eQTLGen, GTEx, and GWAS Catalog",
   "type": "object",

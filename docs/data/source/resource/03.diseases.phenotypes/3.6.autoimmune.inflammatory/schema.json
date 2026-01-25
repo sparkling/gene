@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://gene.example.org/schemas/3.6-autoimmune-inflammatory.json",
+  "$id": "https://gene.ai/schemas/3.6-autoimmune-inflammatory.json",
   "title": "Autoimmune/Inflammatory Diseases Unified Schema",
   "description": "Unified schema for autoimmune/inflammatory disease data from ImmunoBase and IPD-IMGT/HLA",
   "type": "object",

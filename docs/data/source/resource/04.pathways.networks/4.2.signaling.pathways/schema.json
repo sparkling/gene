@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://gene.example.org/schemas/4.2-signaling-pathways.json",
+  "$id": "https://gene.ai/schemas/4.2-signaling-pathways.json",
   "title": "Signaling Pathways Unified Schema",
   "description": "Unified schema for signaling pathway data from Pathway Commons",
   "type": "object",

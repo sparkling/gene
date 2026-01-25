@@ -7,7 +7,7 @@
 | Subcategory ID | 4.3 |
 | Subcategory Name | Protein-Protein Interactions |
 | Data Sources | BioGRID, IntAct, STRING |
-| Schema ID | `https://gene.example.org/schemas/4.3-protein-protein-interactions.json` |
+| Schema ID | `https://gene.ai/schemas/4.3-protein-protein-interactions.json` |
 
 ## Unified Fields
 

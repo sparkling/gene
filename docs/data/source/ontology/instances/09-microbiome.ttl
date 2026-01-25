@@ -11,18 +11,18 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix ds: <https://gene.example.org/ontology/datasource#> .
-@prefix tax: <https://gene.example.org/taxonomy/> .
-@prefix data: <https://gene.example.org/data/source/> .
-@prefix cat: <https://gene.example.org/data/category/> .
-@prefix subcat: <https://gene.example.org/data/subcategory/> .
-@prefix license: <https://gene.example.org/license/> .
-@prefix access: <https://gene.example.org/access/> .
-@prefix version: <https://gene.example.org/version/> .
-@prefix xref: <https://gene.example.org/xref/> .
-@prefix ident: <https://gene.example.org/identifier/> .
-@prefix usecase: <https://gene.example.org/usecase/> .
-@prefix limitation: <https://gene.example.org/limitation/> .
+@prefix ds: <https://gene.ai/ontology/datasource#> .
+@prefix tax: <https://gene.ai/taxonomy/> .
+@prefix data: <https://gene.ai/data/source/> .
+@prefix cat: <https://gene.ai/data/category/> .
+@prefix subcat: <https://gene.ai/data/subcategory/> .
+@prefix license: <https://gene.ai/license/> .
+@prefix access: <https://gene.ai/access/> .
+@prefix version: <https://gene.ai/version/> .
+@prefix xref: <https://gene.ai/xref/> .
+@prefix ident: <https://gene.ai/identifier/> .
+@prefix usecase: <https://gene.ai/usecase/> .
+@prefix limitation: <https://gene.ai/limitation/> .
 
 # =============================================================================
 # LICENSES

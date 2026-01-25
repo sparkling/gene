@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://gene.example.org/schemas/1.6-cancer-genomics.json",
+  "$id": "https://gene.ai/schemas/1.6-cancer-genomics.json",
   "title": "Cancer Genomics Unified Schema",
   "description": "Unified schema for cancer genomics data from BRCA Exchange, Cancer Gene Census, cBioPortal, CIViC, COSMIC, and OncoKB",
   "type": "object",

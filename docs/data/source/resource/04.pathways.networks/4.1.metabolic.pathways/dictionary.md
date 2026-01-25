@@ -7,7 +7,7 @@
 | Subcategory ID | 4.1 |
 | Subcategory Name | Metabolic Pathways |
 | Data Sources | KEGG, Reactome, WikiPathways |
-| Schema ID | `https://gene.example.org/schemas/4.1-metabolic-pathways.json` |
+| Schema ID | `https://gene.ai/schemas/4.1-metabolic-pathways.json` |
 
 ## Unified Fields
 

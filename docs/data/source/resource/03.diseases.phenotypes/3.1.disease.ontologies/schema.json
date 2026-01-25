@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://gene.example.org/schemas/3.1-disease-ontologies.json",
+  "$id": "https://gene.ai/schemas/3.1-disease-ontologies.json",
   "title": "Disease Ontologies Unified Schema",
   "description": "Unified schema for disease ontology data from EFO, HPO, ICD, MeSH, MONDO, and Orphanet/ORDO",
   "type": "object",

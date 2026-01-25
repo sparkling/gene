@@ -7,7 +7,7 @@
 | Subcategory ID | 1.1 |
 | Subcategory Name | Variant Repositories |
 | Data Sources | ClinVar, dbSNP, dbVar |
-| Schema ID | https://gene.example.org/schemas/1.1-variant-repositories.json |
+| Schema ID | https://gene.ai/schemas/1.1-variant-repositories.json |
 
 ---
 
