@@ -129,6 +129,42 @@ ds:DataQualityNote a owl:Class ;
     rdfs:label "Data Quality Note" ;
     rdfs:comment "Notes about data quality, curation processes, or coverage gaps." .
 
+# -----------------------------------------------------------------------------
+# Classification and Enumeration Classes
+# -----------------------------------------------------------------------------
+
+ds:AccessType a owl:Class ;
+    rdfs:label "Access Type" ;
+    rdfs:comment "A classification of access method types (e.g., REST API, SPARQL endpoint, FTP download, direct download)." .
+
+ds:CoverageLevel a owl:Class ;
+    rdfs:label "Coverage Level" ;
+    rdfs:comment "A classification indicating the level of data coverage (e.g., high, medium, low, partial, comprehensive)." .
+
+ds:FileFormat a owl:Class ;
+    rdfs:label "File Format" ;
+    rdfs:comment "A file format specification for data exchange (e.g., JSON, XML, CSV, VCF, FASTA, RDF)." .
+
+ds:ImpactLevel a owl:Class ;
+    rdfs:label "Impact Level" ;
+    rdfs:comment "A classification of impact or importance level for limitations and other assessments (e.g., high, medium, low, critical)." .
+
+ds:QualityLevel a owl:Class ;
+    rdfs:label "Quality Level" ;
+    rdfs:comment "A classification of data quality level (e.g., gold standard, curated, automated, experimental)." .
+
+ds:Status a owl:Class ;
+    rdfs:label "Status" ;
+    rdfs:comment "A status classification for data sources or hierarchy levels (e.g., active, deprecated, draft, archived, planned)." .
+
+ds:Tier a owl:Class ;
+    rdfs:label "Tier" ;
+    rdfs:comment "A tier classification for data sources indicating their priority or authoritativeness (e.g., Tier 1 primary, Tier 2 secondary, Tier 3 specialized)." .
+
+ds:UpdateFrequency a owl:Class ;
+    rdfs:label "Update Frequency" ;
+    rdfs:comment "A classification of how frequently a data source is updated (e.g., daily, weekly, monthly, quarterly, annually)." .
+
 # =============================================================================
 # OBJECT PROPERTIES
 # =============================================================================
