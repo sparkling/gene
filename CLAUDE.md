@@ -681,22 +681,6 @@ npx @claude-flow/cli@latest memory init --force --verbose
 
 **KEY**: CLI coordinates the strategy via Bash, Claude Code's Task tool executes with real agents.
 
----
-
-## 🧬 Gene Knowledge Graph
-
-**When to use:** User asks about biomedical data sources, databases, APIs, or data integration.
-
-**Query:** `python3 scripts/kg-query.py <cmd>` where cmd is: `list`, `tier1`, `api`, `search <term>`, `source <id>`, `category <name>`, `sparql '<SPARQL>'`
-
-**Server:** Start with `./scripts/start-fuseki.sh` (localhost:3030, not exposed)
-
-**Namespace:** `https://gene.ai/` — prefixes: `ds:` (ontology), `data:` (instances), `tax:` (taxonomy)
-
-**Full docs:** `~/.claude/skills/gene-kg/SKILL.md`
-
----
-
 ## 📚 Full Capabilities Reference
 
 For a comprehensive overview of all Claude Flow V3 features, agents, commands, and integrations, see:
