@@ -1,0 +1,806 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix ds: <https://gene.example.org/ontology/datasource#> .
+@prefix tax: <https://gene.example.org/taxonomy/> .
+
+# =============================================================================
+# Gene Data Source Ontology - OWL 2 Definition
+# =============================================================================
+# An ontology for describing biomedical data sources, their metadata,
+# versions, access methods, licensing, and relationships.
+# =============================================================================
+
+<https://gene.example.org/ontology/datasource>
+    a owl:Ontology ;
+    rdfs:label "Gene Data Source Ontology" ;
+    rdfs:comment "An OWL 2 ontology for describing biomedical data sources, their metadata, versions, access methods, licensing, and cross-references." ;
+    owl:versionInfo "1.0.0" ;
+    dct:created "2026-01-25"^^xsd:date ;
+    dct:creator "Kurt Cagle" ;
+    dct:description "This ontology provides a formal model for cataloging biomedical data sources used in the Gene project. It covers data source hierarchy, versioning, access methods, licensing, schema definitions, and cross-references between sources." ;
+    owl:imports <http://www.w3.org/2004/02/skos/core> .
+
+# =============================================================================
+# CLASSES
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Core Hierarchy Classes
+# -----------------------------------------------------------------------------
+
+ds:HierarchyLevel a owl:Class ;
+    rdfs:label "Hierarchy Level" ;
+    rdfs:comment "Abstract superclass for all levels in the data source hierarchy (Category, Subcategory, Source)." ;
+    owl:disjointUnionOf ( ds:Category ds:Subcategory ds:DataSource ) .
+
+ds:Category a owl:Class ;
+    rdfs:subClassOf ds:HierarchyLevel ;
+    rdfs:label "Category" ;
+    rdfs:comment "Top-level domain classification for data sources (e.g., Genetics and Genomics, Compounds and Molecules)." ;
+    rdfs:seeAlso tax:DataSourceTaxonomy .
+
+ds:Subcategory a owl:Class ;
+    rdfs:subClassOf ds:HierarchyLevel ;
+    rdfs:label "Subcategory" ;
+    rdfs:comment "Second-level classification within a category (e.g., Variant Repositories within Genetics and Genomics)." .
+
+ds:DataSource a owl:Class ;
+    rdfs:subClassOf ds:HierarchyLevel ;
+    rdfs:label "Data Source" ;
+    rdfs:comment "An individual data source or database providing biomedical data (e.g., ClinVar, UniProt, PubMed)." .
+
+# -----------------------------------------------------------------------------
+# Metadata Classes
+# -----------------------------------------------------------------------------
+
+ds:Version a owl:Class ;
+    rdfs:label "Version" ;
+    rdfs:comment "A specific release or version of a data source, including release date, size, and checksum." .
+
+ds:License a owl:Class ;
+    rdfs:label "License" ;
+    rdfs:comment "Licensing terms governing the use, redistribution, and commercial application of data from a source." .
+
+ds:AccessMethod a owl:Class ;
+    rdfs:label "Access Method" ;
+    rdfs:comment "A method for accessing data from a source (e.g., REST API, SPARQL endpoint, FTP download)." ;
+    rdfs:seeAlso tax:AccessMethodScheme .
+
+ds:Format a owl:Class ;
+    rdfs:label "Format" ;
+    rdfs:comment "A file or data format in which data is available (e.g., JSON, XML, VCF, FASTA)." ;
+    rdfs:seeAlso tax:FormatScheme .
+
+ds:Maintainer a owl:Class ;
+    rdfs:label "Maintainer" ;
+    rdfs:comment "An organization or entity responsible for maintaining a data source." ;
+    rdfs:subClassOf foaf:Organization .
+
+# -----------------------------------------------------------------------------
+# Schema Classes
+# -----------------------------------------------------------------------------
+
+ds:Schema a owl:Class ;
+    rdfs:label "Schema" ;
+    rdfs:comment "A data schema defining the structure and field types for records in a data source." .
+
+ds:Field a owl:Class ;
+    rdfs:label "Field" ;
+    rdfs:comment "A field or property within a data schema, with name, type, and cardinality." .
+
+ds:FieldGroup a owl:Class ;
+    rdfs:label "Field Group" ;
+    rdfs:comment "A logical grouping of related fields within a schema." .
+
+# -----------------------------------------------------------------------------
+# Cross-Reference Classes
+# -----------------------------------------------------------------------------
+
+ds:CrossReference a owl:Class ;
+    rdfs:label "Cross-Reference" ;
+    rdfs:comment "A cross-reference linking identifiers between two data sources." .
+
+ds:Identifier a owl:Class ;
+    rdfs:label "Identifier" ;
+    rdfs:comment "An identifier type used by a data source (e.g., VCV for ClinVar, UniProt accession)." .
+
+ds:IdentifierMapping a owl:Class ;
+    rdfs:label "Identifier Mapping" ;
+    rdfs:comment "A mapping between identifiers from different data sources." .
+
+# -----------------------------------------------------------------------------
+# Documentation Classes
+# -----------------------------------------------------------------------------
+
+ds:UseCase a owl:Class ;
+    rdfs:label "Use Case" ;
+    rdfs:comment "A primary use case or application for a data source." .
+
+ds:Limitation a owl:Class ;
+    rdfs:label "Limitation" ;
+    rdfs:comment "A known limitation or caveat for a data source." .
+
+ds:DataQualityNote a owl:Class ;
+    rdfs:label "Data Quality Note" ;
+    rdfs:comment "Notes about data quality, curation processes, or coverage gaps." .
+
+# =============================================================================
+# OBJECT PROPERTIES
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Hierarchy Properties
+# -----------------------------------------------------------------------------
+
+ds:belongsToCategory a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:label "belongs to category" ;
+    rdfs:comment "Links a data source or subcategory to its parent category." ;
+    rdfs:domain [ owl:unionOf ( ds:DataSource ds:Subcategory ) ] ;
+    rdfs:range ds:Category .
+
+ds:belongsToSubcategory a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:label "belongs to subcategory" ;
+    rdfs:comment "Links a data source to its parent subcategory." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range ds:Subcategory .
+
+ds:hasSubcategory a owl:ObjectProperty ;
+    rdfs:label "has subcategory" ;
+    rdfs:comment "Links a category to its child subcategories." ;
+    owl:inverseOf ds:belongsToCategory ;
+    rdfs:domain ds:Category ;
+    rdfs:range ds:Subcategory .
+
+ds:hasDataSource a owl:ObjectProperty ;
+    rdfs:label "has data source" ;
+    rdfs:comment "Links a subcategory to its child data sources." ;
+    owl:inverseOf ds:belongsToSubcategory ;
+    rdfs:domain ds:Subcategory ;
+    rdfs:range ds:DataSource .
+
+ds:parentLevel a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:label "parent level" ;
+    rdfs:comment "Generic parent relationship in the hierarchy." ;
+    rdfs:domain ds:HierarchyLevel ;
+    rdfs:range ds:HierarchyLevel .
+
+# -----------------------------------------------------------------------------
+# Version Properties
+# -----------------------------------------------------------------------------
+
+ds:hasVersion a owl:ObjectProperty ;
+    rdfs:label "has version" ;
+    rdfs:comment "Links a data source to its available versions." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range ds:Version .
+
+ds:currentVersion a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:label "current version" ;
+    rdfs:comment "Links a data source to its current/latest version." ;
+    rdfs:subPropertyOf ds:hasVersion ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range ds:Version .
+
+ds:previousVersion a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:label "previous version" ;
+    rdfs:comment "Links a version to its predecessor." ;
+    rdfs:domain ds:Version ;
+    rdfs:range ds:Version .
+
+# -----------------------------------------------------------------------------
+# License Properties
+# -----------------------------------------------------------------------------
+
+ds:hasLicense a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:label "has license" ;
+    rdfs:comment "Links a data source to its license terms." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range ds:License .
+
+ds:licenseType a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:label "license type" ;
+    rdfs:comment "Links a license to its type classification from the taxonomy." ;
+    rdfs:domain ds:License ;
+    rdfs:range skos:Concept .
+
+# -----------------------------------------------------------------------------
+# Access Properties
+# -----------------------------------------------------------------------------
+
+ds:hasAccessMethod a owl:ObjectProperty ;
+    rdfs:label "has access method" ;
+    rdfs:comment "Links a data source to available access methods." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range ds:AccessMethod .
+
+ds:accessMethodType a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:label "access method type" ;
+    rdfs:comment "Links an access method to its type from the taxonomy." ;
+    rdfs:domain ds:AccessMethod ;
+    rdfs:range skos:Concept .
+
+ds:hasFormat a owl:ObjectProperty ;
+    rdfs:label "has format" ;
+    rdfs:comment "Links a data source or access method to available data formats." ;
+    rdfs:domain [ owl:unionOf ( ds:DataSource ds:AccessMethod ) ] ;
+    rdfs:range ds:Format .
+
+ds:formatType a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:label "format type" ;
+    rdfs:comment "Links a format to its type from the taxonomy." ;
+    rdfs:domain ds:Format ;
+    rdfs:range skos:Concept .
+
+# -----------------------------------------------------------------------------
+# Maintainer Properties
+# -----------------------------------------------------------------------------
+
+ds:maintainedBy a owl:ObjectProperty ;
+    rdfs:label "maintained by" ;
+    rdfs:comment "Links a data source to its maintaining organization(s)." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range ds:Maintainer .
+
+# -----------------------------------------------------------------------------
+# Schema Properties
+# -----------------------------------------------------------------------------
+
+ds:hasSchema a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:label "has schema" ;
+    rdfs:comment "Links a data source to its data schema definition." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range ds:Schema .
+
+ds:hasField a owl:ObjectProperty ;
+    rdfs:label "has field" ;
+    rdfs:comment "Links a schema or field group to its fields." ;
+    rdfs:domain [ owl:unionOf ( ds:Schema ds:FieldGroup ) ] ;
+    rdfs:range ds:Field .
+
+ds:hasFieldGroup a owl:ObjectProperty ;
+    rdfs:label "has field group" ;
+    rdfs:comment "Links a schema to its logical field groups." ;
+    rdfs:domain ds:Schema ;
+    rdfs:range ds:FieldGroup .
+
+# -----------------------------------------------------------------------------
+# Cross-Reference Properties
+# -----------------------------------------------------------------------------
+
+ds:hasCrossReference a owl:ObjectProperty ;
+    rdfs:label "has cross-reference" ;
+    rdfs:comment "Links a data source to cross-references with other sources." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range ds:CrossReference .
+
+ds:referencesSource a owl:ObjectProperty ;
+    rdfs:label "references source" ;
+    rdfs:comment "Links a cross-reference to the target data source." ;
+    rdfs:domain ds:CrossReference ;
+    rdfs:range ds:DataSource .
+
+ds:hasIdentifier a owl:ObjectProperty ;
+    rdfs:label "has identifier" ;
+    rdfs:comment "Links a data source to identifier types it uses." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range ds:Identifier .
+
+ds:hasIdentifierMapping a owl:ObjectProperty ;
+    rdfs:label "has identifier mapping" ;
+    rdfs:comment "Links a cross-reference to identifier mappings." ;
+    rdfs:domain ds:CrossReference ;
+    rdfs:range ds:IdentifierMapping .
+
+ds:sourceIdentifier a owl:ObjectProperty ;
+    rdfs:label "source identifier" ;
+    rdfs:comment "The identifier type in the source data source." ;
+    rdfs:domain ds:IdentifierMapping ;
+    rdfs:range ds:Identifier .
+
+ds:targetIdentifier a owl:ObjectProperty ;
+    rdfs:label "target identifier" ;
+    rdfs:comment "The identifier type in the target data source." ;
+    rdfs:domain ds:IdentifierMapping ;
+    rdfs:range ds:Identifier .
+
+# -----------------------------------------------------------------------------
+# Relationship Properties
+# -----------------------------------------------------------------------------
+
+ds:relatedTo a owl:ObjectProperty, owl:SymmetricProperty ;
+    rdfs:label "related to" ;
+    rdfs:comment "A symmetric relationship between related data sources." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range ds:DataSource .
+
+ds:complementedBy a owl:ObjectProperty ;
+    rdfs:label "complemented by" ;
+    rdfs:comment "Links a data source to complementary sources that provide additional data." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range ds:DataSource .
+
+ds:supersedes a owl:ObjectProperty ;
+    rdfs:label "supersedes" ;
+    rdfs:comment "Indicates this source supersedes or replaces another." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range ds:DataSource .
+
+# -----------------------------------------------------------------------------
+# Documentation Properties
+# -----------------------------------------------------------------------------
+
+ds:hasUseCase a owl:ObjectProperty ;
+    rdfs:label "has use case" ;
+    rdfs:comment "Links a data source to its primary use cases." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range ds:UseCase .
+
+ds:hasLimitation a owl:ObjectProperty ;
+    rdfs:label "has limitation" ;
+    rdfs:comment "Links a data source to its known limitations." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range ds:Limitation .
+
+ds:hasDataQualityNote a owl:ObjectProperty ;
+    rdfs:label "has data quality note" ;
+    rdfs:comment "Links a data source to data quality notes." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range ds:DataQualityNote .
+
+# -----------------------------------------------------------------------------
+# Taxonomy Links
+# -----------------------------------------------------------------------------
+
+ds:categoryClassification a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:label "category classification" ;
+    rdfs:comment "Links a category to its SKOS concept in the taxonomy." ;
+    rdfs:domain ds:Category ;
+    rdfs:range skos:Concept .
+
+ds:subcategoryClassification a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:label "subcategory classification" ;
+    rdfs:comment "Links a subcategory to its SKOS concept in the taxonomy." ;
+    rdfs:domain ds:Subcategory ;
+    rdfs:range skos:Concept .
+
+ds:tier a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:label "tier" ;
+    rdfs:comment "Links a data source to its tier classification." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range skos:Concept .
+
+ds:status a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:label "status" ;
+    rdfs:comment "Links a hierarchy level to its documentation status." ;
+    rdfs:domain ds:HierarchyLevel ;
+    rdfs:range skos:Concept .
+
+ds:updateFrequency a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:label "update frequency" ;
+    rdfs:comment "Links a data source to its update frequency classification." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range skos:Concept .
+
+# =============================================================================
+# DATATYPE PROPERTIES
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Identification Properties
+# -----------------------------------------------------------------------------
+
+ds:id a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "id" ;
+    rdfs:comment "Unique identifier for the resource within the catalog." ;
+    rdfs:domain ds:HierarchyLevel ;
+    rdfs:range xsd:string .
+
+ds:title a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "title" ;
+    rdfs:comment "Human-readable title or name." ;
+    rdfs:subPropertyOf rdfs:label ;
+    rdfs:range xsd:string .
+
+ds:notation a owl:DatatypeProperty ;
+    rdfs:label "notation" ;
+    rdfs:comment "Classification notation or code (e.g., '01' for category, '1.1' for subcategory)." ;
+    rdfs:domain ds:HierarchyLevel ;
+    rdfs:range xsd:string .
+
+# -----------------------------------------------------------------------------
+# Descriptive Properties
+# -----------------------------------------------------------------------------
+
+ds:description a owl:DatatypeProperty ;
+    rdfs:label "description" ;
+    rdfs:comment "Detailed description of the resource." ;
+    rdfs:subPropertyOf rdfs:comment ;
+    rdfs:range xsd:string .
+
+ds:shortDescription a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "short description" ;
+    rdfs:comment "Brief one-line description suitable for listings." ;
+    rdfs:range xsd:string .
+
+# -----------------------------------------------------------------------------
+# URL Properties
+# -----------------------------------------------------------------------------
+
+ds:website a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "website" ;
+    rdfs:comment "Official website URL for the data source." ;
+    rdfs:domain ds:DataSource ;
+    rdfs:range xsd:anyURI .
+
+ds:documentationUrl a owl:DatatypeProperty ;
+    rdfs:label "documentation URL" ;
+    rdfs:comment "URL to documentation or user guides." ;
+    rdfs:range xsd:anyURI .
+
+ds:downloadUrl a owl:DatatypeProperty ;
+    rdfs:label "download URL" ;
+    rdfs:comment "URL for downloading data." ;
+    rdfs:domain [ owl:unionOf ( ds:DataSource ds:AccessMethod ds:Version ) ] ;
+    rdfs:range xsd:anyURI .
+
+ds:apiEndpoint a owl:DatatypeProperty ;
+    rdfs:label "API endpoint" ;
+    rdfs:comment "Base URL for API access." ;
+    rdfs:domain ds:AccessMethod ;
+    rdfs:range xsd:anyURI .
+
+# -----------------------------------------------------------------------------
+# Version Properties
+# -----------------------------------------------------------------------------
+
+ds:versionNumber a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "version number" ;
+    rdfs:comment "Version identifier string." ;
+    rdfs:domain ds:Version ;
+    rdfs:range xsd:string .
+
+ds:releaseDate a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "release date" ;
+    rdfs:comment "Date the version was released." ;
+    rdfs:domain ds:Version ;
+    rdfs:range xsd:date .
+
+ds:size a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "size" ;
+    rdfs:comment "Size of the data in human-readable format (e.g., '2.5 GB')." ;
+    rdfs:domain ds:Version ;
+    rdfs:range xsd:string .
+
+ds:sizeBytes a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "size in bytes" ;
+    rdfs:comment "Exact size of the data in bytes." ;
+    rdfs:domain ds:Version ;
+    rdfs:range xsd:long .
+
+ds:checksum a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "checksum" ;
+    rdfs:comment "Checksum for data integrity verification (format: 'algorithm:hash')." ;
+    rdfs:domain ds:Version ;
+    rdfs:range xsd:string .
+
+ds:recordCount a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "record count" ;
+    rdfs:comment "Approximate number of records in this version." ;
+    rdfs:domain ds:Version ;
+    rdfs:range xsd:long .
+
+# -----------------------------------------------------------------------------
+# License Properties
+# -----------------------------------------------------------------------------
+
+ds:licenseName a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "license name" ;
+    rdfs:comment "Human-readable name of the license." ;
+    rdfs:domain ds:License ;
+    rdfs:range xsd:string .
+
+ds:spdxIdentifier a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "SPDX identifier" ;
+    rdfs:comment "SPDX license identifier (e.g., 'CC-BY-4.0', 'MIT')." ;
+    rdfs:domain ds:License ;
+    rdfs:range xsd:string .
+
+ds:licenseUrl a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "license URL" ;
+    rdfs:comment "URL to the full license text." ;
+    rdfs:domain ds:License ;
+    rdfs:range xsd:anyURI .
+
+ds:commercialUseAllowed a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "commercial use allowed" ;
+    rdfs:comment "Whether commercial use is permitted." ;
+    rdfs:domain ds:License ;
+    rdfs:range xsd:boolean .
+
+ds:attributionRequired a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "attribution required" ;
+    rdfs:comment "Whether attribution is required when using the data." ;
+    rdfs:domain ds:License ;
+    rdfs:range xsd:boolean .
+
+ds:redistributionAllowed a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "redistribution allowed" ;
+    rdfs:comment "Whether redistribution of the data is permitted." ;
+    rdfs:domain ds:License ;
+    rdfs:range xsd:boolean .
+
+ds:attributionText a owl:DatatypeProperty ;
+    rdfs:label "attribution text" ;
+    rdfs:comment "Recommended attribution text to use." ;
+    rdfs:domain ds:License ;
+    rdfs:range xsd:string .
+
+ds:citationText a owl:DatatypeProperty ;
+    rdfs:label "citation text" ;
+    rdfs:comment "Preferred citation format for academic use." ;
+    rdfs:domain ds:License ;
+    rdfs:range xsd:string .
+
+# -----------------------------------------------------------------------------
+# Access Method Properties
+# -----------------------------------------------------------------------------
+
+ds:rateLimit a owl:DatatypeProperty ;
+    rdfs:label "rate limit" ;
+    rdfs:comment "API rate limit in requests per second or per day." ;
+    rdfs:domain ds:AccessMethod ;
+    rdfs:range xsd:string .
+
+ds:authenticationRequired a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "authentication required" ;
+    rdfs:comment "Whether authentication is required for access." ;
+    rdfs:domain ds:AccessMethod ;
+    rdfs:range xsd:boolean .
+
+ds:apiKeyRequired a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "API key required" ;
+    rdfs:comment "Whether an API key is required." ;
+    rdfs:domain ds:AccessMethod ;
+    rdfs:range xsd:boolean .
+
+# -----------------------------------------------------------------------------
+# Schema/Field Properties
+# -----------------------------------------------------------------------------
+
+ds:fieldName a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "field name" ;
+    rdfs:comment "Name of the field in the schema." ;
+    rdfs:domain ds:Field ;
+    rdfs:range xsd:string .
+
+ds:fieldType a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "field type" ;
+    rdfs:comment "Data type of the field (e.g., 'string', 'integer', 'array')." ;
+    rdfs:domain ds:Field ;
+    rdfs:range xsd:string .
+
+ds:cardinality a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "cardinality" ;
+    rdfs:comment "Cardinality of the field (e.g., '1:1', '1:N', '0..1')." ;
+    rdfs:domain ds:Field ;
+    rdfs:range xsd:string .
+
+ds:required a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "required" ;
+    rdfs:comment "Whether the field is required." ;
+    rdfs:domain ds:Field ;
+    rdfs:range xsd:boolean .
+
+ds:pattern a owl:DatatypeProperty ;
+    rdfs:label "pattern" ;
+    rdfs:comment "Regular expression pattern for field validation." ;
+    rdfs:domain [ owl:unionOf ( ds:Field ds:Identifier ) ] ;
+    rdfs:range xsd:string .
+
+ds:example a owl:DatatypeProperty ;
+    rdfs:label "example" ;
+    rdfs:comment "Example value(s) for the field or identifier." ;
+    rdfs:range xsd:string .
+
+# -----------------------------------------------------------------------------
+# Identifier Properties
+# -----------------------------------------------------------------------------
+
+ds:identifierName a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "identifier name" ;
+    rdfs:comment "Name of the identifier type (e.g., 'VCV', 'UniProt accession')." ;
+    rdfs:domain ds:Identifier ;
+    rdfs:range xsd:string .
+
+ds:identifierFormat a owl:DatatypeProperty ;
+    rdfs:label "identifier format" ;
+    rdfs:comment "Description of the identifier format." ;
+    rdfs:domain ds:Identifier ;
+    rdfs:range xsd:string .
+
+# -----------------------------------------------------------------------------
+# Cross-Reference Properties
+# -----------------------------------------------------------------------------
+
+ds:coveragePercentage a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "coverage percentage" ;
+    rdfs:comment "Percentage of records with cross-references to the target source." ;
+    rdfs:domain ds:CrossReference ;
+    rdfs:range xsd:decimal .
+
+ds:coverageLevel a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "coverage level" ;
+    rdfs:comment "Qualitative coverage level (high, medium, low)." ;
+    rdfs:domain ds:CrossReference ;
+    rdfs:range xsd:string .
+
+ds:mappingCount a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "mapping count" ;
+    rdfs:comment "Number of identifier mappings available." ;
+    rdfs:domain ds:CrossReference ;
+    rdfs:range xsd:long .
+
+# -----------------------------------------------------------------------------
+# Timestamp Properties
+# -----------------------------------------------------------------------------
+
+ds:lastUpdated a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "last updated" ;
+    rdfs:comment "Date when the documentation was last updated." ;
+    rdfs:domain ds:HierarchyLevel ;
+    rdfs:range xsd:date .
+
+ds:created a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "created" ;
+    rdfs:comment "Date when the resource was created." ;
+    rdfs:range xsd:date .
+
+# -----------------------------------------------------------------------------
+# Tag Properties
+# -----------------------------------------------------------------------------
+
+ds:tag a owl:DatatypeProperty ;
+    rdfs:label "tag" ;
+    rdfs:comment "A keyword tag associated with the resource." ;
+    rdfs:range xsd:string .
+
+# =============================================================================
+# DEFINED CLASSES (for inference)
+# =============================================================================
+
+ds:Tier1Source a owl:Class ;
+    rdfs:label "Tier 1 Source" ;
+    rdfs:comment "Primary authoritative data source (tier 1)." ;
+    owl:equivalentClass [
+        owl:intersectionOf (
+            ds:DataSource
+            [ a owl:Restriction ;
+              owl:onProperty ds:tier ;
+              owl:hasValue tax:Tier1 ]
+        )
+    ] .
+
+ds:Tier2Source a owl:Class ;
+    rdfs:label "Tier 2 Source" ;
+    rdfs:comment "Secondary supplementary data source (tier 2)." ;
+    owl:equivalentClass [
+        owl:intersectionOf (
+            ds:DataSource
+            [ a owl:Restriction ;
+              owl:onProperty ds:tier ;
+              owl:hasValue tax:Tier2 ]
+        )
+    ] .
+
+ds:Tier3Source a owl:Class ;
+    rdfs:label "Tier 3 Source" ;
+    rdfs:comment "Specialized niche data source (tier 3)." ;
+    owl:equivalentClass [
+        owl:intersectionOf (
+            ds:DataSource
+            [ a owl:Restriction ;
+              owl:onProperty ds:tier ;
+              owl:hasValue tax:Tier3 ]
+        )
+    ] .
+
+ds:ActiveSource a owl:Class ;
+    rdfs:label "Active Source" ;
+    rdfs:comment "Data source with active documentation status." ;
+    owl:equivalentClass [
+        owl:intersectionOf (
+            ds:DataSource
+            [ a owl:Restriction ;
+              owl:onProperty ds:status ;
+              owl:hasValue tax:Active ]
+        )
+    ] .
+
+ds:DeprecatedSource a owl:Class ;
+    rdfs:label "Deprecated Source" ;
+    rdfs:comment "Data source with deprecated status." ;
+    owl:equivalentClass [
+        owl:intersectionOf (
+            ds:DataSource
+            [ a owl:Restriction ;
+              owl:onProperty ds:status ;
+              owl:hasValue tax:Deprecated ]
+        )
+    ] .
+
+ds:OpenAccessSource a owl:Class ;
+    rdfs:label "Open Access Source" ;
+    rdfs:comment "Data source with open access licensing (no commercial restrictions)." ;
+    owl:equivalentClass [
+        owl:intersectionOf (
+            ds:DataSource
+            [ a owl:Restriction ;
+              owl:onProperty ds:hasLicense ;
+              owl:someValuesFrom [
+                  a owl:Restriction ;
+                  owl:onProperty ds:commercialUseAllowed ;
+                  owl:hasValue true
+              ] ]
+        )
+    ] .
+
+ds:ApiAccessibleSource a owl:Class ;
+    rdfs:label "API Accessible Source" ;
+    rdfs:comment "Data source with REST API access available." ;
+    owl:equivalentClass [
+        owl:intersectionOf (
+            ds:DataSource
+            [ a owl:Restriction ;
+              owl:onProperty ds:hasAccessMethod ;
+              owl:someValuesFrom [
+                  a owl:Restriction ;
+                  owl:onProperty ds:accessMethodType ;
+                  owl:hasValue tax:RestApi
+              ] ]
+        )
+    ] .
+
+ds:SparqlAccessibleSource a owl:Class ;
+    rdfs:label "SPARQL Accessible Source" ;
+    rdfs:comment "Data source with SPARQL endpoint available." ;
+    owl:equivalentClass [
+        owl:intersectionOf (
+            ds:DataSource
+            [ a owl:Restriction ;
+              owl:onProperty ds:hasAccessMethod ;
+              owl:someValuesFrom [
+                  a owl:Restriction ;
+                  owl:onProperty ds:accessMethodType ;
+                  owl:hasValue tax:SparqlEndpoint
+              ] ]
+        )
+    ] .
+
+# =============================================================================
+# INDIVIDUALS (Access Method Types)
+# =============================================================================
+
+ds:RestApiMethod a ds:AccessMethod ;
+    ds:accessMethodType tax:RestApi ;
+    rdfs:label "REST API Access" ;
+    rdfs:comment "RESTful web service interface." .
+
+ds:SparqlMethod a ds:AccessMethod ;
+    ds:accessMethodType tax:SparqlEndpoint ;
+    rdfs:label "SPARQL Endpoint Access" ;
+    rdfs:comment "SPARQL query endpoint for RDF data." .
+
+ds:FtpMethod a ds:AccessMethod ;
+    ds:accessMethodType tax:FtpDownload ;
+    rdfs:label "FTP Download Access" ;
+    rdfs:comment "FTP bulk download." .
+
+ds:DirectDownloadMethod a ds:AccessMethod ;
+    ds:accessMethodType tax:DirectDownload ;
+    rdfs:label "Direct Download Access" ;
+    rdfs:comment "Direct HTTP file download." .

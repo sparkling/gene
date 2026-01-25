@@ -1,0 +1,874 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix ds: <https://gene.example.org/ontology/datasource#> .
+@prefix tax: <https://gene.example.org/taxonomy/> .
+@prefix shapes: <https://gene.example.org/shapes/datasource#> .
+
+# =============================================================================
+# Gene Data Source SHACL Shapes
+# =============================================================================
+# Validation shapes for data source metadata instances.
+# Enforces cardinality, value constraints, and structural patterns.
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# DataSource Shape (Primary Entity)
+# -----------------------------------------------------------------------------
+
+shapes:DataSourceShape a sh:NodeShape ;
+    sh:targetClass ds:DataSource ;
+    rdfs:label "Data Source Shape" ;
+    rdfs:comment "Validates data source instances with required and optional properties." ;
+
+    # === REQUIRED PROPERTIES ===
+
+    sh:property [
+        sh:path ds:id ;
+        sh:name "id" ;
+        rdfs:comment "Unique identifier for the data source (lowercase, hyphen-separated)." ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:minLength 2 ;
+        sh:maxLength 50 ;
+        sh:pattern "^[a-z0-9][a-z0-9.-]*[a-z0-9]$" ;
+        sh:message "Data source must have exactly one id (2-50 chars, lowercase alphanumeric with hyphens/dots)."
+    ] ;
+
+    sh:property [
+        sh:path ds:title ;
+        sh:name "title" ;
+        rdfs:comment "Human-readable title of the data source." ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:minLength 2 ;
+        sh:maxLength 100 ;
+        sh:message "Data source must have exactly one title (2-100 characters)."
+    ] ;
+
+    sh:property [
+        sh:path ds:belongsToCategory ;
+        sh:name "category" ;
+        rdfs:comment "Parent category of the data source." ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class ds:Category ;
+        sh:message "Data source must belong to exactly one category."
+    ] ;
+
+    sh:property [
+        sh:path ds:belongsToSubcategory ;
+        sh:name "subcategory" ;
+        rdfs:comment "Parent subcategory of the data source." ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class ds:Subcategory ;
+        sh:message "Data source must belong to exactly one subcategory."
+    ] ;
+
+    sh:property [
+        sh:path ds:status ;
+        sh:name "status" ;
+        rdfs:comment "Documentation lifecycle status." ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class skos:Concept ;
+        sh:in ( tax:Draft tax:Active tax:Deprecated ) ;
+        sh:message "Data source must have exactly one status (draft, active, or deprecated)."
+    ] ;
+
+    # === OPTIONAL BUT RECOMMENDED PROPERTIES ===
+
+    sh:property [
+        sh:path ds:tier ;
+        sh:name "tier" ;
+        rdfs:comment "Quality and priority tier classification." ;
+        sh:maxCount 1 ;
+        sh:class skos:Concept ;
+        sh:in ( tax:Tier1 tax:Tier2 tax:Tier3 ) ;
+        sh:severity sh:Warning ;
+        sh:message "Data source should have a tier classification (1, 2, or 3)."
+    ] ;
+
+    sh:property [
+        sh:path ds:tag ;
+        sh:name "tags" ;
+        rdfs:comment "Keyword tags for categorization and search." ;
+        sh:datatype xsd:string ;
+        sh:minLength 2 ;
+        sh:maxLength 30 ;
+        sh:pattern "^[a-z0-9-]+$" ;
+        sh:severity sh:Info ;
+        sh:message "Tags should be lowercase alphanumeric with hyphens."
+    ] ;
+
+    sh:property [
+        sh:path ds:description ;
+        sh:name "description" ;
+        rdfs:comment "Detailed description of the data source." ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:minLength 50 ;
+        sh:severity sh:Warning ;
+        sh:message "Data source should have a description (at least 50 characters)."
+    ] ;
+
+    sh:property [
+        sh:path ds:maintainedBy ;
+        sh:name "maintainer" ;
+        rdfs:comment "Organization maintaining the data source." ;
+        sh:class ds:Maintainer ;
+        sh:severity sh:Warning ;
+        sh:message "Data source should specify a maintainer."
+    ] ;
+
+    sh:property [
+        sh:path ds:website ;
+        sh:name "website" ;
+        rdfs:comment "Official website URL." ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:anyURI ;
+        sh:pattern "^https?://" ;
+        sh:severity sh:Warning ;
+        sh:message "Data source should have a valid website URL (http or https)."
+    ] ;
+
+    sh:property [
+        sh:path ds:updateFrequency ;
+        sh:name "updateFrequency" ;
+        rdfs:comment "How often the data source is updated." ;
+        sh:maxCount 1 ;
+        sh:class skos:Concept ;
+        sh:severity sh:Info ;
+        sh:message "Consider specifying update frequency."
+    ] ;
+
+    sh:property [
+        sh:path ds:lastUpdated ;
+        sh:name "lastUpdated" ;
+        rdfs:comment "Date documentation was last updated." ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:date ;
+        sh:severity sh:Warning ;
+        sh:message "Data source should have a last updated date."
+    ] ;
+
+    # === RELATIONAL PROPERTIES ===
+
+    sh:property [
+        sh:path ds:hasVersion ;
+        sh:name "versions" ;
+        rdfs:comment "Available versions of the data source." ;
+        sh:class ds:Version ;
+        sh:severity sh:Warning ;
+        sh:message "Data source should have at least one version documented."
+    ] ;
+
+    sh:property [
+        sh:path ds:hasLicense ;
+        sh:name "license" ;
+        rdfs:comment "License terms for the data source." ;
+        sh:maxCount 1 ;
+        sh:class ds:License ;
+        sh:node shapes:LicenseShape ;
+        sh:severity sh:Violation ;
+        sh:message "Data source must have license information."
+    ] ;
+
+    sh:property [
+        sh:path ds:hasAccessMethod ;
+        sh:name "accessMethods" ;
+        rdfs:comment "Available access methods." ;
+        sh:class ds:AccessMethod ;
+        sh:node shapes:AccessMethodShape ;
+        sh:severity sh:Warning ;
+        sh:message "Data source should have at least one access method."
+    ] ;
+
+    sh:property [
+        sh:path ds:hasSchema ;
+        sh:name "schema" ;
+        rdfs:comment "Data schema definition." ;
+        sh:maxCount 1 ;
+        sh:class ds:Schema ;
+        sh:node shapes:SchemaShape ;
+        sh:severity sh:Warning ;
+        sh:message "Data source should have a schema definition."
+    ] ;
+
+    sh:property [
+        sh:path ds:hasIdentifier ;
+        sh:name "identifiers" ;
+        rdfs:comment "Identifier types used by this source." ;
+        sh:class ds:Identifier ;
+        sh:node shapes:IdentifierShape ;
+        sh:severity sh:Info ;
+        sh:message "Consider documenting identifier types."
+    ] ;
+
+    sh:property [
+        sh:path ds:hasUseCase ;
+        sh:name "useCases" ;
+        rdfs:comment "Primary use cases." ;
+        sh:class ds:UseCase ;
+        sh:severity sh:Info ;
+        sh:message "Consider documenting use cases."
+    ] ;
+
+    sh:property [
+        sh:path ds:hasLimitation ;
+        sh:name "limitations" ;
+        rdfs:comment "Known limitations." ;
+        sh:class ds:Limitation ;
+        sh:severity sh:Info ;
+        sh:message "Consider documenting limitations."
+    ] .
+
+# -----------------------------------------------------------------------------
+# Category Shape
+# -----------------------------------------------------------------------------
+
+shapes:CategoryShape a sh:NodeShape ;
+    sh:targetClass ds:Category ;
+    rdfs:label "Category Shape" ;
+    rdfs:comment "Validates category instances." ;
+
+    sh:property [
+        sh:path ds:id ;
+        sh:name "id" ;
+        rdfs:comment "Category identifier (e.g., 'genetics.genomics')." ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:pattern "^[a-z]+\\.[a-z]+$" ;
+        sh:message "Category must have an id in format 'domain.subdomain'."
+    ] ;
+
+    sh:property [
+        sh:path ds:title ;
+        sh:name "title" ;
+        rdfs:comment "Human-readable category title." ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:message "Category must have a title."
+    ] ;
+
+    sh:property [
+        sh:path ds:notation ;
+        sh:name "notation" ;
+        rdfs:comment "Numeric notation (e.g., '01', '02')." ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:pattern "^[0-9]{2}$" ;
+        sh:message "Category notation should be two digits."
+    ] ;
+
+    sh:property [
+        sh:path ds:categoryClassification ;
+        sh:name "classification" ;
+        rdfs:comment "SKOS concept link." ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class skos:Concept ;
+        sh:message "Category must be linked to a SKOS concept."
+    ] .
+
+# -----------------------------------------------------------------------------
+# Subcategory Shape
+# -----------------------------------------------------------------------------
+
+shapes:SubcategoryShape a sh:NodeShape ;
+    sh:targetClass ds:Subcategory ;
+    rdfs:label "Subcategory Shape" ;
+    rdfs:comment "Validates subcategory instances." ;
+
+    sh:property [
+        sh:path ds:id ;
+        sh:name "id" ;
+        rdfs:comment "Subcategory identifier." ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:message "Subcategory must have an id."
+    ] ;
+
+    sh:property [
+        sh:path ds:title ;
+        sh:name "title" ;
+        rdfs:comment "Human-readable subcategory title." ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:message "Subcategory must have a title."
+    ] ;
+
+    sh:property [
+        sh:path ds:belongsToCategory ;
+        sh:name "category" ;
+        rdfs:comment "Parent category." ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class ds:Category ;
+        sh:message "Subcategory must belong to exactly one category."
+    ] ;
+
+    sh:property [
+        sh:path ds:notation ;
+        sh:name "notation" ;
+        rdfs:comment "Numeric notation (e.g., '1.1', '2.3')." ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:pattern "^[0-9]+\\.[0-9]+$" ;
+        sh:message "Subcategory notation should be in format 'X.Y'."
+    ] .
+
+# -----------------------------------------------------------------------------
+# Version Shape
+# -----------------------------------------------------------------------------
+
+shapes:VersionShape a sh:NodeShape ;
+    sh:targetClass ds:Version ;
+    rdfs:label "Version Shape" ;
+    rdfs:comment "Validates version instances with release information." ;
+
+    sh:property [
+        sh:path ds:versionNumber ;
+        sh:name "version" ;
+        rdfs:comment "Version identifier string." ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:minLength 1 ;
+        sh:message "Version must have a version number."
+    ] ;
+
+    sh:property [
+        sh:path ds:releaseDate ;
+        sh:name "releaseDate" ;
+        rdfs:comment "Date the version was released." ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:date ;
+        sh:message "Version must have a release date."
+    ] ;
+
+    sh:property [
+        sh:path ds:checksum ;
+        sh:name "checksum" ;
+        rdfs:comment "Checksum for integrity verification (format: 'algorithm:hash')." ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:pattern "^(sha256|sha512|md5):[a-f0-9]+$" ;
+        sh:severity sh:Info ;
+        sh:message "Checksum should be in format 'algorithm:hash' (e.g., 'sha256:abc123...')."
+    ] ;
+
+    sh:property [
+        sh:path ds:size ;
+        sh:name "size" ;
+        rdfs:comment "Human-readable size (e.g., '2.5 GB')." ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:severity sh:Info ;
+        sh:message "Consider specifying version size."
+    ] ;
+
+    sh:property [
+        sh:path ds:sizeBytes ;
+        sh:name "sizeBytes" ;
+        rdfs:comment "Exact size in bytes." ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:long ;
+        sh:minInclusive 0 ;
+        sh:severity sh:Info ;
+        sh:message "Size in bytes must be non-negative."
+    ] ;
+
+    sh:property [
+        sh:path ds:recordCount ;
+        sh:name "recordCount" ;
+        rdfs:comment "Number of records in this version." ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:long ;
+        sh:minInclusive 0 ;
+        sh:severity sh:Info ;
+        sh:message "Record count must be non-negative."
+    ] ;
+
+    sh:property [
+        sh:path ds:downloadUrl ;
+        sh:name "downloadUrl" ;
+        rdfs:comment "URL to download this version." ;
+        sh:datatype xsd:anyURI ;
+        sh:pattern "^https?://" ;
+        sh:severity sh:Warning ;
+        sh:message "Version should have download URLs."
+    ] .
+
+# -----------------------------------------------------------------------------
+# License Shape
+# -----------------------------------------------------------------------------
+
+shapes:LicenseShape a sh:NodeShape ;
+    sh:targetClass ds:License ;
+    rdfs:label "License Shape" ;
+    rdfs:comment "Validates license instances with usage terms." ;
+
+    sh:property [
+        sh:path ds:licenseName ;
+        sh:name "licenseName" ;
+        rdfs:comment "Human-readable license name." ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:minLength 2 ;
+        sh:message "License must have a name."
+    ] ;
+
+    sh:property [
+        sh:path ds:spdxIdentifier ;
+        sh:name "spdxId" ;
+        rdfs:comment "SPDX license identifier." ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:pattern "^[A-Za-z0-9.-]+$" ;
+        sh:severity sh:Info ;
+        sh:message "Consider specifying SPDX identifier (e.g., 'CC-BY-4.0', 'MIT')."
+    ] ;
+
+    sh:property [
+        sh:path ds:commercialUseAllowed ;
+        sh:name "commercialUse" ;
+        rdfs:comment "Whether commercial use is permitted." ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:boolean ;
+        sh:severity sh:Warning ;
+        sh:message "License should specify commercial use allowance."
+    ] ;
+
+    sh:property [
+        sh:path ds:attributionRequired ;
+        sh:name "attribution" ;
+        rdfs:comment "Whether attribution is required." ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:boolean ;
+        sh:severity sh:Warning ;
+        sh:message "License should specify attribution requirement."
+    ] ;
+
+    sh:property [
+        sh:path ds:redistributionAllowed ;
+        sh:name "redistribution" ;
+        rdfs:comment "Whether redistribution is permitted." ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:boolean ;
+        sh:severity sh:Info ;
+        sh:message "Consider specifying redistribution allowance."
+    ] ;
+
+    sh:property [
+        sh:path ds:licenseUrl ;
+        sh:name "licenseUrl" ;
+        rdfs:comment "URL to full license text." ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:anyURI ;
+        sh:pattern "^https?://" ;
+        sh:severity sh:Info ;
+        sh:message "Consider providing a license URL."
+    ] ;
+
+    sh:property [
+        sh:path ds:licenseType ;
+        sh:name "licenseType" ;
+        rdfs:comment "License type classification." ;
+        sh:maxCount 1 ;
+        sh:class skos:Concept ;
+        sh:severity sh:Info ;
+        sh:message "Consider classifying the license type."
+    ] .
+
+# -----------------------------------------------------------------------------
+# Access Method Shape
+# -----------------------------------------------------------------------------
+
+shapes:AccessMethodShape a sh:NodeShape ;
+    sh:targetClass ds:AccessMethod ;
+    rdfs:label "Access Method Shape" ;
+    rdfs:comment "Validates access method instances." ;
+
+    sh:property [
+        sh:path ds:accessMethodType ;
+        sh:name "type" ;
+        rdfs:comment "Type of access method from taxonomy." ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class skos:Concept ;
+        sh:message "Access method must have a type."
+    ] ;
+
+    sh:property [
+        sh:path ds:apiEndpoint ;
+        sh:name "endpoint" ;
+        rdfs:comment "API endpoint URL." ;
+        sh:datatype xsd:anyURI ;
+        sh:pattern "^https?://" ;
+        sh:severity sh:Info ;
+        sh:message "API endpoint should be a valid URL."
+    ] ;
+
+    sh:property [
+        sh:path ds:rateLimit ;
+        sh:name "rateLimit" ;
+        rdfs:comment "Rate limit description." ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:severity sh:Info ;
+        sh:message "Consider documenting rate limits."
+    ] ;
+
+    sh:property [
+        sh:path ds:authenticationRequired ;
+        sh:name "authRequired" ;
+        rdfs:comment "Whether authentication is required." ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:boolean ;
+        sh:severity sh:Info ;
+        sh:message "Consider specifying authentication requirements."
+    ] ;
+
+    sh:property [
+        sh:path ds:apiKeyRequired ;
+        sh:name "apiKeyRequired" ;
+        rdfs:comment "Whether an API key is required." ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:boolean ;
+        sh:severity sh:Info ;
+        sh:message "Consider specifying API key requirements."
+    ] .
+
+# -----------------------------------------------------------------------------
+# Schema Shape
+# -----------------------------------------------------------------------------
+
+shapes:SchemaShape a sh:NodeShape ;
+    sh:targetClass ds:Schema ;
+    rdfs:label "Schema Shape" ;
+    rdfs:comment "Validates schema definitions." ;
+
+    sh:property [
+        sh:path ds:hasField ;
+        sh:name "fields" ;
+        rdfs:comment "Fields in the schema." ;
+        sh:class ds:Field ;
+        sh:node shapes:FieldShape ;
+        sh:severity sh:Warning ;
+        sh:message "Schema should have at least one field."
+    ] ;
+
+    sh:property [
+        sh:path ds:hasFieldGroup ;
+        sh:name "fieldGroups" ;
+        rdfs:comment "Logical field groups." ;
+        sh:class ds:FieldGroup ;
+        sh:severity sh:Info ;
+        sh:message "Consider organizing fields into groups."
+    ] .
+
+# -----------------------------------------------------------------------------
+# Field Shape
+# -----------------------------------------------------------------------------
+
+shapes:FieldShape a sh:NodeShape ;
+    sh:targetClass ds:Field ;
+    rdfs:label "Field Shape" ;
+    rdfs:comment "Validates field definitions within schemas." ;
+
+    sh:property [
+        sh:path ds:fieldName ;
+        sh:name "name" ;
+        rdfs:comment "Name of the field." ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:minLength 1 ;
+        sh:message "Field must have a name."
+    ] ;
+
+    sh:property [
+        sh:path ds:fieldType ;
+        sh:name "type" ;
+        rdfs:comment "Data type of the field." ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:in ( "string" "integer" "number" "boolean" "array" "object" "null" ) ;
+        sh:message "Field must have a valid type (string, integer, number, boolean, array, object, null)."
+    ] ;
+
+    sh:property [
+        sh:path ds:description ;
+        sh:name "description" ;
+        rdfs:comment "Description of the field's purpose." ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:minLength 10 ;
+        sh:severity sh:Warning ;
+        sh:message "Field should have a description (at least 10 characters)."
+    ] ;
+
+    sh:property [
+        sh:path ds:cardinality ;
+        sh:name "cardinality" ;
+        rdfs:comment "Field cardinality." ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:pattern "^([01]|[0-9]+)\\.\\.(1|\\*|[0-9]+)$|^1:[1N]$|^N:M$" ;
+        sh:severity sh:Info ;
+        sh:message "Cardinality should be in format '0..1', '1..1', '0..*', '1:1', '1:N', or 'N:M'."
+    ] ;
+
+    sh:property [
+        sh:path ds:required ;
+        sh:name "required" ;
+        rdfs:comment "Whether the field is required." ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:boolean ;
+        sh:severity sh:Info ;
+        sh:message "Consider specifying if field is required."
+    ] ;
+
+    sh:property [
+        sh:path ds:pattern ;
+        sh:name "pattern" ;
+        rdfs:comment "Regex pattern for validation." ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:severity sh:Info ;
+        sh:message "Consider providing a validation pattern."
+    ] ;
+
+    sh:property [
+        sh:path ds:example ;
+        sh:name "examples" ;
+        rdfs:comment "Example values." ;
+        sh:datatype xsd:string ;
+        sh:severity sh:Info ;
+        sh:message "Consider providing example values."
+    ] .
+
+# -----------------------------------------------------------------------------
+# Identifier Shape
+# -----------------------------------------------------------------------------
+
+shapes:IdentifierShape a sh:NodeShape ;
+    sh:targetClass ds:Identifier ;
+    rdfs:label "Identifier Shape" ;
+    rdfs:comment "Validates identifier type definitions." ;
+
+    sh:property [
+        sh:path ds:identifierName ;
+        sh:name "name" ;
+        rdfs:comment "Name of the identifier type." ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:message "Identifier must have a name."
+    ] ;
+
+    sh:property [
+        sh:path ds:identifierFormat ;
+        sh:name "format" ;
+        rdfs:comment "Description of the identifier format." ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:severity sh:Info ;
+        sh:message "Consider describing the identifier format."
+    ] ;
+
+    sh:property [
+        sh:path ds:pattern ;
+        sh:name "pattern" ;
+        rdfs:comment "Regex pattern for validation." ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:severity sh:Info ;
+        sh:message "Consider providing a validation pattern."
+    ] ;
+
+    sh:property [
+        sh:path ds:example ;
+        sh:name "examples" ;
+        rdfs:comment "Example identifiers." ;
+        sh:datatype xsd:string ;
+        sh:severity sh:Info ;
+        sh:message "Consider providing example identifiers."
+    ] .
+
+# -----------------------------------------------------------------------------
+# Cross-Reference Shape
+# -----------------------------------------------------------------------------
+
+shapes:CrossReferenceShape a sh:NodeShape ;
+    sh:targetClass ds:CrossReference ;
+    rdfs:label "Cross-Reference Shape" ;
+    rdfs:comment "Validates cross-reference definitions between sources." ;
+
+    sh:property [
+        sh:path ds:referencesSource ;
+        sh:name "targetSource" ;
+        rdfs:comment "The target data source being referenced." ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class ds:DataSource ;
+        sh:message "Cross-reference must specify target source."
+    ] ;
+
+    sh:property [
+        sh:path ds:coverageLevel ;
+        sh:name "coverage" ;
+        rdfs:comment "Qualitative coverage level." ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:in ( "high" "medium" "low" ) ;
+        sh:severity sh:Info ;
+        sh:message "Coverage should be 'high', 'medium', or 'low'."
+    ] ;
+
+    sh:property [
+        sh:path ds:coveragePercentage ;
+        sh:name "coveragePercent" ;
+        rdfs:comment "Percentage of records with this cross-reference." ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0 ;
+        sh:maxInclusive 100 ;
+        sh:severity sh:Info ;
+        sh:message "Coverage percentage must be between 0 and 100."
+    ] .
+
+# -----------------------------------------------------------------------------
+# Maintainer Shape
+# -----------------------------------------------------------------------------
+
+shapes:MaintainerShape a sh:NodeShape ;
+    sh:targetClass ds:Maintainer ;
+    rdfs:label "Maintainer Shape" ;
+    rdfs:comment "Validates maintainer/organization information." ;
+
+    sh:property [
+        sh:path ds:title ;
+        sh:name "name" ;
+        rdfs:comment "Organization name." ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:message "Maintainer must have a name."
+    ] ;
+
+    sh:property [
+        sh:path ds:website ;
+        sh:name "website" ;
+        rdfs:comment "Organization website." ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:anyURI ;
+        sh:pattern "^https?://" ;
+        sh:severity sh:Info ;
+        sh:message "Consider providing organization website."
+    ] .
+
+# -----------------------------------------------------------------------------
+# Use Case Shape
+# -----------------------------------------------------------------------------
+
+shapes:UseCaseShape a sh:NodeShape ;
+    sh:targetClass ds:UseCase ;
+    rdfs:label "Use Case Shape" ;
+    rdfs:comment "Validates use case descriptions." ;
+
+    sh:property [
+        sh:path ds:description ;
+        sh:name "description" ;
+        rdfs:comment "Description of the use case." ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:minLength 10 ;
+        sh:message "Use case must have a description (at least 10 characters)."
+    ] .
+
+# -----------------------------------------------------------------------------
+# Limitation Shape
+# -----------------------------------------------------------------------------
+
+shapes:LimitationShape a sh:NodeShape ;
+    sh:targetClass ds:Limitation ;
+    rdfs:label "Limitation Shape" ;
+    rdfs:comment "Validates limitation descriptions." ;
+
+    sh:property [
+        sh:path ds:description ;
+        sh:name "description" ;
+        rdfs:comment "Description of the limitation." ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:minLength 10 ;
+        sh:message "Limitation must have a description (at least 10 characters)."
+    ] .
+
+# =============================================================================
+# SPARQL-BASED CONSTRAINTS
+# =============================================================================
+
+shapes:DataSourceShape sh:sparql [
+    sh:message "Data source must have at least one version OR be in draft status." ;
+    sh:severity sh:Warning ;
+    sh:select """
+        PREFIX ds: <https://gene.example.org/ontology/datasource#>
+        PREFIX tax: <https://gene.example.org/taxonomy/>
+
+        SELECT $this
+        WHERE {
+            $this a ds:DataSource .
+            FILTER NOT EXISTS { $this ds:hasVersion ?version }
+            FILTER NOT EXISTS { $this ds:status tax:Draft }
+        }
+    """
+] .
+
+shapes:DataSourceShape sh:sparql [
+    sh:message "Active data source should have license information." ;
+    sh:severity sh:Warning ;
+    sh:select """
+        PREFIX ds: <https://gene.example.org/ontology/datasource#>
+        PREFIX tax: <https://gene.example.org/taxonomy/>
+
+        SELECT $this
+        WHERE {
+            $this a ds:DataSource ;
+                  ds:status tax:Active .
+            FILTER NOT EXISTS { $this ds:hasLicense ?license }
+        }
+    """
+] .
+
+shapes:SubcategoryShape sh:sparql [
+    sh:message "Subcategory must have at least one data source." ;
+    sh:severity sh:Info ;
+    sh:select """
+        PREFIX ds: <https://gene.example.org/ontology/datasource#>
+
+        SELECT $this
+        WHERE {
+            $this a ds:Subcategory .
+            FILTER NOT EXISTS {
+                ?source ds:belongsToSubcategory $this
+            }
+        }
+    """
+] .

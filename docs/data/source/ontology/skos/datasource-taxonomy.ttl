@@ -1,0 +1,936 @@
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix tax: <https://gene.example.org/taxonomy/> .
+
+# =============================================================================
+# Gene Data Source Taxonomy - SKOS Concept Scheme
+# =============================================================================
+# A hierarchical classification system for biomedical data sources.
+# Structure: Category > Subcategory > Source (3 levels)
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Concept Scheme Definition
+# -----------------------------------------------------------------------------
+
+tax:DataSourceTaxonomy a skos:ConceptScheme ;
+    skos:prefLabel "Gene Data Source Taxonomy" ;
+    rdfs:comment "A hierarchical classification of biomedical data sources organized by domain, subdomain, and individual source." ;
+    dct:created "2026-01-25"^^xsd:date ;
+    dct:creator "Kurt Cagle" ;
+    skos:hasTopConcept
+        tax:GeneticsGenomics ,
+        tax:CompoundsMolecules ,
+        tax:DiseasesPhenotypes ,
+        tax:PathwaysNetworks ,
+        tax:TraditionalMedicine ,
+        tax:NutritionFood ,
+        tax:ProteinsMolecularBiology ,
+        tax:LiteratureKnowledge ,
+        tax:Microbiome .
+
+# =============================================================================
+# TOP-LEVEL CATEGORIES (Level 1)
+# =============================================================================
+
+tax:GeneticsGenomics a skos:Concept ;
+    skos:prefLabel "Genetics and Genomics" ;
+    skos:altLabel "01.genetics.genomics" ;
+    skos:notation "01" ;
+    rdfs:comment "Data sources covering genetic variants, population genetics, pharmacogenomics, and gene expression." ;
+    skos:inScheme tax:DataSourceTaxonomy ;
+    skos:topConceptOf tax:DataSourceTaxonomy ;
+    skos:narrower
+        tax:VariantRepositories ,
+        tax:FunctionalPrediction ,
+        tax:PopulationGenetics ,
+        tax:Pharmacogenomics ,
+        tax:ExpressionRegulation ,
+        tax:CancerGenomics .
+
+tax:CompoundsMolecules a skos:Concept ;
+    skos:prefLabel "Compounds and Molecules" ;
+    skos:altLabel "02.compounds.molecules" ;
+    skos:notation "02" ;
+    rdfs:comment "Chemical compound databases including natural products, pharmaceuticals, and drug metabolism data." ;
+    skos:inScheme tax:DataSourceTaxonomy ;
+    skos:topConceptOf tax:DataSourceTaxonomy ;
+    skos:narrower
+        tax:NaturalProducts ,
+        tax:Pharmaceuticals ,
+        tax:TraditionalMedicineCompounds ,
+        tax:FoodCompoundsNutrients ,
+        tax:DrugMetabolism ,
+        tax:ChemicalOntology ,
+        tax:CompoundTargetInteractions .
+
+tax:DiseasesPhenotypes a skos:Concept ;
+    skos:prefLabel "Diseases and Phenotypes" ;
+    skos:altLabel "03.diseases.phenotypes" ;
+    skos:notation "03" ;
+    rdfs:comment "Disease ontologies, phenotype databases, and gene-disease associations." ;
+    skos:inScheme tax:DataSourceTaxonomy ;
+    skos:topConceptOf tax:DataSourceTaxonomy ;
+    skos:narrower
+        tax:DiseaseOntologies ,
+        tax:PhenotypeDatabases ,
+        tax:DiseaseGeneAssociations ,
+        tax:CancerOncology ,
+        tax:RareOrphanDiseases ,
+        tax:AutoimmuneInflammatory ,
+        tax:MentalHealthNeurological .
+
+tax:PathwaysNetworks a skos:Concept ;
+    skos:prefLabel "Pathways and Networks" ;
+    skos:altLabel "04.pathways.networks" ;
+    skos:notation "04" ;
+    rdfs:comment "Metabolic and signaling pathways, protein interactions, and regulatory networks." ;
+    skos:inScheme tax:DataSourceTaxonomy ;
+    skos:topConceptOf tax:DataSourceTaxonomy ;
+    skos:narrower
+        tax:MetabolicPathways ,
+        tax:SignalingPathways ,
+        tax:ProteinProteinInteractions ,
+        tax:DrugTargetInteractions ,
+        tax:GeneFunctionOntology ,
+        tax:RegulatoryNetworks .
+
+tax:TraditionalMedicine a skos:Concept ;
+    skos:prefLabel "Traditional Medicine" ;
+    skos:altLabel "05.traditional.medicine" ;
+    skos:notation "05" ;
+    rdfs:comment "Traditional medicine systems including TCM, Ayurveda, and herbal medicine databases." ;
+    skos:inScheme tax:DataSourceTaxonomy ;
+    skos:topConceptOf tax:DataSourceTaxonomy ;
+    skos:narrower
+        tax:TraditionalChineseMedicine ,
+        tax:SouthEastAsianSystems ,
+        tax:WesternGlobalHerbal ,
+        tax:MultiSystemIntegration .
+
+tax:NutritionFood a skos:Concept ;
+    skos:prefLabel "Nutrition and Food" ;
+    skos:altLabel "06.nutrition.food" ;
+    skos:notation "06" ;
+    rdfs:comment "Food composition databases, dietary supplements, and metabolomics data." ;
+    skos:inScheme tax:DataSourceTaxonomy ;
+    skos:topConceptOf tax:DataSourceTaxonomy ;
+    skos:narrower
+        tax:FoodComposition ,
+        tax:DietarySupplements ,
+        tax:BioactiveFoodCompounds ,
+        tax:Metabolomics .
+
+tax:ProteinsMolecularBiology a skos:Concept ;
+    skos:prefLabel "Proteins and Molecular Biology" ;
+    skos:altLabel "07.proteins.molecular.biology" ;
+    skos:notation "07" ;
+    rdfs:comment "Protein sequences, structures, and molecular interaction databases." ;
+    skos:inScheme tax:DataSourceTaxonomy ;
+    skos:topConceptOf tax:DataSourceTaxonomy ;
+    skos:narrower
+        tax:ProteinSequencesAnnotations ,
+        tax:ProteinStructures ,
+        tax:MolecularInteractions .
+
+tax:LiteratureKnowledge a skos:Concept ;
+    skos:prefLabel "Literature and Knowledge" ;
+    skos:altLabel "08.literature.knowledge" ;
+    skos:notation "08" ;
+    rdfs:comment "Scientific literature, knowledge bases, and identifier mapping services." ;
+    skos:inScheme tax:DataSourceTaxonomy ;
+    skos:topConceptOf tax:DataSourceTaxonomy ;
+    skos:narrower
+        tax:ScientificLiterature ,
+        tax:KnowledgeBases ,
+        tax:IdentifierMapping ,
+        tax:RegulatoryLegal .
+
+tax:Microbiome a skos:Concept ;
+    skos:prefLabel "Microbiome" ;
+    skos:altLabel "09.microbiome" ;
+    skos:notation "09" ;
+    rdfs:comment "Microbiome databases covering gut, body site, and host interactions." ;
+    skos:inScheme tax:DataSourceTaxonomy ;
+    skos:topConceptOf tax:DataSourceTaxonomy ;
+    skos:narrower
+        tax:GutMicrobiome ,
+        tax:BodySiteMicrobiomes ,
+        tax:MicrobeHostInteractions .
+
+# =============================================================================
+# SUBCATEGORIES (Level 2) - Genetics & Genomics
+# =============================================================================
+
+tax:VariantRepositories a skos:Concept ;
+    skos:prefLabel "Variant Repositories" ;
+    skos:altLabel "1.1.variant.repositories" ;
+    skos:notation "1.1" ;
+    rdfs:comment "Databases storing genetic variants including SNPs, indels, and structural variants." ;
+    skos:inScheme tax:DataSourceTaxonomy ;
+    skos:broader tax:GeneticsGenomics .
+
+tax:FunctionalPrediction a skos:Concept ;
+    skos:prefLabel "Functional Prediction" ;
+    skos:altLabel "1.2.functional.prediction" ;
+    skos:notation "1.2" ;
+    rdfs:comment "Tools and databases for predicting functional impact of genetic variants." ;
+    skos:inScheme tax:DataSourceTaxonomy ;
+    skos:broader tax:GeneticsGenomics .
+
+tax:PopulationGenetics a skos:Concept ;
+    skos:prefLabel "Population Genetics" ;
+    skos:altLabel "1.3.population.genetics" ;
+    skos:notation "1.3" ;
+    rdfs:comment "Allele frequency databases and population stratification resources." ;
+    skos:inScheme tax:DataSourceTaxonomy ;
+    skos:broader tax:GeneticsGenomics .
+
+tax:Pharmacogenomics a skos:Concept ;
+    skos:prefLabel "Pharmacogenomics" ;
+    skos:altLabel "1.4.pharmacogenomics" ;
+    skos:notation "1.4" ;
+    rdfs:comment "Gene-drug interaction databases and pharmacogenetic guidelines." ;
+    skos:inScheme tax:DataSourceTaxonomy ;
+    skos:broader tax:GeneticsGenomics .
+
+tax:ExpressionRegulation a skos:Concept ;
+    skos:prefLabel "Expression and Regulation" ;
+    skos:altLabel "1.5.expression.regulation" ;
+    skos:notation "1.5" ;
+    rdfs:comment "Gene expression, eQTL, and regulatory element databases." ;
+    skos:inScheme tax:DataSourceTaxonomy ;
+    skos:broader tax:GeneticsGenomics .
+
+tax:CancerGenomics a skos:Concept ;
+    skos:prefLabel "Cancer Genomics" ;
+    skos:altLabel "1.6.cancer.genomics" ;
+    skos:notation "1.6" ;
+    rdfs:comment "Cancer-specific variant and mutation databases." ;
+    skos:inScheme tax:DataSourceTaxonomy ;
+    skos:broader tax:GeneticsGenomics .
+
+# =============================================================================
+# SUBCATEGORIES (Level 2) - Compounds & Molecules
+# =============================================================================
+
+tax:NaturalProducts a skos:Concept ;
+    skos:prefLabel "Natural Products" ;
+    skos:altLabel "2.1.natural.products" ;
+    skos:notation "2.1" ;
+    rdfs:comment "Natural product compound databases from plants, fungi, and marine organisms." ;
+    skos:inScheme tax:DataSourceTaxonomy ;
+    skos:broader tax:CompoundsMolecules .
+
+tax:Pharmaceuticals a skos:Concept ;
+    skos:prefLabel "Pharmaceuticals" ;
+    skos:altLabel "2.2.pharmaceuticals" ;
+    skos:notation "2.2" ;
+    rdfs:comment "Drug databases including approved and investigational compounds." ;
+    skos:inScheme tax:DataSourceTaxonomy ;
+    skos:broader tax:CompoundsMolecules .
+
+tax:TraditionalMedicineCompounds a skos:Concept ;
+    skos:prefLabel "Traditional Medicine Compounds" ;
+    skos:altLabel "2.3.traditional.medicine.compounds" ;
+    skos:notation "2.3" ;
+    rdfs:comment "Compounds from traditional medicine systems." ;
+    skos:inScheme tax:DataSourceTaxonomy ;
+    skos:broader tax:CompoundsMolecules .
+
+tax:FoodCompoundsNutrients a skos:Concept ;
+    skos:prefLabel "Food Compounds and Nutrients" ;
+    skos:altLabel "2.4.food.compounds.nutrients" ;
+    skos:notation "2.4" ;
+    rdfs:comment "Nutritional compounds and food-derived bioactive molecules." ;
+    skos:inScheme tax:DataSourceTaxonomy ;
+    skos:broader tax:CompoundsMolecules .
+
+tax:DrugMetabolism a skos:Concept ;
+    skos:prefLabel "Drug Metabolism and Pharmacokinetics" ;
+    skos:altLabel "2.5.drug.metabolism.pharmacokinetics" ;
+    skos:notation "2.5" ;
+    rdfs:comment "ADMET properties and drug metabolism pathways." ;
+    skos:inScheme tax:DataSourceTaxonomy ;
+    skos:broader tax:CompoundsMolecules .
+
+tax:ChemicalOntology a skos:Concept ;
+    skos:prefLabel "Chemical Ontology and Classification" ;
+    skos:altLabel "2.6.chemical.ontology.classification" ;
+    skos:notation "2.6" ;
+    rdfs:comment "Chemical structure classification and ontology systems." ;
+    skos:inScheme tax:DataSourceTaxonomy ;
+    skos:broader tax:CompoundsMolecules .
+
+tax:CompoundTargetInteractions a skos:Concept ;
+    skos:prefLabel "Compound-Target Interactions" ;
+    skos:altLabel "2.7.compound.target.interactions" ;
+    skos:notation "2.7" ;
+    rdfs:comment "Drug-target binding and interaction databases." ;
+    skos:inScheme tax:DataSourceTaxonomy ;
+    skos:broader tax:CompoundsMolecules .
+
+# =============================================================================
+# SUBCATEGORIES (Level 2) - Diseases & Phenotypes
+# =============================================================================
+
+tax:DiseaseOntologies a skos:Concept ;
+    skos:prefLabel "Disease Ontologies" ;
+    skos:altLabel "3.1.disease.ontologies" ;
+    skos:notation "3.1" ;
+    rdfs:comment "Formal disease classification and ontology systems." ;
+    skos:inScheme tax:DataSourceTaxonomy ;
+    skos:broader tax:DiseasesPhenotypes .
+
+tax:PhenotypeDatabases a skos:Concept ;
+    skos:prefLabel "Phenotype Databases" ;
+    skos:altLabel "3.2.phenotype.databases" ;
+    skos:notation "3.2" ;
+    rdfs:comment "Human and model organism phenotype databases." ;
+    skos:inScheme tax:DataSourceTaxonomy ;
+    skos:broader tax:DiseasesPhenotypes .
+
+tax:DiseaseGeneAssociations a skos:Concept ;
+    skos:prefLabel "Disease-Gene Associations" ;
+    skos:altLabel "3.3.disease.gene.associations" ;
+    skos:notation "3.3" ;
+    rdfs:comment "Gene-disease relationship databases." ;
+    skos:inScheme tax:DataSourceTaxonomy ;
+    skos:broader tax:DiseasesPhenotypes .
+
+tax:CancerOncology a skos:Concept ;
+    skos:prefLabel "Cancer and Oncology" ;
+    skos:altLabel "3.4.cancer.oncology" ;
+    skos:notation "3.4" ;
+    rdfs:comment "Cancer-specific disease and therapeutic databases." ;
+    skos:inScheme tax:DataSourceTaxonomy ;
+    skos:broader tax:DiseasesPhenotypes .
+
+tax:RareOrphanDiseases a skos:Concept ;
+    skos:prefLabel "Rare and Orphan Diseases" ;
+    skos:altLabel "3.5.rare.orphan.diseases" ;
+    skos:notation "3.5" ;
+    rdfs:comment "Rare disease databases and orphan drug information." ;
+    skos:inScheme tax:DataSourceTaxonomy ;
+    skos:broader tax:DiseasesPhenotypes .
+
+tax:AutoimmuneInflammatory a skos:Concept ;
+    skos:prefLabel "Autoimmune and Inflammatory" ;
+    skos:altLabel "3.6.autoimmune.inflammatory" ;
+    skos:notation "3.6" ;
+    rdfs:comment "Autoimmune and inflammatory disease databases." ;
+    skos:inScheme tax:DataSourceTaxonomy ;
+    skos:broader tax:DiseasesPhenotypes .
+
+tax:MentalHealthNeurological a skos:Concept ;
+    skos:prefLabel "Mental Health and Neurological" ;
+    skos:altLabel "3.7.mental.health.neurological" ;
+    skos:notation "3.7" ;
+    rdfs:comment "Neurological and mental health disorder databases." ;
+    skos:inScheme tax:DataSourceTaxonomy ;
+    skos:broader tax:DiseasesPhenotypes .
+
+# =============================================================================
+# SUBCATEGORIES (Level 2) - Pathways & Networks
+# =============================================================================
+
+tax:MetabolicPathways a skos:Concept ;
+    skos:prefLabel "Metabolic Pathways" ;
+    skos:altLabel "4.1.metabolic.pathways" ;
+    skos:notation "4.1" ;
+    rdfs:comment "Metabolic pathway databases and enzyme catalogs." ;
+    skos:inScheme tax:DataSourceTaxonomy ;
+    skos:broader tax:PathwaysNetworks .
+
+tax:SignalingPathways a skos:Concept ;
+    skos:prefLabel "Signaling Pathways" ;
+    skos:altLabel "4.2.signaling.pathways" ;
+    skos:notation "4.2" ;
+    rdfs:comment "Cell signaling and signal transduction pathway databases." ;
+    skos:inScheme tax:DataSourceTaxonomy ;
+    skos:broader tax:PathwaysNetworks .
+
+tax:ProteinProteinInteractions a skos:Concept ;
+    skos:prefLabel "Protein-Protein Interactions" ;
+    skos:altLabel "4.3.protein.protein.interactions" ;
+    skos:notation "4.3" ;
+    rdfs:comment "Physical and functional protein interaction databases." ;
+    skos:inScheme tax:DataSourceTaxonomy ;
+    skos:broader tax:PathwaysNetworks .
+
+tax:DrugTargetInteractions a skos:Concept ;
+    skos:prefLabel "Drug-Target Interactions" ;
+    skos:altLabel "4.4.drug.target.interactions" ;
+    skos:notation "4.4" ;
+    rdfs:comment "Drug-target binding and pharmacology databases." ;
+    skos:inScheme tax:DataSourceTaxonomy ;
+    skos:broader tax:PathwaysNetworks .
+
+tax:GeneFunctionOntology a skos:Concept ;
+    skos:prefLabel "Gene Function Ontology" ;
+    skos:altLabel "4.5.gene.function.ontology" ;
+    skos:notation "4.5" ;
+    rdfs:comment "Gene ontology and functional annotation databases." ;
+    skos:inScheme tax:DataSourceTaxonomy ;
+    skos:broader tax:PathwaysNetworks .
+
+tax:RegulatoryNetworks a skos:Concept ;
+    skos:prefLabel "Regulatory Networks" ;
+    skos:altLabel "4.6.regulatory.networks" ;
+    skos:notation "4.6" ;
+    rdfs:comment "Transcription factor and gene regulatory network databases." ;
+    skos:inScheme tax:DataSourceTaxonomy ;
+    skos:broader tax:PathwaysNetworks .
+
+# =============================================================================
+# SUBCATEGORIES (Level 2) - Traditional Medicine
+# =============================================================================
+
+tax:TraditionalChineseMedicine a skos:Concept ;
+    skos:prefLabel "Traditional Chinese Medicine" ;
+    skos:altLabel "5.1.traditional.chinese.medicine" ;
+    skos:notation "5.1" ;
+    rdfs:comment "TCM herb, formula, and compound databases." ;
+    skos:inScheme tax:DataSourceTaxonomy ;
+    skos:broader tax:TraditionalMedicine .
+
+tax:SouthEastAsianSystems a skos:Concept ;
+    skos:prefLabel "South and East Asian Systems" ;
+    skos:altLabel "5.2.south.east.asian.systems" ;
+    skos:notation "5.2" ;
+    rdfs:comment "Ayurveda, Kampo, and other Asian medicine systems." ;
+    skos:inScheme tax:DataSourceTaxonomy ;
+    skos:broader tax:TraditionalMedicine .
+
+tax:WesternGlobalHerbal a skos:Concept ;
+    skos:prefLabel "Western and Global Herbal" ;
+    skos:altLabel "5.3.western.global.herbal" ;
+    skos:notation "5.3" ;
+    rdfs:comment "Western herbal medicine and ethnobotany databases." ;
+    skos:inScheme tax:DataSourceTaxonomy ;
+    skos:broader tax:TraditionalMedicine .
+
+tax:MultiSystemIntegration a skos:Concept ;
+    skos:prefLabel "Multi-System Integration" ;
+    skos:altLabel "5.4.multi.system.integration" ;
+    skos:notation "5.4" ;
+    rdfs:comment "Cross-system traditional medicine integration databases." ;
+    skos:inScheme tax:DataSourceTaxonomy ;
+    skos:broader tax:TraditionalMedicine .
+
+# =============================================================================
+# SUBCATEGORIES (Level 2) - Nutrition & Food
+# =============================================================================
+
+tax:FoodComposition a skos:Concept ;
+    skos:prefLabel "Food Composition" ;
+    skos:altLabel "6.1.food.composition" ;
+    skos:notation "6.1" ;
+    rdfs:comment "Food nutrient composition databases." ;
+    skos:inScheme tax:DataSourceTaxonomy ;
+    skos:broader tax:NutritionFood .
+
+tax:DietarySupplements a skos:Concept ;
+    skos:prefLabel "Dietary Supplements" ;
+    skos:altLabel "6.2.dietary.supplements" ;
+    skos:notation "6.2" ;
+    rdfs:comment "Supplement ingredient and efficacy databases." ;
+    skos:inScheme tax:DataSourceTaxonomy ;
+    skos:broader tax:NutritionFood .
+
+tax:BioactiveFoodCompounds a skos:Concept ;
+    skos:prefLabel "Bioactive Food Compounds" ;
+    skos:altLabel "6.3.bioactive.food.compounds" ;
+    skos:notation "6.3" ;
+    rdfs:comment "Food-derived bioactive compound databases." ;
+    skos:inScheme tax:DataSourceTaxonomy ;
+    skos:broader tax:NutritionFood .
+
+tax:Metabolomics a skos:Concept ;
+    skos:prefLabel "Metabolomics" ;
+    skos:altLabel "6.4.metabolomics" ;
+    skos:notation "6.4" ;
+    rdfs:comment "Metabolome databases and metabolite profiling resources." ;
+    skos:inScheme tax:DataSourceTaxonomy ;
+    skos:broader tax:NutritionFood .
+
+# =============================================================================
+# SUBCATEGORIES (Level 2) - Proteins & Molecular Biology
+# =============================================================================
+
+tax:ProteinSequencesAnnotations a skos:Concept ;
+    skos:prefLabel "Protein Sequences and Annotations" ;
+    skos:altLabel "7.1.protein.sequences.annotations" ;
+    skos:notation "7.1" ;
+    rdfs:comment "Protein sequence and functional annotation databases." ;
+    skos:inScheme tax:DataSourceTaxonomy ;
+    skos:broader tax:ProteinsMolecularBiology .
+
+tax:ProteinStructures a skos:Concept ;
+    skos:prefLabel "Protein Structures" ;
+    skos:altLabel "7.2.protein.structures" ;
+    skos:notation "7.2" ;
+    rdfs:comment "Protein 3D structure and modeling databases." ;
+    skos:inScheme tax:DataSourceTaxonomy ;
+    skos:broader tax:ProteinsMolecularBiology .
+
+tax:MolecularInteractions a skos:Concept ;
+    skos:prefLabel "Molecular Interactions" ;
+    skos:altLabel "7.3.molecular.interactions" ;
+    skos:notation "7.3" ;
+    rdfs:comment "Protein-ligand and molecular interaction databases." ;
+    skos:inScheme tax:DataSourceTaxonomy ;
+    skos:broader tax:ProteinsMolecularBiology .
+
+# =============================================================================
+# SUBCATEGORIES (Level 2) - Literature & Knowledge
+# =============================================================================
+
+tax:ScientificLiterature a skos:Concept ;
+    skos:prefLabel "Scientific Literature" ;
+    skos:altLabel "8.1.scientific.literature" ;
+    skos:notation "8.1" ;
+    rdfs:comment "Biomedical literature databases and search services." ;
+    skos:inScheme tax:DataSourceTaxonomy ;
+    skos:broader tax:LiteratureKnowledge .
+
+tax:KnowledgeBases a skos:Concept ;
+    skos:prefLabel "Knowledge Bases" ;
+    skos:altLabel "8.2.knowledge.bases" ;
+    skos:notation "8.2" ;
+    rdfs:comment "Curated knowledge bases and encyclopedias." ;
+    skos:inScheme tax:DataSourceTaxonomy ;
+    skos:broader tax:LiteratureKnowledge .
+
+tax:IdentifierMapping a skos:Concept ;
+    skos:prefLabel "Identifier Mapping" ;
+    skos:altLabel "8.3.identifier.mapping" ;
+    skos:notation "8.3" ;
+    rdfs:comment "Cross-reference and identifier mapping services." ;
+    skos:inScheme tax:DataSourceTaxonomy ;
+    skos:broader tax:LiteratureKnowledge .
+
+tax:RegulatoryLegal a skos:Concept ;
+    skos:prefLabel "Regulatory and Legal" ;
+    skos:altLabel "8.4.regulatory.legal" ;
+    skos:notation "8.4" ;
+    rdfs:comment "Regulatory databases and clinical trial registries." ;
+    skos:inScheme tax:DataSourceTaxonomy ;
+    skos:broader tax:LiteratureKnowledge .
+
+# =============================================================================
+# SUBCATEGORIES (Level 2) - Microbiome
+# =============================================================================
+
+tax:GutMicrobiome a skos:Concept ;
+    skos:prefLabel "Gut Microbiome" ;
+    skos:altLabel "9.1.gut.microbiome" ;
+    skos:notation "9.1" ;
+    rdfs:comment "Gut microbiome composition and function databases." ;
+    skos:inScheme tax:DataSourceTaxonomy ;
+    skos:broader tax:Microbiome .
+
+tax:BodySiteMicrobiomes a skos:Concept ;
+    skos:prefLabel "Body Site Microbiomes" ;
+    skos:altLabel "9.2.body.site.microbiomes" ;
+    skos:notation "9.2" ;
+    rdfs:comment "Oral, skin, and other body site microbiome databases." ;
+    skos:inScheme tax:DataSourceTaxonomy ;
+    skos:broader tax:Microbiome .
+
+tax:MicrobeHostInteractions a skos:Concept ;
+    skos:prefLabel "Microbe-Host Interactions" ;
+    skos:altLabel "9.3.microbe.host.interactions" ;
+    skos:notation "9.3" ;
+    rdfs:comment "Host-microbiome interaction and metabolite databases." ;
+    skos:inScheme tax:DataSourceTaxonomy ;
+    skos:broader tax:Microbiome .
+
+# =============================================================================
+# AUXILIARY CONCEPT SCHEMES
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Tier Classification Scheme
+# -----------------------------------------------------------------------------
+
+tax:TierScheme a skos:ConceptScheme ;
+    skos:prefLabel "Data Source Tier Classification" ;
+    rdfs:comment "Quality and priority tiers for data sources based on coverage, reliability, and utility." ;
+    skos:hasTopConcept tax:Tier1 , tax:Tier2 , tax:Tier3 .
+
+tax:Tier1 a skos:Concept ;
+    skos:prefLabel "Tier 1 - Primary" ;
+    skos:altLabel "1" ;
+    skos:notation "1" ;
+    rdfs:comment "Primary authoritative sources with comprehensive coverage, high reliability, and frequent updates. Essential for most use cases." ;
+    skos:inScheme tax:TierScheme ;
+    skos:topConceptOf tax:TierScheme .
+
+tax:Tier2 a skos:Concept ;
+    skos:prefLabel "Tier 2 - Secondary" ;
+    skos:altLabel "2" ;
+    skos:notation "2" ;
+    rdfs:comment "Valuable supplementary sources with good coverage in specific domains. Useful for enrichment and validation." ;
+    skos:inScheme tax:TierScheme ;
+    skos:topConceptOf tax:TierScheme .
+
+tax:Tier3 a skos:Concept ;
+    skos:prefLabel "Tier 3 - Specialized" ;
+    skos:altLabel "3" ;
+    skos:notation "3" ;
+    rdfs:comment "Specialized or niche sources with limited scope but unique data. Useful for specific research questions." ;
+    skos:inScheme tax:TierScheme ;
+    skos:topConceptOf tax:TierScheme .
+
+# -----------------------------------------------------------------------------
+# Status Scheme
+# -----------------------------------------------------------------------------
+
+tax:StatusScheme a skos:ConceptScheme ;
+    skos:prefLabel "Data Source Status" ;
+    rdfs:comment "Lifecycle status indicators for data source documentation." ;
+    skos:hasTopConcept tax:Draft , tax:Active , tax:Deprecated .
+
+tax:Draft a skos:Concept ;
+    skos:prefLabel "Draft" ;
+    skos:notation "draft" ;
+    rdfs:comment "Documentation is incomplete or under review. Data may not be fully validated." ;
+    skos:inScheme tax:StatusScheme ;
+    skos:topConceptOf tax:StatusScheme .
+
+tax:Active a skos:Concept ;
+    skos:prefLabel "Active" ;
+    skos:notation "active" ;
+    rdfs:comment "Documentation is complete and validated. Data source is recommended for use." ;
+    skos:inScheme tax:StatusScheme ;
+    skos:topConceptOf tax:StatusScheme .
+
+tax:Deprecated a skos:Concept ;
+    skos:prefLabel "Deprecated" ;
+    skos:notation "deprecated" ;
+    rdfs:comment "Data source is no longer recommended. May be superseded or discontinued." ;
+    skos:inScheme tax:StatusScheme ;
+    skos:topConceptOf tax:StatusScheme .
+
+# -----------------------------------------------------------------------------
+# Access Method Scheme
+# -----------------------------------------------------------------------------
+
+tax:AccessMethodScheme a skos:ConceptScheme ;
+    skos:prefLabel "Data Access Methods" ;
+    rdfs:comment "Available methods for accessing data from sources." ;
+    skos:hasTopConcept
+        tax:RestApi ,
+        tax:SparqlEndpoint ,
+        tax:GraphqlApi ,
+        tax:FtpDownload ,
+        tax:S3Download ,
+        tax:RsyncDownload ,
+        tax:DirectDownload ,
+        tax:WebScraping .
+
+tax:RestApi a skos:Concept ;
+    skos:prefLabel "REST API" ;
+    skos:altLabel "RESTful API" , "Web API" ;
+    skos:notation "rest-api" ;
+    rdfs:comment "RESTful web service interface for programmatic access." ;
+    skos:inScheme tax:AccessMethodScheme ;
+    skos:topConceptOf tax:AccessMethodScheme .
+
+tax:SparqlEndpoint a skos:Concept ;
+    skos:prefLabel "SPARQL Endpoint" ;
+    skos:altLabel "SPARQL" ;
+    skos:notation "sparql" ;
+    rdfs:comment "SPARQL query endpoint for RDF data access." ;
+    skos:inScheme tax:AccessMethodScheme ;
+    skos:topConceptOf tax:AccessMethodScheme .
+
+tax:GraphqlApi a skos:Concept ;
+    skos:prefLabel "GraphQL API" ;
+    skos:altLabel "GraphQL" ;
+    skos:notation "graphql" ;
+    rdfs:comment "GraphQL query interface for flexible data retrieval." ;
+    skos:inScheme tax:AccessMethodScheme ;
+    skos:topConceptOf tax:AccessMethodScheme .
+
+tax:FtpDownload a skos:Concept ;
+    skos:prefLabel "FTP Download" ;
+    skos:altLabel "FTP" , "Bulk FTP" ;
+    skos:notation "ftp" ;
+    rdfs:comment "File Transfer Protocol for bulk data download." ;
+    skos:inScheme tax:AccessMethodScheme ;
+    skos:topConceptOf tax:AccessMethodScheme .
+
+tax:S3Download a skos:Concept ;
+    skos:prefLabel "AWS S3 Download" ;
+    skos:altLabel "S3" , "Amazon S3" ;
+    skos:notation "s3" ;
+    rdfs:comment "Amazon S3 bucket for cloud-based bulk download." ;
+    skos:inScheme tax:AccessMethodScheme ;
+    skos:topConceptOf tax:AccessMethodScheme .
+
+tax:RsyncDownload a skos:Concept ;
+    skos:prefLabel "Rsync Download" ;
+    skos:altLabel "rsync" ;
+    skos:notation "rsync" ;
+    rdfs:comment "Rsync protocol for incremental synchronization." ;
+    skos:inScheme tax:AccessMethodScheme ;
+    skos:topConceptOf tax:AccessMethodScheme .
+
+tax:DirectDownload a skos:Concept ;
+    skos:prefLabel "Direct Download" ;
+    skos:altLabel "HTTP Download" ;
+    skos:notation "direct" ;
+    rdfs:comment "Direct HTTP/HTTPS file download links." ;
+    skos:inScheme tax:AccessMethodScheme ;
+    skos:topConceptOf tax:AccessMethodScheme .
+
+tax:WebScraping a skos:Concept ;
+    skos:prefLabel "Web Scraping" ;
+    skos:altLabel "Scraping" ;
+    skos:notation "scraping" ;
+    rdfs:comment "Web scraping required due to lack of API (use with caution)." ;
+    skos:inScheme tax:AccessMethodScheme ;
+    skos:topConceptOf tax:AccessMethodScheme .
+
+# -----------------------------------------------------------------------------
+# Format Scheme
+# -----------------------------------------------------------------------------
+
+tax:FormatScheme a skos:ConceptScheme ;
+    skos:prefLabel "Data Formats" ;
+    rdfs:comment "File and data formats used by data sources." ;
+    skos:hasTopConcept
+        tax:JsonFormat ,
+        tax:XmlFormat ,
+        tax:CsvFormat ,
+        tax:TsvFormat ,
+        tax:RdfFormat ,
+        tax:VcfFormat ,
+        tax:FastaFormat ,
+        tax:GffFormat .
+
+tax:JsonFormat a skos:Concept ;
+    skos:prefLabel "JSON" ;
+    skos:altLabel "JavaScript Object Notation" ;
+    skos:notation "json" ;
+    rdfs:comment "JavaScript Object Notation format for structured data." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme .
+
+tax:XmlFormat a skos:Concept ;
+    skos:prefLabel "XML" ;
+    skos:altLabel "Extensible Markup Language" ;
+    skos:notation "xml" ;
+    rdfs:comment "Extensible Markup Language format." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme .
+
+tax:CsvFormat a skos:Concept ;
+    skos:prefLabel "CSV" ;
+    skos:altLabel "Comma-Separated Values" ;
+    skos:notation "csv" ;
+    rdfs:comment "Comma-separated values tabular format." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme .
+
+tax:TsvFormat a skos:Concept ;
+    skos:prefLabel "TSV" ;
+    skos:altLabel "Tab-Separated Values" ;
+    skos:notation "tsv" ;
+    rdfs:comment "Tab-separated values tabular format." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme .
+
+tax:RdfFormat a skos:Concept ;
+    skos:prefLabel "RDF" ;
+    skos:altLabel "Resource Description Framework" , "Turtle" , "N-Triples" , "RDF/XML" ;
+    skos:notation "rdf" ;
+    rdfs:comment "RDF formats including Turtle, N-Triples, and RDF/XML." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme .
+
+tax:VcfFormat a skos:Concept ;
+    skos:prefLabel "VCF" ;
+    skos:altLabel "Variant Call Format" ;
+    skos:notation "vcf" ;
+    rdfs:comment "Variant Call Format for genetic variant data." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme .
+
+tax:FastaFormat a skos:Concept ;
+    skos:prefLabel "FASTA" ;
+    skos:notation "fasta" ;
+    rdfs:comment "FASTA format for nucleotide or protein sequences." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme .
+
+tax:GffFormat a skos:Concept ;
+    skos:prefLabel "GFF/GTF" ;
+    skos:altLabel "General Feature Format" , "Gene Transfer Format" ;
+    skos:notation "gff" ;
+    rdfs:comment "General Feature Format for genomic annotations." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme .
+
+# -----------------------------------------------------------------------------
+# License Type Scheme
+# -----------------------------------------------------------------------------
+
+tax:LicenseTypeScheme a skos:ConceptScheme ;
+    skos:prefLabel "License Types" ;
+    rdfs:comment "Common license types for data sources." ;
+    skos:hasTopConcept
+        tax:PublicDomain ,
+        tax:OpenAccess ,
+        tax:CreativeCommons ,
+        tax:AcademicOnly ,
+        tax:CommercialRestricted ,
+        tax:Proprietary .
+
+tax:PublicDomain a skos:Concept ;
+    skos:prefLabel "Public Domain" ;
+    skos:altLabel "CC0" , "No Copyright" ;
+    skos:notation "public-domain" ;
+    rdfs:comment "No restrictions on use. Data is in the public domain." ;
+    skos:inScheme tax:LicenseTypeScheme ;
+    skos:topConceptOf tax:LicenseTypeScheme .
+
+tax:OpenAccess a skos:Concept ;
+    skos:prefLabel "Open Access" ;
+    skos:altLabel "Open Data" ;
+    skos:notation "open-access" ;
+    rdfs:comment "Open access with minimal restrictions, typically attribution required." ;
+    skos:inScheme tax:LicenseTypeScheme ;
+    skos:topConceptOf tax:LicenseTypeScheme .
+
+tax:CreativeCommons a skos:Concept ;
+    skos:prefLabel "Creative Commons" ;
+    skos:altLabel "CC" ;
+    skos:notation "cc" ;
+    rdfs:comment "Creative Commons licensed with various restriction levels (BY, NC, SA, ND)." ;
+    skos:inScheme tax:LicenseTypeScheme ;
+    skos:topConceptOf tax:LicenseTypeScheme ;
+    skos:narrower tax:CcBy , tax:CcByNc , tax:CcBySa , tax:CcByNcSa .
+
+tax:CcBy a skos:Concept ;
+    skos:prefLabel "CC BY" ;
+    skos:notation "cc-by" ;
+    rdfs:comment "Creative Commons Attribution - Commercial use allowed with attribution." ;
+    skos:inScheme tax:LicenseTypeScheme ;
+    skos:broader tax:CreativeCommons .
+
+tax:CcByNc a skos:Concept ;
+    skos:prefLabel "CC BY-NC" ;
+    skos:notation "cc-by-nc" ;
+    rdfs:comment "Creative Commons Attribution-NonCommercial - Non-commercial use only." ;
+    skos:inScheme tax:LicenseTypeScheme ;
+    skos:broader tax:CreativeCommons .
+
+tax:CcBySa a skos:Concept ;
+    skos:prefLabel "CC BY-SA" ;
+    skos:notation "cc-by-sa" ;
+    rdfs:comment "Creative Commons Attribution-ShareAlike - Derivatives must use same license." ;
+    skos:inScheme tax:LicenseTypeScheme ;
+    skos:broader tax:CreativeCommons .
+
+tax:CcByNcSa a skos:Concept ;
+    skos:prefLabel "CC BY-NC-SA" ;
+    skos:notation "cc-by-nc-sa" ;
+    rdfs:comment "Creative Commons Attribution-NonCommercial-ShareAlike." ;
+    skos:inScheme tax:LicenseTypeScheme ;
+    skos:broader tax:CreativeCommons .
+
+tax:AcademicOnly a skos:Concept ;
+    skos:prefLabel "Academic Use Only" ;
+    skos:altLabel "Research Only" , "Non-Commercial Research" ;
+    skos:notation "academic-only" ;
+    rdfs:comment "Restricted to academic and non-commercial research use." ;
+    skos:inScheme tax:LicenseTypeScheme ;
+    skos:topConceptOf tax:LicenseTypeScheme .
+
+tax:CommercialRestricted a skos:Concept ;
+    skos:prefLabel "Commercial Restricted" ;
+    skos:notation "commercial-restricted" ;
+    rdfs:comment "Commercial use requires separate license agreement." ;
+    skos:inScheme tax:LicenseTypeScheme ;
+    skos:topConceptOf tax:LicenseTypeScheme .
+
+tax:Proprietary a skos:Concept ;
+    skos:prefLabel "Proprietary" ;
+    skos:altLabel "Subscription" , "Licensed" ;
+    skos:notation "proprietary" ;
+    rdfs:comment "Proprietary data requiring subscription or license agreement." ;
+    skos:inScheme tax:LicenseTypeScheme ;
+    skos:topConceptOf tax:LicenseTypeScheme .
+
+# -----------------------------------------------------------------------------
+# Update Frequency Scheme
+# -----------------------------------------------------------------------------
+
+tax:UpdateFrequencyScheme a skos:ConceptScheme ;
+    skos:prefLabel "Update Frequencies" ;
+    rdfs:comment "How often data sources are updated." ;
+    skos:hasTopConcept
+        tax:Realtime ,
+        tax:Daily ,
+        tax:Weekly ,
+        tax:Monthly ,
+        tax:Quarterly ,
+        tax:Annually ,
+        tax:Irregular .
+
+tax:Realtime a skos:Concept ;
+    skos:prefLabel "Real-time" ;
+    skos:altLabel "Continuous" ;
+    skos:notation "realtime" ;
+    rdfs:comment "Continuously updated in real-time or near real-time." ;
+    skos:inScheme tax:UpdateFrequencyScheme ;
+    skos:topConceptOf tax:UpdateFrequencyScheme .
+
+tax:Daily a skos:Concept ;
+    skos:prefLabel "Daily" ;
+    skos:notation "daily" ;
+    rdfs:comment "Updated once per day." ;
+    skos:inScheme tax:UpdateFrequencyScheme ;
+    skos:topConceptOf tax:UpdateFrequencyScheme .
+
+tax:Weekly a skos:Concept ;
+    skos:prefLabel "Weekly" ;
+    skos:notation "weekly" ;
+    rdfs:comment "Updated once per week." ;
+    skos:inScheme tax:UpdateFrequencyScheme ;
+    skos:topConceptOf tax:UpdateFrequencyScheme .
+
+tax:Monthly a skos:Concept ;
+    skos:prefLabel "Monthly" ;
+    skos:notation "monthly" ;
+    rdfs:comment "Updated once per month." ;
+    skos:inScheme tax:UpdateFrequencyScheme ;
+    skos:topConceptOf tax:UpdateFrequencyScheme .
+
+tax:Quarterly a skos:Concept ;
+    skos:prefLabel "Quarterly" ;
+    skos:notation "quarterly" ;
+    rdfs:comment "Updated once per quarter (every 3 months)." ;
+    skos:inScheme tax:UpdateFrequencyScheme ;
+    skos:topConceptOf tax:UpdateFrequencyScheme .
+
+tax:Annually a skos:Concept ;
+    skos:prefLabel "Annually" ;
+    skos:altLabel "Yearly" ;
+    skos:notation "annually" ;
+    rdfs:comment "Updated once per year." ;
+    skos:inScheme tax:UpdateFrequencyScheme ;
+    skos:topConceptOf tax:UpdateFrequencyScheme .
+
+tax:Irregular a skos:Concept ;
+    skos:prefLabel "Irregular" ;
+    skos:altLabel "As Needed" , "Sporadic" ;
+    skos:notation "irregular" ;
+    rdfs:comment "Updated irregularly or as needed without fixed schedule." ;
+    skos:inScheme tax:UpdateFrequencyScheme ;
+    skos:topConceptOf tax:UpdateFrequencyScheme .

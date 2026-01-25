@@ -3,8 +3,8 @@ id: ontology-skos
 title: "SKOS Vocabularies"
 type: ontology
 parent: ../_index.md
-last_updated: 2026-01-23
-status: placeholder
+last_updated: 2026-01-25
+status: active
 tags: [skos, vocabulary, taxonomy, thesaurus, concepts]
 ---
 
@@ -21,36 +21,57 @@ SKOS (Simple Knowledge Organization System) concept schemes for taxonomies, cont
 - Support multilingual terminology
 - Enable faceted classification
 
-## Planned Files
+## Files
 
 | File | Description |
 |------|-------------|
-| `categories.skos.ttl` | 9-category data source classification |
-| `data-types.skos.ttl` | Data type vocabulary (API, bulk, SPARQL) |
-| `licenses.skos.ttl` | License classification scheme |
-| `domains.skos.ttl` | Health domain concepts |
+| [datasource-taxonomy.ttl](./datasource-taxonomy.ttl) | Complete data source taxonomy with 6 concept schemes |
 
-## Concept Scheme Structure
+## Concept Schemes
+
+### DataSourceTaxonomy
+
+Main 3-level hierarchy: Category > Subcategory > Source
+
+| Level | Count | Example |
+|-------|-------|---------|
+| Categories | 9 | GeneticsGenomics, CompoundsMolecules, DiseasesPhenotypes |
+| Subcategories | ~45 | VariantRepositories, NaturalProducts, DiseaseOntologies |
+
+### Auxiliary Schemes
+
+| Scheme | Concepts | Purpose |
+|--------|----------|---------|
+| TierScheme | Tier1, Tier2, Tier3 | Quality/priority classification |
+| StatusScheme | Draft, Active, Deprecated | Documentation lifecycle |
+| AccessMethodScheme | REST API, SPARQL, FTP, S3, etc. | Access method types |
+| FormatScheme | JSON, XML, CSV, VCF, FASTA, etc. | Data formats |
+| LicenseTypeScheme | Public Domain, CC-BY, Academic Only, etc. | License categories |
+| UpdateFrequencyScheme | Daily, Weekly, Monthly, etc. | Update schedules |
+
+## Namespace
 
 ```turtle
-# Example: Category concept scheme
-ex:CategoryScheme a skos:ConceptScheme ;
-    skos:prefLabel "Data Source Categories"@en ;
-    skos:hasTopConcept ex:Genetics, ex:Compounds, ex:Diseases .
-
-ex:Genetics a skos:Concept ;
-    skos:prefLabel "Genetics & Genomics"@en ;
-    skos:narrower ex:VariantDatabases, ex:ExpressionDatabases ;
-    skos:inScheme ex:CategoryScheme .
+@prefix tax: <https://gene.example.org/taxonomy/> .
 ```
 
-## Alignment with Taxonomy
+## Example Query
 
-Maps directly to [taxonomy/](../../taxonomy/) classification:
+```sparql
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX tax: <https://gene.example.org/taxonomy/>
 
-| SKOS Concept | Taxonomy Category |
-|--------------|-------------------|
-| ex:Genetics | 01.genetics.genomics |
-| ex:Compounds | 02.compounds.molecules |
-| ex:Diseases | 03.diseases.phenotypes |
-| ex:Pathways | 04.pathways.networks |
+SELECT ?subcategory ?label
+WHERE {
+    ?subcategory skos:broader tax:GeneticsGenomics ;
+                 skos:prefLabel ?label .
+}
+```
+
+## Alignment with Folder Structure
+
+| SKOS Concept | Folder Path |
+|--------------|-------------|
+| tax:GeneticsGenomics | 01.genetics.genomics |
+| tax:VariantRepositories | 01.genetics.genomics/1.1.variant.repositories |
+| tax:CompoundsMolecules | 02.compounds.molecules |
