@@ -309,76 +309,60 @@ Molecular docking data between compounds and proteins.
 
 The KampoDB data model implements a strict hierarchical organization enabling traversal from traditional formula to molecular targets:
 
+```mermaid
+flowchart TD
+    accTitle: KampoDB 4-Layer Hierarchical Structure
+    accDescr: Data model showing traversal from Kampo formulas through crude drugs and compounds to target proteins
+
+    subgraph Layer1["Layer 1: Kampo Medicine"]
+        Formula["Formula (298 total)<br/>ID: String code (KT)<br/>Name: Romanized (Kakkonto)<br/>Name_jp: Japanese kanji (葛根湯)"]:::infra
+    end
+
+    subgraph Layer2["Layer 2: Crude Drugs"]
+        CrudeDrug["Crude Drug (180 total)<br/>ID: Integer (0-179)<br/>Name: English (Ephedra Herb)<br/>Name_jp: Japanese (麻黄)<br/>Origin: Botanical source"]:::data
+    end
+
+    subgraph Layer3["Layer 3: Compounds"]
+        Compound["Compound (3,002 total)<br/>ID: PubChem CID<br/>Name: Chemical name (Curcumin)<br/>Formula: Molecular (C21H20O6)<br/>Source: KNApSAcK, ChEMBL"]:::data
+    end
+
+    subgraph Layer4["Layer 4: Target Proteins"]
+        Protein["Protein (62,906 total)<br/>ID: NCBI Gene ID<br/>Name: Gene symbol (MTOR)<br/>Aliases: Alternative names<br/>Description: Functional annotation"]:::service
+    end
+
+    Formula -->|"many-to-many"| CrudeDrug
+    CrudeDrug -->|"many-to-many"| Compound
+    Compound -->|"many-to-many<br/>(via docking)"| Protein
+
+    classDef infra fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,color:#0D47A1
+    classDef data fill:#FFF8E1,stroke:#F57F17,stroke-width:2px,color:#E65100
+    classDef service fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
 ```
-Layer 1: Kampo Medicine (Formula)
-    ├─ ID: String code (e.g., "KT")
-    ├─ Name: Romanized (e.g., "Kakkonto")
-    ├─ Name_jp: Japanese kanji (e.g., "葛根湯")
-    └─ Count: 298 total formulas
 
-    │ Formula-Crude Drug Relationship (many-to-many)
-    ▼
-Layer 2: Crude Drugs (Drug)
-    ├─ ID: Integer (0-179)
-    ├─ Name: English common name (e.g., "Ephedra Herb")
-    ├─ Name_jp: Japanese name (e.g., "麻黄")
-    ├─ Origin: Botanical source (e.g., "Ephedra sinica")
-    └─ Count: 180 total crude drugs
-
-    │ Crude Drug-Compound Relationship (many-to-many)
-    ▼
-Layer 3: Compounds (Compound)
-    ├─ ID: Integer (PubChem CID)
-    ├─ Name: Chemical name (e.g., "Curcumin")
-    ├─ Formula: Molecular formula (e.g., "C21H20O6")
-    ├─ Source: External IDs (KNApSAcK, ChEMBL)
-    └─ Count: 3,002 total compounds
-
-    │ Compound-Protein Relationship (many-to-many, via docking predictions)
-    ▼
-Layer 4: Target Proteins (Protein)
-    ├─ ID: Integer (NCBI Gene ID)
-    ├─ Name: Gene symbol (e.g., "MTOR")
-    ├─ Aliases: Alternative names (e.g., "FRAP, RAFT1")
-    ├─ Description: Functional annotation
-    └─ Count: 62,906 total proteins
-
-Key Relationships:
+**Key Relationships:**
 - Formula -> Crude Drug: 1 formula contains multiple crude drugs
 - Crude Drug -> Compound: 1 crude drug contains multiple compounds
 - Compound -> Protein: 1 compound targets multiple proteins (via docking)
 - All relationships are many-to-many, fully traversable
-```
 
 ### Hierarchy Overview
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                       KAMPO FORMULAS (298)                       │
-│  Traditional Japanese medicine preparations                      │
-│  Example: Kakkonto (KT), Yokukansankan (YKS)                    │
-└─────────────────────┬───────────────────────────────────────────┘
-                      │ contains (many-to-many)
-                      ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                       CRUDE DRUGS (180)                          │
-│  Raw medicinal materials (herbs, minerals, animal products)      │
-│  Example: Cinnamon Bark (40), Ephedra Herb (62), Ginger (76)    │
-└─────────────────────┬───────────────────────────────────────────┘
-                      │ contains (many-to-many)
-                      ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                       COMPOUNDS (3,002)                          │
-│  Natural chemical compounds with PubChem identifiers             │
-│  Example: Curcumin (969516), Ephedrine (9294), Gingerol         │
-└─────────────────────┬───────────────────────────────────────────┘
-                      │ targets (many-to-many, predicted via docking)
-                      ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                       PROTEINS (62,906)                          │
-│  Human proteins/genes with NCBI Gene identifiers                 │
-│  Example: MTOR (2475), CYP3A4, BCL2, STAT3                      │
-└─────────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    accTitle: KampoDB Hierarchy Overview
+    accDescr: Four-layer data structure from Kampo formulas to target proteins with example entities
+
+    Formulas["KAMPO FORMULAS (298)<br/>Traditional Japanese medicine preparations<br/>Example: Kakkonto (KT), Yokukansankan (YKS)"]:::infra
+
+    Formulas -->|"contains (many-to-many)"| CrudeDrugs["CRUDE DRUGS (180)<br/>Raw medicinal materials (herbs, minerals, animal products)<br/>Example: Cinnamon Bark (40), Ephedra Herb (62), Ginger (76)"]:::data
+
+    CrudeDrugs -->|"contains (many-to-many)"| Compounds["COMPOUNDS (3,002)<br/>Natural chemical compounds with PubChem identifiers<br/>Example: Curcumin (969516), Ephedrine (9294), Gingerol"]:::data
+
+    Compounds -->|"targets (many-to-many, predicted via docking)"| Proteins["PROTEINS (62,906)<br/>Human proteins/genes with NCBI Gene identifiers<br/>Example: MTOR (2475), CYP3A4, BCL2, STAT3"]:::service
+
+    classDef infra fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,color:#0D47A1
+    classDef data fill:#FFF8E1,stroke:#F57F17,stroke-width:2px,color:#E65100
+    classDef service fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
 ```
 
 ### Implementation Details

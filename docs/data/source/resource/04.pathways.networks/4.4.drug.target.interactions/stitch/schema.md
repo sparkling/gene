@@ -38,41 +38,28 @@ STITCH stores chemical-protein interactions with confidence scores from multiple
 
 ## Entity Relationship Overview
 
-```
-                    ┌─────────────────┐
-                    │    Chemical     │
-                    │  (CIDm/CIDs)    │
-                    └────────┬────────┘
-                             │
-              ┌──────────────┼──────────────┐
-              │              │              │
-              ▼              ▼              ▼
-    ┌─────────────┐  ┌─────────────┐  ┌─────────────┐
-    │ Experimental│  │  Database   │  │ Text Mining │
-    │   Score     │  │   Score     │  │   Score     │
-    └──────┬──────┘  └──────┬──────┘  └──────┬──────┘
-           │                │                │
-           └────────────────┼────────────────┘
-                            │
-                            ▼
-                   ┌────────────────┐
-                   │ Combined Score │
-                   │   (0-1000)     │
-                   └───────┬────────┘
-                           │
-                           ▼
-                   ┌────────────────┐
-                   │    Protein     │
-                   │ (taxid.ENSP)   │
-                   └────────────────┘
-                           │
-                           ▼
-                   ┌────────────────┐
-                   │    Actions     │
-                   │ (activation,   │
-                   │  inhibition,   │
-                   │  binding)      │
-                   └────────────────┘
+```mermaid
+flowchart TD
+    accTitle: STITCH Entity Relationship Overview
+    accDescr: Chemical-protein interaction scoring flow from evidence sources to combined scores and action types
+
+    Chemical["Chemical<br/>(CIDm/CIDs)"]:::data
+
+    Chemical --> Experimental["Experimental<br/>Score"]:::process
+    Chemical --> Database["Database<br/>Score"]:::process
+    Chemical --> TextMining["Text Mining<br/>Score"]:::process
+
+    Experimental --> Combined["Combined Score<br/>(0-1000)"]:::process
+    Database --> Combined
+    TextMining --> Combined
+
+    Combined --> Protein["Protein<br/>(taxid.ENSP)"]:::data
+
+    Protein --> Actions["Actions<br/>(activation,<br/>inhibition,<br/>binding)"]:::service
+
+    classDef data fill:#FFF8E1,stroke:#F57F17,stroke-width:2px,color:#E65100
+    classDef process fill:#E1F5FE,stroke:#0277BD,stroke-width:2px,color:#01579B
+    classDef service fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
 ```
 
 ---

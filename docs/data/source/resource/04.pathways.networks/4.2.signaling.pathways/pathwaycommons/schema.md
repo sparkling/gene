@@ -38,33 +38,29 @@ Pathway Commons aggregates pathway data from 22+ sources into BioPAX Level 3 OWL
 
 ## Entity Relationship Overview
 
-```
-                      ┌─────────────────┐
-                      │     Pathway     │
-                      │   (BioPAX OWL)  │
-                      └────────┬────────┘
-                               │
-              ┌────────────────┼────────────────┐
-              │                │                │
-              ▼                ▼                ▼
-    ┌─────────────────┐ ┌──────────┐ ┌─────────────────┐
-    │  Biochemical    │ │ Control  │ │   Catalysis     │
-    │    Reaction     │ │          │ │                 │
-    └────────┬────────┘ └────┬─────┘ └────────┬────────┘
-             │               │                │
-             ▼               ▼                ▼
-    ┌─────────────────┐ ┌──────────────────────────────┐
-    │  Physical       │ │        Simple Interaction    │
-    │  Entity         │ │        (SIF Export)          │
-    └────────┬────────┘ └──────────────────────────────┘
-             │
-    ┌────────┴────────┬──────────────┐
-    │                 │              │
-    ▼                 ▼              ▼
-┌─────────┐   ┌───────────┐   ┌──────────┐
-│ Protein │   │  Small    │   │ Complex  │
-│         │   │ Molecule  │   │          │
-└─────────┘   └───────────┘   └──────────┘
+```mermaid
+flowchart TD
+    accTitle: Pathway Commons Entity Relationship
+    accDescr: BioPAX pathway structure showing pathways, reactions, controls, and physical entities
+
+    Pathway["Pathway<br/>(BioPAX OWL)"]:::infra
+
+    Pathway --> Reaction["Biochemical<br/>Reaction"]:::process
+    Pathway --> Control["Control"]:::process
+    Pathway --> Catalysis["Catalysis"]:::process
+
+    Reaction --> PhysicalEntity["Physical<br/>Entity"]:::data
+    Control --> SIF["Simple Interaction<br/>(SIF Export)"]:::service
+    Catalysis --> SIF
+
+    PhysicalEntity --> Protein["Protein"]:::data
+    PhysicalEntity --> SmallMolecule["Small<br/>Molecule"]:::data
+    PhysicalEntity --> Complex["Complex"]:::data
+
+    classDef infra fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,color:#0D47A1
+    classDef process fill:#E1F5FE,stroke:#0277BD,stroke-width:2px,color:#01579B
+    classDef data fill:#FFF8E1,stroke:#F57F17,stroke-width:2px,color:#E65100
+    classDef service fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
 ```
 
 ---

@@ -160,31 +160,22 @@ http://bionet.ncpsb.org.cn/batman-tcm/api?
 
 The core data structure linking TCM components to molecular targets.
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                       TCM FORMULAS                               │
-│  54,832 traditional prescriptions from ancient medical texts     │
-└─────────────────────┬───────────────────────────────────────────┘
-                      │ contains (many-to-many)
-                      ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                         HERBS                                    │
-│  8,404 medicinal herbs from Chinese Pharmacopoeia + literature  │
-└─────────────────────┬───────────────────────────────────────────┘
-                      │ contains (many-to-many)
-                      ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                      INGREDIENTS                                 │
-│  39,171 chemical compounds (3.16x increase from v1.0)           │
-└─────────────────────┬───────────────────────────────────────────┘
-                      │ interacts_with (many-to-many)
-                      │ Known: 17,068 | Predicted: 2,319,272
-                      ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                     TARGET PROTEINS                              │
-│  ~15,000+ human proteins with functional annotations             │
-│  Linked to: KEGG pathways, GO terms, OMIM diseases, TTD         │
-└─────────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    accTitle: BATMAN-TCM TTI Data Model
+    accDescr: Hierarchical structure from TCM formulas through herbs and ingredients to target proteins
+
+    Formulas["TCM FORMULAS<br/>54,832 traditional prescriptions<br/>from ancient medical texts"]:::infra
+
+    Formulas -->|"contains (many-to-many)"| Herbs["HERBS<br/>8,404 medicinal herbs from<br/>Chinese Pharmacopoeia + literature"]:::data
+
+    Herbs -->|"contains (many-to-many)"| Ingredients["INGREDIENTS<br/>39,171 chemical compounds<br/>(3.16x increase from v1.0)"]:::data
+
+    Ingredients -->|"interacts_with (many-to-many)<br/>Known: 17,068 | Predicted: 2,319,272"| Targets["TARGET PROTEINS<br/>~15,000+ human proteins<br/>with functional annotations<br/>Linked to: KEGG, GO, OMIM, TTD"]:::service
+
+    classDef infra fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,color:#0D47A1
+    classDef data fill:#FFF8E1,stroke:#F57F17,stroke-width:2px,color:#E65100
+    classDef service fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
 ```
 
 ### Entity Schemas

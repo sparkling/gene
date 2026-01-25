@@ -319,49 +319,71 @@ Invariant features shared across variant forms.
 
 ## Neo4j Node Type Hierarchy
 
-```
-DatabaseObject (base class)
-├── Event
-│   ├── Pathway
-│   ├── ReactionLikeEvent
-│   │   ├── Reaction
-│   │   ├── BlackBoxEvent
-│   │   ├── Polymerisation
-│   │   ├── Depolymerisation
-│   │   └── FailedReaction
-│   └── TopLevelPathway
-├── PhysicalEntity
-│   ├── Complex
-│   ├── EntitySet
-│   │   ├── CandidateSet
-│   │   ├── DefinedSet
-│   │   └── OpenSet
-│   ├── GenomeEncodedEntity
-│   │   └── EntityWithAccessionedSequence
-│   ├── Drug
-│   ├── SimpleEntity
-│   ├── Polymer
-│   └── OtherEntity
-├── ReferenceEntity
-│   ├── ReferenceSequence
-│   │   ├── ReferenceGeneProduct
-│   │   ├── ReferenceIsoform
-│   │   └── ReferenceDNASequence
-│   ├── ReferenceMolecule
-│   ├── ReferenceGroup
-│   └── ReferenceTherapeutic
-├── Regulation
-│   ├── PositiveRegulation
-│   │   ├── PositiveGeneExpressionRegulation
-│   │   └── Requirement
-│   └── NegativeRegulation
-│       └── NegativeGeneExpressionRegulation
-├── CatalystActivity
-├── GO_Term
-│   ├── GO_BiologicalProcess
-│   ├── GO_CellularComponent
-│   └── GO_MolecularFunction
-└── Species
+```mermaid
+graph TD
+    accTitle: Reactome Neo4j Node Type Hierarchy
+    accDescr: Class inheritance hierarchy for Reactome graph database showing DatabaseObject base class and its subtypes
+
+    DatabaseObject["DatabaseObject<br/>(base class)"]:::infra
+
+    DatabaseObject --> Event:::process
+    DatabaseObject --> PhysicalEntity:::data
+    DatabaseObject --> ReferenceEntity:::external
+    DatabaseObject --> Regulation:::process
+    DatabaseObject --> CatalystActivity:::service
+    DatabaseObject --> GO_Term:::infra
+    DatabaseObject --> Species:::data
+
+    Event --> Pathway:::process
+    Event --> ReactionLikeEvent:::process
+    Event --> TopLevelPathway:::process
+
+    ReactionLikeEvent --> Reaction:::process
+    ReactionLikeEvent --> BlackBoxEvent:::process
+    ReactionLikeEvent --> Polymerisation:::process
+    ReactionLikeEvent --> Depolymerisation:::process
+    ReactionLikeEvent --> FailedReaction:::process
+
+    PhysicalEntity --> Complex:::data
+    PhysicalEntity --> EntitySet:::data
+    PhysicalEntity --> GenomeEncodedEntity:::data
+    PhysicalEntity --> Drug:::data
+    PhysicalEntity --> SimpleEntity:::data
+    PhysicalEntity --> Polymer:::data
+    PhysicalEntity --> OtherEntity:::data
+
+    EntitySet --> CandidateSet:::data
+    EntitySet --> DefinedSet:::data
+    EntitySet --> OpenSet:::data
+
+    GenomeEncodedEntity --> EntityWithAccessionedSequence:::data
+
+    ReferenceEntity --> ReferenceSequence:::external
+    ReferenceEntity --> ReferenceMolecule:::external
+    ReferenceEntity --> ReferenceGroup:::external
+    ReferenceEntity --> ReferenceTherapeutic:::external
+
+    ReferenceSequence --> ReferenceGeneProduct:::external
+    ReferenceSequence --> ReferenceIsoform:::external
+    ReferenceSequence --> ReferenceDNASequence:::external
+
+    Regulation --> PositiveRegulation:::process
+    Regulation --> NegativeRegulation:::process
+
+    PositiveRegulation --> PositiveGeneExpressionRegulation:::process
+    PositiveRegulation --> Requirement:::process
+
+    NegativeRegulation --> NegativeGeneExpressionRegulation:::process
+
+    GO_Term --> GO_BiologicalProcess:::infra
+    GO_Term --> GO_CellularComponent:::infra
+    GO_Term --> GO_MolecularFunction:::infra
+
+    classDef infra fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,color:#0D47A1
+    classDef process fill:#E1F5FE,stroke:#0277BD,stroke-width:2px,color:#01579B
+    classDef data fill:#FFF8E1,stroke:#F57F17,stroke-width:2px,color:#E65100
+    classDef service fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
+    classDef external fill:#ECEFF1,stroke:#455A64,stroke-width:2px,color:#263238
 ```
 
 ---

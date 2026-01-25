@@ -68,33 +68,24 @@ Contains analysis scripts (not raw data).
 
 ### Core Entity Relationships
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                    INDIAN MEDICINAL PLANTS                       │
-│  4,010 species from Ayurveda, Siddha, Unani, Homeopathy, etc.   │
-│  Includes: taxonomy, conservation status, vernacular names       │
-└─────────────────────┬───────────────────────────────────────────┘
-                      │
-                      ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                        PLANT PARTS                               │
-│  Granular associations at plant-part level                       │
-│  Examples: roots, stems, leaves, bark, flowers, seeds, fruits    │
-└──────────┬──────────────────────────────────┬───────────────────┘
-           │                                  │
-           ▼                                  ▼
-┌──────────────────────────┐    ┌──────────────────────────────────┐
-│     PHYTOCHEMICALS       │    │       THERAPEUTIC USES            │
-│   17,967 compounds       │    │    1,095 traditional uses         │
-│   189,386 associations   │    │    89,733 associations            │
-└──────────┬───────────────┘    └──────────────────────────────────┘
-           │
-           ▼
-┌─────────────────────────────────────────────────────────────────┐
-│               PREDICTED HUMAN TARGET PROTEINS                    │
-│  5,042 proteins from STITCH database                            │
-│  27,365 high-confidence interactions (score >= 700)             │
-└─────────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    accTitle: IMPPAT 2.0 Core Entity Relationships
+    accDescr: Data model showing Indian medicinal plants connected to phytochemicals and therapeutic uses through plant parts
+
+    Plants["INDIAN MEDICINAL PLANTS<br/>4,010 species from Ayurveda, Siddha,<br/>Unani, Homeopathy, etc.<br/>Includes: taxonomy, conservation status,<br/>vernacular names"]:::infra
+
+    Plants --> PlantParts["PLANT PARTS<br/>Granular associations at plant-part level<br/>Examples: roots, stems, leaves, bark,<br/>flowers, seeds, fruits"]:::data
+
+    PlantParts --> Phytochemicals["PHYTOCHEMICALS<br/>17,967 compounds<br/>189,386 associations"]:::data
+    PlantParts --> TherapeuticUses["THERAPEUTIC USES<br/>1,095 traditional uses<br/>89,733 associations"]:::service
+
+    Phytochemicals --> Targets["PREDICTED HUMAN TARGET PROTEINS<br/>5,042 proteins from STITCH database<br/>27,365 high-confidence interactions<br/>(score >= 700)"]:::external
+
+    classDef infra fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,color:#0D47A1
+    classDef data fill:#FFF8E1,stroke:#F57F17,stroke-width:2px,color:#E65100
+    classDef service fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
+    classDef external fill:#ECEFF1,stroke:#455A64,stroke-width:2px,color:#263238
 ```
 
 ---

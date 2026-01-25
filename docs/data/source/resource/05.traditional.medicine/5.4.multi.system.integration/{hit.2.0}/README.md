@@ -66,21 +66,32 @@ HIT 2.0 serves as a critical validation resource for network pharmacology studie
 
 ## Data Model
 
-```
-Herbal Sources (Multiple Systems)
-├── TCM Herbs
-├── Ayurvedic Plants
-└── Western Herbs
-            |
-            v
-   Ingredients (10,000+)
-            |
-            v (experimental validation)
-   Target Proteins (5,000+)
-            |
-            +-- Binding Affinity (30,000+)
-            +-- Literature (50,000+)
-            +-- Experimental Method
+```mermaid
+flowchart TD
+    accTitle: HIT 2.0 Data Model
+    accDescr: Multi-system herbal ingredient to validated target relationship structure
+
+    HerbalSources["Herbal Sources<br/>(Multiple Systems)"]:::infra
+
+    HerbalSources --> TCM["TCM Herbs"]:::data
+    HerbalSources --> Ayurvedic["Ayurvedic Plants"]:::data
+    HerbalSources --> Western["Western Herbs"]:::data
+
+    TCM --> Ingredients["Ingredients<br/>(10,000+)"]:::data
+    Ayurvedic --> Ingredients
+    Western --> Ingredients
+
+    Ingredients -->|experimental validation| Targets["Target Proteins<br/>(5,000+)"]:::service
+
+    Targets --> Affinity["Binding Affinity<br/>(30,000+)"]:::process
+    Targets --> Literature["Literature<br/>(50,000+)"]:::external
+    Targets --> Method["Experimental Method"]:::process
+
+    classDef infra fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,color:#0D47A1
+    classDef data fill:#FFF8E1,stroke:#F57F17,stroke-width:2px,color:#E65100
+    classDef service fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
+    classDef process fill:#E1F5FE,stroke:#0277BD,stroke-width:2px,color:#01579B
+    classDef external fill:#ECEFF1,stroke:#455A64,stroke-width:2px,color:#263238
 ```
 
 ## Validation Evidence Types

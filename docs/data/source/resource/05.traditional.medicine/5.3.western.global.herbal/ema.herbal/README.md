@@ -65,22 +65,35 @@ The database distinguishes between "well-established use" (supported by clinical
 
 ## Data Model
 
-```
-Herbal Substance (Latin name + plant part)
-            |
-            v
-    EMA Monograph
-    ├── Well-Established Use
-    │   └── Clinical evidence
-    └── Traditional Use
-        └── Long-standing use
-            |
-            v
-    ├── Indications
-    ├── Posology
-    ├── Contraindications
-    ├── Interactions
-    └── Safety Profile
+```mermaid
+flowchart TD
+    accTitle: EMA Herbal Medicines Data Model
+    accDescr: Hierarchical structure from herbal substance through monograph types to clinical information
+
+    HerbalSubstance["Herbal Substance<br/>(Latin name + plant part)"]:::data
+
+    HerbalSubstance --> EMAMonograph["EMA Monograph"]:::infra
+
+    EMAMonograph --> WellEstablished["Well-Established Use"]:::success
+    EMAMonograph --> Traditional["Traditional Use"]:::process
+
+    WellEstablished --> ClinicalEvidence["Clinical evidence"]:::service
+    Traditional --> LongstandingUse["Long-standing use"]:::service
+
+    LongstandingUse --> Indications["Indications"]:::info
+    LongstandingUse --> Posology["Posology"]:::info
+    LongstandingUse --> Contraindications["Contraindications"]:::warning
+    LongstandingUse --> Interactions["Interactions"]:::warning
+    LongstandingUse --> SafetyProfile["Safety Profile"]:::security
+
+    classDef data fill:#FFF8E1,stroke:#F57F17,stroke-width:2px,color:#E65100
+    classDef infra fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,color:#0D47A1
+    classDef process fill:#E1F5FE,stroke:#0277BD,stroke-width:2px,color:#01579B
+    classDef service fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
+    classDef success fill:#C8E6C9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
+    classDef info fill:#BBDEFB,stroke:#1565C0,stroke-width:2px,color:#0D47A1
+    classDef warning fill:#FFF9C4,stroke:#F9A825,stroke-width:2px,color:#F57F17
+    classDef security fill:#E0F2F1,stroke:#00695C,stroke-width:2px,color:#004D40
 ```
 
 ## Monograph Structure
