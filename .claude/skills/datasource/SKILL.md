@@ -1,6 +1,6 @@
 ---
-name: "Data Source Knowledge Graph"
-description: "Query the biomedical data source knowledge graph using natural language. Use when asking about data sources, databases, finding sources by category (TCM, genomics, etc.), comparing sources, checking licenses, or exploring what data is available. Triggers: 'data source', 'datasource', 'database', 'find sources', 'which sources', 'what databases'."
+name: datasource
+description: "Data source, datasource, database queries - find TCM, genomics, compounds databases. Use for: 'what data sources', 'find databases', 'TCM sources', 'list sources', 'compare databases', 'which databases have'. Natural language queries over biomedical data catalog."
 ---
 
 # Data Source Knowledge Graph
