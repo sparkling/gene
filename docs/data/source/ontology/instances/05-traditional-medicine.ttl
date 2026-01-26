@@ -3,7 +3,7 @@
 # =============================================================================
 # Generated: 2026-01-25
 # Category: 05.traditional.medicine
-# Sources: 14
+# Sources: 16
 # Subcategories: 4
 # Conforms to: datasource-ontology.ttl, datasource-shapes.ttl
 # =============================================================================
@@ -110,6 +110,14 @@ license:SubscriptionBased a ds:License ;
     ds:attributionRequired true ;
     ds:redistribution false ;
     rdfs:comment "Requires institutional or commercial subscription for full access" .
+
+license:CC0 a ds:License ;
+    ds:licenseName "Creative Commons Zero (Public Domain)" ;
+    ds:spdxIdentifier "CC0-1.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired false ;
+    ds:redistribution true ;
+    rdfs:comment "Dedicated to public domain, no rights reserved" .
 
 # =============================================================================
 # 5.1 TRADITIONAL CHINESE MEDICINE DATA SOURCES
@@ -1051,6 +1059,85 @@ xref:ema-ep a ds:CrossReference ;
     ds:coverageLevel "comprehensive" ;
     ds:linkType "quality standards" .
 
+# -----------------------------------------------------------------------------
+# Dr. Duke's Phytochemical and Ethnobotanical Databases
+# -----------------------------------------------------------------------------
+
+data:dr-dukes a ds:DataSource ;
+    ds:id "dr.dukes" ;
+    ds:title "Dr. Duke's Phytochemical and Ethnobotanical Databases" ;
+    ds:description "Authoritative USDA-maintained databases documenting phytochemical constituents, concentrations, biological activities, and ethnobotanical uses of medicinal plants worldwide" ;
+    ds:belongsToCategory cat:TraditionalMedicine ;
+    ds:belongsToSubcategory subcat:WesternGlobalHerbal ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:tag "phytochemicals" ;
+    ds:tag "ethnobotany" ;
+    ds:tag "medicinal-plants" ;
+    ds:tag "traditional-medicine" ;
+    ds:tag "usda" ;
+    ds:website <https://phytochem.nal.usda.gov/> ;
+    ds:maintainedBy maint:USDA ;
+    ds:updateFrequency "Archived (1992-2016)" ;
+    ds:hasLicense license:CC0 ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 05.traditional.medicine/5.3.western.global.herbal/dr.dukes" .
+
+data:dr-dukes-stats a ds:DataSourceStatistics ;
+    ds:forDataSource data:dr-dukes ;
+    ds:totalIndexedEntries "49788"^^xsd:integer ;
+    ds:biologicalActivityCount "1900"^^xsd:integer ;
+    ds:plantSpeciesCount "Thousands" ;
+    ds:coveragePeriod "1992-2016" .
+
+access:dr-dukes-web a ds:AccessMethod ;
+    ds:forDataSource data:dr-dukes ;
+    ds:accessType tax:WebInterface ;
+    ds:baseURL "https://phytochem.nal.usda.gov/" ;
+    ds:authentication false .
+
+access:dr-dukes-download a ds:AccessMethod ;
+    ds:forDataSource data:dr-dukes ;
+    ds:accessType tax:BulkDownload ;
+    ds:baseURL "https://ndownloader.figshare.com/files/43363335" ;
+    ds:downloadFormat "CSV" .
+
+identifier:dr-dukes-plant a ds:Identifier ;
+    ds:forDataSource data:dr-dukes ;
+    ds:identifierName "Plant Name" ;
+    ds:pattern "Binomial nomenclature" ;
+    ds:example "Curcuma longa" .
+
+identifier:dr-dukes-cas a ds:Identifier ;
+    ds:forDataSource data:dr-dukes ;
+    ds:identifierName "CAS Number" ;
+    ds:pattern "Variable format" ;
+    ds:example "458-37-7" .
+
+usecase:dr-dukes-ethnopharm a ds:UseCase ;
+    ds:forDataSource data:dr-dukes ;
+    ds:useCaseDescription "Connecting traditional plant uses to bioactive compounds" .
+
+usecase:dr-dukes-phytochem a ds:UseCase ;
+    ds:forDataSource data:dr-dukes ;
+    ds:useCaseDescription "Finding chemical constituents and concentrations in plants" .
+
+limitation:dr-dukes-archived a ds:Limitation ;
+    ds:forDataSource data:dr-dukes ;
+    ds:limitationDescription "Data spans 1992-2016 only (archived, no longer updated)" ;
+    ds:impactLevel "medium" .
+
+limitation:dr-dukes-nomenclature a ds:Limitation ;
+    ds:forDataSource data:dr-dukes ;
+    ds:limitationDescription "Historical compound names may not match modern nomenclature" ;
+    ds:impactLevel "low" .
+
+xref:dr-dukes-pubchem a ds:CrossReference ;
+    ds:forDataSource data:dr-dukes ;
+    ds:targetDatabase "PubChem" ;
+    ds:coverageLevel "high" ;
+    ds:linkType "compound cross-references" .
+
 # =============================================================================
 # 5.4 MULTI-SYSTEM INTEGRATION DATA SOURCES
 # =============================================================================
@@ -1158,6 +1245,111 @@ xref:hit2-pubchem a ds:CrossReference ;
     ds:targetDatabase "PubChem" ;
     ds:coverageLevel "high" ;
     ds:linkType "compound structures" .
+
+# -----------------------------------------------------------------------------
+# Wikidata
+# -----------------------------------------------------------------------------
+
+data:wikidata a ds:DataSource ;
+    ds:id "wikidata" ;
+    ds:title "Wikidata" ;
+    ds:description "Free collaborative multilingual knowledge base with extensive biomedical coverage including genes, proteins, diseases, drugs, and cross-references to specialized databases" ;
+    ds:belongsToCategory cat:TraditionalMedicine ;
+    ds:belongsToSubcategory subcat:MultiSystemIntegration ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "knowledge-graph" ;
+    ds:tag "linked-data" ;
+    ds:tag "semantic-web" ;
+    ds:tag "identifiers" ;
+    ds:tag "open-data" ;
+    ds:website <https://www.wikidata.org/> ;
+    ds:maintainedBy maint:Wikimedia ;
+    ds:updateFrequency "Continuous" ;
+    ds:hasLicense license:CC0 ;
+    ds:lastUpdated "2026-01-25"^^xsd:date ;
+    rdfs:comment "Source documentation: 05.traditional.medicine/5.4.multi.system.integration/wikidata" .
+
+data:wikidata-stats a ds:DataSourceStatistics ;
+    ds:forDataSource data:wikidata ;
+    ds:itemCount "110000000"^^xsd:integer ;
+    ds:statementCount "1700000000"^^xsd:integer ;
+    ds:propertyCount "12000"^^xsd:integer ;
+    ds:languageCount "300"^^xsd:integer .
+
+access:wikidata-web a ds:AccessMethod ;
+    ds:forDataSource data:wikidata ;
+    ds:accessType tax:WebInterface ;
+    ds:baseURL "https://www.wikidata.org/" ;
+    ds:authentication false .
+
+access:wikidata-sparql a ds:AccessMethod ;
+    ds:forDataSource data:wikidata ;
+    ds:accessType tax:SPARQLEndpoint ;
+    ds:baseURL "https://query.wikidata.org/sparql" ;
+    ds:authentication false ;
+    ds:responseFormat "JSON, XML, CSV, TSV" .
+
+access:wikidata-api a ds:AccessMethod ;
+    ds:forDataSource data:wikidata ;
+    ds:accessType tax:RESTAPI ;
+    ds:baseURL "https://www.wikidata.org/w/api.php" ;
+    ds:authentication false ;
+    ds:responseFormat "JSON" .
+
+access:wikidata-dump a ds:AccessMethod ;
+    ds:forDataSource data:wikidata ;
+    ds:accessType tax:BulkDownload ;
+    ds:baseURL "https://dumps.wikimedia.org/wikidatawiki/" ;
+    ds:downloadFormat "JSON, RDF" .
+
+identifier:wikidata-qid a ds:Identifier ;
+    ds:forDataSource data:wikidata ;
+    ds:identifierName "QID (Item)" ;
+    ds:pattern "Q[0-9]+" ;
+    ds:example "Q21173022" .
+
+identifier:wikidata-pid a ds:Identifier ;
+    ds:forDataSource data:wikidata ;
+    ds:identifierName "PID (Property)" ;
+    ds:pattern "P[0-9]+" ;
+    ds:example "P352" .
+
+usecase:wikidata-resolution a ds:UseCase ;
+    ds:forDataSource data:wikidata ;
+    ds:useCaseDescription "Entity resolution and linking across databases" .
+
+usecase:wikidata-kg a ds:UseCase ;
+    ds:forDataSource data:wikidata ;
+    ds:useCaseDescription "Knowledge graph construction and semantic web applications" .
+
+limitation:wikidata-quality a ds:Limitation ;
+    ds:forDataSource data:wikidata ;
+    ds:limitationDescription "Community-edited content may have quality variations" ;
+    ds:impactLevel "medium" .
+
+limitation:wikidata-coverage a ds:Limitation ;
+    ds:forDataSource data:wikidata ;
+    ds:limitationDescription "Biomedical coverage varies by entity type" ;
+    ds:impactLevel "low" .
+
+xref:wikidata-uniprot a ds:CrossReference ;
+    ds:forDataSource data:wikidata ;
+    ds:targetDatabase "UniProt" ;
+    ds:coverageLevel "comprehensive" ;
+    ds:linkType "protein identifiers via P352" .
+
+xref:wikidata-pubchem a ds:CrossReference ;
+    ds:forDataSource data:wikidata ;
+    ds:targetDatabase "PubChem" ;
+    ds:coverageLevel "high" ;
+    ds:linkType "compound identifiers" .
+
+xref:wikidata-ncbi a ds:CrossReference ;
+    ds:forDataSource data:wikidata ;
+    ds:targetDatabase "NCBI Gene" ;
+    ds:coverageLevel "comprehensive" ;
+    ds:linkType "gene identifiers" .
 
 # =============================================================================
 # END OF TRADITIONAL MEDICINE INSTANCES
