@@ -2361,3 +2361,214 @@ tax:subcategory a skos:Concept ;
     skos:inScheme tax:CategoryFacetScheme ;
     skos:topConceptOf tax:CategoryFacetScheme ;
     skos:scopeNote "Applied to concepts that represent subcategories (Level 2) in the DataSourceTaxonomy, such as VariantRepositories, PopulationGenetics, etc." .
+
+# -----------------------------------------------------------------------------
+# Level Scheme - Generic level indicators
+# -----------------------------------------------------------------------------
+
+tax:LevelScheme a skos:ConceptScheme ;
+    skos:prefLabel "Level Scheme" ;
+    rdfs:comment "Generic level indicators for coverage, impact, confidence, and other qualitative assessments." ;
+    skos:hasTopConcept tax:High, tax:Medium, tax:Low, tax:Complete .
+
+tax:High a skos:Concept ;
+    skos:prefLabel "High" ;
+    skos:definition "High level indicator for coverage, impact, or confidence assessments." ;
+    skos:inScheme tax:LevelScheme ;
+    skos:topConceptOf tax:LevelScheme .
+
+tax:Medium a skos:Concept ;
+    skos:prefLabel "Medium" ;
+    skos:definition "Medium level indicator for coverage, impact, or confidence assessments." ;
+    skos:inScheme tax:LevelScheme ;
+    skos:topConceptOf tax:LevelScheme .
+
+tax:Low a skos:Concept ;
+    skos:prefLabel "Low" ;
+    skos:definition "Low level indicator for coverage, impact, or confidence assessments." ;
+    skos:inScheme tax:LevelScheme ;
+    skos:topConceptOf tax:LevelScheme .
+
+tax:Complete a skos:Concept ;
+    skos:prefLabel "Complete" ;
+    skos:altLabel "Full" ;
+    skos:definition "Complete/full level indicator, typically for coverage assessments." ;
+    skos:inScheme tax:LevelScheme ;
+    skos:topConceptOf tax:LevelScheme .
+
+# Lowercase subcategory aliases (for case-insensitive matching)
+tax:pharmacogenomics a skos:Concept ;
+    skos:prefLabel "Pharmacogenomics" ;
+    skos:exactMatch tax:Pharmacogenomics ;
+    rdfs:comment "Lowercase alias for tax:Pharmacogenomics subcategory." ;
+    skos:inScheme tax:DataSourceTaxonomy .
+
+tax:variant a skos:Concept ;
+    skos:prefLabel "Variant" ;
+    skos:exactMatch tax:VariantRepositories ;
+    rdfs:comment "Alias for variant-related subcategories." ;
+    skos:inScheme tax:DataSourceTaxonomy .
+
+
+# Scheme alias for tier
+tax:tier-scheme a skos:ConceptScheme ;
+    skos:prefLabel "Tier Scheme (Alias)" ;
+    skos:exactMatch tax:TierScheme ;
+    rdfs:comment "Lowercase hyphenated alias for tax:TierScheme." .
+
+tax:tier a skos:Concept ;
+    skos:prefLabel "Tier" ;
+    rdfs:comment "Alias concept for tier-related references." ;
+    skos:inScheme tax:TierScheme .
+
+
+# -----------------------------------------------------------------------------
+# Hyphenated Access Method Aliases
+# -----------------------------------------------------------------------------
+
+tax:access-scheme a skos:ConceptScheme ;
+    skos:prefLabel "Access Scheme (Hyphenated)" ;
+    skos:exactMatch tax:AccessMethodScheme ;
+    rdfs:comment "Hyphenated alias for AccessMethodScheme." .
+
+tax:access-rest-api a skos:Concept ;
+    skos:prefLabel "REST API" ;
+    skos:exactMatch tax:RESTAPI ;
+    skos:inScheme tax:AccessMethodScheme .
+
+tax:access-sparql a skos:Concept ;
+    skos:prefLabel "SPARQL" ;
+    skos:exactMatch tax:SPARQL ;
+    skos:inScheme tax:AccessMethodScheme .
+
+tax:access-graphql a skos:Concept ;
+    skos:prefLabel "GraphQL" ;
+    skos:exactMatch tax:GraphQL ;
+    skos:inScheme tax:AccessMethodScheme .
+
+tax:access-ftp a skos:Concept ;
+    skos:prefLabel "FTP" ;
+    skos:exactMatch tax:FTP ;
+    skos:inScheme tax:AccessMethodScheme .
+
+tax:access-web-interface a skos:Concept ;
+    skos:prefLabel "Web Interface" ;
+    skos:exactMatch tax:WebInterface ;
+    skos:inScheme tax:AccessMethodScheme .
+
+tax:access-bulk-download a skos:Concept ;
+    skos:prefLabel "Bulk Download" ;
+    skos:exactMatch tax:BulkDownload ;
+    skos:inScheme tax:AccessMethodScheme .
+
+# -----------------------------------------------------------------------------
+# Hyphenated Format Aliases
+# -----------------------------------------------------------------------------
+
+tax:format-scheme a skos:ConceptScheme ;
+    skos:prefLabel "Format Scheme (Hyphenated)" ;
+    skos:exactMatch tax:FormatScheme ;
+    rdfs:comment "Hyphenated alias for FormatScheme." .
+
+tax:format-json a skos:Concept ;
+    skos:prefLabel "JSON" ;
+    skos:exactMatch tax:JSON ;
+    skos:inScheme tax:FormatScheme .
+
+tax:format-xml a skos:Concept ;
+    skos:prefLabel "XML" ;
+    skos:exactMatch tax:XML ;
+    skos:inScheme tax:FormatScheme .
+
+tax:format-csv a skos:Concept ;
+    skos:prefLabel "CSV" ;
+    skos:exactMatch tax:CSV ;
+    skos:inScheme tax:FormatScheme .
+
+tax:format-tsv a skos:Concept ;
+    skos:prefLabel "TSV" ;
+    skos:exactMatch tax:TSV ;
+    skos:inScheme tax:FormatScheme .
+
+tax:format-txt a skos:Concept ;
+    skos:prefLabel "TXT" ;
+    skos:exactMatch tax:TXT ;
+    skos:inScheme tax:FormatScheme .
+
+tax:format-rdf a skos:Concept ;
+    skos:prefLabel "RDF" ;
+    skos:exactMatch tax:RDF ;
+    skos:inScheme tax:FormatScheme .
+
+tax:format-owl a skos:Concept ;
+    skos:prefLabel "OWL" ;
+    skos:exactMatch tax:OWL ;
+    skos:inScheme tax:FormatScheme .
+
+tax:format-obo a skos:Concept ;
+    skos:prefLabel "OBO" ;
+    skos:exactMatch tax:OBO ;
+    skos:inScheme tax:FormatScheme .
+
+tax:format-sdf a skos:Concept ;
+    skos:prefLabel "SDF" ;
+    skos:exactMatch tax:SDF ;
+    skos:inScheme tax:FormatScheme .
+
+tax:format-asn1 a skos:Concept ;
+    skos:prefLabel "ASN.1" ;
+    skos:exactMatch tax:ASN1 ;
+    skos:inScheme tax:FormatScheme .
+
+tax:format-zip a skos:Concept ;
+    skos:prefLabel "ZIP" ;
+    skos:exactMatch tax:ZIP ;
+    skos:inScheme tax:FormatScheme .
+
+# -----------------------------------------------------------------------------
+# Hyphenated Status Scheme Alias
+# -----------------------------------------------------------------------------
+
+tax:status-scheme a skos:ConceptScheme ;
+    skos:prefLabel "Status Scheme (Hyphenated)" ;
+    skos:exactMatch tax:StatusScheme ;
+    rdfs:comment "Hyphenated alias for StatusScheme." .
+
+# -----------------------------------------------------------------------------
+# Hyphenated Subcategory Aliases
+# -----------------------------------------------------------------------------
+
+tax:subcategory-scheme a skos:ConceptScheme ;
+    skos:prefLabel "Subcategory Scheme (Hyphenated)" ;
+    rdfs:comment "Hyphenated subcategory references." .
+
+tax:subcategory-natural-products a skos:Concept ;
+    skos:prefLabel "Natural Products" ;
+    skos:exactMatch tax:NaturalProducts ;
+    skos:inScheme tax:DataSourceTaxonomy .
+
+tax:subcategory-pharmaceuticals a skos:Concept ;
+    skos:prefLabel "Pharmaceuticals" ;
+    skos:exactMatch tax:Pharmaceuticals ;
+    skos:inScheme tax:DataSourceTaxonomy .
+
+tax:subcategory-drug-metabolism a skos:Concept ;
+    skos:prefLabel "Drug Metabolism" ;
+    skos:exactMatch tax:DrugMetabolism ;
+    skos:inScheme tax:DataSourceTaxonomy .
+
+tax:subcategory-food-compounds a skos:Concept ;
+    skos:prefLabel "Food Compounds" ;
+    skos:exactMatch tax:FoodCompoundsNutrients ;
+    skos:inScheme tax:DataSourceTaxonomy .
+
+tax:subcategory-chemical-ontology a skos:Concept ;
+    skos:prefLabel "Chemical Ontology" ;
+    skos:exactMatch tax:ChemicalOntology ;
+    skos:inScheme tax:DataSourceTaxonomy .
+
+tax:subcategory-compound-target a skos:Concept ;
+    skos:prefLabel "Compound Target Interactions" ;
+    skos:exactMatch tax:CompoundTargetInteractions ;
+    skos:inScheme tax:DataSourceTaxonomy .
+
