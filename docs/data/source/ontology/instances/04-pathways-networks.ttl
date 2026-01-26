@@ -1,8 +1,8 @@
 # =============================================================================
 # Pathways & Networks Data Source Instance Data
 # =============================================================================
-# Generated: 2026-01-25
-# Sources: 12
+# Generated: 2026-01-26
+# Sources: 15
 # Category: 04.pathways.networks
 # Conforms to: datasource-ontology.ttl, datasource-shapes.ttl
 # =============================================================================
@@ -1020,6 +1020,187 @@ data:msigdb-xref-wikipathways a ds:CrossReference ;
     ds:coverage "High" .
 
 # =============================================================================
+# DATA SOURCES - DRUG-TARGET INTERACTIONS (4.4) - CONTINUED
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# DGIdb - Drug Gene Interaction Database
+# -----------------------------------------------------------------------------
+
+data:dgidb a ds:DataSource ;
+    ds:id "dgidb" ;
+    ds:title "DGIdb - Drug Gene Interaction Database" ;
+    ds:description "Aggregates drug-gene interaction data from over 40 trusted sources including DrugBank, PharmGKB, ChEMBL, and TTD into a unified resource. Provides information about drug-gene interactions, interaction types (inhibitor, activator, antagonist, etc.), and gene druggability categorization for identifying tractable therapeutic targets." ;
+    ds:belongsToSubcategory subcat:DrugTargetInteractions ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:website <https://dgidb.org> ;
+    ds:maintainedBy maint:DGIdb ;
+    ds:updateFrequency "Annual" ;
+    ds:hasLicense data:dgidb-license ;
+    ds:hasVersion data:dgidb-v5 ;
+    ds:hasAccessMethod data:dgidb-graphql, data:dgidb-download ;
+    ds:hasFormat tax:JSON, tax:TSV ;
+    ds:hasIdentifier data:dgidb-gene-symbol, data:dgidb-concept-id ;
+    ds:hasUseCase data:dgidb-usecase-1, data:dgidb-usecase-2, data:dgidb-usecase-3 ;
+    ds:hasLimitation data:dgidb-limitation-1 ;
+    ds:hasCrossReference data:dgidb-xref-drugbank, data:dgidb-xref-chembl, data:dgidb-xref-pharmgkb .
+
+data:dgidb-license a ds:License ;
+    ds:licenseName "MIT License" ;
+    ds:spdxId "MIT" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistribution true ;
+    ds:citation "Freshour SL, et al. (2021) Integration of the Drug-Gene Interaction Database (DGIdb 4.0) with open crowdsource efforts. Nucleic Acids Res. 49(D1):D1144-D1151." .
+
+data:dgidb-v5 a ds:Version ;
+    ds:version "5.0" ;
+    ds:releaseDate "2024-01-01"^^xsd:date ;
+    ds:recordCount "90000"^^xsd:integer ;
+    ds:recordCountDescription "Drug-gene interactions" .
+
+data:dgidb-graphql a ds:AccessMethod ;
+    ds:accessType tax:GraphQL ;
+    ds:baseUrl <https://dgidb.org/api/graphql> ;
+    ds:rateLimit "No strict limit" ;
+    ds:authentication "None required" .
+
+data:dgidb-download a ds:AccessMethod ;
+    ds:accessType tax:HTTPDownload ;
+    ds:baseUrl <https://dgidb.org/downloads> ;
+    ds:authentication "None required" .
+
+data:dgidb-gene-symbol a ds:Identifier ;
+    ds:identifierType "Gene Symbol" ;
+    ds:pattern "HGNC symbol" ;
+    ds:example "EGFR" .
+
+data:dgidb-concept-id a ds:Identifier ;
+    ds:identifierType "Concept ID" ;
+    ds:pattern "HGNC:{id}" ;
+    ds:example "HGNC:3236" .
+
+data:dgidb-usecase-1 a ds:UseCase ;
+    ds:description "Target validation - Assess druggability of genes of interest" .
+
+data:dgidb-usecase-2 a ds:UseCase ;
+    ds:description "Drug repurposing - Find existing drugs for new targets" .
+
+data:dgidb-usecase-3 a ds:UseCase ;
+    ds:description "Drug-gene interaction lookup and druggable genome exploration" .
+
+data:dgidb-limitation-1 a ds:Limitation ;
+    ds:description "Aggregated data may contain conflicting interaction types; druggability categories are predictions" ;
+    ds:impact "medium" .
+
+data:dgidb-xref-drugbank a ds:CrossReference ;
+    ds:targetDatabase "DrugBank" ;
+    ds:relationship "Source database" ;
+    ds:coverage "High" .
+
+data:dgidb-xref-chembl a ds:CrossReference ;
+    ds:targetDatabase "ChEMBL" ;
+    ds:relationship "Source database" ;
+    ds:coverage "High" .
+
+data:dgidb-xref-pharmgkb a ds:CrossReference ;
+    ds:targetDatabase "PharmGKB" ;
+    ds:relationship "Source database" ;
+    ds:coverage "High" .
+
+# -----------------------------------------------------------------------------
+# Open Targets Platform
+# -----------------------------------------------------------------------------
+
+data:open-targets a ds:DataSource ;
+    ds:id "open.targets" ;
+    ds:title "Open Targets Platform" ;
+    ds:description "Comprehensive resource for systematic identification and prioritization of drug targets. Integrates evidence from genetics, genomics, transcriptomics, drugs, animal models, and literature to build target-disease associations with transparent evidence scoring from over 20 data sources." ;
+    ds:belongsToSubcategory subcat:DrugTargetInteractions ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:website <https://platform.opentargets.org/> ;
+    ds:maintainedBy maint:OpenTargets ;
+    ds:updateFrequency "Quarterly" ;
+    ds:hasLicense data:open-targets-license ;
+    ds:hasVersion data:open-targets-v24 ;
+    ds:hasAccessMethod data:open-targets-graphql, data:open-targets-download ;
+    ds:hasFormat tax:JSON, tax:Parquet, tax:TSV ;
+    ds:hasIdentifier data:open-targets-ensembl-id, data:open-targets-efo-id, data:open-targets-chembl-id ;
+    ds:hasUseCase data:open-targets-usecase-1, data:open-targets-usecase-2, data:open-targets-usecase-3 ;
+    ds:hasLimitation data:open-targets-limitation-1 ;
+    ds:hasCrossReference data:open-targets-xref-ensembl, data:open-targets-xref-chembl, data:open-targets-xref-efo .
+
+data:open-targets-license a ds:License ;
+    ds:licenseName "Creative Commons Zero v1.0 Universal" ;
+    ds:spdxId "CC0-1.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired false ;
+    ds:redistribution true ;
+    ds:citation "Ochoa D, et al. (2023) The next-generation Open Targets Platform: reimagined, redesigned, rebuilt. Nucleic Acids Res. 51(D1):D1353-D1359." .
+
+data:open-targets-v24 a ds:Version ;
+    ds:version "24.06" ;
+    ds:releaseDate "2024-06-01"^^xsd:date ;
+    ds:recordCount "14000000"^^xsd:integer ;
+    ds:recordCountDescription "Target-disease associations" .
+
+data:open-targets-graphql a ds:AccessMethod ;
+    ds:accessType tax:GraphQL ;
+    ds:baseUrl <https://api.platform.opentargets.org/api/v4/graphql> ;
+    ds:rateLimit "No strict limit" ;
+    ds:authentication "None required" .
+
+data:open-targets-download a ds:AccessMethod ;
+    ds:accessType tax:HTTPDownload ;
+    ds:baseUrl <https://platform.opentargets.org/downloads> ;
+    ds:authentication "None required" .
+
+data:open-targets-ensembl-id a ds:Identifier ;
+    ds:identifierType "Ensembl Gene ID" ;
+    ds:pattern "ENSG{###########}" ;
+    ds:example "ENSG00000146648" .
+
+data:open-targets-efo-id a ds:Identifier ;
+    ds:identifierType "EFO Disease ID" ;
+    ds:pattern "EFO_{#######}" ;
+    ds:example "EFO_0000685" .
+
+data:open-targets-chembl-id a ds:Identifier ;
+    ds:identifierType "ChEMBL Drug ID" ;
+    ds:pattern "CHEMBL{#####}" ;
+    ds:example "CHEMBL941" .
+
+data:open-targets-usecase-1 a ds:UseCase ;
+    ds:description "Drug target identification and prioritization" .
+
+data:open-targets-usecase-2 a ds:UseCase ;
+    ds:description "Evidence integration for target validation" .
+
+data:open-targets-usecase-3 a ds:UseCase ;
+    ds:description "Safety and tractability assessment for targets" .
+
+data:open-targets-limitation-1 a ds:Limitation ;
+    ds:description "Evidence scores are aggregate; individual source quality varies; quarterly releases mean some data lags source databases" ;
+    ds:impact "medium" .
+
+data:open-targets-xref-ensembl a ds:CrossReference ;
+    ds:targetDatabase "Ensembl" ;
+    ds:relationship "Primary gene identifiers" ;
+    ds:coverage "High" .
+
+data:open-targets-xref-chembl a ds:CrossReference ;
+    ds:targetDatabase "ChEMBL" ;
+    ds:relationship "Drug identifiers" ;
+    ds:coverage "High" .
+
+data:open-targets-xref-efo a ds:CrossReference ;
+    ds:targetDatabase "EFO" ;
+    ds:relationship "Disease ontology" ;
+    ds:coverage "High" .
+
+# =============================================================================
 # DATA SOURCES - REGULATORY NETWORKS (4.6)
 # =============================================================================
 
@@ -1194,6 +1375,102 @@ data:roadmap-xref-ucsc a ds:CrossReference ;
     ds:targetDatabase "UCSC Genome Browser" ;
     ds:relationship "Track visualization" ;
     ds:coverage "High" .
+
+# -----------------------------------------------------------------------------
+# ENCODE - Encyclopedia of DNA Elements
+# -----------------------------------------------------------------------------
+
+data:encode a ds:DataSource ;
+    ds:id "encode" ;
+    ds:title "ENCODE - Encyclopedia of DNA Elements" ;
+    ds:description "Comprehensive project to identify all functional elements in human and mouse genomes. Provides extensive data on transcription factor binding sites, chromatin accessibility, histone modifications, DNA methylation, and RNA expression across hundreds of cell types. The cCRE Registry provides standardized regulatory elements including promoters, enhancers, and CTCF-binding sites." ;
+    ds:belongsToSubcategory subcat:RegulatoryNetworks ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:website <https://www.encodeproject.org/> ;
+    ds:maintainedBy maint:ENCODEConsortium ;
+    ds:updateFrequency "Continuous" ;
+    ds:hasLicense data:encode-license ;
+    ds:hasVersion data:encode-v4 ;
+    ds:hasAccessMethod data:encode-api, data:encode-download, data:encode-screen ;
+    ds:hasFormat tax:BED, tax:bigWig, tax:BAM, tax:JSON ;
+    ds:hasIdentifier data:encode-ccre-id, data:encode-experiment-id, data:encode-file-id ;
+    ds:hasUseCase data:encode-usecase-1, data:encode-usecase-2, data:encode-usecase-3 ;
+    ds:hasLimitation data:encode-limitation-1 ;
+    ds:hasCrossReference data:encode-xref-geo, data:encode-xref-ucsc, data:encode-xref-roadmap .
+
+data:encode-license a ds:License ;
+    ds:licenseName "Creative Commons Zero v1.0 Universal" ;
+    ds:spdxId "CC0-1.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired false ;
+    ds:redistribution true ;
+    ds:citation "ENCODE Project Consortium. An integrated encyclopedia of DNA elements in the human genome. Nature. 2012;489(7414):57-74." .
+
+data:encode-v4 a ds:Version ;
+    ds:version "ENCODE 4" ;
+    ds:releaseDate "2024-01-01"^^xsd:date ;
+    ds:recordCount "926535"^^xsd:integer ;
+    ds:recordCountDescription "Human cCREs" .
+
+data:encode-api a ds:AccessMethod ;
+    ds:accessType tax:RESTAPI ;
+    ds:baseUrl <https://www.encodeproject.org/> ;
+    ds:rateLimit "No strict limit" ;
+    ds:authentication "None required" .
+
+data:encode-download a ds:AccessMethod ;
+    ds:accessType tax:HTTPDownload ;
+    ds:baseUrl <https://www.encodeproject.org/files/> ;
+    ds:authentication "None required" .
+
+data:encode-screen a ds:AccessMethod ;
+    ds:accessType tax:WebInterface ;
+    ds:baseUrl <https://screen.encodeproject.org/> ;
+    ds:notes "Interactive cCRE exploration" .
+
+data:encode-ccre-id a ds:Identifier ;
+    ds:identifierType "cCRE ID" ;
+    ds:pattern "EH38E{#######}" ;
+    ds:example "EH38E1234567" .
+
+data:encode-experiment-id a ds:Identifier ;
+    ds:identifierType "Experiment ID" ;
+    ds:pattern "ENCSR{######}" ;
+    ds:example "ENCSR000AAA" .
+
+data:encode-file-id a ds:Identifier ;
+    ds:identifierType "File ID" ;
+    ds:pattern "ENCFF{######}" ;
+    ds:example "ENCFF123ABC" .
+
+data:encode-usecase-1 a ds:UseCase ;
+    ds:description "Regulatory variant interpretation in non-coding regions" .
+
+data:encode-usecase-2 a ds:UseCase ;
+    ds:description "Cell type-specific enhancer and promoter identification" .
+
+data:encode-usecase-3 a ds:UseCase ;
+    ds:description "Epigenomic data integration for gene regulation analysis" .
+
+data:encode-limitation-1 a ds:Limitation ;
+    ds:description "Cell line data may not reflect in vivo biology; tissue coverage incomplete; functional validation limited for most elements" ;
+    ds:impact "medium" .
+
+data:encode-xref-geo a ds:CrossReference ;
+    ds:targetDatabase "GEO" ;
+    ds:relationship "Raw data deposition" ;
+    ds:coverage "High" .
+
+data:encode-xref-ucsc a ds:CrossReference ;
+    ds:targetDatabase "UCSC Genome Browser" ;
+    ds:relationship "Track visualization" ;
+    ds:coverage "High" .
+
+data:encode-xref-roadmap a ds:CrossReference ;
+    ds:targetDatabase "Roadmap Epigenomics" ;
+    ds:relationship "Complementary epigenomic data" ;
+    ds:coverage "Medium" .
 
 # =============================================================================
 # END OF FILE
