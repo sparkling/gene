@@ -647,7 +647,16 @@ tax:AccessMethodScheme a skos:ConceptScheme ;
         tax:BioconductorPackage ,
         tax:NPMPackage ,
         tax:GitHubRelease ,
-        tax:CommandLine .
+        tax:CommandLine ,
+        tax:BulkDownload ,
+        tax:CloudDatabase ,
+        tax:GenomeBrowser ,
+        tax:HTTPDownload ,
+        tax:GraphDatabase ,
+        tax:S3 ,
+        tax:WebService ,
+        tax:Download ,
+        tax:API .
 
 tax:RestApi a skos:Concept ;
     skos:prefLabel "REST API" ;
@@ -857,6 +866,87 @@ tax:GitHubRelease a skos:Concept ;
     skos:topConceptOf tax:AccessMethodScheme ;
     skos:related tax:GitHubRepository .
 
+tax:BulkDownload a skos:Concept ;
+    skos:prefLabel "Bulk Download" ;
+    skos:altLabel "Bulk File Download" , "Mass Download" ;
+    skos:notation "bulk-download" ;
+    skos:definition "Bulk file download method for obtaining large datasets or complete database dumps in single or batched operations." ;
+    skos:inScheme tax:AccessMethodScheme ;
+    skos:topConceptOf tax:AccessMethodScheme ;
+    skos:related tax:FtpDownload , tax:DirectDownload .
+
+tax:CloudDatabase a skos:Concept ;
+    skos:prefLabel "Cloud Database" ;
+    skos:altLabel "Cloud-Hosted Database" , "Managed Database" ;
+    skos:notation "cloud-database" ;
+    skos:definition "Cloud-hosted database service providing managed access to data, such as BigQuery, Snowflake, or cloud-hosted PostgreSQL." ;
+    skos:inScheme tax:AccessMethodScheme ;
+    skos:topConceptOf tax:AccessMethodScheme ;
+    skos:related tax:CloudStorage .
+
+tax:GenomeBrowser a skos:Concept ;
+    skos:prefLabel "Genome Browser" ;
+    skos:altLabel "Genomic Browser" , "Browser Interface" ;
+    skos:notation "genome-browser" ;
+    skos:definition "Genome browser interface for visualizing and accessing genomic data, such as UCSC Genome Browser, Ensembl Browser, or IGV." ;
+    skos:inScheme tax:AccessMethodScheme ;
+    skos:topConceptOf tax:AccessMethodScheme ;
+    skos:related tax:WebInterface .
+
+tax:HTTPDownload a skos:Concept ;
+    skos:prefLabel "HTTP Download" ;
+    skos:altLabel "HTTPS Download" , "HTTP/HTTPS Direct Download" ;
+    skos:notation "http-download" ;
+    skos:definition "HTTP or HTTPS direct download method for retrieving files via standard web protocols." ;
+    skos:inScheme tax:AccessMethodScheme ;
+    skos:topConceptOf tax:AccessMethodScheme ;
+    skos:closeMatch tax:DirectDownload .
+
+tax:GraphDatabase a skos:Concept ;
+    skos:prefLabel "Graph Database" ;
+    skos:altLabel "Neo4j" , "Graph DB" ;
+    skos:notation "graph-database" ;
+    skos:definition "Graph database access method for querying connected data, typically using Cypher (Neo4j), Gremlin, or similar graph query languages." ;
+    skos:inScheme tax:AccessMethodScheme ;
+    skos:topConceptOf tax:AccessMethodScheme ;
+    skos:related tax:SparqlEndpoint .
+
+tax:S3 a skos:Concept ;
+    skos:prefLabel "S3" ;
+    skos:altLabel "AWS S3" , "S3 Storage" ;
+    skos:notation "s3" ;
+    skos:definition "Amazon S3 (Simple Storage Service) bucket access for cloud-based data storage and retrieval." ;
+    skos:inScheme tax:AccessMethodScheme ;
+    skos:topConceptOf tax:AccessMethodScheme ;
+    skos:exactMatch tax:S3Download .
+
+tax:WebService a skos:Concept ;
+    skos:prefLabel "Web Service" ;
+    skos:altLabel "Web Service API" , "SOAP" ;
+    skos:notation "web-service" ;
+    skos:definition "Web service API access method including SOAP, REST, or other HTTP-based programmatic interfaces." ;
+    skos:inScheme tax:AccessMethodScheme ;
+    skos:topConceptOf tax:AccessMethodScheme ;
+    skos:related tax:RestApi .
+
+tax:Download a skos:Concept ;
+    skos:prefLabel "Download" ;
+    skos:altLabel "File Download" , "Generic Download" ;
+    skos:notation "download" ;
+    skos:definition "Generic download method for obtaining data files, unspecified protocol or mechanism." ;
+    skos:inScheme tax:AccessMethodScheme ;
+    skos:topConceptOf tax:AccessMethodScheme ;
+    skos:broader tax:DirectDownload .
+
+tax:API a skos:Concept ;
+    skos:prefLabel "API" ;
+    skos:altLabel "Application Programming Interface" , "Programmatic Access" ;
+    skos:notation "api" ;
+    skos:definition "Generic API access method for programmatic data retrieval, unspecified protocol (REST, GraphQL, SOAP, etc.)." ;
+    skos:inScheme tax:AccessMethodScheme ;
+    skos:topConceptOf tax:AccessMethodScheme ;
+    skos:related tax:RestApi , tax:GraphqlApi .
+
 # -----------------------------------------------------------------------------
 # Format Scheme
 # -----------------------------------------------------------------------------
@@ -926,8 +1016,10 @@ tax:FormatScheme a skos:ConceptScheme ;
         tax:Arrow ,
         tax:HDF5 ,
         tax:NetCDF ,
-        # Gene set and pathway formats
+        # Genomic track formats
         tax:bedGraph ,
+        tax:WIG ,
+        # Gene set and pathway formats
         tax:GAF ,
         tax:GMT ,
         tax:GMX ,
@@ -939,6 +1031,7 @@ tax:FormatScheme a skos:ConceptScheme ;
         tax:MEME ,
         tax:PFM ,
         tax:PWM ,
+        tax:TRANSFAC ,
         # Protein interaction formats
         tax:PDBFormat ,
         tax:PSIMI ,
@@ -946,6 +1039,8 @@ tax:FormatScheme a skos:ConceptScheme ;
         tax:PSIMITAB25 ,
         tax:PSIMITAB27 ,
         tax:PSIMIXML ,
+        tax:TAB2 ,
+        tax:TAB3 ,
         # Systems biology formats
         tax:SBGN ,
         tax:SIF ,
@@ -1426,6 +1521,249 @@ tax:NetCDF a skos:Concept ;
     skos:topConceptOf tax:FormatScheme .
 
 # -----------------------------------------------------------------------------
+# Additional Format Concepts - Gene Set and Pathway Formats
+# -----------------------------------------------------------------------------
+
+tax:bedGraph a skos:Concept ;
+    skos:prefLabel "bedGraph" ;
+    skos:altLabel "BedGraph" , "bedgraph" ;
+    skos:notation "bedgraph" ;
+    skos:definition "Genomic track format for displaying continuous-valued data in genome browsers, storing chromosome position and associated numeric values." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme ;
+    skos:related tax:BED .
+
+tax:WIG a skos:Concept ;
+    skos:prefLabel "WIG" ;
+    skos:altLabel "Wiggle" , "Wiggle Track Format" ;
+    skos:notation "wig" ;
+    skos:definition "UCSC Wiggle format for displaying continuous data in genome browsers, supporting both variableStep and fixedStep representations for different data densities." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme ;
+    skos:related tax:bedGraph , tax:bigWig .
+
+tax:GAF a skos:Concept ;
+    skos:prefLabel "GAF" ;
+    skos:altLabel "Gene Association Format" , "Gene Association File" ;
+    skos:notation "gaf" ;
+    skos:definition "Gene Association Format, a tab-delimited format for associating gene products with Gene Ontology terms, including evidence codes and references." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme .
+
+tax:GMT a skos:Concept ;
+    skos:prefLabel "GMT" ;
+    skos:altLabel "Gene Matrix Transposed" ;
+    skos:notation "gmt" ;
+    skos:definition "Gene Matrix Transposed format, a tab-delimited format for storing gene sets where each line represents a gene set with name, description, and member genes." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme ;
+    skos:related tax:GSEA .
+
+tax:GMX a skos:Concept ;
+    skos:prefLabel "GMX" ;
+    skos:altLabel "Gene Matrix Extended" ;
+    skos:notation "gmx" ;
+    skos:definition "Gene Matrix Extended format, a variant of GMT format that supports multiple columns of gene identifiers for gene set definitions." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme ;
+    skos:related tax:GMT .
+
+tax:GPAD a skos:Concept ;
+    skos:prefLabel "GPAD" ;
+    skos:altLabel "Gene Product Association Data" ;
+    skos:notation "gpad" ;
+    skos:definition "Gene Product Association Data format, an updated annotation format for GO annotations that separates gene product data from annotation data." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme ;
+    skos:related tax:GAF .
+
+tax:GRP a skos:Concept ;
+    skos:prefLabel "GRP" ;
+    skos:altLabel "Gene Set Format" , "Gene Ranking Profile" ;
+    skos:notation "grp" ;
+    skos:definition "Gene Set format, a simple text format containing one gene identifier per line, used to define gene sets for enrichment analysis." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme ;
+    skos:related tax:GSEA .
+
+tax:GSEA a skos:Concept ;
+    skos:prefLabel "GSEA" ;
+    skos:altLabel "Gene Set Enrichment Analysis Format" ;
+    skos:notation "gsea" ;
+    skos:definition "Gene Set Enrichment Analysis suite of formats including GCT, CLS, and RNK for expression data, phenotype labels, and ranked gene lists." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme .
+
+tax:KGML a skos:Concept ;
+    skos:prefLabel "KGML" ;
+    skos:altLabel "KEGG Markup Language" ;
+    skos:notation "kgml" ;
+    skos:definition "KEGG Markup Language, an XML format for representing KEGG pathway maps including genes, compounds, reactions, and their relationships." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme ;
+    skos:related tax:XML .
+
+# -----------------------------------------------------------------------------
+# Additional Format Concepts - Motif Formats
+# -----------------------------------------------------------------------------
+
+tax:MEME a skos:Concept ;
+    skos:prefLabel "MEME" ;
+    skos:altLabel "MEME Motif Format" , "Minimal MEME Format" ;
+    skos:notation "meme" ;
+    skos:definition "MEME motif format, a text-based format for representing position-specific scoring matrices (PSSMs) from the MEME Suite for motif discovery." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme ;
+    skos:related tax:PFM .
+
+tax:PFM a skos:Concept ;
+    skos:prefLabel "PFM" ;
+    skos:altLabel "Position Frequency Matrix" , "Position Count Matrix" ;
+    skos:notation "pfm" ;
+    skos:definition "Position Frequency Matrix format for representing DNA/RNA/protein sequence motifs as counts or frequencies of nucleotides/amino acids at each position." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme ;
+    skos:related tax:PWM .
+
+tax:PWM a skos:Concept ;
+    skos:prefLabel "PWM" ;
+    skos:altLabel "Position Weight Matrix" , "Position-Specific Scoring Matrix" , "PSSM" ;
+    skos:notation "pwm" ;
+    skos:definition "Position Weight Matrix format for representing sequence motifs as log-odds scores, derived from position frequency matrices for motif scanning and scoring." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme ;
+    skos:related tax:PFM .
+
+tax:TRANSFAC a skos:Concept ;
+    skos:prefLabel "TRANSFAC" ;
+    skos:altLabel "TRANSFAC Matrix Format" ;
+    skos:notation "transfac" ;
+    skos:definition "TRANSFAC motif format, a widely-used format for transcription factor binding site matrices with header metadata and position-specific nucleotide counts." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme ;
+    skos:related tax:PFM , tax:PWM .
+
+# -----------------------------------------------------------------------------
+# Additional Format Concepts - Protein Interaction Formats
+# -----------------------------------------------------------------------------
+
+tax:PDBFormat a skos:Concept ;
+    skos:prefLabel "PDB Format" ;
+    skos:altLabel "Protein Data Bank File Format" , "PDB File" ;
+    skos:notation "pdb-format" ;
+    skos:definition "Protein Data Bank file format for representing 3D structural data of macromolecules including atomic coordinates, connectivity, and metadata." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme ;
+    skos:related tax:mmCIF .
+
+tax:PSIMI a skos:Concept ;
+    skos:prefLabel "PSI-MI" ;
+    skos:altLabel "Proteomics Standards Initiative Molecular Interaction" ;
+    skos:notation "psi-mi" ;
+    skos:definition "Proteomics Standards Initiative Molecular Interaction standard, a community standard for representing molecular interaction data in XML or tabular formats." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme ;
+    skos:narrower tax:PSIMIXML , tax:PSIMITAB .
+
+tax:PSIMITAB a skos:Concept ;
+    skos:prefLabel "PSI-MI TAB" ;
+    skos:altLabel "MITAB" , "PSI-MITAB" ;
+    skos:notation "psi-mi-tab" ;
+    skos:definition "PSI-MI tabular format, a tab-delimited format for molecular interaction data exchange, with multiple versions supporting different levels of detail." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme ;
+    skos:broader tax:PSIMI ;
+    skos:narrower tax:PSIMITAB25 , tax:PSIMITAB27 .
+
+tax:PSIMITAB25 a skos:Concept ;
+    skos:prefLabel "PSI-MI TAB 2.5" ;
+    skos:altLabel "MITAB 2.5" , "PSI-MITAB25" ;
+    skos:notation "psi-mi-tab-25" ;
+    skos:definition "PSI-MI TAB version 2.5, a 15-column tab-delimited format for molecular interaction data with core fields for interactors, methods, and publications." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme ;
+    skos:broader tax:PSIMITAB .
+
+tax:PSIMITAB27 a skos:Concept ;
+    skos:prefLabel "PSI-MI TAB 2.7" ;
+    skos:altLabel "MITAB 2.7" , "PSI-MITAB27" ;
+    skos:notation "psi-mi-tab-27" ;
+    skos:definition "PSI-MI TAB version 2.7, an extended 42-column format adding fields for biological effects, causal relationships, and confidence scores." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme ;
+    skos:broader tax:PSIMITAB .
+
+tax:PSIMIXML a skos:Concept ;
+    skos:prefLabel "PSI-MI XML" ;
+    skos:altLabel "MIF" , "Molecular Interaction XML" ;
+    skos:notation "psi-mi-xml" ;
+    skos:definition "PSI-MI XML format (MIF), a comprehensive XML schema for representing molecular interaction data with full experimental context and biological details." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme ;
+    skos:broader tax:PSIMI ;
+    skos:related tax:XML .
+
+tax:TAB2 a skos:Concept ;
+    skos:prefLabel "TAB2" ;
+    skos:altLabel "Tabular Format v2" , "TAB 2.0" ;
+    skos:notation "tab2" ;
+    skos:definition "Tabular format version 2 for protein interaction data, a simplified column-based format for representing binary interactions with basic metadata." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme ;
+    skos:related tax:PSIMITAB .
+
+tax:TAB3 a skos:Concept ;
+    skos:prefLabel "TAB3" ;
+    skos:altLabel "Tabular Format v3" , "TAB 3.0" ;
+    skos:notation "tab3" ;
+    skos:definition "Tabular format version 3 for protein interaction data, an extended column-based format with additional fields for confidence scores and complex annotations." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme ;
+    skos:related tax:TAB2 , tax:PSIMITAB .
+
+# -----------------------------------------------------------------------------
+# Additional Format Concepts - Systems Biology Formats
+# -----------------------------------------------------------------------------
+
+tax:SBGN a skos:Concept ;
+    skos:prefLabel "SBGN" ;
+    skos:altLabel "Systems Biology Graphical Notation" ;
+    skos:notation "sbgn" ;
+    skos:definition "Systems Biology Graphical Notation, a standard visual language for representing biological networks including process diagrams, entity relationships, and activity flows." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme ;
+    skos:related tax:SBML .
+
+tax:SIF a skos:Concept ;
+    skos:prefLabel "SIF" ;
+    skos:altLabel "Simple Interaction Format" ;
+    skos:notation "sif" ;
+    skos:definition "Simple Interaction Format, a minimal tab-delimited format for representing binary interactions between entities, commonly used with Cytoscape." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme .
+
+# -----------------------------------------------------------------------------
+# Additional Format Concepts - Image Formats
+# -----------------------------------------------------------------------------
+
+tax:PNG a skos:Concept ;
+    skos:prefLabel "PNG" ;
+    skos:altLabel "Portable Network Graphics" ;
+    skos:notation "png" ;
+    skos:definition "Portable Network Graphics format, a lossless raster image format supporting transparency, commonly used for figures, diagrams, and screenshots." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme .
+
+tax:SVG a skos:Concept ;
+    skos:prefLabel "SVG" ;
+    skos:altLabel "Scalable Vector Graphics" ;
+    skos:notation "svg" ;
+    skos:definition "Scalable Vector Graphics format, an XML-based vector image format for two-dimensional graphics supporting interactivity and animation." ;
+    skos:inScheme tax:FormatScheme ;
+    skos:topConceptOf tax:FormatScheme ;
+    skos:related tax:XML .
+
+# -----------------------------------------------------------------------------
 # License Type Scheme
 # -----------------------------------------------------------------------------
 
@@ -1532,7 +1870,9 @@ tax:UpdateFrequencyScheme a skos:ConceptScheme ;
         tax:Monthly ,
         tax:Quarterly ,
         tax:Annually ,
-        tax:Irregular .
+        tax:Irregular ,
+        tax:Annual ,
+        tax:AsPublished .
 
 tax:Realtime a skos:Concept ;
     skos:prefLabel "Real-time" ;
@@ -1612,6 +1952,24 @@ tax:Irregular a skos:Concept ;
     skos:inScheme tax:UpdateFrequencyScheme ;
     skos:topConceptOf tax:UpdateFrequencyScheme .
 
+tax:Annual a skos:Concept ;
+    skos:prefLabel "Annual" ;
+    skos:altLabel "Yearly Updates" ;
+    skos:notation "annual" ;
+    skos:definition "Updated on an annual basis, typically with major releases once per year." ;
+    skos:inScheme tax:UpdateFrequencyScheme ;
+    skos:topConceptOf tax:UpdateFrequencyScheme ;
+    skos:exactMatch tax:Annually .
+
+tax:AsPublished a skos:Concept ;
+    skos:prefLabel "As Published" ;
+    skos:altLabel "Publication-Driven" , "Source-Driven" ;
+    skos:notation "as-published" ;
+    skos:definition "Updated when the upstream source publishes new data, following the release schedule of the original data provider." ;
+    skos:inScheme tax:UpdateFrequencyScheme ;
+    skos:topConceptOf tax:UpdateFrequencyScheme ;
+    skos:related tax:Irregular .
+
 # -----------------------------------------------------------------------------
 # Quality Indicator Scheme
 # -----------------------------------------------------------------------------
@@ -1688,6 +2046,23 @@ tax:pLDDT_Low a skos:Concept ;
     skos:inScheme tax:QualityIndicatorScheme ;
     skos:broader tax:pLDDT .
 
+tax:pLDDT_Confident a skos:Concept ;
+    skos:prefLabel "pLDDT Confident" ;
+    skos:altLabel "pLDDT 70-90" ;
+    skos:notation "plddt-confident" ;
+    skos:definition "AlphaFold pLDDT score between 70 and 90, indicating confident prediction suitable for most structural analyses." ;
+    skos:inScheme tax:QualityIndicatorScheme ;
+    skos:broader tax:pLDDT ;
+    skos:closeMatch tax:pLDDT_High .
+
+tax:pLDDT_VeryLow a skos:Concept ;
+    skos:prefLabel "pLDDT Very Low" ;
+    skos:altLabel "pLDDT <30" ;
+    skos:notation "plddt-very-low" ;
+    skos:definition "AlphaFold pLDDT score less than 30, indicating very low confidence. Structure is likely disordered, flexible, or poorly predicted." ;
+    skos:inScheme tax:QualityIndicatorScheme ;
+    skos:broader tax:pLDDT .
+
 # -----------------------------------------------------------------------------
 # QMEAN Quality Level Concepts
 # -----------------------------------------------------------------------------
@@ -1713,6 +2088,30 @@ tax:QMEAN_Low a skos:Concept ;
     skos:altLabel "QMEAN <0.5" ;
     skos:notation "qmean-low" ;
     skos:definition "QMEAN score less than 0.5, indicating low model quality. Use with caution for structural analysis." ;
+    skos:inScheme tax:QualityIndicatorScheme ;
+    skos:broader tax:QMEAN .
+
+tax:QMEAN_Excellent a skos:Concept ;
+    skos:prefLabel "QMEAN Excellent" ;
+    skos:altLabel "QMEAN >0.8" ;
+    skos:notation "qmean-excellent" ;
+    skos:definition "QMEAN score greater than 0.8, indicating excellent model quality comparable to high-resolution experimental structures." ;
+    skos:inScheme tax:QualityIndicatorScheme ;
+    skos:broader tax:QMEAN .
+
+tax:QMEAN_Moderate a skos:Concept ;
+    skos:prefLabel "QMEAN Moderate" ;
+    skos:altLabel "QMEAN 0.5-0.6" ;
+    skos:notation "qmean-moderate" ;
+    skos:definition "QMEAN score between 0.5 and 0.6, indicating moderate model quality suitable for general fold analysis." ;
+    skos:inScheme tax:QualityIndicatorScheme ;
+    skos:broader tax:QMEAN .
+
+tax:QMEAN_Poor a skos:Concept ;
+    skos:prefLabel "QMEAN Poor" ;
+    skos:altLabel "QMEAN <0.4" ;
+    skos:notation "qmean-poor" ;
+    skos:definition "QMEAN score less than 0.4, indicating poor model quality. Structure should be interpreted with significant caution." ;
     skos:inScheme tax:QualityIndicatorScheme ;
     skos:broader tax:QMEAN .
 
@@ -1752,6 +2151,14 @@ tax:Resolution_Low a skos:Concept ;
     skos:inScheme tax:QualityIndicatorScheme ;
     skos:broader tax:Resolution .
 
+tax:Resolution_Acceptable a skos:Concept ;
+    skos:prefLabel "Resolution Acceptable" ;
+    skos:altLabel "Resolution 2.5-3.5A" ;
+    skos:notation "resolution-acceptable" ;
+    skos:definition "Structural resolution between 2.5 and 3.5 Angstroms, providing acceptable detail for general structural analysis and domain identification." ;
+    skos:inScheme tax:QualityIndicatorScheme ;
+    skos:broader tax:Resolution .
+
 # -----------------------------------------------------------------------------
 # Confidence Level Concepts
 # -----------------------------------------------------------------------------
@@ -1779,6 +2186,42 @@ tax:LowConfidence a skos:Concept ;
     skos:definition "Data or prediction with low confidence level, typically based on computational prediction alone or conflicting evidence." ;
     skos:inScheme tax:QualityIndicatorScheme ;
     skos:topConceptOf tax:QualityIndicatorScheme .
+
+# -----------------------------------------------------------------------------
+# Coverage Level Concepts
+# -----------------------------------------------------------------------------
+
+tax:Coverage_Complete a skos:Concept ;
+    skos:prefLabel "Coverage Complete" ;
+    skos:altLabel "Full Coverage" , "100% Coverage" ;
+    skos:notation "coverage-complete" ;
+    skos:definition "Complete or full coverage of the target sequence, genome, or dataset with no significant gaps." ;
+    skos:inScheme tax:QualityIndicatorScheme ;
+    skos:broader tax:Coverage .
+
+tax:Coverage_High a skos:Concept ;
+    skos:prefLabel "Coverage High" ;
+    skos:altLabel "High Coverage" , ">80% Coverage" ;
+    skos:notation "coverage-high" ;
+    skos:definition "High coverage level, typically greater than 80% of the target sequence or dataset." ;
+    skos:inScheme tax:QualityIndicatorScheme ;
+    skos:broader tax:Coverage .
+
+tax:Coverage_Medium a skos:Concept ;
+    skos:prefLabel "Coverage Medium" ;
+    skos:altLabel "Moderate Coverage" , "50-80% Coverage" ;
+    skos:notation "coverage-medium" ;
+    skos:definition "Medium coverage level, typically between 50% and 80% of the target sequence or dataset." ;
+    skos:inScheme tax:QualityIndicatorScheme ;
+    skos:broader tax:Coverage .
+
+tax:Coverage_Low a skos:Concept ;
+    skos:prefLabel "Coverage Low" ;
+    skos:altLabel "Low Coverage" , "<50% Coverage" ;
+    skos:notation "coverage-low" ;
+    skos:definition "Low coverage level, typically less than 50% of the target sequence or dataset." ;
+    skos:inScheme tax:QualityIndicatorScheme ;
+    skos:broader tax:Coverage .
 
 # =============================================================================
 # CATEGORY FACET SCHEME
