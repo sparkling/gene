@@ -1,9 +1,9 @@
 # =============================================================================
 # Literature & Knowledge Data Sources - RDF Instance Data
 # =============================================================================
-# Generated: 2026-01-25
+# Generated: 2026-01-26
 # Category: 08.literature.knowledge
-# Sources: 12 data sources
+# Sources: 13 data sources
 # Conforms to: datasource-ontology.ttl, datasource-shapes.ttl
 # =============================================================================
 
@@ -1384,6 +1384,117 @@ data:fda-xref-drugbank a ds:CrossReference ;
     ds:targetDatabase "DrugBank" ;
     ds:linkType "DrugBank ID" ;
     ds:coverage "Via harmonized fields" .
+
+# -----------------------------------------------------------------------------
+# DailyMed
+# -----------------------------------------------------------------------------
+
+data:dailymed a ds:DataSource ;
+    ds:id "dailymed" ;
+    ds:title "DailyMed - FDA Drug Labeling" ;
+    ds:belongsToCategory cat:LiteratureKnowledge ;
+    ds:belongsToSubcategory subcat:RegulatoryLegal ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:tag "fda", "drug-labels", "prescribing-information", "spl", "regulatory" ;
+    ds:lastUpdated "2026-01-26"^^xsd:date ;
+    ds:maintainedBy maint:NLM ;
+    foaf:homepage <https://dailymed.nlm.nih.gov> ;
+    ds:updateFrequency "Daily" ;
+    ds:hasLicense license:PublicDomain ;
+    rdfs:comment "DailyMed provides high-quality information about marketed drugs in the United States, including FDA-approved prescription and over-the-counter drug labeling (package inserts) in Structured Product Labeling (SPL) format." .
+
+data:dailymed-labels a ds:RecordCount ;
+    ds:belongsToSource data:dailymed ;
+    ds:countType "Drug Labels" ;
+    ds:count "140000"^^xsd:integer ;
+    ds:countLabel "140,000+" .
+
+data:dailymed-products a ds:RecordCount ;
+    ds:belongsToSource data:dailymed ;
+    ds:countType "Drug Products" ;
+    ds:count "45000"^^xsd:integer ;
+    ds:countLabel "45,000+" .
+
+data:dailymed-ndc a ds:RecordCount ;
+    ds:belongsToSource data:dailymed ;
+    ds:countType "NDC Numbers" ;
+    ds:count "200000"^^xsd:integer ;
+    ds:countLabel "200,000+" .
+
+data:dailymed-api-access a ds:AccessMethod ;
+    ds:belongsToSource data:dailymed ;
+    ds:accessType "API" ;
+    ds:accessName "REST API" ;
+    ds:endpoint <https://dailymed.nlm.nih.gov/dailymed/services> ;
+    ds:format "XML", "JSON" .
+
+data:dailymed-ftp-access a ds:AccessMethod ;
+    ds:belongsToSource data:dailymed ;
+    ds:accessType "FTP" ;
+    ds:accessName "SPL Bulk Download" ;
+    ds:endpoint <https://dailymed.nlm.nih.gov/dailymed/spl-resources> ;
+    ds:format "XML (SPL)" ;
+    ds:bulkDownload true .
+
+data:dailymed-ident-setid a ds:Identifier ;
+    ds:belongsToSource data:dailymed ;
+    ds:identifierType "Set ID (SPL)" ;
+    ds:pattern "[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}" ;
+    ds:example "0000a193-4512-468c-93b2-5aae1c" ;
+    ds:isPrimary true .
+
+data:dailymed-ident-ndc a ds:Identifier ;
+    ds:belongsToSource data:dailymed ;
+    ds:identifierType "NDC" ;
+    ds:pattern "[0-9]{4,5}-[0-9]{3,4}-[0-9]{1,2}" ;
+    ds:example "0002-3228-30" .
+
+data:dailymed-ident-nda a ds:Identifier ;
+    ds:belongsToSource data:dailymed ;
+    ds:identifierType "Application Number" ;
+    ds:pattern "[AN]DA[0-9]+" ;
+    ds:example "NDA020503" .
+
+data:dailymed-usecase-1 a ds:UseCase ;
+    ds:belongsToSource data:dailymed ;
+    ds:useCaseDescription "Drug label lookup and reference" .
+
+data:dailymed-usecase-2 a ds:UseCase ;
+    ds:belongsToSource data:dailymed ;
+    ds:useCaseDescription "Clinical prescribing information" .
+
+data:dailymed-usecase-3 a ds:UseCase ;
+    ds:belongsToSource data:dailymed ;
+    ds:useCaseDescription "Regulatory compliance verification" .
+
+data:dailymed-usecase-4 a ds:UseCase ;
+    ds:belongsToSource data:dailymed ;
+    ds:useCaseDescription "SPL data integration for health IT systems" .
+
+data:dailymed-usecase-5 a ds:UseCase ;
+    ds:belongsToSource data:dailymed ;
+    ds:useCaseDescription "Drug labeling history tracking" .
+
+data:dailymed-limit-1 a ds:Limitation ;
+    ds:belongsToSource data:dailymed ;
+    ds:limitationDescription "US market drugs only; international products not included" .
+
+data:dailymed-limit-2 a ds:Limitation ;
+    ds:belongsToSource data:dailymed ;
+    ds:limitationDescription "SPL parsing can be complex for programmatic access" .
+
+data:dailymed-xref-rxnorm a ds:CrossReference ;
+    ds:belongsToSource data:dailymed ;
+    ds:targetDatabase "RxNorm" ;
+    ds:linkType "RXCUI" ;
+    ds:coverage "Drug products" .
+
+data:dailymed-xref-openfda a ds:CrossReference ;
+    ds:belongsToSource data:dailymed ;
+    ds:targetDatabase "openFDA" ;
+    ds:linkType "NDC Code" ;
+    ds:coverage "Via NDC mapping" .
 
 # =============================================================================
 # END OF FILE

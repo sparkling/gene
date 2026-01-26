@@ -31,7 +31,7 @@ data:clinvar a ds:DataSource ;
     ds:updateFrequency "Weekly (Mondays)" ;
     ds:recordCount "10000000+"^^xsd:string ;
     ds:belongsToCategory cat:GeneticsGenomics ;
-    ds:belongsToSubcategory tax:variant.repositories ;
+    ds:belongsToSubcategory tax:VariantRepositories ;
     ds:tier tax:Tier1 ;
     ds:status tax:Active .
 
@@ -137,7 +137,7 @@ data:dbsnp a ds:DataSource ;
     ds:updateFrequency "Continuous" ;
     ds:recordCount "1000000000+"^^xsd:string ;
     ds:belongsToCategory cat:GeneticsGenomics ;
-    ds:belongsToSubcategory tax:variant.repositories ;
+    ds:belongsToSubcategory tax:VariantRepositories ;
     ds:tier tax:Tier1 ;
     ds:status tax:Active .
 
@@ -205,7 +205,7 @@ data:dbvar a ds:DataSource ;
     ds:updateFrequency "Continuous" ;
     ds:recordCount "6000000+"^^xsd:string ;
     ds:belongsToCategory cat:GeneticsGenomics ;
-    ds:belongsToSubcategory tax:variant.repositories ;
+    ds:belongsToSubcategory tax:VariantRepositories ;
     ds:tier tax:Tier1 ;
     ds:status tax:Active .
 
@@ -254,7 +254,7 @@ data:alphamissense a ds:DataSource ;
     ds:updateFrequency "Static (model v1)" ;
     ds:recordCount "71000000+"^^xsd:string ;
     ds:belongsToCategory cat:GeneticsGenomics ;
-    ds:belongsToSubcategory tax:functional.prediction ;
+    ds:belongsToSubcategory tax:FunctionalPrediction ;
     ds:tier tax:Tier1 ;
     ds:status tax:Active .
 
@@ -303,7 +303,7 @@ data:cadd a ds:DataSource ;
     ds:updateFrequency "Periodic releases" ;
     ds:recordCount "9000000000"^^xsd:string ;
     ds:belongsToCategory cat:GeneticsGenomics ;
-    ds:belongsToSubcategory tax:functional.prediction ;
+    ds:belongsToSubcategory tax:FunctionalPrediction ;
     ds:tier tax:Tier1 ;
     ds:status tax:Active .
 
@@ -356,7 +356,7 @@ data:dbnsfp a ds:DataSource ;
     ds:updateFrequency "Periodic releases" ;
     ds:recordCount "85000000+"^^xsd:string ;
     ds:belongsToCategory cat:GeneticsGenomics ;
-    ds:belongsToSubcategory tax:functional.prediction ;
+    ds:belongsToSubcategory tax:FunctionalPrediction ;
     ds:tier tax:Tier2 ;
     ds:status tax:Active .
 
@@ -393,7 +393,7 @@ data:spliceai a ds:DataSource ;
     ds:updateFrequency "Static (pre-computed)" ;
     ds:recordCount "All SNVs in genes" ;
     ds:belongsToCategory cat:GeneticsGenomics ;
-    ds:belongsToSubcategory tax:functional.prediction ;
+    ds:belongsToSubcategory tax:FunctionalPrediction ;
     ds:tier tax:Tier1 ;
     ds:status tax:Active .
 
@@ -442,7 +442,7 @@ data:gnomad a ds:DataSource ;
     ds:updateFrequency "Major releases" ;
     ds:recordCount "786000000+"^^xsd:string ;
     ds:belongsToCategory cat:GeneticsGenomics ;
-    ds:belongsToSubcategory tax:population.genetics ;
+    ds:belongsToSubcategory tax:PopulationGenetics ;
     ds:tier tax:Tier1 ;
     ds:status tax:Active .
 
@@ -504,7 +504,7 @@ data:1000genomes a ds:DataSource ;
     ds:updateFrequency "Static (Phase 3 complete)" ;
     ds:recordCount "88000000+"^^xsd:string ;
     ds:belongsToCategory cat:GeneticsGenomics ;
-    ds:belongsToSubcategory tax:population.genetics ;
+    ds:belongsToSubcategory tax:PopulationGenetics ;
     ds:tier tax:Tier1 ;
     ds:status tax:Active .
 
@@ -541,7 +541,7 @@ data:topmed a ds:DataSource ;
     ds:updateFrequency "Periodic freezes" ;
     ds:recordCount "400000000+"^^xsd:string ;
     ds:belongsToCategory cat:GeneticsGenomics ;
-    ds:belongsToSubcategory tax:population.genetics ;
+    ds:belongsToSubcategory tax:PopulationGenetics ;
     ds:tier tax:Tier2 ;
     ds:status tax:Active .
 
@@ -572,7 +572,7 @@ data:ukbiobank a ds:DataSource ;
     ds:updateFrequency "Continuous data additions" ;
     ds:recordCount "500000 participants" ;
     ds:belongsToCategory cat:GeneticsGenomics ;
-    ds:belongsToSubcategory tax:population.genetics ;
+    ds:belongsToSubcategory tax:PopulationGenetics ;
     ds:tier tax:Tier2 ;
     ds:status tax:Active .
 
@@ -606,7 +606,7 @@ data:cpic a ds:DataSource ;
     ds:updateFrequency "Continuous guideline updates" ;
     ds:recordCount "75+ gene-drug pairs" ;
     ds:belongsToCategory cat:GeneticsGenomics ;
-    ds:belongsToSubcategory tax:pharmacogenomics ;
+    ds:belongsToSubcategory tax:Pharmacogenomics ;
     ds:tier tax:Tier1 ;
     ds:status tax:Active .
 
@@ -636,7 +636,7 @@ data:pharmgkb a ds:DataSource ;
     ds:updateFrequency "Continuous" ;
     ds:recordCount "20000+ clinical annotations" ;
     ds:belongsToCategory cat:GeneticsGenomics ;
-    ds:belongsToSubcategory tax:pharmacogenomics ;
+    ds:belongsToSubcategory tax:Pharmacogenomics ;
     ds:tier tax:Tier1 ;
     ds:status tax:Active .
 
@@ -667,7 +667,7 @@ data:pharmvar a ds:DataSource ;
     ds:updateFrequency "Continuous" ;
     ds:recordCount "3000+ alleles" ;
     ds:belongsToCategory cat:GeneticsGenomics ;
-    ds:belongsToSubcategory tax:pharmacogenomics ;
+    ds:belongsToSubcategory tax:Pharmacogenomics ;
     ds:tier tax:Tier2 ;
     ds:status tax:Active .
 
@@ -690,7 +690,7 @@ data:dpwg a ds:DataSource ;
     ds:updateFrequency "Periodic updates" ;
     ds:recordCount "100+ gene-drug pairs" ;
     ds:belongsToCategory cat:GeneticsGenomics ;
-    ds:belongsToSubcategory tax:pharmacogenomics ;
+    ds:belongsToSubcategory tax:Pharmacogenomics ;
     ds:tier tax:Tier2 ;
     ds:status tax:Active .
 
@@ -718,7 +718,7 @@ data:gtex a ds:DataSource ;
     ds:updateFrequency "Major releases" ;
     ds:recordCount "3300000+ eQTLs" ;
     ds:belongsToCategory cat:GeneticsGenomics ;
-    ds:belongsToSubcategory tax:expression.regulation ;
+    ds:belongsToSubcategory tax:ExpressionRegulation ;
     ds:tier tax:Tier1 ;
     ds:status tax:Active .
 
@@ -755,7 +755,7 @@ data:encode a ds:DataSource ;
     ds:updateFrequency "Continuous" ;
     ds:recordCount "926535+ human cCREs" ;
     ds:belongsToCategory cat:GeneticsGenomics ;
-    ds:belongsToSubcategory tax:expression.regulation ;
+    ds:belongsToSubcategory tax:ExpressionRegulation ;
     ds:tier tax:Tier1 ;
     ds:status tax:Active .
 
@@ -785,7 +785,7 @@ data:gwas-catalog a ds:DataSource ;
     ds:updateFrequency "Weekly" ;
     ds:recordCount "1058471+ associations" ;
     ds:belongsToCategory cat:GeneticsGenomics ;
-    ds:belongsToSubcategory tax:expression.regulation ;
+    ds:belongsToSubcategory tax:ExpressionRegulation ;
     ds:tier tax:Tier1 ;
     ds:status tax:Active .
 
@@ -821,7 +821,7 @@ data:eqtlgen a ds:DataSource ;
     ds:updateFrequency "Phase releases" ;
     ds:recordCount "16000+ cis-eQTLs" ;
     ds:belongsToCategory cat:GeneticsGenomics ;
-    ds:belongsToSubcategory tax:expression.regulation ;
+    ds:belongsToSubcategory tax:ExpressionRegulation ;
     ds:tier tax:Tier2 ;
     ds:status tax:Active .
 
@@ -848,7 +848,7 @@ data:cosmic a ds:DataSource ;
     ds:updateFrequency "Quarterly releases" ;
     ds:recordCount "17000000+ mutations" ;
     ds:belongsToCategory cat:GeneticsGenomics ;
-    ds:belongsToSubcategory tax:cancer.genomics ;
+    ds:belongsToSubcategory tax:CancerGenomics ;
     ds:tier tax:Tier1 ;
     ds:status tax:Active .
 
@@ -890,7 +890,7 @@ data:civic a ds:DataSource ;
     ds:updateFrequency "Continuous community curation" ;
     ds:recordCount "8000+ evidence items" ;
     ds:belongsToCategory cat:GeneticsGenomics ;
-    ds:belongsToSubcategory tax:cancer.genomics ;
+    ds:belongsToSubcategory tax:CancerGenomics ;
     ds:tier tax:Tier1 ;
     ds:status tax:Active .
 
@@ -920,7 +920,7 @@ data:oncokb a ds:DataSource ;
     ds:updateFrequency "Continuous" ;
     ds:recordCount "5000+ annotated variants" ;
     ds:belongsToCategory cat:GeneticsGenomics ;
-    ds:belongsToSubcategory tax:cancer.genomics ;
+    ds:belongsToSubcategory tax:CancerGenomics ;
     ds:tier tax:Tier1 ;
     ds:status tax:Active .
 
@@ -951,7 +951,7 @@ data:cbioportal a ds:DataSource ;
     ds:updateFrequency "Continuous study additions" ;
     ds:recordCount "220890+ samples" ;
     ds:belongsToCategory cat:GeneticsGenomics ;
-    ds:belongsToSubcategory tax:cancer.genomics ;
+    ds:belongsToSubcategory tax:CancerGenomics ;
     ds:tier tax:Tier1 ;
     ds:status tax:Active .
 
@@ -982,7 +982,7 @@ data:brca-exchange a ds:DataSource ;
     ds:updateFrequency "Monthly" ;
     ds:recordCount "52000+ BRCA variants" ;
     ds:belongsToCategory cat:GeneticsGenomics ;
-    ds:belongsToSubcategory tax:cancer.genomics ;
+    ds:belongsToSubcategory tax:CancerGenomics ;
     ds:tier tax:Tier2 ;
     ds:status tax:Active .
 
@@ -1012,7 +1012,7 @@ data:cancer-gene-census a ds:DataSource ;
     ds:updateFrequency "Periodic updates" ;
     ds:recordCount "736 genes" ;
     ds:belongsToCategory cat:GeneticsGenomics ;
-    ds:belongsToSubcategory tax:cancer.genomics ;
+    ds:belongsToSubcategory tax:CancerGenomics ;
     ds:tier tax:Tier1 ;
     ds:status tax:Active .
 
