@@ -1,9 +1,9 @@
 # =============================================================================
 # Gene Data Source Instance Data - Category 03: Diseases & Phenotypes
 # =============================================================================
-# Generated: 2026-01-25
+# Generated: 2026-01-26
 # Category: diseases.phenotypes
-# Sources: 17
+# Sources: 27
 # Conforms to: datasource-ontology.ttl, datasource-shapes.ttl
 # =============================================================================
 
@@ -264,6 +264,134 @@ data:MONDO_UseCase_1 a ds:UseCase ;
 data:MONDO_UseCase_2 a ds:UseCase ;
     ds:description "Knowledge graph disease integration" .
 
+# -----------------------------------------------------------------------------
+# EFO - Experimental Factor Ontology
+# -----------------------------------------------------------------------------
+
+data:EFO a ds:DataSource ;
+    ds:id "efo" ;
+    ds:title "Experimental Factor Ontology (EFO)" ;
+    ds:description "Systematic description of experimental variables providing unified framework for annotating diseases, phenotypes, and traits in GWAS Catalog and Open Targets, integrating terms from Disease Ontology, HPO, and ChEBI." ;
+    ds:belongsToSubcategory subcat:DiseaseOntologies ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:maintainedBy maint:EMBL_EBI ;
+    ds:website <https://www.ebi.ac.uk/efo/> ;
+    ds:updateFrequency tax:Monthly ;
+    ds:recordCount "50000"^^xsd:integer ;
+    ds:hasLicense data:EFO_License ;
+    ds:hasAccessMethod data:EFO_OLSAccess, data:EFO_OBOAccess ;
+    ds:hasIdentifier data:EFO_ID_EFOID ;
+    ds:hasCrossReference data:EFO_Xref_DOID, data:EFO_Xref_HPO, data:EFO_Xref_Orphanet ;
+    ds:hasUseCase data:EFO_UseCase_1, data:EFO_UseCase_2 ;
+    ds:hasLimitation data:EFO_Limitation_1 .
+
+data:EFO_License a ds:License ;
+    ds:licenseName "Apache License 2.0" ;
+    ds:spdxIdentifier "Apache-2.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistributionAllowed true ;
+    ds:licenseURL <https://www.apache.org/licenses/LICENSE-2.0> .
+
+data:EFO_OLSAccess a ds:AccessMethod ;
+    ds:accessType tax:WebInterface ;
+    ds:endpoint <https://www.ebi.ac.uk/ols4/ontologies/efo> .
+
+data:EFO_OBOAccess a ds:AccessMethod ;
+    ds:accessType tax:Download ;
+    ds:endpoint <http://www.ebi.ac.uk/efo/efo.owl> ;
+    ds:format "OWL", "OBO" .
+
+data:EFO_ID_EFOID a ds:Identifier ;
+    ds:pattern "EFO_[0-9]{7}" ;
+    ds:example "EFO_0000685" ;
+    ds:description "EFO term identifier" .
+
+data:EFO_Xref_DOID a ds:CrossReference ;
+    ds:targetDatabase data:DOID ;
+    ds:coverageLevel tax:High ;
+    ds:description "Cross-reference to Disease Ontology" .
+
+data:EFO_Xref_HPO a ds:CrossReference ;
+    ds:targetDatabase data:HPO ;
+    ds:coverageLevel tax:High ;
+    ds:description "Cross-reference to Human Phenotype Ontology" .
+
+data:EFO_Xref_Orphanet a ds:CrossReference ;
+    ds:targetDatabase data:Orphanet ;
+    ds:coverageLevel tax:High ;
+    ds:description "Cross-reference to Orphanet rare diseases" .
+
+data:EFO_UseCase_1 a ds:UseCase ;
+    ds:description "Annotation of traits and diseases in GWAS Catalog studies" .
+
+data:EFO_UseCase_2 a ds:UseCase ;
+    ds:description "Disease ontology integration for Open Targets Platform" .
+
+data:EFO_Limitation_1 a ds:Limitation ;
+    ds:description "Term coverage reflects EBI database needs; may lack some clinical conditions" ;
+    ds:impact tax:Medium .
+
+# -----------------------------------------------------------------------------
+# Orphanet ORDO - Orphanet Rare Disease Ontology
+# -----------------------------------------------------------------------------
+
+data:OrphanetORDO a ds:DataSource ;
+    ds:id "orphanet.ordo" ;
+    ds:title "Orphanet Rare Disease Ontology (ORDO)" ;
+    ds:description "Formal ontological representation of Orphanet rare disease knowledge, providing structured classification with logical definitions for computational reasoning and semantic interoperability." ;
+    ds:belongsToSubcategory subcat:DiseaseOntologies ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:maintainedBy maint:Orphanet ;
+    ds:website <https://www.ebi.ac.uk/ols4/ontologies/ordo> ;
+    ds:updateFrequency tax:Monthly ;
+    ds:recordCount "15000"^^xsd:integer ;
+    ds:hasLicense data:OrphanetORDO_License ;
+    ds:hasAccessMethod data:OrphanetORDO_OLSAccess, data:OrphanetORDO_OBOAccess ;
+    ds:hasIdentifier data:OrphanetORDO_ID_ORDO ;
+    ds:hasCrossReference data:OrphanetORDO_Xref_OMIM, data:OrphanetORDO_Xref_ICD10 ;
+    ds:hasUseCase data:OrphanetORDO_UseCase_1, data:OrphanetORDO_UseCase_2 .
+
+data:OrphanetORDO_License a ds:License ;
+    ds:licenseName "CC BY 4.0" ;
+    ds:spdxIdentifier "CC-BY-4.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistributionAllowed true ;
+    ds:licenseURL <https://creativecommons.org/licenses/by/4.0/> .
+
+data:OrphanetORDO_OLSAccess a ds:AccessMethod ;
+    ds:accessType tax:WebInterface ;
+    ds:endpoint <https://www.ebi.ac.uk/ols4/ontologies/ordo> .
+
+data:OrphanetORDO_OBOAccess a ds:AccessMethod ;
+    ds:accessType tax:Download ;
+    ds:endpoint <http://www.orphadata.com/data/ORDO/> ;
+    ds:format "OWL", "OBO" .
+
+data:OrphanetORDO_ID_ORDO a ds:Identifier ;
+    ds:pattern "Orphanet_[0-9]+" ;
+    ds:example "Orphanet_558" ;
+    ds:description "ORDO ontology identifier" .
+
+data:OrphanetORDO_Xref_OMIM a ds:CrossReference ;
+    ds:targetDatabase data:OMIM ;
+    ds:coverageLevel tax:High ;
+    ds:description "Cross-reference to OMIM" .
+
+data:OrphanetORDO_Xref_ICD10 a ds:CrossReference ;
+    ds:targetDatabase data:ICD ;
+    ds:coverageLevel tax:Medium ;
+    ds:description "Cross-reference to ICD-10 codes" .
+
+data:OrphanetORDO_UseCase_1 a ds:UseCase ;
+    ds:description "Semantic reasoning over rare disease classifications" .
+
+data:OrphanetORDO_UseCase_2 a ds:UseCase ;
+    ds:description "Knowledge graph integration with OWL ontologies" .
+
 # =============================================================================
 # DATA SOURCES - 3.2 Phenotype Databases
 # =============================================================================
@@ -495,6 +623,71 @@ data:OrphanetPhenotypes_Limitation_1 a ds:Limitation ;
     ds:description "Rare diseases only; common conditions not covered" ;
     ds:impact tax:Medium .
 
+# -----------------------------------------------------------------------------
+# HPO Annotations - Human Phenotype Ontology Annotations
+# -----------------------------------------------------------------------------
+
+data:HPOAnnotations a ds:DataSource ;
+    ds:id "hpo.annotations" ;
+    ds:title "HPO Annotations" ;
+    ds:description "Disease-phenotype annotation files linking diseases from OMIM, Orphanet, and DECIPHER to HPO phenotype terms with frequency modifiers and evidence codes for clinical phenotyping." ;
+    ds:belongsToSubcategory subcat:PhenotypeDatabases ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:maintainedBy maint:MonarchInitiative ;
+    ds:website <https://hpo.jax.org/data/annotations> ;
+    ds:updateFrequency tax:Monthly ;
+    ds:recordCount "250000"^^xsd:integer ;
+    ds:hasLicense data:HPOAnnotations_License ;
+    ds:hasAccessMethod data:HPOAnnotations_DownloadAccess ;
+    ds:hasIdentifier data:HPOAnnotations_ID_HPID, data:HPOAnnotations_ID_Disease ;
+    ds:hasCrossReference data:HPOAnnotations_Xref_OMIM, data:HPOAnnotations_Xref_Orphanet ;
+    ds:hasUseCase data:HPOAnnotations_UseCase_1, data:HPOAnnotations_UseCase_2 ;
+    ds:hasLimitation data:HPOAnnotations_Limitation_1 .
+
+data:HPOAnnotations_License a ds:License ;
+    ds:licenseName "HPO License" ;
+    ds:spdxIdentifier "Custom" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistributionAllowed true ;
+    ds:licenseURL <https://hpo.jax.org/data/license> .
+
+data:HPOAnnotations_DownloadAccess a ds:AccessMethod ;
+    ds:accessType tax:Download ;
+    ds:endpoint <https://hpo.jax.org/data/annotations> ;
+    ds:format "TSV", "GAF" .
+
+data:HPOAnnotations_ID_HPID a ds:Identifier ;
+    ds:pattern "HP:[0-9]{7}" ;
+    ds:example "HP:0001166" ;
+    ds:description "HPO phenotype term ID" .
+
+data:HPOAnnotations_ID_Disease a ds:Identifier ;
+    ds:pattern "(OMIM|ORPHA|DECIPHER):[0-9]+" ;
+    ds:example "OMIM:154700" ;
+    ds:description "Disease identifier from source database" .
+
+data:HPOAnnotations_Xref_OMIM a ds:CrossReference ;
+    ds:targetDatabase data:OMIM ;
+    ds:coverageLevel tax:High ;
+    ds:description "OMIM disease-phenotype annotations" .
+
+data:HPOAnnotations_Xref_Orphanet a ds:CrossReference ;
+    ds:targetDatabase data:Orphanet ;
+    ds:coverageLevel tax:High ;
+    ds:description "Orphanet disease-phenotype annotations" .
+
+data:HPOAnnotations_UseCase_1 a ds:UseCase ;
+    ds:description "Phenotype-driven differential diagnosis" .
+
+data:HPOAnnotations_UseCase_2 a ds:UseCase ;
+    ds:description "Gene-phenotype correlation in variant interpretation" .
+
+data:HPOAnnotations_Limitation_1 a ds:Limitation ;
+    ds:description "Annotation completeness varies by disease; rare diseases may have incomplete phenotype profiles" ;
+    ds:impact tax:Medium .
+
 # =============================================================================
 # DATA SOURCES - 3.3 Disease-Gene Associations
 # =============================================================================
@@ -672,6 +865,539 @@ data:OpenTargets_UseCase_2 a ds:UseCase ;
 data:OpenTargets_Limitation_1 a ds:Limitation ;
     ds:description "EFO disease ontology may not map to all clinical terminologies" ;
     ds:impact tax:Low .
+
+# -----------------------------------------------------------------------------
+# ClinVar - Clinical Variant Database
+# -----------------------------------------------------------------------------
+
+data:ClinVar a ds:DataSource ;
+    ds:id "clinvar" ;
+    ds:title "ClinVar" ;
+    ds:description "NCBI's public archive of clinically relevant variant interpretations aggregating submissions from 2000+ clinical laboratories, research groups, and expert panels worldwide with pathogenicity classifications and disease associations." ;
+    ds:belongsToSubcategory subcat:DiseaseGeneAssociations ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:maintainedBy maint:NCBI ;
+    ds:website <https://www.ncbi.nlm.nih.gov/clinvar/> ;
+    ds:updateFrequency tax:Weekly ;
+    ds:recordCount "2500000"^^xsd:integer ;
+    ds:hasLicense data:ClinVar_License ;
+    ds:hasAccessMethod data:ClinVar_WebAccess, data:ClinVar_APIAccess, data:ClinVar_FTPAccess ;
+    ds:hasIdentifier data:ClinVar_ID_VCV, data:ClinVar_ID_RCV, data:ClinVar_ID_VariationID ;
+    ds:hasCrossReference data:ClinVar_Xref_dbSNP, data:ClinVar_Xref_OMIM, data:ClinVar_Xref_MedGen ;
+    ds:hasUseCase data:ClinVar_UseCase_1, data:ClinVar_UseCase_2, data:ClinVar_UseCase_3 ;
+    ds:hasLimitation data:ClinVar_Limitation_1, data:ClinVar_Limitation_2 .
+
+data:ClinVar_License a ds:License ;
+    ds:licenseName "Public Domain" ;
+    ds:spdxIdentifier "CC0-1.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired false ;
+    ds:redistributionAllowed true ;
+    ds:licenseURL <https://www.ncbi.nlm.nih.gov/home/about/policies/> .
+
+data:ClinVar_WebAccess a ds:AccessMethod ;
+    ds:accessType tax:WebInterface ;
+    ds:endpoint <https://www.ncbi.nlm.nih.gov/clinvar/> .
+
+data:ClinVar_APIAccess a ds:AccessMethod ;
+    ds:accessType tax:RESTAPI ;
+    ds:endpoint <https://eutils.ncbi.nlm.nih.gov/entrez/eutils/> ;
+    ds:rateLimit "10 requests/second with API key" .
+
+data:ClinVar_FTPAccess a ds:AccessMethod ;
+    ds:accessType tax:FTP ;
+    ds:endpoint <https://ftp.ncbi.nlm.nih.gov/pub/clinvar/> ;
+    ds:format "VCF", "XML", "TSV" .
+
+data:ClinVar_ID_VCV a ds:Identifier ;
+    ds:pattern "VCV[0-9]{9}\\.[0-9]+" ;
+    ds:example "VCV000012345.3" ;
+    ds:description "Variation Archive accession (aggregate interpretation)" .
+
+data:ClinVar_ID_RCV a ds:Identifier ;
+    ds:pattern "RCV[0-9]{9}\\.[0-9]+" ;
+    ds:example "RCV000012345.6" ;
+    ds:description "Record accession (variant-condition pair)" .
+
+data:ClinVar_ID_VariationID a ds:Identifier ;
+    ds:pattern "[0-9]+" ;
+    ds:example "12345" ;
+    ds:description "ClinVar variation ID" .
+
+data:ClinVar_Xref_dbSNP a ds:CrossReference ;
+    ds:targetDatabase data:dbSNP ;
+    ds:coverageLevel tax:High ;
+    ds:description "SNP identifier cross-reference" .
+
+data:ClinVar_Xref_OMIM a ds:CrossReference ;
+    ds:targetDatabase data:OMIM ;
+    ds:coverageLevel tax:High ;
+    ds:description "Disease and gene cross-reference" .
+
+data:ClinVar_Xref_MedGen a ds:CrossReference ;
+    ds:targetDatabase data:MedGen ;
+    ds:coverageLevel tax:Complete ;
+    ds:description "Condition terminology cross-reference" .
+
+data:ClinVar_UseCase_1 a ds:UseCase ;
+    ds:description "Clinical variant interpretation and pathogenicity assessment" .
+
+data:ClinVar_UseCase_2 a ds:UseCase ;
+    ds:description "Diagnostic laboratory variant classification lookup" .
+
+data:ClinVar_UseCase_3 a ds:UseCase ;
+    ds:description "Research variant prioritization and filtering" .
+
+data:ClinVar_Limitation_1 a ds:Limitation ;
+    ds:description "Submitter interpretations may conflict; review status indicates consensus level" ;
+    ds:impact tax:Medium .
+
+data:ClinVar_Limitation_2 a ds:Limitation ;
+    ds:description "Classification criteria vary between submitters and over time" ;
+    ds:impact tax:Medium .
+
+# -----------------------------------------------------------------------------
+# GWAS Catalog - NHGRI-EBI GWAS Catalog
+# -----------------------------------------------------------------------------
+
+data:GWASCatalog a ds:DataSource ;
+    ds:id "gwas.catalog" ;
+    ds:title "GWAS Catalog" ;
+    ds:description "Comprehensive curated collection of published genome-wide association studies with standardized SNP-trait associations, EFO trait mapping, and summary statistics from 186,000+ studies." ;
+    ds:belongsToSubcategory subcat:DiseaseGeneAssociations ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:maintainedBy maint:NHGRI, maint:EMBL_EBI ;
+    ds:website <https://www.ebi.ac.uk/gwas/> ;
+    ds:updateFrequency tax:Weekly ;
+    ds:recordCount "1058471"^^xsd:integer ;
+    ds:hasLicense data:GWASCatalog_License ;
+    ds:hasAccessMethod data:GWASCatalog_WebAccess, data:GWASCatalog_APIAccess, data:GWASCatalog_FTPAccess ;
+    ds:hasIdentifier data:GWASCatalog_ID_Study, data:GWASCatalog_ID_Association, data:GWASCatalog_ID_EFO ;
+    ds:hasCrossReference data:GWASCatalog_Xref_dbSNP, data:GWASCatalog_Xref_EFO ;
+    ds:hasUseCase data:GWASCatalog_UseCase_1, data:GWASCatalog_UseCase_2 ;
+    ds:hasLimitation data:GWASCatalog_Limitation_1 .
+
+data:GWASCatalog_License a ds:License ;
+    ds:licenseName "CC0 1.0" ;
+    ds:spdxIdentifier "CC0-1.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired false ;
+    ds:redistributionAllowed true ;
+    ds:licenseURL <https://creativecommons.org/publicdomain/zero/1.0/> .
+
+data:GWASCatalog_WebAccess a ds:AccessMethod ;
+    ds:accessType tax:WebInterface ;
+    ds:endpoint <https://www.ebi.ac.uk/gwas/> .
+
+data:GWASCatalog_APIAccess a ds:AccessMethod ;
+    ds:accessType tax:RESTAPI ;
+    ds:endpoint <https://www.ebi.ac.uk/gwas/rest/api> ;
+    ds:format "JSON" .
+
+data:GWASCatalog_FTPAccess a ds:AccessMethod ;
+    ds:accessType tax:FTP ;
+    ds:endpoint <https://ftp.ebi.ac.uk/pub/databases/gwas/> ;
+    ds:format "TSV" .
+
+data:GWASCatalog_ID_Study a ds:Identifier ;
+    ds:pattern "GCST[0-9]{6}" ;
+    ds:example "GCST000854" ;
+    ds:description "GWAS Catalog study accession" .
+
+data:GWASCatalog_ID_Association a ds:Identifier ;
+    ds:pattern "[0-9]+" ;
+    ds:example "12345678" ;
+    ds:description "Association ID" .
+
+data:GWASCatalog_ID_EFO a ds:Identifier ;
+    ds:pattern "EFO_[0-9]{7}" ;
+    ds:example "EFO_0001060" ;
+    ds:description "EFO trait identifier" .
+
+data:GWASCatalog_Xref_dbSNP a ds:CrossReference ;
+    ds:targetDatabase data:dbSNP ;
+    ds:coverageLevel tax:Complete ;
+    ds:description "SNP identifiers for associations" .
+
+data:GWASCatalog_Xref_EFO a ds:CrossReference ;
+    ds:targetDatabase data:EFO ;
+    ds:coverageLevel tax:Complete ;
+    ds:description "Trait standardization via EFO" .
+
+data:GWASCatalog_UseCase_1 a ds:UseCase ;
+    ds:description "Variant-trait association lookup and disease gene discovery" .
+
+data:GWASCatalog_UseCase_2 a ds:UseCase ;
+    ds:description "Polygenic risk score development and GWAS meta-analysis" .
+
+data:GWASCatalog_Limitation_1 a ds:Limitation ;
+    ds:description "Publication bias toward significant results; ancestry bias historically European-dominant" ;
+    ds:impact tax:Medium .
+
+# -----------------------------------------------------------------------------
+# PharmGKB - Pharmacogenomics Knowledge Base
+# -----------------------------------------------------------------------------
+
+data:PharmGKB a ds:DataSource ;
+    ds:id "pharmgkb" ;
+    ds:title "PharmGKB" ;
+    ds:description "Leading pharmacogenomics resource curating knowledge about genetic variation impact on drug response, with 20,000+ clinical annotations, CPIC guidelines integration, and drug label pharmacogenomics information." ;
+    ds:belongsToSubcategory subcat:DiseaseGeneAssociations ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:maintainedBy maint:Stanford ;
+    ds:website <https://www.pharmgkb.org/> ;
+    ds:updateFrequency tax:Continuous ;
+    ds:recordCount "20000"^^xsd:integer ;
+    ds:hasLicense data:PharmGKB_License ;
+    ds:hasAccessMethod data:PharmGKB_WebAccess, data:PharmGKB_APIAccess, data:PharmGKB_DownloadAccess ;
+    ds:hasIdentifier data:PharmGKB_ID_Drug, data:PharmGKB_ID_Gene ;
+    ds:hasCrossReference data:PharmGKB_Xref_CPIC, data:PharmGKB_Xref_DrugBank ;
+    ds:hasUseCase data:PharmGKB_UseCase_1, data:PharmGKB_UseCase_2 ;
+    ds:hasLimitation data:PharmGKB_Limitation_1 .
+
+data:PharmGKB_License a ds:License ;
+    ds:licenseName "CC BY-SA 4.0" ;
+    ds:spdxIdentifier "CC-BY-SA-4.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistributionAllowed true ;
+    ds:licenseURL <https://creativecommons.org/licenses/by-sa/4.0/> .
+
+data:PharmGKB_WebAccess a ds:AccessMethod ;
+    ds:accessType tax:WebInterface ;
+    ds:endpoint <https://www.pharmgkb.org/> .
+
+data:PharmGKB_APIAccess a ds:AccessMethod ;
+    ds:accessType tax:RESTAPI ;
+    ds:endpoint <https://api.pharmgkb.org/v1/> ;
+    ds:authRequired true .
+
+data:PharmGKB_DownloadAccess a ds:AccessMethod ;
+    ds:accessType tax:Download ;
+    ds:endpoint <https://www.pharmgkb.org/downloads> ;
+    ds:format "TSV" .
+
+data:PharmGKB_ID_Drug a ds:Identifier ;
+    ds:pattern "PA[0-9]+" ;
+    ds:example "PA449053" ;
+    ds:description "PharmGKB drug accession" .
+
+data:PharmGKB_ID_Gene a ds:Identifier ;
+    ds:pattern "PA[0-9]+" ;
+    ds:example "PA124" ;
+    ds:description "PharmGKB gene accession" .
+
+data:PharmGKB_Xref_CPIC a ds:CrossReference ;
+    ds:targetDatabase data:CPIC ;
+    ds:coverageLevel tax:Complete ;
+    ds:description "CPIC clinical guidelines integration" .
+
+data:PharmGKB_Xref_DrugBank a ds:CrossReference ;
+    ds:targetDatabase data:DrugBank ;
+    ds:coverageLevel tax:High ;
+    ds:description "Drug information cross-reference" .
+
+data:PharmGKB_UseCase_1 a ds:UseCase ;
+    ds:description "Drug-gene interaction lookup and clinical pharmacogenomics implementation" .
+
+data:PharmGKB_UseCase_2 a ds:UseCase ;
+    ds:description "Dosing guideline reference for precision medicine" .
+
+data:PharmGKB_Limitation_1 a ds:Limitation ;
+    ds:description "Evidence levels vary; coverage biased toward well-studied genes (CYP450 family)" ;
+    ds:impact tax:Medium .
+
+# =============================================================================
+# DATA SOURCES - 3.4 Cancer & Oncology
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# CIViC - Clinical Interpretation of Variants in Cancer
+# -----------------------------------------------------------------------------
+
+data:CIViC a ds:DataSource ;
+    ds:id "civic" ;
+    ds:title "CIViC" ;
+    ds:description "Open-source community-driven knowledgebase of clinical interpretations for cancer variants providing crowdsourced curation of variant-level evidence linking genomic alterations to therapies and clinical outcomes." ;
+    ds:belongsToSubcategory subcat:CancerOncology ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:maintainedBy maint:WashU ;
+    ds:website <https://civicdb.org/> ;
+    ds:updateFrequency tax:Continuous ;
+    ds:recordCount "8000"^^xsd:integer ;
+    ds:hasLicense data:CIViC_License ;
+    ds:hasAccessMethod data:CIViC_WebAccess, data:CIViC_APIAccess ;
+    ds:hasIdentifier data:CIViC_ID_Variant, data:CIViC_ID_Evidence ;
+    ds:hasCrossReference data:CIViC_Xref_COSMIC, data:CIViC_Xref_ClinVar ;
+    ds:hasUseCase data:CIViC_UseCase_1, data:CIViC_UseCase_2 ;
+    ds:hasLimitation data:CIViC_Limitation_1 .
+
+data:CIViC_License a ds:License ;
+    ds:licenseName "CC0 1.0" ;
+    ds:spdxIdentifier "CC0-1.0" ;
+    ds:commercialUse true ;
+    ds:attributionRequired false ;
+    ds:redistributionAllowed true ;
+    ds:licenseURL <https://creativecommons.org/publicdomain/zero/1.0/> .
+
+data:CIViC_WebAccess a ds:AccessMethod ;
+    ds:accessType tax:WebInterface ;
+    ds:endpoint <https://civicdb.org/> .
+
+data:CIViC_APIAccess a ds:AccessMethod ;
+    ds:accessType tax:GraphQL ;
+    ds:endpoint <https://civicdb.org/api/graphql> ;
+    ds:format "JSON" .
+
+data:CIViC_ID_Variant a ds:Identifier ;
+    ds:pattern "[0-9]+" ;
+    ds:example "12" ;
+    ds:description "CIViC variant ID" .
+
+data:CIViC_ID_Evidence a ds:Identifier ;
+    ds:pattern "EID[0-9]+" ;
+    ds:example "EID1234" ;
+    ds:description "CIViC evidence item ID" .
+
+data:CIViC_Xref_COSMIC a ds:CrossReference ;
+    ds:targetDatabase data:COSMIC ;
+    ds:coverageLevel tax:High ;
+    ds:description "Somatic mutation cross-reference" .
+
+data:CIViC_Xref_ClinVar a ds:CrossReference ;
+    ds:targetDatabase data:ClinVar ;
+    ds:coverageLevel tax:Medium ;
+    ds:description "Clinical variant cross-reference" .
+
+data:CIViC_UseCase_1 a ds:UseCase ;
+    ds:description "Cancer variant interpretation and clinical evidence lookup" .
+
+data:CIViC_UseCase_2 a ds:UseCase ;
+    ds:description "Therapy selection support for precision oncology" .
+
+data:CIViC_Limitation_1 a ds:Limitation ;
+    ds:description "Community curation may include errors; evidence quality varies by item" ;
+    ds:impact tax:Medium .
+
+# -----------------------------------------------------------------------------
+# COSMIC - Catalogue of Somatic Mutations in Cancer
+# -----------------------------------------------------------------------------
+
+data:COSMIC a ds:DataSource ;
+    ds:id "cosmic" ;
+    ds:title "COSMIC" ;
+    ds:description "World's largest resource for somatic mutations in human cancer with 17M+ mutations, Cancer Gene Census, mutational signatures, and expert curation from literature and major cancer genome projects." ;
+    ds:belongsToSubcategory subcat:CancerOncology ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:maintainedBy maint:WellcomeSanger ;
+    ds:website <https://cancer.sanger.ac.uk/cosmic> ;
+    ds:updateFrequency tax:Quarterly ;
+    ds:recordCount "17000000"^^xsd:integer ;
+    ds:hasLicense data:COSMIC_License ;
+    ds:hasAccessMethod data:COSMIC_WebAccess, data:COSMIC_DownloadAccess ;
+    ds:hasIdentifier data:COSMIC_ID_COSMID, data:COSMIC_ID_Gene ;
+    ds:hasCrossReference data:COSMIC_Xref_TCGA, data:COSMIC_Xref_ClinVar ;
+    ds:hasUseCase data:COSMIC_UseCase_1, data:COSMIC_UseCase_2 ;
+    ds:hasLimitation data:COSMIC_Limitation_1, data:COSMIC_Limitation_2 .
+
+data:COSMIC_License a ds:License ;
+    ds:licenseName "COSMIC License" ;
+    ds:spdxIdentifier "Custom" ;
+    ds:commercialUse false ;
+    ds:attributionRequired true ;
+    ds:redistributionAllowed false ;
+    ds:specialCondition "Registration required; commercial use requires paid license" ;
+    ds:licenseURL <https://cancer.sanger.ac.uk/cosmic/license> .
+
+data:COSMIC_WebAccess a ds:AccessMethod ;
+    ds:accessType tax:WebInterface ;
+    ds:endpoint <https://cancer.sanger.ac.uk/cosmic> .
+
+data:COSMIC_DownloadAccess a ds:AccessMethod ;
+    ds:accessType tax:Download ;
+    ds:endpoint <https://cancer.sanger.ac.uk/cosmic/download> ;
+    ds:authRequired true ;
+    ds:format "TSV", "VCF" .
+
+data:COSMIC_ID_COSMID a ds:Identifier ;
+    ds:pattern "COS[MV][0-9]+" ;
+    ds:example "COSM476" ;
+    ds:description "COSMIC mutation ID" .
+
+data:COSMIC_ID_Gene a ds:Identifier ;
+    ds:pattern "[A-Z0-9]+" ;
+    ds:example "BRAF" ;
+    ds:description "Gene symbol (HUGO)" .
+
+data:COSMIC_Xref_TCGA a ds:CrossReference ;
+    ds:targetDatabase data:GDCTCGA ;
+    ds:coverageLevel tax:High ;
+    ds:description "TCGA cancer genomics data" .
+
+data:COSMIC_Xref_ClinVar a ds:CrossReference ;
+    ds:targetDatabase data:ClinVar ;
+    ds:coverageLevel tax:Medium ;
+    ds:description "Clinical variant annotations" .
+
+data:COSMIC_UseCase_1 a ds:UseCase ;
+    ds:description "Somatic variant annotation and driver gene identification" .
+
+data:COSMIC_UseCase_2 a ds:UseCase ;
+    ds:description "Mutational signature analysis for cancer etiology" .
+
+data:COSMIC_Limitation_1 a ds:Limitation ;
+    ds:description "Registration required for data access; commercial use requires paid license" ;
+    ds:impact tax:Medium .
+
+data:COSMIC_Limitation_2 a ds:Limitation ;
+    ds:description "Literature curation may lag behind primary research" ;
+    ds:impact tax:Low .
+
+# -----------------------------------------------------------------------------
+# GDC/TCGA - Genomic Data Commons and The Cancer Genome Atlas
+# -----------------------------------------------------------------------------
+
+data:GDCTCGA a ds:DataSource ;
+    ds:id "gdc.tcga" ;
+    ds:title "GDC/TCGA - Genomic Data Commons and The Cancer Genome Atlas" ;
+    ds:description "NCI's centralized repository for cancer genomic data including TCGA's comprehensive characterization of 20,000+ samples across 33 cancer types with multi-omics profiling and harmonized data pipelines." ;
+    ds:belongsToSubcategory subcat:CancerOncology ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:maintainedBy maint:NCI ;
+    ds:website <https://portal.gdc.cancer.gov/> ;
+    ds:updateFrequency tax:Continuous ;
+    ds:recordCount "80000"^^xsd:integer ;
+    ds:hasLicense data:GDCTCGA_License ;
+    ds:hasAccessMethod data:GDCTCGA_WebAccess, data:GDCTCGA_APIAccess ;
+    ds:hasIdentifier data:GDCTCGA_ID_TCGABarcode, data:GDCTCGA_ID_UUID ;
+    ds:hasCrossReference data:GDCTCGA_Xref_COSMIC, data:GDCTCGA_Xref_cBioPortal ;
+    ds:hasUseCase data:GDCTCGA_UseCase_1, data:GDCTCGA_UseCase_2 ;
+    ds:hasLimitation data:GDCTCGA_Limitation_1 .
+
+data:GDCTCGA_License a ds:License ;
+    ds:licenseName "GDC Data Access Policy" ;
+    ds:spdxIdentifier "Custom" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistributionAllowed false ;
+    ds:specialCondition "Open data freely available; controlled data requires dbGaP authorization" ;
+    ds:licenseURL <https://gdc.cancer.gov/access-data/data-access-policies> .
+
+data:GDCTCGA_WebAccess a ds:AccessMethod ;
+    ds:accessType tax:WebInterface ;
+    ds:endpoint <https://portal.gdc.cancer.gov/> .
+
+data:GDCTCGA_APIAccess a ds:AccessMethod ;
+    ds:accessType tax:RESTAPI ;
+    ds:endpoint <https://api.gdc.cancer.gov/> ;
+    ds:format "JSON" .
+
+data:GDCTCGA_ID_TCGABarcode a ds:Identifier ;
+    ds:pattern "TCGA-[A-Z]{2}-[A-Z0-9]{4}" ;
+    ds:example "TCGA-A1-A0SK" ;
+    ds:description "TCGA sample barcode" .
+
+data:GDCTCGA_ID_UUID a ds:Identifier ;
+    ds:pattern "[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}" ;
+    ds:example "8a3a3f26-8458-4e5a-9c5e-987654321abc" ;
+    ds:description "GDC universally unique identifier" .
+
+data:GDCTCGA_Xref_COSMIC a ds:CrossReference ;
+    ds:targetDatabase data:COSMIC ;
+    ds:coverageLevel tax:High ;
+    ds:description "Somatic mutation catalog" .
+
+data:GDCTCGA_Xref_cBioPortal a ds:CrossReference ;
+    ds:targetDatabase data:cBioPortal ;
+    ds:coverageLevel tax:High ;
+    ds:description "Cancer genomics analysis platform" .
+
+data:GDCTCGA_UseCase_1 a ds:UseCase ;
+    ds:description "Pan-cancer analysis of driver mutations and molecular subtypes" .
+
+data:GDCTCGA_UseCase_2 a ds:UseCase ;
+    ds:description "Biomarker identification and multi-omics integration" .
+
+data:GDCTCGA_Limitation_1 a ds:Limitation ;
+    ds:description "Individual-level data requires dbGaP controlled access approval" ;
+    ds:impact tax:Medium .
+
+# -----------------------------------------------------------------------------
+# OncoKB - Precision Oncology Knowledge Base
+# -----------------------------------------------------------------------------
+
+data:OncoKB a ds:DataSource ;
+    ds:id "oncokb" ;
+    ds:title "OncoKB" ;
+    ds:description "MSK's precision oncology knowledge base with expert-curated annotation of cancer variant effects, FDA/guideline-based evidence levels, and therapeutic implications for 5,000+ annotated variants." ;
+    ds:belongsToSubcategory subcat:CancerOncology ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:maintainedBy maint:MSK ;
+    ds:website <https://www.oncokb.org/> ;
+    ds:updateFrequency tax:Continuous ;
+    ds:recordCount "5000"^^xsd:integer ;
+    ds:hasLicense data:OncoKB_License ;
+    ds:hasAccessMethod data:OncoKB_WebAccess, data:OncoKB_APIAccess ;
+    ds:hasIdentifier data:OncoKB_ID_Gene, data:OncoKB_ID_Variant ;
+    ds:hasCrossReference data:OncoKB_Xref_CIViC, data:OncoKB_Xref_COSMIC ;
+    ds:hasUseCase data:OncoKB_UseCase_1, data:OncoKB_UseCase_2 ;
+    ds:hasLimitation data:OncoKB_Limitation_1 .
+
+data:OncoKB_License a ds:License ;
+    ds:licenseName "OncoKB License" ;
+    ds:spdxIdentifier "Custom" ;
+    ds:commercialUse false ;
+    ds:attributionRequired true ;
+    ds:redistributionAllowed false ;
+    ds:specialCondition "Free for research; commercial use requires license agreement" ;
+    ds:licenseURL <https://www.oncokb.org/terms> .
+
+data:OncoKB_WebAccess a ds:AccessMethod ;
+    ds:accessType tax:WebInterface ;
+    ds:endpoint <https://www.oncokb.org/> .
+
+data:OncoKB_APIAccess a ds:AccessMethod ;
+    ds:accessType tax:RESTAPI ;
+    ds:endpoint <https://www.oncokb.org/api/> ;
+    ds:authRequired true ;
+    ds:format "JSON" .
+
+data:OncoKB_ID_Gene a ds:Identifier ;
+    ds:pattern "[A-Z0-9]+" ;
+    ds:example "BRAF" ;
+    ds:description "Gene symbol (HUGO)" .
+
+data:OncoKB_ID_Variant a ds:Identifier ;
+    ds:pattern "[A-Z][0-9]+[A-Z*]?" ;
+    ds:example "V600E" ;
+    ds:description "Protein change notation" .
+
+data:OncoKB_Xref_CIViC a ds:CrossReference ;
+    ds:targetDatabase data:CIViC ;
+    ds:coverageLevel tax:High ;
+    ds:description "Community variant interpretations" .
+
+data:OncoKB_Xref_COSMIC a ds:CrossReference ;
+    ds:targetDatabase data:COSMIC ;
+    ds:coverageLevel tax:High ;
+    ds:description "Somatic mutation catalog" .
+
+data:OncoKB_UseCase_1 a ds:UseCase ;
+    ds:description "Clinical variant interpretation and therapy selection support" .
+
+data:OncoKB_UseCase_2 a ds:UseCase ;
+    ds:description "Molecular tumor board decision support" .
+
+data:OncoKB_Limitation_1 a ds:Limitation ;
+    ds:description "Commercial use requires license; annotations focused on actionable variants" ;
+    ds:impact tax:Medium .
 
 # =============================================================================
 # DATA SOURCES - 3.5 Rare & Orphan Diseases
@@ -1210,6 +1936,85 @@ data:SynGO_UseCase_2 a ds:UseCase ;
 
 data:SynGO_Limitation_1 a ds:Limitation ;
     ds:description "Focused on synapse biology; non-synaptic brain genes not covered" ;
+    ds:impact tax:Medium .
+
+# -----------------------------------------------------------------------------
+# GTEx - Genotype-Tissue Expression
+# -----------------------------------------------------------------------------
+
+data:GTEx a ds:DataSource ;
+    ds:id "gtex" ;
+    ds:title "GTEx" ;
+    ds:description "Comprehensive resource of gene expression and genetic regulation data from 54 non-diseased human tissues with eQTLs and sQTLs linking variants to expression changes, essential for interpreting GWAS signals and tissue-specific disease mechanisms." ;
+    ds:belongsToSubcategory subcat:MentalHealthNeurological ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:maintainedBy maint:GTExConsortium ;
+    ds:website <https://gtexportal.org/> ;
+    ds:updateFrequency tax:Irregular ;
+    ds:recordCount "3300000"^^xsd:integer ;
+    ds:hasLicense data:GTEx_License ;
+    ds:hasAccessMethod data:GTEx_WebAccess, data:GTEx_APIAccess, data:GTEx_DownloadAccess ;
+    ds:hasIdentifier data:GTEx_ID_Sample, data:GTEx_ID_Gene ;
+    ds:hasCrossReference data:GTEx_Xref_Ensembl, data:GTEx_Xref_GWASCatalog ;
+    ds:hasUseCase data:GTEx_UseCase_1, data:GTEx_UseCase_2 ;
+    ds:hasLimitation data:GTEx_Limitation_1, data:GTEx_Limitation_2 .
+
+data:GTEx_License a ds:License ;
+    ds:licenseName "GTEx Data Use Agreement" ;
+    ds:spdxIdentifier "Custom" ;
+    ds:commercialUse true ;
+    ds:attributionRequired true ;
+    ds:redistributionAllowed true ;
+    ds:specialCondition "Aggregate data open; individual-level data requires dbGaP authorization" ;
+    ds:licenseURL <https://gtexportal.org/home/documentationPage#staticTextDataAccessPolicy> .
+
+data:GTEx_WebAccess a ds:AccessMethod ;
+    ds:accessType tax:WebInterface ;
+    ds:endpoint <https://gtexportal.org/> .
+
+data:GTEx_APIAccess a ds:AccessMethod ;
+    ds:accessType tax:RESTAPI ;
+    ds:endpoint <https://gtexportal.org/api/v2/> ;
+    ds:format "JSON" .
+
+data:GTEx_DownloadAccess a ds:AccessMethod ;
+    ds:accessType tax:Download ;
+    ds:endpoint <https://gtexportal.org/home/downloads/> ;
+    ds:format "TSV", "BED" .
+
+data:GTEx_ID_Sample a ds:Identifier ;
+    ds:pattern "GTEX-[A-Z0-9]+" ;
+    ds:example "GTEX-1117F" ;
+    ds:description "GTEx donor/sample identifier" .
+
+data:GTEx_ID_Gene a ds:Identifier ;
+    ds:pattern "ENSG[0-9]{11}" ;
+    ds:example "ENSG00000012048" ;
+    ds:description "Ensembl gene identifier" .
+
+data:GTEx_Xref_Ensembl a ds:CrossReference ;
+    ds:targetDatabase data:Ensembl ;
+    ds:coverageLevel tax:Complete ;
+    ds:description "Gene annotation reference" .
+
+data:GTEx_Xref_GWASCatalog a ds:CrossReference ;
+    ds:targetDatabase data:GWASCatalog ;
+    ds:coverageLevel tax:High ;
+    ds:description "GWAS variant colocalization" .
+
+data:GTEx_UseCase_1 a ds:UseCase ;
+    ds:description "GWAS variant colocalization and tissue-specific expression analysis" .
+
+data:GTEx_UseCase_2 a ds:UseCase ;
+    ds:description "eQTL/sQTL lookup for variant functional interpretation" .
+
+data:GTEx_Limitation_1 a ds:Limitation ;
+    ds:description "Non-diseased tissues only; no tumor or disease samples" ;
+    ds:impact tax:Medium .
+
+data:GTEx_Limitation_2 a ds:Limitation ;
+    ds:description "European ancestry dominant; individual-level data requires dbGaP access" ;
     ds:impact tax:Medium .
 
 # =============================================================================
