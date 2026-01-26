@@ -1,9 +1,9 @@
 # =============================================================================
 # Gene Data Source Instance Data - Nutrition & Food Category
 # =============================================================================
-# Generated: 2026-01-25
+# Generated: 2026-01-26
 # Category: 06.nutrition.food
-# Sources: 8
+# Sources: 11
 # Subcategories: food.composition, dietary.supplements, bioactive.food.compounds, metabolomics
 # Conforms to: datasource-ontology.ttl, datasource-shapes.ttl
 # =============================================================================
@@ -301,6 +301,103 @@ data:off-limitation-1 a ds:Limitation ;
 data:off-limitation-2 a ds:Limitation ;
     ds:belongsToSource data:open-food-facts ;
     ds:limitationDescription "Duplicate barcodes - some products have multiple entries" .
+
+# -----------------------------------------------------------------------------
+# USDA FoodData Central
+# -----------------------------------------------------------------------------
+
+data:usda-fooddata a ds:DataSource ;
+    ds:id "usda.fooddata" ;
+    ds:title "USDA FoodData Central" ;
+    ds:description "The authoritative source for food composition data in the United States. Integrates data from multiple USDA data types including Foundation Foods (comprehensive nutrient profiles), SR Legacy (historical data), Branded Foods (industry-submitted data), and Survey Foods (NHANES data). Provides nutrient data essential for dietary assessment, food labeling, and nutrition research." ;
+    ds:belongsToCategory cat:NutritionFood ;
+    ds:belongsToSubcategory subcat:FoodComposition ;
+    ds:tier tax:Tier1 ;
+    ds:status tax:Active ;
+    ds:tag "food-composition" ;
+    ds:tag "nutrients" ;
+    ds:tag "usda" ;
+    ds:tag "dietary-reference" ;
+    ds:tag "nutrition" ;
+    ds:lastUpdated "2026-01-26"^^xsd:date ;
+    ds:maintainedBy maint:USDA_ARS ;
+    ds:website <https://fdc.nal.usda.gov> ;
+    ds:hasLicense license:CC0-1.0 ;
+    ds:foodCount "380000+"^^xsd:string ;
+    ds:foundationFoods "2100+"^^xsd:string ;
+    ds:brandedFoods "360000+"^^xsd:string ;
+    ds:nutrientCount "150+"^^xsd:string ;
+    ds:updateFrequency "Continuous" ;
+    rdfs:comment "Source documentation: 06.nutrition.food/6.1.food.composition/usda.fooddata" .
+
+data:usda-fooddata-access-api a ds:AccessMethod ;
+    ds:belongsToSource data:usda-fooddata ;
+    ds:accessType "REST API" ;
+    ds:accessUrl <https://api.nal.usda.gov/fdc> ;
+    ds:registrationRequired true ;
+    ds:registrationFree true ;
+    ds:apiKeyRequired true .
+
+data:usda-fooddata-access-download a ds:AccessMethod ;
+    ds:belongsToSource data:usda-fooddata ;
+    ds:accessType "HTTP Download" ;
+    ds:accessUrl <https://fdc.nal.usda.gov/download-datasets.html> ;
+    ds:formats "CSV, JSON" ;
+    ds:registrationRequired false .
+
+data:usda-fooddata-access-web a ds:AccessMethod ;
+    ds:belongsToSource data:usda-fooddata ;
+    ds:accessType "Web Interface" ;
+    ds:accessUrl <https://fdc.nal.usda.gov> ;
+    ds:registrationRequired false .
+
+data:usda-fooddata-id-fdc a ds:Identifier ;
+    ds:belongsToSource data:usda-fooddata ;
+    ds:identifierType "FDC ID" ;
+    ds:identifierPattern "Integer" ;
+    ds:identifierExample "167512" .
+
+data:usda-fooddata-id-ndb a ds:Identifier ;
+    ds:belongsToSource data:usda-fooddata ;
+    ds:identifierType "NDB Number" ;
+    ds:identifierPattern "5 digits (legacy)" ;
+    ds:identifierExample "01001" .
+
+data:usda-fooddata-usecase-1 a ds:UseCase ;
+    ds:belongsToSource data:usda-fooddata ;
+    ds:useCaseDescription "Dietary assessment - calculate nutrient intake from food records" .
+
+data:usda-fooddata-usecase-2 a ds:UseCase ;
+    ds:belongsToSource data:usda-fooddata ;
+    ds:useCaseDescription "Food labeling - reference values for Nutrition Facts labels" .
+
+data:usda-fooddata-usecase-3 a ds:UseCase ;
+    ds:belongsToSource data:usda-fooddata ;
+    ds:useCaseDescription "Research - source data for nutrition studies" .
+
+data:usda-fooddata-usecase-4 a ds:UseCase ;
+    ds:belongsToSource data:usda-fooddata ;
+    ds:useCaseDescription "Software development - foundation for nutrition apps" .
+
+data:usda-fooddata-usecase-5 a ds:UseCase ;
+    ds:belongsToSource data:usda-fooddata ;
+    ds:useCaseDescription "Food industry - product formulation and reformulation" .
+
+data:usda-fooddata-limitation-1 a ds:Limitation ;
+    ds:belongsToSource data:usda-fooddata ;
+    ds:limitationDescription "Branded food data quality depends on manufacturer submissions" .
+
+data:usda-fooddata-limitation-2 a ds:Limitation ;
+    ds:belongsToSource data:usda-fooddata ;
+    ds:limitationDescription "Nutrient values represent averages; individual products vary" .
+
+data:usda-fooddata-limitation-3 a ds:Limitation ;
+    ds:belongsToSource data:usda-fooddata ;
+    ds:limitationDescription "Some micronutrients not analyzed for all foods" .
+
+data:usda-fooddata-limitation-4 a ds:Limitation ;
+    ds:belongsToSource data:usda-fooddata ;
+    ds:limitationDescription "Non-US foods less represented in database" .
 
 # =============================================================================
 # DATA SOURCES - 6.2 DIETARY SUPPLEMENTS
@@ -621,6 +718,214 @@ data:ebasis-limitation-2 a ds:Limitation ;
 data:ebasis-limitation-3 a ds:Limitation ;
     ds:belongsToSource data:ebasis ;
     ds:limitationDescription "No public API available" .
+
+# -----------------------------------------------------------------------------
+# Phenol-Explorer - Polyphenol Database
+# -----------------------------------------------------------------------------
+
+data:phenol-explorer a ds:DataSource ;
+    ds:id "phenol.explorer" ;
+    ds:title "Phenol-Explorer - Polyphenol Database" ;
+    ds:description "The most comprehensive database on polyphenol content in foods and beverages. Contains detailed information on the content of over 500 polyphenol compounds in more than 400 foods, along with data on polyphenol metabolism and pharmacokinetics. A critical resource for nutrition research, dietary assessment, and understanding the health effects of plant-based foods." ;
+    ds:belongsToCategory cat:NutritionFood ;
+    ds:belongsToSubcategory subcat:BioactiveFoodCompounds ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:tag "polyphenols" ;
+    ds:tag "flavonoids" ;
+    ds:tag "food-composition" ;
+    ds:tag "bioavailability" ;
+    ds:tag "metabolism" ;
+    ds:lastUpdated "2026-01-26"^^xsd:date ;
+    ds:maintainedBy maint:INRAE ;
+    ds:website <http://phenol-explorer.eu> ;
+    ds:hasLicense license:CC-BY-NC-4.0 ;
+    ds:compoundCount "500+"^^xsd:string ;
+    ds:foodCount "450+"^^xsd:string ;
+    ds:dataPointCount "35000+"^^xsd:string ;
+    ds:metaboliteCount "380+"^^xsd:string ;
+    ds:publicationCount "1500+"^^xsd:string ;
+    rdfs:comment "Source documentation: 06.nutrition.food/6.3.bioactive.food.compounds/phenol.explorer" .
+
+data:phenol-explorer-access-web a ds:AccessMethod ;
+    ds:belongsToSource data:phenol-explorer ;
+    ds:accessType "Web Interface" ;
+    ds:accessUrl <http://phenol-explorer.eu> ;
+    ds:registrationRequired false .
+
+data:phenol-explorer-access-composition a ds:AccessMethod ;
+    ds:belongsToSource data:phenol-explorer ;
+    ds:accessType "Composition Explorer" ;
+    ds:accessUrl <http://phenol-explorer.eu/contents> ;
+    ds:registrationRequired false .
+
+data:phenol-explorer-access-metabolites a ds:AccessMethod ;
+    ds:belongsToSource data:phenol-explorer ;
+    ds:accessType "Metabolite Explorer" ;
+    ds:accessUrl <http://phenol-explorer.eu/metabolites> ;
+    ds:registrationRequired false .
+
+data:phenol-explorer-id-compound a ds:Identifier ;
+    ds:belongsToSource data:phenol-explorer ;
+    ds:identifierType "Compound ID" ;
+    ds:identifierPattern "Integer" ;
+    ds:identifierExample "1 (Quercetin)" .
+
+data:phenol-explorer-xref-pubchem a ds:CrossReference ;
+    ds:belongsToSource data:phenol-explorer ;
+    ds:externalDatabase "PubChem" ;
+    ds:externalIdField "pubchem_cid" ;
+    ds:coverageLevel "High" .
+
+data:phenol-explorer-xref-cas a ds:CrossReference ;
+    ds:belongsToSource data:phenol-explorer ;
+    ds:externalDatabase "CAS Registry" ;
+    ds:externalIdField "cas_number" ;
+    ds:coverageLevel "High" .
+
+data:phenol-explorer-usecase-1 a ds:UseCase ;
+    ds:belongsToSource data:phenol-explorer ;
+    ds:useCaseDescription "Dietary assessment - calculate polyphenol intake from food records" .
+
+data:phenol-explorer-usecase-2 a ds:UseCase ;
+    ds:belongsToSource data:phenol-explorer ;
+    ds:useCaseDescription "Biomarker research - identify metabolites for exposure assessment" .
+
+data:phenol-explorer-usecase-3 a ds:UseCase ;
+    ds:belongsToSource data:phenol-explorer ;
+    ds:useCaseDescription "Food analysis - compare polyphenol profiles across foods" .
+
+data:phenol-explorer-usecase-4 a ds:UseCase ;
+    ds:belongsToSource data:phenol-explorer ;
+    ds:useCaseDescription "Health research - link polyphenol intake to health outcomes" .
+
+data:phenol-explorer-usecase-5 a ds:UseCase ;
+    ds:belongsToSource data:phenol-explorer ;
+    ds:useCaseDescription "Product development - formulate polyphenol-rich products" .
+
+data:phenol-explorer-limitation-1 a ds:Limitation ;
+    ds:belongsToSource data:phenol-explorer ;
+    ds:limitationDescription "Commercial use requires contacting database maintainers" .
+
+data:phenol-explorer-limitation-2 a ds:Limitation ;
+    ds:belongsToSource data:phenol-explorer ;
+    ds:limitationDescription "Food composition varies by cultivar, season, and processing" .
+
+data:phenol-explorer-limitation-3 a ds:Limitation ;
+    ds:belongsToSource data:phenol-explorer ;
+    ds:limitationDescription "Metabolite data limited to available pharmacokinetic studies" .
+
+data:phenol-explorer-limitation-4 a ds:Limitation ;
+    ds:belongsToSource data:phenol-explorer ;
+    ds:limitationDescription "Not all analytical methods are directly comparable" .
+
+# -----------------------------------------------------------------------------
+# PhytoHub - Dietary Phytochemical Metabolome
+# -----------------------------------------------------------------------------
+
+data:phytohub a ds:DataSource ;
+    ds:id "phytohub" ;
+    ds:title "PhytoHub - Dietary Phytochemical Metabolome" ;
+    ds:description "A comprehensive database of dietary phytochemicals and their human and microbial metabolites. Catalogs the full spectrum of compounds derived from plant foods as they are absorbed and transformed in the human body, providing essential reference data for metabolomics studies of dietary exposure. Includes parent phytochemicals along with Phase I/II metabolites and microbial metabolites." ;
+    ds:belongsToCategory cat:NutritionFood ;
+    ds:belongsToSubcategory subcat:BioactiveFoodCompounds ;
+    ds:tier tax:Tier2 ;
+    ds:status tax:Active ;
+    ds:tag "phytochemicals" ;
+    ds:tag "metabolites" ;
+    ds:tag "biomarkers" ;
+    ds:tag "dietary-exposure" ;
+    ds:tag "mass-spectrometry" ;
+    ds:lastUpdated "2026-01-26"^^xsd:date ;
+    ds:maintainedBy maint:INRAE ;
+    ds:website <http://phytohub.eu> ;
+    ds:hasLicense license:CC-BY-NC-4.0 ;
+    ds:compoundCount "1800+"^^xsd:string ;
+    ds:parentCompoundCount "600+"^^xsd:string ;
+    ds:humanMetaboliteCount "400+"^^xsd:string ;
+    ds:microbialMetaboliteCount "600+"^^xsd:string ;
+    ds:spectraCount "1200+"^^xsd:string ;
+    rdfs:comment "Source documentation: 06.nutrition.food/6.3.bioactive.food.compounds/phytohub" .
+
+data:phytohub-access-web a ds:AccessMethod ;
+    ds:belongsToSource data:phytohub ;
+    ds:accessType "Web Interface" ;
+    ds:accessUrl <http://phytohub.eu> ;
+    ds:registrationRequired false .
+
+data:phytohub-access-compounds a ds:AccessMethod ;
+    ds:belongsToSource data:phytohub ;
+    ds:accessType "Compound Search" ;
+    ds:accessUrl <http://phytohub.eu/compounds> ;
+    ds:registrationRequired false .
+
+data:phytohub-access-spectra a ds:AccessMethod ;
+    ds:belongsToSource data:phytohub ;
+    ds:accessType "MS/MS Library" ;
+    ds:accessUrl <http://phytohub.eu/spectra> ;
+    ds:registrationRequired false .
+
+data:phytohub-id-phytohub a ds:Identifier ;
+    ds:belongsToSource data:phytohub ;
+    ds:identifierType "PhytoHub ID" ;
+    ds:identifierPattern "PHUB[0-9]{6}" ;
+    ds:identifierExample "PHUB000001" .
+
+data:phytohub-xref-pubchem a ds:CrossReference ;
+    ds:belongsToSource data:phytohub ;
+    ds:externalDatabase "PubChem" ;
+    ds:externalIdField "pubchem_cid" ;
+    ds:coverageLevel "High" .
+
+data:phytohub-xref-hmdb a ds:CrossReference ;
+    ds:belongsToSource data:phytohub ;
+    ds:externalDatabase "HMDB" ;
+    ds:externalIdField "hmdb_id" ;
+    ds:identifierPattern "HMDB[0-9]{7}" ;
+    ds:coverageLevel "High" .
+
+data:phytohub-xref-inchikey a ds:CrossReference ;
+    ds:belongsToSource data:phytohub ;
+    ds:externalDatabase "InChI" ;
+    ds:externalIdField "inchi_key" ;
+    ds:identifierPattern "27 characters" ;
+    ds:coverageLevel "High" .
+
+data:phytohub-usecase-1 a ds:UseCase ;
+    ds:belongsToSource data:phytohub ;
+    ds:useCaseDescription "Metabolomics analysis - identify phytochemical metabolites in biofluids" .
+
+data:phytohub-usecase-2 a ds:UseCase ;
+    ds:belongsToSource data:phytohub ;
+    ds:useCaseDescription "Biomarker discovery - find biomarkers of dietary intake" .
+
+data:phytohub-usecase-3 a ds:UseCase ;
+    ds:belongsToSource data:phytohub ;
+    ds:useCaseDescription "Metabolic pathway mapping - trace phytochemical biotransformation" .
+
+data:phytohub-usecase-4 a ds:UseCase ;
+    ds:belongsToSource data:phytohub ;
+    ds:useCaseDescription "Mass spectrometry reference - MS/MS spectral matching" .
+
+data:phytohub-usecase-5 a ds:UseCase ;
+    ds:belongsToSource data:phytohub ;
+    ds:useCaseDescription "Microbiome research - understand gut microbial metabolism" .
+
+data:phytohub-limitation-1 a ds:Limitation ;
+    ds:belongsToSource data:phytohub ;
+    ds:limitationDescription "Commercial use requires contacting database maintainers" .
+
+data:phytohub-limitation-2 a ds:Limitation ;
+    ds:belongsToSource data:phytohub ;
+    ds:limitationDescription "MS/MS spectra coverage not complete for all compounds" .
+
+data:phytohub-limitation-3 a ds:Limitation ;
+    ds:belongsToSource data:phytohub ;
+    ds:limitationDescription "Metabolite pathways are partially characterized" .
+
+data:phytohub-limitation-4 a ds:Limitation ;
+    ds:belongsToSource data:phytohub ;
+    ds:limitationDescription "Individual variation in metabolism not captured" .
 
 # =============================================================================
 # DATA SOURCES - 6.4 METABOLOMICS
